@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:4000/api';
+const API_URL = '/api';
 
 export async function fetchPortfolio() {
   const res = await fetch(`${API_URL}/portfolio`);
@@ -11,7 +11,7 @@ export async function fetchTestimonials() {
 }
 
 export async function sendContact(data) {
-  const res = await fetch(`${API_URL}/contact`, {
+  const res = await fetch(`${API_URL}/send-email`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
