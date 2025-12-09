@@ -1,10 +1,10 @@
 export async function onRequest(context) {
-  const { request } = context;
+  const { request, env } = context;
   if (request.method === 'OPTIONS') {
     return new Response('', {
       status: 204,
       headers: {
-        'Access-Control-Allow-Origin': process.env.CORS_ORIGIN || '*',
+        'Access-Control-Allow-Origin': env?.CORS_ORIGIN || '*',
         'Access-Control-Allow-Headers': 'Content-Type, Authorization',
         'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
       },
@@ -15,7 +15,7 @@ export async function onRequest(context) {
       status: 405,
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': process.env.CORS_ORIGIN || '*',
+        'Access-Control-Allow-Origin': env?.CORS_ORIGIN || '*',
       },
     });
   }
@@ -28,7 +28,7 @@ export async function onRequest(context) {
       status: 400,
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': process.env.CORS_ORIGIN || '*',
+        'Access-Control-Allow-Origin': env?.CORS_ORIGIN || '*',
       },
     });
   }
@@ -45,13 +45,20 @@ export async function onRequest(context) {
   }
 
   try {
+    // Map Cloudflare env bindings to process.env for existing mailer
+    const required = ['SMTP_HOST','SMTP_PORT','SMTP_SECURE','SMTP_USER','SMTP_PASS','MAIL_FROM','MAIL_TO','EMAIL_MOCK'];
+    for (const k of required) {
+      if (env && env[k] !== undefined) {
+        process.env[k] = String(env[k]);
+      }
+    }
     const module = await import('../../backend/src/utils/mailer.js');
     const id = await module.sendMail({ name, email, message, service, meetingDateTime });
     return new Response(JSON.stringify({ ok: true, id }), {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': process.env.CORS_ORIGIN || '*',
+        'Access-Control-Allow-Origin': env?.CORS_ORIGIN || '*',
       },
     });
   } catch (e) {
@@ -63,7 +70,7 @@ export async function onRequest(context) {
       status: 500,
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': process.env.CORS_ORIGIN || '*',
+        'Access-Control-Allow-Origin': env?.CORS_ORIGIN || '*',
       },
     });
   }
