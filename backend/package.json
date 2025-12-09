@@ -4,11 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node server.js"
+    
   },
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.19.2",
     "nodemailer": "^6.9.11",
     "dotenv": "^16.3.1"
   }
