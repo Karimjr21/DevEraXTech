@@ -61,7 +61,7 @@ async function sendWithResend(env, from, to, subject, html, text) {
       'Authorization': `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ from: "DevEraX <onboarding@resend.dev>", to: toAddr, subject, html, text }),
+    body: JSON.stringify({ from: "DevEraX <onboarding@resend.dev>", to: "karim.abdelmageed@student.guc.edu.eg", subject, html, text }),
   });
   if (!res.ok) {
     const body = await res.text();
