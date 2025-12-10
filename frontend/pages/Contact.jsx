@@ -4,9 +4,9 @@ import SectionWrapper from '../components/ui/SectionWrapper';
 import { sendContact } from '../lib/api';
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', service: '', subject: '', message: '', meetingDate: '', meetingTime: '' });
+  const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', subject: '', message: '', meetingDate: '', meetingTime: '' });
   const [status, setStatus] = useState(null);
-  const [errors, setErrors] = useState({ name: '', email: '', service: '', message: '' });
+  const [errors, setErrors] = useState({ name: '', email: '', phone: '', service: '', message: '' });
   const [loading, setLoading] = useState(false);
 
   const timeSlots = useMemo(() => {
@@ -29,6 +29,7 @@ export default function Contact() {
     const nextErrors = {
       name: !form.name ? 'Name is required' : '',
       email: !emailValid ? 'Valid email is required' : '',
+      phone: !form.phone ? 'Phone number is required' : '',
       service: !form.service ? 'Service is required' : '',
       message: !form.message ? 'Message is required' : '',
     };
@@ -71,6 +72,7 @@ export default function Contact() {
       const res = await sendContact({
         name: form.name,
         email: form.email,
+        phone: form.phone,
         subject: form.subject || `Inquiry - ${form.service || 'General'}`,
         message: finalMessage,
       });
@@ -107,6 +109,11 @@ export default function Contact() {
             <label className="block text-sm mb-1 text-gray-300">Email</label>
             <input required type="email" value={form.email} onChange={e=>{ setForm({...form,email:e.target.value}); setErrors({...errors, email: ''}); }} className={`w-full glass rounded px-4 py-3 text-sm outline-none focus:ring-2 ${errors.email ? 'ring-red-500 border border-red-500' : 'ring-gold'}`} />
             {errors.email && <p className="mt-1 text-xs text-red-400">{errors.email}</p>}
+          </div>
+          <div>
+            <label className="block text-sm mb-1 text-gray-300">Phone Number</label>
+            <input required value={form.phone} onChange={e=>{ setForm({...form,phone:e.target.value}); setErrors({...errors, phone: ''}); }} className={`w-full glass rounded px-4 py-3 text-sm outline-none focus:ring-2 ${errors.phone ? 'ring-red-500 border border-red-500' : 'ring-gold'}`} />
+            {errors.phone && <p className="mt-1 text-xs text-red-400">{errors.phone}</p>}
           </div>
           <div>
             <label className="block text-sm mb-1 text-gray-300">Service</label>
@@ -162,7 +169,7 @@ export default function Contact() {
             <textarea required rows={5} value={form.message} onChange={e=>{ setForm({...form,message:e.target.value}); setErrors({...errors, message: ''}); }} className={`w-full glass rounded px-4 py-3 text-sm outline-none focus:ring-2 ${errors.message ? 'ring-red-500 border border-red-500' : 'ring-gold'}`} />
             {errors.message && <p className="mt-1 text-xs text-red-400">{errors.message}</p>}
           </div>
-          <AnimatedButton disabled={loading || !form.name || !form.email || !form.service || !form.message} loading={loading}>Send Message</AnimatedButton>
+          <AnimatedButton disabled={loading || !form.name || !form.email || !form.phone || !form.service || !form.message} loading={loading}>Send Message</AnimatedButton>
           {status && (
             <p className={`text-xs ${status.type==='success' ? 'text-green-400' : 'text-red-400'}`}>{status.message}</p>
           )}

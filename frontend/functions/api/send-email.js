@@ -17,12 +17,13 @@
 function validateBody(body) {
   const errors = [];
   if (!body || typeof body !== 'object') errors.push('Body must be a JSON object');
-  const { name, email, subject, message } = body || {};
+  const { name, email, phone, subject, message } = body || {};
   if (!name || typeof name !== 'string' || !name.trim()) errors.push('Missing or invalid name');
   if (!email || typeof email !== 'string' || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) errors.push('Missing or invalid email');
+  if (!phone || typeof phone !== 'string' || !phone.trim()) errors.push('Missing or invalid phone');
   if (!subject || typeof subject !== 'string' || !subject.trim()) errors.push('Missing or invalid subject');
   if (!message || typeof message !== 'string' || !message.trim()) errors.push('Missing or invalid message');
-  return { valid: errors.length === 0, errors, name, email, subject, message };
+  return { valid: errors.length === 0, errors, name, email, phone, subject, message };
 }
 
 /** Build common JSON response */
@@ -139,13 +140,14 @@ export async function onRequest(context) {
     return json(400, { success: false, error: 'Invalid JSON body' }, origin);
   }
 
-  const { valid, errors, name, email, subject, message } = validateBody(body);
+  const { valid, errors, name, email, phone, subject, message } = validateBody(body);
   if (!valid) return json(400, { success: false, errors }, origin);
 
-  const text = `From: ${name} <${email}>\nSubject: ${subject}\n\n${message}`;
+  const text = `From: ${name} <${email}>\nPhone: ${phone}\nSubject: ${subject}\n\n${message}`;
   const html = `
     <div style="font-family:system-ui,Segoe UI,Arial;line-height:1.6">
       <p><strong>From:</strong> ${name} &lt;${email}&gt;</p>
+      <p><strong>Phone:</strong> ${escapeHtml(phone)}</p>
       <p><strong>Subject:</strong> ${subject}</p>
       <hr/>
       <pre style="white-space:pre-wrap;font-family:inherit">${escapeHtml(message)}</pre>
