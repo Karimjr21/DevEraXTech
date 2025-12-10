@@ -51,7 +51,7 @@ function preflight(origin) {
 /** Send via Resend */
 async function sendWithResend(env, from, to, subject, html, text) {
   const apiKey = env?.RESEND_API_KEY;
-  const fromAddr = from || env?.MAIL_FROM;
+  const fromAddr = "DevEraX <onboarding@resend.dev>";
   const toAddr = to || env?.MAIL_TO;
   if (!apiKey) throw new Error('RESEND_API_KEY missing');
   if (!fromAddr || !toAddr) throw new Error('MAIL_FROM/MAIL_TO missing');
@@ -61,7 +61,7 @@ async function sendWithResend(env, from, to, subject, html, text) {
       'Authorization': `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ from: fromAddr, to: toAddr, subject, html, text }),
+    body: JSON.stringify({ from: "DevEraX <onboarding@resend.dev>", to: toAddr, subject, html, text }),
   });
   if (!res.ok) {
     const body = await res.text();
