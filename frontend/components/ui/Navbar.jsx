@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import AnimatedButton from './AnimatedButton';
 
@@ -48,11 +49,30 @@ export default function Navbar() {
 
 function MobileMenu() {
   const [open, setOpen] = useState(false);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (!window.__setNavOpen) {
+        window.__navOpen = false;
+        window.__listeners = [];
+        window.__setNavOpen = (val) => {
+          window.__navOpen = val;
+          window.__listeners.forEach(fn => fn(val));
+        };
+      }
+      setOpen(window.__navOpen);
+    }
+  }, []);
   return (
     <button
       aria-label={open ? 'Close menu' : 'Open menu'}
       aria-expanded={open}
-      onClick={() => setOpen(o => !o)}
+      onClick={() => {
+        const next = !open;
+        setOpen(next);
+        if (typeof window !== 'undefined' && window.__setNavOpen) {
+          window.__setNavOpen(next);
+        }
+      }}
       className="p-2 rounded-md border border-white/10 bg-black/30 text-gray-200 focus:outline-none focus:ring-2 focus:ring-gold"
     >
       <span className="sr-only">Menu</span>
@@ -78,7 +98,7 @@ function MobileMenuPanel() {
       };
     }
     // subscribe
-    React.useEffect(() => {
+    useEffect(() => {
       const fn = (val) => setOpen(val);
       window.__listeners.push(fn);
       setOpen(window.__navOpen);
