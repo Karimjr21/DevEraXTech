@@ -19,8 +19,7 @@ export default function Services() {
             {['Home','About','Services','Contact','Team','Portfolio'].map(item => (
               <li
                 key={item}
-                onClick={(e)=>{ e.stopPropagation(); goToContact('Business / Corporate Websites'); }}
-                className="chip-lux w-36 h-10 inline-flex items-center justify-center rounded-md text-sm transition-all origin-center cursor-pointer"
+                className="chip-lux w-36 h-10 inline-flex items-center justify-center rounded-md text-sm transition-all origin-center"
               >
                 {item}
               </li>
@@ -35,8 +34,7 @@ export default function Services() {
             {['Product pages','Shopping cart','Checkout','Payment integrations','Admin dashboard'].map(item => (
               <li
                 key={item}
-                onClick={(e)=>{ e.stopPropagation(); goToContact('E-Commerce Websites'); }}
-                className="chip-lux w-40 h-10 inline-flex items-center justify-center rounded-md text-sm transition-all origin-center cursor-pointer"
+                className="chip-lux w-40 h-10 inline-flex items-center justify-center rounded-md text-sm transition-all origin-center"
               >
                 {item}
               </li>
@@ -51,8 +49,7 @@ export default function Services() {
             {['Designers','Photographers','Developers','Agencies','High-visual showcase sites'].map(item => (
               <li
                 key={item}
-                onClick={(e)=>{ e.stopPropagation(); goToContact('Portfolio Websites'); }}
-                className="chip-lux w-40 h-10 inline-flex items-center justify-center rounded-md text-sm transition-all origin-center cursor-pointer"
+                className="chip-lux w-40 h-10 inline-flex items-center justify-center rounded-md text-sm transition-all origin-center"
               >
                 {item}
               </li>
@@ -67,8 +64,7 @@ export default function Services() {
             {['Marketing campaigns','App launches','Product launches','Service promotions'].map(item => (
               <li
                 key={item}
-                onClick={(e)=>{ e.stopPropagation(); goToContact('Landing Pages'); }}
-                className="chip-lux w-40 h-10 inline-flex items-center justify-center rounded-md text-sm transition-all origin-center cursor-pointer"
+                className="chip-lux w-40 h-10 inline-flex items-center justify-center rounded-md text-sm transition-all origin-center"
               >
                 {item}
               </li>
