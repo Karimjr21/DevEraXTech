@@ -50,7 +50,7 @@ function preflight(origin) {
 }
 
 /** Send via Resend */
-async function sendWithResend(env, from, to, subject, html, text) {
+async function sendWithResend(env, from, to, subject, html, text, replyTo) {
   const apiKey = env?.RESEND_API_KEY;
   const fromAddr = "DevEraX <onboarding@resend.dev>";
   const toAddr = to || env?.MAIL_TO;
@@ -62,7 +62,14 @@ async function sendWithResend(env, from, to, subject, html, text) {
       'Authorization': `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ from: "DevEraX <onboarding@resend.dev>", to: "karim.abdelmageed@student.guc.edu.eg", subject, html, text }),
+    body: JSON.stringify({
+      from: fromAddr,
+      to: toAddr,
+      subject,
+      html,
+      text,
+      reply_to: replyTo || undefined
+    }),
   });
   if (!res.ok) {
     const body = await res.text();
@@ -157,7 +164,7 @@ export async function onRequest(context) {
   try {
     let result;
     if (env?.RESEND_API_KEY) {
-      result = await sendWithResend(env, env.MAIL_FROM, env.MAIL_TO, subject, html, text);
+      result = await sendWithResend(env, env.MAIL_FROM, env.MAIL_TO, subject, html, text, email);
     } else if (env?.SENDGRID_API_KEY) {
       result = await sendWithSendGrid(env, env.MAIL_FROM, env.MAIL_TO, subject, html, text);
     } else {
