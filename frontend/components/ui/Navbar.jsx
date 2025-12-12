@@ -16,9 +16,9 @@ export default function Navbar() {
         <div className="flex items-center gap-4">
           <div className="text-2xl font-bold gold-gradient-text tracking-wide">DevEraX</div>
         </div>
-        <ul className="hidden md:flex gap-8 text-sm font-medium">
+        <ul className="flex gap-4 md:gap-8 text-sm font-medium overflow-x-auto no-scrollbar max-w-full">
           {navItems.map(item => (
-            <li key={item.to}>
+            <li key={item.to} className="shrink-0">
               <NavLink
                 to={item.to}
                 className={({ isActive }) => `pb-1 transition-colors relative ${isActive ? 'text-gold' : 'text-gray-300'} hover:text-gold`}
