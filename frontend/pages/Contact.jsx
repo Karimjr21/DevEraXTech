@@ -1,4 +1,5 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import AnimatedButton from '../components/ui/AnimatedButton';
 import SectionWrapper from '../components/ui/SectionWrapper';
 import { sendContact } from '../lib/api';
@@ -8,6 +9,7 @@ export default function Contact() {
   const [status, setStatus] = useState(null);
   const [errors, setErrors] = useState({ name: '', email: '', phone: '', service: '', message: '' });
   const [loading, setLoading] = useState(false);
+  const location = useLocation();
 
   const timeSlots = useMemo(() => {
     const slots = [];
@@ -19,6 +21,16 @@ export default function Contact() {
     }
     return slots;
   }, []);
+
+  // On mount or URL change, read `service` query and pre-fill the Service field
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const svc = params.get('service');
+    if (svc) {
+      setForm(prev => ({ ...prev, service: svc }));
+      setErrors(prev => ({ ...prev, service: '' }));
+    }
+  }, [location.search]);
 
   async function handleSubmit(e) {
     e.preventDefault();
