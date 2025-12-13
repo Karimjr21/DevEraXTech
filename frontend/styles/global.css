@@ -9,7 +9,8 @@
   --glass-border: rgba(255,255,255,0.08);
 }
 
-body { background: var(--color-bg); }
+html, body { height: auto; min-height: 100%; }
+body { background: var(--color-bg); overflow-y: auto; }
 
 .glass {
   background: var(--glass-bg);
