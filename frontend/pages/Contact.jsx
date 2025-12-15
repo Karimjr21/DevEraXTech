@@ -181,7 +181,7 @@ export default function Contact() {
             <textarea required rows={5} value={form.message} onChange={e=>{ setForm({...form,message:e.target.value}); setErrors({...errors, message: ''}); }} className={`w-full glass rounded px-4 py-3 text-sm outline-none focus:ring-2 ${errors.message ? 'ring-red-500 border border-red-500' : 'ring-gold'}`} />
             {errors.message && <p className="mt-1 text-xs text-red-400">{errors.message}</p>}
           </div>
-          <AnimatedButton disabled={loading || !form.name || !form.email || !form.phone || !form.service || !form.message} loading={loading}>Send Message</AnimatedButton>
+          <AnimatedButton disabled={loading || !form.name || !form.email || !form.phone || !form.service || !form.message} loading={loading}>Request a Meeting</AnimatedButton>
           {status && (
             <p className={`text-xs ${status.type==='success' ? 'text-green-400' : 'text-red-400'}`}>{status.message}</p>
           )}
