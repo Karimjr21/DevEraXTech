@@ -17,7 +17,7 @@ export default function Home() {
           <h1 className="text-5xl md:text-7xl font-bold mb-6 gold-gradient-text leading-tight">We build premium web & app experiences</h1>
           <p className="text-lg text-gray-300 max-w-2xl mb-8">Modern, secure and scalable solutions — from prototypes to production.</p>
           <div className="flex gap-6">
-            <AnimatedButton to="/contact">Get a Quote</AnimatedButton>
+            <AnimatedButton to="/contact">Request a Meeting</AnimatedButton>
             <AnimatedButton variant="outline" to="/services">View Our Services</AnimatedButton>
           </div>
         </div>

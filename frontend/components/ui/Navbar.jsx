@@ -33,12 +33,12 @@ export default function Navbar() {
         </ul>
         {/* Mobile controls */}
         <div className="md:hidden flex items-center gap-3">
-          <AnimatedButton size="sm" to="/contact">Get a Quote</AnimatedButton>
+          <AnimatedButton size="sm" to="/contact">Request a Meeting</AnimatedButton>
           <MobileMenu />
         </div>
         {/* Desktop CTA */}
         <div className="hidden md:block">
-          <AnimatedButton className="ml-4" to="/contact">Get a Quote</AnimatedButton>
+          <AnimatedButton className="ml-4" to="/contact">Request a Meeting</AnimatedButton>
         </div>
       </nav>
       {/* Mobile menu panel renders below header */}
