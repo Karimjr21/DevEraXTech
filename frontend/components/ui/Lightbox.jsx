@@ -22,6 +22,16 @@ export default function Lightbox({ item, onClose }) {
           <div className="p-6 space-y-2">
             <h3 className="text-2xl font-bold text-gold">{item.title}</h3>
             <p className="text-xs text-gray-400">{item.category}</p>
+            {item.url && (
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-block mt-2 px-3 py-1 border border-gold text-gold rounded-md text-xs font-semibold hover:bg-gold hover:text-dark transition-colors"
+              >
+                Visit Site
+              </a>
+            )}
             <button onClick={onClose} className="absolute top-2 right-2 px-3 py-1 bg-gold text-dark rounded-md text-xs font-semibold">Close</button>
           </div>
         </motion.div>
