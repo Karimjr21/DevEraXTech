@@ -25,7 +25,17 @@ export default function Portfolio() {
       </div>
       <div className="columns-1 sm:columns-2 md:columns-3 gap-6 space-y-6">
         {shown.map(item => (
-          <SectionWrapper key={item.id} className="break-inside-avoid glass rounded-lg overflow-hidden p-0 group cursor-pointer" onClick={()=>setActive(item)}>
+          <SectionWrapper
+            key={item.id}
+            className="break-inside-avoid glass rounded-lg overflow-hidden p-0 group cursor-pointer"
+            onClick={() => {
+              if (item.url) {
+                window.open(item.url, '_blank', 'noopener,noreferrer');
+              } else {
+                setActive(item);
+              }
+            }}
+          >
             <div className="overflow-hidden">
               <img src={item.image} alt={item.title} className="rounded-t w-full h-auto group-hover:scale-[1.03] transition-transform" />
             </div>
