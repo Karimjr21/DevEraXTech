@@ -17,7 +17,13 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 glass">
       <nav className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <div className="text-2xl font-bold gold-gradient-text tracking-wide">DevEraX</div>
+          <NavLink
+            to="/"
+            onClick={() => { if (typeof window !== 'undefined' && window.__setNavOpen) window.__setNavOpen(false); }}
+            className="text-2xl font-bold gold-gradient-text tracking-wide"
+          >
+            DevEraXTech
+          </NavLink>
         </div>
         {/* Desktop nav */}
         <ul className="hidden md:flex gap-8 text-sm font-medium">
