@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-export default function SectionWrapper({ id, className = '', children }) {
+export default function SectionWrapper({ id, className = '', children, ...rest }) {
   const ref = useRef(null);
   useEffect(() => {
     const el = ref.current;
@@ -16,6 +16,6 @@ export default function SectionWrapper({ id, className = '', children }) {
     return () => obs.disconnect();
   }, []);
   return (
-    <section id={id} ref={ref} className={`scroll-fade ${className}`}>{children}</section>
+    <section id={id} ref={ref} className={`scroll-fade ${className}`} {...rest}>{children}</section>
   );
 }
