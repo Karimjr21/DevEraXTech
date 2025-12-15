@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import AnimatedButton from './AnimatedButton';
 
 const navItems = [
@@ -11,6 +11,8 @@ const navItems = [
 ];
 
 export default function Navbar() {
+  const location = useLocation();
+  const isContact = location.pathname === '/contact';
   return (
     <header className="sticky top-0 z-50 glass">
       <nav className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
@@ -33,12 +35,20 @@ export default function Navbar() {
         </ul>
         {/* Mobile controls */}
         <div className="md:hidden flex items-center gap-3">
-          <AnimatedButton size="sm" to="/contact">Request a Meeting</AnimatedButton>
+          {!isContact ? (
+            <AnimatedButton size="sm" to="/contact">Request a Meeting</AnimatedButton>
+          ) : (
+            <div className="w-[140px] h-10" aria-hidden />
+          )}
           <MobileMenu />
         </div>
         {/* Desktop CTA */}
         <div className="hidden md:block">
-          <AnimatedButton className="ml-4" to="/contact">Request a Meeting</AnimatedButton>
+          {!isContact ? (
+            <AnimatedButton className="ml-4" to="/contact">Request a Meeting</AnimatedButton>
+          ) : (
+            <div className="ml-4 w-[160px] h-11 inline-block" aria-hidden />
+          )}
         </div>
       </nav>
       {/* Mobile menu panel renders below header */}
