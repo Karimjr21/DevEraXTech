@@ -1,79 +1,69 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
 
-// Abstract data-flow ribbons using SVG; subtle motion via CSS keyframes.
-// Layering: this component renders behind hero content (z-0) and is non-interactive.
+function RotatingTorus() {
+  const mesh = useRef();
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime();
+    if (mesh.current) {
+      mesh.current.rotation.x = t * 0.2;
+      mesh.current.rotation.y = t * 0.15;
+    }
+  });
+  return (
+    <mesh ref={mesh} position={[0, 0, 0]}>
+      <torusKnotGeometry args={[1.2, 0.35, 160, 24]} />
+      <meshStandardMaterial color="#d4af37" metalness={0.8} roughness={0.3} emissive="#2b2b2b" emissiveIntensity={0.2} />
+    </mesh>
+  );
+}
+
+function Particles() {
+  const mesh = useRef();
+  const count = 800;
+  const positions = React.useMemo(() => {
+    const arr = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+      const r = 6 + Math.random() * 4;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(2 * Math.random() - 1);
+      const x = r * Math.sin(phi) * Math.cos(theta);
+      const y = r * Math.sin(phi) * Math.sin(theta);
+      const z = r * Math.cos(phi);
+      arr[i * 3] = x;
+      arr[i * 3 + 1] = y;
+      arr[i * 3 + 2] = z;
+    }
+    return arr;
+  }, []);
+  useFrame((state) => {
+    if (mesh.current) {
+      const t = state.clock.getElapsedTime();
+      mesh.current.rotation.y = t * 0.05;
+      mesh.current.rotation.x = Math.sin(t * 0.1) * 0.1;
+    }
+  });
+  return (
+    <points ref={mesh}>
+      <bufferGeometry>
+        <bufferAttribute attach="attributes-position" count={count} array={positions} itemSize={3} />
+      </bufferGeometry>
+      <pointsMaterial color="#ffffff" size={0.015} sizeAttenuation opacity={0.6} transparent />
+    </points>
+  );
+}
+
 export default function Logo3D() {
   return (
     <div className="fixed inset-0 pointer-events-none z-0">
-      <svg
-        className="w-full h-full"
-        viewBox="0 0 1600 900"
-        preserveAspectRatio="xMidYMid slice"
-        aria-hidden="true"
-      >
-        {/* Soft gold glow applied via a single SVG filter; low opacity to keep it understated */}
-        <defs>
-          <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
-            {/* 0 offset to create an even glow around the strokes */}
-            <feDropShadow dx="0" dy="0" stdDeviation="8" floodColor="#d4af37" floodOpacity="0.08"/>
-          </filter>
-        </defs>
-        {/* Background tint to ensure richness without overpowering */}
-        <rect x="0" y="0" width="1600" height="900" fill="transparent" />
-
-        {/* Ribbons: gold and derived shades; low opacity for subtlety; single soft glow filter */}
-        <g filter="url(#softGlow)">
-          <path
-            d="M -100 200 C 200 150, 400 250, 700 220 C 950 200, 1200 260, 1700 220"
-            fill="none"
-            stroke="#d4af37"
-            strokeWidth="2"
-            opacity="0.18"
-            className="animate-ribbon-1"
-          />
-          <path
-            d="M -100 500 C 250 520, 450 460, 780 480 C 1020 500, 1280 540, 1700 520"
-            fill="none"
-            stroke="#c79a2f"
-            strokeWidth="2"
-            opacity="0.12"
-            className="animate-ribbon-2"
-          />
-          <path
-            d="M -100 350 C 220 330, 420 380, 760 360 C 1000 340, 1300 400, 1700 360"
-            fill="none"
-            stroke="#a8842a"
-            strokeWidth="1.8"
-            opacity="0.1"
-            className="animate-ribbon-3"
-          />
-          <path
-            d="M -100 650 C 260 630, 520 690, 860 660 C 1120 640, 1380 700, 1700 660"
-            fill="none"
-            stroke="#d4af37"
-            strokeWidth="1.6"
-            opacity="0.14"
-            className="animate-ribbon-4"
-          />
-        </g>
-      </svg>
-
-      {/* Inline styles for animation; respects reduced motion */}
-      <style>{`
-        @keyframes driftA { 0% { transform: translateX(0px); } 50% { transform: translateX(18px); } 100% { transform: translateX(0px); } }
-        @keyframes driftB { 0% { transform: translateX(0px); } 50% { transform: translateX(-14px); } 100% { transform: translateX(0px); } }
-        @keyframes driftC { 0% { transform: translateX(0px); } 50% { transform: translateX(10px); } 100% { transform: translateX(0px); } }
-        @keyframes driftD { 0% { transform: translateX(0px); } 50% { transform: translateX(-8px); } 100% { transform: translateX(0px); } }
-
-        .animate-ribbon-1 { animation: driftA 24s ease-in-out infinite; }
-        .animate-ribbon-2 { animation: driftB 28s ease-in-out infinite; }
-        .animate-ribbon-3 { animation: driftC 30s ease-in-out infinite; }
-        .animate-ribbon-4 { animation: driftD 26s ease-in-out infinite; }
-
-        @media (prefers-reduced-motion: reduce) {
-          .animate-ribbon-1, .animate-ribbon-2, .animate-ribbon-3, .animate-ribbon-4 { animation: none; }
-        }
-      `}</style>
+      <Canvas camera={{ position: [0, 0, 6], fov: 60 }} dpr={[1, 2]}>
+        <ambientLight intensity={0.3} />
+        <directionalLight position={[5, 5, 5]} intensity={0.8} />
+        <Particles />
+        <RotatingTorus />
+        <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} />
+      </Canvas>
     </div>
   );
 }
