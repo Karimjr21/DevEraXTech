@@ -1,93 +1,70 @@
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
-import * as THREE from 'three';
-import { useEffect, useRef, useState } from 'react';
+import React from 'react';
 
-function RotatingLogo() {
-  const meshRef = useRef();
-  const { size } = useThree();
-  // Responsive scale based on viewport width
-  const scale = Math.max(0.6, Math.min(1.0, size.width / 1400));
-  useFrame(({ clock }) => {
-    if (meshRef.current) meshRef.current.rotation.y = clock.getElapsedTime() * 0.2;
-  });
-  const material = new THREE.MeshPhysicalMaterial({
-    color: '#d4af37',
-    metalness: 1,
-    roughness: 0.15,
-    clearcoat: 1,
-    clearcoatRoughness: 0.05,
-    envMapIntensity: 1.2,
-    emissive: '#d4af37',
-    emissiveIntensity: 0.3
-  });
-  return (
-    <mesh ref={meshRef} material={material} scale={scale}>
-      <torusKnotGeometry args={[2.2, 0.7, 220, 64]} />
-    </mesh>
-  );
-}
-
-function CinematicCamera() {
-  const { camera } = useThree();
-  const tRef = useRef(0);
-  useFrame((state, delta) => {
-    tRef.current += delta * 0.05;
-    const r = 10;
-    camera.position.x = Math.sin(tRef.current) * r * 0.4;
-    camera.position.z = 10 + Math.cos(tRef.current * 0.7) * 1.2;
-    camera.position.y = Math.sin(tRef.current * 0.6) * 0.6;
-    camera.lookAt(0, 0, 0);
-  });
-  return null;
-}
-
-function Particles() {
-  const pointsRef = useRef();
-  const count = 320;
-  const positions = new Float32Array(count * 3);
-  for (let i = 0; i < count; i++) {
-    const r = 12 * Math.random();
-    const theta = 2 * Math.PI * Math.random();
-    const phi = Math.acos(2 * Math.random() - 1);
-    positions[3 * i] = r * Math.sin(phi) * Math.cos(theta);
-    positions[3 * i + 1] = r * Math.sin(phi) * Math.sin(theta);
-    positions[3 * i + 2] = r * Math.cos(phi);
-  }
-  const geometry = new THREE.BufferGeometry();
-  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-  const material = new THREE.PointsMaterial({ color: '#d4af37', size: 0.12 });
-  useFrame(({ clock }) => {
-    if (pointsRef.current) pointsRef.current.rotation.y = clock.getElapsedTime() * 0.05;
-  });
-  return <points ref={pointsRef} args={[geometry, material]} />;
-}
-
-function hasWebGL() {
-  try {
-    const c = document.createElement('canvas');
-    return !!(
-      window.WebGLRenderingContext &&
-      (c.getContext('webgl') || c.getContext('experimental-webgl'))
-    );
-  } catch {
-    return false;
-  }
-}
-
+// Abstract data-flow ribbons using SVG; subtle motion via CSS keyframes.
+// Layering: this component renders behind hero content (z-0) and is non-interactive.
 export default function Logo3D() {
-  if (typeof window !== 'undefined' && !hasWebGL()) return null;
   return (
     <div className="fixed inset-0 pointer-events-none z-0">
-      <Canvas camera={{ position: [0, 0, 10], fov: 50 }} gl={{ alpha: true, antialias: true }} style={{ background: 'transparent' }}>
-        <CinematicCamera />
-        <ambientLight intensity={0.8} />
-        <directionalLight position={[5, 5, 5]} intensity={1.6} />
-        <pointLight position={[-5, -3, 4]} intensity={0.8} />
-        <RotatingLogo />
-        <Particles />
-        <OrbitControls enablePan={false} enableZoom={false} autoRotate autoRotateSpeed={0.2} />
-      </Canvas>
+      <svg
+        className="w-full h-full"
+        viewBox="0 0 1600 900"
+        preserveAspectRatio="xMidYMid slice"
+        aria-hidden="true"
+      >
+        {/* Background tint to ensure richness without overpowering */}
+        <rect x="0" y="0" width="1600" height="900" fill="transparent" />
+
+        {/* Ribbons: gold and derived shades; low opacity for subtlety */}
+        <path
+          d="M -100 200 C 200 150, 400 250, 700 220 C 950 200, 1200 260, 1700 220"
+          fill="none"
+          stroke="#d4af37"
+          strokeWidth="2"
+          opacity="0.18"
+          className="animate-ribbon-1"
+        />
+        <path
+          d="M -100 500 C 250 520, 450 460, 780 480 C 1020 500, 1280 540, 1700 520"
+          fill="none"
+          stroke="#c79a2f"
+          strokeWidth="2"
+          opacity="0.12"
+          className="animate-ribbon-2"
+        />
+        <path
+          d="M -100 350 C 220 330, 420 380, 760 360 C 1000 340, 1300 400, 1700 360"
+          fill="none"
+          stroke="#a8842a"
+          strokeWidth="1.8"
+          opacity="0.1"
+          className="animate-ribbon-3"
+        />
+        <path
+          d="M -100 650 C 260 630, 520 690, 860 660 C 1120 640, 1380 700, 1700 660"
+          fill="none"
+          stroke="#d4af37"
+          strokeWidth="1.6"
+          opacity="0.14"
+          className="animate-ribbon-4"
+        />
+      </svg>
+
+      {/* Inline styles for animation; respects reduced motion */}
+      <style>{`
+        @keyframes driftA { 0% { transform: translateX(0px); } 50% { transform: translateX(18px); } 100% { transform: translateX(0px); } }
+        @keyframes driftB { 0% { transform: translateX(0px); } 50% { transform: translateX(-14px); } 100% { transform: translateX(0px); } }
+        @keyframes driftC { 0% { transform: translateX(0px); } 50% { transform: translateX(10px); } 100% { transform: translateX(0px); } }
+        @keyframes driftD { 0% { transform: translateX(0px); } 50% { transform: translateX(-8px); } 100% { transform: translateX(0px); } }
+
+        .animate-ribbon-1 { animation: driftA 24s ease-in-out infinite; }
+        .animate-ribbon-2 { animation: driftB 28s ease-in-out infinite; }
+        .animate-ribbon-3 { animation: driftC 30s ease-in-out infinite; }
+        .animate-ribbon-4 { animation: driftD 26s ease-in-out infinite; }
+
+        @media (prefers-reduced-motion: reduce) {
+          .animate-ribbon-1, .animate-ribbon-2, .animate-ribbon-3, .animate-ribbon-4 { animation: none; }
+        }
+      `}</style>
     </div>
   );
 }
