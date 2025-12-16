@@ -11,42 +11,51 @@ export default function Logo3D() {
         preserveAspectRatio="xMidYMid slice"
         aria-hidden="true"
       >
+        {/* Soft gold glow applied via a single SVG filter; low opacity to keep it understated */}
+        <defs>
+          <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+            {/* 0 offset to create an even glow around the strokes */}
+            <feDropShadow dx="0" dy="0" stdDeviation="8" floodColor="#d4af37" floodOpacity="0.08"/>
+          </filter>
+        </defs>
         {/* Background tint to ensure richness without overpowering */}
         <rect x="0" y="0" width="1600" height="900" fill="transparent" />
 
-        {/* Ribbons: gold and derived shades; low opacity for subtlety */}
-        <path
-          d="M -100 200 C 200 150, 400 250, 700 220 C 950 200, 1200 260, 1700 220"
-          fill="none"
-          stroke="#d4af37"
-          strokeWidth="2"
-          opacity="0.18"
-          className="animate-ribbon-1"
-        />
-        <path
-          d="M -100 500 C 250 520, 450 460, 780 480 C 1020 500, 1280 540, 1700 520"
-          fill="none"
-          stroke="#c79a2f"
-          strokeWidth="2"
-          opacity="0.12"
-          className="animate-ribbon-2"
-        />
-        <path
-          d="M -100 350 C 220 330, 420 380, 760 360 C 1000 340, 1300 400, 1700 360"
-          fill="none"
-          stroke="#a8842a"
-          strokeWidth="1.8"
-          opacity="0.1"
-          className="animate-ribbon-3"
-        />
-        <path
-          d="M -100 650 C 260 630, 520 690, 860 660 C 1120 640, 1380 700, 1700 660"
-          fill="none"
-          stroke="#d4af37"
-          strokeWidth="1.6"
-          opacity="0.14"
-          className="animate-ribbon-4"
-        />
+        {/* Ribbons: gold and derived shades; low opacity for subtlety; single soft glow filter */}
+        <g filter="url(#softGlow)">
+          <path
+            d="M -100 200 C 200 150, 400 250, 700 220 C 950 200, 1200 260, 1700 220"
+            fill="none"
+            stroke="#d4af37"
+            strokeWidth="2"
+            opacity="0.18"
+            className="animate-ribbon-1"
+          />
+          <path
+            d="M -100 500 C 250 520, 450 460, 780 480 C 1020 500, 1280 540, 1700 520"
+            fill="none"
+            stroke="#c79a2f"
+            strokeWidth="2"
+            opacity="0.12"
+            className="animate-ribbon-2"
+          />
+          <path
+            d="M -100 350 C 220 330, 420 380, 760 360 C 1000 340, 1300 400, 1700 360"
+            fill="none"
+            stroke="#a8842a"
+            strokeWidth="1.8"
+            opacity="0.1"
+            className="animate-ribbon-3"
+          />
+          <path
+            d="M -100 650 C 260 630, 520 690, 860 660 C 1120 640, 1380 700, 1700 660"
+            fill="none"
+            stroke="#d4af37"
+            strokeWidth="1.6"
+            opacity="0.14"
+            className="animate-ribbon-4"
+          />
+        </g>
       </svg>
 
       {/* Inline styles for animation; respects reduced motion */}
