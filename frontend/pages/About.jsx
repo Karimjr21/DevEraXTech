@@ -7,7 +7,7 @@ const timeline = [
 
 const team = [
   { name: 'Karim', role: 'Founder & Full Stack Developer' },
-  { name: 'Loay', role: 'Founder & Full Stack Developer' },
+  { name: 'Loay', role: 'Co-Founder & Full Stack Developer' },
   { name: 'Amr', role: 'Founder & Full Stack Developer' }
 ];
 
