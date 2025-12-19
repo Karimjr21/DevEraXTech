@@ -19,7 +19,7 @@ export default function Services() {
             {['Home','About','Services','Contact','Team','Portfolio'].map(item => (
               <li
                 key={item}
-                className="chip-lux w-36 h-10 inline-flex items-center justify-center rounded-md text-sm transition-all origin-center"
+                className="chip-lux w-36 h-10 inline-flex items-center justify-center rounded-md text-sm transition-all origin-center pointer-events-none"
               >
                 {item}
               </li>
@@ -34,7 +34,7 @@ export default function Services() {
             {['Product pages','Shopping cart','Checkout','Payment integrations','Admin dashboard'].map(item => (
               <li
                 key={item}
-                className="chip-lux w-40 h-10 inline-flex items-center justify-center rounded-md text-sm transition-all origin-center"
+                className="chip-lux w-40 h-10 inline-flex items-center justify-center rounded-md text-sm transition-all origin-center pointer-events-none"
               >
                 {item}
               </li>
@@ -49,7 +49,7 @@ export default function Services() {
             {['Designers','Photographers','Developers','Agencies','High-visual showcase sites'].map(item => (
               <li
                 key={item}
-                className="chip-lux w-40 h-10 inline-flex items-center justify-center rounded-md text-sm transition-all origin-center"
+                className="chip-lux w-40 h-10 inline-flex items-center justify-center rounded-md text-sm transition-all origin-center pointer-events-none"
               >
                 {item}
               </li>
@@ -64,7 +64,7 @@ export default function Services() {
             {['Marketing campaigns','App launches','Product launches','Service promotions'].map(item => (
               <li
                 key={item}
-                className="chip-lux w-40 h-10 inline-flex items-center justify-center rounded-md text-sm transition-all origin-center"
+                className="chip-lux w-40 h-10 inline-flex items-center justify-center rounded-md text-sm transition-all origin-center pointer-events-none"
               >
                 {item}
               </li>
