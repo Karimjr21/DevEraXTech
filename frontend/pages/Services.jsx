@@ -42,6 +42,49 @@ export default function Services() {
           </ul>
         </SectionWrapper>
 
+        {/* Shopify Stores */}
+        <SectionWrapper onClick={() => goToContact('Shopify Stores')} className="lux-card rounded-2xl p-10 md:p-14 h-full min-h-80 transform-gpu flex flex-col items-center text-center gap-6 cursor-pointer">
+          <h3 className="text-2xl md:text-3xl font-semibold heading-gold tracking-tight leading-tight">Shopify Stores</h3>
+          <p className="text-gray-300/90 max-w-xl leading-relaxed">Bespoke Shopify experiences crafted for premium brands, featuring:</p>
+          <ul className="flex flex-wrap justify-center gap-4 w-full max-w-xl">
+            {[
+              'Elegantly designed product pages',
+              'Seamless shopping cart experience',
+              'Secure, trusted payment integrations',
+              'Powerful Shopify admin & store control'
+            ].map(item => (
+              <li
+                key={item}
+                className="chip-lux min-h-10 px-4 inline-flex items-center justify-center rounded-md text-sm transition-all origin-center pointer-events-none"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+          <p className="text-gray-400 max-w-xl leading-relaxed">Designed with precision, optimized for performance, and tailored to elevate your brand’s online presence.</p>
+        </SectionWrapper>
+
+        {/* WordPress Websites */}
+        <SectionWrapper onClick={() => goToContact('WordPress Websites')} className="lux-card rounded-2xl p-10 md:p-14 h-full min-h-80 transform-gpu flex flex-col items-center text-center gap-6 cursor-pointer">
+          <h3 className="text-2xl md:text-3xl font-semibold heading-gold tracking-tight leading-tight">WordPress Websites</h3>
+          <p className="text-gray-300/90 max-w-xl leading-relaxed">Bespoke WordPress experiences crafted for premium brands, featuring:</p>
+          <ul className="flex flex-wrap justify-center gap-4 w-full max-w-xl">
+            {[
+              'Custom-designed pages & layouts',
+              'Fully responsive, high-performance builds',
+              'Secure plugins & advanced functionality',
+              'Powerful content management & admin control'
+            ].map(item => (
+              <li
+                key={item}
+                className="chip-lux min-h-10 px-4 inline-flex items-center justify-center rounded-md text-sm transition-all origin-center pointer-events-none"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+        </SectionWrapper>
+
         <SectionWrapper onClick={() => goToContact('Portfolio Websites')} className="lux-card rounded-2xl p-10 md:p-14 h-full min-h-80 transform-gpu flex flex-col items-center text-center gap-6 cursor-pointer">
           <h3 className="text-2xl md:text-3xl font-semibold heading-gold tracking-tight leading-tight">Portfolio Websites</h3>
           <p className="text-gray-300/90 max-w-xl leading-relaxed">For creatives:</p>
