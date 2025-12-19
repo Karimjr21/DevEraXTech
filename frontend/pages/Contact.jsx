@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import AnimatedButton from '../components/ui/AnimatedButton';
 import SectionWrapper from '../components/ui/SectionWrapper';
 import { sendContact } from '../lib/api';
+import { SERVICE_OPTIONS } from '../src/data/services';
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', subject: '', message: '', meetingDate: '', meetingTime: '' });
@@ -136,12 +137,7 @@ export default function Contact() {
               className={`w-full glass rounded px-4 py-3 text-sm outline-none focus:ring-2 ${errors.service ? 'ring-red-500 border border-red-500' : 'ring-gold'} bg-transparent text-gray-200`}
             >
               <option value="" disabled className="bg-black">Select a service</option>
-              {[
-                'Business / Corporate Websites',
-                'E-Commerce Websites',
-                'Portfolio Websites',
-                'Landing Pages',
-              ].map(opt => (
+              {SERVICE_OPTIONS.map(opt => (
                 <option key={opt} value={opt} className="bg-[#0a0a0a]">{opt}</option>
               ))}
             </select>

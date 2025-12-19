@@ -18,13 +18,20 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 glass">
       <nav className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <NavLink
             to="/"
             onClick={() => { if (typeof window !== 'undefined' && window.__setNavOpen) window.__setNavOpen(false); }}
-            className="text-2xl font-bold gold-gradient-text tracking-wide"
+            className="flex items-center gap-2"
+            aria-label="DevEraXTech Home"
           >
-            DevEraXTech
+            <img
+              src="/assests/DevEraXTech%20Logo.png"
+              alt="DevEraXTech Logo"
+              className="h-7 w-auto object-contain select-none"
+              draggable={false}
+            />
+            <span className="text-2xl font-bold gold-gradient-text tracking-wide">DevEraXTech</span>
           </NavLink>
         </div>
         {/* Desktop nav */}
