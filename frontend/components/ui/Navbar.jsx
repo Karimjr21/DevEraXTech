@@ -17,21 +17,23 @@ export default function Navbar() {
   const hideCTA = isContact || isHome;
   return (
     <header className="sticky top-0 z-50 glass">
-      <nav className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-3">
+      <nav className="max-w-6xl mx-auto px-3 sm:px-4 py-2 sm:py-3 flex items-center justify-between">
+        <div className="flex items-center gap-3 min-w-0">
           <NavLink
             to="/"
             onClick={() => { if (typeof window !== 'undefined' && window.__setNavOpen) window.__setNavOpen(false); }}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 min-w-0"
             aria-label="DevEraXTech Home"
           >
             <img
               src="/assests/DevEraXTech%20Logo.png"
               alt="DevEraXTech Logo"
-              className="h-7 w-auto object-contain select-none"
+              className="h-6 sm:h-7 w-auto object-contain select-none"
               draggable={false}
             />
-            <span className="text-2xl font-bold gold-gradient-text tracking-wide">DevEraXTech</span>
+            <span className="min-w-0 max-w-[42vw] sm:max-w-none truncate text-lg sm:text-xl md:text-2xl leading-none font-bold gold-gradient-text tracking-wide">
+              DevEraXTech
+            </span>
           </NavLink>
         </div>
         {/* Desktop nav */}
@@ -49,11 +51,14 @@ export default function Navbar() {
           ))}
         </ul>
         {/* Mobile controls */}
-        <div className="md:hidden flex items-center gap-3">
+        <div className="md:hidden flex items-center gap-2 flex-shrink-0">
           {!hideCTA ? (
-            <AnimatedButton size="sm" to="/contact">Request a Meeting</AnimatedButton>
+            <AnimatedButton to="/contact">
+              <span className="hidden sm:inline">Request a Meeting</span>
+              <span className="sm:hidden">Meeting</span>
+            </AnimatedButton>
           ) : (
-            <div className="w-[140px] h-10" aria-hidden />
+            <div className="w-0 h-10" aria-hidden />
           )}
           <MobileMenu />
         </div>
