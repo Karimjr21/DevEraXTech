@@ -54,6 +54,14 @@ MAIL_FROM=noreply@deverax.io
 MAIL_TO=team@deverax.io
 ```
 
+### Serverless Email (Cloudflare Pages)
+The Contact page submits to `/api/send-email` (Cloudflare Pages Function). Configure at least:
+- `RESEND_API_KEY` (or `SENDGRID_API_KEY`)
+- `MAIL_FROM` (and optionally `MAIL_TO`)
+
+`MAIL_TO` defaults to `MAIL_FROM` if omitted.
+Also accepted as aliases: `EMAIL_FROM`/`EMAIL_TO`, `RESEND_FROM`/`RESEND_TO`, `FROM_EMAIL`/`TO_EMAIL`, `CONTACT_FROM`/`CONTACT_TO`.
+
 ## Next Steps
 - Provide actual `logo.glb` model / HDR environment map for better reflections.
 - Implement masonry animation & image preloading strategy.

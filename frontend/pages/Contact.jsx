@@ -5,11 +5,27 @@ import SectionWrapper from '../components/ui/SectionWrapper';
 import { sendContact } from '../lib/api';
 import { SERVICE_OPTIONS } from '../src/data/services';
 
+function formatYYYYMMDD(date) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const d = String(date.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+}
+
+function parseTimeToMinutes(hhmm) {
+  const [hh, mm] = String(hhmm).split(':');
+  const h = Number(hh);
+  const m = Number(mm);
+  if (!Number.isFinite(h) || !Number.isFinite(m)) return NaN;
+  return h * 60 + m;
+}
+
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', subject: '', message: '', meetingDate: '', meetingTime: '' });
   const [status, setStatus] = useState(null);
   const [errors, setErrors] = useState({ name: '', email: '', phone: '', service: '', message: '' });
   const [loading, setLoading] = useState(false);
+  const [now, setNow] = useState(() => new Date());
   const location = useLocation();
 
   const timeSlots = useMemo(() => {
@@ -22,6 +38,47 @@ export default function Contact() {
     }
     return slots;
   }, []);
+
+  // Keep "now" fresh so same-day slots disable automatically.
+  useEffect(() => {
+    const id = setInterval(() => setNow(new Date()), 30_000);
+    return () => clearInterval(id);
+  }, []);
+
+  const minDate = useMemo(() => formatYYYYMMDD(new Date()), []);
+  const isPastSelectedDate = useMemo(() => {
+    if (!form.meetingDate) return false;
+    const selected = new Date(`${form.meetingDate}T00:00:00`);
+    if (Number.isNaN(selected.getTime())) return false;
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return selected.getTime() < today.getTime();
+  }, [form.meetingDate]);
+
+  const isTodaySelected = useMemo(() => {
+    if (!form.meetingDate) return false;
+    return form.meetingDate === formatYYYYMMDD(now);
+  }, [form.meetingDate, now]);
+
+  const isTimeSlotDisabled = useMemo(() => {
+    const minutesNow = now.getHours() * 60 + now.getMinutes();
+    return (slot) => {
+      if (isPastSelectedDate) return true;
+      if (!form.meetingDate) return false;
+      if (!isTodaySelected) return false;
+      const slotMinutes = parseTimeToMinutes(slot);
+      if (!Number.isFinite(slotMinutes)) return false;
+      return slotMinutes <= minutesNow;
+    };
+  }, [form.meetingDate, isTodaySelected, isPastSelectedDate, now]);
+
+  // If user changes the date and the chosen time becomes invalid, clear it.
+  useEffect(() => {
+    if (!form.meetingTime) return;
+    if (isTimeSlotDisabled(form.meetingTime)) {
+      setForm(prev => ({ ...prev, meetingTime: '' }));
+    }
+  }, [form.meetingDate, form.meetingTime, isTimeSlotDisabled]);
 
   // On mount or URL change, read `service` query and pre-fill the Service field
   useEffect(() => {
@@ -50,6 +107,18 @@ export default function Contact() {
     setErrors(nextErrors);
     if (hasErrors) {
       setStatus({ type: 'error', message: 'Please fix the highlighted fields.' });
+      setLoading(false);
+      return;
+    }
+
+    // Optional meeting selection validation
+    if (isPastSelectedDate) {
+      setStatus({ type: 'error', message: 'Preferred date cannot be in the past.' });
+      setLoading(false);
+      return;
+    }
+    if (form.meetingDate && form.meetingTime && isTimeSlotDisabled(form.meetingTime)) {
+      setStatus({ type: 'error', message: 'Preferred time must be in the future.' });
       setLoading(false);
       return;
     }
@@ -152,11 +221,12 @@ export default function Contact() {
               <label className="block text-sm mb-1 text-gray-300">Preferred Date</label>
               <input
                 type="date"
-                min={new Date().toISOString().split('T')[0]}
+                min={minDate}
                 value={form.meetingDate}
                 onChange={e=>setForm({...form, meetingDate:e.target.value})}
                 className="w-full glass rounded px-4 py-3 text-sm outline-none focus:ring-2 ring-gold"
               />
+              {isPastSelectedDate && <p className="mt-1 text-xs text-red-400">Preferred date cannot be in the past.</p>}
             </div>
             <div>
               <label className="block text-sm mb-1 text-gray-300">Preferred Time</label>
@@ -165,11 +235,24 @@ export default function Contact() {
                   <button
                     key={t}
                     type="button"
-                    onClick={()=>setForm({...form, meetingTime:t})}
-                    className={`px-3 py-2 rounded-md text-xs border transition-all ${form.meetingTime===t ? 'border-gold bg-gold/10 text-gold' : 'border-gold/30 text-gray-300 hover:border-gold/60'}`}
+                    disabled={isTimeSlotDisabled(t)}
+                    onClick={() => {
+                      if (isTimeSlotDisabled(t)) return;
+                      setForm({ ...form, meetingTime: t });
+                    }}
+                    className={`px-3 py-2 rounded-md text-xs border transition-all ${
+                      form.meetingTime===t
+                        ? 'border-gold bg-gold/10 text-gold'
+                        : isTimeSlotDisabled(t)
+                          ? 'border-gold/20 text-gray-500 opacity-50 cursor-not-allowed'
+                          : 'border-gold/30 text-gray-300 hover:border-gold/60'
+                    }`}
                   >{t}</button>
                 ))}
               </div>
+              {form.meetingDate && isTodaySelected && (
+                <p className="mt-1 text-xs text-gray-400">Past times for today are disabled.</p>
+              )}
             </div>
           </div>
           <div>

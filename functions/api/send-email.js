@@ -49,19 +49,45 @@ function preflight(origin) {
 }
 
 /** Send via Resend */
-async function sendWithResend(env, from, to, subject, html, text) {
-  const apiKey = env?.RESEND_API_KEY;
-  const fromAddr = "DevEraX <onboarding@resend.dev>";
-  const toAddr = to || env?.MAIL_TO;
+function firstEnv(env, keys) {
+  for (const key of keys) {
+    const value = env?.[key];
+    if (typeof value === 'string' && value.trim()) return value.trim();
+  }
+  return undefined;
+}
+
+function resolveMailConfig(env) {
+  const from = firstEnv(env, ['MAIL_FROM', 'EMAIL_FROM', 'RESEND_FROM', 'FROM_EMAIL', 'CONTACT_FROM']);
+  const to = firstEnv(env, ['MAIL_TO', 'EMAIL_TO', 'RESEND_TO', 'TO_EMAIL', 'CONTACT_TO', 'CONTACT_EMAIL']);
+  return { from, to };
+}
+
+async function sendWithResend(env, _from, _to, subject, html, text, replyTo) {
+  const apiKey = firstEnv(env, ['RESEND_API_KEY']);
+  const cfg = resolveMailConfig(env);
+
+  // Resend supports using the demo sender in some setups, but production should use a verified sender.
+  const fromAddr = cfg.from || 'DevEraX <onboarding@resend.dev>';
+  const toAddr = cfg.to || cfg.from;
+
   if (!apiKey) throw new Error('RESEND_API_KEY missing');
-  if (!fromAddr || !toAddr) throw new Error('MAIL_FROM/MAIL_TO missing');
+  if (!toAddr) throw new Error('EMAIL_NOT_CONFIGURED: set MAIL_TO (or EMAIL_TO/RESEND_TO)');
+
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ from: "DevEraX <onboarding@resend.dev>", to: "deveraxtech@gmail.com", subject, html, text }),
+    body: JSON.stringify({
+      from: fromAddr,
+      to: toAddr,
+      subject,
+      html,
+      text,
+      reply_to: replyTo || undefined,
+    }),
   });
   if (!res.ok) {
     const body = await res.text();
@@ -72,11 +98,12 @@ async function sendWithResend(env, from, to, subject, html, text) {
 
 /** Send via SendGrid */
 async function sendWithSendGrid(env, from, to, subject, html, text) {
-  const apiKey = env?.SENDGRID_API_KEY;
-  const fromAddr = from || env?.MAIL_FROM;
-  const toAddr = to || env?.MAIL_TO;
+  const apiKey = firstEnv(env, ['SENDGRID_API_KEY']);
+  const cfg = resolveMailConfig(env);
+  const fromAddr = from || cfg.from || cfg.to;
+  const toAddr = to || cfg.to || cfg.from;
   if (!apiKey) throw new Error('SENDGRID_API_KEY missing');
-  if (!fromAddr || !toAddr) throw new Error('MAIL_FROM/MAIL_TO missing');
+  if (!fromAddr || !toAddr) throw new Error('EMAIL_NOT_CONFIGURED: set MAIL_FROM + MAIL_TO (or EMAIL_FROM/EMAIL_TO)');
   const res = await fetch('https://api.sendgrid.com/v3/mail/send', {
     method: 'POST',
     headers: {
@@ -102,9 +129,10 @@ async function sendWithSendGrid(env, from, to, subject, html, text) {
 
 /** Send via MailChannels (free, native on Cloudflare) */
 async function sendWithMailChannels(env, from, to, subject, html, text) {
-  const fromAddr = from || env?.MAIL_FROM;
-  const toAddr = to || env?.MAIL_TO;
-  if (!fromAddr || !toAddr) throw new Error('MAIL_FROM/MAIL_TO missing');
+  const cfg = resolveMailConfig(env);
+  const fromAddr = from || cfg.from || cfg.to;
+  const toAddr = to || cfg.to || cfg.from;
+  if (!fromAddr || !toAddr) throw new Error('EMAIL_NOT_CONFIGURED: set MAIL_FROM + MAIL_TO (or EMAIL_FROM/EMAIL_TO)');
   const res = await fetch('https://api.mailchannels.net/tx/v1/send', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -156,7 +184,8 @@ export async function onRequest(context) {
   try {
     let result;
     if (env?.RESEND_API_KEY) {
-      result = await sendWithResend(env, env.MAIL_FROM, env.MAIL_TO, subject, html, text);
+      // Prefer Resend when configured.
+      result = await sendWithResend(env, env.MAIL_FROM, env.MAIL_TO, subject, html, text, email);
     } else if (env?.SENDGRID_API_KEY) {
       result = await sendWithSendGrid(env, env.MAIL_FROM, env.MAIL_TO, subject, html, text);
     } else {
