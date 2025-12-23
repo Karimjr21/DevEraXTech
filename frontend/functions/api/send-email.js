@@ -52,7 +52,9 @@ function preflight(origin) {
 function firstEnv(env, keys) {
   for (const key of keys) {
     const value = env?.[key];
-    if (typeof value === 'string' && value.trim()) return value.trim();
+    if (value === undefined || value === null) continue;
+    const str = typeof value === 'string' ? value : String(value);
+    if (str.trim()) return str.trim();
   }
   return undefined;
 }
@@ -63,16 +65,47 @@ function resolveMailConfig(env) {
   return { from, to };
 }
 
+function safeEnvPresence(env) {
+  const allow = new Set([
+    'MAIL_FROM', 'MAIL_TO',
+    'EMAIL_FROM', 'EMAIL_TO',
+    'RESEND_FROM', 'RESEND_TO',
+    'RESEND_API_KEY',
+    'SENDGRID_API_KEY',
+    'CORS_ORIGIN',
+  ]);
+
+  const keys = [];
+  if (env && typeof env === 'object') {
+    for (const k of Object.keys(env)) {
+      if (allow.has(k)) keys.push(k);
+    }
+  }
+
+  return {
+    hasEnvObject: !!env && typeof env === 'object',
+    presentKeys: keys.sort(),
+    hasMAIL_FROM: !!firstEnv(env, ['MAIL_FROM']),
+    hasMAIL_TO: !!firstEnv(env, ['MAIL_TO']),
+    hasRESEND_API_KEY: !!firstEnv(env, ['RESEND_API_KEY']),
+  };
+}
+
 async function sendWithResend(env, _from, _to, subject, html, text, replyTo) {
   const apiKey = firstEnv(env, ['RESEND_API_KEY']);
   const cfg = resolveMailConfig(env);
 
   // Resend supports using the demo sender in some setups, but production should use a verified sender.
-  const fromAddr = cfg.from || 'DevEraX <onboarding@resend.dev>';
+  const fromAddr = cfg.from || 'DevEraX <no-reply@deveraxtech.com>';
   const toAddr = cfg.to || cfg.from;
 
   if (!apiKey) throw new Error('RESEND_API_KEY missing');
-  if (!toAddr) throw new Error('EMAIL_NOT_CONFIGURED: set MAIL_TO (or EMAIL_TO/RESEND_TO)');
+  if (!toAddr) {
+    throw new Error(
+      'EMAIL_NOT_CONFIGURED: set MAIL_TO (or EMAIL_TO/RESEND_TO). ' +
+      'If this is Cloudflare Pages, make sure the variable is enabled for Pages Functions runtime and for the current environment (Production vs Preview).'
+    );
+  }
 
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -194,7 +227,9 @@ export async function onRequest(context) {
     }
     return json(200, { success: true, message: 'Email sent successfully', result }, origin);
   } catch (e) {
-    return json(500, { success: false, error: e?.message || 'EMAIL_SEND_FAILED' }, origin);
+    const message = e?.message || 'EMAIL_SEND_FAILED';
+    const debug = message.startsWith('EMAIL_NOT_CONFIGURED') ? safeEnvPresence(env) : undefined;
+    return json(500, { success: false, error: message, debug }, origin);
   }
 }
 
