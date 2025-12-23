@@ -11,7 +11,7 @@ export async function fetchTestimonials() {
 }
 
 export async function sendContact(data) {
-  const res = await fetch(`${API_URL}/send-email`, {
+  const res = await fetch('/sendEmail', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)

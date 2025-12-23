@@ -21,7 +21,7 @@ Served at `http://localhost:5173`.
 In `backend`.
 
 ### API Endpoints
-- `POST /api/contact` -> { name, email, message }
+- `POST /api/send-email` -> email bridge endpoint (used by Cloudflare)
 - `GET /api/portfolio`
 - `GET /api/testimonials`
 - `GET /api/health`
@@ -35,20 +35,17 @@ npm run dev
 Runs at `http://localhost:4000`.
 
 ## Contact Email
-Currently uses placeholder SMTP in `src/utils/mailer.js`. Replace host, auth user/pass with real credentials or environment variables.
-
-### Resend SMTP (Node-only)
-This repo includes a Nodemailer + Resend SMTP implementation in `backend/src/utils/mailer.js` and a test runner script.
-
+This repo sends contact email via SMTP from the Node backend.
 Cloudflare Pages Functions (Workers runtime) cannot use Nodemailer/SMTP because they don't support raw TCP sockets.
-Use the existing Resend HTTP API function (`/api/send-email`) on Cloudflare, or send via SMTP from a Node runtime (backend / Netlify / server).
 
 ### Cloudflare -> Node SMTP Bridge
-If you want the Cloudflare Contact form to send via Nodemailer/SMTP, deploy the Node backend publicly and set:
-- On the backend (Node): `RESEND_API_KEY` (+ optional `MAIL_FROM`, `MAIL_TO`) and `EMAIL_BRIDGE_TOKEN`.
+The Contact page calls `/sendEmail` (Cloudflare Pages Function), which proxies to the Node backend endpoint.
+
+Configure:
+- On the backend (Node): `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`, `MAIL_FROM`, `MAIL_TO`, and optionally `EMAIL_BRIDGE_TOKEN`.
 - On Cloudflare Pages (Production env vars):
 	- `EMAIL_BRIDGE_URL` = your backend endpoint URL (e.g. `https://your-backend.com/api/send-email`)
-	- `EMAIL_BRIDGE_TOKEN` = same token as backend
+	- `EMAIL_BRIDGE_TOKEN` = same token as backend (optional but recommended)
 
 ## Frontend 3D Logo
 `components/3d/Logo3D.jsx` attempts to load `/logo.glb` (place file in `frontend/public/logo.glb`). Fallback: cinematic torus knot with gold PBR + bloom + particle field + camera drift.
@@ -68,12 +65,13 @@ MAIL_TO=team@deverax.io
 ```
 
 ### Serverless Email (Cloudflare Pages)
-The Contact page submits to `/api/send-email` (Cloudflare Pages Function). Configure at least:
-- `RESEND_API_KEY` (or `SENDGRID_API_KEY`)
-- `MAIL_FROM` (and optionally `MAIL_TO`)
+The Contact page submits to `/sendEmail` (Cloudflare Pages Function).
 
-`MAIL_TO` defaults to `MAIL_FROM` if omitted.
-Also accepted as aliases: `EMAIL_FROM`/`EMAIL_TO`, `RESEND_FROM`/`RESEND_TO`, `FROM_EMAIL`/`TO_EMAIL`, `CONTACT_FROM`/`CONTACT_TO`.
+Cloudflare env vars:
+- `EMAIL_BRIDGE_URL`
+- `EMAIL_BRIDGE_TOKEN` (optional)
+
+Compatibility: `/api/send-email` redirects to `/sendEmail`.
 
 ## Next Steps
 - Provide actual `logo.glb` model / HDR environment map for better reflections.

@@ -28,11 +28,6 @@ export default function Contact() {
   const [now, setNow] = useState(() => new Date());
   const location = useLocation();
 
-  const debugEnabled = useMemo(() => {
-    const params = new URLSearchParams(location.search);
-    return params.get('debug') === '1';
-  }, [location.search]);
-
   const timeSlots = useMemo(() => {
     const slots = [];
     const startHour = 8;  // 08:00
@@ -160,24 +155,16 @@ export default function Contact() {
         name: form.name,
         email: form.email,
         phone: form.phone,
+        service: form.service,
+        meetingDateTime: meetingDateTime || undefined,
         subject: form.subject || `Inquiry - ${form.service || 'General'}`,
         message: finalMessage,
       });
       if (res && res.success) {
         setStatus({ type: 'success', message: res.message || 'Message sent! We will get back to you shortly.' });
-        setForm({ name: '', email: '', service: '', subject: '', message: '', meetingDate: '', meetingTime: '' });
+        setForm({ name: '', email: '', phone: '', service: '', subject: '', message: '', meetingDate: '', meetingTime: '' });
       } else {
-        let msg = res?.errors ? res.errors.join(', ') : (res?.error || 'Error sending message');
-        if (debugEnabled && res?.debug) {
-          const d = res.debug;
-          const bits = [];
-          if (typeof d.hasEnvObject === 'boolean') bits.push(`envObject=${d.hasEnvObject}`);
-          if (typeof d.hasMAIL_FROM === 'boolean') bits.push(`MAIL_FROM=${d.hasMAIL_FROM}`);
-          if (typeof d.hasMAIL_TO === 'boolean') bits.push(`MAIL_TO=${d.hasMAIL_TO}`);
-          if (typeof d.hasRESEND_API_KEY === 'boolean') bits.push(`RESEND_API_KEY=${d.hasRESEND_API_KEY}`);
-          if (Array.isArray(d.presentKeys)) bits.push(`keys=[${d.presentKeys.join(', ')}]`);
-          if (bits.length) msg = `${msg} | debug: ${bits.join(' ')}`;
-        }
+        const msg = res?.errors ? res.errors.join(', ') : (res?.error || 'Error sending message');
         setStatus({ type: 'error', message: msg });
       }
     } catch (e) {
