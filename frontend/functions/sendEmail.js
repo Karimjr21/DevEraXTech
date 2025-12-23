@@ -34,8 +34,11 @@ function preflight(origin) {
 }
 
 function firstEnv(env, keys) {
+  // Support both Cloudflare Pages runtime bindings (context.env)
+  // and local Node-style env (process.env) for local testing.
+  const processEnv = globalThis?.process?.env;
   for (const key of keys) {
-    const value = env?.[key];
+    const value = env?.[key] ?? processEnv?.[key];
     if (value === undefined || value === null) continue;
     const str = typeof value === 'string' ? value : String(value);
     if (str.trim()) return str.trim();
@@ -66,6 +69,25 @@ function escapeHtml(str) {
     .replace(/'/g, '&#039;');
 }
 
+function safeEnvPresence(env) {
+  const allow = new Set(['RESEND_API_KEY', 'MAIL_FROM', 'MAIL_TO', 'CORS_ORIGIN']);
+  const presentKeys = [];
+  if (env && typeof env === 'object') {
+    for (const k of Object.keys(env)) {
+      if (allow.has(k)) presentKeys.push(k);
+    }
+  }
+
+  // process.env keys are not enumerated reliably in Workers; only check boolean presence.
+  return {
+    hasEnvObject: !!env && typeof env === 'object',
+    presentKeys: presentKeys.sort(),
+    hasRESEND_API_KEY: !!firstEnv(env, ['RESEND_API_KEY']),
+    hasMAIL_FROM: !!firstEnv(env, ['MAIL_FROM']),
+    hasMAIL_TO: !!firstEnv(env, ['MAIL_TO']),
+  };
+}
+
 export async function onRequest(context) {
   const { request, env } = context;
   const origin = env?.CORS_ORIGIN || '*';
@@ -77,9 +99,9 @@ export async function onRequest(context) {
   const mailFrom = firstEnv(env, ['MAIL_FROM']);
   const mailTo = firstEnv(env, ['MAIL_TO']);
 
-  if (!resendApiKey) return json(500, { success: false, error: 'RESEND_API_KEY missing' }, origin);
-  if (!mailFrom) return json(500, { success: false, error: 'MAIL_FROM missing' }, origin);
-  if (!mailTo) return json(500, { success: false, error: 'MAIL_TO missing' }, origin);
+  if (!resendApiKey) return json(500, { success: false, error: 'RESEND_API_KEY missing', debug: safeEnvPresence(env) }, origin);
+  if (!mailFrom) return json(500, { success: false, error: 'MAIL_FROM missing', debug: safeEnvPresence(env) }, origin);
+  if (!mailTo) return json(500, { success: false, error: 'MAIL_TO missing', debug: safeEnvPresence(env) }, origin);
 
   let body;
   try {
