@@ -164,7 +164,10 @@ export default function Contact() {
         setStatus({ type: 'success', message: res.message || 'Message sent! We will get back to you shortly.' });
         setForm({ name: '', email: '', phone: '', service: '', subject: '', message: '', meetingDate: '', meetingTime: '' });
       } else {
-        const msg = res?.errors ? res.errors.join(', ') : (res?.error || 'Error sending message');
+        let msg = res?.errors ? res.errors.join(', ') : (res?.error || 'Error sending message');
+        if (res?.debug && typeof res.debug === 'object') {
+          msg = `${msg} | debug: ${JSON.stringify(res.debug)}`;
+        }
         setStatus({ type: 'error', message: msg });
       }
     } catch (e) {
