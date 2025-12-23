@@ -216,6 +216,28 @@ export async function onRequest(context) {
 
   try {
     let result;
+
+    // If configured, proxy to a Node runtime (SMTP/Nodemailer) endpoint.
+    // Cloudflare Workers cannot use SMTP directly.
+    const bridgeUrl = firstEnv(env, ['EMAIL_BRIDGE_URL']);
+    if (bridgeUrl) {
+      const token = firstEnv(env, ['EMAIL_BRIDGE_TOKEN']);
+      const res = await fetch(bridgeUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { 'Authorization': `Bearer ${token}` } : {}),
+        },
+        body: JSON.stringify(body),
+      });
+
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        return json(res.status, { success: false, error: data?.error || 'EMAIL_BRIDGE_FAILED', errors: data?.errors }, origin);
+      }
+      return json(200, { success: true, message: data?.message || 'Email sent successfully', result: data }, origin);
+    }
+
     if (env?.RESEND_API_KEY) {
       // Prefer Resend when configured.
       result = await sendWithResend(env, env.MAIL_FROM, env.MAIL_TO, subject, html, text, email);

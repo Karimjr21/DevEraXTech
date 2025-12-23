@@ -43,6 +43,13 @@ This repo includes a Nodemailer + Resend SMTP implementation in `backend/src/uti
 Cloudflare Pages Functions (Workers runtime) cannot use Nodemailer/SMTP because they don't support raw TCP sockets.
 Use the existing Resend HTTP API function (`/api/send-email`) on Cloudflare, or send via SMTP from a Node runtime (backend / Netlify / server).
 
+### Cloudflare -> Node SMTP Bridge
+If you want the Cloudflare Contact form to send via Nodemailer/SMTP, deploy the Node backend publicly and set:
+- On the backend (Node): `RESEND_API_KEY` (+ optional `MAIL_FROM`, `MAIL_TO`) and `EMAIL_BRIDGE_TOKEN`.
+- On Cloudflare Pages (Production env vars):
+	- `EMAIL_BRIDGE_URL` = your backend endpoint URL (e.g. `https://your-backend.com/api/send-email`)
+	- `EMAIL_BRIDGE_TOKEN` = same token as backend
+
 ## Frontend 3D Logo
 `components/3d/Logo3D.jsx` attempts to load `/logo.glb` (place file in `frontend/public/logo.glb`). Fallback: cinematic torus knot with gold PBR + bloom + particle field + camera drift.
 
