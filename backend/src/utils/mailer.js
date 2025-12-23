@@ -4,22 +4,37 @@ export async function sendMail({ name, email, message, service, meetingDateTime 
   if (process.env.EMAIL_MOCK === 'true') {
     return 'mocked-dev-id';
   }
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
+
+  // Resend SMTP shortcut (recommended when deploying Node-based functions)
+  // Uses: host smtp.resend.com, port 465, user resend, pass RESEND_API_KEY
+  const resendApiKey = process.env.RESEND_API_KEY;
   const host = process.env.SMTP_HOST;
-  if (!host || !user || !pass) {
+  const useResendSmtp = !!resendApiKey && (!host || host === 'smtp.resend.com');
+
+  const user = useResendSmtp ? 'resend' : process.env.SMTP_USER;
+  const pass = useResendSmtp ? resendApiKey : process.env.SMTP_PASS;
+  const effectiveHost = useResendSmtp ? 'smtp.resend.com' : host;
+
+  if (!effectiveHost || !user || !pass) {
     throw new Error('SMTP_NOT_CONFIGURED');
   }
 
   let transporter;
-  if ((host || '').includes('gmail.com') || process.env.SMTP_SERVICE === 'gmail') {
+  if (useResendSmtp) {
+    transporter = nodemailer.createTransport({
+      host: 'smtp.resend.com',
+      port: 465,
+      secure: true,
+      auth: { user: 'resend', pass: resendApiKey },
+    });
+  } else if ((effectiveHost || '').includes('gmail.com') || process.env.SMTP_SERVICE === 'gmail') {
     transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: { user, pass }
     });
   } else {
     transporter = nodemailer.createTransport({
-      host,
+      host: effectiveHost,
       port: parseInt(process.env.SMTP_PORT || '587', 10),
       secure: process.env.SMTP_SECURE === 'true',
       auth: { user, pass },
@@ -45,8 +60,8 @@ export async function sendMail({ name, email, message, service, meetingDateTime 
   ].filter(Boolean);
 
   const info = await transporter.sendMail({
-    from: process.env.MAIL_FROM || user,
-    to: process.env.MAIL_TO || user,
+    from: process.env.MAIL_FROM || (useResendSmtp ? 'no-reply@deveraxtech.com' : user),
+    to: process.env.MAIL_TO || (useResendSmtp ? 'deveraxtech@gmail.com' : user),
     subject: `New Contact - ${service ? service : 'General Inquiry'} - ${name}`,
     text: lines.join('\n')
   });

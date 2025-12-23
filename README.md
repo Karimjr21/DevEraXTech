@@ -37,6 +37,12 @@ Runs at `http://localhost:4000`.
 ## Contact Email
 Currently uses placeholder SMTP in `src/utils/mailer.js`. Replace host, auth user/pass with real credentials or environment variables.
 
+### Resend SMTP (Node-only)
+This repo includes a Nodemailer + Resend SMTP implementation in `backend/src/utils/mailer.js` and a test runner script.
+
+Cloudflare Pages Functions (Workers runtime) cannot use Nodemailer/SMTP because they don't support raw TCP sockets.
+Use the existing Resend HTTP API function (`/api/send-email`) on Cloudflare, or send via SMTP from a Node runtime (backend / Netlify / server).
+
 ## Frontend 3D Logo
 `components/3d/Logo3D.jsx` attempts to load `/logo.glb` (place file in `frontend/public/logo.glb`). Fallback: cinematic torus knot with gold PBR + bloom + particle field + camera drift.
 

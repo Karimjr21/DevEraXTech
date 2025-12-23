@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    
+    "resend:smtp-test": "node scripts/resend-smtp-test.mjs"
   },
   "dependencies": {
     "nodemailer": "^6.9.11",
