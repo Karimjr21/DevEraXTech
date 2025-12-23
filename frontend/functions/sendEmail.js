@@ -70,7 +70,16 @@ function escapeHtml(str) {
 }
 
 function safeEnvPresence(env) {
-  const allow = new Set(['RESEND_API_KEY', 'MAIL_FROM', 'MAIL_TO', 'CORS_ORIGIN']);
+  const allow = new Set([
+    'RESEND_API_KEY',
+    'MAIL_FROM',
+    'MAIL_TO',
+    'EMAIL_FROM',
+    'EMAIL_TO',
+    'RESEND_FROM',
+    'RESEND_TO',
+    'CORS_ORIGIN',
+  ]);
   const presentKeys = [];
   if (env && typeof env === 'object') {
     for (const k of Object.keys(env)) {
@@ -83,8 +92,8 @@ function safeEnvPresence(env) {
     hasEnvObject: !!env && typeof env === 'object',
     presentKeys: presentKeys.sort(),
     hasRESEND_API_KEY: !!firstEnv(env, ['RESEND_API_KEY']),
-    hasMAIL_FROM: !!firstEnv(env, ['MAIL_FROM']),
-    hasMAIL_TO: !!firstEnv(env, ['MAIL_TO']),
+    hasMAIL_FROM: !!firstEnv(env, ['MAIL_FROM', 'EMAIL_FROM', 'RESEND_FROM']),
+    hasMAIL_TO: !!firstEnv(env, ['MAIL_TO', 'EMAIL_TO', 'RESEND_TO']),
   };
 }
 
@@ -96,8 +105,8 @@ export async function onRequest(context) {
   if (request.method !== 'POST') return json(405, { success: false, error: 'Method Not Allowed' }, origin);
 
   const resendApiKey = firstEnv(env, ['RESEND_API_KEY']);
-  const mailFrom = firstEnv(env, ['MAIL_FROM']);
-  const mailTo = firstEnv(env, ['MAIL_TO']);
+  const mailFrom = firstEnv(env, ['MAIL_FROM', 'EMAIL_FROM', 'RESEND_FROM']);
+  const mailTo = firstEnv(env, ['MAIL_TO', 'EMAIL_TO', 'RESEND_TO']);
 
   if (!resendApiKey) return json(500, { success: false, error: 'RESEND_API_KEY missing', debug: safeEnvPresence(env) }, origin);
   if (!mailFrom) return json(500, { success: false, error: 'MAIL_FROM missing', debug: safeEnvPresence(env) }, origin);
