@@ -2,7 +2,7 @@
  * Cloudflare Pages Function: /api/send-email
  *
  * Legacy endpoint kept for backwards compatibility.
- * Redirects POST requests to the new /sendEmail Pages Function.
+ * Redirects POST requests to the /sendEmail Pages Function.
  */
 
 /**

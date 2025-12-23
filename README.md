@@ -35,17 +35,9 @@ npm run dev
 Runs at `http://localhost:4000`.
 
 ## Contact Email
-This repo sends contact email via SMTP from the Node backend.
-Cloudflare Pages Functions (Workers runtime) cannot use Nodemailer/SMTP because they don't support raw TCP sockets.
+Cloudflare Pages Functions run on the Workers runtime and cannot use Nodemailer/SMTP (no raw TCP sockets).
 
-### Cloudflare -> Node SMTP Bridge
-The Contact page calls `/sendEmail` (Cloudflare Pages Function), which proxies to the Node backend endpoint.
-
-Configure:
-- On the backend (Node): `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`, `MAIL_FROM`, `MAIL_TO`, and optionally `EMAIL_BRIDGE_TOKEN`.
-- On Cloudflare Pages (Production env vars):
-	- `EMAIL_BRIDGE_URL` = your backend endpoint URL (e.g. `https://your-backend.com/api/send-email`)
-	- `EMAIL_BRIDGE_TOKEN` = same token as backend (optional but recommended)
+This project sends contact email from the Pages Function `/sendEmail` via the Resend HTTP API.
 
 ## Frontend 3D Logo
 `components/3d/Logo3D.jsx` attempts to load `/logo.glb` (place file in `frontend/public/logo.glb`). Fallback: cinematic torus knot with gold PBR + bloom + particle field + camera drift.
@@ -68,8 +60,9 @@ MAIL_TO=team@deverax.io
 The Contact page submits to `/sendEmail` (Cloudflare Pages Function).
 
 Cloudflare env vars:
-- `EMAIL_BRIDGE_URL`
-- `EMAIL_BRIDGE_TOKEN` (optional)
+- `RESEND_API_KEY`
+- `MAIL_FROM` (must be a verified sender/domain in Resend)
+- `MAIL_TO`
 
 Compatibility: `/api/send-email` redirects to `/sendEmail`.
 

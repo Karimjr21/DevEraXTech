@@ -1,13 +1,15 @@
 /**
  * Cloudflare Pages Function: /sendEmail
  *
- * This endpoint DOES NOT send SMTP directly (Cloudflare Workers runtime cannot open TCP sockets).
- * Instead, it validates the request then proxies to a Node.js backend endpoint that sends via
- * Nodemailer + Resend SMTP.
+ * Cloudflare Pages Functions run on the Workers runtime (no raw TCP sockets), so SMTP/Nodemailer
+ * is not supported here.
+ *
+ * This implementation sends email via Resend HTTP API.
  *
  * Required environment variables (Cloudflare Pages -> Variables and Secrets -> Production):
- * - EMAIL_BRIDGE_URL    (e.g. https://your-backend.com/api/send-email)
- * - EMAIL_BRIDGE_TOKEN  (optional, recommended)
+ * - RESEND_API_KEY
+ * - MAIL_FROM (must be a verified sender/domain in Resend)
+ * - MAIL_TO
  */
 
 function json(status, data, origin) {
@@ -55,6 +57,15 @@ function validateBody(body) {
   return { valid: errors.length === 0, errors };
 }
 
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 export async function onRequest(context) {
   const { request, env } = context;
   const origin = env?.CORS_ORIGIN || '*';
@@ -62,8 +73,13 @@ export async function onRequest(context) {
   if (request.method === 'OPTIONS') return preflight(origin);
   if (request.method !== 'POST') return json(405, { success: false, error: 'Method Not Allowed' }, origin);
 
-  const bridgeUrl = firstEnv(env, ['EMAIL_BRIDGE_URL']);
-  if (!bridgeUrl) return json(500, { success: false, error: 'EMAIL_BRIDGE_URL missing' }, origin);
+  const resendApiKey = firstEnv(env, ['RESEND_API_KEY']);
+  const mailFrom = firstEnv(env, ['MAIL_FROM']);
+  const mailTo = firstEnv(env, ['MAIL_TO']);
+
+  if (!resendApiKey) return json(500, { success: false, error: 'RESEND_API_KEY missing' }, origin);
+  if (!mailFrom) return json(500, { success: false, error: 'MAIL_FROM missing' }, origin);
+  if (!mailTo) return json(500, { success: false, error: 'MAIL_TO missing' }, origin);
 
   let body;
   try {
@@ -76,27 +92,54 @@ export async function onRequest(context) {
   if (!valid) return json(400, { success: false, errors }, origin);
 
   try {
-    const token = firstEnv(env, ['EMAIL_BRIDGE_TOKEN']);
-    const res = await fetch(bridgeUrl, {
+    const subject = (body.subject && String(body.subject).trim())
+      ? String(body.subject).trim()
+      : `New Contact - ${body.service ? body.service : 'General Inquiry'} - ${body.name}`;
+
+    const lines = [
+      body.phone ? `Phone: ${body.phone}` : null,
+      body.service ? `Service: ${body.service}` : null,
+      body.meetingDateTime ? `Preferred Meeting: ${body.meetingDateTime}` : null,
+      `Reply to: ${body.email}`,
+      '',
+      body.message,
+    ].filter(Boolean);
+
+    const html = `
+      <div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;line-height:1.6">
+        <p><strong>Name:</strong> ${escapeHtml(body.name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(body.email)}</p>
+        ${body.phone ? `<p><strong>Phone:</strong> ${escapeHtml(body.phone)}</p>` : ''}
+        ${body.service ? `<p><strong>Service:</strong> ${escapeHtml(body.service)}</p>` : ''}
+        ${body.meetingDateTime ? `<p><strong>Preferred Meeting:</strong> ${escapeHtml(body.meetingDateTime)}</p>` : ''}
+        <hr/>
+        <pre style="white-space:pre-wrap;font-family:inherit">${escapeHtml(body.message)}</pre>
+      </div>
+    `;
+
+    const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
+        Authorization: `Bearer ${resendApiKey}`,
         'Content-Type': 'application/json',
-        ...(token ? { 'Authorization': `Bearer ${token}` } : {}),
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify({
+        from: mailFrom,
+        to: mailTo,
+        subject,
+        text: lines.join('\n'),
+        html,
+        reply_to: body.email,
+      }),
     });
 
     const data = await res.json().catch(() => ({}));
     if (!res.ok) {
-      return json(res.status, {
-        success: false,
-        error: data?.error || 'EMAIL_SEND_FAILED',
-        errors: data?.errors,
-      }, origin);
+      return json(502, { success: false, error: 'RESEND_FAILED', details: data }, origin);
     }
 
-    return json(200, { success: true, message: data?.message || 'Email sent successfully', result: data }, origin);
+    return json(200, { success: true, message: 'Email sent successfully', id: data?.id }, origin);
   } catch (_e) {
-    return json(502, { success: false, error: 'EMAIL_BRIDGE_UNREACHABLE' }, origin);
+    return json(502, { success: false, error: 'EMAIL_SEND_FAILED' }, origin);
   }
 }
