@@ -17,13 +17,12 @@
 function validateBody(body) {
   const errors = [];
   if (!body || typeof body !== 'object') errors.push('Body must be a JSON object');
-  const { name, email, phone, subject, message } = body || {};
+  const { name, email, subject, message } = body || {};
   if (!name || typeof name !== 'string' || !name.trim()) errors.push('Missing or invalid name');
   if (!email || typeof email !== 'string' || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) errors.push('Missing or invalid email');
-  if (!phone || typeof phone !== 'string' || !phone.trim()) errors.push('Missing or invalid phone');
   if (!subject || typeof subject !== 'string' || !subject.trim()) errors.push('Missing or invalid subject');
   if (!message || typeof message !== 'string' || !message.trim()) errors.push('Missing or invalid message');
-  return { valid: errors.length === 0, errors, name, email, phone, subject, message };
+  return { valid: errors.length === 0, errors, name, email, subject, message };
 }
 
 /** Build common JSON response */
@@ -49,6 +48,7 @@ function preflight(origin) {
   });
 }
 
+/** Send via Resend */
 function firstEnv(env, keys) {
   for (const key of keys) {
     const value = env?.[key];
@@ -63,12 +63,14 @@ function resolveMailConfig(env) {
   return { from, to };
 }
 
-/** Send via Resend */
 async function sendWithResend(env, _from, _to, subject, html, text, replyTo) {
   const apiKey = firstEnv(env, ['RESEND_API_KEY']);
   const cfg = resolveMailConfig(env);
+
+  // Resend supports using the demo sender in some setups, but production should use a verified sender.
   const fromAddr = cfg.from || 'DevEraX <onboarding@resend.dev>';
   const toAddr = cfg.to || cfg.from;
+
   if (!apiKey) throw new Error('RESEND_API_KEY missing');
   if (!toAddr) throw new Error('EMAIL_NOT_CONFIGURED: set MAIL_TO (or EMAIL_TO/RESEND_TO)');
 
@@ -102,7 +104,6 @@ async function sendWithSendGrid(env, from, to, subject, html, text) {
   const toAddr = to || cfg.to || cfg.from;
   if (!apiKey) throw new Error('SENDGRID_API_KEY missing');
   if (!fromAddr || !toAddr) throw new Error('EMAIL_NOT_CONFIGURED: set MAIL_FROM + MAIL_TO (or EMAIL_FROM/EMAIL_TO)');
-
   const res = await fetch('https://api.sendgrid.com/v3/mail/send', {
     method: 'POST',
     headers: {
@@ -132,7 +133,6 @@ async function sendWithMailChannels(env, from, to, subject, html, text) {
   const fromAddr = from || cfg.from || cfg.to;
   const toAddr = to || cfg.to || cfg.from;
   if (!fromAddr || !toAddr) throw new Error('EMAIL_NOT_CONFIGURED: set MAIL_FROM + MAIL_TO (or EMAIL_FROM/EMAIL_TO)');
-
   const res = await fetch('https://api.mailchannels.net/tx/v1/send', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -167,14 +167,14 @@ export async function onRequest(context) {
     return json(400, { success: false, error: 'Invalid JSON body' }, origin);
   }
 
-  const { valid, errors, name, email, phone, subject, message } = validateBody(body);
+  const { valid, errors, name, email, subject, message } = validateBody(body);
   if (!valid) return json(400, { success: false, errors }, origin);
 
-  const text = `From: ${name} <${email}>\nPhone: ${phone}\nSubject: ${subject}\n\n${message}`;
+  // Build email content
+  const text = `From: ${name} <${email}>\nSubject: ${subject}\n\n${message}`;
   const html = `
     <div style="font-family:system-ui,Segoe UI,Arial;line-height:1.6">
       <p><strong>From:</strong> ${name} &lt;${email}&gt;</p>
-      <p><strong>Phone:</strong> ${escapeHtml(phone)}</p>
       <p><strong>Subject:</strong> ${subject}</p>
       <hr/>
       <pre style="white-space:pre-wrap;font-family:inherit">${escapeHtml(message)}</pre>
@@ -184,10 +184,12 @@ export async function onRequest(context) {
   try {
     let result;
     if (env?.RESEND_API_KEY) {
+      // Prefer Resend when configured.
       result = await sendWithResend(env, env.MAIL_FROM, env.MAIL_TO, subject, html, text, email);
     } else if (env?.SENDGRID_API_KEY) {
       result = await sendWithSendGrid(env, env.MAIL_FROM, env.MAIL_TO, subject, html, text);
     } else {
+      // Fallback: MailChannels
       result = await sendWithMailChannels(env, env.MAIL_FROM, env.MAIL_TO, subject, html, text);
     }
     return json(200, { success: true, message: 'Email sent successfully', result }, origin);
