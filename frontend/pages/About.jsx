@@ -8,7 +8,8 @@ const timeline = [
 const team = [
   { name: 'Karim', role: 'CEO (Chief Executive Officer)' },
   { name: 'Loay', role: 'CFO (Chief Financial Officer)' },
-  { name: 'Amr', role: 'CTO (Chief Technology Officer)' }
+  { name: 'Amr', role: 'CTO (Chief Technology Officer)' },
+  { name: 'Mohamed', role: 'Operation Manager' }
 ];
 
 export default function About() {
