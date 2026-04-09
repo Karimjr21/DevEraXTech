@@ -150,8 +150,8 @@ body { background: var(--color-bg); overflow-y: auto; }
   position: relative;
   overflow: hidden;
   background:
-    linear-gradient(180deg, rgba(10,10,10,0), rgba(10,10,10,0.62) 18%, rgba(10,10,10,0.88) 52%, rgba(10,10,10,1) 100%),
-    radial-gradient(120% 100% at 50% 0%, rgba(212,175,55,0.06), rgba(212,175,55,0) 54%);
+    linear-gradient(180deg, rgba(10,10,10,0), rgba(10,10,10,0.56) 16%, rgba(10,10,10,0.82) 48%, rgba(10,10,10,1) 100%),
+    radial-gradient(120% 100% at 50% 0%, rgba(212,175,55,0.045), rgba(212,175,55,0) 56%);
   border-top: 1px solid rgba(212, 175, 55, 0.06);
 }
 
@@ -172,8 +172,8 @@ body { background: var(--color-bg); overflow-y: auto; }
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 50% 0%, rgba(242,209,123,0.06), rgba(242,209,123,0) 34%),
-    radial-gradient(circle at 12% 20%, rgba(212,175,55,0.03), rgba(212,175,55,0) 28%);
+    radial-gradient(circle at 50% 0%, rgba(242,209,123,0.045), rgba(242,209,123,0) 34%),
+    radial-gradient(circle at 12% 20%, rgba(212,175,55,0.025), rgba(212,175,55,0) 28%);
 }
 
 .hero-stars {
