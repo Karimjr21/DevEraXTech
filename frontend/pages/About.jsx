@@ -140,7 +140,7 @@ export default function About() {
             </div>
           </div>
 
-          <div className="glass rounded-xl border border-gold/20 p-5 sm:p-6 lg:p-7">
+          <div className="about-card about-card--functional p-5 sm:p-6 lg:p-7">
             <p className="text-[11px] uppercase tracking-[0.2em] text-gold/75 mb-3">Operating Principle</p>
             <p className="text-sm md:text-base text-gray-300/90 leading-relaxed">
               Each project is treated as a long-term digital asset, engineered for resilience, elegant usability, and growth.
@@ -157,7 +157,11 @@ export default function About() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
           {trustSignals.map((signal) => (
-            <article key={signal.title} className="glass rounded-xl border border-gold/15 p-4 md:p-5">
+            <article
+              key={signal.title}
+              className="group about-card about-card--functional p-4 md:p-5"
+            >
+              <div className="about-functional-icon mb-3" aria-hidden />
               <p className="text-[11px] uppercase tracking-[0.16em] text-gold/75 mb-2">Value</p>
               <h3 className="text-sm md:text-base text-gold font-semibold leading-snug mb-2">{signal.title}</h3>
               <p className="text-xs md:text-sm text-gray-400 leading-relaxed">{signal.detail}</p>
@@ -172,7 +176,7 @@ export default function About() {
           <h2 className="text-2xl md:text-3xl font-semibold text-gold leading-tight">What We Build</h2>
         </div>
 
-        <div className="lux-card p-6 md:p-8 lg:p-10 grid lg:grid-cols-[1.14fr_0.86fr] gap-8 lg:gap-10">
+        <div className="about-card about-card--editorial p-6 md:p-8 lg:p-10 grid lg:grid-cols-[1.14fr_0.86fr] gap-8 lg:gap-10">
           <div className="space-y-4">
             <p className="text-gray-200/90 leading-relaxed">
               DevEraXTech is a focused product and engineering studio delivering premium digital platforms with disciplined execution.
@@ -226,7 +230,7 @@ export default function About() {
                   </span>
                 </div>
 
-                <div className="glass rounded-xl p-5 md:p-6 border border-gold/15">
+                <div className="about-card about-card--functional p-5 md:p-6">
                   <p className="text-sm md:text-base text-gray-300/90 leading-relaxed">{item.text}</p>
                 </div>
               </article>
@@ -248,9 +252,9 @@ export default function About() {
           {team.map((member) => (
             <article
               key={member.name}
-              className="lux-card group p-5 md:p-6 min-h-[220px] flex flex-col justify-between motion-safe:transition-all motion-safe:duration-300 motion-safe:hover:-translate-y-1"
+              className="about-card about-card--team group p-5 md:p-6 min-h-[220px] h-full flex flex-col justify-between"
             >
-              <div className="w-14 h-14 rounded-full border border-gold/35 bg-gradient-to-br from-gold/30 via-gold/14 to-gold/5 flex items-center justify-center text-sm font-semibold text-gold shadow-[0_0_0_1px_rgba(212,175,55,0.18)_inset] group-hover:shadow-[0_0_18px_-8px_rgba(212,175,55,0.65)]">
+              <div className="about-avatar-chip w-14 h-14 rounded-full flex items-center justify-center text-sm font-semibold text-gold tracking-[0.08em]">
                 {getInitials(member.name)}
               </div>
 
@@ -276,12 +280,12 @@ export default function About() {
           {pillars.map((pillar) => (
             <article
               key={pillar.title}
-              className="group relative overflow-hidden rounded-xl border border-gold/18 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.012))] p-5 md:p-6 shadow-[0_10px_28px_-18px_rgba(0,0,0,0.85)] motion-safe:transition-all motion-safe:duration-300 motion-safe:hover:-translate-y-1 motion-safe:hover:border-gold/35 motion-safe:hover:shadow-[0_16px_38px_-20px_rgba(212,175,55,0.36)]"
+              className="about-card about-card--feature group relative overflow-hidden p-5 md:p-6"
             >
-              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[radial-gradient(circle_at_82%_8%,rgba(212,175,55,0.12),rgba(212,175,55,0)_55%)]" aria-hidden />
+              <div className="about-feature-glow pointer-events-none absolute -top-16 -right-16 w-44 h-44 rounded-full opacity-0 group-hover:opacity-100" aria-hidden />
 
               <div className="relative z-[1]">
-                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-gold/25 bg-gold/10">
+                <div className="about-feature-icon mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-gold/25 bg-gold/10">
                   <ApproachIcon icon={pillar.key} />
                 </div>
                 <h3 className="text-lg font-semibold text-gold mb-2">{pillar.title}</h3>
@@ -292,7 +296,7 @@ export default function About() {
         </div>
       </SectionWrapper>
 
-      <SectionWrapper id="about-cta" className="relative overflow-hidden rounded-2xl border border-gold/18 bg-[linear-gradient(165deg,rgba(18,18,18,0.94),rgba(9,9,9,0.92))] p-7 sm:p-9 md:p-10">
+      <SectionWrapper id="about-cta" className="about-card about-card--cta relative overflow-hidden p-7 sm:p-9 md:p-10">
         <div className="absolute inset-0 pointer-events-none" aria-hidden>
           <div className="absolute -top-10 right-[15%] w-32 h-32 rounded-full bg-gold/10 blur-3xl" />
         </div>
