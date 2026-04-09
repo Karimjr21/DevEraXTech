@@ -77,13 +77,16 @@ export default function Services() {
           <SectionWrapper
             key={card.title}
             delay={index * 60}
-            className="service-editorial-row rounded-2xl p-6 md:p-8 lg:p-10"
+            className="service-editorial-row rounded-2xl p-5 md:p-6 lg:p-7"
           >
-            <div className="service-editorial-grid grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-start">
+            <div className="service-editorial-grid grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6 lg:gap-8 items-start">
               <div className={`${index % 2 === 1 ? 'lg:order-2' : ''} service-editorial-pitch`}> 
-                <p className="service-editorial-kicker text-[0.68rem] uppercase tracking-[0.16em] text-gray-400/85 mb-3">
-                  {`0${index + 1}`} / Premium Service
-                </p>
+                <div className="service-editorial-kicker-row mb-3.5 md:mb-4">
+                  <p className="service-editorial-kicker text-[0.67rem] uppercase tracking-[0.18em] text-gray-400/82">
+                    {`0${index + 1}`} / Premium Service
+                  </p>
+                  <span className="service-editorial-kicker-line" aria-hidden />
+                </div>
                 <h3
                   className={`service-editorial-title text-[1.55rem] md:text-[1.78rem] font-semibold tracking-tight leading-[1.16] ${card.title === 'Business / Corporate Websites' ? 'service-editorial-title--long max-w-[17ch]' : ''}`}
                 >
@@ -91,6 +94,10 @@ export default function Services() {
                 </h3>
                 <p className="service-editorial-copy mt-4 leading-relaxed text-[0.96rem] md:text-[1rem] max-w-[58ch]">
                   {card.description}
+                </p>
+
+                <p className="service-editorial-support mt-4 text-[0.8rem] md:text-[0.82rem] text-gray-400/78 uppercase tracking-[0.11em]">
+                  {card.features.length} key capabilities
                 </p>
               </div>
 
@@ -111,10 +118,10 @@ export default function Services() {
                 <div className="mt-5 md:mt-6">
                   <AnimatedButton
                     variant="outline"
-                    className="service-editorial-cta h-10 px-5 text-sm"
+                    className="service-editorial-cta h-9 md:h-10 px-4.5 md:px-5 text-[0.8rem] md:text-[0.84rem] uppercase tracking-[0.08em]"
                     onClick={() => goToContact(card.service)}
                   >
-                    Start This Project
+                    Start This Project <span aria-hidden className="ml-1">→</span>
                   </AnimatedButton>
                 </div>
               </div>
