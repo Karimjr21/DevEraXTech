@@ -1,25 +1,48 @@
 export default function Footer() {
   return (
     <footer className="footer-shell relative z-10">
-      <div className="max-w-7xl mx-auto px-8 py-10 text-sm flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-        <div className="flex items-center gap-4">
-          <div className="font-semibold tracking-wide gold-gradient-text text-lg">DevEraXTech</div>
-          <a
-            href="https://www.instagram.com/deveraxtech?igsh=MWR5aTY2N3g1eWVjNQ=="
-            target="_blank"
-            rel="noreferrer"
-            aria-label="DevEraXTech on Instagram"
-            className="inline-flex items-center justify-center w-7 h-7 rounded-full border border-gold/40 text-gold hover:bg-gold hover:text-dark transition-colors pointer-events-auto"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-              <path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm0 2a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H7zm5 3a5 5 0 110 10 5 5 0 010-10zm0 2a3 3 0 100 6 3 3 0 000-6zm5.5-2a1.5 1.5 0 110 3 1.5 1.5 0 010-3z" />
-            </svg>
-          </a>
+      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10 pt-14 md:pt-16 pb-10 md:pb-12">
+        <div className="mb-10 md:mb-12 flex items-center justify-center lg:justify-start gap-3 text-[0.68rem] uppercase tracking-[0.3em] text-gray-400/75">
+          <span className="h-px w-10 bg-gradient-to-r from-gold/60 via-gold/20 to-transparent" aria-hidden />
+          <span>Premium execution, quietly delivered</span>
         </div>
-        <div className="flex-1 text-gray-400 leading-relaxed">
-          Premium web & app experiences • Secure • Scalable • Pixel-perfect
+
+        <div className="grid gap-10 lg:grid-cols-[1.05fr,1fr,auto] lg:items-end text-center lg:text-left">
+          <div className="space-y-3">
+            <div className="flex items-center justify-center lg:justify-start gap-3">
+              <div className="font-semibold tracking-wide gold-gradient-text text-lg sm:text-xl">DevEraXTech</div>
+              <span className="hidden sm:inline-flex h-1.5 w-1.5 rounded-full bg-gold/60" aria-hidden />
+            </div>
+            <p className="mx-auto lg:mx-0 max-w-sm text-sm leading-6 text-gray-400/80">
+              Premium web & app experiences for teams that want secure, scalable delivery with a refined finish.
+            </p>
+          </div>
+
+          <div className="space-y-4 lg:justify-self-center">
+            <div className="text-[0.7rem] uppercase tracking-[0.24em] text-gray-500">Connect</div>
+            <div className="flex items-center justify-center lg:justify-start gap-4">
+              <a
+                href="https://www.instagram.com/deveraxtech?igsh=MWR5aTY2N3g1eWVjNQ=="
+                target="_blank"
+                rel="noreferrer"
+                aria-label="DevEraXTech on Instagram"
+                className="group inline-flex h-11 w-11 items-center justify-center rounded-full border border-gold/20 bg-white/5 text-gold/85 transition-all duration-300 hover:border-gold/45 hover:bg-gold/10 hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 transition-transform duration-300 group-hover:scale-105">
+                  <path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm0 2a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H7zm5 3a5 5 0 110 10 5 5 0 010-10zm0 2a3 3 0 100 6 3 3 0 000-6zm5.5-2a1.5 1.5 0 110 3 1.5 1.5 0 010-3z" />
+                </svg>
+              </a>
+
+              <div className="text-sm leading-6 text-gray-400/80">
+                Secure • Scalable • Pixel-perfect
+              </div>
+            </div>
+          </div>
+
+          <div className="text-sm leading-6 text-gray-500 lg:justify-self-end lg:text-right">
+            © {new Date().getFullYear()} DevEraXTech. All rights reserved.
+          </div>
         </div>
-        <div className="text-gray-500">© {new Date().getFullYear()} DevEraXTech. All rights reserved.</div>
       </div>
     </footer>
   );

@@ -147,7 +147,33 @@ body { background: var(--color-bg); overflow-y: auto; }
 }
 
 .footer-shell {
-  background: transparent;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(10,10,10,0), rgba(10,10,10,0.68) 14%, rgba(10,10,10,0.9) 48%, rgba(10,10,10,1) 100%),
+    radial-gradient(120% 100% at 50% 0%, rgba(212,175,55,0.08), rgba(212,175,55,0) 52%);
+  border-top: 1px solid rgba(212, 175, 55, 0.06);
+}
+
+.footer-shell::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(212,175,55,0), rgba(242,209,123,0.16), rgba(212,175,55,0));
+}
+
+.footer-shell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(242,209,123,0.06), rgba(242,209,123,0) 34%),
+    radial-gradient(circle at 12% 20%, rgba(212,175,55,0.03), rgba(212,175,55,0) 28%);
 }
 
 .hero-stars {
@@ -172,6 +198,7 @@ body { background: var(--color-bg); overflow-y: auto; }
 
 .gold-gradient-text {
   background: linear-gradient(90deg,#d4af37,#f5d573,#d4af37);
+  background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
 }
