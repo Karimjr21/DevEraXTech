@@ -621,6 +621,7 @@ body { background: var(--color-bg); overflow-y: auto; }
 
 .contact-card,
 .contact-side-card {
+  min-width: 0;
   border-radius: 1rem;
   border: 1px solid rgba(242, 209, 123, 0.18);
   background: linear-gradient(165deg, rgba(16,16,16,0.94), rgba(9,9,9,0.9));
@@ -636,12 +637,18 @@ body { background: var(--color-bg); overflow-y: auto; }
 }
 
 .contact-card-subpanel {
+  min-width: 0;
+  overflow: hidden;
   border-radius: 0.9rem;
   border: 1px solid rgba(242, 209, 123, 0.14);
   background: linear-gradient(165deg, rgba(14,14,14,0.72), rgba(8,8,8,0.6));
 }
 
 .contact-input {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   border: 1px solid rgba(242, 209, 123, 0.2);
   background: linear-gradient(165deg, rgba(15,15,15,0.82), rgba(10,10,10,0.74));
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
@@ -657,8 +664,20 @@ body { background: var(--color-bg); overflow-y: auto; }
 }
 
 .contact-input[type="date"] {
+  display: block;
+  appearance: none;
+  -webkit-appearance: none;
   color-scheme: dark;
+  min-width: 0;
   padding-right: 2.75rem;
+}
+
+.contact-input::-webkit-date-and-time-value {
+  text-align: left;
+}
+
+.contact-input::-webkit-datetime-edit {
+  color: rgba(229,231,235,0.92);
 }
 
 .contact-input[type="date"]::-webkit-calendar-picker-indicator {
@@ -806,6 +825,27 @@ body { background: var(--color-bg); overflow-y: auto; }
   box-shadow: 0 10px 18px -14px rgba(212,175,55,0.48);
 }
 
+.portfolio-stat-chip {
+  border-radius: 0.85rem;
+  border: 1px solid rgba(242,209,123,0.16);
+  background: linear-gradient(165deg, rgba(14,14,14,0.82), rgba(9,9,9,0.76));
+  padding: 0.8rem 0.95rem;
+}
+
+.portfolio-stat-label {
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(242,209,123,0.68);
+  margin-bottom: 0.35rem;
+}
+
+.portfolio-stat-value {
+  font-size: 0.95rem;
+  color: rgba(229,231,235,0.94);
+  font-weight: 600;
+}
+
 .portfolio-card {
   overflow: hidden;
   transition: transform .34s cubic-bezier(.22,1,.36,1), border-color .32s ease, box-shadow .34s cubic-bezier(.22,1,.36,1);
@@ -827,6 +867,15 @@ body { background: var(--color-bg); overflow-y: auto; }
 
 .portfolio-media-shell--featured {
   min-height: 236px;
+}
+
+.portfolio-media-shell--single {
+  min-height: 320px;
+}
+
+.portfolio-featured-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
 }
 
 .portfolio-media-img {
@@ -917,11 +966,21 @@ body { background: var(--color-bg); overflow-y: auto; }
   transition: transform .28s cubic-bezier(.22,1,.36,1), border-color .28s ease, box-shadow .28s ease;
 }
 
+.portfolio-cta-link span {
+  display: inline-block;
+  transition: transform .26s cubic-bezier(.22,1,.36,1);
+}
+
 .portfolio-cta-link:hover,
 .portfolio-cta-link:focus-visible {
   transform: translateY(-1px);
   border-color: rgba(242,209,123,0.56);
   box-shadow: 0 10px 18px -14px rgba(212,175,55,0.52);
+}
+
+.portfolio-cta-link:hover span,
+.portfolio-cta-link:focus-visible span {
+  transform: translateX(2px);
 }
 
 .portfolio-bottom-cta {
@@ -940,8 +999,22 @@ body { background: var(--color-bg); overflow-y: auto; }
     min-height: 196px;
   }
 
+  .portfolio-media-shell--single {
+    min-height: 200px;
+  }
+
   .portfolio-filter-pill {
     padding: 0.52rem 0.86rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  .portfolio-featured-card {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-media-shell--single {
+    min-height: 236px;
   }
 }
 

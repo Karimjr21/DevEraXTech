@@ -213,10 +213,10 @@ export default function Contact() {
         </div>
 
         <div className="grid lg:grid-cols-[minmax(0,1.06fr)_minmax(0,0.94fr)] gap-6 xl:gap-8 items-start">
-          <div className="contact-card p-6 sm:p-7 md:p-8">
+          <div className="contact-card min-w-0 p-6 sm:p-7 md:p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
-                <div>
+                <div className="min-w-0">
                   <label className="block text-sm mb-2 text-gray-300">Name</label>
                   <input
                     required
@@ -227,7 +227,7 @@ export default function Contact() {
                   />
                   {errors.name && <p className="mt-1.5 text-xs text-red-400">{errors.name}</p>}
                 </div>
-                <div>
+                <div className="min-w-0">
                   <label className="block text-sm mb-2 text-gray-300">Email</label>
                   <input
                     required
@@ -242,7 +242,7 @@ export default function Contact() {
               </div>
 
               <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
-                <div>
+                <div className="min-w-0">
                   <label className="block text-sm mb-2 text-gray-300">Phone Number</label>
                   <input
                     required
@@ -253,7 +253,7 @@ export default function Contact() {
                   />
                   {errors.phone && <p className="mt-1.5 text-xs text-red-400">{errors.phone}</p>}
                 </div>
-                <div>
+                <div className="min-w-0">
                   <label className="block text-sm mb-2 text-gray-300">Service</label>
                   <select
                     required
@@ -282,7 +282,7 @@ export default function Contact() {
 
               <div className="contact-card-subpanel p-4 sm:p-5 space-y-4">
                 <div className="grid md:grid-cols-2 gap-4 md:gap-5">
-                  <div>
+                  <div className="min-w-0">
                     <label className="block text-sm mb-2 text-gray-300">Preferred Date</label>
                     <input
                       type="date"
@@ -293,7 +293,7 @@ export default function Contact() {
                     />
                     {isPastSelectedDate && <p className="mt-1.5 text-xs text-red-400">Preferred date cannot be in the past.</p>}
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <label className="block text-sm mb-2 text-gray-300">Preferred Time</label>
                     <div className="flex flex-wrap gap-2.5">
                       {timeSlots.map(t => (
@@ -349,7 +349,7 @@ export default function Contact() {
             </form>
           </div>
 
-          <aside className="contact-side-card p-6 sm:p-7 md:p-8 space-y-7">
+          <aside className="contact-side-card min-w-0 p-6 sm:p-7 md:p-8 space-y-7">
             <div className="space-y-3">
               <p className="text-[11px] uppercase tracking-[0.2em] text-gold/70">Consultation</p>
               <h3 className="text-2xl md:text-[1.72rem] text-gold font-semibold leading-tight">Let&apos;s build something exceptional</h3>

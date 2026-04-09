@@ -32,6 +32,7 @@ export default function Portfolio() {
   const categories = ['All', ...Array.from(new Set(items.map(i => i.category)))];
   const shown = filter === 'All' ? items : items.filter(i => i.category === filter);
   const hasSingle = shown.length === 1;
+  const uniqueCategories = Array.from(new Set(items.map(i => i.category))).length;
 
   const openItem = (item) => {
     if (item.url) {
@@ -76,6 +77,21 @@ export default function Portfolio() {
           ))}
         </div>
 
+        <div className="grid sm:grid-cols-3 gap-3 md:gap-4">
+          <div className="portfolio-stat-chip">
+            <p className="portfolio-stat-label">Projects</p>
+            <p className="portfolio-stat-value">{items.length || 0}</p>
+          </div>
+          <div className="portfolio-stat-chip">
+            <p className="portfolio-stat-label">Categories</p>
+            <p className="portfolio-stat-value">{uniqueCategories || 0}</p>
+          </div>
+          <div className="portfolio-stat-chip">
+            <p className="portfolio-stat-label">Showcased</p>
+            <p className="portfolio-stat-value">Premium Delivery</p>
+          </div>
+        </div>
+
         {shown.length === 0 && (
           <div className="portfolio-empty-card p-8 sm:p-10 text-center">
             <h3 className="text-xl text-gold font-semibold mb-2">No Matching Projects</h3>
@@ -83,7 +99,86 @@ export default function Portfolio() {
           </div>
         )}
 
-        <div className={hasSingle ? 'max-w-3xl mx-auto w-full' : ''}>
+        {hasSingle ? (
+          (() => {
+            const item = shown[0];
+            const tags = getTags(item);
+            const description = getDescription(item);
+            const showPlaceholder = !item.image || imageFallbacks[item.id];
+
+            return (
+              <SectionWrapper
+                className="portfolio-card portfolio-featured-card group cursor-pointer"
+                onClick={() => openItem(item)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    openItem(item);
+                  }
+                }}
+                role="button"
+                tabIndex={0}
+              >
+                <div className="portfolio-media-shell portfolio-media-shell--single">
+                  {!showPlaceholder ? (
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="portfolio-media-img"
+                      onError={() => setImageFallbacks(prev => ({ ...prev, [item.id]: true }))}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="portfolio-media-placeholder" aria-label="Project preview placeholder" role="img">
+                      <div className="portfolio-media-placeholder-line" />
+                      <div className="portfolio-media-placeholder-dot" />
+                    </div>
+                  )}
+                  <div className="portfolio-media-overlay" aria-hidden />
+                </div>
+
+                <div className="p-6 sm:p-7 md:p-8 space-y-5">
+                  <div className="space-y-3">
+                    <p className="text-[11px] tracking-[0.16em] uppercase text-gold/70">{item.category}</p>
+                    <h3 className="text-2xl md:text-[1.9rem] font-semibold text-gold leading-tight">{item.title}</h3>
+                    <p className="text-sm md:text-base text-gray-300/90 leading-relaxed max-w-xl">{description}</p>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2.5">
+                    {tags.map((tag) => (
+                      <span key={`${item.id}-${tag}`} className="portfolio-tag">{tag}</span>
+                    ))}
+                  </div>
+
+                  <div>
+                    {item.url ? (
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={(event) => event.stopPropagation()}
+                        className="portfolio-cta-link"
+                      >
+                        View Project <span aria-hidden>→</span>
+                      </a>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          setActive(item);
+                        }}
+                        className="portfolio-cta-link"
+                      >
+                        See Details <span aria-hidden>→</span>
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </SectionWrapper>
+            );
+          })()
+        ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-6">
             {shown.map((item, index) => {
               const tags = getTags(item);
@@ -165,7 +260,7 @@ export default function Portfolio() {
               );
             })}
           </div>
-        </div>
+        )}
 
         <div className="portfolio-bottom-cta p-7 sm:p-9 md:p-10">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-8">
