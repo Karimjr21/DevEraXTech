@@ -69,6 +69,21 @@ body { background: var(--color-bg); overflow-y: auto; }
   filter: blur(1px);
 }
 
+.home-hero-shell {
+  isolation: isolate;
+}
+
+.hero-bottom-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 180px;
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(10,10,10,0), rgba(10,10,10,0.68) 55%, rgba(10,10,10,1));
+}
+
 .hero-stars {
   position: absolute;
   inset: -12% -8% -10%;

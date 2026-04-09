@@ -66,8 +66,8 @@ export default function Home() {
   };
 
   return (
-    <div className="space-y-10 md:space-y-14">
-      <div ref={heroRef} className="min-h-screen w-full relative flex items-center justify-center overflow-hidden">
+    <div ref={heroRef} className="home-hero-shell relative w-full overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <div className="hero-stars" aria-hidden />
         <div className="hero-ambient-glow" aria-hidden />
 
@@ -82,7 +82,9 @@ export default function Home() {
           </Suspense>
         </ErrorBoundary>
         </motion.div>
+      </div>
 
+      <div className="min-h-screen w-full relative flex items-center justify-center">
         <motion.div
           variants={heroContainerVariants}
           initial="hidden"
@@ -101,11 +103,12 @@ export default function Home() {
           </motion.div>
         </motion.div>
       </div>
-      <SectionWrapper id="trust" className="max-w-6xl mx-auto px-8 pt-8 pb-8 md:pt-12 md:pb-12">
+      <SectionWrapper id="trust" className="relative z-10 max-w-6xl mx-auto px-8 pt-6 pb-10 md:pt-8 md:pb-12">
         <p className="text-gray-400 chip-lux inline-flex items-center rounded-full px-4 py-2">
           Trusted by startups & enterprises • 50+ projects shipped
         </p>
       </SectionWrapper>
+      <div className="hero-bottom-fade" aria-hidden />
     </div>
   );
 }
