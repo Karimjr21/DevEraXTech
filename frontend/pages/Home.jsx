@@ -72,8 +72,8 @@ export default function Home() {
         <div className="hero-ambient-glow" aria-hidden />
 
         <motion.div
-          className="absolute inset-0 z-0"
-          style={shouldReduceMotion ? undefined : { transform: `translate3d(${parallax.x}px, ${parallax.y}px, 0)` }}
+          className="absolute inset-0 z-0 hero-3d-stage"
+          style={shouldReduceMotion ? undefined : { transform: `translate3d(${parallax.x + 14}px, ${parallax.y + 10}px, 0)` }}
           transition={{ type: 'spring', stiffness: 30, damping: 18, mass: 1.1 }}
         >
         <ErrorBoundary fallback={<div className='text-gold text-center'>3D disabled — showing static hero.<br/>Check browser console for errors.</div>}>
@@ -84,7 +84,7 @@ export default function Home() {
         </motion.div>
       </div>
 
-      <div className="min-h-screen w-full relative flex flex-col items-center justify-center">
+      <div className="min-h-screen w-full relative flex flex-col items-center justify-center pt-20 md:pt-24">
         {/* Subtle overlay to reduce 3D object visual competition with text */}
         <div
           className="absolute inset-x-0 top-0 -bottom-28 z-[5] pointer-events-none hero-text-focus-vignette"
@@ -107,7 +107,7 @@ export default function Home() {
           {/* Main headline with refined typography */}
           <motion.h1
             variants={heroItemVariants}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 md:mb-8 gold-gradient-text leading-[1.15] md:leading-[1.1] max-w-4xl mx-auto"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 md:mb-8 gold-gradient-text leading-[1.14] md:leading-[1.09] max-w-3xl md:max-w-4xl mx-auto"
           >
             We build premium web &amp; app experiences
           </motion.h1>
@@ -125,9 +125,21 @@ export default function Home() {
             <AnimatedButton to="/contact">Request a Meeting</AnimatedButton>
             <AnimatedButton variant="outline" to="/services">View Our Services</AnimatedButton>
           </motion.div>
+
+          <motion.div
+            variants={heroItemVariants}
+            className="mt-8 md:mt-9 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[0.72rem] sm:text-xs tracking-[0.08em] uppercase text-gray-400/70"
+            aria-label="Service quality details"
+          >
+            <span>Secure</span>
+            <span className="text-gold/40" aria-hidden>•</span>
+            <span>Scalable</span>
+            <span className="text-gold/40" aria-hidden>•</span>
+            <span>Pixel-perfect</span>
+          </motion.div>
         </motion.div>
       </div>
-      <SectionWrapper id="trust" className="relative z-10 max-w-6xl mx-auto px-8 pt-12 md:pt-16 lg:pt-20 pb-16 md:pb-20">
+      <SectionWrapper id="trust" className="relative z-10 max-w-6xl mx-auto px-8 pt-10 md:pt-14 lg:pt-16 pb-16 md:pb-20">
         <div className="flex justify-center">
           <motion.div
             initial={{ opacity: 0, y: 16 }}

@@ -14,6 +14,7 @@ export default function Navbar() {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const isContact = location.pathname === '/contact';
+  const isHome = location.pathname === '/';
   const hideCTA = isContact;
 
   useEffect(() => {
@@ -24,7 +25,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className={`sticky top-0 z-50 navbar-shell ${isScrolled ? 'navbar-shell--scrolled' : 'navbar-shell--top'}`}>
+    <header className={`sticky top-0 z-50 navbar-shell ${isHome ? 'navbar-shell--home' : ''} ${isScrolled ? 'navbar-shell--scrolled' : 'navbar-shell--top'}`}>
       <nav className={`max-w-6xl mx-auto px-3 sm:px-4 ${isScrolled ? 'py-2' : 'py-2.5 sm:py-3'} grid grid-cols-[auto,1fr,auto] items-center gap-3 sm:gap-5 transition-[padding] duration-300`}>
         <div className="flex items-center gap-3 min-w-0">
           <NavLink
