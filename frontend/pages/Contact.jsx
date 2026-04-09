@@ -5,6 +5,25 @@ import SectionWrapper from '../components/ui/SectionWrapper';
 import { sendContact } from '../lib/api';
 import { SERVICE_OPTIONS } from '../src/data/services';
 
+const reassuranceItems = [
+  {
+    title: 'Fast Response Window',
+    text: 'Most inquiries receive a response within one business day.'
+  },
+  {
+    title: 'Tailored Solutions',
+    text: 'Every recommendation is aligned with your goals, scale, and constraints.'
+  },
+  {
+    title: 'Consultation-Focused',
+    text: 'We start with clarity-first discovery before proposing scope or delivery.'
+  },
+  {
+    title: 'Project Discussion Ready',
+    text: 'Book a meeting for roadmap, architecture, and launch planning.'
+  }
+];
+
 function formatYYYYMMDD(date) {
   const y = date.getFullYear();
   const m = String(date.getMonth() + 1).padStart(2, '0');
@@ -27,6 +46,7 @@ export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [now, setNow] = useState(() => new Date());
   const location = useLocation();
+  const fieldBase = 'contact-input w-full rounded-xl px-4 py-3.5 text-sm text-gray-100 placeholder:text-gray-500/90 outline-none transition-all duration-300';
 
   const timeSlots = useMemo(() => {
     const slots = [];
@@ -183,93 +203,178 @@ export default function Contact() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-8 py-24">
-      <h2 className="text-4xl font-bold mb-12 gold-gradient-text">Contact</h2>
-      <SectionWrapper>
-        <form onSubmit={handleSubmit} className="space-y-6 max-w-xl">
-          <div>
-            <label className="block text-sm mb-1 text-gray-300">Name</label>
-            <input required value={form.name} onChange={e=>{ setForm({...form,name:e.target.value}); setErrors({...errors, name: ''}); }} className={`w-full glass rounded px-4 py-3 text-sm outline-none focus:ring-2 ${errors.name ? 'ring-red-500 border border-red-500' : 'ring-gold'}`} />
-            {errors.name && <p className="mt-1 text-xs text-red-400">{errors.name}</p>}
-          </div>
-          <div>
-            <label className="block text-sm mb-1 text-gray-300">Email</label>
-            <input required type="email" value={form.email} onChange={e=>{ setForm({...form,email:e.target.value}); setErrors({...errors, email: ''}); }} className={`w-full glass rounded px-4 py-3 text-sm outline-none focus:ring-2 ${errors.email ? 'ring-red-500 border border-red-500' : 'ring-gold'}`} />
-            {errors.email && <p className="mt-1 text-xs text-red-400">{errors.email}</p>}
-          </div>
-          <div>
-            <label className="block text-sm mb-1 text-gray-300">Phone Number</label>
-            <input required value={form.phone} onChange={e=>{ setForm({...form,phone:e.target.value}); setErrors({...errors, phone: ''}); }} className={`w-full glass rounded px-4 py-3 text-sm outline-none focus:ring-2 ${errors.phone ? 'ring-red-500 border border-red-500' : 'ring-gold'}`} />
-            {errors.phone && <p className="mt-1 text-xs text-red-400">{errors.phone}</p>}
-          </div>
-          <div>
-            <label className="block text-sm mb-1 text-gray-300">Service</label>
-            <select
-              required
-              value={form.service}
-              onChange={e=>setForm({...form,service:e.target.value})}
-              className={`w-full glass rounded px-4 py-3 text-sm outline-none focus:ring-2 ${errors.service ? 'ring-red-500 border border-red-500' : 'ring-gold'} bg-transparent text-gray-200`}
-            >
-              <option value="" disabled className="bg-black">Select a service</option>
-              {SERVICE_OPTIONS.map(opt => (
-                <option key={opt} value={opt} className="bg-[#0a0a0a]">{opt}</option>
-              ))}
-            </select>
-            {errors.service && <p className="mt-1 text-xs text-red-400">{errors.service}</p>}
-          </div>
-          <div>
-            <label className="block text-sm mb-1 text-gray-300">Subject</label>
-            <input value={form.subject} onChange={e=>setForm({...form,subject:e.target.value})} placeholder="Subject (optional)" className="w-full glass rounded px-4 py-3 text-sm outline-none focus:ring-2 ring-gold" />
-          </div>
-          <div className="grid md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm mb-1 text-gray-300">Preferred Date</label>
-              <input
-                type="date"
-                min={minDate}
-                value={form.meetingDate}
-                onChange={e=>setForm({...form, meetingDate:e.target.value})}
-                className="w-full glass rounded px-4 py-3 text-sm outline-none focus:ring-2 ring-gold"
-              />
-              {isPastSelectedDate && <p className="mt-1 text-xs text-red-400">Preferred date cannot be in the past.</p>}
-            </div>
-            <div>
-              <label className="block text-sm mb-1 text-gray-300">Preferred Time</label>
-              <div className="flex flex-wrap gap-2">
-                {timeSlots.map(t => (
-                  <button
-                    key={t}
-                    type="button"
-                    disabled={isTimeSlotDisabled(t)}
-                    onClick={() => {
-                      if (isTimeSlotDisabled(t)) return;
-                      setForm({ ...form, meetingTime: t });
-                    }}
-                    className={`px-3 py-2 rounded-md text-xs border transition-all ${
-                      form.meetingTime===t
-                        ? 'border-gold bg-gold/10 text-gold'
-                        : isTimeSlotDisabled(t)
-                          ? 'border-gold/20 text-gray-500 opacity-50 cursor-not-allowed'
-                          : 'border-gold/30 text-gray-300 hover:border-gold/60'
-                    }`}
-                  >{t}</button>
-                ))}
+    <div className="max-w-7xl mx-auto px-6 sm:px-8 pt-16 md:pt-20 pb-20 md:pb-24">
+      <SectionWrapper className="space-y-10 md:space-y-12">
+        <div className="max-w-3xl space-y-4">
+          <h2 className="text-4xl md:text-5xl font-bold gold-gradient-text leading-[1.1]">Contact</h2>
+          <p className="text-sm md:text-base text-gray-300/90 leading-relaxed max-w-2xl">
+            Let&apos;s discuss your project goals, technical requirements, and the right path to a secure premium delivery.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-[minmax(0,1.06fr)_minmax(0,0.94fr)] gap-6 xl:gap-8 items-start">
+          <div className="contact-card p-6 sm:p-7 md:p-8">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
+                <div>
+                  <label className="block text-sm mb-2 text-gray-300">Name</label>
+                  <input
+                    required
+                    value={form.name}
+                    onChange={e=>{ setForm({...form,name:e.target.value}); setErrors({...errors, name: ''}); }}
+                    placeholder="Your full name"
+                    className={`${fieldBase} ${errors.name ? 'ring-1 ring-red-500 border-red-500' : ''}`}
+                  />
+                  {errors.name && <p className="mt-1.5 text-xs text-red-400">{errors.name}</p>}
+                </div>
+                <div>
+                  <label className="block text-sm mb-2 text-gray-300">Email</label>
+                  <input
+                    required
+                    type="email"
+                    value={form.email}
+                    onChange={e=>{ setForm({...form,email:e.target.value}); setErrors({...errors, email: ''}); }}
+                    placeholder="you@company.com"
+                    className={`${fieldBase} ${errors.email ? 'ring-1 ring-red-500 border-red-500' : ''}`}
+                  />
+                  {errors.email && <p className="mt-1.5 text-xs text-red-400">{errors.email}</p>}
+                </div>
               </div>
-              {form.meetingDate && isTodaySelected && (
-                <p className="mt-1 text-xs text-gray-400">Past times for today are disabled.</p>
+
+              <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
+                <div>
+                  <label className="block text-sm mb-2 text-gray-300">Phone Number</label>
+                  <input
+                    required
+                    value={form.phone}
+                    onChange={e=>{ setForm({...form,phone:e.target.value}); setErrors({...errors, phone: ''}); }}
+                    placeholder="+20 ..."
+                    className={`${fieldBase} ${errors.phone ? 'ring-1 ring-red-500 border-red-500' : ''}`}
+                  />
+                  {errors.phone && <p className="mt-1.5 text-xs text-red-400">{errors.phone}</p>}
+                </div>
+                <div>
+                  <label className="block text-sm mb-2 text-gray-300">Service</label>
+                  <select
+                    required
+                    value={form.service}
+                    onChange={e=>{ setForm({...form,service:e.target.value}); setErrors({...errors, service: ''}); }}
+                    className={`${fieldBase} bg-transparent ${errors.service ? 'ring-1 ring-red-500 border-red-500' : ''}`}
+                  >
+                    <option value="" disabled className="bg-black">Select a service</option>
+                    {SERVICE_OPTIONS.map(opt => (
+                      <option key={opt} value={opt} className="bg-[#0a0a0a]">{opt}</option>
+                    ))}
+                  </select>
+                  {errors.service && <p className="mt-1.5 text-xs text-red-400">{errors.service}</p>}
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm mb-2 text-gray-300">Subject</label>
+                <input
+                  value={form.subject}
+                  onChange={e=>setForm({...form,subject:e.target.value})}
+                  placeholder="Subject (optional)"
+                  className={fieldBase}
+                />
+              </div>
+
+              <div className="contact-card-subpanel p-4 sm:p-5 space-y-4">
+                <div className="grid md:grid-cols-2 gap-4 md:gap-5">
+                  <div>
+                    <label className="block text-sm mb-2 text-gray-300">Preferred Date</label>
+                    <input
+                      type="date"
+                      min={minDate}
+                      value={form.meetingDate}
+                      onChange={e=>setForm({...form, meetingDate:e.target.value})}
+                      className={fieldBase}
+                    />
+                    {isPastSelectedDate && <p className="mt-1.5 text-xs text-red-400">Preferred date cannot be in the past.</p>}
+                  </div>
+                  <div>
+                    <label className="block text-sm mb-2 text-gray-300">Preferred Time</label>
+                    <div className="flex flex-wrap gap-2.5">
+                      {timeSlots.map(t => (
+                        <button
+                          key={t}
+                          type="button"
+                          disabled={isTimeSlotDisabled(t)}
+                          onClick={() => {
+                            if (isTimeSlotDisabled(t)) return;
+                            setForm({ ...form, meetingTime: t });
+                          }}
+                          className={`contact-time-pill ${
+                            form.meetingTime===t
+                              ? 'contact-time-pill--active'
+                              : isTimeSlotDisabled(t)
+                                ? 'contact-time-pill--disabled'
+                                : 'contact-time-pill--idle'
+                          }`}
+                        >{t}</button>
+                      ))}
+                    </div>
+                    {form.meetingDate && isTodaySelected && (
+                      <p className="mt-1.5 text-xs text-gray-400">Past times for today are disabled.</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm mb-2 text-gray-300">Message</label>
+                <textarea
+                  required
+                  rows={6}
+                  value={form.message}
+                  onChange={e=>{ setForm({...form,message:e.target.value}); setErrors({...errors, message: ''}); }}
+                  placeholder="Tell us about your project goals, timeline, and priorities."
+                  className={`${fieldBase} min-h-[148px] resize-y ${errors.message ? 'ring-1 ring-red-500 border-red-500' : ''}`}
+                />
+                {errors.message && <p className="mt-1.5 text-xs text-red-400">{errors.message}</p>}
+              </div>
+
+              <AnimatedButton
+                disabled={loading || !form.name || !form.email || !form.phone || !form.service || !form.message}
+                loading={loading}
+                className="w-full sm:w-auto min-w-[14rem] !h-12"
+              >
+                Request a Meeting
+              </AnimatedButton>
+
+              {status && (
+                <p className={`text-xs ${status.type==='success' ? 'text-green-400' : 'text-red-400'}`}>{status.message}</p>
               )}
+            </form>
+          </div>
+
+          <aside className="contact-side-card p-6 sm:p-7 md:p-8 space-y-7">
+            <div className="space-y-3">
+              <p className="text-[11px] uppercase tracking-[0.2em] text-gold/70">Consultation</p>
+              <h3 className="text-2xl md:text-[1.72rem] text-gold font-semibold leading-tight">Let&apos;s build something exceptional</h3>
+              <p className="text-sm md:text-base text-gray-300/90 leading-relaxed">
+                Share your goals and constraints. We&apos;ll help define a clear, secure, and scalable path to execution.
+              </p>
             </div>
-          </div>
-          <div>
-            <label className="block text-sm mb-1 text-gray-300">Message</label>
-            <textarea required rows={5} value={form.message} onChange={e=>{ setForm({...form,message:e.target.value}); setErrors({...errors, message: ''}); }} className={`w-full glass rounded px-4 py-3 text-sm outline-none focus:ring-2 ${errors.message ? 'ring-red-500 border border-red-500' : 'ring-gold'}`} />
-            {errors.message && <p className="mt-1 text-xs text-red-400">{errors.message}</p>}
-          </div>
-          <AnimatedButton disabled={loading || !form.name || !form.email || !form.phone || !form.service || !form.message} loading={loading}>Request a Meeting</AnimatedButton>
-          {status && (
-            <p className={`text-xs ${status.type==='success' ? 'text-green-400' : 'text-red-400'}`}>{status.message}</p>
-          )}
-        </form>
+
+            <ul className="space-y-4">
+              {reassuranceItems.map((item) => (
+                <li key={item.title} className="contact-trust-row">
+                  <span className="contact-trust-dot" aria-hidden />
+                  <div>
+                    <p className="text-sm text-gold font-medium leading-snug">{item.title}</p>
+                    <p className="text-xs md:text-sm text-gray-400 mt-1 leading-relaxed">{item.text}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+
+            <div className="contact-side-note rounded-xl px-4 py-3 text-xs sm:text-sm text-gray-300/90">
+              Meeting slots are reviewed with project context to ensure practical and focused discussions.
+            </div>
+          </aside>
+        </div>
       </SectionWrapper>
     {status && (
       <div className={`fixed bottom-6 right-6 px-4 py-3 rounded-lg shadow-lg glass border ${status.type==='success' ? 'border-green-500 text-green-300' : 'border-red-500 text-red-300'}`}>
