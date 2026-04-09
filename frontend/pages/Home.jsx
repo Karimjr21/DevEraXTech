@@ -84,29 +84,63 @@ export default function Home() {
         </motion.div>
       </div>
 
-      <div className="min-h-screen w-full relative flex items-center justify-center">
+      <div className="min-h-screen w-full relative flex flex-col items-center justify-center">
+        {/* Subtle overlay to reduce 3D object visual competition with text */}
+        <div
+          className="absolute inset-x-0 top-0 -bottom-28 z-[5] pointer-events-none hero-text-focus-vignette"
+          aria-hidden
+        />
+
         <motion.div
           variants={heroContainerVariants}
           initial="hidden"
           animate="show"
-          className="absolute left-0 right-0 mx-auto max-w-5xl px-8 z-10 bottom-20 md:bottom-24 lg:bottom-28 xl:bottom-32"
+          className="relative z-10 left-0 right-0 mx-auto max-w-5xl px-8 w-full text-center"
         >
-          <motion.h1 variants={heroItemVariants} className="text-5xl md:text-7xl font-bold mb-6 gold-gradient-text leading-tight">
-            We build premium web & app experiences
+          {/* Premium supertitle */}
+          <motion.div variants={heroItemVariants} className="mb-6 md:mb-8">
+            <p className="text-xs md:text-sm font-semibold tracking-widest text-gold/70 uppercase">
+              ENGINEERED EXCELLENCE
+            </p>
+          </motion.div>
+
+          {/* Main headline with refined typography */}
+          <motion.h1
+            variants={heroItemVariants}
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 md:mb-8 gold-gradient-text leading-[1.15] md:leading-[1.1] max-w-4xl mx-auto"
+          >
+            We build premium web &amp; app experiences
           </motion.h1>
-          <motion.p variants={heroItemVariants} className="text-lg text-gray-300 max-w-2xl mb-8">
+
+          {/* Supporting paragraph */}
+          <motion.p
+            variants={heroItemVariants}
+            className="text-base md:text-lg text-gray-300/90 max-w-2xl mx-auto mb-10 md:mb-12 leading-relaxed"
+          >
             Modern, secure and scalable solutions — from prototypes to production.
           </motion.p>
-          <motion.div variants={heroItemVariants} className="flex flex-wrap gap-4 sm:gap-6">
+
+          {/* CTA button group with refined spacing and hierarchy */}
+          <motion.div variants={heroItemVariants} className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-center justify-center">
             <AnimatedButton to="/contact">Request a Meeting</AnimatedButton>
             <AnimatedButton variant="outline" to="/services">View Our Services</AnimatedButton>
           </motion.div>
         </motion.div>
       </div>
-      <SectionWrapper id="trust" className="relative z-10 max-w-6xl mx-auto px-8 pt-6 pb-10 md:pt-8 md:pb-12">
-        <p className="text-gray-400 chip-lux inline-flex items-center rounded-full px-4 py-2">
-          Trusted by startups & enterprises • 50+ projects shipped
-        </p>
+      <SectionWrapper id="trust" className="relative z-10 max-w-6xl mx-auto px-8 pt-12 md:pt-16 lg:pt-20 pb-16 md:pb-20">
+        <div className="flex justify-center">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, margin: '-10% 0px' }}
+          >
+            <p className="text-sm md:text-base text-gray-400/80 chip-lux inline-flex items-center rounded-full px-4 md:px-6 py-2.5 md:py-3 gap-3 backdrop-blur-sm">
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-gold/60"></span>
+              Trusted by startups &amp; enterprises • 50+ projects shipped
+            </p>
+          </motion.div>
+        </div>
       </SectionWrapper>
       <div className="hero-bottom-fade" aria-hidden />
     </div>
