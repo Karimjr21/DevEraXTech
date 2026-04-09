@@ -8,7 +8,8 @@ function RotatingTorus() {
     const t = state.clock.getElapsedTime();
     if (mesh.current) {
       mesh.current.rotation.x = t * 0.2;
-      mesh.current.rotation.y = t * 0.15;
+      mesh.current.rotation.y = t * 0.16;
+      mesh.current.position.y = Math.sin(t * 0.45) * 0.2;
     }
   });
   return (
@@ -54,9 +55,9 @@ function Particles() {
   );
 }
 
-export default function Logo3D() {
+export default function Logo3D({ className = '' }) {
   return (
-    <div className="fixed inset-0 pointer-events-none z-0">
+    <div className={`absolute inset-0 pointer-events-none z-0 ${className}`.trim()}>
       <Canvas camera={{ position: [0, 0, 6], fov: 60 }} dpr={[1, 2]}>
         <ambientLight intensity={0.3} />
         <directionalLight position={[5, 5, 5]} intensity={0.8} />

@@ -12,12 +12,21 @@ const navItems = [
 
 export default function Navbar() {
   const location = useLocation();
+  const [isScrolled, setIsScrolled] = useState(false);
   const isContact = location.pathname === '/contact';
   const isHome = location.pathname === '/';
   const hideCTA = isContact || isHome;
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 10);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 glass">
-      <nav className="max-w-6xl mx-auto px-3 sm:px-4 py-2 sm:py-3 flex items-center justify-between">
+    <header className={`sticky top-0 z-50 glass navbar-shell ${isScrolled ? 'navbar-shell--scrolled' : ''}`}>
+      <nav className="max-w-6xl mx-auto px-3 sm:px-4 py-2 sm:py-3 flex items-center justify-between transition-[padding] duration-300">
         <div className="flex items-center gap-3 min-w-0">
           <NavLink
             to="/"
@@ -42,10 +51,10 @@ export default function Navbar() {
             <li key={item.to}>
               <NavLink
                 to={item.to}
-                className={({ isActive }) => `pb-1 transition-colors relative ${isActive ? 'text-gold' : 'text-gray-300'} hover:text-gold`}
+                className={({ isActive }) => `nav-link pb-1 transition-colors relative ${isActive ? 'is-active text-gold' : 'text-gray-300'} hover:text-gold`}
               >
                 {item.label}
-                <span className="absolute left-0 -bottom-[2px] h-[2px] w-full bg-gold scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
+                <span className="nav-link-line" />
               </NavLink>
             </li>
           ))}
@@ -148,7 +157,7 @@ function MobileMenuPanel() {
               <NavLink
                 to={item.to}
                 onClick={close}
-                className={({ isActive }) => `block py-2 px-1 rounded ${isActive ? 'text-gold' : 'text-gray-300'} hover:text-gold`}
+                className={({ isActive }) => `block py-2 px-1 rounded transition-colors ${isActive ? 'text-gold' : 'text-gray-300'} hover:text-gold`}
               >
                 {item.label}
               </NavLink>
