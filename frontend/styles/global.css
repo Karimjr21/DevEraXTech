@@ -23,39 +23,73 @@ body { background: var(--color-bg); overflow-y: auto; }
 }
 
 .navbar-shell {
+  position: sticky;
+  top: 0;
   border-left: 0;
   border-right: 0;
+  border-top: 0;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.08);
+  transition: background-color .4s cubic-bezier(.22,1,.36,1), backdrop-filter .4s cubic-bezier(.22,1,.36,1), border-color .35s ease, box-shadow .35s ease;
+}
+
+.navbar-shell--top {
+  background: rgba(7, 7, 7, 0.08);
+  backdrop-filter: blur(3px) saturate(115%);
+  -webkit-backdrop-filter: blur(3px) saturate(115%);
+  box-shadow: none;
 }
 
 .navbar-shell--scrolled {
   background: rgba(8, 8, 8, 0.58);
+  backdrop-filter: blur(14px) saturate(165%);
+  -webkit-backdrop-filter: blur(14px) saturate(165%);
   border-color: rgba(212, 175, 55, 0.18);
-  box-shadow: 0 14px 38px -22px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255,255,255,0.05);
+  box-shadow: 0 14px 38px -22px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.navbar-brand {
+  transition: opacity .25s ease;
+}
+
+.navbar-brand:hover {
+  opacity: 0.96;
 }
 
 .nav-link {
+  border-left: 0;
+  border-right: 0;
   position: relative;
   display: inline-flex;
   align-items: center;
+  letter-spacing: 0.01em;
 }
 
 .nav-link-line {
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 1px;
+  right: 1px;
   bottom: -2px;
-  height: 2px;
+  height: 1px;
   transform: scaleX(0);
-  transform-origin: left;
-  background: linear-gradient(90deg, rgba(212,175,55,0.95), rgba(245, 213, 115, 0.85));
-  transition: transform .35s cubic-bezier(.22,1,.36,1), opacity .35s ease;
-  opacity: 0.92;
+  transform-origin: center;
+  background: linear-gradient(90deg, rgba(212,175,55,0.1), rgba(245, 213, 115, 0.95), rgba(212,175,55,0.1));
+  transition: transform .4s cubic-bezier(.22,1,.36,1), opacity .4s ease;
+  opacity: 0.9;
 }
 
 .nav-link:hover .nav-link-line,
 .nav-link:focus-visible .nav-link-line,
 .nav-link.is-active .nav-link-line {
   transform: scaleX(1);
+}
+
+.navbar-cta {
+  border-radius: 999px;
+  box-shadow: 0 12px 30px -16px rgba(212,175,55,0.52), 0 0 0 1px rgba(212,175,55,0.30) inset;
+}
+
+.navbar-cta:hover {
+  box-shadow: 0 16px 34px -16px rgba(212,175,55,0.45), 0 0 18px -6px rgba(212,175,55,0.30);
 }
 
 .hero-ambient-glow {
@@ -243,6 +277,7 @@ body { background: var(--color-bg); overflow-y: auto; }
   .btn-shimmer,
   .scroll-fade,
   .btn-premium,
+  .navbar-shell,
   .nav-link-line,
   .lux-card {
     animation: none !important;

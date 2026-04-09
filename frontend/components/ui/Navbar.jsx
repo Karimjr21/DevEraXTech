@@ -14,8 +14,7 @@ export default function Navbar() {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const isContact = location.pathname === '/contact';
-  const isHome = location.pathname === '/';
-  const hideCTA = isContact || isHome;
+  const hideCTA = isContact;
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 10);
@@ -25,13 +24,13 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className={`sticky top-0 z-50 glass navbar-shell ${isScrolled ? 'navbar-shell--scrolled' : ''}`}>
-      <nav className="max-w-6xl mx-auto px-3 sm:px-4 py-2 sm:py-3 flex items-center justify-between transition-[padding] duration-300">
+    <header className={`sticky top-0 z-50 navbar-shell ${isScrolled ? 'navbar-shell--scrolled' : 'navbar-shell--top'}`}>
+      <nav className={`max-w-6xl mx-auto px-3 sm:px-4 ${isScrolled ? 'py-2' : 'py-2.5 sm:py-3'} grid grid-cols-[auto,1fr,auto] items-center gap-3 sm:gap-5 transition-[padding] duration-300`}>
         <div className="flex items-center gap-3 min-w-0">
           <NavLink
             to="/"
             onClick={() => { if (typeof window !== 'undefined' && window.__setNavOpen) window.__setNavOpen(false); }}
-            className="flex items-center gap-2 min-w-0"
+            className="flex items-center gap-2 min-w-0 navbar-brand"
             aria-label="DevEraXTech Home"
           >
             <img
@@ -46,12 +45,12 @@ export default function Navbar() {
           </NavLink>
         </div>
         {/* Desktop nav */}
-        <ul className="hidden md:flex gap-8 text-sm font-medium">
+        <ul className="hidden md:flex justify-self-center gap-7 lg:gap-8 text-[0.95rem] font-medium">
           {navItems.map(item => (
             <li key={item.to}>
               <NavLink
                 to={item.to}
-                className={({ isActive }) => `nav-link pb-1 transition-colors relative ${isActive ? 'is-active text-gold' : 'text-gray-300'} hover:text-gold`}
+                className={({ isActive }) => `nav-link pb-1 transition-colors relative ${isActive ? 'is-active text-gold' : 'text-gray-300'} hover:text-gold focus-visible:text-gold`}
               >
                 {item.label}
                 <span className="nav-link-line" />
@@ -60,22 +59,22 @@ export default function Navbar() {
           ))}
         </ul>
         {/* Mobile controls */}
-        <div className="md:hidden flex items-center gap-2 flex-shrink-0">
+        <div className="md:hidden flex items-center gap-2 justify-self-end flex-shrink-0">
           {!hideCTA ? (
-            <AnimatedButton to="/contact">
-              Request a Meeting
+            <AnimatedButton className="h-9 px-4 text-sm" to="/contact">
+              Book a Call
             </AnimatedButton>
           ) : (
-            <div className="w-0 h-10" aria-hidden />
+            <div className="w-0 h-9" aria-hidden />
           )}
           <MobileMenu />
         </div>
         {/* Desktop CTA */}
-        <div className="hidden md:block">
+        <div className="hidden md:block justify-self-end">
           {!hideCTA ? (
-            <AnimatedButton className="ml-4" to="/contact">Request a Meeting</AnimatedButton>
+            <AnimatedButton className="navbar-cta h-10 px-5 text-sm md:text-[0.92rem]" to="/contact">Book a Call</AnimatedButton>
           ) : (
-            <div className="ml-4 w-[160px] h-11 inline-block" aria-hidden />
+            <div className="w-[128px] h-10 inline-block" aria-hidden />
           )}
         </div>
       </nav>
@@ -111,7 +110,7 @@ function MobileMenu() {
           window.__setNavOpen(next);
         }
       }}
-      className="p-2 rounded-md border border-white/10 bg-black/30 text-gray-200 focus:outline-none focus:ring-2 focus:ring-gold"
+      className="p-2 rounded-md border border-white/12 bg-black/24 text-gray-200 hover:text-gold hover:border-gold/30 transition-colors focus:outline-none focus:ring-2 focus:ring-gold/60"
     >
       <span className="sr-only">Menu</span>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
@@ -149,7 +148,7 @@ function MobileMenuPanel() {
   const close = () => typeof window !== 'undefined' && window.__setNavOpen(false);
 
   return (
-    <div className={`${open ? 'block' : 'hidden'} md:hidden border-t border-white/10 bg-black/70 backdrop-blur`}> 
+    <div className={`${open ? 'block' : 'hidden'} md:hidden border-t border-white/10 bg-black/68 backdrop-blur-xl`}> 
       <div className="max-w-6xl mx-auto px-4 py-3">
         <ul className="flex flex-col gap-3 text-base">
           {navItems.map(item => (
