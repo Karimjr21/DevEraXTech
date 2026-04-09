@@ -62,7 +62,7 @@ export default function Navbar() {
         <div className="md:hidden flex items-center gap-2 justify-self-end flex-shrink-0">
           {!hideCTA ? (
             <AnimatedButton className="h-9 px-4 text-sm" to="/contact">
-              Book a Call
+              Book a Meeting
             </AnimatedButton>
           ) : (
             <div className="w-0 h-9" aria-hidden />

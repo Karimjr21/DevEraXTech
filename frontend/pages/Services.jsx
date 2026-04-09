@@ -5,115 +5,115 @@ import { SERVICE_OPTIONS } from '../src/data/services';
 export default function Services() {
   const navigate = useNavigate();
   const goToContact = (service) => navigate(`/contact?service=${encodeURIComponent(service)}`);
+
+  const serviceCards = [
+    {
+      service: SERVICE_OPTIONS[0],
+      title: 'Business / Corporate Websites',
+      description: 'For companies, startups, agencies, shops, clinics, factories, schools, etc.',
+      label: 'Includes',
+      features: ['Home', 'About', 'Services', 'Contact', 'Team', 'Portfolio']
+    },
+    {
+      service: SERVICE_OPTIONS[1],
+      title: 'E-Commerce Websites',
+      description: 'Online stores with:',
+      label: 'Includes',
+      features: ['Product pages', 'Shopping cart', 'Checkout', 'Payment integrations', 'Admin dashboard']
+    },
+    {
+      service: SERVICE_OPTIONS[4],
+      title: 'Shopify Stores',
+      description: 'Bespoke Shopify experiences crafted for premium brands, featuring:',
+      label: 'Includes',
+      features: [
+        'Elegantly designed product pages',
+        'Seamless shopping cart experience',
+        'Secure, trusted payment integrations',
+        'Powerful Shopify admin & store control'
+      ]
+    },
+    {
+      service: SERVICE_OPTIONS[5],
+      title: 'WordPress Websites',
+      description: 'Bespoke WordPress experiences crafted for premium brands, featuring:',
+      label: 'Includes',
+      features: [
+        'Custom-designed pages & layouts',
+        'Fully responsive, high-performance builds',
+        'Secure plugins & advanced functionality',
+        'Powerful content management & admin control'
+      ]
+    },
+    {
+      service: SERVICE_OPTIONS[2],
+      title: 'Portfolio Websites',
+      description: 'For creatives:',
+      label: 'Includes',
+      features: ['Designers', 'Photographers', 'Developers', 'Agencies', 'High-visual showcase sites']
+    },
+    {
+      service: SERVICE_OPTIONS[3],
+      title: 'Landing Pages',
+      description: 'High-conversion single pages for:',
+      label: 'Includes',
+      features: ['Marketing campaigns', 'App launches', 'Product launches', 'Service promotions']
+    }
+  ];
+
+  const handleCardKeyDown = (event, service) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      goToContact(service);
+    }
+  };
+
   return (
     <div className="max-w-[1400px] mx-auto px-8 py-24">
-      <h2 className="text-4xl font-bold mb-12 gold-gradient-text">Services</h2>
+      <div className="mb-10 md:mb-12">
+        <p className="text-[0.72rem] uppercase tracking-[0.16em] text-gray-400/85 mb-3">What We Build</p>
+        <div className="flex items-end gap-4">
+          <h2 className="text-4xl font-bold gold-gradient-text">Services</h2>
+          <span className="hidden sm:block h-px w-24 md:w-32 bg-gradient-to-r from-gold/55 to-transparent mb-2" aria-hidden />
+        </div>
+      </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-8 items-stretch">
-        <SectionWrapper onClick={() => goToContact(SERVICE_OPTIONS[0])} className="lux-card rounded-2xl p-10 md:p-14 h-full min-h-80 transform-gpu flex flex-col items-center text-center gap-6 cursor-pointer">
-          <h3 className="text-2xl md:text-3xl font-semibold heading-gold tracking-tight leading-tight">Business / Corporate Websites</h3>
-          <p className="text-gray-300/90 max-w-xl leading-relaxed">
-            For companies, startups, agencies, shops, clinics, factories, schools, etc.
-          </p>
-          <div className="text-sm text-gray-400">Includes:</div>
-          <ul className="flex flex-wrap justify-center gap-4 w-full max-w-xl">
-            {['Home','About','Services','Contact','Team','Portfolio'].map(item => (
-              <li
-                key={item}
-                className="chip-lux w-36 h-10 inline-flex items-center justify-center rounded-md text-sm transition-all origin-center pointer-events-none"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </SectionWrapper>
+        {serviceCards.map((card, index) => (
+          <SectionWrapper
+            key={card.title}
+            delay={index * 60}
+            onClick={() => goToContact(card.service)}
+            onKeyDown={(event) => handleCardKeyDown(event, card.service)}
+            role="button"
+            tabIndex={0}
+            aria-label={`Select ${card.title} service`}
+            className="service-card rounded-2xl p-7 md:p-8 h-full min-h-[19.25rem] md:min-h-[20rem] transform-gpu flex flex-col cursor-pointer"
+          >
+            <h3
+              className={`service-card-title text-[1.6rem] md:text-[1.72rem] font-semibold tracking-tight leading-[1.16] ${card.title === 'Business / Corporate Websites' ? 'service-card-title--long max-w-[15ch]' : ''}`}
+            >
+              {card.title}
+            </h3>
 
-        <SectionWrapper onClick={() => goToContact(SERVICE_OPTIONS[1])} className="lux-card rounded-2xl p-10 md:p-14 h-full min-h-80 transform-gpu flex flex-col items-center text-center gap-6 cursor-pointer">
-          <h3 className="text-2xl md:text-3xl font-semibold heading-gold tracking-tight leading-tight">E-Commerce Websites</h3>
-          <p className="text-gray-300/90 max-w-xl leading-relaxed">Online stores with:</p>
-          <ul className="flex flex-wrap justify-center gap-4 w-full max-w-xl">
-            {['Product pages','Shopping cart','Checkout','Payment integrations','Admin dashboard'].map(item => (
-              <li
-                key={item}
-                className="chip-lux w-40 h-10 inline-flex items-center justify-center rounded-md text-sm transition-all origin-center pointer-events-none"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </SectionWrapper>
+            <p className="service-card-copy mt-3 leading-relaxed text-[0.96rem] md:text-[0.99rem]">
+              {card.description}
+            </p>
 
-        {/* Shopify Stores */}
-        <SectionWrapper onClick={() => goToContact(SERVICE_OPTIONS[4])} className="lux-card rounded-2xl p-10 md:p-14 h-full min-h-80 transform-gpu flex flex-col items-center text-center gap-6 cursor-pointer">
-          <h3 className="text-2xl md:text-3xl font-semibold heading-gold tracking-tight leading-tight">Shopify Stores</h3>
-          <p className="text-gray-300/90 max-w-xl leading-relaxed">Bespoke Shopify experiences crafted for premium brands, featuring:</p>
-          <ul className="flex flex-wrap justify-center gap-4 w-full max-w-xl">
-            {[
-              'Elegantly designed product pages',
-              'Seamless shopping cart experience',
-              'Secure, trusted payment integrations',
-              'Powerful Shopify admin & store control'
-            ].map(item => (
-              <li
-                key={item}
-                className="chip-lux min-h-10 px-4 inline-flex items-center justify-center rounded-md text-sm transition-all origin-center pointer-events-none"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </SectionWrapper>
+            <div className="service-card-label mt-5 text-[0.69rem] uppercase tracking-[0.16em] text-gray-400/88">
+              {card.label}
+            </div>
 
-        {/* WordPress Websites */}
-        <SectionWrapper onClick={() => goToContact(SERVICE_OPTIONS[5])} className="lux-card rounded-2xl p-10 md:p-14 h-full min-h-80 transform-gpu flex flex-col items-center text-center gap-6 cursor-pointer">
-          <h3 className="text-2xl md:text-3xl font-semibold heading-gold tracking-tight leading-tight">WordPress Websites</h3>
-          <p className="text-gray-300/90 max-w-xl leading-relaxed">Bespoke WordPress experiences crafted for premium brands, featuring:</p>
-          <ul className="flex flex-wrap justify-center gap-4 w-full max-w-xl">
-            {[
-              'Custom-designed pages & layouts',
-              'Fully responsive, high-performance builds',
-              'Secure plugins & advanced functionality',
-              'Powerful content management & admin control'
-            ].map(item => (
-              <li
-                key={item}
-                className="chip-lux min-h-10 px-4 inline-flex items-center justify-center rounded-md text-sm transition-all origin-center pointer-events-none"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </SectionWrapper>
-
-        <SectionWrapper onClick={() => goToContact(SERVICE_OPTIONS[2])} className="lux-card rounded-2xl p-10 md:p-14 h-full min-h-80 transform-gpu flex flex-col items-center text-center gap-6 cursor-pointer">
-          <h3 className="text-2xl md:text-3xl font-semibold heading-gold tracking-tight leading-tight">Portfolio Websites</h3>
-          <p className="text-gray-300/90 max-w-xl leading-relaxed">For creatives:</p>
-          <ul className="flex flex-wrap justify-center gap-4 w-full max-w-xl">
-            {['Designers','Photographers','Developers','Agencies','High-visual showcase sites'].map(item => (
-              <li
-                key={item}
-                className="chip-lux w-40 h-10 inline-flex items-center justify-center rounded-md text-sm transition-all origin-center pointer-events-none"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </SectionWrapper>
-
-        <SectionWrapper onClick={() => goToContact(SERVICE_OPTIONS[3])} className="lux-card rounded-2xl p-10 md:p-14 h-full min-h-80 transform-gpu flex flex-col items-center text-center gap-6 cursor-pointer">
-          <h3 className="text-2xl md:text-3xl font-semibold heading-gold tracking-tight leading-tight">Landing Pages</h3>
-          <p className="text-gray-300/90 max-w-xl leading-relaxed">High-conversion single pages for:</p>
-          <ul className="flex flex-wrap justify-center gap-4 w-full max-w-xl">
-            {['Marketing campaigns','App launches','Product launches','Service promotions'].map(item => (
-              <li
-                key={item}
-                className="chip-lux w-40 h-10 inline-flex items-center justify-center rounded-md text-sm transition-all origin-center pointer-events-none"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </SectionWrapper>
+            <ul className="service-feature-list mt-2 w-full" role="list">
+              {card.features.map((feature) => (
+                <li key={feature} className="service-feature-item">
+                  <span className="service-feature-marker" aria-hidden />
+                  <span className="service-feature-text">{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </SectionWrapper>
+        ))}
       </div>
     </div>
   );
