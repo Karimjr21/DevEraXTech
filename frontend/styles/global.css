@@ -147,18 +147,7 @@ body { background: var(--color-bg); overflow-y: auto; }
 }
 
 .footer-shell {
-  background: linear-gradient(180deg, rgba(10,10,10,0), rgba(10,10,10,0.66) 20%, rgba(10,10,10,0.92) 58%, rgba(10,10,10,1));
-}
-
-.footer-shell::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 1px;
-  pointer-events: none;
-  background: linear-gradient(90deg, rgba(212,175,55,0), rgba(212,175,55,0.08), rgba(212,175,55,0));
+  background: transparent;
 }
 
 .hero-stars {
