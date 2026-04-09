@@ -83,7 +83,7 @@ export default function Portfolio() {
 
             return (
               <SectionWrapper
-                className="portfolio-card portfolio-featured-card group cursor-pointer"
+                className="portfolio-card portfolio-featured-card max-w-6xl mx-auto group cursor-pointer"
                 onClick={() => openItem(item)}
                 onKeyDown={(event) => {
                   if (event.key === 'Enter' || event.key === ' ') {
@@ -112,10 +112,10 @@ export default function Portfolio() {
                   <div className="portfolio-media-overlay" aria-hidden />
                 </div>
 
-                <div className="p-5 sm:p-6 md:p-7 space-y-4.5">
+                <div className="p-4 sm:p-5 md:p-6 space-y-4">
                   <div className="space-y-2.5">
                     <p className="text-[11px] tracking-[0.16em] uppercase text-gold/70">{item.category}</p>
-                    <h3 className="text-[1.45rem] md:text-[1.68rem] font-semibold text-gold leading-tight">{item.title}</h3>
+                    <h3 className="text-[1.35rem] md:text-[1.52rem] font-semibold text-gold leading-tight">{item.title}</h3>
                     <p className="text-sm md:text-[0.95rem] text-gray-300/90 leading-relaxed max-w-xl portfolio-description-clamp-single">{description}</p>
                   </div>
 
