@@ -26,7 +26,7 @@ export default function Navbar() {
 
   return (
     <header className={`sticky top-0 z-50 navbar-shell ${isHome ? 'navbar-shell--home' : ''} ${isScrolled ? 'navbar-shell--scrolled' : 'navbar-shell--top'}`}>
-      <nav className={`max-w-6xl mx-auto px-3 sm:px-4 ${isScrolled ? 'py-2' : 'py-2.5 sm:py-3'} grid grid-cols-[auto,1fr,auto] items-center gap-3 sm:gap-5 transition-[padding] duration-300`}>
+      <nav className={`relative z-[2] max-w-6xl mx-auto px-3 sm:px-4 ${isScrolled ? 'py-2' : 'py-2.5 sm:py-3'} grid grid-cols-[auto,1fr,auto] items-center gap-2.5 sm:gap-5 transition-[padding] duration-300`}>
         <div className="flex items-center gap-3 min-w-0">
           <NavLink
             to="/"
@@ -40,7 +40,7 @@ export default function Navbar() {
               className="h-6 sm:h-7 w-auto object-contain select-none"
               draggable={false}
             />
-            <span className="min-w-0 max-w-[42vw] sm:max-w-none truncate text-lg sm:text-xl md:text-2xl leading-none font-bold gold-gradient-text tracking-wide">
+            <span className="min-w-0 max-w-[40vw] max-[380px]:max-w-[30vw] sm:max-w-none truncate text-lg max-[380px]:text-base sm:text-xl md:text-2xl leading-none font-bold gold-gradient-text tracking-wide">
               DevEraXTech
             </span>
           </NavLink>
@@ -62,7 +62,7 @@ export default function Navbar() {
         {/* Mobile controls */}
         <div className="md:hidden flex items-center gap-2 justify-self-end flex-shrink-0">
           {!hideCTA ? (
-            <AnimatedButton className="h-9 px-4 text-sm" to="/contact">
+            <AnimatedButton className="navbar-mobile-cta h-10 px-4 text-[0.92rem] max-[380px]:h-9 max-[380px]:px-3 max-[380px]:text-[0.82rem]" to="/contact">
               Book a Meeting
             </AnimatedButton>
           ) : (
@@ -149,7 +149,7 @@ function MobileMenuPanel() {
   const close = () => typeof window !== 'undefined' && window.__setNavOpen(false);
 
   return (
-    <div className={`${open ? 'block' : 'hidden'} md:hidden border-t border-white/10 bg-black/68 backdrop-blur-xl`}> 
+      <div className={`${open ? 'block' : 'hidden'} relative z-[3] md:hidden border-t border-white/10 bg-black/68 backdrop-blur-xl`}> 
       <div className="max-w-6xl mx-auto px-4 py-3">
         <ul className="flex flex-col gap-3 text-base">
           {navItems.map(item => (

@@ -25,6 +25,7 @@ body { background: var(--color-bg); overflow-y: auto; }
 .navbar-shell {
   position: sticky;
   top: 0;
+  isolation: isolate;
   border-left: 0;
   border-right: 0;
   border-top: 0;
@@ -60,8 +61,19 @@ body { background: var(--color-bg); overflow-y: auto; }
   right: 0;
   bottom: -1px;
   height: 24px;
+  z-index: 0;
   pointer-events: none;
   background: linear-gradient(180deg, rgba(10,10,10,0.18), rgba(10,10,10,0));
+}
+
+.navbar-mobile-cta {
+  min-width: 10rem;
+}
+
+@media (max-width: 420px) {
+  .navbar-mobile-cta {
+    min-width: 8.85rem;
+  }
 }
 
 .navbar-brand {
