@@ -72,7 +72,7 @@ export default function Navbar() {
         {/* Desktop CTA */}
         <div className="hidden md:block justify-self-end">
           {!hideCTA ? (
-            <AnimatedButton className="navbar-cta h-10 px-5 text-sm md:text-[0.92rem]" to="/contact">Book a Call</AnimatedButton>
+            <AnimatedButton className="navbar-cta h-10 px-5 text-sm md:text-[0.92rem]" to="/contact">Book a Meeting </AnimatedButton>
           ) : (
             <div className="w-[128px] h-10 inline-block" aria-hidden />
           )}

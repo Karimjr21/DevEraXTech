@@ -1,6 +1,7 @@
 import SectionWrapper from '../components/ui/SectionWrapper';
 import { useNavigate } from 'react-router-dom';
 import { SERVICE_OPTIONS } from '../src/data/services';
+import AnimatedButton from '../components/ui/AnimatedButton';
 
 export default function Services() {
   const navigate = useNavigate();
@@ -61,13 +62,6 @@ export default function Services() {
     }
   ];
 
-  const handleCardKeyDown = (event, service) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      goToContact(service);
-    }
-  };
-
   return (
     <div className="max-w-[1400px] mx-auto px-8 py-24">
       <div className="mb-10 md:mb-12">
@@ -78,40 +72,53 @@ export default function Services() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-8 items-stretch">
+      <div className="space-y-6 md:space-y-8 lg:space-y-10">
         {serviceCards.map((card, index) => (
           <SectionWrapper
             key={card.title}
             delay={index * 60}
-            onClick={() => goToContact(card.service)}
-            onKeyDown={(event) => handleCardKeyDown(event, card.service)}
-            role="button"
-            tabIndex={0}
-            aria-label={`Select ${card.title} service`}
-            className="service-card rounded-2xl p-7 md:p-8 h-full min-h-[19.25rem] md:min-h-[20rem] transform-gpu flex flex-col cursor-pointer"
+            className="service-editorial-row rounded-2xl p-6 md:p-8 lg:p-10"
           >
-            <h3
-              className={`service-card-title text-[1.6rem] md:text-[1.72rem] font-semibold tracking-tight leading-[1.16] ${card.title === 'Business / Corporate Websites' ? 'service-card-title--long max-w-[15ch]' : ''}`}
-            >
-              {card.title}
-            </h3>
+            <div className="service-editorial-grid grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 items-start">
+              <div className={`${index % 2 === 1 ? 'lg:order-2' : ''} service-editorial-pitch`}> 
+                <p className="service-editorial-kicker text-[0.68rem] uppercase tracking-[0.16em] text-gray-400/85 mb-3">
+                  {`0${index + 1}`} / Premium Service
+                </p>
+                <h3
+                  className={`service-editorial-title text-[1.55rem] md:text-[1.78rem] font-semibold tracking-tight leading-[1.16] ${card.title === 'Business / Corporate Websites' ? 'service-editorial-title--long max-w-[17ch]' : ''}`}
+                >
+                  {card.title}
+                </h3>
+                <p className="service-editorial-copy mt-4 leading-relaxed text-[0.96rem] md:text-[1rem] max-w-[58ch]">
+                  {card.description}
+                </p>
+              </div>
 
-            <p className="service-card-copy mt-3 leading-relaxed text-[0.96rem] md:text-[0.99rem]">
-              {card.description}
-            </p>
+              <div className={`${index % 2 === 1 ? 'lg:order-1' : ''} service-editorial-details lg:justify-self-end w-full lg:max-w-[34rem]`}>
+                <div className="service-editorial-includes text-[0.69rem] uppercase tracking-[0.16em] text-gray-400/88 mb-3">
+                  {card.label}
+                </div>
 
-            <div className="service-card-label mt-5 text-[0.69rem] uppercase tracking-[0.16em] text-gray-400/88">
-              {card.label}
+                <ul className="service-editorial-list w-full" role="list">
+                  {card.features.map((feature) => (
+                    <li key={feature} className="service-editorial-item">
+                      <span className="service-editorial-marker" aria-hidden />
+                      <span className="service-editorial-item-text">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-5 md:mt-6">
+                  <AnimatedButton
+                    variant="outline"
+                    className="service-editorial-cta h-10 px-5 text-sm"
+                    onClick={() => goToContact(card.service)}
+                  >
+                    Start This Project
+                  </AnimatedButton>
+                </div>
+              </div>
             </div>
-
-            <ul className="service-feature-list mt-2 w-full" role="list">
-              {card.features.map((feature) => (
-                <li key={feature} className="service-feature-item">
-                  <span className="service-feature-marker" aria-hidden />
-                  <span className="service-feature-text">{feature}</span>
-                </li>
-              ))}
-            </ul>
           </SectionWrapper>
         ))}
       </div>
