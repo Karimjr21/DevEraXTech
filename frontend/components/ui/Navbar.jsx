@@ -35,7 +35,7 @@ export default function Navbar() {
             aria-label="DevEraXTech Home"
           >
             <img
-              src="/assests/DevEraXTech%20Logo.png"
+              src="/assets/deveraxtech-logo.png"
               alt="DevEraXTech Logo"
               className="h-6 sm:h-7 w-auto object-contain select-none"
               draggable={false}
