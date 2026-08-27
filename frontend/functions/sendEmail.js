@@ -69,34 +69,6 @@ function escapeHtml(str) {
     .replace(/'/g, '&#039;');
 }
 
-function safeEnvPresence(env) {
-  const allow = new Set([
-    'RESEND_API_KEY',
-    'MAIL_FROM',
-    'MAIL_TO',
-    'EMAIL_FROM',
-    'EMAIL_TO',
-    'RESEND_FROM',
-    'RESEND_TO',
-    'CORS_ORIGIN',
-  ]);
-  const presentKeys = [];
-  if (env && typeof env === 'object') {
-    for (const k of Object.keys(env)) {
-      if (allow.has(k)) presentKeys.push(k);
-    }
-  }
-
-  // process.env keys are not enumerated reliably in Workers; only check boolean presence.
-  return {
-    hasEnvObject: !!env && typeof env === 'object',
-    presentKeys: presentKeys.sort(),
-    hasRESEND_API_KEY: !!firstEnv(env, ['RESEND_API_KEY']),
-    hasMAIL_FROM: !!firstEnv(env, ['MAIL_FROM', 'EMAIL_FROM', 'RESEND_FROM']),
-    hasMAIL_TO: !!firstEnv(env, ['MAIL_TO', 'EMAIL_TO', 'RESEND_TO']),
-  };
-}
-
 export async function onRequest(context) {
   const { request, env } = context;
   const origin = env?.CORS_ORIGIN || '*';
@@ -108,9 +80,9 @@ export async function onRequest(context) {
   const mailFrom = firstEnv(env, ['MAIL_FROM', 'EMAIL_FROM', 'RESEND_FROM']);
   const mailTo = firstEnv(env, ['MAIL_TO', 'EMAIL_TO', 'RESEND_TO']);
 
-  if (!resendApiKey) return json(500, { success: false, error: 'RESEND_API_KEY missing', debug: safeEnvPresence(env) }, origin);
-  if (!mailFrom) return json(500, { success: false, error: 'MAIL_FROM missing', debug: safeEnvPresence(env) }, origin);
-  if (!mailTo) return json(500, { success: false, error: 'MAIL_TO missing', debug: safeEnvPresence(env) }, origin);
+  if (!resendApiKey || !mailFrom || !mailTo) {
+    return json(500, { success: false, error: 'EMAIL_SERVICE_UNAVAILABLE' }, origin);
+  }
 
   let body;
   try {
@@ -166,7 +138,7 @@ export async function onRequest(context) {
 
     const data = await res.json().catch(() => ({}));
     if (!res.ok) {
-      return json(502, { success: false, error: 'RESEND_FAILED', details: data }, origin);
+      return json(502, { success: false, error: 'EMAIL_SEND_FAILED' }, origin);
     }
 
     return json(200, { success: true, message: 'Email sent successfully', id: data?.id }, origin);

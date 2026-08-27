@@ -46,7 +46,7 @@ export default function Navbar() {
           </NavLink>
         </div>
         {/* Desktop nav */}
-        <ul className="hidden md:flex justify-self-center gap-7 lg:gap-8 text-[0.95rem] font-medium">
+        <ul className="hidden lg:flex justify-self-center gap-8 text-[0.95rem] font-medium">
           {navItems.map(item => (
             <li key={item.to}>
               <NavLink
@@ -60,7 +60,7 @@ export default function Navbar() {
           ))}
         </ul>
         {/* Mobile controls */}
-        <div className="md:hidden flex items-center gap-2 justify-self-end flex-shrink-0">
+        <div className="lg:hidden flex items-center gap-2 justify-self-end flex-shrink-0">
           {!hideCTA ? (
             <AnimatedButton className="navbar-mobile-cta h-10 px-4 text-[0.92rem] max-[380px]:h-9 max-[380px]:px-3 max-[380px]:text-[0.82rem]" to="/contact">
               Book a Meeting
@@ -71,7 +71,7 @@ export default function Navbar() {
           <MobileMenu />
         </div>
         {/* Desktop CTA */}
-        <div className="hidden md:block justify-self-end">
+        <div className="hidden lg:block justify-self-end">
           {!hideCTA ? (
             <AnimatedButton className="navbar-cta h-10 px-5 text-sm md:text-[0.92rem]" to="/contact">Book a Meeting </AnimatedButton>
           ) : (
@@ -149,7 +149,7 @@ function MobileMenuPanel() {
   const close = () => typeof window !== 'undefined' && window.__setNavOpen(false);
 
   return (
-      <div className={`${open ? 'block' : 'hidden'} relative z-[3] md:hidden border-t border-white/10 bg-black/68 backdrop-blur-xl`}> 
+      <div className={`${open ? 'block' : 'hidden'} relative z-[3] lg:hidden border-t border-white/10 bg-black/68 backdrop-blur-xl`}>
       <div className="max-w-6xl mx-auto px-4 py-3">
         <ul className="flex flex-col gap-3 text-base">
           {navItems.map(item => (

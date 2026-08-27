@@ -7,10 +7,8 @@ const timeline = [
 ];
 
 const team = [
-  { name: 'Karim Ahmed ', role: 'CEO (Chief Executive Officer)' },
-  { name: 'Loay Mohamed', role: 'CFO (Chief Financial Officer)' },
-  { name: 'Amr Hazem', role: 'CTO (Chief Technology Officer)' },
-  { name: 'Mohamed Ayman', role: 'Operation Manager' }
+  { name: 'Karim Ahmed ', role: 'Founder' },
+  { name: 'Loay Mohamed', role: 'CO-founder' }
 ];
 
 const trustSignals = [

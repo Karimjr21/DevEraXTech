@@ -72,7 +72,8 @@ body { background: var(--color-bg); overflow-y: auto; }
 
 @media (max-width: 420px) {
   .navbar-mobile-cta {
-    min-width: 8.85rem;
+    display: none;
+    min-width: 0;
   }
 }
 
