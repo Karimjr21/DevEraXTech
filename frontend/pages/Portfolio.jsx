@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import AnimatedButton from '../components/ui/AnimatedButton';
 import SectionWrapper from '../components/ui/SectionWrapper';
+import EmptyState, { LoadingCards } from '../components/ui/EmptyState';
 import { fetchPortfolio } from '../lib/api';
+import useApiData from '../lib/useApiData';
 import Lightbox from '../components/ui/Lightbox';
 
 function getDescription(item) {
@@ -22,12 +24,10 @@ function getTags(item) {
 }
 
 export default function Portfolio() {
-  const [items, setItems] = useState([]);
+  const { status, data: items, retry } = useApiData(fetchPortfolio);
   const [filter, setFilter] = useState('All');
   const [active, setActive] = useState(null);
   const [imageFallbacks, setImageFallbacks] = useState({});
-
-  useEffect(() => { fetchPortfolio().then(setItems); }, []);
 
   const categories = ['All', ...Array.from(new Set(items.map(i => i.category)))];
   const shown = filter === 'All' ? items : items.filter(i => i.category === filter);
@@ -54,6 +54,38 @@ export default function Portfolio() {
           </div>
         </div>
 
+        {status === 'loading' && (
+          <LoadingCards count={3} label="Loading projects" className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-6" />
+        )}
+
+        {status === 'error' && (
+          <EmptyState
+            icon="error"
+            role="alert"
+            title="We couldn't load our projects"
+            text="Something went wrong while fetching the portfolio. Please check your connection and try again."
+            actionLabel="Try Again"
+            onAction={retry}
+            secondaryLabel="Contact Us"
+            secondaryTo="/contact"
+          />
+        )}
+
+        {status === 'ready' && items.length === 0 && (
+          <EmptyState
+            kicker="Coming Soon"
+            title="New case studies are on the way"
+            text="We're preparing detailed write-ups of recent client work. In the meantime, tell us about your project and we'll share relevant examples directly."
+            actionLabel="Book a Meeting"
+            actionTo="/contact"
+            secondaryLabel="View Services"
+            secondaryTo="/services"
+          />
+        )}
+
+        {status === 'ready' && items.length > 0 && (
+        <>
+        {categories.length > 2 && (
         <div className="flex flex-wrap items-center gap-2.5 md:gap-3">
           {categories.map(cat => (
             <button
@@ -66,15 +98,19 @@ export default function Portfolio() {
             </button>
           ))}
         </div>
-
-        {shown.length === 0 && (
-          <div className="portfolio-empty-card p-8 sm:p-10 text-center">
-            <h3 className="text-xl text-gold font-semibold mb-2">No Matching Projects</h3>
-            <p className="text-sm text-gray-400">Try another filter to explore more portfolio work.</p>
-          </div>
         )}
 
-        {hasSingle ? (
+        {shown.length === 0 && (
+          <EmptyState
+            icon="search"
+            title="No matching projects"
+            text={`There are no ${filter} projects to show yet.`}
+            actionLabel="Show All Work"
+            onAction={() => setFilter('All')}
+          />
+        )}
+
+        {shown.length === 0 ? null : hasSingle ? (
           (() => {
             const item = shown[0];
             const tags = getTags(item);
@@ -235,6 +271,8 @@ export default function Portfolio() {
               );
             })}
           </div>
+        )}
+        </>
         )}
 
         <div className="portfolio-bottom-cta p-6 sm:p-7 md:p-8">

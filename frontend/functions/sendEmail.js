@@ -18,6 +18,11 @@ function corsHeaders(origin) {
   return origin ? { 'Access-Control-Allow-Origin': origin, Vary: 'Origin' } : {};
 }
 
+import services from '../src/data/services.json' assert { type: 'json' };
+
+// Must match GENERAL_INQUIRY in pages/Contact.jsx.
+const ALLOWED_SERVICES = new Set([...services.map(s => s.title), 'Other / General Inquiry']);
+
 function json(status, data, origin) {
   return new Response(JSON.stringify(data), {
     status,
@@ -73,6 +78,7 @@ function validateBody(body) {
   if (subject !== undefined && subject !== null && typeof subject !== 'string') errors.push('Invalid subject');
   if (!message || typeof message !== 'string' || !message.trim()) errors.push('Missing or invalid message');
   if (service !== undefined && service !== null && typeof service !== 'string') errors.push('Invalid service');
+  else if (typeof service === 'string' && service.trim() && !ALLOWED_SERVICES.has(service.trim())) errors.push('Unknown service');
   if (meetingDateTime !== undefined && meetingDateTime !== null && typeof meetingDateTime !== 'string') errors.push('Invalid meetingDateTime');
   for (const [field, max] of Object.entries(MAX_LENGTHS)) {
     const value = body?.[field];

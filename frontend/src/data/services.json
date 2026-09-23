@@ -1,0 +1,54 @@
+[
+  {
+    "id": "business-websites",
+    "title": "Business / Corporate Websites",
+    "description": "For companies, startups, agencies, shops, clinics, factories, schools, etc.",
+    "label": "Includes",
+    "features": ["Home", "About", "Services", "Contact", "Team", "Portfolio"]
+  },
+  {
+    "id": "ecommerce-websites",
+    "title": "E-Commerce Websites",
+    "description": "Online stores with:",
+    "label": "Includes",
+    "features": ["Product pages", "Shopping cart", "Checkout", "Payment integrations", "Admin dashboard"]
+  },
+  {
+    "id": "shopify-stores",
+    "title": "Shopify Stores",
+    "description": "Bespoke Shopify experiences crafted for premium brands, featuring:",
+    "label": "Includes",
+    "features": [
+      "Elegantly designed product pages",
+      "Seamless shopping cart experience",
+      "Secure, trusted payment integrations",
+      "Powerful Shopify admin & store control"
+    ]
+  },
+  {
+    "id": "wordpress-websites",
+    "title": "WordPress Websites",
+    "description": "Bespoke WordPress experiences crafted for premium brands, featuring:",
+    "label": "Includes",
+    "features": [
+      "Custom-designed pages & layouts",
+      "Fully responsive, high-performance builds",
+      "Secure plugins & advanced functionality",
+      "Powerful content management & admin control"
+    ]
+  },
+  {
+    "id": "portfolio-websites",
+    "title": "Portfolio Websites",
+    "description": "For creatives:",
+    "label": "Includes",
+    "features": ["Designers", "Photographers", "Developers", "Agencies", "High-visual showcase sites"]
+  },
+  {
+    "id": "landing-pages",
+    "title": "Landing Pages",
+    "description": "High-conversion single pages for:",
+    "label": "Includes",
+    "features": ["Marketing campaigns", "App launches", "Product launches", "Service promotions"]
+  }
+]

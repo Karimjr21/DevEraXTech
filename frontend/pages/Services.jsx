@@ -1,66 +1,15 @@
 import SectionWrapper from '../components/ui/SectionWrapper';
 import { useNavigate } from 'react-router-dom';
-import { SERVICE_OPTIONS } from '../src/data/services';
 import AnimatedButton from '../components/ui/AnimatedButton';
+import EmptyState, { LoadingCards } from '../components/ui/EmptyState';
+import { fetchServices } from '../lib/api';
+import useApiData from '../lib/useApiData';
 
 export default function Services() {
   const navigate = useNavigate();
   const goToContact = (service) => navigate(`/contact?service=${encodeURIComponent(service)}`);
 
-  const serviceCards = [
-    {
-      service: SERVICE_OPTIONS[0],
-      title: 'Business / Corporate Websites',
-      description: 'For companies, startups, agencies, shops, clinics, factories, schools, etc.',
-      label: 'Includes',
-      features: ['Home', 'About', 'Services', 'Contact', 'Team', 'Portfolio']
-    },
-    {
-      service: SERVICE_OPTIONS[1],
-      title: 'E-Commerce Websites',
-      description: 'Online stores with:',
-      label: 'Includes',
-      features: ['Product pages', 'Shopping cart', 'Checkout', 'Payment integrations', 'Admin dashboard']
-    },
-    {
-      service: SERVICE_OPTIONS[4],
-      title: 'Shopify Stores',
-      description: 'Bespoke Shopify experiences crafted for premium brands, featuring:',
-      label: 'Includes',
-      features: [
-        'Elegantly designed product pages',
-        'Seamless shopping cart experience',
-        'Secure, trusted payment integrations',
-        'Powerful Shopify admin & store control'
-      ]
-    },
-    {
-      service: SERVICE_OPTIONS[5],
-      title: 'WordPress Websites',
-      description: 'Bespoke WordPress experiences crafted for premium brands, featuring:',
-      label: 'Includes',
-      features: [
-        'Custom-designed pages & layouts',
-        'Fully responsive, high-performance builds',
-        'Secure plugins & advanced functionality',
-        'Powerful content management & admin control'
-      ]
-    },
-    {
-      service: SERVICE_OPTIONS[2],
-      title: 'Portfolio Websites',
-      description: 'For creatives:',
-      label: 'Includes',
-      features: ['Designers', 'Photographers', 'Developers', 'Agencies', 'High-visual showcase sites']
-    },
-    {
-      service: SERVICE_OPTIONS[3],
-      title: 'Landing Pages',
-      description: 'High-conversion single pages for:',
-      label: 'Includes',
-      features: ['Marketing campaigns', 'App launches', 'Product launches', 'Service promotions']
-    }
-  ];
+  const { status, data: serviceCards, retry } = useApiData(fetchServices);
 
   return (
     <div className="max-w-[1400px] mx-auto px-8 py-24">
@@ -72,10 +21,38 @@ export default function Services() {
         </div>
       </div>
 
+      {status === 'loading' && (
+        <LoadingCards count={3} label="Loading services" className="space-y-6 md:space-y-8" />
+      )}
+
+      {status === 'error' && (
+        <EmptyState
+          icon="error"
+          role="alert"
+          title="We couldn't load our services"
+          text="Something went wrong while fetching the service list. Please try again, or contact us directly and we'll walk you through what we offer."
+          actionLabel="Try Again"
+          onAction={retry}
+          secondaryLabel="Contact Us"
+          secondaryTo="/contact"
+        />
+      )}
+
+      {status === 'ready' && serviceCards.length === 0 && (
+        <EmptyState
+          kicker="Updating"
+          title="Our service list is being refreshed"
+          text="We're updating our offerings. Tell us what you want to build and we'll tailor a solution for you."
+          actionLabel="Book a Meeting"
+          actionTo="/contact"
+        />
+      )}
+
+      {status === 'ready' && serviceCards.length > 0 && (
       <div className="space-y-6 md:space-y-8 lg:space-y-10">
         {serviceCards.map((card, index) => (
           <SectionWrapper
-            key={card.title}
+            key={card.id || card.title}
             delay={index * 60}
             className="service-editorial-row rounded-2xl p-5 md:p-6 lg:p-7"
           >
@@ -97,17 +74,17 @@ export default function Services() {
                 </p>
 
                 <p className="service-editorial-support mt-4 text-[0.8rem] md:text-[0.82rem] text-gray-400/78 uppercase tracking-[0.11em]">
-                  {card.features.length} key capabilities
+                  {(card.features || []).length} key capabilities
                 </p>
               </div>
 
               <div className={`${index % 2 === 1 ? 'lg:order-1' : ''} service-editorial-details lg:justify-self-end w-full lg:max-w-[34rem]`}>
                 <div className="service-editorial-includes text-[0.69rem] uppercase tracking-[0.16em] text-gray-400/88 mb-3">
-                  {card.label}
+                  {card.label || 'Includes'}
                 </div>
 
                 <ul className="service-editorial-list w-full" role="list">
-                  {card.features.map((feature) => (
+                  {(card.features || []).map((feature) => (
                     <li key={feature} className="service-editorial-item">
                       <span className="service-editorial-marker" aria-hidden />
                       <span className="service-editorial-item-text">{feature}</span>
@@ -119,7 +96,7 @@ export default function Services() {
                   <AnimatedButton
                     variant="outline"
                     className="service-editorial-cta h-9 md:h-10 px-4.5 md:px-5 text-[0.8rem] md:text-[0.84rem] uppercase tracking-[0.08em]"
-                    onClick={() => goToContact(card.service)}
+                    onClick={() => goToContact(card.title)}
                   >
                     Start This Project <span aria-hidden className="ml-1">→</span>
                   </AnimatedButton>
@@ -129,6 +106,7 @@ export default function Services() {
           </SectionWrapper>
         ))}
       </div>
+      )}
     </div>
   );
 }

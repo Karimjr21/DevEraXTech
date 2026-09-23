@@ -2,8 +2,11 @@ import { useState, useMemo, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import AnimatedButton from '../components/ui/AnimatedButton';
 import SectionWrapper from '../components/ui/SectionWrapper';
-import { sendContact } from '../lib/api';
-import { SERVICE_OPTIONS } from '../src/data/services';
+import { fetchServices, sendContact } from '../lib/api';
+import useApiData from '../lib/useApiData';
+
+// Always offered, so the form still works if the service list can't be loaded.
+const GENERAL_INQUIRY = 'Other / General Inquiry';
 
 const reassuranceItems = [
   {
@@ -47,6 +50,15 @@ export default function Contact() {
   const [website, setWebsite] = useState(''); // honeypot: hidden from people, filled by bots
   const [now, setNow] = useState(() => new Date());
   const location = useLocation();
+  const { status: servicesStatus, data: services, retry: retryServices } = useApiData(fetchServices);
+  const serviceOptions = useMemo(() => {
+    const titles = [...services.map(s => s.title).filter(Boolean), GENERAL_INQUIRY];
+    // Until the catalog loads, keep a service pre-filled from the URL selectable.
+    if (servicesStatus !== 'ready' && form.service && !titles.includes(form.service)) {
+      titles.unshift(form.service);
+    }
+    return titles;
+  }, [services, servicesStatus, form.service]);
   const fieldBase = 'contact-input w-full rounded-xl px-4 py-3.5 text-sm text-gray-100 placeholder:text-gray-500/90 outline-none transition-all duration-300';
 
   const timeSlots = useMemo(() => {
@@ -100,6 +112,12 @@ export default function Contact() {
       setForm(prev => ({ ...prev, meetingTime: '' }));
     }
   }, [form.meetingDate, form.meetingTime, isTimeSlotDisabled]);
+
+  // Clear a pre-filled service that isn't in the loaded catalog.
+  useEffect(() => {
+    if (servicesStatus !== 'ready' || !form.service) return;
+    if (!serviceOptions.includes(form.service)) setForm(prev => ({ ...prev, service: '' }));
+  }, [servicesStatus, serviceOptions, form.service]);
 
   // On mount or URL change, read `service` query and pre-fill the Service field
   useEffect(() => {
@@ -263,12 +281,21 @@ export default function Contact() {
                     onChange={e=>{ setForm({...form,service:e.target.value}); setErrors({...errors, service: ''}); }}
                     className={`${fieldBase} bg-transparent ${errors.service ? 'ring-1 ring-red-500 border-red-500' : ''}`}
                   >
-                    <option value="" disabled className="bg-black">Select a service</option>
-                    {SERVICE_OPTIONS.map(opt => (
+                    <option value="" disabled className="bg-black">
+                      {servicesStatus === 'loading' ? 'Loading services…' : 'Select a service'}
+                    </option>
+                    {serviceOptions.map(opt => (
                       <option key={opt} value={opt} className="bg-[#0a0a0a]">{opt}</option>
                     ))}
                   </select>
                   {errors.service && <p className="mt-1.5 text-xs text-red-400">{errors.service}</p>}
+                  {servicesStatus === 'error' && (
+                    <p className="mt-1.5 text-xs text-gray-400" role="status">
+                      Couldn't load the full service list.{' '}
+                      <button type="button" onClick={retryServices} className="text-gold underline underline-offset-2">Retry</button>
+                      {' '}or choose “{GENERAL_INQUIRY}”.
+                    </p>
+                  )}
                 </div>
               </div>
 
