@@ -3,7 +3,7 @@ import data from '../../backend/src/data/testimonials.json' assert { type: 'json
 export async function onRequest(context) {
   const { request, env } = context;
   if (request.method === 'OPTIONS') {
-    return new Response('', {
+    return new Response(null, {
       status: 204,
       headers: {
         'Access-Control-Allow-Origin': env?.CORS_ORIGIN || '*',

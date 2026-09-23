@@ -44,6 +44,7 @@ export default function Contact() {
   const [status, setStatus] = useState(null);
   const [errors, setErrors] = useState({ name: '', email: '', phone: '', service: '', message: '' });
   const [loading, setLoading] = useState(false);
+  const [website, setWebsite] = useState(''); // honeypot: hidden from people, filled by bots
   const [now, setNow] = useState(() => new Date());
   const location = useLocation();
   const fieldBase = 'contact-input w-full rounded-xl px-4 py-3.5 text-sm text-gray-100 placeholder:text-gray-500/90 outline-none transition-all duration-300';
@@ -179,15 +180,13 @@ export default function Contact() {
         meetingDateTime: meetingDateTime || undefined,
         subject: form.subject || `Inquiry - ${form.service || 'General'}`,
         message: finalMessage,
+        website,
       });
       if (res && res.success) {
         setStatus({ type: 'success', message: res.message || 'Message sent! We will get back to you shortly.' });
         setForm({ name: '', email: '', phone: '', service: '', subject: '', message: '', meetingDate: '', meetingTime: '' });
       } else {
-        let msg = res?.errors ? res.errors.join(', ') : (res?.error || 'Error sending message');
-        if (res?.debug && typeof res.debug === 'object') {
-          msg = `${msg} | debug: ${JSON.stringify(res.debug)}`;
-        }
+        const msg = res?.errors ? res.errors.join(', ') : (res?.error || 'Error sending message');
         setStatus({ type: 'error', message: msg });
       }
     } catch (e) {
@@ -221,6 +220,7 @@ export default function Contact() {
                   <input
                     required
                     value={form.name}
+                  maxLength={200}
                     onChange={e=>{ setForm({...form,name:e.target.value}); setErrors({...errors, name: ''}); }}
                     placeholder="Your full name"
                     className={`${fieldBase} ${errors.name ? 'ring-1 ring-red-500 border-red-500' : ''}`}
@@ -233,6 +233,7 @@ export default function Contact() {
                     required
                     type="email"
                     value={form.email}
+                  maxLength={254}
                     onChange={e=>{ setForm({...form,email:e.target.value}); setErrors({...errors, email: ''}); }}
                     placeholder="you@company.com"
                     className={`${fieldBase} ${errors.email ? 'ring-1 ring-red-500 border-red-500' : ''}`}
@@ -247,6 +248,7 @@ export default function Contact() {
                   <input
                     required
                     value={form.phone}
+                  maxLength={50}
                     onChange={e=>{ setForm({...form,phone:e.target.value}); setErrors({...errors, phone: ''}); }}
                     placeholder="+20 ..."
                     className={`${fieldBase} ${errors.phone ? 'ring-1 ring-red-500 border-red-500' : ''}`}
@@ -274,6 +276,7 @@ export default function Contact() {
                 <label className="block text-sm mb-2 text-gray-300">Subject</label>
                 <input
                   value={form.subject}
+                  maxLength={200}
                   onChange={e=>setForm({...form,subject:e.target.value})}
                   placeholder="Subject (optional)"
                   className={fieldBase}
@@ -328,11 +331,19 @@ export default function Contact() {
                   required
                   rows={6}
                   value={form.message}
+                  maxLength={4500}
                   onChange={e=>{ setForm({...form,message:e.target.value}); setErrors({...errors, message: ''}); }}
                   placeholder="Tell us about your project goals, timeline, and priorities."
                   className={`${fieldBase} min-h-[148px] resize-y ${errors.message ? 'ring-1 ring-red-500 border-red-500' : ''}`}
                 />
                 {errors.message && <p className="mt-1.5 text-xs text-red-400">{errors.message}</p>}
+              </div>
+
+              <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: '1px', height: '1px', overflow: 'hidden' }}>
+                <label>
+                  Website
+                  <input type="text" name="website" tabIndex={-1} autoComplete="off" value={website} onChange={e => setWebsite(e.target.value)} />
+                </label>
               </div>
 
               <AnimatedButton

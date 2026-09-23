@@ -1,2 +1,12 @@
 # Local Netlify folder
 .netlify
+
+# Secrets — never commit real env files
+.env
+.env.*
+!.env.example
+.dev.vars
+
+# Build/dev tooling output
+.wrangler/
+node_modules/

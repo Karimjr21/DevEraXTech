@@ -26,7 +26,7 @@ export default function Lightbox({ item, onClose }) {
               <a
                 href={item.url}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-block mt-2 px-3 py-1 border border-gold text-gold rounded-md text-xs font-semibold hover:bg-gold hover:text-dark transition-colors"
               >
                 Visit Site

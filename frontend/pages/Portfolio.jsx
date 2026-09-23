@@ -130,7 +130,7 @@ export default function Portfolio() {
                       <a
                         href={item.url}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                         onClick={(event) => event.stopPropagation()}
                         className="portfolio-cta-link"
                       >
@@ -211,7 +211,7 @@ export default function Portfolio() {
                         <a
                           href={item.url}
                           target="_blank"
-                          rel="noreferrer"
+                          rel="noopener noreferrer"
                           onClick={(event) => event.stopPropagation()}
                           className="portfolio-cta-link"
                         >

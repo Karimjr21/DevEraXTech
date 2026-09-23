@@ -1,6 +1,8 @@
-function corsHeaders(origin) {
+// Never reflect the caller's Origin header; only allow the configured site.
+function corsHeaders(_origin) {
   return {
-    'Access-Control-Allow-Origin': origin || process.env.CORS_ORIGIN || '*',
+    'Access-Control-Allow-Origin': process.env.CORS_ORIGIN || 'https://deveraxtech.com',
+    Vary: 'Origin',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization',
     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
   };

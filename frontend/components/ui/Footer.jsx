@@ -22,7 +22,7 @@ export default function Footer() {
             <a
               href="https://www.instagram.com/deveraxtech?igsh=MWR5aTY2N3g1eWVjNQ=="
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               aria-label="DevEraXTech on Instagram"
               className="group inline-flex h-10 w-10 items-center justify-center rounded-full border border-gold/20 bg-white/5 text-gold/85 transition-all duration-300 hover:border-gold/45 hover:bg-gold/10 hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/50"
             >

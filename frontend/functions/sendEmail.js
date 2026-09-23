@@ -12,26 +12,43 @@
  * - MAIL_TO
  */
 
+// Only send CORS headers when CORS_ORIGIN is configured. The site itself calls
+// /sendEmail same-origin, so no CORS header is needed and other sites are refused.
+function corsHeaders(origin) {
+  return origin ? { 'Access-Control-Allow-Origin': origin, Vary: 'Origin' } : {};
+}
+
 function json(status, data, origin) {
   return new Response(JSON.stringify(data), {
     status,
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': origin || '*',
+      ...corsHeaders(origin),
     },
   });
 }
 
 function preflight(origin) {
-  return new Response('', {
+  return new Response(null, {
     status: 204,
     headers: {
-      'Access-Control-Allow-Origin': origin || '*',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      ...corsHeaders(origin),
+      'Access-Control-Allow-Headers': 'Content-Type',
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
     },
   });
 }
+
+const MAX_BODY_BYTES = 20_000;
+const MAX_LENGTHS = {
+  name: 200,
+  email: 254,
+  phone: 50,
+  subject: 200,
+  service: 200,
+  meetingDateTime: 200,
+  message: 5000,
+};
 
 function firstEnv(env, keys) {
   // Support both Cloudflare Pages runtime bindings (context.env)
@@ -57,7 +74,16 @@ function validateBody(body) {
   if (!message || typeof message !== 'string' || !message.trim()) errors.push('Missing or invalid message');
   if (service !== undefined && service !== null && typeof service !== 'string') errors.push('Invalid service');
   if (meetingDateTime !== undefined && meetingDateTime !== null && typeof meetingDateTime !== 'string') errors.push('Invalid meetingDateTime');
+  for (const [field, max] of Object.entries(MAX_LENGTHS)) {
+    const value = body?.[field];
+    if (typeof value === 'string' && value.length > max) errors.push(`${field} is too long (max ${max} characters)`);
+  }
   return { valid: errors.length === 0, errors };
+}
+
+// Collapse CR/LF and other control characters in single-line fields (subject, reply-to, etc.).
+function singleLine(str) {
+  return String(str).replace(/[\u0000-\u001f\u007f]+/g, ' ').trim();
 }
 
 function escapeHtml(str) {
@@ -71,10 +97,13 @@ function escapeHtml(str) {
 
 export async function onRequest(context) {
   const { request, env } = context;
-  const origin = env?.CORS_ORIGIN || '*';
+  const origin = env?.CORS_ORIGIN;
 
   if (request.method === 'OPTIONS') return preflight(origin);
   if (request.method !== 'POST') return json(405, { success: false, error: 'Method Not Allowed' }, origin);
+
+  const contentLength = Number(request.headers.get('Content-Length') || 0);
+  if (contentLength > MAX_BODY_BYTES) return json(413, { success: false, error: 'Payload Too Large' }, origin);
 
   const resendApiKey = firstEnv(env, ['RESEND_API_KEY']);
   const mailFrom = firstEnv(env, ['MAIL_FROM', 'EMAIL_FROM', 'RESEND_FROM']);
@@ -86,18 +115,26 @@ export async function onRequest(context) {
 
   let body;
   try {
-    body = await request.json();
+    const raw = await request.text();
+    if (raw.length > MAX_BODY_BYTES) return json(413, { success: false, error: 'Payload Too Large' }, origin);
+    body = JSON.parse(raw);
   } catch {
     return json(400, { success: false, error: 'Invalid JSON body' }, origin);
+  }
+
+  // Honeypot: the contact form has a hidden "website" field that people never fill in.
+  // Bots that do are told the message was sent, but nothing is emailed.
+  if (body && typeof body === 'object' && typeof body.website === 'string' && body.website.trim()) {
+    return json(200, { success: true, message: 'Email sent successfully' }, origin);
   }
 
   const { valid, errors } = validateBody(body);
   if (!valid) return json(400, { success: false, errors }, origin);
 
   try {
-    const subject = (body.subject && String(body.subject).trim())
+    const subject = singleLine((body.subject && String(body.subject).trim())
       ? String(body.subject).trim()
-      : `New Contact - ${body.service ? body.service : 'General Inquiry'} - ${body.name}`;
+      : `New Contact - ${body.service ? body.service : 'General Inquiry'} - ${body.name}`);
 
     const lines = [
       body.phone ? `Phone: ${body.phone}` : null,
@@ -132,7 +169,7 @@ export async function onRequest(context) {
         subject,
         text: lines.join('\n'),
         html,
-        reply_to: body.email,
+        reply_to: singleLine(body.email),
       }),
     });
 

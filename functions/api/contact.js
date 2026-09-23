@@ -3,7 +3,7 @@ export async function onRequest(context) {
   const origin = env?.CORS_ORIGIN || '*';
 
   if (request.method === 'OPTIONS') {
-    return new Response('', {
+    return new Response(null, {
       status: 204,
       headers: {
         'Access-Control-Allow-Origin': origin,
