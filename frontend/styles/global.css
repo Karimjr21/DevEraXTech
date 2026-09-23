@@ -1140,3 +1140,77 @@ body { background: var(--color-bg); overflow-y: auto; }
 @media (prefers-reduced-motion: reduce) {
   .skeleton-line { animation: none; }
 }
+
+/* FAQ (Services page) */
+.faq-item {
+  padding: 0;
+}
+
+.faq-question {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.35rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #f1f1f1;
+}
+
+.faq-question::-webkit-details-marker {
+  display: none;
+}
+
+.faq-question:hover {
+  color: #f2d17b;
+}
+
+.faq-question:focus-visible {
+  outline: 2px solid rgba(242,209,123,0.7);
+  outline-offset: 2px;
+  border-radius: 1rem;
+}
+
+.faq-marker {
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(242,209,123,0.35);
+  color: #f2d17b;
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: transform 0.25s ease;
+}
+
+.faq-item[open] .faq-marker {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  padding: 0 1.35rem 1.2rem;
+  color: rgba(209,213,219,0.9);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  max-width: 70ch;
+}
+
+.home-service-card:hover h3,
+.home-service-card:focus-visible h3 {
+  color: #f5d573;
+}
+
+.home-service-card:focus-visible {
+  outline: 2px solid rgba(242,209,123,0.7);
+  outline-offset: 3px;
+}
+
+/* Keep in-page anchors (/services#id) clear of the fixed navbar */
+[id] {
+  scroll-margin-top: 6rem;
+}

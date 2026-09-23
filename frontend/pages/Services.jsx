@@ -4,19 +4,20 @@ import AnimatedButton from '../components/ui/AnimatedButton';
 import EmptyState, { LoadingCards } from '../components/ui/EmptyState';
 import { fetchServices } from '../lib/api';
 import useApiData from '../lib/useApiData';
+import faq from '../src/data/faq.json';
 
 export default function Services() {
   const navigate = useNavigate();
   const goToContact = (service) => navigate(`/contact?service=${encodeURIComponent(service)}`);
 
-  const { status, data: serviceCards, retry } = useApiData(fetchServices);
+  const { status, data: serviceCards, retry } = useApiData(fetchServices, 'services');
 
   return (
     <div className="max-w-[1400px] mx-auto px-8 py-24">
       <div className="mb-10 md:mb-12">
         <p className="text-[0.72rem] uppercase tracking-[0.16em] text-gray-400/85 mb-3">What We Build</p>
         <div className="flex items-end gap-4">
-          <h2 className="text-4xl font-bold gold-gradient-text">Services</h2>
+          <h1 className="text-4xl font-bold gold-gradient-text">Services</h1>
           <span className="hidden sm:block h-px w-24 md:w-32 bg-gradient-to-r from-gold/55 to-transparent mb-2" aria-hidden />
         </div>
       </div>
@@ -53,6 +54,7 @@ export default function Services() {
         {serviceCards.map((card, index) => (
           <SectionWrapper
             key={card.id || card.title}
+            id={card.id}
             delay={index * 60}
             className="service-editorial-row rounded-2xl p-5 md:p-6 lg:p-7"
           >
@@ -107,6 +109,24 @@ export default function Services() {
         ))}
       </div>
       )}
+
+      <SectionWrapper id="faq" className="mt-16 md:mt-20" aria-labelledby="faq-heading">
+        <p className="text-[0.72rem] uppercase tracking-[0.16em] text-gray-400/85 mb-3">Good to Know</p>
+        <h2 id="faq-heading" className="text-2xl md:text-3xl font-semibold text-gold leading-tight mb-6 md:mb-8">
+          Frequently Asked Questions
+        </h2>
+        <div className="space-y-3 md:space-y-4">
+          {faq.map(item => (
+            <details key={item.question} className="faq-item service-editorial-row rounded-2xl">
+              <summary className="faq-question">
+                <span>{item.question}</span>
+                <span className="faq-marker" aria-hidden>+</span>
+              </summary>
+              <p className="faq-answer">{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </SectionWrapper>
     </div>
   );
 }

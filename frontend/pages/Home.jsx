@@ -1,9 +1,13 @@
-import { Suspense, useEffect, useRef, useState } from 'react';
+import { Suspense, lazy, useEffect, useRef, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import SectionWrapper from '../components/ui/SectionWrapper';
+import { LoadingCards } from '../components/ui/EmptyState';
 import AnimatedButton from '../components/ui/AnimatedButton';
-import Logo3D from '../components/3d/Logo3D';
+const Logo3D = lazy(() => import('../components/3d/Logo3D'));
 import ErrorBoundary from '../components/ui/ErrorBoundary';
+import { fetchServices } from '../lib/api';
+import useApiData from '../lib/useApiData';
 
 export default function Home() {
   const shouldReduceMotion = useReducedMotion();
@@ -65,7 +69,10 @@ export default function Home() {
     }
   };
 
+  const { status: servicesStatus, data: services } = useApiData(fetchServices, 'services');
+
   return (
+    <>
     <div ref={heroRef} className="home-hero-shell relative w-full overflow-hidden">
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <div className="hero-stars" aria-hidden />
@@ -77,9 +84,11 @@ export default function Home() {
           transition={{ type: 'spring', stiffness: 30, damping: 18, mass: 1.1 }}
         >
         <ErrorBoundary fallback={<div className='text-gold text-center'>3D disabled — showing static hero.<br/>Check browser console for errors.</div>}>
-          <Suspense fallback={<div className='text-gold'>Loading 3D...</div>}>
-            <Logo3D />
-          </Suspense>
+          {typeof window !== 'undefined' && (
+            <Suspense fallback={null}>
+              <Logo3D />
+            </Suspense>
+          )}
         </ErrorBoundary>
         </motion.div>
       </div>
@@ -156,5 +165,63 @@ export default function Home() {
       </SectionWrapper>
       <div className="hero-bottom-fade" aria-hidden />
     </div>
+
+    <SectionWrapper id="what-we-build" className="max-w-6xl mx-auto px-6 sm:px-8 pt-6 pb-16 md:pb-20" aria-labelledby="home-services-heading">
+      <div className="max-w-3xl mb-8 md:mb-10 space-y-3">
+        <p className="text-[11px] tracking-[0.2em] uppercase text-gold/70">What We Build</p>
+        <h2 id="home-services-heading" className="text-2xl md:text-3xl font-semibold text-gold leading-tight">
+          Websites engineered to be secure, scalable and pixel-perfect
+        </h2>
+        <p className="text-sm md:text-base text-gray-300/90 leading-relaxed">
+          DevEraXTech designs and builds business websites, online stores and high-conversion pages for companies,
+          startups and creatives. Every project is treated as a long-term digital asset, engineered for resilience,
+          elegant usability and growth.
+        </p>
+      </div>
+
+      {servicesStatus === 'ready' && services.length > 0 && (
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5" role="list">
+          {services.map(service => (
+            <li key={service.id || service.title}>
+              <Link
+                to={`/services#${service.id}`}
+                className="about-card home-service-card block h-full p-5 md:p-6"
+              >
+                <h3 className="text-lg font-semibold text-gold leading-snug">{service.title}</h3>
+                <p className="mt-2 text-sm text-gray-400 leading-relaxed">
+                  {service.summary || service.description}
+                </p>
+                <span className="mt-4 inline-flex items-center gap-1 text-xs uppercase tracking-[0.12em] text-gold/80">
+                  Learn more <span aria-hidden>→</span>
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {servicesStatus === 'loading' && (
+        <LoadingCards count={3} label="Loading services" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5" />
+      )}
+
+      <div className="mt-10 md:mt-12 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+        {[
+          ['Secure by Design', 'Security is embedded from architecture decisions to final QA, reducing risk before launch.'],
+          ['Scalable Delivery', 'Structured execution keeps projects reliable as scope grows, from pilot releases to production.'],
+          ['Clear Communication', 'Transparent updates, aligned milestones and a response to most inquiries within one business day.']
+        ].map(([title, text]) => (
+          <div key={title} className="border-l border-gold/30 pl-4">
+            <h3 className="text-sm font-semibold text-gray-100 uppercase tracking-[0.1em]">{title}</h3>
+            <p className="mt-2 text-sm text-gray-400 leading-relaxed">{text}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-10 md:mt-12 flex flex-col sm:flex-row gap-4 sm:gap-5 items-center justify-center">
+        <AnimatedButton to="/contact">Request a Meeting</AnimatedButton>
+        <AnimatedButton variant="outline" to="/services">Explore All Services</AnimatedButton>
+      </div>
+    </SectionWrapper>
+    </>
   );
 }

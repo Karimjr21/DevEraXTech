@@ -24,7 +24,7 @@ function getTags(item) {
 }
 
 export default function Portfolio() {
-  const { status, data: items, retry } = useApiData(fetchPortfolio);
+  const { status, data: items, retry } = useApiData(fetchPortfolio, 'portfolio');
   const [filter, setFilter] = useState('All');
   const [active, setActive] = useState(null);
   const [imageFallbacks, setImageFallbacks] = useState({});
@@ -47,7 +47,7 @@ export default function Portfolio() {
         <div className="portfolio-hero-card p-6 sm:p-7 md:p-8">
           <div className="space-y-3.5 md:space-y-4 max-w-3xl">
             <p className="text-[11px] tracking-[0.2em] uppercase text-gold/72">Selected Work</p>
-            <h2 className="text-4xl md:text-[2.8rem] font-bold gold-gradient-text leading-[1.08]">Work</h2>
+            <h1 className="text-4xl md:text-[2.8rem] font-bold gold-gradient-text leading-[1.08]">Work</h1>
             <p className="text-sm md:text-base text-gray-300/90 max-w-2xl leading-relaxed">
               Curated digital products delivered with design precision, technical rigor, and premium execution standards.
             </p>

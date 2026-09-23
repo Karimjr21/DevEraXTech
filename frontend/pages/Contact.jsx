@@ -50,7 +50,7 @@ export default function Contact() {
   const [website, setWebsite] = useState(''); // honeypot: hidden from people, filled by bots
   const [now, setNow] = useState(() => new Date());
   const location = useLocation();
-  const { status: servicesStatus, data: services, retry: retryServices } = useApiData(fetchServices);
+  const { status: servicesStatus, data: services, retry: retryServices } = useApiData(fetchServices, 'services');
   const serviceOptions = useMemo(() => {
     const titles = [...services.map(s => s.title).filter(Boolean), GENERAL_INQUIRY];
     // Until the catalog loads, keep a service pre-filled from the URL selectable.
@@ -223,7 +223,7 @@ export default function Contact() {
     <div className="max-w-7xl mx-auto px-6 sm:px-8 pt-16 md:pt-20 pb-20 md:pb-24">
       <SectionWrapper className="space-y-10 md:space-y-12">
         <div className="max-w-3xl space-y-4">
-          <h2 className="text-4xl md:text-5xl font-bold gold-gradient-text leading-[1.1]">Contact</h2>
+          <h1 className="text-4xl md:text-5xl font-bold gold-gradient-text leading-[1.1]">Contact</h1>
           <p className="text-sm md:text-base text-gray-300/90 leading-relaxed max-w-2xl">
             Let&apos;s discuss your project goals, technical requirements, and the right path to a secure premium delivery.
           </p>

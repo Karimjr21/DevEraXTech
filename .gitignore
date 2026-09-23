@@ -10,3 +10,6 @@
 # Build/dev tooling output
 .wrangler/
 node_modules/
+
+# Build-time prerender bundle
+frontend/.ssr/

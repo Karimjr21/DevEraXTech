@@ -2,20 +2,36 @@
   {
     "id": "business-websites",
     "title": "Business / Corporate Websites",
+    "summary": "Professional websites for companies, startups, agencies, shops, clinics, factories and schools, with home, about, services, team, portfolio and contact pages.",
     "description": "For companies, startups, agencies, shops, clinics, factories, schools, etc.",
     "label": "Includes",
-    "features": ["Home", "About", "Services", "Contact", "Team", "Portfolio"]
+    "features": [
+      "Home",
+      "About",
+      "Services",
+      "Contact",
+      "Team",
+      "Portfolio"
+    ]
   },
   {
     "id": "ecommerce-websites",
     "title": "E-Commerce Websites",
+    "summary": "Online stores with product pages, a shopping cart, checkout, payment integrations and an admin dashboard.",
     "description": "Online stores with:",
     "label": "Includes",
-    "features": ["Product pages", "Shopping cart", "Checkout", "Payment integrations", "Admin dashboard"]
+    "features": [
+      "Product pages",
+      "Shopping cart",
+      "Checkout",
+      "Payment integrations",
+      "Admin dashboard"
+    ]
   },
   {
     "id": "shopify-stores",
     "title": "Shopify Stores",
+    "summary": "Bespoke Shopify stores for premium brands, with designed product pages, a seamless cart, trusted payments and full store control.",
     "description": "Bespoke Shopify experiences crafted for premium brands, featuring:",
     "label": "Includes",
     "features": [
@@ -28,6 +44,7 @@
   {
     "id": "wordpress-websites",
     "title": "WordPress Websites",
+    "summary": "Custom WordPress websites with responsive, high-performance layouts, secure plugins and easy content management.",
     "description": "Bespoke WordPress experiences crafted for premium brands, featuring:",
     "label": "Includes",
     "features": [
@@ -40,15 +57,28 @@
   {
     "id": "portfolio-websites",
     "title": "Portfolio Websites",
+    "summary": "High-visual showcase websites for designers, photographers, developers and agencies.",
     "description": "For creatives:",
     "label": "Includes",
-    "features": ["Designers", "Photographers", "Developers", "Agencies", "High-visual showcase sites"]
+    "features": [
+      "Designers",
+      "Photographers",
+      "Developers",
+      "Agencies",
+      "High-visual showcase sites"
+    ]
   },
   {
     "id": "landing-pages",
     "title": "Landing Pages",
+    "summary": "High-conversion single pages for marketing campaigns, app launches, product launches and service promotions.",
     "description": "High-conversion single pages for:",
     "label": "Includes",
-    "features": ["Marketing campaigns", "App launches", "Product launches", "Service promotions"]
+    "features": [
+      "Marketing campaigns",
+      "App launches",
+      "Product launches",
+      "Service promotions"
+    ]
   }
 ]

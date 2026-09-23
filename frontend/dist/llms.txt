@@ -1,0 +1,60 @@
+# DevEraXTech
+
+> DevEraXTech is a web design and development studio building secure, scalable, pixel-perfect websites: business and corporate sites, e-commerce, Shopify stores, WordPress websites, portfolios and landing pages.
+
+DevEraXTech was founded in 2024 by Karim Ahmed (Founder) and Loay Mohamed (Co-founder). We design and build websites that are secure by design, scalable and pixel-perfect, and we treat every project as a long-term digital asset. Most inquiries receive a response within one business day.
+
+## Services
+
+- [Business / Corporate Websites](https://deveraxtech.com/services#business-websites): Professional websites for companies, startups, agencies, shops, clinics, factories and schools, with home, about, services, team, portfolio and contact pages. Includes: Home; About; Services; Contact; Team; Portfolio.
+- [E-Commerce Websites](https://deveraxtech.com/services#ecommerce-websites): Online stores with product pages, a shopping cart, checkout, payment integrations and an admin dashboard. Includes: Product pages; Shopping cart; Checkout; Payment integrations; Admin dashboard.
+- [Shopify Stores](https://deveraxtech.com/services#shopify-stores): Bespoke Shopify stores for premium brands, with designed product pages, a seamless cart, trusted payments and full store control. Includes: Elegantly designed product pages; Seamless shopping cart experience; Secure, trusted payment integrations; Powerful Shopify admin & store control.
+- [WordPress Websites](https://deveraxtech.com/services#wordpress-websites): Custom WordPress websites with responsive, high-performance layouts, secure plugins and easy content management. Includes: Custom-designed pages & layouts; Fully responsive, high-performance builds; Secure plugins & advanced functionality; Powerful content management & admin control.
+- [Portfolio Websites](https://deveraxtech.com/services#portfolio-websites): High-visual showcase websites for designers, photographers, developers and agencies. Includes: Designers; Photographers; Developers; Agencies; High-visual showcase sites.
+- [Landing Pages](https://deveraxtech.com/services#landing-pages): High-conversion single pages for marketing campaigns, app launches, product launches and service promotions. Includes: Marketing campaigns; App launches; Product launches; Service promotions.
+
+## How we work
+
+- Secure by design: security is embedded from architecture decisions to final QA.
+- Scalable delivery: structured execution that stays reliable as scope grows.
+- Design-led execution: interfaces shaped for clarity, conversion and brand consistency.
+- Clear communication: transparent updates, aligned milestones and accountability.
+
+## Frequently asked questions
+
+### What types of websites does DevEraXTech build?
+
+We design and build business and corporate websites, e-commerce websites, Shopify stores, WordPress websites, portfolio websites and high-conversion landing pages. Every project is built to be secure, scalable and pixel-perfect.
+
+### Do you build Shopify stores and WordPress websites?
+
+Yes. We build bespoke Shopify stores with designed product pages, a seamless cart and secure payment integrations, and custom WordPress websites with responsive, high-performance layouts and full content management.
+
+### Can you build an online store with payments and an admin dashboard?
+
+Yes. Our e-commerce websites include product pages, a shopping cart, checkout, payment integrations and an admin dashboard for managing your store.
+
+### How quickly will I hear back after contacting you?
+
+Most inquiries receive a response within one business day.
+
+### How do I start a project with DevEraXTech?
+
+Use the contact form to choose the service you need, describe your goals and, if you like, pick a preferred meeting date and time. We start with a clarity-first discovery conversation before proposing scope or delivery.
+
+### How does DevEraXTech approach security?
+
+Security is embedded from architecture decisions to final QA, reducing risk before launch. Each project is treated as a long-term digital asset, engineered for resilience, usability and growth.
+
+## Pages
+
+- [Home](https://deveraxtech.com/): DevEraXTech designs and builds secure, scalable, pixel-perfect websites — business sites, e-commerce, Shopify, WordPress, portfolios and landing pages.
+- [Services](https://deveraxtech.com/services): Business and corporate websites, e-commerce stores, Shopify stores, WordPress websites, portfolio sites and high-conversion landing pages by DevEraXTech.
+- [Work](https://deveraxtech.com/portfolio): Selected websites and digital products delivered by DevEraXTech with design precision, technical rigor and premium execution standards.
+- [About](https://deveraxtech.com/about): Founded in 2024 by Karim Ahmed and Loay Mohamed, DevEraXTech builds premium digital products with disciplined engineering and security at the core.
+- [Contact](https://deveraxtech.com/contact): Tell us about your website or app project and book a meeting with DevEraXTech. Most inquiries receive a response within one business day.
+
+## Contact
+
+- Start a project or book a meeting: https://deveraxtech.com/contact
+- Instagram: https://www.instagram.com/deveraxtech
