@@ -5,11 +5,6 @@ export async function fetchPortfolio() {
   return res.json();
 }
 
-export async function fetchTestimonials() {
-  const res = await fetch(`${API_URL}/testimonials`);
-  return res.json();
-}
-
 export async function sendContact(data) {
   const res = await fetch('/sendEmail', {
     method: 'POST',
