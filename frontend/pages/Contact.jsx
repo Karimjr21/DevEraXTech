@@ -5,6 +5,7 @@ import SectionWrapper from '../components/ui/SectionWrapper';
 import { GoldOrnament } from '../components/fx/Ambience';
 import { fetchServices, sendContact } from '../lib/api';
 import useApiData from '../lib/useApiData';
+import useHydrated from '../lib/useHydrated';
 import business from '../src/data/business.json';
 
 // Always offered, so the form still works if the service list can't be loaded.
@@ -73,6 +74,7 @@ export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [website, setWebsite] = useState(''); // honeypot: hidden from people, filled by bots
   const [now, setNow] = useState(() => new Date());
+  const hydrated = useHydrated();
   const location = useLocation();
   const { status: servicesStatus, data: services, retry: retryServices } = useApiData(fetchServices, 'services');
   const serviceOptions = useMemo(() => {
@@ -263,8 +265,13 @@ export default function Contact() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
                 <div className="min-w-0">
-                  <label className="block text-sm mb-2 text-gray-300">Name</label>
+                  <label htmlFor="contact-name" className="block text-sm mb-2 text-gray-300">Name</label>
                   <input
+                    id="contact-name"
+                    name="name"
+                    autoComplete="name"
+                    aria-invalid={errors.name ? true : undefined}
+                    aria-describedby={errors.name ? 'contact-name-error' : undefined}
                     required
                     value={form.name}
                   maxLength={200}
@@ -272,11 +279,16 @@ export default function Contact() {
                     placeholder="Your full name"
                     className={`${fieldBase} ${errors.name ? 'ring-1 ring-red-500 border-red-500' : ''}`}
                   />
-                  {errors.name && <p className="mt-1.5 text-xs text-red-400">{errors.name}</p>}
+                  {errors.name && <p id="contact-name-error" className="mt-1.5 text-xs text-red-400">{errors.name}</p>}
                 </div>
                 <div className="min-w-0">
-                  <label className="block text-sm mb-2 text-gray-300">Email</label>
+                  <label htmlFor="contact-email" className="block text-sm mb-2 text-gray-300">Email</label>
                   <input
+                    id="contact-email"
+                    name="email"
+                    autoComplete="email"
+                    aria-invalid={errors.email ? true : undefined}
+                    aria-describedby={errors.email ? 'contact-email-error' : undefined}
                     required
                     type="email"
                     value={form.email}
@@ -285,14 +297,20 @@ export default function Contact() {
                     placeholder="you@company.com"
                     className={`${fieldBase} ${errors.email ? 'ring-1 ring-red-500 border-red-500' : ''}`}
                   />
-                  {errors.email && <p className="mt-1.5 text-xs text-red-400">{errors.email}</p>}
+                  {errors.email && <p id="contact-email-error" className="mt-1.5 text-xs text-red-400">{errors.email}</p>}
                 </div>
               </div>
 
               <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
                 <div className="min-w-0">
-                  <label className="block text-sm mb-2 text-gray-300">Phone Number</label>
+                  <label htmlFor="contact-phone" className="block text-sm mb-2 text-gray-300">Phone Number</label>
                   <input
+                    id="contact-phone"
+                    name="phone"
+                    type="tel"
+                    autoComplete="tel"
+                    aria-invalid={errors.phone ? true : undefined}
+                    aria-describedby={errors.phone ? 'contact-phone-error' : undefined}
                     required
                     value={form.phone}
                   maxLength={50}
@@ -300,11 +318,15 @@ export default function Contact() {
                     placeholder="+20 ..."
                     className={`${fieldBase} ${errors.phone ? 'ring-1 ring-red-500 border-red-500' : ''}`}
                   />
-                  {errors.phone && <p className="mt-1.5 text-xs text-red-400">{errors.phone}</p>}
+                  {errors.phone && <p id="contact-phone-error" className="mt-1.5 text-xs text-red-400">{errors.phone}</p>}
                 </div>
                 <div className="min-w-0">
-                  <label className="block text-sm mb-2 text-gray-300">Service</label>
+                  <label htmlFor="contact-service" className="block text-sm mb-2 text-gray-300">Service</label>
                   <select
+                    id="contact-service"
+                    name="service"
+                    aria-invalid={errors.service ? true : undefined}
+                    aria-describedby={errors.service ? 'contact-service-error' : undefined}
                     required
                     value={form.service}
                     onChange={e=>{ setForm({...form,service:e.target.value}); setErrors({...errors, service: ''}); }}
@@ -317,7 +339,7 @@ export default function Contact() {
                       <option key={opt} value={opt} className="bg-[#0a0a0a]">{opt}</option>
                     ))}
                   </select>
-                  {errors.service && <p className="mt-1.5 text-xs text-red-400">{errors.service}</p>}
+                  {errors.service && <p id="contact-service-error" className="mt-1.5 text-xs text-red-400">{errors.service}</p>}
                   {servicesStatus === 'error' && (
                     <p className="mt-1.5 text-xs text-gray-400" role="status">
                       Couldn't load the full service list.{' '}
@@ -329,8 +351,10 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="block text-sm mb-2 text-gray-300">Subject</label>
+                <label htmlFor="contact-subject" className="block text-sm mb-2 text-gray-300">Subject</label>
                 <input
+                  id="contact-subject"
+                  name="subject"
                   value={form.subject}
                   maxLength={200}
                   onChange={e=>setForm({...form,subject:e.target.value})}
@@ -342,10 +366,12 @@ export default function Contact() {
               <div className="contact-card-subpanel p-4 sm:p-5 space-y-4">
                 <div className="grid md:grid-cols-2 gap-4 md:gap-5">
                   <div className="min-w-0">
-                    <label className="block text-sm mb-2 text-gray-300">Preferred Date</label>
+                    <label htmlFor="contact-date" className="block text-sm mb-2 text-gray-300">Preferred Date</label>
                     <input
+                      id="contact-date"
+                      name="meetingDate"
                       type="date"
-                      min={minDate}
+                      min={hydrated ? minDate : undefined}
                       value={form.meetingDate}
                       onChange={e=>setForm({...form, meetingDate:e.target.value})}
                       className={fieldBase}
@@ -353,15 +379,16 @@ export default function Contact() {
                     {isPastSelectedDate && <p className="mt-1.5 text-xs text-red-400">Preferred date cannot be in the past.</p>}
                   </div>
                   <div className="min-w-0">
-                    <label className="block text-sm mb-2 text-gray-300">
+                    <p id="contact-time-label" className="block text-sm mb-2 text-gray-300">
                       Preferred Time <span className="text-gray-500">(Cairo time)</span>
-                    </label>
-                    <div className="flex flex-wrap gap-2.5">
+                    </p>
+                    <div className="flex flex-wrap gap-2.5" role="group" aria-labelledby="contact-time-label">
                       {timeSlots.map(t => (
                         <button
                           key={t}
                           type="button"
                           disabled={isTimeSlotDisabled(t)}
+                          aria-pressed={form.meetingTime === t}
                           onClick={() => {
                             if (isTimeSlotDisabled(t)) return;
                             setForm({ ...form, meetingTime: t });
@@ -387,8 +414,12 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="block text-sm mb-2 text-gray-300">Message</label>
+                <label htmlFor="contact-message" className="block text-sm mb-2 text-gray-300">Message</label>
                 <textarea
+                  id="contact-message"
+                  name="message"
+                  aria-invalid={errors.message ? true : undefined}
+                  aria-describedby={errors.message ? 'contact-message-error' : undefined}
                   required
                   rows={6}
                   value={form.message}
@@ -397,7 +428,7 @@ export default function Contact() {
                   placeholder="Tell us about your project goals, timeline, and priorities."
                   className={`${fieldBase} min-h-[148px] resize-y ${errors.message ? 'ring-1 ring-red-500 border-red-500' : ''}`}
                 />
-                {errors.message && <p className="mt-1.5 text-xs text-red-400">{errors.message}</p>}
+                {errors.message && <p id="contact-message-error" className="mt-1.5 text-xs text-red-400">{errors.message}</p>}
               </div>
 
               <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: '1px', height: '1px', overflow: 'hidden' }}>
@@ -416,7 +447,7 @@ export default function Contact() {
               </AnimatedButton>
 
               {status && (
-                <p className={`text-xs ${status.type==='success' ? 'text-green-400' : 'text-red-400'}`}>{status.message}</p>
+                <p role={status.type === 'success' ? 'status' : 'alert'} className={`text-xs ${status.type==='success' ? 'text-green-400' : 'text-red-400'}`}>{status.message}</p>
               )}
             </form>
           </div>

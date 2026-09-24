@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { isVisibleOnLanding } from '../../lib/firstView';
 
 export default function SectionWrapper({ id, className = '', delay = 0, children, ...rest }) {
   const ref = useRef(null);
@@ -10,10 +11,11 @@ export default function SectionWrapper({ id, className = '', delay = 0, children
     if (!el) return undefined;
     if (delay) el.style.setProperty('--reveal-delay', `${delay}ms`);
 
-    if (reduce) {
+    if (reduce || isVisibleOnLanding(el)) {
       el.classList.add('in-view');
       return undefined;
     }
+    el.classList.add('is-pending');
 
     // Reveal when 16% of the section is visible OR it fills a quarter of the screen.
     // (A ratio alone never triggers for sections taller than ~6 screens, e.g. on phones.)

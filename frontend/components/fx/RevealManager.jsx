@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { isVisibleOnLanding } from '../../lib/firstView';
 
 // Site-wide scroll reveal. Runs only in the browser, so prerendered HTML (what search
 // engines and AI crawlers read) always contains fully visible content.
@@ -34,7 +35,8 @@ export default function RevealManager() {
     const prepare = () => {
       const counters = new Map();
       main.querySelectorAll(TARGETS).forEach(el => {
-        if (el.classList.contains('rv') || el.closest(SKIP)) return;
+        if (el.classList.contains('rv') || el.dataset.rvShown || el.closest(SKIP)) return;
+        if (isVisibleOnLanding(el)) { el.dataset.rvShown = '1'; return; }
         // Animate a card as one block instead of every line inside it.
         if (el.parentElement && el.parentElement.closest('.rv')) return;
         const parent = el.parentElement;

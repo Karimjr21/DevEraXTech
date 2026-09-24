@@ -1,9 +1,9 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 
 export default function Lightbox({ item, onClose }) {
   return (
     <AnimatePresence>
-      <motion.div
+      <m.div
         key="overlay"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -11,7 +11,7 @@ export default function Lightbox({ item, onClose }) {
         className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-6"
         onClick={onClose}
       >
-        <motion.div
+        <m.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
@@ -34,8 +34,8 @@ export default function Lightbox({ item, onClose }) {
             )}
             <button onClick={onClose} className="absolute top-2 right-2 px-3 py-1 bg-gold text-dark rounded-md text-xs font-semibold">Close</button>
           </div>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </AnimatePresence>
   );
 }

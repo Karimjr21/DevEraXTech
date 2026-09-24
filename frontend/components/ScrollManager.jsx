@@ -1,11 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
+import { markNavigated } from '../lib/firstView';
 
 // On navigation: scroll to the #hash target if there is one, otherwise to the top.
 export default function ScrollManager() {
   const { pathname, hash } = useLocation();
+  const landing = useRef(true);
 
   useEffect(() => {
+    if (landing.current) landing.current = false;
+    else markNavigated();
+
     if (hash) {
       let tries = 0;
       const find = () => {

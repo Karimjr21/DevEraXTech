@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import AnimatedButton from './AnimatedButton';
+import logoNav from '../../src/assets/deveraxtech-logo-nav.png';
 
 const navItems = [
   { to: '/', label: 'Home' },
@@ -35,7 +36,7 @@ export default function Navbar() {
             aria-label="DevEraXTech Home"
           >
             <img
-              src="/assets/deveraxtech-logo-nav.png"
+              src={logoNav}
               alt="DevEraXTech logo"
               width="95"
               height="64"

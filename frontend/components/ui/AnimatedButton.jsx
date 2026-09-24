@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 export default function AnimatedButton({
@@ -26,7 +26,7 @@ export default function AnimatedButton({
   const shimmer = variant === 'gold' ? <span className="btn-shimmer" aria-hidden /> : null;
 
   return (
-    <motion.div whileHover={!disabled && { y: -2, scale: 1.01 }} whileTap={!disabled && { y: 0, scale: 0.99 }}>
+    <m.div whileHover={!disabled && { y: -2, scale: 1.01 }} whileTap={!disabled && { y: 0, scale: 0.99 }}>
       {to ? (
         <Link to={to} className={cls} onClick={onClick} aria-disabled={disabled}>
           {shimmer}
@@ -38,6 +38,6 @@ export default function AnimatedButton({
           {content}
         </button>
       )}
-    </motion.div>
+    </m.div>
   );
 }

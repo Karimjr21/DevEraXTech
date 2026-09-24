@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { m, useScroll, useSpring } from 'framer-motion';
 
 // Thin gold reading-progress line at the very top of the page.
 export function ScrollProgress() {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 140, damping: 30, mass: 0.3 });
-  return <motion.div className="fx-scroll-progress" style={{ scaleX }} aria-hidden />;
+  return <m.div className="fx-scroll-progress" style={{ scaleX }} aria-hidden />;
 }
 
 // Slowly drifting gold light and a fine film grain behind every page.

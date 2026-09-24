@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect, useRef, useState } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import SectionWrapper from '../components/ui/SectionWrapper';
 import { LoadingCards } from '../components/ui/EmptyState';
@@ -10,6 +10,7 @@ import ErrorBoundary from '../components/ui/ErrorBoundary';
 import { fetchServices } from '../lib/api';
 import useApiData from '../lib/useApiData';
 import business from '../src/data/business.json';
+import homeFaq from '../src/data/home-faq.json';
 
 // Loads the globe only when its card approaches the viewport.
 function GlobeSlot() {
@@ -106,13 +107,13 @@ export default function Home() {
         <div className="hero-stars" aria-hidden />
         <div className="hero-ambient-glow" aria-hidden />
 
-        <motion.div
+        <m.div
           className="absolute inset-0 z-0 hero-3d-stage"
           style={shouldReduceMotion ? undefined : { transform: `translate3d(${parallax.x + 14}px, ${parallax.y + 10}px, 0)` }}
           transition={{ type: 'spring', stiffness: 30, damping: 18, mass: 1.1 }}
         >
           <CircuitHero />
-        </motion.div>
+        </m.div>
       </div>
 
       <div className="min-h-screen w-full relative flex flex-col items-center justify-center pt-20 md:pt-24">
@@ -122,42 +123,42 @@ export default function Home() {
           aria-hidden
         />
 
-        <motion.div
+        <m.div
           variants={heroContainerVariants}
           initial="hidden"
           animate="show"
           className="relative z-10 left-0 right-0 mx-auto max-w-5xl px-8 w-full text-center"
         >
           {/* Premium supertitle */}
-          <motion.div variants={heroItemVariants} className="mb-6 md:mb-8">
+          <m.div variants={heroItemVariants} className="mb-6 md:mb-8">
             <p className="text-xs md:text-sm font-semibold tracking-widest text-gold/70 uppercase">
               ENGINEERED EXCELLENCE
             </p>
-          </motion.div>
+          </m.div>
 
           {/* Main headline with refined typography */}
-          <motion.h1
+          <m.h1
             variants={heroItemVariants}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 md:mb-8 gold-gradient-text leading-[1.14] md:leading-[1.09] max-w-3xl md:max-w-4xl mx-auto"
           >
             We build premium web &amp; app experiences
-          </motion.h1>
+          </m.h1>
 
           {/* Supporting paragraph */}
-          <motion.p
+          <m.p
             variants={heroItemVariants}
             className="text-base md:text-lg text-gray-300/90 max-w-2xl mx-auto mb-10 md:mb-12 leading-relaxed"
           >
             Modern, secure and scalable solutions, from prototypes to production.
-          </motion.p>
+          </m.p>
 
           {/* CTA button group with refined spacing and hierarchy */}
-          <motion.div variants={heroItemVariants} className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-center justify-center">
+          <m.div variants={heroItemVariants} className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-center justify-center">
             <AnimatedButton to="/contact">Request a Meeting</AnimatedButton>
             <AnimatedButton variant="outline" to="/services">View Our Services</AnimatedButton>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             variants={heroItemVariants}
             className="mt-8 md:mt-9 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[0.72rem] sm:text-xs tracking-[0.08em] uppercase text-gray-400/70"
             aria-label="Service quality details"
@@ -167,12 +168,12 @@ export default function Home() {
             <span>Scalable</span>
             <span className="text-gold/40" aria-hidden>•</span>
             <span>Pixel-perfect</span>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       </div>
       <SectionWrapper id="trust" className="relative z-10 max-w-6xl mx-auto px-8 pt-10 md:pt-14 lg:pt-16 pb-16 md:pb-20">
         <div className="flex justify-center">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
@@ -182,7 +183,7 @@ export default function Home() {
               <span className="inline-block w-1.5 h-1.5 rounded-full bg-gold/60"></span>
               Trusted by startups &amp; enterprises • 10+ projects shipped
             </p>
-          </motion.div>
+          </m.div>
         </div>
       </SectionWrapper>
       <div className="hero-bottom-fade" aria-hidden />
@@ -300,37 +301,12 @@ export default function Home() {
         <p className="text-[11px] tracking-[0.2em] uppercase text-gold/70">Before You Start</p>
         <h2 className="mt-2 text-xl md:text-2xl font-semibold text-gold leading-tight">Common questions before starting a website</h2>
         <div className="mt-5 space-y-5">
-          <div>
-            <h3 className="text-base font-semibold text-gray-100">Which platform is right for my website?</h3>
-            <p className="mt-1.5 text-sm text-gray-400 leading-relaxed">
-              It depends on your goals. Shopify suits brands that want a powerful, easy-to-manage online store. WordPress suits
-              businesses that publish and update content often. A custom-built website or landing page suits projects that need a
-              unique design, specific features or maximum performance. We recommend the right option during discovery.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-base font-semibold text-gray-100">What should I prepare before our first meeting?</h3>
-            <p className="mt-1.5 text-sm text-gray-400 leading-relaxed">
-              A short description of your business and goals, a few websites you like, and any brand assets you already have,
-              such as a logo or colors. If you are not sure about content or structure yet, that is fine: shaping it is part of
-              our discovery process.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-base font-semibold text-gray-100">Can I update the website myself after launch?</h3>
-            <p className="mt-1.5 text-sm text-gray-400 leading-relaxed">
-              Yes, when your project needs it. Our WordPress websites include full content management, Shopify stores come with
-              the Shopify admin for running your store, and our e-commerce websites include an admin dashboard. We choose the setup
-              that fits how your team prefers to work day to day.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-base font-semibold text-gray-100">Do you work with clients outside Egypt?</h3>
-            <p className="mt-1.5 text-sm text-gray-400 leading-relaxed">
-              Yes. Most of our work is remote, with clients across North America and the Gulf as well as Egypt. Meetings are
-              scheduled in Cairo time and shown in your local time when you book.
-            </p>
-          </div>
+          {homeFaq.map(item => (
+            <div key={item.question}>
+              <h3 className="text-base font-semibold text-gray-100">{item.question}</h3>
+              <p className="mt-1.5 text-sm text-gray-400 leading-relaxed">{item.answer}</p>
+            </div>
+          ))}
         </div>
       </div>
 

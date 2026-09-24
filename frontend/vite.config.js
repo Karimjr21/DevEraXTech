@@ -7,6 +7,10 @@ export default defineConfig({
     port: 5173,
     open: true,
   },
+  build: {
+    // Read by scripts/prerender.mjs to preload each page's own chunk; deleted afterwards.
+    manifest: true
+  },
   define: {
     __APP_VERSION__: JSON.stringify('0.1.0')
   }

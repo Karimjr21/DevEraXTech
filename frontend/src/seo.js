@@ -2,6 +2,7 @@
 // Used by the build-time prerender (scripts/prerender.mjs) and by SeoManager at runtime.
 import services from './data/services.json';
 import faq from './data/faq.json';
+import homeFaq from './data/home-faq.json';
 import business from './data/business.json';
 
 const AREAS_SHORT = 'Canada, the United States, the UAE, Saudi Arabia, Kuwait, Qatar and Egypt';
@@ -187,11 +188,12 @@ function servicesList() {
   };
 }
 
-function faqPage(url) {
+// Only questions answered visibly on the same page belong in its FAQPage.
+function faqPage(url, questions) {
   return {
     '@type': 'FAQPage',
     '@id': `${url}#faq`,
-    mainEntity: faq.map(f => ({
+    mainEntity: questions.map(f => ({
       '@type': 'Question',
       name: f.question,
       acceptedAnswer: { '@type': 'Answer', text: f.answer }
@@ -227,10 +229,11 @@ export function buildJsonLd(route) {
   }
   graph.push(page);
   if (route.path === '/services') {
-    graph.push(servicesList(), faqPage(url));
+    graph.push(servicesList(), faqPage(url, faq));
     page.mainEntity = { '@id': `${SITE.url}/services#list` };
   }
+  if (route.path === '/') graph.push(faqPage(url, homeFaq));
   return { '@context': 'https://schema.org', '@graph': graph };
 }
 
-export { services, faq, business };
+export { services, faq, homeFaq, business };

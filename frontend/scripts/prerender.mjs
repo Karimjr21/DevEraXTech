@@ -12,19 +12,25 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
 const ssrDir = path.join(root, '.ssr');
 
-const { render, ROUTES, NOT_FOUND, SITE, buildJsonLd, canonicalUrl, services, faq, business } = await import(
+const { render, ROUTES, NOT_FOUND, SITE, buildJsonLd, canonicalUrl, services, faq, homeFaq, business } = await import(
   pathToFileURL(path.join(ssrDir, 'entry-server.js')).href
 );
 const portfolio = JSON.parse(fs.readFileSync(path.join(root, 'src/data/portfolio.json'), 'utf8'));
 
 const template = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
+const manifestPath = path.join(dist, '.vite', 'manifest.json');
+const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
 const prerenderData = { services, portfolio };
 const today = new Date().toISOString().slice(0, 10);
 
 // <lastmod> is the date a page's own source last changed, not the build date: a lastmod that
 // moves on every deploy is ignored by Google. Falls back to today when git history is unavailable.
+function pageSource(route) {
+  return `pages/${route.path === '/' ? 'Home' : route.path.slice(1, 2).toUpperCase() + route.path.slice(2)}.jsx`;
+}
+
 function lastModified(route) {
-  const files = [`pages/${route.path === '/' ? 'Home' : route.path.slice(1, 2).toUpperCase() + route.path.slice(2)}.jsx`, 'src/seo.js'];
+  const files = [pageSource(route), 'src/seo.js'];
   try {
     const date = execFileSync('git', ['log', '-1', '--format=%cs', '--', ...files], { cwd: root, encoding: 'utf8' }).trim();
     return /^\d{4}-\d{2}-\d{2}$/.test(date) ? date : today;
@@ -62,12 +68,29 @@ function headTags(route) {
   return tags.filter(Boolean).join('\n    ');
 }
 
-function page(route) {
-  const appHtml = render(route.path, prerenderData);
+// <link rel="modulepreload"> for the route's page chunk (see routes/pages.js) and the shared
+// chunks it imports, so the browser fetches them alongside the main script instead of after it.
+function pagePreloads(route) {
+  const source = route.path === '/404' ? 'pages/NotFound.jsx' : pageSource(route);
+  const files = new Set();
+  const visit = key => {
+    const chunk = manifest[key];
+    if (!chunk || chunk.isEntry || files.has(chunk.file)) return;
+    files.add(chunk.file);
+    (chunk.imports || []).forEach(visit);
+  };
+  if (!manifest[source]) throw new Error(`No chunk for ${source} in the Vite manifest`);
+  visit(source);
+  return [...files].map(file => `<link rel="modulepreload" crossorigin href="/${file}">`).join('\n    ');
+}
+
+async function page(route) {
+  const appHtml = await render(route.path, prerenderData);
   let html = template
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${escText(route.title)}</title>`)
     .replace(/<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${escAttr(route.description)}" />`)
     .replace('<!--seo-head-->', headTags(route))
+    .replace('</head>', `  ${pagePreloads(route)}\n  </head>`)
     // Keep Cloudflare's "Email Address Obfuscation" from rewriting the contact email into
     // "[email protected]" links, so crawlers and AI assistants read the real address.
     .replace('<!--app-html-->', `<!--email_off-->${appHtml}<!--/email_off-->`)
@@ -77,8 +100,9 @@ function page(route) {
   console.log(`prerendered ${route.path.padEnd(11)} -> dist/${route.file} (${(html.length / 1024).toFixed(1)} KB)`);
 }
 
-for (const route of ROUTES) page(route);
-page(NOT_FOUND);
+for (const route of ROUTES) await page(route);
+await page(NOT_FOUND);
+fs.rmSync(path.join(dist, '.vite'), { recursive: true, force: true });
 
 // sitemap.xml
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
@@ -93,7 +117,14 @@ ${ROUTES.map(r => `  <url>
 fs.writeFileSync(path.join(dist, 'sitemap.xml'), sitemap);
 
 // robots.txt: everything is public; search and AI assistants are welcome to read and cite it.
-const aiBots = ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-SearchBot', 'Claude-User', 'PerplexityBot', 'Perplexity-User', 'Google-Extended', 'Applebot-Extended', 'Bingbot'];
+const aiBots = [
+  'GPTBot', 'OAI-SearchBot', 'ChatGPT-User',
+  'ClaudeBot', 'Claude-SearchBot', 'Claude-User',
+  'PerplexityBot', 'Perplexity-User',
+  'Google-Extended', 'GoogleOther', 'Bingbot',
+  'Applebot', 'Applebot-Extended',
+  'Amazonbot', 'meta-externalagent', 'DuckAssistBot', 'MistralAI-User', 'CCBot'
+];
 const robots = `# ${SITE.name}
 User-agent: *
 Allow: /
@@ -134,7 +165,7 @@ ${services.map(s => `- [${s.title}](${SITE.url}/services#${s.id}): ${s.summary} 
 
 ## Frequently asked questions
 
-${faq.map(f => `### ${f.question}\n\n${f.answer}`).join('\n\n')}
+${[...faq, ...homeFaq].map(f => `### ${f.question}\n\n${f.answer}`).join('\n\n')}
 
 ## Pages
 

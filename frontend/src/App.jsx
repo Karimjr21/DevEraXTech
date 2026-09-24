@@ -1,4 +1,5 @@
 import { BrowserRouter } from 'react-router-dom';
+import { LazyMotion } from 'framer-motion';
 import RoutesIndex from '../routes';
 import Navbar from '../components/ui/Navbar';
 import Footer from '../components/ui/Footer';
@@ -9,22 +10,27 @@ import { AmbientBackground, CardSpotlight, ScrollProgress } from '../components/
 import { PrerenderDataContext } from '../lib/prerenderData';
 import '../styles/global.css';
 
+// Framer Motion's animation code loads in its own chunk after first paint; components use `m`.
+const loadMotionFeatures = () => import('./motionFeatures.js').then(mod => mod.default);
+
 // Layout shared by the browser app and the build-time prerender (entry-server.jsx).
 export function AppShell() {
   return (
-    <div className="min-h-screen flex flex-col bg-dark">
-      <SeoManager />
-      <ScrollManager />
-      <RevealManager />
-      <CardSpotlight />
-      <AmbientBackground />
-      <ScrollProgress />
-      <Navbar />
-      <main className="flex-1 relative">
-        <RoutesIndex />
-      </main>
-      <Footer />
-    </div>
+    <LazyMotion features={loadMotionFeatures}>
+      <div className="min-h-screen flex flex-col bg-dark">
+        <SeoManager />
+        <ScrollManager />
+        <RevealManager />
+        <CardSpotlight />
+        <AmbientBackground />
+        <ScrollProgress />
+        <Navbar />
+        <main className="flex-1 relative">
+          <RoutesIndex />
+        </main>
+        <Footer />
+      </div>
+    </LazyMotion>
   );
 }
 

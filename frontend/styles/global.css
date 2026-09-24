@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Metric-matched fallbacks: text set in Arial/Times while the web fonts load takes the same
+   space as Inter/Playfair Display, so nothing shifts when they swap in (no layout shift).
+   Values from @capsizecss/metrics, computed the same way as next/font. */
+@font-face {
+  font-family: "Inter Fallback";
+  src: local("Arial"), local("ArialMT"), local("Liberation Sans");
+  size-adjust: 107.12%;
+  ascent-override: 90.44%;
+  descent-override: 22.52%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: "Playfair Display Fallback";
+  src: local("Times New Roman"), local("TimesNewRomanPSMT"), local("Liberation Serif");
+  size-adjust: 111.26%;
+  ascent-override: 97.25%;
+  descent-override: 22.56%;
+  line-gap-override: 0%;
+}
+
 :root {
   --color-bg: #0a0a0a;
   --color-gold: #d4af37;
@@ -232,9 +253,9 @@ body { background: var(--color-bg); overflow-y: auto; }
   box-shadow: 0 0 4px #d4af37,0 0 12px #d4af37,0 0 32px rgba(212,175,55,0.6);
 }
 
+/* Sections are visible in the prerendered HTML. SectionWrapper marks only sections that are
+   off-screen (or arrive via in-app navigation) as pending, then reveals them on scroll. */
 .scroll-fade {
-  opacity: 0;
-  transform: translateY(28px) scale(0.986);
   transition:
     opacity .85s cubic-bezier(.22,1,.36,1),
     transform .95s cubic-bezier(.22,1,.36,1);
@@ -242,7 +263,12 @@ body { background: var(--color-bg); overflow-y: auto; }
   will-change: opacity, transform;
 }
 
-.scroll-fade.in-view {
+.scroll-fade.is-pending {
+  opacity: 0;
+  transform: translateY(28px) scale(0.986);
+}
+
+.scroll-fade.is-pending.in-view {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
@@ -1098,7 +1124,8 @@ body { background: var(--color-bg); overflow-y: auto; }
     transition: none !important;
   }
 
-  .scroll-fade {
+  .scroll-fade,
+  .scroll-fade.is-pending {
     opacity: 1;
     transform: none;
   }
@@ -1313,7 +1340,7 @@ body { background: var(--color-bg); overflow-y: auto; }
    ========================================================================== */
 
 :root {
-  --font-display: "Playfair Display Variable", "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-display: "Playfair Display Variable", "Playfair Display", "Playfair Display Fallback", Georgia, "Times New Roman", serif;
   --ease-lux: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -1638,6 +1665,7 @@ h1.rv-heading.rv-in {
   }
   .fx-ornament .fx-draw { stroke-dashoffset: 0; }
   .rv { opacity: 1 !important; transform: none !important; filter: none !important; }
+  .fx-route-bar { display: none; }
 }
 
 .isolate > .page-ornament {

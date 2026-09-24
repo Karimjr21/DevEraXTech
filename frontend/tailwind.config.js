@@ -14,8 +14,8 @@ export default {
         gold: '#d4af37'
       },
       fontFamily: {
-        sans: ['"Inter Variable"', 'Inter', 'system-ui', 'sans-serif'],
-        display: ['"Playfair Display Variable"', '"Playfair Display"', 'Georgia', 'serif']
+        sans: ['"Inter Variable"', 'Inter', '"Inter Fallback"', 'system-ui', 'sans-serif'],
+        display: ['"Playfair Display Variable"', '"Playfair Display"', '"Playfair Display Fallback"', 'Georgia', 'serif']
       },
       boxShadow: {
         glow: '0 0 8px rgba(212,175,55,0.6), 0 0 24px rgba(212,175,55,0.4)'
