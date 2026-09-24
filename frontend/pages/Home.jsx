@@ -84,7 +84,7 @@ export default function Home() {
           style={shouldReduceMotion ? undefined : { transform: `translate3d(${parallax.x + 14}px, ${parallax.y + 10}px, 0)` }}
           transition={{ type: 'spring', stiffness: 30, damping: 18, mass: 1.1 }}
         >
-        <ErrorBoundary fallback={<div className='text-gold text-center'>3D disabled — showing static hero.<br/>Check browser console for errors.</div>}>
+        <ErrorBoundary fallback={null}>
           {typeof window !== 'undefined' && (
             <Suspense fallback={null}>
               <Logo3D />
@@ -127,7 +127,7 @@ export default function Home() {
             variants={heroItemVariants}
             className="text-base md:text-lg text-gray-300/90 max-w-2xl mx-auto mb-10 md:mb-12 leading-relaxed"
           >
-            Modern, secure and scalable solutions — from prototypes to production.
+            Modern, secure and scalable solutions, from prototypes to production.
           </motion.p>
 
           {/* CTA button group with refined spacing and hierarchy */}

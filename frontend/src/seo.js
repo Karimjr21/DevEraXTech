@@ -12,9 +12,9 @@ export const SITE = {
   locale: 'en_US',
   logo: 'https://deveraxtech.com/icon-512.png',
   image: 'https://deveraxtech.com/og-image.jpg',
-  imageAlt: 'DevEraXTech — premium web & app experiences',
+  imageAlt: 'DevEraXTech: premium web and app experiences',
   description:
-    `DevEraXTech is a web design and development studio based in Cairo, Egypt, building secure, scalable, pixel-perfect websites — business and corporate sites, e-commerce, Shopify stores, WordPress websites, portfolios and landing pages — for clients in ${AREAS_SHORT}.`,
+    `DevEraXTech is a web design and development studio based in Cairo, Egypt, building secure, scalable, pixel-perfect websites (business and corporate sites, e-commerce, Shopify stores, WordPress websites, portfolios and landing pages) for clients in ${AREAS_SHORT}.`,
   foundingDate: '2024',
   founders: [
     { name: 'Karim Ahmed', jobTitle: 'Founder' },
@@ -66,7 +66,7 @@ export const ROUTES = [
     name: 'Contact',
     title: 'Contact DevEraXTech | Book a Project Meeting',
     description:
-      'Book a meeting with DevEraXTech in Cairo. Call +20 100 001 6216 or email deveraxtech@gmail.com. Open daily 9 AM–5 PM Cairo time. Arabic, English, German.',
+      'Book a meeting with DevEraXTech in Cairo. Call +20 100 001 6216 or email deveraxtech@gmail.com. Open daily 9 AM to 5 PM Cairo time. Arabic, English, German.',
     priority: '0.9'
   }
 ];

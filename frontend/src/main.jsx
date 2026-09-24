@@ -1,5 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import '@fontsource-variable/inter';
+import '@fontsource-variable/playfair-display';
 import App from './App.jsx';
 import { readEmbeddedPrerenderData } from '../lib/prerenderData';
 

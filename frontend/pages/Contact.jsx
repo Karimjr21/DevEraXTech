@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import AnimatedButton from '../components/ui/AnimatedButton';
 import SectionWrapper from '../components/ui/SectionWrapper';
+import { GoldOrnament } from '../components/fx/Ambience';
 import { fetchServices, sendContact } from '../lib/api';
 import useApiData from '../lib/useApiData';
 import business from '../src/data/business.json';
@@ -28,7 +29,7 @@ const reassuranceItems = [
   }
 ];
 
-// Meeting slots are in Cairo time (business hours 09:00–17:00, last start 16:00),
+// Meeting slots are in Cairo time (business hours 09:00 to 17:00, last start 16:00),
 // whatever the visitor's own time zone is.
 const TZ = business.timeZone;
 const FIRST_SLOT_HOUR = parseInt(business.hours.opens, 10);
@@ -249,7 +250,8 @@ export default function Contact() {
   return (
     <div className="max-w-7xl mx-auto px-6 sm:px-8 pt-16 md:pt-20 pb-20 md:pb-24">
       <SectionWrapper className="space-y-10 md:space-y-12">
-        <div className="max-w-3xl space-y-4">
+        <div className="relative isolate space-y-4">
+          <GoldOrnament className="page-ornament" />
           <h1 className="text-4xl md:text-5xl font-bold gold-gradient-text leading-[1.1]">Contact</h1>
           <p className="text-sm md:text-base text-gray-300/90 leading-relaxed max-w-2xl">
             Let&apos;s discuss your project goals, technical requirements, and the right path to a secure premium delivery.

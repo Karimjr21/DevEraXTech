@@ -10,7 +10,11 @@ export default function ScrollManager() {
       let tries = 0;
       const find = () => {
         const el = document.getElementById(decodeURIComponent(hash.slice(1)));
-        if (el) el.scrollIntoView({ block: 'start' });
+        if (el) {
+          el.scrollIntoView({ block: 'start' });
+          // Re-align once the page transition has finished moving the content.
+          setTimeout(() => el.scrollIntoView({ block: 'start' }), 650);
+        }
         else if (tries++ < 20) setTimeout(find, 50); // content may still be loading
       };
       find();

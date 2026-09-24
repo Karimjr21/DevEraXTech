@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import AnimatedButton from '../components/ui/AnimatedButton';
 import SectionWrapper from '../components/ui/SectionWrapper';
+import { GoldOrnament } from '../components/fx/Ambience';
 import EmptyState, { LoadingCards } from '../components/ui/EmptyState';
 import { fetchPortfolio } from '../lib/api';
 import useApiData from '../lib/useApiData';
@@ -44,7 +45,8 @@ export default function Portfolio() {
   return (
     <div className="max-w-7xl mx-auto px-6 sm:px-8 pt-16 md:pt-20 pb-24 md:pb-28">
       <SectionWrapper className="space-y-7 md:space-y-9">
-        <div className="portfolio-hero-card p-6 sm:p-7 md:p-8">
+        <div className="portfolio-hero-card isolate overflow-hidden p-6 sm:p-7 md:p-8">
+          <GoldOrnament className="page-ornament" />
           <div className="space-y-3.5 md:space-y-4 max-w-3xl">
             <p className="text-[11px] tracking-[0.2em] uppercase text-gold/72">Selected Work</p>
             <h1 className="text-4xl md:text-[2.8rem] font-bold gold-gradient-text leading-[1.08]">Work</h1>

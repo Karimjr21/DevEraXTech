@@ -1,4 +1,5 @@
 import SectionWrapper from '../components/ui/SectionWrapper';
+import { GoldOrnament } from '../components/fx/Ambience';
 import { useNavigate } from 'react-router-dom';
 import AnimatedButton from '../components/ui/AnimatedButton';
 import EmptyState, { LoadingCards } from '../components/ui/EmptyState';
@@ -14,7 +15,8 @@ export default function Services() {
 
   return (
     <div className="max-w-[1400px] mx-auto px-8 py-24">
-      <div className="mb-10 md:mb-12">
+      <div className="relative isolate mb-10 md:mb-12">
+        <GoldOrnament className="page-ornament" />
         <p className="text-[0.72rem] uppercase tracking-[0.16em] text-gray-400/85 mb-3">What We Build</p>
         <div className="flex items-end gap-4">
           <h1 className="text-4xl font-bold gold-gradient-text">Services</h1>

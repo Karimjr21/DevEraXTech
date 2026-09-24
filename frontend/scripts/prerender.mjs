@@ -79,7 +79,7 @@ ${ROUTES.map(r => `  <url>
 `;
 fs.writeFileSync(path.join(dist, 'sitemap.xml'), sitemap);
 
-// robots.txt — everything is public; search and AI assistants are welcome to read and cite it.
+// robots.txt: everything is public; search and AI assistants are welcome to read and cite it.
 const aiBots = ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-SearchBot', 'Claude-User', 'PerplexityBot', 'Perplexity-User', 'Google-Extended', 'Applebot-Extended', 'Bingbot'];
 const robots = `# ${SITE.name}
 User-agent: *
@@ -91,7 +91,7 @@ Sitemap: ${SITE.url}/sitemap.xml
 `;
 fs.writeFileSync(path.join(dist, 'robots.txt'), robots);
 
-// llms.txt — a plain-language summary for AI assistants (https://llmstxt.org).
+// llms.txt: a plain-language summary for AI assistants (https://llmstxt.org).
 const llms = `# ${SITE.name}
 
 > ${SITE.description}

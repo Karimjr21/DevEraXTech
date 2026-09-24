@@ -4,6 +4,8 @@ import Navbar from '../components/ui/Navbar';
 import Footer from '../components/ui/Footer';
 import SeoManager from '../components/SeoManager';
 import ScrollManager from '../components/ScrollManager';
+import RevealManager from '../components/fx/RevealManager';
+import { AmbientBackground, CardSpotlight, ScrollProgress } from '../components/fx/Ambience';
 import { PrerenderDataContext } from '../lib/prerenderData';
 import '../styles/global.css';
 
@@ -13,8 +15,12 @@ export function AppShell() {
     <div className="min-h-screen flex flex-col bg-dark">
       <SeoManager />
       <ScrollManager />
+      <RevealManager />
+      <CardSpotlight />
+      <AmbientBackground />
+      <ScrollProgress />
       <Navbar />
-      <main className="flex-1">
+      <main className="flex-1 relative">
         <RoutesIndex />
       </main>
       <Footer />

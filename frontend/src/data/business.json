@@ -10,7 +10,7 @@
     "opens": "09:00",
     "closes": "17:00",
     "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-    "label": "Every day, 9:00 AM – 5:00 PM (Cairo time)"
+    "label": "Every day, 9:00 AM to 5:00 PM (Cairo time)"
   },
   "languages": [
     { "name": "Arabic", "code": "ar" },

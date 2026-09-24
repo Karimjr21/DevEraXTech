@@ -1,5 +1,6 @@
 import AnimatedButton from '../components/ui/AnimatedButton';
 import SectionWrapper from '../components/ui/SectionWrapper';
+import { GoldOrnament } from '../components/fx/Ambience';
 import business from '../src/data/business.json';
 
 const timeline = [
@@ -145,6 +146,7 @@ export default function About() {
         <div className="absolute inset-0 pointer-events-none" aria-hidden>
           <div className="absolute -top-16 right-[8%] w-44 h-44 rounded-full bg-gold/10 blur-3xl" />
           <div className="absolute bottom-10 left-[10%] w-36 h-36 rounded-full bg-gold/8 blur-3xl" />
+          <GoldOrnament className="page-ornament" />
         </div>
 
         <div className="relative z-[1] grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-12 items-end">
