@@ -10,6 +10,7 @@ export default function NotFound() {
       <SectionWrapper>
         <EmptyState
           icon="lost"
+          headingLevel={1}
           kicker="404"
           title="This page doesn't exist"
           text={`We couldn't find “${pathname}”. It may have moved, or the link may be mistyped.`}

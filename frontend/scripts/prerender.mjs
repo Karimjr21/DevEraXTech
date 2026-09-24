@@ -6,6 +6,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { execFileSync } from 'node:child_process';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
@@ -19,6 +20,18 @@ const portfolio = JSON.parse(fs.readFileSync(path.join(root, 'src/data/portfolio
 const template = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
 const prerenderData = { services, portfolio };
 const today = new Date().toISOString().slice(0, 10);
+
+// <lastmod> is the date a page's own source last changed, not the build date: a lastmod that
+// moves on every deploy is ignored by Google. Falls back to today when git history is unavailable.
+function lastModified(route) {
+  const files = [`pages/${route.path === '/' ? 'Home' : route.path.slice(1, 2).toUpperCase() + route.path.slice(2)}.jsx`, 'src/seo.js'];
+  try {
+    const date = execFileSync('git', ['log', '-1', '--format=%cs', '--', ...files], { cwd: root, encoding: 'utf8' }).trim();
+    return /^\d{4}-\d{2}-\d{2}$/.test(date) ? date : today;
+  } catch {
+    return today;
+  }
+}
 
 const escAttr = s => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const escText = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -72,7 +85,7 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${ROUTES.map(r => `  <url>
     <loc>${canonicalUrl(r.path)}</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${lastModified(r)}</lastmod>
     <priority>${r.priority}</priority>
   </url>`).join('\n')}
 </urlset>

@@ -25,7 +25,7 @@ export default function Footer() {
 
           <div className="flex items-center justify-center lg:justify-end gap-4 sm:gap-5 text-[0.8rem] sm:text-sm leading-5 text-gray-500">
             <a
-              href="https://www.instagram.com/deveraxtech?igsh=MWR5aTY2N3g1eWVjNQ=="
+              href="https://www.instagram.com/deveraxtech"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="DevEraXTech on Instagram"

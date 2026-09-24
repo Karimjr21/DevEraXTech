@@ -46,9 +46,9 @@ export const ROUTES = [
     path: '/portfolio',
     file: 'portfolio.html',
     name: 'Work',
-    title: 'Our Work | DevEraXTech Portfolio',
+    title: 'Web Design Portfolio | DevEraXTech, Cairo',
     description:
-      'Selected websites and digital products delivered by DevEraXTech with design precision, technical rigor and premium execution standards.',
+      'Web design portfolio of DevEraXTech, a Cairo studio: business websites, e-commerce and Shopify stores, WordPress sites and landing pages.',
     priority: '0.7'
   },
   {

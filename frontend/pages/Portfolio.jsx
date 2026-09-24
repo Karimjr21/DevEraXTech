@@ -49,7 +49,7 @@ export default function Portfolio() {
           <GoldOrnament className="page-ornament" />
           <div className="space-y-3.5 md:space-y-4 max-w-3xl">
             <p className="text-[11px] tracking-[0.2em] uppercase text-gold/72">Selected Work</p>
-            <h1 className="text-4xl md:text-[2.8rem] font-bold gold-gradient-text leading-[1.08]">Work</h1>
+            <h1 className="text-4xl md:text-[2.8rem] font-bold gold-gradient-text leading-[1.08]">Web Design Portfolio</h1>
             <p className="text-sm md:text-base text-gray-300/90 max-w-2xl leading-relaxed">
               Curated digital products delivered with design precision, technical rigor, and premium execution standards.
             </p>
@@ -80,6 +80,7 @@ export default function Portfolio() {
         {status === 'ready' && items.length === 0 && (
           <EmptyState
             kicker="Coming Soon"
+            headingLevel={2}
             title="New case studies are on the way"
             text="We're preparing detailed write-ups of recent client work. In the meantime, tell us about your project and we'll share relevant examples directly."
             actionLabel="Discuss Your Project"
@@ -157,7 +158,7 @@ export default function Portfolio() {
                 <div className="p-4 sm:p-5 md:p-6 space-y-4">
                   <div className="space-y-2.5">
                     <p className="text-[11px] tracking-[0.16em] uppercase text-gold/70">{item.category}</p>
-                    <h3 className="text-[1.35rem] md:text-[1.52rem] font-semibold text-gold leading-tight">{item.title}</h3>
+                    <h2 className="text-[1.35rem] md:text-[1.52rem] font-semibold text-gold leading-tight">{item.title}</h2>
                     <p className="text-sm md:text-[0.95rem] text-gray-300/90 leading-relaxed max-w-xl portfolio-description-clamp-single">{description}</p>
                   </div>
 
@@ -238,7 +239,7 @@ export default function Portfolio() {
                   <div className="p-5 sm:p-6 space-y-4">
                     <div className="space-y-2">
                       <p className="text-[11px] tracking-[0.16em] uppercase text-gold/70">{item.category}</p>
-                      <h3 className="text-[1.18rem] sm:text-[1.28rem] font-semibold text-gold leading-tight">{item.title}</h3>
+                      <h2 className="text-[1.18rem] sm:text-[1.28rem] font-semibold text-gold leading-tight">{item.title}</h2>
                       <p className="text-sm text-gray-300/90 leading-relaxed portfolio-description-clamp">{description}</p>
                     </div>
 
@@ -285,7 +286,7 @@ export default function Portfolio() {
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-8">
             <div className="space-y-2.5 max-w-2xl">
               <p className="text-[11px] tracking-[0.2em] uppercase text-gold/70">Next Project</p>
-              <h3 className="text-xl md:text-2xl font-semibold text-gold leading-tight">Ready to launch your next premium digital product?</h3>
+              <h2 className="text-xl md:text-2xl font-semibold text-gold leading-tight">Ready to launch your next premium digital product?</h2>
               <p className="text-sm md:text-[0.95rem] text-gray-300/90 leading-relaxed">
                 Share your goals and we will map the right approach for secure, scalable, and high-impact delivery.
               </p>

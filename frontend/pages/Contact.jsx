@@ -252,7 +252,7 @@ export default function Contact() {
       <SectionWrapper className="space-y-10 md:space-y-12">
         <div className="relative isolate space-y-4">
           <GoldOrnament className="page-ornament" />
-          <h1 className="text-4xl md:text-5xl font-bold gold-gradient-text leading-[1.1]">Contact</h1>
+          <h1 className="text-4xl md:text-5xl font-bold gold-gradient-text leading-[1.1]">Contact DevEraXTech</h1>
           <p className="text-sm md:text-base text-gray-300/90 leading-relaxed max-w-2xl">
             Let&apos;s discuss your project goals, technical requirements, and the right path to a secure premium delivery.
           </p>
@@ -424,7 +424,7 @@ export default function Contact() {
           <aside className="contact-side-card min-w-0 p-6 sm:p-7 md:p-8 space-y-7">
             <div className="space-y-3">
               <p className="text-[11px] uppercase tracking-[0.2em] text-gold/70">Consultation</p>
-              <h3 className="text-2xl md:text-[1.72rem] text-gold font-semibold leading-tight">Let&apos;s build something exceptional</h3>
+              <h2 className="text-2xl md:text-[1.72rem] text-gold font-semibold leading-tight">Let&apos;s build something exceptional</h2>
               <p className="text-sm md:text-base text-gray-300/90 leading-relaxed">
                 Share your goals and constraints. We&apos;ll help define a clear, secure, and scalable path to execution.
               </p>

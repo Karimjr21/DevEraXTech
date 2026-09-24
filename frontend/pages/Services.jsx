@@ -19,7 +19,7 @@ export default function Services() {
         <GoldOrnament className="page-ornament" />
         <p className="text-[0.72rem] uppercase tracking-[0.16em] text-gray-400/85 mb-3">What We Build</p>
         <div className="flex items-end gap-4">
-          <h1 className="text-4xl font-bold gold-gradient-text">Services</h1>
+          <h1 className="text-4xl font-bold gold-gradient-text">Web Design &amp; Development Services</h1>
           <span className="hidden sm:block h-px w-24 md:w-32 bg-gradient-to-r from-gold/55 to-transparent mb-2" aria-hidden />
         </div>
         <p className="mt-4 max-w-3xl text-sm md:text-base text-gray-300/90 leading-relaxed">
@@ -73,11 +73,11 @@ export default function Services() {
                   </p>
                   <span className="service-editorial-kicker-line" aria-hidden />
                 </div>
-                <h3
+                <h2
                   className={`service-editorial-title text-[1.55rem] md:text-[1.78rem] font-semibold tracking-tight leading-[1.16] ${card.title === 'Business / Corporate Websites' ? 'service-editorial-title--long max-w-[17ch]' : ''}`}
                 >
                   {card.title}
-                </h3>
+                </h2>
                 <p className="service-editorial-copy mt-4 leading-relaxed text-[0.96rem] md:text-[1rem] max-w-[58ch]">
                   {card.description}
                 </p>

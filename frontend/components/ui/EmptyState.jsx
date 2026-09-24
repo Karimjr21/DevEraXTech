@@ -28,8 +28,10 @@ export default function EmptyState({
   secondaryLabel,
   secondaryTo,
   role,
+  headingLevel = 3,
   className = ''
 }) {
+  const Heading = `h${headingLevel}`;
   return (
     <div className={`portfolio-empty-card empty-state p-8 sm:p-10 text-center ${className}`} role={role}>
       <div className="empty-state-icon" aria-hidden>
@@ -38,7 +40,7 @@ export default function EmptyState({
         </svg>
       </div>
       {kicker && <p className="text-[11px] tracking-[0.2em] uppercase text-gold/70 mb-2">{kicker}</p>}
-      <h3 className="text-xl text-gold font-semibold mb-2">{title}</h3>
+      <Heading className="text-xl text-gold font-semibold mb-2">{title}</Heading>
       {text && <p className="text-sm text-gray-400 max-w-md mx-auto leading-relaxed">{text}</p>}
       {(actionLabel || secondaryLabel) && (
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
