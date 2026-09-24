@@ -1,5 +1,6 @@
 import AnimatedButton from '../components/ui/AnimatedButton';
 import SectionWrapper from '../components/ui/SectionWrapper';
+import business from '../src/data/business.json';
 
 const timeline = [
   { year: '2024', text: 'Founded with mission to craft premium digital experiences.' },
@@ -13,11 +14,11 @@ const team = [
 
 const trustSignals = [
   {
-    title: 'Secure by Design',
+    title: 'Security-First Planning',
     detail: 'Security-focused planning from architecture to launch.'
   },
   {
-    title: 'Scalable Delivery',
+    title: 'Growth-Ready Structure',
     detail: 'Reliable project structure designed for growth.'
   },
   {
@@ -51,6 +52,37 @@ const pillars = [
     title: 'Premium Client Experience',
     text: 'High-touch communication, clear milestones, and thoughtful delivery at every stage.'
   }
+];
+
+const processSteps = [
+  {
+    title: 'Discovery',
+    text: 'We start with a clarity-first conversation about your goals, audience, content and constraints, so every recommendation is grounded in what your business actually needs before any scope is proposed.'
+  },
+  {
+    title: 'Scope & Plan',
+    text: 'Discovery becomes a clear scope with aligned milestones, so you know what will be delivered, in what order, and when you will review progress.'
+  },
+  {
+    title: 'Design',
+    text: 'Interfaces are shaped for clarity, conversion and brand consistency, with responsive layouts planned for phones, tablets and desktops from the start.'
+  },
+  {
+    title: 'Build & Secure',
+    text: 'We engineer each site on a structured, scalable foundation. Security is embedded from architecture decisions to final QA, and performance is checked throughout rather than at the end.'
+  },
+  {
+    title: 'Launch',
+    text: 'We launch with care, moving from pilot release to production, and keep you informed with transparent updates at every milestone.'
+  }
+];
+
+const audiences = [
+  'Companies, startups and agencies that need a professional corporate presence',
+  'Shops, clinics, factories and schools that want to be found and trusted online',
+  'Brands selling online through custom e-commerce websites or Shopify stores',
+  'Designers, photographers, developers and agencies who need a high-visual portfolio',
+  'Marketing teams launching campaigns, apps, products and services with dedicated landing pages'
 ];
 
 function getInitials(name) {
@@ -177,10 +209,18 @@ export default function About() {
         <div className="about-card about-card--editorial p-6 md:p-8 lg:p-10 grid lg:grid-cols-[1.14fr_0.86fr] gap-8 lg:gap-10">
           <div className="space-y-4">
             <p className="text-gray-200/90 leading-relaxed">
-              DevEraXTech is a focused product and engineering studio delivering premium digital platforms with disciplined execution.
+              DevEraXTech is a web design and development studio based in {business.city}, {business.country}, founded in 2024 by
+              Karim Ahmed and Loay Mohamed. We are a focused product and engineering team delivering premium digital platforms with
+              disciplined execution, and we have shipped 10+ projects for clients in Egypt, the Gulf and North America.
             </p>
             <p className="text-gray-400 leading-relaxed">
-              Our work balances modern product design with robust implementation to help ambitious brands launch and scale with confidence.
+              Our work balances modern product design with robust implementation to help ambitious brands launch and scale with
+              confidence. We build business and corporate websites, e-commerce stores, Shopify stores, WordPress websites, portfolio
+              websites and high-conversion landing pages, each engineered to be secure, fast and easy to grow.
+            </p>
+            <p className="text-gray-400 leading-relaxed">
+              Every project is treated as a long-term digital asset rather than a one-off deliverable. That means clean foundations,
+              careful attention to detail and clear communication from the first conversation to launch day.
             </p>
           </div>
 
@@ -201,6 +241,69 @@ export default function About() {
               </li>
             </ul>
           </div>
+        </div>
+      </SectionWrapper>
+
+      <SectionWrapper id="how-we-work" className="space-y-8 md:space-y-10">
+        <div className="max-w-3xl space-y-3">
+          <p className="text-xs tracking-[0.2em] uppercase text-gold/70">Process</p>
+          <h2 className="text-2xl md:text-3xl font-semibold text-gold leading-tight">How we deliver a project</h2>
+          <p className="text-sm md:text-base text-gray-400 leading-relaxed">
+            A clear, milestone-based process keeps every project predictable, whether it is a single landing page or a full online store.
+          </p>
+        </div>
+
+        <ol className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5" role="list">
+          {processSteps.map((step, index) => (
+            <li key={step.title} className="about-card about-card--functional p-5 md:p-6">
+              <p className="text-[11px] uppercase tracking-[0.18em] text-gold/70 mb-2">Step {index + 1}</p>
+              <h3 className="text-base md:text-lg font-semibold text-gold leading-snug mb-2">{step.title}</h3>
+              <p className="text-sm text-gray-300/90 leading-relaxed">{step.text}</p>
+            </li>
+          ))}
+        </ol>
+      </SectionWrapper>
+
+      <SectionWrapper id="who-we-work-with" className="space-y-8 md:space-y-9">
+        <div className="about-card about-card--editorial p-6 md:p-8 lg:p-10 grid lg:grid-cols-2 gap-8 lg:gap-10">
+          <div className="space-y-3">
+            <p className="text-xs tracking-[0.2em] uppercase text-gold/70">Clients</p>
+            <h2 className="text-2xl md:text-3xl font-semibold text-gold leading-tight">Who we work with</h2>
+            <p className="text-sm md:text-base text-gray-400 leading-relaxed">
+              Our clients range from established companies to first-time founders. What they share is a need for a website
+              that looks premium, works flawlessly and supports real business goals.
+            </p>
+          </div>
+          <ul className="space-y-3 text-sm md:text-base text-gray-300/90 lg:border-l lg:border-gold/15 lg:pl-7">
+            {audiences.map(item => (
+              <li key={item} className="flex items-start gap-3">
+                <span className="mt-2 w-1.5 h-1.5 flex-shrink-0 rounded-full bg-gold/80" aria-hidden />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </SectionWrapper>
+
+      <SectionWrapper id="worldwide" className="space-y-8 md:space-y-9">
+        <div className="max-w-3xl space-y-3">
+          <p className="text-xs tracking-[0.2em] uppercase text-gold/70">Where We Work</p>
+          <h2 className="text-2xl md:text-3xl font-semibold text-gold leading-tight">Based in Cairo, working worldwide</h2>
+          <p className="text-sm md:text-base text-gray-300/90 leading-relaxed">
+            Our studio is based in {business.city}, {business.country}, and we work remotely with clients in{' '}
+            {business.areasServed.map(a => a.name).join(', ').replace(/, ([^,]*)$/, ' and $1')}.
+          </p>
+          <p className="text-sm md:text-base text-gray-400 leading-relaxed">
+            We are available every day from 9:00 AM to 5:00 PM Cairo time, and we work in{' '}
+            {business.languages.map(l => l.name).join(', ').replace(/, ([^,]*)$/, ' and $1')}. When you book a meeting through
+            our contact form, times are shown in Cairo time together with your local equivalent, so scheduling across time zones
+            stays simple. Most inquiries receive a response within one business day.
+          </p>
+          <p className="text-sm md:text-base text-gray-400 leading-relaxed">
+            Projects run fully remotely. Meetings are scheduled around your time zone, progress is shared at every milestone, and
+            you keep one clear line of communication from kickoff to launch, whether your business is in Toronto, New York,
+            Dubai, Riyadh, Kuwait City, Doha or Cairo.
+          </p>
         </div>
       </SectionWrapper>
 
@@ -309,7 +412,7 @@ export default function About() {
           </div>
 
           <div className="md:pb-1">
-            <AnimatedButton to="/contact">Book a Meeting</AnimatedButton>
+            <AnimatedButton to="/contact">Plan Your Project</AnimatedButton>
           </div>
         </div>
       </SectionWrapper>

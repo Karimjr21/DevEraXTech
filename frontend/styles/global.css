@@ -66,12 +66,15 @@ body { background: var(--color-bg); overflow-y: auto; }
   background: linear-gradient(180deg, rgba(10,10,10,0.18), rgba(10,10,10,0));
 }
 
-.navbar-mobile-cta {
-  min-width: 10rem;
+/* Header CTA: compact button below 1024px, pill with glow on desktop */
+@media (max-width: 1023px) {
+  .navbar-cta {
+    min-width: 10rem;
+  }
 }
 
 @media (max-width: 420px) {
-  .navbar-mobile-cta {
+  .navbar-cta {
     display: none;
     min-width: 0;
   }
@@ -113,13 +116,15 @@ body { background: var(--color-bg); overflow-y: auto; }
   transform: scaleX(1);
 }
 
-.navbar-cta {
-  border-radius: 999px;
-  box-shadow: 0 12px 30px -16px rgba(212,175,55,0.52), 0 0 0 1px rgba(212,175,55,0.30) inset;
-}
+@media (min-width: 1024px) {
+  .navbar-cta {
+    border-radius: 999px;
+    box-shadow: 0 12px 30px -16px rgba(212,175,55,0.52), 0 0 0 1px rgba(212,175,55,0.30) inset;
+  }
 
-.navbar-cta:hover {
-  box-shadow: 0 16px 34px -16px rgba(212,175,55,0.45), 0 0 18px -6px rgba(212,175,55,0.30);
+  .navbar-cta:hover {
+    box-shadow: 0 16px 34px -16px rgba(212,175,55,0.45), 0 0 18px -6px rgba(212,175,55,0.30);
+  }
 }
 
 .hero-3d-stage {

@@ -51,6 +51,10 @@ export default function Portfolio() {
             <p className="text-sm md:text-base text-gray-300/90 max-w-2xl leading-relaxed">
               Curated digital products delivered with design precision, technical rigor, and premium execution standards.
             </p>
+            <p className="text-sm md:text-base text-gray-400 max-w-2xl leading-relaxed">
+              Our work spans business and corporate websites, e-commerce and Shopify stores, WordPress websites, portfolio sites and
+              landing pages for clients in Egypt, the Gulf and North America. Each project is built to be secure, fast and easy to grow.
+            </p>
           </div>
         </div>
 
@@ -76,7 +80,7 @@ export default function Portfolio() {
             kicker="Coming Soon"
             title="New case studies are on the way"
             text="We're preparing detailed write-ups of recent client work. In the meantime, tell us about your project and we'll share relevant examples directly."
-            actionLabel="Book a Meeting"
+            actionLabel="Discuss Your Project"
             actionTo="/contact"
             secondaryLabel="View Services"
             secondaryTo="/services"
@@ -284,7 +288,7 @@ export default function Portfolio() {
                 Share your goals and we will map the right approach for secure, scalable, and high-impact delivery.
               </p>
             </div>
-            <AnimatedButton to="/contact" className="w-full sm:w-auto min-w-[13rem]">Book a Meeting</AnimatedButton>
+            <AnimatedButton to="/contact" className="w-full sm:w-auto min-w-[13rem]">Start Your Next Project</AnimatedButton>
           </div>
         </div>
       </SectionWrapper>

@@ -444,6 +444,15 @@ export default function Contact() {
               Meeting slots are reviewed with project context to ensure practical and focused discussions.
             </div>
 
+            <div className="space-y-3">
+              <p className="text-[11px] uppercase tracking-[0.2em] text-gold/70">What Happens Next</p>
+              <ol className="space-y-2.5 text-sm text-gray-300/90 leading-relaxed list-decimal pl-5 marker:text-gold/80">
+                <li>We read your message and reply, usually within one business day.</li>
+                <li>If you picked a meeting time, we confirm it or suggest the nearest available slot in Cairo time.</li>
+                <li>On the call we discuss your goals, content and timeline, then send a clear scope with milestones.</li>
+              </ol>
+            </div>
+
             <div className="space-y-3" aria-labelledby="contact-details-heading">
               <p id="contact-details-heading" className="text-[11px] uppercase tracking-[0.2em] text-gold/70">Contact Details</p>
               <address className="not-italic">

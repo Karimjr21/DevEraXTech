@@ -61,24 +61,21 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
-        {/* Mobile controls */}
-        <div className="lg:hidden flex items-center gap-2 justify-self-end flex-shrink-0">
+        {/* CTA (one element for all sizes, so the link isn't duplicated) + mobile menu toggle */}
+        <div className="flex items-center gap-2 justify-self-end flex-shrink-0">
           {!hideCTA ? (
-            <AnimatedButton className="navbar-mobile-cta h-10 px-4 text-[0.92rem] max-[380px]:h-9 max-[380px]:px-3 max-[380px]:text-[0.82rem]" to="/contact">
+            <AnimatedButton
+              className="navbar-cta h-10 px-4 lg:px-5 text-[0.92rem] max-[380px]:h-9 max-[380px]:px-3 max-[380px]:text-[0.82rem]"
+              to="/contact"
+            >
               Book a Meeting
             </AnimatedButton>
           ) : (
-            <div className="w-0 h-9" aria-hidden />
+            <div className="w-0 h-9 lg:w-[128px] lg:h-10" aria-hidden />
           )}
-          <MobileMenu />
-        </div>
-        {/* Desktop CTA */}
-        <div className="hidden lg:block justify-self-end">
-          {!hideCTA ? (
-            <AnimatedButton className="navbar-cta h-10 px-5 text-sm md:text-[0.92rem]" to="/contact">Book a Meeting </AnimatedButton>
-          ) : (
-            <div className="w-[128px] h-10 inline-block" aria-hidden />
-          )}
+          <div className="lg:hidden">
+            <MobileMenu />
+          </div>
         </div>
       </nav>
       {/* Mobile menu panel renders below header */}
@@ -100,6 +97,12 @@ function MobileMenu() {
         };
       }
       setOpen(window.__navOpen);
+      // Stay in sync when the panel closes itself (e.g. after tapping a link).
+      const fn = (val) => setOpen(val);
+      window.__listeners.push(fn);
+      return () => {
+        window.__listeners = window.__listeners.filter(f => f !== fn);
+      };
     }
   }, []);
   return (
@@ -150,8 +153,11 @@ function MobileMenuPanel() {
 
   const close = () => typeof window !== 'undefined' && window.__setNavOpen(false);
 
+  // Only rendered while open, so the page doesn't carry a second copy of every nav link.
+  if (!open) return null;
+
   return (
-      <div className={`${open ? 'block' : 'hidden'} relative z-[3] lg:hidden border-t border-white/10 bg-black/68 backdrop-blur-xl`}>
+      <div className="block relative z-[3] lg:hidden border-t border-white/10 bg-black/68 backdrop-blur-xl">
       <div className="max-w-6xl mx-auto px-4 py-3">
         <ul className="flex flex-col gap-3 text-base">
           {navItems.map(item => (

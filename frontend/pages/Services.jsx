@@ -44,7 +44,7 @@ export default function Services() {
           kicker="Updating"
           title="Our service list is being refreshed"
           text="We're updating our offerings. Tell us what you want to build and we'll tailor a solution for you."
-          actionLabel="Book a Meeting"
+          actionLabel="Tell Us What You Need"
           actionTo="/contact"
         />
       )}

@@ -1,6 +1,9 @@
+import { useLocation } from 'react-router-dom';
 import business from '../../src/data/business.json';
 
 export default function Footer() {
+  // The Contact page already links phone and email in its details card.
+  const onContact = useLocation().pathname === '/contact';
   return (
     <footer className="footer-shell relative z-10">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10 pt-6 md:pt-7 pb-6 md:pb-7">
@@ -44,9 +47,9 @@ export default function Footer() {
         <address className="footer-contact not-italic mt-4 pt-4 border-t border-white/5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-[0.78rem] sm:text-[0.82rem] text-gray-500">
           <span>{business.city}, {business.country}</span>
           <span className="text-gold/30" aria-hidden>•</span>
-          <a href={`tel:${business.phoneE164}`}>{business.phoneDisplay}</a>
+          {onContact ? <span>{business.phoneDisplay}</span> : <a href={`tel:${business.phoneE164}`}>{business.phoneDisplay}</a>}
           <span className="text-gold/30" aria-hidden>•</span>
-          <a href={`mailto:${business.email}`}>{business.email}</a>
+          {onContact ? <span>{business.email}</span> : <a href={`mailto:${business.email}`}>{business.email}</a>}
           <span className="text-gold/30" aria-hidden>•</span>
           <span>{business.hours.label}</span>
         </address>

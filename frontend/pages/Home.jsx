@@ -8,6 +8,7 @@ const Logo3D = lazy(() => import('../components/3d/Logo3D'));
 import ErrorBoundary from '../components/ui/ErrorBoundary';
 import { fetchServices } from '../lib/api';
 import useApiData from '../lib/useApiData';
+import business from '../src/data/business.json';
 
 export default function Home() {
   const shouldReduceMotion = useReducedMotion();
@@ -217,8 +218,35 @@ export default function Home() {
         ))}
       </div>
 
+      <div className="mt-12 md:mt-14 grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6">
+        <div className="about-card p-6 md:p-7">
+          <p className="text-[11px] tracking-[0.2em] uppercase text-gold/70">How It Works</p>
+          <h2 className="mt-2 text-xl md:text-2xl font-semibold text-gold leading-tight">From first call to launch</h2>
+          <ol className="mt-4 space-y-3 text-sm text-gray-300/90 leading-relaxed list-decimal pl-5 marker:text-gold/80">
+            <li><b className="text-gray-100">Discovery call.</b> Tell us about your goals, audience and timeline, and we map the right approach before proposing any scope.</li>
+            <li><b className="text-gray-100">Plan and design.</b> You get a clear scope with milestones, then interfaces designed for clarity, conversion and your brand.</li>
+            <li><b className="text-gray-100">Build, secure and launch.</b> We engineer a fast, secure, responsive site and launch it with transparent updates at every step.</li>
+          </ol>
+          <Link to="/about#how-we-work" className="mt-4 inline-flex items-center gap-1 text-xs uppercase tracking-[0.12em] text-gold/80 hover:text-gold">
+            Read about our full process <span aria-hidden>→</span>
+          </Link>
+        </div>
+        <div className="about-card p-6 md:p-7">
+          <p className="text-[11px] tracking-[0.2em] uppercase text-gold/70">Where We Work</p>
+          <h2 className="mt-2 text-xl md:text-2xl font-semibold text-gold leading-tight">Cairo-based, serving clients worldwide</h2>
+          <p className="mt-4 text-sm text-gray-300/90 leading-relaxed">
+            DevEraXTech is based in {business.city}, {business.country}, and builds websites for clients in{' '}
+            {business.areasServed.map(a => a.name).join(', ').replace(/, ([^,]*)$/, ' and $1')}.
+          </p>
+          <p className="mt-3 text-sm text-gray-400 leading-relaxed">
+            We work in {business.languages.map(l => l.name).join(', ').replace(/, ([^,]*)$/, ' and $1')}, and we are available
+            every day from 9:00 AM to 5:00 PM Cairo time. Meetings booked online show both Cairo time and your local time.
+          </p>
+        </div>
+      </div>
+
       <div className="mt-10 md:mt-12 flex flex-col sm:flex-row gap-4 sm:gap-5 items-center justify-center">
-        <AnimatedButton to="/contact">Request a Meeting</AnimatedButton>
+        <AnimatedButton to="/contact">Start Your Project</AnimatedButton>
         <AnimatedButton variant="outline" to="/services">Explore All Services</AnimatedButton>
       </div>
     </SectionWrapper>
