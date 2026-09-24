@@ -3,15 +3,14 @@ import dots from '../../src/data/globe-dots.json';
 
 // Gold dotted globe with arcs from Cairo to the markets DevEraXTech serves.
 // Canvas 2D, no map libraries: land dots are precomputed (src/data/globe-dots.json).
-const HQ = { name: 'Cairo', lon: 31.24, lat: 30.04, label: [-12, -12, 'right'] };
-// label: [dx, dy, align] in CSS pixels, tuned so the Gulf cluster stays legible.
+const HQ = { name: 'Cairo', lon: 31.24, lat: 30.04 };
 const CITIES = [
-  { name: 'Toronto', lon: -79.38, lat: 43.65, label: [8, -9, 'left'] },
-  { name: 'New York', lon: -74.0, lat: 40.71, label: [8, 8, 'left'] },
-  { name: 'Kuwait City', lon: 47.98, lat: 29.37, label: [0, -15, 'center'] },
-  { name: 'Doha', lon: 51.53, lat: 25.29, label: [10, 0, 'left'] },
-  { name: 'Dubai', lon: 55.27, lat: 25.2, label: [10, 13, 'left'] },
-  { name: 'Riyadh', lon: 46.68, lat: 24.71, label: [-6, 16, 'right'] }
+  { name: 'Toronto', lon: -79.38, lat: 43.65 },
+  { name: 'New York', lon: -74.0, lat: 40.71 },
+  { name: 'Kuwait City', lon: 47.98, lat: 29.37 },
+  { name: 'Doha', lon: 51.53, lat: 25.29 },
+  { name: 'Dubai', lon: 55.27, lat: 25.2 },
+  { name: 'Riyadh', lon: 46.68, lat: 24.71 }
 ];
 
 const RAD = Math.PI / 180;
@@ -176,10 +175,8 @@ export default function GoldGlobe({ className = '' }) {
         }
       });
 
-      // City markers and labels.
-      ctx.font = `500 ${10.5 * dpr}px "Inter Variable", Inter, system-ui, sans-serif`;
-      ctx.textBaseline = 'middle';
-      const marker = (vec, label, isHQ, [lx, ly, align]) => {
+      // City markers (no text labels; the cities are listed in the copy beside the globe).
+      const marker = (vec, isHQ) => {
         const [x, y, depth] = project(vec);
         if (depth <= 0.05) return;
         const pulse = isHQ && !reduce ? (Math.sin(t * 2.4) + 1) / 2 : 0.5;
@@ -197,19 +194,9 @@ export default function GoldGlobe({ className = '' }) {
         ctx.beginPath();
         ctx.arc(x, y, (isHQ ? 9 : 6) * dpr, 0, Math.PI * 2);
         ctx.fill();
-        ctx.fillStyle = `rgba(${GOLD},${(0.45 + depth * 0.5).toFixed(3)})`;
-        // Keep labels inside the canvas: flip to the other side of the marker if needed.
-        const width = ctx.measureText(label).width;
-        let tx = x + lx * dpr;
-        let ta = align;
-        if (ta === 'left' && tx + width > W - 4 * dpr) { tx = x - Math.abs(lx) * dpr; ta = 'right'; }
-        if (ta === 'right' && tx - width < 4 * dpr) { tx = x + Math.abs(lx) * dpr; ta = 'left'; }
-        if (ta === 'center') tx = Math.min(W - 4 * dpr - width / 2, Math.max(4 * dpr + width / 2, tx));
-        ctx.textAlign = ta;
-        ctx.fillText(label, tx, y + ly * dpr);
       };
-      CITIES.forEach(c => marker(toVec(c.lon, c.lat), c.name, false, c.label));
-      marker(HQ_VEC, 'Cairo HQ', true, HQ.label);
+      CITIES.forEach(c => marker(toVec(c.lon, c.lat), false));
+      marker(HQ_VEC, true);
     };
 
     const loop = (now) => {
