@@ -1,3 +1,5 @@
+import business from '../../src/data/business.json';
+
 export default function Footer() {
   return (
     <footer className="footer-shell relative z-10">
@@ -38,6 +40,16 @@ export default function Footer() {
             </div>
           </div>
         </div>
+
+        <address className="footer-contact not-italic mt-4 pt-4 border-t border-white/5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-[0.78rem] sm:text-[0.82rem] text-gray-500">
+          <span>{business.city}, {business.country}</span>
+          <span className="text-gold/30" aria-hidden>•</span>
+          <a href={`tel:${business.phoneE164}`}>{business.phoneDisplay}</a>
+          <span className="text-gold/30" aria-hidden>•</span>
+          <a href={`mailto:${business.email}`}>{business.email}</a>
+          <span className="text-gold/30" aria-hidden>•</span>
+          <span>{business.hours.label}</span>
+        </address>
       </div>
     </footer>
   );

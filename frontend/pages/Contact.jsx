@@ -4,6 +4,7 @@ import AnimatedButton from '../components/ui/AnimatedButton';
 import SectionWrapper from '../components/ui/SectionWrapper';
 import { fetchServices, sendContact } from '../lib/api';
 import useApiData from '../lib/useApiData';
+import business from '../src/data/business.json';
 
 // Always offered, so the form still works if the service list can't be loaded.
 const GENERAL_INQUIRY = 'Other / General Inquiry';
@@ -27,12 +28,34 @@ const reassuranceItems = [
   }
 ];
 
-function formatYYYYMMDD(date) {
-  const y = date.getFullYear();
-  const m = String(date.getMonth() + 1).padStart(2, '0');
-  const d = String(date.getDate()).padStart(2, '0');
-  return `${y}-${m}-${d}`;
+// Meeting slots are in Cairo time (business hours 09:00–17:00, last start 16:00),
+// whatever the visitor's own time zone is.
+const TZ = business.timeZone;
+const FIRST_SLOT_HOUR = parseInt(business.hours.opens, 10);
+const LAST_SLOT_HOUR = parseInt(business.hours.closes, 10) - 1;
+
+function wallClockIn(timeZone, date) {
+  const parts = Object.fromEntries(
+    new Intl.DateTimeFormat('en-CA', {
+      timeZone, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+    }).formatToParts(date).map(p => [p.type, p.value])
+  );
+  return {
+    date: `${parts.year}-${parts.month}-${parts.day}`,
+    minutes: Number(parts.hour) * 60 + Number(parts.minute),
+    ms: Date.UTC(+parts.year, +parts.month - 1, +parts.day, +parts.hour, +parts.minute)
+  };
 }
+
+// The instant at which it is `hour`:00 on `dateStr` (YYYY-MM-DD) in Cairo.
+function cairoSlotToDate(dateStr, hour) {
+  const [y, m, d] = dateStr.split('-').map(Number);
+  const guess = Date.UTC(y, m - 1, d, hour, 0);
+  const offset = wallClockIn(TZ, new Date(guess)).ms - guess;
+  return new Date(guess - offset);
+}
+
+const VISITOR_TZ = typeof Intl !== 'undefined' ? Intl.DateTimeFormat().resolvedOptions().timeZone : TZ;
 
 function parseTimeToMinutes(hhmm) {
   const [hh, mm] = String(hhmm).split(':');
@@ -63,9 +86,7 @@ export default function Contact() {
 
   const timeSlots = useMemo(() => {
     const slots = [];
-    const startHour = 8;  // 08:00
-    const endHour = 18;   // 18:00
-    for (let h = startHour; h <= endHour; h += 1) {
+    for (let h = FIRST_SLOT_HOUR; h <= LAST_SLOT_HOUR; h += 1) {
       const hours = String(h).padStart(2, '0');
       slots.push(`${hours}:00`);
     }
@@ -78,23 +99,27 @@ export default function Contact() {
     return () => clearInterval(id);
   }, []);
 
-  const minDate = useMemo(() => formatYYYYMMDD(new Date()), []);
+  const cairoNow = useMemo(() => wallClockIn(TZ, now), [now]);
+  const minDate = cairoNow.date;
   const isPastSelectedDate = useMemo(() => {
     if (!form.meetingDate) return false;
-    const selected = new Date(`${form.meetingDate}T00:00:00`);
-    if (Number.isNaN(selected.getTime())) return false;
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    return selected.getTime() < today.getTime();
-  }, [form.meetingDate]);
+    return form.meetingDate < cairoNow.date;
+  }, [form.meetingDate, cairoNow.date]);
 
   const isTodaySelected = useMemo(() => {
     if (!form.meetingDate) return false;
-    return form.meetingDate === formatYYYYMMDD(now);
-  }, [form.meetingDate, now]);
+    return form.meetingDate === cairoNow.date;
+  }, [form.meetingDate, cairoNow.date]);
+
+  // Visitor's local time for the chosen Cairo slot (shown only when their zone differs).
+  const localEquivalent = useMemo(() => {
+    if (!form.meetingDate || !form.meetingTime || VISITOR_TZ === TZ) return '';
+    const at = cairoSlotToDate(form.meetingDate, parseInt(form.meetingTime, 10));
+    return at.toLocaleString(undefined, { weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short' });
+  }, [form.meetingDate, form.meetingTime]);
 
   const isTimeSlotDisabled = useMemo(() => {
-    const minutesNow = now.getHours() * 60 + now.getMinutes();
+    const minutesNow = cairoNow.minutes;
     return (slot) => {
       if (isPastSelectedDate) return true;
       if (!form.meetingDate) return false;
@@ -103,7 +128,7 @@ export default function Contact() {
       if (!Number.isFinite(slotMinutes)) return false;
       return slotMinutes <= minutesNow;
     };
-  }, [form.meetingDate, isTodaySelected, isPastSelectedDate, now]);
+  }, [form.meetingDate, isTodaySelected, isPastSelectedDate, cairoNow.minutes]);
 
   // If user changes the date and the chosen time becomes invalid, clear it.
   useEffect(() => {
@@ -165,13 +190,15 @@ export default function Contact() {
       // Combine meeting date/time into a readable string if provided
       let meetingDateTime = '';
       if (form.meetingDate && form.meetingTime) {
-        const date = new Date(form.meetingDate);
-        const formattedDate = date.toLocaleDateString(undefined, {
+        const date = new Date(`${form.meetingDate}T00:00:00Z`);
+        const formattedDate = date.toLocaleDateString('en-US', {
+          timeZone: 'UTC',
           year: 'numeric',
           month: 'long',
           day: 'numeric'
         });
-        meetingDateTime = `on ${formattedDate} at ${form.meetingTime}`;
+        meetingDateTime = `on ${formattedDate} at ${form.meetingTime} Cairo time`;
+        if (localEquivalent) meetingDateTime += ` (${localEquivalent} for me)`;
       }
 
       // Build the final message in the required format
@@ -324,7 +351,9 @@ export default function Contact() {
                     {isPastSelectedDate && <p className="mt-1.5 text-xs text-red-400">Preferred date cannot be in the past.</p>}
                   </div>
                   <div className="min-w-0">
-                    <label className="block text-sm mb-2 text-gray-300">Preferred Time</label>
+                    <label className="block text-sm mb-2 text-gray-300">
+                      Preferred Time <span className="text-gray-500">(Cairo time)</span>
+                    </label>
                     <div className="flex flex-wrap gap-2.5">
                       {timeSlots.map(t => (
                         <button
@@ -345,6 +374,9 @@ export default function Contact() {
                         >{t}</button>
                       ))}
                     </div>
+                    {localEquivalent && (
+                      <p className="mt-1.5 text-xs text-gold/80">That&apos;s {localEquivalent} your time.</p>
+                    )}
                     {form.meetingDate && isTodaySelected && (
                       <p className="mt-1.5 text-xs text-gray-400">Past times for today are disabled.</p>
                     )}
@@ -410,6 +442,38 @@ export default function Contact() {
 
             <div className="contact-side-note rounded-xl px-4 py-3 text-xs sm:text-sm text-gray-300/90">
               Meeting slots are reviewed with project context to ensure practical and focused discussions.
+            </div>
+
+            <div className="space-y-3" aria-labelledby="contact-details-heading">
+              <p id="contact-details-heading" className="text-[11px] uppercase tracking-[0.2em] text-gold/70">Contact Details</p>
+              <address className="not-italic">
+                <dl className="contact-details">
+                  <div>
+                    <dt>Phone</dt>
+                    <dd><a href={`tel:${business.phoneE164}`}>{business.phoneDisplay}</a></dd>
+                  </div>
+                  <div>
+                    <dt>Email</dt>
+                    <dd><a href={`mailto:${business.email}`}>{business.email}</a></dd>
+                  </div>
+                  <div>
+                    <dt>Location</dt>
+                    <dd>{business.city}, {business.country}</dd>
+                  </div>
+                  <div>
+                    <dt>Hours</dt>
+                    <dd>{business.hours.label}</dd>
+                  </div>
+                  <div>
+                    <dt>Languages</dt>
+                    <dd>{business.languages.map(l => l.name).join(', ')}</dd>
+                  </div>
+                  <div>
+                    <dt>We serve</dt>
+                    <dd>{business.areasServed.map(a => a.name).join(', ')}</dd>
+                  </div>
+                </dl>
+              </address>
             </div>
           </aside>
         </div>

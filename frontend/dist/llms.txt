@@ -1,8 +1,18 @@
 # DevEraXTech
 
-> DevEraXTech is a web design and development studio building secure, scalable, pixel-perfect websites: business and corporate sites, e-commerce, Shopify stores, WordPress websites, portfolios and landing pages.
+> DevEraXTech is a web design and development studio based in Cairo, Egypt, building secure, scalable, pixel-perfect websites — business and corporate sites, e-commerce, Shopify stores, WordPress websites, portfolios and landing pages — for clients in Canada, the United States, the UAE, Saudi Arabia, Kuwait, Qatar and Egypt.
 
 DevEraXTech was founded in 2024 by Karim Ahmed (Founder) and Loay Mohamed (Co-founder). We design and build websites that are secure by design, scalable and pixel-perfect, and we treat every project as a long-term digital asset. Most inquiries receive a response within one business day.
+
+## At a glance
+
+- Based in: Cairo, Egypt
+- Serving clients in: Canada, United States, United Arab Emirates, Saudi Arabia, Kuwait, Qatar, Egypt
+- Languages: Arabic, English, German
+- Hours: Every day, 9:00 AM – 5:00 PM (Cairo time)
+- Phone: +20 100 001 6216
+- Email: deveraxtech@gmail.com
+- Founded: 2024; 10+ projects shipped
 
 ## Services
 
@@ -30,6 +40,14 @@ We design and build business and corporate websites, e-commerce websites, Shopif
 
 Yes. We build bespoke Shopify stores with designed product pages, a seamless cart and secure payment integrations, and custom WordPress websites with responsive, high-performance layouts and full content management.
 
+### Where is DevEraXTech based?
+
+DevEraXTech is based in Cairo, Egypt, and works with clients remotely across North America, the Gulf and Egypt.
+
+### Which countries does DevEraXTech serve?
+
+We serve clients in Canada, the United States, the United Arab Emirates, Saudi Arabia, Kuwait, Qatar and Egypt.
+
 ### Can you build an online store with payments and an admin dashboard?
 
 Yes. Our e-commerce websites include product pages, a shopping cart, checkout, payment integrations and an admin dashboard for managing your store.
@@ -46,15 +64,26 @@ Use the contact form to choose the service you need, describe your goals and, if
 
 Security is embedded from architecture decisions to final QA, reducing risk before launch. Each project is treated as a long-term digital asset, engineered for resilience, usability and growth.
 
+### What languages can we work with you in?
+
+We work in Arabic, English and German.
+
+### What are your working hours?
+
+We are available every day from 9:00 AM to 5:00 PM Cairo time. You can reach us at +20 100 001 6216 or deveraxtech@gmail.com, or book a meeting through the contact form.
+
 ## Pages
 
-- [Home](https://deveraxtech.com/): DevEraXTech designs and builds secure, scalable, pixel-perfect websites — business sites, e-commerce, Shopify, WordPress, portfolios and landing pages.
-- [Services](https://deveraxtech.com/services): Business and corporate websites, e-commerce stores, Shopify stores, WordPress websites, portfolio sites and high-conversion landing pages by DevEraXTech.
+- [Home](https://deveraxtech.com/): Cairo-based studio building secure, pixel-perfect websites, e-commerce, Shopify and WordPress sites for clients in Egypt, the Gulf, the US and Canada.
+- [Services](https://deveraxtech.com/services): Business websites, e-commerce, Shopify, WordPress, portfolio sites and landing pages for clients in Egypt, UAE, Saudi Arabia, Kuwait, Qatar, US and Canada.
 - [Work](https://deveraxtech.com/portfolio): Selected websites and digital products delivered by DevEraXTech with design precision, technical rigor and premium execution standards.
-- [About](https://deveraxtech.com/about): Founded in 2024 by Karim Ahmed and Loay Mohamed, DevEraXTech builds premium digital products with disciplined engineering and security at the core.
-- [Contact](https://deveraxtech.com/contact): Tell us about your website or app project and book a meeting with DevEraXTech. Most inquiries receive a response within one business day.
+- [About](https://deveraxtech.com/about): Founded in 2024 in Cairo, Egypt by Karim Ahmed and Loay Mohamed, DevEraXTech builds premium digital products with security at the core.
+- [Contact](https://deveraxtech.com/contact): Book a meeting with DevEraXTech in Cairo. Call +20 100 001 6216 or email deveraxtech@gmail.com. Open daily 9 AM–5 PM Cairo time. Arabic, English, German.
 
 ## Contact
 
 - Start a project or book a meeting: https://deveraxtech.com/contact
+- Phone: +20 100 001 6216
+- Email: deveraxtech@gmail.com
+- Hours: Every day, 9:00 AM – 5:00 PM (Cairo time)
 - Instagram: https://www.instagram.com/deveraxtech

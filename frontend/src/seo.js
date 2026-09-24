@@ -2,6 +2,9 @@
 // Used by the build-time prerender (scripts/prerender.mjs) and by SeoManager at runtime.
 import services from './data/services.json';
 import faq from './data/faq.json';
+import business from './data/business.json';
+
+const AREAS_SHORT = 'Canada, the United States, the UAE, Saudi Arabia, Kuwait, Qatar and Egypt';
 
 export const SITE = {
   name: 'DevEraXTech',
@@ -11,7 +14,7 @@ export const SITE = {
   image: 'https://deveraxtech.com/og-image.jpg',
   imageAlt: 'DevEraXTech — premium web & app experiences',
   description:
-    'DevEraXTech is a web design and development studio building secure, scalable, pixel-perfect websites: business and corporate sites, e-commerce, Shopify stores, WordPress websites, portfolios and landing pages.',
+    `DevEraXTech is a web design and development studio based in Cairo, Egypt, building secure, scalable, pixel-perfect websites — business and corporate sites, e-commerce, Shopify stores, WordPress websites, portfolios and landing pages — for clients in ${AREAS_SHORT}.`,
   foundingDate: '2024',
   founders: [
     { name: 'Karim Ahmed', jobTitle: 'Founder' },
@@ -25,9 +28,9 @@ export const ROUTES = [
     path: '/',
     file: 'index.html',
     name: 'Home',
-    title: 'DevEraXTech | Premium Web Design & Development Studio',
+    title: 'DevEraXTech | Web Design & Development Studio in Cairo',
     description:
-      'DevEraXTech designs and builds secure, scalable, pixel-perfect websites — business sites, e-commerce, Shopify, WordPress, portfolios and landing pages.',
+      'Cairo-based studio building secure, pixel-perfect websites, e-commerce, Shopify and WordPress sites for clients in Egypt, the Gulf, the US and Canada.',
     priority: '1.0'
   },
   {
@@ -36,7 +39,7 @@ export const ROUTES = [
     name: 'Services',
     title: 'Web Design & Development Services | DevEraXTech',
     description:
-      'Business and corporate websites, e-commerce stores, Shopify stores, WordPress websites, portfolio sites and high-conversion landing pages by DevEraXTech.',
+      'Business websites, e-commerce, Shopify, WordPress, portfolio sites and landing pages for clients in Egypt, UAE, Saudi Arabia, Kuwait, Qatar, US and Canada.',
     priority: '0.9'
   },
   {
@@ -54,7 +57,7 @@ export const ROUTES = [
     name: 'About',
     title: 'About DevEraXTech | Secure, Premium Digital Products',
     description:
-      'Founded in 2024 by Karim Ahmed and Loay Mohamed, DevEraXTech builds premium digital products with disciplined engineering and security at the core.',
+      'Founded in 2024 in Cairo, Egypt by Karim Ahmed and Loay Mohamed, DevEraXTech builds premium digital products with security at the core.',
     priority: '0.8'
   },
   {
@@ -63,7 +66,7 @@ export const ROUTES = [
     name: 'Contact',
     title: 'Contact DevEraXTech | Book a Project Meeting',
     description:
-      'Tell us about your website or app project and book a meeting with DevEraXTech. Most inquiries receive a response within one business day.',
+      'Book a meeting with DevEraXTech in Cairo. Call +20 100 001 6216 or email deveraxtech@gmail.com. Open daily 9 AM–5 PM Cairo time. Arabic, English, German.',
     priority: '0.9'
   }
 ];
@@ -89,9 +92,18 @@ export function canonicalUrl(path) {
 const ORG_ID = `${SITE.url}/#organization`;
 const WEBSITE_ID = `${SITE.url}/#website`;
 
+function openingHours() {
+  return {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: business.hours.days.map(d => `https://schema.org/${d}`),
+    opens: business.hours.opens,
+    closes: business.hours.closes
+  };
+}
+
 function organization() {
   return {
-    '@type': 'Organization',
+    '@type': ['Organization', 'ProfessionalService'],
     '@id': ORG_ID,
     name: SITE.name,
     url: `${SITE.url}/`,
@@ -101,6 +113,16 @@ function organization() {
     foundingDate: SITE.foundingDate,
     founder: SITE.founders.map(f => ({ '@type': 'Person', name: f.name, jobTitle: f.jobTitle })),
     sameAs: SITE.sameAs,
+    email: business.email,
+    telephone: business.phoneE164,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: business.city,
+      addressCountry: business.countryCode
+    },
+    areaServed: business.areasServed.map(a => ({ '@type': 'Country', name: a.name, identifier: a.code })),
+    knowsLanguage: business.languages.map(l => l.code),
+    openingHoursSpecification: [openingHours()],
     slogan: 'Secure. Scalable. Pixel-perfect.',
     knowsAbout: [
       'Web design',
@@ -114,8 +136,12 @@ function organization() {
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'sales',
+      telephone: business.phoneE164,
+      email: business.email,
       url: `${SITE.url}/contact`,
-      availableLanguage: ['English']
+      areaServed: business.areasServed.map(a => a.code),
+      availableLanguage: business.languages.map(l => l.name),
+      hoursAvailable: openingHours()
     },
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
@@ -207,4 +233,4 @@ export function buildJsonLd(route) {
   return { '@context': 'https://schema.org', '@graph': graph };
 }
 
-export { services, faq };
+export { services, faq, business };

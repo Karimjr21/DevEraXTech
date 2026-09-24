@@ -158,7 +158,7 @@ export default function Home() {
           >
             <p className="text-sm md:text-base text-gray-400/80 chip-lux inline-flex items-center rounded-full px-4 md:px-6 py-2.5 md:py-3 gap-3 backdrop-blur-sm">
               <span className="inline-block w-1.5 h-1.5 rounded-full bg-gold/60"></span>
-              Trusted by startups &amp; enterprises • 50+ projects shipped
+              Trusted by startups &amp; enterprises • 10+ projects shipped
             </p>
           </motion.div>
         </div>

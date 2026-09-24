@@ -1,0 +1,29 @@
+{
+  "city": "Cairo",
+  "country": "Egypt",
+  "countryCode": "EG",
+  "timeZone": "Africa/Cairo",
+  "phoneDisplay": "+20 100 001 6216",
+  "phoneE164": "+201000016216",
+  "email": "deveraxtech@gmail.com",
+  "hours": {
+    "opens": "09:00",
+    "closes": "17:00",
+    "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "label": "Every day, 9:00 AM – 5:00 PM (Cairo time)"
+  },
+  "languages": [
+    { "name": "Arabic", "code": "ar" },
+    { "name": "English", "code": "en" },
+    { "name": "German", "code": "de" }
+  ],
+  "areasServed": [
+    { "name": "Canada", "code": "CA" },
+    { "name": "United States", "code": "US" },
+    { "name": "United Arab Emirates", "code": "AE" },
+    { "name": "Saudi Arabia", "code": "SA" },
+    { "name": "Kuwait", "code": "KW" },
+    { "name": "Qatar", "code": "QA" },
+    { "name": "Egypt", "code": "EG" }
+  ]
+}

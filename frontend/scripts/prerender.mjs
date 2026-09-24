@@ -11,7 +11,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
 const ssrDir = path.join(root, '.ssr');
 
-const { render, ROUTES, NOT_FOUND, SITE, buildJsonLd, canonicalUrl, services, faq } = await import(
+const { render, ROUTES, NOT_FOUND, SITE, buildJsonLd, canonicalUrl, services, faq, business } = await import(
   pathToFileURL(path.join(ssrDir, 'entry-server.js')).href
 );
 const portfolio = JSON.parse(fs.readFileSync(path.join(root, 'src/data/portfolio.json'), 'utf8'));
@@ -96,6 +96,16 @@ const llms = `# ${SITE.name}
 
 ${SITE.name} was founded in ${SITE.foundingDate} by ${SITE.founders.map(f => `${f.name} (${f.jobTitle})`).join(' and ')}. We design and build websites that are secure by design, scalable and pixel-perfect, and we treat every project as a long-term digital asset. Most inquiries receive a response within one business day.
 
+## At a glance
+
+- Based in: ${business.city}, ${business.country}
+- Serving clients in: ${business.areasServed.map(a => a.name).join(', ')}
+- Languages: ${business.languages.map(l => l.name).join(', ')}
+- Hours: ${business.hours.label}
+- Phone: ${business.phoneDisplay}
+- Email: ${business.email}
+- Founded: ${SITE.foundingDate}; 10+ projects shipped
+
 ## Services
 
 ${services.map(s => `- [${s.title}](${SITE.url}/services#${s.id}): ${s.summary} Includes: ${s.features.join('; ')}.`).join('\n')}
@@ -118,6 +128,9 @@ ${ROUTES.map(r => `- [${r.name}](${canonicalUrl(r.path)}): ${r.description}`).jo
 ## Contact
 
 - Start a project or book a meeting: ${SITE.url}/contact
+- Phone: ${business.phoneDisplay}
+- Email: ${business.email}
+- Hours: ${business.hours.label}
 - Instagram: ${SITE.sameAs[0]}
 `;
 fs.writeFileSync(path.join(dist, 'llms.txt'), llms);
