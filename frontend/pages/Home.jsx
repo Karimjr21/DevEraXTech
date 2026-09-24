@@ -4,11 +4,38 @@ import { Link } from 'react-router-dom';
 import SectionWrapper from '../components/ui/SectionWrapper';
 import { LoadingCards } from '../components/ui/EmptyState';
 import AnimatedButton from '../components/ui/AnimatedButton';
-const Logo3D = lazy(() => import('../components/3d/Logo3D'));
+import CircuitHero from '../components/fx/CircuitHero';
+const GoldGlobe = lazy(() => import('../components/fx/GoldGlobe'));
 import ErrorBoundary from '../components/ui/ErrorBoundary';
 import { fetchServices } from '../lib/api';
 import useApiData from '../lib/useApiData';
 import business from '../src/data/business.json';
+
+// Loads the globe only when its card approaches the viewport.
+function GlobeSlot() {
+  const ref = useRef(null);
+  const [show, setShow] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === 'undefined') { setShow(true); return undefined; }
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setShow(true); io.disconnect(); }
+    }, { rootMargin: '400px 0px' });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return (
+    <div ref={ref} className="globe-slot rv-skip" aria-hidden={!show}>
+      {show && (
+        <ErrorBoundary fallback={null}>
+          <Suspense fallback={null}>
+            <GoldGlobe />
+          </Suspense>
+        </ErrorBoundary>
+      )}
+    </div>
+  );
+}
 
 export default function Home() {
   const shouldReduceMotion = useReducedMotion();
@@ -84,13 +111,7 @@ export default function Home() {
           style={shouldReduceMotion ? undefined : { transform: `translate3d(${parallax.x + 14}px, ${parallax.y + 10}px, 0)` }}
           transition={{ type: 'spring', stiffness: 30, damping: 18, mass: 1.1 }}
         >
-        <ErrorBoundary fallback={null}>
-          {typeof window !== 'undefined' && (
-            <Suspense fallback={null}>
-              <Logo3D />
-            </Suspense>
-          )}
-        </ErrorBoundary>
+          <CircuitHero />
         </motion.div>
       </div>
 
@@ -237,30 +258,41 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="mt-12 md:mt-14 grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6">
-        <div className="about-card p-6 md:p-7">
+      <div className="mt-12 md:mt-14 space-y-5 md:space-y-6">
+        <div className="about-card p-6 md:p-8">
           <p className="text-[11px] tracking-[0.2em] uppercase text-gold/70">How It Works</p>
           <h2 className="mt-2 text-xl md:text-2xl font-semibold text-gold leading-tight">From first call to launch</h2>
-          <ol className="mt-4 space-y-3 text-sm text-gray-300/90 leading-relaxed list-decimal pl-5 marker:text-gold/80">
-            <li><b className="text-gray-100">Discovery call.</b> Tell us about your goals, audience and timeline, and we map the right approach before proposing any scope.</li>
-            <li><b className="text-gray-100">Plan and design.</b> You get a clear scope with milestones, then interfaces designed for clarity, conversion and your brand.</li>
-            <li><b className="text-gray-100">Build, secure and launch.</b> We engineer a fast, secure, responsive site and launch it with transparent updates at every step.</li>
+          <ol className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 text-sm text-gray-300/90 leading-relaxed" role="list">
+            {[
+              ['Discovery call.', 'Tell us about your goals, audience and timeline, and we map the right approach before proposing any scope.'],
+              ['Plan and design.', 'You get a clear scope with milestones, then interfaces designed for clarity, conversion and your brand.'],
+              ['Build, secure and launch.', 'We engineer a fast, secure, responsive site and launch it with transparent updates at every step.']
+            ].map(([title, text], i) => (
+              <li key={title} className="border-t border-gold/20 pt-4">
+                <span className="block font-display text-2xl text-gold/80 leading-none mb-2">0{i + 1}</span>
+                <b className="text-gray-100">{title}</b> {text}
+              </li>
+            ))}
           </ol>
-          <Link to="/about#how-we-work" className="mt-4 inline-flex items-center gap-1 text-xs uppercase tracking-[0.12em] text-gold/80 hover:text-gold">
+          <Link to="/about#how-we-work" className="mt-5 inline-flex items-center gap-1 text-xs uppercase tracking-[0.12em] text-gold/80 hover:text-gold">
             Read about our full process <span aria-hidden>→</span>
           </Link>
         </div>
-        <div className="about-card p-6 md:p-7">
-          <p className="text-[11px] tracking-[0.2em] uppercase text-gold/70">Where We Work</p>
-          <h2 className="mt-2 text-xl md:text-2xl font-semibold text-gold leading-tight">Cairo-based, serving clients worldwide</h2>
-          <p className="mt-4 text-sm text-gray-300/90 leading-relaxed">
-            DevEraXTech is based in {business.city}, {business.country}, and builds websites for clients in{' '}
-            {business.areasServed.map(a => a.name).join(', ').replace(/, ([^,]*)$/, ' and $1')}.
-          </p>
-          <p className="mt-3 text-sm text-gray-400 leading-relaxed">
-            We work in {business.languages.map(l => l.name).join(', ').replace(/, ([^,]*)$/, ' and $1')}, and we are available
-            every day from 9:00 AM to 5:00 PM Cairo time. Meetings booked online show both Cairo time and your local time.
-          </p>
+
+        <div className="about-card p-6 md:p-8 grid grid-cols-1 md:grid-cols-[1fr_1.05fr] gap-6 md:gap-10 items-center">
+          <div>
+            <p className="text-[11px] tracking-[0.2em] uppercase text-gold/70">Where We Work</p>
+            <h2 className="mt-2 text-xl md:text-2xl font-semibold text-gold leading-tight">Cairo-based, serving clients worldwide</h2>
+            <p className="mt-4 text-sm text-gray-300/90 leading-relaxed">
+              DevEraXTech is based in {business.city}, {business.country}, and builds websites for clients in{' '}
+              {business.areasServed.map(a => a.name).join(', ').replace(/, ([^,]*)$/, ' and $1')}.
+            </p>
+            <p className="mt-3 text-sm text-gray-400 leading-relaxed">
+              We work in {business.languages.map(l => l.name).join(', ').replace(/, ([^,]*)$/, ' and $1')}, and we are available
+              every day from 9:00 AM to 5:00 PM Cairo time. Meetings booked online show both Cairo time and your local time.
+            </p>
+          </div>
+          <GlobeSlot />
         </div>
       </div>
 

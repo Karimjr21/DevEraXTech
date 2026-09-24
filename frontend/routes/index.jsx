@@ -17,9 +17,9 @@ export default function RoutesIndex() {
     <AnimatePresence mode="wait" initial={false}>
       <motion.div
         key={location.pathname}
-        initial={reduce ? { opacity: 0 } : { opacity: 0, y: 18, filter: 'blur(6px)' }}
-        animate={{ opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.55, ease: EASE }, transitionEnd: { filter: 'none', transform: 'none' } }}
-        exit={reduce ? { opacity: 0 } : { opacity: 0, y: -10, filter: 'blur(4px)', transition: { duration: 0.25, ease: EASE } }}
+        initial={reduce ? { opacity: 0 } : { opacity: 0, y: 18 }}
+        animate={{ opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE }, transitionEnd: { transform: 'none' } }}
+        exit={reduce ? { opacity: 0 } : { opacity: 0, y: -10, transition: { duration: 0.25, ease: EASE } }}
       >
         {!reduce && <span key={`bar-${location.pathname}`} className="fx-route-bar" aria-hidden />}
         <Routes location={location}>

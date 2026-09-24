@@ -1643,3 +1643,161 @@ h1.rv-heading.rv-in {
 .isolate > .page-ornament {
   z-index: -1;
 }
+
+/* ==========================================================================
+   Home hero: gold circuit board
+   ========================================================================== */
+.circuit-hero {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  height: 100svh;
+}
+
+.circuit-board {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ct-portrait { display: none; }
+
+@media (max-aspect-ratio: 1/1) {
+  .ct-landscape { display: none; }
+  .ct-portrait { display: block; }
+}
+
+.ct-grid-dot { fill: rgba(242, 209, 123, 0.09); }
+
+.ct-trace,
+.ct-chip,
+.ct-corner {
+  fill: none;
+  stroke: var(--ct-stroke, #d4af37);
+  vector-effect: non-scaling-stroke;
+}
+
+.ct-trace {
+  stroke-width: 1.15;
+  opacity: 0.62;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: ct-draw 2.1s var(--ease-lux) var(--d, 0s) forwards;
+}
+
+.ct-chip {
+  stroke-width: 1;
+  opacity: 0.32;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: ct-draw 2.6s var(--ease-lux) 0.2s forwards;
+}
+
+.ct-chip--inner {
+  opacity: 0.14;
+  animation-delay: 0.6s;
+}
+
+.ct-corner {
+  stroke-width: 1.5;
+  opacity: 0.85;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: ct-draw 1.6s var(--ease-lux) 0.4s forwards;
+}
+
+.ct-pin {
+  fill: #f5d573;
+  opacity: 0;
+  animation: ct-fade-in 0.6s ease calc(var(--d, 0s) + 1.4s) forwards;
+}
+
+.ct-pad {
+  opacity: 0;
+  animation: ct-fade-in 0.8s ease var(--d, 0s) forwards;
+}
+
+.ct-pad circle {
+  fill: none;
+  stroke: #d4af37;
+  stroke-width: 1.1;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.7;
+}
+
+.ct-pad .ct-pad-core {
+  fill: #f5d573;
+  stroke: none;
+  opacity: 1;
+}
+
+.ct-pulse,
+.ct-pulse-glow {
+  fill: none;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 0.045 1.045;
+  stroke-dashoffset: 0.045;
+  opacity: 0;
+  animation: ct-pulse var(--t, 4s) linear var(--pd, 2s) infinite;
+}
+
+.ct-pulse {
+  stroke: #fff4cf;
+  stroke-width: 1.6;
+}
+
+.ct-pulse-glow {
+  stroke: rgba(245, 213, 115, 0.22);
+  stroke-width: 4;
+}
+
+@keyframes ct-draw { to { stroke-dashoffset: 0; } }
+@keyframes ct-fade-in { to { opacity: 1; } }
+@keyframes ct-pulse {
+  0% { stroke-dashoffset: 0.045; opacity: 0; }
+  8% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { stroke-dashoffset: -1; opacity: 0; }
+}
+
+.circuit-hero.is-paused * {
+  animation-play-state: paused !important;
+}
+
+/* The circuit art is crisp and quiet, so the heavy 3D-era vignette can be lighter */
+.hero-3d-stage { opacity: 1; }
+
+/* ==========================================================================
+   Gold globe (Where we work)
+   ========================================================================== */
+.globe-slot {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+}
+
+.gold-globe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation: globe-in 1.4s var(--ease-lux) both;
+}
+
+@keyframes globe-in {
+  from { opacity: 0; transform: scale(0.92); filter: blur(6px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ct-trace, .ct-chip { stroke-dashoffset: 0; animation: none; }
+  .ct-corner, .ct-pin, .ct-pad { opacity: 1; animation: none; }
+  .ct-pulse, .ct-pulse-glow { display: none; }
+  .gold-globe { animation: none; }
+}

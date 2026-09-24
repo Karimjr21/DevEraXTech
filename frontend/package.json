@@ -11,15 +11,10 @@
   "dependencies": {
     "@fontsource-variable/inter": "^5.3.0",
     "@fontsource-variable/playfair-display": "^5.3.0",
-    "@react-three/drei": "^9.88.3",
-    "@react-three/fiber": "^8.15.19",
-    "@react-three/postprocessing": "^2.16.0",
     "framer-motion": "^10.16.4",
-    "postprocessing": "^6.35.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^7.18.4",
-    "three": "^0.160.0"
+    "react-router-dom": "^7.18.4"
   },
   "devDependencies": {
     "@types/react": "^18.2.21",
