@@ -174,28 +174,29 @@ export default function Home() {
           Websites engineered to be secure, scalable and pixel-perfect
         </h2>
         <p className="text-sm md:text-base text-gray-300/90 leading-relaxed">
-          DevEraXTech designs and builds business websites, online stores and high-conversion pages for companies,
-          startups and creatives. Every project is treated as a long-term digital asset, engineered for resilience,
-          elegant usability and growth.
+          DevEraXTech is a web design and development studio in Cairo, Egypt. We build premium web and app experiences
+          for companies, startups and creatives: business websites, online stores and high-conversion pages that look
+          exceptional and work flawlessly on every device. Every project is treated as a long-term digital asset,
+          engineered for resilience, elegant usability and growth. Whether you need a corporate website, a new online store
+          or a single campaign landing page, we plan, design and build it end to end with the same care and attention to
+          detail.
         </p>
       </div>
 
       {servicesStatus === 'ready' && services.length > 0 && (
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5" role="list">
           {services.map(service => (
-            <li key={service.id || service.title}>
-              <Link
-                to={`/services#${service.id}`}
-                className="about-card home-service-card block h-full p-5 md:p-6"
-              >
-                <h3 className="text-lg font-semibold text-gold leading-snug">{service.title}</h3>
-                <p className="mt-2 text-sm text-gray-400 leading-relaxed">
-                  {service.summary || service.description}
-                </p>
-                <span className="mt-4 inline-flex items-center gap-1 text-xs uppercase tracking-[0.12em] text-gold/80">
-                  Learn more <span aria-hidden>→</span>
-                </span>
-              </Link>
+            <li key={service.id || service.title} className="about-card home-service-card relative h-full p-5 md:p-6">
+              {/* Only the title is the link (short anchor text); its ::after overlay keeps the whole card clickable. */}
+              <h3 className="text-lg font-semibold text-gold leading-snug">
+                <Link to={`/services#${service.id}`} className="card-stretched-link">{service.title}</Link>
+              </h3>
+              <p className="mt-2 text-sm text-gray-400 leading-relaxed">
+                {service.summary || service.description}
+              </p>
+              <span className="mt-4 inline-flex items-center gap-1 text-xs uppercase tracking-[0.12em] text-gold/80" aria-hidden>
+                View details →
+              </span>
             </li>
           ))}
         </ul>
@@ -216,6 +217,24 @@ export default function Home() {
             <p className="mt-2 text-sm text-gray-400 leading-relaxed">{text}</p>
           </div>
         ))}
+      </div>
+
+      <div className="mt-12 md:mt-14">
+        <p className="text-[11px] tracking-[0.2em] uppercase text-gold/70">Why DevEraXTech</p>
+        <h2 className="mt-2 text-xl md:text-2xl font-semibold text-gold leading-tight">Why clients choose DevEraXTech</h2>
+        <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+          {[
+            ['Premium design, not templates', 'Every interface is designed around your brand and your customers, so your website feels distinctive and communicates quality from the first screen.'],
+            ['Security built in from day one', 'Security decisions start at the architecture stage and continue through final QA, which reduces risk before your website ever goes live.'],
+            ['Fast, responsive and scalable', 'Pages are built to load quickly and adapt to phones, tablets and desktops, on a structure that can grow as your business adds pages, products or markets.'],
+            ['One clear line of communication', 'You get transparent updates, aligned milestones and a response to most inquiries within one business day, in Arabic, English or German.']
+          ].map(([title, text]) => (
+            <div key={title} className="border-l border-gold/30 pl-4">
+              <h3 className="text-base font-semibold text-gray-100">{title}</h3>
+              <p className="mt-1.5 text-sm text-gray-400 leading-relaxed">{text}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="mt-12 md:mt-14 grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6">
@@ -245,7 +264,50 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="mt-10 md:mt-12 flex flex-col sm:flex-row gap-4 sm:gap-5 items-center justify-center">
+      <div className="mt-12 md:mt-14 max-w-3xl">
+        <p className="text-[11px] tracking-[0.2em] uppercase text-gold/70">Before You Start</p>
+        <h2 className="mt-2 text-xl md:text-2xl font-semibold text-gold leading-tight">Common questions before starting a website</h2>
+        <div className="mt-5 space-y-5">
+          <div>
+            <h3 className="text-base font-semibold text-gray-100">Which platform is right for my website?</h3>
+            <p className="mt-1.5 text-sm text-gray-400 leading-relaxed">
+              It depends on your goals. Shopify suits brands that want a powerful, easy-to-manage online store. WordPress suits
+              businesses that publish and update content often. A custom-built website or landing page suits projects that need a
+              unique design, specific features or maximum performance. We recommend the right option during discovery.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-base font-semibold text-gray-100">What should I prepare before our first meeting?</h3>
+            <p className="mt-1.5 text-sm text-gray-400 leading-relaxed">
+              A short description of your business and goals, a few websites you like, and any brand assets you already have,
+              such as a logo or colors. If you are not sure about content or structure yet, that is fine: shaping it is part of
+              our discovery process.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-base font-semibold text-gray-100">Can I update the website myself after launch?</h3>
+            <p className="mt-1.5 text-sm text-gray-400 leading-relaxed">
+              Yes, when your project needs it. Our WordPress websites include full content management, Shopify stores come with
+              the Shopify admin for running your store, and our e-commerce websites include an admin dashboard. We choose the setup
+              that fits how your team prefers to work day to day.
+            </p>
+          </div>
+          <div>
+            <h3 className="text-base font-semibold text-gray-100">Do you work with clients outside Egypt?</h3>
+            <p className="mt-1.5 text-sm text-gray-400 leading-relaxed">
+              Yes. Most of our work is remote, with clients across North America and the Gulf as well as Egypt. Meetings are
+              scheduled in Cairo time and shown in your local time when you book.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <p className="mt-12 md:mt-14 max-w-2xl mx-auto text-center text-sm md:text-base text-gray-300/90 leading-relaxed">
+        Ready to build a website that reflects the quality of your business? Tell us what you have in mind, choose a meeting
+        time that suits you, and we will reply with clear next steps, usually within one business day.
+      </p>
+
+      <div className="mt-6 md:mt-8 flex flex-col sm:flex-row gap-4 sm:gap-5 items-center justify-center">
         <AnimatedButton to="/contact">Start Your Project</AnimatedButton>
         <AnimatedButton variant="outline" to="/services">Explore All Services</AnimatedButton>
       </div>

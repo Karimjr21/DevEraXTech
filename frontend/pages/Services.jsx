@@ -20,6 +20,11 @@ export default function Services() {
           <h1 className="text-4xl font-bold gold-gradient-text">Services</h1>
           <span className="hidden sm:block h-px w-24 md:w-32 bg-gradient-to-r from-gold/55 to-transparent mb-2" aria-hidden />
         </div>
+        <p className="mt-4 max-w-3xl text-sm md:text-base text-gray-300/90 leading-relaxed">
+          Web design and development services from DevEraXTech, a studio based in Cairo, Egypt. From corporate websites and
+          online stores to Shopify, WordPress, portfolio sites and landing pages, every build is secure, fast, responsive and
+          ready to grow with your business.
+        </p>
       </div>
 
       {status === 'loading' && (

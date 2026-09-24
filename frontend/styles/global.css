@@ -1268,3 +1268,34 @@ body { background: var(--color-bg); overflow-y: auto; }
 .footer-contact a:focus-visible {
   color: #f5d573;
 }
+
+/* Whole card clickable while only the title is the link (keeps anchor text short for SEO) */
+.card-stretched-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.card-stretched-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: 1;
+}
+
+.card-stretched-link:focus-visible {
+  outline: none;
+}
+
+.card-stretched-link:focus-visible::after {
+  outline: 2px solid rgba(242,209,123,0.7);
+  outline-offset: 3px;
+}
+
+.home-service-card {
+  cursor: pointer;
+}
+
+.home-service-card:hover h3 {
+  color: #f5d573;
+}
