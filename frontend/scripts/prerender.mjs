@@ -55,7 +55,9 @@ function page(route) {
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${escText(route.title)}</title>`)
     .replace(/<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${escAttr(route.description)}" />`)
     .replace('<!--seo-head-->', headTags(route))
-    .replace('<!--app-html-->', appHtml)
+    // Keep Cloudflare's "Email Address Obfuscation" from rewriting the contact email into
+    // "[email protected]" links, so crawlers and AI assistants read the real address.
+    .replace('<!--app-html-->', `<!--email_off-->${appHtml}<!--/email_off-->`)
     .replace('<!--prerender-data-->', `<script type="application/json" id="__PRERENDER_DATA__">${safeJson(prerenderData)}</script>`);
   if (html.includes('<!--seo-head-->') || html.includes('<!--app-html-->')) throw new Error(`Template markers missing for ${route.path}`);
   fs.writeFileSync(path.join(dist, route.file), html);
