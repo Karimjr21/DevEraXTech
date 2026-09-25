@@ -863,8 +863,13 @@ body { background: var(--color-bg); overflow-y: auto; }
 }
 
 .portfolio-media-shell--single {
-  height: clamp(204px, 24vw, 276px);
-  min-height: 0;
+  min-height: clamp(260px, 28vw, 420px);
+}
+
+.portfolio-media-shell--single .portfolio-media-img {
+  position: absolute;
+  inset: 0;
+  object-position: left center;
 }
 
 .portfolio-featured-card {

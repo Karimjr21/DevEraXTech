@@ -3,6 +3,7 @@
 import services from './data/services.json';
 import faq from './data/faq.json';
 import business from './data/business.json';
+import portfolio from './data/portfolio.json';
 
 const AREAS_SHORT = 'Canada, the United States, the UAE, Saudi Arabia, Kuwait, Qatar and Egypt';
 
@@ -48,7 +49,7 @@ export const ROUTES = [
     name: 'Work',
     title: 'Web Design Portfolio | DevEraXTech, Cairo',
     description:
-      'Web design portfolio of DevEraXTech, a Cairo studio: business websites, e-commerce and Shopify stores, WordPress sites and landing pages.',
+      'Web design portfolio of DevEraXTech, a Cairo studio: MERN stack web apps like the Nilora Estates real estate platform, business websites, e-commerce and landing pages.',
     priority: '0.7'
   },
   {
@@ -187,6 +188,43 @@ function servicesList() {
   };
 }
 
+const absolute = path => (/^https?:\/\//.test(path) ? path : `${SITE.url}${path}`);
+
+function portfolioList() {
+  return {
+    '@type': 'ItemList',
+    '@id': `${SITE.url}/portfolio#list`,
+    name: 'DevEraXTech web design and development projects',
+    itemListElement: portfolio.map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'CreativeWork',
+        '@id': `${SITE.url}/portfolio#${p.id}`,
+        name: p.title,
+        description: p.description,
+        url: p.url,
+        genre: p.category,
+        keywords: [...(p.tags || []), ...(p.stack || [])].join(', '),
+        dateCreated: p.year,
+        creator: { '@id': ORG_ID },
+        ...(p.client ? { sourceOrganization: { '@type': 'Organization', name: p.client, url: p.url } } : {}),
+        ...(p.location ? { locationCreated: { '@type': 'Place', name: p.location } } : {}),
+        ...(p.image
+          ? {
+              image: {
+                '@type': 'ImageObject',
+                url: absolute(p.image),
+                caption: p.imageAlt || p.title,
+                ...(p.imageWidth ? { width: p.imageWidth, height: p.imageHeight } : {})
+              }
+            }
+          : {})
+      }
+    }))
+  };
+}
+
 function faqPage(url) {
   return {
     '@type': 'FAQPage',
@@ -230,7 +268,11 @@ export function buildJsonLd(route) {
     graph.push(servicesList(), faqPage(url));
     page.mainEntity = { '@id': `${SITE.url}/services#list` };
   }
+  if (route.path === '/portfolio' && portfolio.length) {
+    graph.push(portfolioList());
+    page.mainEntity = { '@id': `${SITE.url}/portfolio#list` };
+  }
   return { '@context': 'https://schema.org', '@graph': graph };
 }
 
-export { services, faq, business };
+export { services, faq, business, portfolio };

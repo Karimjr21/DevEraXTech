@@ -82,11 +82,14 @@ page(NOT_FOUND);
 
 // sitemap.xml
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${ROUTES.map(r => `  <url>
     <loc>${canonicalUrl(r.path)}</loc>
     <lastmod>${lastModified(r)}</lastmod>
-    <priority>${r.priority}</priority>
+    <priority>${r.priority}</priority>${r.path === '/portfolio' ? portfolio.filter(p => p.image).map(p => `
+    <image:image>
+      <image:loc>${escText(p.image.startsWith('http') ? p.image : SITE.url + p.image)}</image:loc>
+    </image:image>`).join('') : ''}
   </url>`).join('\n')}
 </urlset>
 `;
@@ -125,7 +128,22 @@ ${SITE.name} was founded in ${SITE.foundingDate} by ${SITE.founders.map(f => `${
 
 ${services.map(s => `- [${s.title}](${SITE.url}/services#${s.id}): ${s.summary} Includes: ${s.features.join('; ')}.`).join('\n')}
 
-## How we work
+${portfolio.length ? `## Recent work
+
+${portfolio.map(p => `### ${p.title}
+
+${p.description}
+
+- Client: ${p.client || p.title}
+- Industry: ${p.industry || p.category}
+- Location: ${p.location || business.city}
+- Built with: ${(p.stack || p.tags || []).join(', ')}
+- Live site: ${p.url}
+${(p.features || []).map(f => `- ${f}`).join('\n')}`).join('\n\n')}
+
+More projects: ${SITE.url}/portfolio
+
+` : ''}## How we work
 
 - Secure by design: security is embedded from architecture decisions to final QA.
 - Scalable delivery: structured execution that stays reliable as scope grows.

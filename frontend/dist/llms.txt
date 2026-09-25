@@ -23,6 +23,26 @@ DevEraXTech was founded in 2024 by Karim Ahmed (Founder) and Loay Mohamed (Co-fo
 - [Portfolio Websites](https://deveraxtech.com/services#portfolio-websites): High-visual showcase websites for designers, photographers, developers and agencies. Includes: Designers; Photographers; Developers; Agencies; High-visual showcase sites.
 - [Landing Pages](https://deveraxtech.com/services#landing-pages): High-conversion single pages for marketing campaigns, app launches, product launches and service promotions. Includes: Marketing campaigns; App launches; Product launches; Service promotions.
 
+## Recent work
+
+### Nilora Estates: Luxury Real Estate Platform, Cairo
+
+A full MERN stack (MongoDB, Express, React, Node.js) platform for Nilora Estates, a private residential agency selling villas, penthouses and coastal homes across Cairo and the Egyptian coast. It has a cinematic public site plus three role-based dashboards: buyers save homes and book private viewings, agents manage their listings and leads, and admins control properties, advisors, users and content.
+
+- Client: Nilora Estates
+- Industry: Real estate
+- Location: Cairo, Egypt
+- Built with: MongoDB, Express.js, React, Node.js
+- Live site: https://frontend-kappa-ashen-67.vercel.app/
+- Property listings for villas, penthouses and coastal homes with neighborhood guides
+- User dashboard to save homes, track enquiries and request private viewings
+- Agent dashboard to publish and edit listings and manage client leads
+- Admin dashboard to manage properties, advisors, users, journal posts and site content
+- Role-based authentication and secure REST API
+- SEO-ready pages with fast, responsive, cinematic design
+
+More projects: https://deveraxtech.com/portfolio
+
 ## How we work
 
 - Secure by design: security is embedded from architecture decisions to final QA.
@@ -76,7 +96,7 @@ We are available every day from 9:00 AM to 5:00 PM Cairo time. You can reach us 
 
 - [Home](https://deveraxtech.com/): Cairo-based studio building secure, pixel-perfect websites, e-commerce, Shopify and WordPress sites for clients in Egypt, the Gulf, the US and Canada.
 - [Services](https://deveraxtech.com/services): Business websites, e-commerce, Shopify, WordPress, portfolio sites and landing pages for clients in Egypt, UAE, Saudi Arabia, Kuwait, Qatar, US and Canada.
-- [Work](https://deveraxtech.com/portfolio): Web design portfolio of DevEraXTech, a Cairo studio: business websites, e-commerce and Shopify stores, WordPress sites and landing pages.
+- [Work](https://deveraxtech.com/portfolio): Web design portfolio of DevEraXTech, a Cairo studio: MERN stack web apps like the Nilora Estates real estate platform, business websites, e-commerce and landing pages.
 - [About](https://deveraxtech.com/about): Founded in 2024 in Cairo, Egypt by Karim Ahmed and Loay Mohamed, DevEraXTech builds premium digital products with security at the core.
 - [Contact](https://deveraxtech.com/contact): Book a meeting with DevEraXTech in Cairo. Call +20 100 001 6216 or email deveraxtech@gmail.com. Open daily 9 AM to 5 PM Cairo time. Arabic, English, German.
 

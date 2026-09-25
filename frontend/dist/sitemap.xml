@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://deveraxtech.com/</loc>
     <lastmod>2026-09-24</lastmod>
@@ -14,6 +14,9 @@
     <loc>https://deveraxtech.com/portfolio</loc>
     <lastmod>2026-09-24</lastmod>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://deveraxtech.com/work/nilora-estates-real-estate-website.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://deveraxtech.com/about</loc>

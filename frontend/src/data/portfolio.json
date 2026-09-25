@@ -1,1 +1,27 @@
-[]
+[
+  {
+    "id": "nilora-estates",
+    "title": "Nilora Estates: Luxury Real Estate Platform, Cairo",
+    "category": "Real Estate Web App",
+    "description": "A full MERN stack (MongoDB, Express, React, Node.js) platform for Nilora Estates, a private residential agency selling villas, penthouses and coastal homes across Cairo and the Egyptian coast. It has a cinematic public site plus three role-based dashboards: buyers save homes and book private viewings, agents manage their listings and leads, and admins control properties, advisors, users and content.",
+    "tags": ["MERN Stack", "Agent, Admin & User Dashboards", "Real Estate Egypt"],
+    "image": "/work/nilora-estates-real-estate-website.webp",
+    "imageAlt": "Nilora Estates real estate website homepage: Cairo skyline at sunset over the Nile at Zamalek with the headline 'Where the river meets the light.'",
+    "imageWidth": 1904,
+    "imageHeight": 994,
+    "url": "https://frontend-kappa-ashen-67.vercel.app/",
+    "client": "Nilora Estates",
+    "industry": "Real estate",
+    "location": "Cairo, Egypt",
+    "year": "2026",
+    "stack": ["MongoDB", "Express.js", "React", "Node.js"],
+    "features": [
+      "Property listings for villas, penthouses and coastal homes with neighborhood guides",
+      "User dashboard to save homes, track enquiries and request private viewings",
+      "Agent dashboard to publish and edit listings and manage client leads",
+      "Admin dashboard to manage properties, advisors, users, journal posts and site content",
+      "Role-based authentication and secure REST API",
+      "SEO-ready pages with fast, responsive, cinematic design"
+    ]
+  }
+]

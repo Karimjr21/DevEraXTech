@@ -141,7 +141,9 @@ export default function Portfolio() {
                   {!showPlaceholder ? (
                     <img
                       src={item.image}
-                      alt={item.title}
+                      alt={item.imageAlt || item.title}
+                      width={item.imageWidth}
+                      height={item.imageHeight}
                       className="portfolio-media-img"
                       onError={() => setImageFallbacks(prev => ({ ...prev, [item.id]: true }))}
                       loading="lazy"
@@ -159,8 +161,22 @@ export default function Portfolio() {
                   <div className="space-y-2.5">
                     <p className="text-[11px] tracking-[0.16em] uppercase text-gold/70">{item.category}</p>
                     <h2 className="text-[1.35rem] md:text-[1.52rem] font-semibold text-gold leading-tight">{item.title}</h2>
-                    <p className="text-sm md:text-[0.95rem] text-gray-300/90 leading-relaxed max-w-xl portfolio-description-clamp-single">{description}</p>
+                    <p className="text-sm md:text-[0.95rem] text-gray-300/90 leading-relaxed max-w-xl">{description}</p>
                   </div>
+
+                  {(item.location || item.year || item.stack) && (
+                    <dl className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs">
+                      {item.location && (<div><dt className="text-gray-500 uppercase tracking-[0.14em]">Location</dt><dd className="text-gray-300">{item.location}</dd></div>)}
+                      {item.year && (<div><dt className="text-gray-500 uppercase tracking-[0.14em]">Year</dt><dd className="text-gray-300">{item.year}</dd></div>)}
+                      {item.stack && (<div className="col-span-2"><dt className="text-gray-500 uppercase tracking-[0.14em]">Built with</dt><dd className="text-gray-300">{item.stack.join(', ')}</dd></div>)}
+                    </dl>
+                  )}
+
+                  {Array.isArray(item.features) && item.features.length > 0 && (
+                    <ul className="space-y-1.5 text-sm text-gray-300/90 leading-relaxed list-disc pl-5 marker:text-gold/60">
+                      {item.features.map((feature) => <li key={feature}>{feature}</li>)}
+                    </ul>
+                  )}
 
                   <div className="flex flex-wrap gap-2">
                     {tags.map((tag) => (
@@ -177,7 +193,7 @@ export default function Portfolio() {
                         onClick={(event) => event.stopPropagation()}
                         className="portfolio-cta-link"
                       >
-                        View Project <span aria-hidden>→</span>
+                        Visit Live Site <span aria-hidden>→</span>
                       </a>
                     ) : (
                       <button
@@ -222,7 +238,9 @@ export default function Portfolio() {
                     {!showPlaceholder ? (
                       <img
                         src={item.image}
-                        alt={item.title}
+                        alt={item.imageAlt || item.title}
+                        width={item.imageWidth}
+                        height={item.imageHeight}
                         className="portfolio-media-img"
                         onError={() => setImageFallbacks(prev => ({ ...prev, [item.id]: true }))}
                         loading="lazy"
