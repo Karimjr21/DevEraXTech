@@ -6,6 +6,7 @@ import EmptyState, { LoadingCards } from '../components/ui/EmptyState';
 import { fetchPortfolio } from '../lib/api';
 import useApiData from '../lib/useApiData';
 import Lightbox from '../components/ui/Lightbox';
+import ShowcaseMedia from '../components/ui/ShowcaseMedia';
 
 function getDescription(item) {
   if (item?.description && String(item.description).trim()) {
@@ -137,27 +138,18 @@ export default function Portfolio() {
                 role="button"
                 tabIndex={0}
               >
-                <div className="portfolio-media-shell portfolio-media-shell--single">
-                  {!showPlaceholder ? (
-                    <img
-                      src={item.image}
-                      alt={item.imageAlt || item.title}
-                      width={item.imageWidth}
-                      height={item.imageHeight}
-                      className="portfolio-media-img"
-                      onError={() => setImageFallbacks(prev => ({ ...prev, [item.id]: true }))}
-                      loading="lazy"
-                    />
-                  ) : (
+                {!showPlaceholder ? (
+                  <ShowcaseMedia item={item} onImageError={() => setImageFallbacks(prev => ({ ...prev, [item.id]: true }))} />
+                ) : (
+                  <div className="portfolio-media-shell portfolio-media-shell--single">
                     <div className="portfolio-media-placeholder" aria-label="Project preview placeholder" role="img">
                       <div className="portfolio-media-placeholder-line" />
                       <div className="portfolio-media-placeholder-dot" />
                     </div>
-                  )}
-                  <div className="portfolio-media-overlay" aria-hidden />
-                </div>
+                  </div>
+                )}
 
-                <div className="p-4 sm:p-5 md:p-6 space-y-4">
+                <div className="showcase-copy p-5 sm:p-6 md:p-8 space-y-4">
                   <div className="space-y-2.5">
                     <p className="text-[11px] tracking-[0.16em] uppercase text-gold/70">{item.category}</p>
                     <h2 className="text-[1.35rem] md:text-[1.52rem] font-semibold text-gold leading-tight">{item.title}</h2>
