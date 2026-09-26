@@ -1,5 +1,5 @@
 // Renders reel.html frame by frame (deterministic, no dropped frames) and encodes an H.264 MP4.
-// Usage: node render.mjs [out.mp4] [--fps 30] [--stills t1,t2,...]
+// Usage: node render.mjs [out.mp4] [--page reel.html] [--audio track.wav] [--fps 30] [--stills t1,t2,... --dir DIR]
 import { chromium } from 'playwright';
 import { spawn, execSync } from 'node:child_process';
 import path from 'node:path';
@@ -8,6 +8,8 @@ import { fileURLToPath } from 'node:url';
 const here = path.dirname(fileURLToPath(import.meta.url));
 const args = process.argv.slice(2);
 const opt = (k, d) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] : d; };
+const pageFile = opt('--page', 'reel.html');
+const audio = opt('--audio');
 const out = path.resolve(args.find(a => a.endsWith('.mp4')) || path.join(here, 'deveraxtech-brand-reel.mp4'));
 const fps = +opt('--fps', 30);
 const stills = opt('--stills');
@@ -15,7 +17,9 @@ const ffmpeg = process.env.FFMPEG || execSync('python3 -c "import imageio_ffmpeg
 
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1920, height: 1080 }, deviceScaleFactor: 1 });
-await page.goto('file://' + path.join(here, 'reel.html'));
+await page.goto('file://' + path.join(here, pageFile));
+const size = await page.evaluate(() => window.SIZE);
+if (size) await page.setViewportSize(size);
 await page.evaluate(() => window.ready);
 const duration = await page.evaluate(() => window.DURATION);
 
@@ -29,6 +33,7 @@ if (stills) {
 }
 
 const enc = spawn(ffmpeg, ['-y', '-f', 'image2pipe', '-framerate', String(fps), '-c:v', 'mjpeg', '-i', '-',
+  ...(audio ? ['-i', path.resolve(audio), '-c:a', 'aac', '-b:a', '192k', '-shortest'] : []),
   '-c:v', 'libx264', '-preset', 'slow', '-crf', '18', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', out],
   { stdio: ['pipe', 'inherit', 'inherit'] });
 const total = Math.round(duration * fps);

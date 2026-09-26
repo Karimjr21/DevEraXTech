@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DevEraXTech Hook Reel</title>
+<style>
+  @font-face { font-family: 'Playfair'; src: url(assets/playfair.woff2) format('woff2'); font-weight: 400 900; }
+  @font-face { font-family: 'Inter'; src: url(assets/inter.woff2) format('woff2'); font-weight: 100 900; }
+  :root { --gold: #d4af37; --gold-hi: #f5d573; --red: #ff4b3e; --ink: #070707;
+    --gold-grad: linear-gradient(135deg, #b8912a 0%, #d4af37 30%, #f7dc85 55%, #d4af37 80%, #a8821f 100%); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); }
+  body { font-family: 'Inter', system-ui, sans-serif; color: #fff; }
+  #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); }
+  #world { position: absolute; inset: 0; transform-origin: 50% 50%; }
+  .abs { position: absolute; }
+  .layer { position: absolute; inset: 0; pointer-events: none; }
+  .scene { position: absolute; inset: 0; opacity: 0; }
+  .hv { font-weight: 900; text-transform: uppercase; letter-spacing: -.035em; line-height: .9; }
+  .gold-text { background: var(--gold-grad); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hl { display: inline-block; background: var(--gold-grad); color: #0b0904; padding: .02em .16em .06em; border-radius: .12em; }
+  .cx { left: 0; right: 0; text-align: center; }
+
+  #bgA { background: radial-gradient(ellipse at 50% 42%, #1c1c1c 0%, #0a0a0a 55%, #000 100%); }
+  #bgB { opacity: 0; background:
+    radial-gradient(circle at 20% 18%, rgba(212,175,55,.28), transparent 38%),
+    radial-gradient(circle at 85% 70%, rgba(212,175,55,.22), transparent 40%),
+    radial-gradient(ellipse at 50% 50%, #17130a 0%, #080706 70%); }
+  #rays { opacity: 0; background: repeating-conic-gradient(from 0deg at 50% 50%, rgba(245,213,115,.07) 0deg 6deg, transparent 6deg 18deg); }
+  #grain { opacity: .09; mix-blend-mode: overlay; }
+  #vig { background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,.8) 100%); }
+  #flash { background: #fff; opacity: 0; }
+  #goldFlash { background: var(--gold-grad); opacity: 0; }
+  #black { background: #000; opacity: 0; }
+  #progress { position: absolute; top: 70px; left: 60px; right: 60px; height: 8px; border-radius: 8px; background: rgba(255,255,255,.14); overflow: hidden; }
+  #progress i { display: block; height: 100%; width: 0; background: var(--gold-grad); border-radius: 8px; }
+  #handle { position: absolute; top: 106px; left: 60px; display: flex; align-items: center; gap: 18px; font-size: 30px; font-weight: 700; }
+  #handle img { width: 64px; height: 64px; object-fit: contain; border-radius: 50%; background: #120f08; border: 2px solid rgba(212,175,55,.6); padding: 6px; }
+  #handle span { opacity: .75; font-weight: 500; }
+
+  /* A1 */
+  #stop, #scrolling { font-size: 260px; }
+  #stop { top: 640px; color: #fff; }
+  #scrolling { top: 880px; font-size: 168px; }
+  /* A2 */
+  #hasLine { top: 470px; font-size: 76px; font-weight: 800; letter-spacing: -.02em; }
+  #ring { left: 290px; top: 640px; width: 500px; height: 500px; }
+  #num { top: 700px; font-size: 380px; font-weight: 900; line-height: 1; letter-spacing: -.05em; }
+  #impress { top: 1220px; font-size: 96px; font-weight: 900; text-transform: uppercase; letter-spacing: -.03em; line-height: 1.05; }
+  /* A3 */
+  #painTitle { top: 420px; font-size: 70px; font-weight: 800; letter-spacing: -.02em; color: #ddd; }
+  .pain { left: 90px; right: 60px; display: flex; align-items: center; gap: 30px; font-size: 74px; white-space: nowrap; font-weight: 900; letter-spacing: -.03em; text-transform: uppercase; }
+  .pain .x { flex: none; width: 84px; height: 84px; border-radius: 50%; background: var(--red); color: #fff; display: grid; place-items: center; font-size: 60px; font-weight: 900; }
+  .pain .t { position: relative; }
+  .pain .strike { position: absolute; left: -8px; top: 46%; height: 11px; background: var(--red); border-radius: 6px; width: 0; }
+  #losing { top: 740px; font-size: 128px; }
+  #losing .red { color: var(--red); }
+  /* B1 */
+  #dropLogo { left: 190px; top: 560px; width: 700px; filter: drop-shadow(0 0 60px rgba(245,213,115,.55)); }
+  #fix { top: 1130px; font-size: 128px; }
+  /* B2 */
+  #wm { top: 640px; font-family: 'Playfair', serif; font-weight: 800; font-size: 150px; letter-spacing: -.01em; }
+  .sub { font-size: 62px; font-weight: 800; letter-spacing: -.02em; }
+  /* B3 */
+  #realWork { top: 250px; font-size: 150px; }
+  #laptop { left: 60px; top: 520px; width: 960px; border-radius: 22px; overflow: hidden; border: 2px solid rgba(212,175,55,.55); background: #111; box-shadow: 0 40px 100px rgba(0,0,0,.8), 0 0 70px rgba(212,175,55,.2); }
+  #laptop .bar { height: 40px; background: #16130d; display: flex; gap: 10px; align-items: center; padding: 0 18px; }
+  #laptop .bar i { width: 13px; height: 13px; border-radius: 50%; background: #3d3524; }
+  #lapShot { display: block; width: 100%; aspect-ratio: 1904/994; object-fit: cover; }
+  #phone { left: 640px; top: 820px; width: 330px; height: 660px; border-radius: 52px; border: 12px solid #16130d; outline: 2px solid rgba(212,175,55,.6); overflow: hidden; background: #000; box-shadow: 0 40px 90px rgba(0,0,0,.85); }
+  #phoneShot { position: absolute; height: 100%; left: 0; top: 0; }
+  #caseName { top: 1120px; left: 80px; font-family: 'Playfair', serif; font-size: 88px; font-weight: 800; line-height: 1; }
+  #caseSub { top: 1315px; left: 82px; font-size: 40px; font-weight: 600; color: #e6dcc0; width: 520px; line-height: 1.2; }
+  .chip { position: absolute; left: 80px; padding: 16px 30px; border-radius: 999px; border: 2px solid rgba(212,175,55,.6); background: rgba(212,175,55,.1); color: var(--gold-hi); font-size: 34px; font-weight: 700; white-space: nowrap; }
+  /* B4 */
+  #weBuild { top: 640px; font-size: 120px; }
+  #slot { top: 800px; height: 300px; left: 0; right: 0; overflow: hidden; }
+  #slot div { position: absolute; left: 40px; right: 40px; text-align: center; top: 0; font-size: 128px; line-height: 1.02; }
+  /* B5 */
+  #fixTitle { top: 300px; font-size: 104px; }
+  .fixrow { left: 90px; right: 90px; }
+  .fixrow .old { font-size: 40px; font-weight: 700; color: rgba(255,255,255,.45); text-decoration: line-through; text-decoration-color: var(--red); text-decoration-thickness: 5px; text-transform: uppercase; letter-spacing: .02em; }
+  .fixrow .new { display: flex; align-items: center; gap: 26px; margin-top: 6px; font-size: 82px; white-space: nowrap; font-weight: 900; text-transform: uppercase; letter-spacing: -.03em; }
+  .fixrow .ok { flex: none; width: 84px; height: 84px; border-radius: 50%; background: var(--gold-grad); color: #0b0904; display: grid; place-items: center; font-size: 52px; font-weight: 900; }
+  #stats { top: 1480px; left: 60px; right: 60px; display: flex; justify-content: space-around; }
+  .stat { text-align: center; }
+  .stat b { display: block; font-size: 104px; font-weight: 900; letter-spacing: -.04em; line-height: 1; }
+  .stat span { display: block; margin-top: 8px; font-size: 26px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.6); }
+  /* B6 */
+  #endLogo { left: 400px; top: 330px; width: 280px; }
+  #yours { top: 640px; font-size: 136px; }
+  #cta { left: 130px; right: 130px; top: 1120px; padding: 44px 0; border-radius: 999px; background: var(--gold-grad); color: #0b0904; text-align: center; font-size: 62px; font-weight: 900; letter-spacing: -.01em; box-shadow: 0 0 80px rgba(212,175,55,.55); }
+  #url { top: 1320px; font-size: 58px; font-weight: 800; letter-spacing: .01em; }
+  #ig { top: 1410px; font-size: 42px; font-weight: 600; color: rgba(255,255,255,.7); }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="world">
+    <div id="bgA" class="layer"></div>
+    <div id="bgB" class="layer"></div>
+    <div id="rays" class="layer"></div>
+    <canvas id="sparks" class="layer" width="1080" height="1920"></canvas>
+
+    <!-- A1: hook -->
+    <section id="a1" class="scene">
+      <div id="stop" class="abs cx hv">Stop</div>
+      <div id="scrolling" class="abs cx hv"><span class="hl">scrolling.</span></div>
+    </section>
+
+    <!-- A2: countdown -->
+    <section id="a2" class="scene">
+      <div id="hasLine" class="abs cx">Your website has</div>
+      <svg id="ring" class="abs" viewBox="0 0 500 500"><circle cx="250" cy="250" r="230" stroke="rgba(255,255,255,.12)" stroke-width="18" fill="none"/>
+        <circle id="ringArc" cx="250" cy="250" r="230" stroke="#d4af37" stroke-width="18" fill="none" stroke-linecap="round" transform="rotate(-90 250 250)"/></svg>
+      <div id="num" class="abs cx">3</div>
+      <div id="impress" class="abs cx">seconds<br><span class="hl">to impress.</span></div>
+    </section>
+
+    <!-- A3: pain -->
+    <section id="a3" class="scene">
+      <div id="painTitle" class="abs cx">Is your website…</div>
+      <div id="pains"></div>
+      <div id="losing" class="abs cx hv">You're<br><span class="red">losing</span><br>customers.</div>
+    </section>
+
+    <!-- B1: drop -->
+    <section id="b1" class="scene">
+      <img id="dropLogo" class="abs" src="assets/logo.png" alt="">
+      <div id="fix" class="abs cx hv gold-text">Let's fix that.</div>
+    </section>
+
+    <!-- B2: who -->
+    <section id="b2" class="scene">
+      <div id="wm" class="abs cx gold-text">DevEraXTech</div>
+      <div id="sub1" class="abs cx sub" style="top:860px">Premium websites.</div>
+      <div id="sub2" class="abs cx sub" style="top:950px">Built in Cairo.</div>
+      <div id="sub3" class="abs cx sub" style="top:1040px">For clients <span class="hl">worldwide.</span></div>
+    </section>
+
+    <!-- B3: proof -->
+    <section id="b3" class="scene">
+      <div id="realWork" class="abs cx hv">Real <span class="hl">work.</span></div>
+      <div id="laptop" class="abs"><div class="bar"><i></i><i></i><i></i></div><img id="lapShot" src="assets/nilora-estates-real-estate-website.webp" alt=""></div>
+      <div id="phone" class="abs"><img id="phoneShot" src="assets/nilora-estates-real-estate-website.webp" alt=""></div>
+      <div id="caseName" class="abs gold-text">Nilora<br>Estates</div>
+      <div id="caseSub" class="abs">Luxury real estate platform</div>
+      <div id="chips"></div>
+    </section>
+
+    <!-- B4: what -->
+    <section id="b4" class="scene">
+      <div id="weBuild" class="abs cx hv">We build</div>
+      <div id="slot" class="abs"></div>
+    </section>
+
+    <!-- B5: flip the pains -->
+    <section id="b5" class="scene">
+      <div id="fixTitle" class="abs cx hv">Now it's…</div>
+      <div id="fixes"></div>
+      <div id="stats" class="abs"></div>
+    </section>
+
+    <!-- B6: CTA -->
+    <section id="b6" class="scene">
+      <img id="endLogo" class="abs" src="assets/logo.png" alt="">
+      <div id="yours" class="abs cx hv">Your site<br><span class="hl">is next.</span></div>
+      <div id="cta" class="abs">Request a meeting →</div>
+      <div id="url" class="abs cx gold-text">deveraxtech.com</div>
+      <div id="ig" class="abs cx">@deveraxtech</div>
+    </section>
+  </div>
+
+  <canvas id="grain" class="layer" width="540" height="960"></canvas>
+  <div id="vig" class="layer"></div>
+  <div id="progress"><i></i></div>
+  <div id="handle"><img src="assets/logo.png" alt="">deveraxtech <span>· Web studio</span></div>
+  <div id="goldFlash" class="layer"></div>
+  <div id="flash" class="layer"></div>
+  <div id="black" class="layer"></div>
+</div>
+
+<script>
+const DURATION = 30, BPM = 120, BEAT = 60 / BPM, DROP = 8;
+const $ = (s) => document.querySelector(s);
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const seg = (t, a, b) => clamp((t - a) / (b - a));
+const easeOut = (x) => 1 - Math.pow(1 - x, 3);
+const back = (x) => { const c = 2.2; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const decay = (t, at, k = 8) => t < at ? 0 : Math.exp(-(t - at) * k);
+// "slam": big → normal with overshoot over d seconds
+const slam = (t, at, d = .22) => { const k = seg(t, at, at + d); return { o: k > 0 ? 1 : 0, s: 1 + (1 - back(k)) * 1.6 }; };
+const pop = (t, at, d = .3) => { const k = seg(t, at, at + d); return { o: clamp(k * 3), s: .6 + back(k) * .4 }; };
+const show = (el, o, tf = '') => { el.style.opacity = o; el.style.transform = tf; };
+const win = (t, a, b) => t >= a && t < b ? 1 : 0;
+
+// Every impact the soundtrack also hits (kept in sync with make-hook-audio.py)
+const HITS = [0, .5, 2, 2.5, 3, 3.5, 4.5, 5, 5.5, 6, 6.5, 8, 12, 18, 22, 25.5];
+
+// ---------- DOM ----------
+const pains = ['Slow', 'Outdated', 'Broken on mobile', 'Invisible on Google'];
+$('#pains').innerHTML = pains.map((p, i) => `<div class="pain abs" style="top:${600 + i * 170}px"><span class="x">✕</span><span class="t">${p}<i class="strike"></i></span></div>`).join('');
+const chips = ['MERN stack', '3 role-based dashboards', 'Cairo, Egypt'];
+$('#chips').innerHTML = chips.map((c, i) => `<div class="chip" style="top:${1430 + i * 92}px">${c}</div>`).join('');
+const slotWords = ['Business<br>websites', 'Online<br>stores', 'Shopify<br>stores', 'WordPress<br>sites', 'Portfolio<br>sites', 'Landing<br>pages', '<span class="hl">Your next<br>big thing.</span>'];
+$('#slot').innerHTML = slotWords.map(w => `<div class="hv gold-text">${w}</div>`).join('');
+$('#slot').lastElementChild.classList.remove('gold-text');
+const fixes = [['Slow', 'Lightning fast'], ['Outdated', 'Premium design'], ['Broken on mobile', 'Pixel-perfect'], ['Invisible on Google', 'SEO-ready']];
+$('#fixes').innerHTML = fixes.map(([o, n], i) => `<div class="fixrow abs" style="top:${500 + i * 230}px"><div class="old">${o}</div><div class="new"><span class="ok">✓</span><span class="gold-text">${n}</span></div></div>`).join('');
+const stats = [[10, '+', 'Projects'], [7, '', 'Countries'], [3, '', 'Languages']];
+$('#stats').innerHTML = stats.map(([n, s, l]) => `<div class="stat"><b class="gold-text" data-n="${n}" data-s="${s}">0</b><span>${l}</span></div>`).join('');
+
+// ---------- deterministic noise + sparks ----------
+function rng(seed) { return () => (seed = (seed * 16807) % 2147483647) / 2147483647; }
+const gctx = $('#grain').getContext('2d');
+const grainTiles = Array.from({ length: 6 }, (_, k) => {
+  const r = rng(99 + k), img = gctx.createImageData(540, 960);
+  for (let i = 0; i < img.data.length; i += 4) { const v = r() * 255; img.data[i] = img.data[i + 1] = img.data[i + 2] = v; img.data[i + 3] = 255; }
+  return img;
+});
+const sctx = $('#sparks').getContext('2d');
+const sr = rng(5);
+const sparks = Array.from({ length: 90 }, () => ({ a: sr() * 6.283, v: 400 + sr() * 1400, s: 2 + sr() * 5, life: .5 + sr() * .9 }));
+const dust = Array.from({ length: 70 }, () => ({ x: sr() * 1080, y: sr() * 1920, v: 20 + sr() * 60, s: 1 + sr() * 3, p: sr() * 6.28 }));
+function drawSparks(t) {
+  sctx.clearRect(0, 0, 1080, 1920);
+  if (t >= DROP) {
+    for (const d of dust) {
+      const y = ((d.y - d.v * t) % 1920 + 1920) % 1920, a = .25 + .25 * Math.sin(t * 2 + d.p);
+      sctx.fillStyle = `rgba(245,213,115,${a})`; sctx.beginPath(); sctx.arc(d.x, y, d.s, 0, 6.283); sctx.fill();
+    }
+  }
+  for (const burst of [DROP, 25.5]) {                     // gold explosion on the drop and on the CTA
+    const dt = t - burst; if (dt < 0 || dt > 1.5) continue;
+    for (const p of sparks) {
+      if (dt > p.life) continue;
+      const k = dt / p.life, dist = p.v * (1 - Math.pow(1 - k, 3)) * .9;
+      const x = 540 + Math.cos(p.a) * dist, y = 900 + Math.sin(p.a) * dist + 300 * dt * dt;
+      sctx.fillStyle = `rgba(247,220,133,${1 - k})`; sctx.beginPath(); sctx.arc(x, y, p.s * (1 - k * .5), 0, 6.283); sctx.fill();
+    }
+  }
+}
+
+// ---------- timeline ----------
+window.render = function (t) {
+  const frame = Math.floor(t * 30);
+  gctx.putImageData(grainTiles[frame % grainTiles.length], 0, 0);
+  drawSparks(t);
+
+  // camera: beat pump after the drop, shakes on impacts, creeping zoom in the tension build
+  const beatPhase = t >= DROP && t < 29 ? ((t - DROP) % BEAT) : 9;
+  const pump = Math.exp(-beatPhase * 9);
+  let shake = 0; for (const h of HITS) shake += decay(t, h, 14) * (h === DROP ? 34 : 14);
+  shake += seg(t, 6.5, 7.75) * 10;                       // rising tremble before the drop
+  const sx = Math.sin(t * 91) * shake, sy = Math.cos(t * 77) * shake;
+  const creep = t < DROP ? 1 + seg(t, 6.5, 7.75) * .12 : 1;
+  $('#world').style.transform = `translate(${sx}px, ${sy}px) scale(${creep * (1 + pump * .022)})`;
+
+  $('#bgB').style.opacity = seg(t, DROP, DROP + .05);
+  $('#rays').style.opacity = t >= DROP ? .6 + pump * .4 : 0;
+  $('#rays').style.transform = `rotate(${t * 6}deg) scale(1.6)`;
+  $('#flash').style.opacity = Math.max(decay(t, 0, 10) * .7, decay(t, .5, 12) * .4, decay(t, 3.5, 10) * .35, decay(t, 6.5, 10) * .3);
+  $('#goldFlash').style.opacity = Math.max(decay(t, DROP, 3.2) * .95, decay(t, 25.5, 6) * .5);
+  $('#black').style.opacity = Math.max(win(t, 7.75, DROP), seg(t, 29.4, 30));
+  $('#progress i').style.width = (t / DURATION * 100) + '%';
+  const hd = easeOut(seg(t, .6, 1.1));
+  show($('#handle'), hd * (1 - seg(t, 29.4, 30)), `translateY(${(1 - hd) * -20}px)`);
+
+  // A1 — STOP SCROLLING (0 – 1.5)
+  show($('#a1'), win(t, 0, 1.5));
+  let s = slam(t, 0); show($('#stop'), s.o, `scale(${s.s})`);
+  s = slam(t, .5); show($('#scrolling'), s.o, `scale(${s.s}) rotate(${-3 * (1 - seg(t, .5, .8))}deg)`);
+
+  // A2 — countdown (1.5 – 4.5)
+  show($('#a2'), win(t, 1.5, 4.5));
+  const hl = easeOut(seg(t, 1.5, 1.8)); show($('#hasLine'), hl, `translateY(${(1 - hl) * 40}px)`);
+  const n = t < 2 ? 0 : t < 2.5 ? 3 : t < 3 ? 2 : 1;
+  const nAt = [0, 3, 2.5, 2][n];
+  $('#num').textContent = n || '';
+  s = slam(t, nAt, .18);
+  show($('#num'), n ? 1 : 0, `scale(${s.s})`);
+  $('#num').style.color = n === 1 ? '#ff4b3e' : '#fff';
+  const arc = 2 * Math.PI * 230, drain = seg(t, 2, 3.5);
+  $('#ringArc').style.strokeDasharray = arc;
+  $('#ringArc').style.strokeDashoffset = arc * drain;
+  $('#ringArc').style.stroke = drain > .66 ? '#ff4b3e' : '#d4af37';
+  show($('#ring'), seg(t, 1.9, 2.1) * (1 - seg(t, 3.5, 3.7)), `scale(${1 + decay(t, 2, 12) * .06 + decay(t, 2.5, 12) * .06 + decay(t, 3, 12) * .06})`);
+  if (t >= 3.5) { show($('#num'), 0); }
+  s = slam(t, 3.5, .25); show($("#impress"), s.o, `scale(${s.s})`);
+
+  // A3 — pains (4.5 – 7.75)
+  show($('#a3'), win(t, 4.5, 7.75));
+  const listOut = seg(t, 6.5, 6.6);
+  show($('#painTitle'), (1 - listOut) * easeOut(seg(t, 4.4, 4.6)));
+  [...$('#pains').children].forEach((el, i) => {
+    const at = 4.5 + i * .5, k = seg(t, at, at + .18);
+    const glitch = decay(t, at, 18);
+    el.style.opacity = (k > 0 ? 1 : 0) * (1 - listOut);
+    el.style.transform = `translateX(${(1 - easeOut(k)) * -140 + Math.sin(t * 200) * glitch * 26}px)`;
+    el.style.textShadow = glitch > .05 ? `${8 * glitch}px 0 rgba(255,0,60,.9), ${-8 * glitch}px 0 rgba(0,220,255,.9)` : 'none';
+    el.querySelector('.strike').style.width = `calc(${easeOut(seg(t, at + .25, at + .45)) * 100}% + 16px)`;
+  });
+  const lo = slam(t, 6.5, .25);
+  show($('#losing'), lo.o, `scale(${lo.s * (1 + seg(t, 6.75, 7.75) * .08)})`);
+
+  // B1 — DROP (8 – 10)
+  show($('#b1'), win(t, DROP, 10) * (1 - seg(t, 9.8, 10)));
+  const lg = seg(t, DROP, DROP + .35);
+  show($('#dropLogo'), lg > 0 ? 1 : 0, `scale(${2.6 - back(lg) * 1.6}) rotate(${(1 - easeOut(lg)) * -12}deg)`);
+  $('#dropLogo').style.filter = `drop-shadow(0 0 ${60 + pump * 60}px rgba(245,213,115,.6)) brightness(${1 + decay(t, DROP, 4) * 1.5})`;
+  s = pop(t, 8.5); show($('#fix'), s.o, `scale(${s.s})`);
+  $('#fix').style.backgroundPosition = `${100 - seg(t, 8.5, 10) * 100}% 0`;
+
+  // B2 — who (10 – 12)
+  show($('#b2'), win(t, 10, 12) * (1 - seg(t, 11.85, 12)));
+  const w = easeOut(seg(t, 10, 10.35));
+  show($('#wm'), w, `scale(${.7 + w * .3})`);
+  $('#wm').style.letterSpacing = `${(1 - w) * .3 - .01}em`;
+  ['#sub1', '#sub2', '#sub3'].forEach((id, i) => { const p = pop(t, 10.5 + i * .5, .25); show($(id), p.o, `scale(${p.s})`); });
+
+  // B3 — proof (12 – 18)
+  const b3out = seg(t, 17.75, 18);
+  show($('#b3'), win(t, 12, 18));
+  $('#b3').style.transform = `translateX(${-b3out * 1100}px)`;
+  $('#b3').style.filter = b3out > 0 ? `blur(${b3out * 20}px)` : '';
+  s = slam(t, 12, .2); show($('#realWork'), s.o, `scale(${s.s})`);
+  const lp = easeOut(seg(t, 12.25, 12.8));
+  show($('#laptop'), lp, `translateY(${(1 - lp) * 900}px) rotate(${(1 - lp) * 8}deg)`);
+  $('#lapShot').style.transform = `scale(${1.02 + seg(t, 12.5, 18) * .18})`;
+  $('#lapShot').style.transformOrigin = '75% 35%';
+  const ph = easeOut(seg(t, 13, 13.5));
+  show($('#phone'), ph, `translateX(${(1 - ph) * 600}px) rotate(${4 - ph * 4 + 3}deg)`);
+  // phone shows the hero crop, drifting across the skyline
+  $('#phoneShot').style.transform = `translateX(${-60 - seg(t, 13, 18) * 360}px)`;
+  const cn = pop(t, 14, .3); show($('#caseName'), cn.o, `scale(${cn.s})`); $('#caseName').style.transformOrigin = '0 50%';
+  const cs = easeOut(seg(t, 14.5, 14.8)); show($('#caseSub'), cs, `translateY(${(1 - cs) * 30}px)`);
+  [...$('#chips').children].forEach((c, i) => { const k = pop(t, 15 + i * .5, .25); show(c, k.o, `scale(${k.s})`); c.style.transformOrigin = '0 50%'; });
+
+  // B4 — we build <slot> (18 – 22)
+  show($('#b4'), win(t, 18, 22) * (1 - seg(t, 21.85, 22)));
+  const wb = easeOut(seg(t, 18, 18.25)); show($('#weBuild'), wb, `translateY(${(1 - wb) * -60}px)`);
+  const slots = [...$('#slot').children];
+  slots.forEach((el, i) => {
+    const at = 18.25 + i * .5, inK = easeOut(seg(t, at, at + .16)), outK = i < slots.length - 1 ? easeOut(seg(t, at + .5, at + .66)) : 0;
+    el.style.transform = `translateY(${(1 - inK) * 300 - outK * 300}px) scale(${i === slots.length - 1 ? 1 + decay(t, at, 6) * .15 : 1})`;
+    el.style.opacity = t >= at ? 1 - outK : 0;
+  });
+
+  // B5 — pains flipped + stats (22 – 25.5)
+  show($('#b5'), win(t, 22, 25.5) * (1 - seg(t, 25.35, 25.5)));
+  s = slam(t, 22, .2); show($('#fixTitle'), s.o, `scale(${s.s})`);
+  [...$('#fixes').children].forEach((el, i) => {
+    const at = 22.25 + i * .5, k = pop(t, at, .25);
+    show(el, k.o, `scale(${k.s})`); el.style.transformOrigin = '0 50%';
+  });
+  const st = easeOut(seg(t, 24.3, 24.6)); show($('#stats'), st, `translateY(${(1 - st) * 60}px)`);
+  [...$('#stats').querySelectorAll('b')].forEach((b, i) => {
+    const k = easeOut(seg(t, 24.3 + i * .1, 25 + i * .1)); b.textContent = Math.round(+b.dataset.n * k) + (k >= 1 ? b.dataset.s : '');
+  });
+
+  // B6 — CTA (25.5 – 30)
+  show($('#b6'), win(t, 25.5, 30));
+  const el = pop(t, 25.5, .35); show($('#endLogo'), el.o, `scale(${el.s})`);
+  s = slam(t, 26, .22); show($('#yours'), s.o, `scale(${s.s})`);
+  const c = pop(t, 26.75, .3);
+  show($('#cta'), c.o, `scale(${c.s * (1 + pump * .05)})`);
+  $('#cta').style.boxShadow = `0 0 ${60 + pump * 70}px rgba(212,175,55,${.45 + pump * .3})`;
+  const u = easeOut(seg(t, 27.25, 27.5)); show($('#url'), u, `translateY(${(1 - u) * 30}px)`);
+  $('#url').style.backgroundPosition = `${100 - seg(t, 27, 29.5) * 100}% 0`;
+  const g = easeOut(seg(t, 27.5, 27.75)); show($('#ig'), g, `translateY(${(1 - g) * 30}px)`);
+};
+
+window.DURATION = DURATION;
+window.SIZE = { width: 1080, height: 1920 };
+window.ready = document.fonts.ready.then(() => Promise.all([...document.images].map(i => i.decode().catch(() => {})))).then(() => render(0));
+if (!navigator.webdriver) {
+  const start = performance.now();
+  const loop = () => { render(((performance.now() - start) / 1000) % DURATION); requestAnimationFrame(loop); };
+  window.ready.then(() => requestAnimationFrame(loop));
+}
+</script>
+</body>
+</html>
