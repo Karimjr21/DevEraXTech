@@ -191,6 +191,8 @@ def build(cue):
     prog, hook = cue['progression'], cue['hook']
     for k, bt in enumerate(np.arange(drop, end, bar)):
         root, chord = prog[k % len(prog)]
+        while root - 24 < 28:                          # keep the sub bass audible (>= ~41 Hz)
+            root += 12
         d = min(bar, end - bt)
         for j in range(int(round(d / (beat / 2)))):
             tt = t_axis(beat / 2 * 0.9)
@@ -268,6 +270,79 @@ CUES = {
         ],
     },
 }
+
+# ---- five more reels ----
+CUES.update({
+    # "3 signs your website is costing you money" — countdown listicle
+    'money-signs': {
+        'duration': 24, 'bpm': 120, 'drop': 2.5, 'end': 23.5, 'gap': 0.1,
+        'progression': [(45, [45, 48, 52]), (41, [41, 45, 48]), (43, [43, 47, 50]), (40, [40, 44, 47])],  # Am F G E
+        'hook': [0, 2, 1, 2, 3, 2, 1, 2],
+        'events': [
+            (0.0, 'boom', 0.9), (0.5, 'boom', 0.6), (1.0, 'boom', 0.6), (1.4, 'kick_big', 0.9), (1.4, 'crash', 0.5),
+            *[(1.4 + i * 0.12, 'ding', 0.25, 84 + (i % 3) * 3) for i in range(6)], (1.6, 'riser', 0.6, 0.85),
+            *[(s, 'kick_big', 0.6) for s in (2.5, 7.0, 11.5)], *[(s + 2.5, 'buzzer', 0.5) for s in (2.5, 7.0, 11.5)],
+            *[(s + 4.2, 'whoosh', 0.45, 0.35) for s in (2.5, 7.0)], (7.0, 'glitch', 0.4), (11.5, 'glitch', 0.4),
+            (15.0, 'riser', 0.7, 0.88), (16.0, 'boom', 1.0), (16.0, 'crash', 0.7), (16.5, 'kick_big', 0.8),
+            *[(17.0 + i * 0.5, 'ding', 0.5, 76 + i * 3) for i in range(3)], (19.5, 'whoosh', 0.5), (20.5, 'crash', 0.4),
+        ],
+    },
+    # "Watch this website glow up" — before/after
+    'glow-up': {
+        'duration': 24, 'bpm': 120, 'drop': 8.0, 'end': 23.5, 'gap': 0.12,
+        'progression': [(52, [52, 56, 59]), (49, [49, 52, 56]), (45, [45, 49, 52]), (47, [47, 51, 54])],  # E C#m A B
+        'hook': [0, 1, 2, 3, 2, 1, 2, 1],
+        'events': [
+            (0.0, 'boom', 0.8), (0.5, 'boom', 0.6), (1.0, 'kick_big', 0.8), (1.0, 'crash', 0.4),
+            *[(2.0 + i * 0.5, 'tick', 0.35) for i in range(10)], (2.0, 'shutter', 0.5),
+            *[(3.5 + i, 'buzzer', 0.45) for i in range(3)], (7.0, 'boom', 0.9), (7.0, 'riser', 0.8, 0.88),
+            (8.0, 'whoosh', 0.7, 0.7), *[(9.0 + i * 1.5, 'ding', 0.5, 76 + i * 4) for i in range(3)],
+            (14.0, 'whoosh', 0.45, 0.6), (15.3, 'whoosh_down', 0.4, 0.6), (17.5, 'boom', 0.8), (17.5, 'crash', 0.5),
+            (18.0, 'kick_big', 0.7), (19.5, 'whoosh', 0.5), (20.5, 'crash', 0.4),
+        ],
+    },
+    # "Here's exactly how we work" — 3 steps
+    'process': {
+        'duration': 24, 'bpm': 120, 'drop': 2.5, 'end': 23.5, 'gap': 0.12,
+        'progression': [(50, [50, 54, 57]), (47, [47, 50, 54]), (43, [43, 47, 50]), (45, [45, 49, 52])],  # D Bm G A
+        'hook': [0, 2, 1, 3, 0, 2, 1, 2],
+        'events': [
+            (0.0, 'boom', 0.8), (0.5, 'boom', 0.6), (1.0, 'kick_big', 0.8), (1.0, 'glitch', 0.4), (1.3, 'riser', 0.6, 1.05),
+            (3.0, 'kick_big', 0.6), *[(4.0 + i * 4, 'whoosh', 0.5, 0.35) for i in range(3)], *[(4.0 + i * 4, 'ding', 0.45, 74 + i * 5) for i in range(3)],
+            *[(4.9 + i * 0.35, 'beep', 0.2, 660) for i in range(4)], (6.2, 'ding', 0.5, 88),
+            *[(9.0 + i * 0.15, 'tick', 0.3, 2400 + i * 150) for i in range(7)], (10.2, 'crash', 0.35),
+            (14.2, 'kick_big', 0.6), (14.6, 'whoosh', 0.6, 0.9), (15.2, 'crash', 0.5),
+            (16.0, 'boom', 0.8), *[(16.75 + i * 0.5, 'ding', 0.45, 79 + i * 3) for i in range(3)], (19.5, 'whoosh', 0.5), (20.5, 'crash', 0.4),
+        ],
+    },
+    # "A studio in Cairo. Serving 7 countries."
+    'worldwide': {
+        'duration': 24, 'bpm': 120, 'drop': 2.0, 'end': 23.5, 'gap': 0.1,
+        'progression': [(48, [48, 52, 55]), (45, [45, 48, 52]), (41, [41, 45, 48]), (43, [43, 47, 50])],  # C Am F G
+        'hook': [0, 1, 2, 3, 2, 3, 1, 2], 'hook_from_bar': 0,
+        'events': [
+            (0.0, 'boom', 0.8), (0.5, 'boom', 0.6), (1.0, 'kick_big', 0.8), (1.1, 'riser', 0.6, 0.8),
+            *[(2.5 + i * 1.25, 'whoosh', 0.35, 0.55) for i in range(1, 7)], *[(2.5 + i * 1.25 + (0.6 if i else 0), 'ding', 0.45, 76 + i * 2) for i in range(7)],
+            (12.0, 'boom', 0.7), (12.75, 'kick_big', 0.6), (13.5, 'kick_big', 0.6), (14.5, 'crash', 0.5),
+            (16.0, 'boom', 0.7), *[(16.3 + i * 0.25, 'tick', 0.3) for i in range(8)], (18.3, 'ding', 0.5, 84),
+            (19.5, 'crash', 0.5), (19.5, 'boom', 0.6),
+        ],
+    },
+    # "What you actually get when you hire us" — unboxing
+    'whats-included': {
+        'duration': 24, 'bpm': 120, 'drop': 4.0, 'end': 23.5, 'gap': 0.12,
+        'progression': [(53, [53, 57, 60]), (50, [50, 53, 57]), (46, [46, 50, 53]), (48, [48, 52, 55])],  # F Dm Bb C
+        'hook': [0, 2, 3, 2, 1, 2, 3, 1],
+        'events': [
+            (0.0, 'boom', 0.8), (0.5, 'boom', 0.6), (1.0, 'kick_big', 0.8), (2.0, 'kick_big', 0.9), (2.0, 'crash', 0.4),
+            *[(3.0 + i * 0.11, 'tick', 0.3, 1800 + i * 90) for i in range(8)], (3.0, 'riser', 0.8, 0.88),
+            (4.0, 'whoosh', 0.6, 0.6), *[(4.3 + i * 0.5, 'ding', 0.35, 72 + (i * 2) % 14) for i in range(10)],
+            (9.5, 'boom', 0.7), (10.0, 'kick_big', 0.7), (13.3, 'buzzer', 0.35), (14.05, 'buzzer', 0.35),
+            (14.5, 'boom', 0.6), (15.0, 'crash', 0.5), (16.5, 'boom', 0.7), (17.7, 'crash', 0.5), (17.7, 'ding', 0.5, 88),
+            (19.5, 'whoosh', 0.5), (20.5, 'crash', 0.4),
+        ],
+    },
+})
 
 if __name__ == '__main__':
     name = sys.argv[1]

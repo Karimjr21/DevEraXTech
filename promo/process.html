@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DevEraXTech: How We Work</title>
+<link rel="stylesheet" href="kit/reel-kit.css">
+<style>
+  #h1 { top: 560px; font-size: 90px; white-space: nowrap; } #h2 { top: 670px; font-size: 90px; white-space: nowrap; } #h3 { top: 800px; font-size: 170px; white-space: nowrap; }
+  #x1 { top: 660px; font-size: 108px; white-space: nowrap; } #x2 { top: 790px; font-size: 118px; white-space: nowrap; }
+  /* progress rail */
+  #rail { left: 120px; right: 120px; top: 250px; height: 90px; }
+  #rail .ln { position: absolute; left: 45px; right: 45px; top: 42px; height: 6px; background: rgba(255,255,255,.15); border-radius: 3px; }
+  #rail .fill { position: absolute; left: 45px; top: 42px; height: 6px; background: var(--gold-grad); border-radius: 3px; width: 0; }
+  #rail .node { position: absolute; top: 0; width: 90px; height: 90px; margin-left: -45px; border-radius: 50%; background: #1a1a1a; border: 4px solid rgba(255,255,255,.2);
+    display: grid; place-items: center; font-size: 34px; font-weight: 900; color: rgba(255,255,255,.5); }
+  #rail .node.on { background: var(--gold-grad); color: #0b0904; border-color: transparent; box-shadow: 0 0 30px rgba(245,213,115,.6); }
+  /* steps */
+  .big { left: 60px; top: 380px; font-size: 300px; font-weight: 800; line-height: 1; }
+  .ttl { left: 70px; right: 60px; top: 720px; font-size: 112px; }
+  .dsc { left: 70px; right: 70px; top: 960px; font-size: 46px; font-weight: 600; line-height: 1.3; color: rgba(255,255,255,.82); }
+  .vis { left: 90px; right: 90px; top: 1190px; height: 460px; }
+  /* 01 call */
+  .ring { position: absolute; left: 350px; top: 60px; width: 200px; height: 200px; border-radius: 50%; border: 4px solid rgba(245,213,115,.7); }
+  .avatar { position: absolute; left: 350px; top: 60px; width: 200px; height: 200px; border-radius: 50%; background: #120f08; border: 4px solid var(--gold); display: grid; place-items: center; }
+  .avatar img { width: 150px; }
+  .callTxt { position: absolute; left: 0; right: 0; top: 300px; text-align: center; font-size: 46px; font-weight: 800; }
+  .callSub { position: absolute; left: 0; right: 0; top: 370px; text-align: center; font-size: 36px; font-weight: 600; color: rgba(255,255,255,.6); }
+  /* 02 wireframe */
+  .wf { position: absolute; inset: 0; }
+  /* 03 build */
+  .code { position: absolute; left: 0; top: 10px; width: 560px; height: 430px; border-radius: 22px; background: #0e0d0a; border: 2px solid rgba(212,175,55,.35); padding: 28px 30px;
+    font-family: 'DejaVu Sans Mono', monospace; font-size: 27px; line-height: 1.55; color: #d9cfae; white-space: pre; overflow: hidden; }
+  .code .k { color: var(--gold-hi); }
+  .shield { position: absolute; left: 620px; top: 30px; width: 190px; height: 220px; }
+  .rocket { position: absolute; left: 650px; top: 280px; font-size: 120px; }
+  .live { position: absolute; left: 600px; top: 330px; padding: 14px 26px; border-radius: 999px; background: var(--gold-grad); color: #0b0904; font-size: 36px; font-weight: 900; letter-spacing: .1em; }
+  /* no surprises */
+  #n1 { top: 500px; font-size: 118px; white-space: nowrap; }
+  .nrow { left: 80px; right: 40px; display: flex; align-items: center; gap: 26px; font-size: 58px; font-weight: 900; text-transform: uppercase; letter-spacing: -.03em; white-space: nowrap; }
+  .nrow .ok { flex: none; width: 84px; height: 84px; border-radius: 50%; background: var(--gold-grad); color: #0b0904; display: grid; place-items: center; font-size: 48px; }
+  .endBtn { font-size: 52px; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="world">
+    <section id="sHook" class="scene">
+      <div id="h1" class="abs cx hv">Hiring a web studio</div>
+      <div id="h2" class="abs cx hv">shouldn't feel like</div>
+      <div id="h3" class="abs cx hv"><span class="hl-red">a gamble.</span></div>
+    </section>
+    <section id="sHere" class="scene">
+      <div id="x1" class="abs cx hv">Here's exactly</div>
+      <div id="x2" class="abs cx hv"><span class="hl">how we work.</span></div>
+    </section>
+    <section id="sSteps" class="scene">
+      <div id="rail" class="abs"><div class="ln"></div><div class="fill"></div></div>
+      <div id="steps"></div>
+    </section>
+    <section id="sNo" class="scene">
+      <div id="n1" class="abs cx hv"><span class="hl">No surprises.</span></div>
+      <div id="nrows"></div>
+    </section>
+    <section id="sEnd" class="scene"></section>
+  </div>
+</div>
+
+<script src="kit/reel-kit.js"></script>
+<script>
+const { seg, easeOut, easeInOut, back, decay, slam, pop, rise, win, show, $ } = kit;
+const DROP = 2.5, ST = 4, SLEN = 4, NO = 16, END = 19.5;
+const STEPS = [
+  { t: 'Discovery<br>call', d: 'We learn your goals, audience and timeline before proposing any scope.', v: 'call' },
+  { t: 'Plan &amp;<br>design', d: 'A clear scope with milestones, then interfaces designed around your brand.', v: 'design' },
+  { t: 'Build, secure<br>&amp; launch', d: 'A fast, secure, responsive site, launched with updates at every step.', v: 'build' },
+];
+const CODE = [
+  ['<span class="k">const</span> site = <span class="k">await</span> build({', 0], ['  design: <span class="k">"custom"</span>,', 1], ['  responsive: <span class="k">true</span>,', 2],
+  ['  security: <span class="k">"day one"</span>,', 3], ['  seo: <span class="k">true</span>,', 4], ['});', 5], ['', 6], ['<span class="k">await</span> site.launch(); 🚀', 7],
+];
+const WF = [[0, 0, 900, 70], [0, 100, 560, 220], [600, 100, 300, 100], [600, 220, 300, 100], [0, 350, 280, 100], [310, 350, 280, 100], [620, 350, 280, 100]];
+const VIS = {
+  call: `<div class="ring"></div><div class="ring"></div><div class="avatar"><img src="assets/logo.png" alt=""></div><div class="callTxt">Calling DevEraXTech…</div><div class="callSub">00:00</div>`,
+  design: `<svg class="wf" viewBox="0 0 900 460">${WF.map(([x, y, w, h]) => `<rect x="${x + 3}" y="${y + 3}" width="${w - 6}" height="${h - 6}" rx="14" fill="url(#wg)" fill-opacity="0" stroke="#f5d573" stroke-width="5"/>`).join('')}
+      <defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b8912a"/><stop offset=".5" stop-color="#f7dc85"/><stop offset="1" stop-color="#a8821f"/></linearGradient></defs></svg>`,
+  build: `<div class="code"></div><svg class="shield" viewBox="0 0 190 220"><path d="M95 8 L178 40 V110 C178 160 142 196 95 212 C48 196 12 160 12 110 V40 Z" fill="url(#sg)"/><path d="M55 112 L85 142 L140 84" stroke="#0b0904" stroke-width="16" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <defs><linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b8912a"/><stop offset=".5" stop-color="#f7dc85"/><stop offset="1" stop-color="#a8821f"/></linearGradient></defs></svg>
+      <div class="live">LIVE ●</div><div class="rocket emoji">🚀</div>`,
+};
+$('#steps').innerHTML = STEPS.map((s, i) => `<section class="scene step"><div class="abs big serif gold-text">0${i + 1}</div>
+  <div class="abs ttl hv">${s.t}</div><div class="abs dsc">${s.d}</div><div class="abs vis">${VIS[s.v]}</div></section>`).join('');
+$('#rail').insertAdjacentHTML('beforeend', [0, 1, 2].map(i => `<div class="node" style="left:${45 + i * 375}px">0${i + 1}</div>`).join(''));
+const NOS = ['Clear scope &amp; milestones', 'Transparent updates', 'Arabic · English · German'];
+$('#nrows').innerHTML = NOS.map((n, i) => `<div class="abs nrow" style="top:${760 + i * 150}px"><span class="ok">✓</span><span>${n}</span></div>`).join('');
+$('#sEnd').innerHTML = kit.ctaMarkup('Step 01 starts', 'today.', 'Book a discovery call →');
+
+const chrome = kit.setup({
+  duration: 24, bpm: 120, beatFrom: DROP, beatTo: 23.5, goldFrom: DROP,
+  hits: [{ t: 0 }, { t: .5 }, { t: 1, amp: 22 }, { t: DROP, amp: 30 }, { t: 3, amp: 18 }, ...STEPS.map((_, i) => ({ t: ST + i * SLEN, amp: 20 })), { t: NO, amp: 24 }],
+  bursts: [DROP, 13.5], goldFlashes: [DROP], whiteFlashes: [0, 1, ST, ST + SLEN, ST + 2 * SLEN, NO], blackouts: [[2.38, DROP]],
+});
+
+window.render = function (t) {
+  const { pump } = chrome(t);
+
+  show($('#sHook'), win(t, 0, 2.38));
+  [['#h1', 0], ['#h2', .5], ['#h3', 1]].forEach(([id, at]) => { const s = slam(t, at); show($(id), s.o, `scale(${s.s})`); });
+  show($('#sHere'), win(t, DROP, ST));
+  let k = slam(t, DROP, .22); show($('#x1'), k.o, `scale(${k.s})`);
+  k = slam(t, 3, .22); show($('#x2'), k.o, `scale(${k.s})`);
+
+  // STEPS
+  show($('#sSteps'), win(t, ST, NO));
+  const cur = Math.min(2, Math.floor((t - ST) / SLEN));
+  $('#rail .fill').style.width = `${Math.min(1, Math.max(0, (t - ST) / (SLEN * 2.5))) * 750}px`;
+  [...$('#rail').querySelectorAll('.node')].forEach((n, i) => { n.classList.toggle('on', t >= ST + i * SLEN); n.style.transform = `scale(${1 + decay(t, ST + i * SLEN, 8) * .35})`; });
+  [...document.querySelectorAll('.step')].forEach((sc, i) => {
+    const s0 = ST + i * SLEN, q = (c) => sc.querySelector(c), lt = t - s0;
+    const out = seg(t, s0 + SLEN - .2, s0 + SLEN);
+    show(sc, win(t, s0, s0 + SLEN), `translateX(${-out * 1100}px)`);
+    const b = rise(t, s0, .35); show(q('.big'), b, `translateX(${(1 - b) * -300}px)`);
+    k = pop(t, s0 + .25, .3); show(q('.ttl'), k.o, `scale(${k.s})`); q('.ttl').style.transformOrigin = '0 50%';
+    const d = rise(t, s0 + .6, .3); show(q('.dsc'), d, `translateY(${(1 - d) * 30}px)`);
+    show(q('.vis'), rise(t, s0 + .8, .3));
+    if (STEPS[i].v === 'call') {
+      [...sc.querySelectorAll('.ring')].forEach((r, j) => { const p = ((lt * .9 + j * .5) % 1); r.style.transform = `scale(${1 + p * .9})`; r.style.opacity = lt < 2.2 ? 1 - p : 0; });
+      const on = lt >= 2.2;
+      q('.callTxt').innerHTML = on ? '<span class="gold-text">Connected ✓</span>' : 'Calling DevEraXTech…';
+      q('.callSub').textContent = on ? `00:0${Math.min(9, Math.floor((lt - 2.2) * 3))}` : 'Discovery call';
+      q('.avatar').style.transform = `scale(${1 + decay(t, s0 + 2.2, 8) * .15})`;
+    }
+    if (STEPS[i].v === 'design') {
+      [...sc.querySelectorAll('rect')].forEach((r, j) => {
+        const len = 2 * (+r.getAttribute('width') + +r.getAttribute('height'));
+        r.style.strokeDasharray = len; r.style.strokeDashoffset = len * (1 - easeOut(seg(lt, .9 + j * .15, 1.5 + j * .15)));
+        r.setAttribute('fill-opacity', easeOut(seg(lt, 2.2 + j * .08, 2.6 + j * .08)) * .9);
+      });
+    }
+    if (STEPS[i].v === 'build') {
+      const chars = Math.floor(Math.max(0, lt - .8) * 60);
+      let left = chars;
+      q('.code').innerHTML = CODE.map(([ln]) => {                // type the code out, keeping tags intact
+        const plain = ln.replace(/<[^>]+>/g, ''); if (left <= 0) return '';
+        const n = Math.min(plain.length, left); left -= plain.length;
+        if (n >= plain.length) return ln;
+        return plain.slice(0, n) + '▌';
+      }).join('\n');
+      const sh = pop(t, s0 + 2.2, .3); show(q('.shield'), sh.o, `scale(${sh.s})`);
+      const lv = pop(t, s0 + 3.2, .25); show(q('.live'), lv.o * (lt < 2.8 ? 0 : 1), `scale(${lv.s})`);
+      const rk = seg(t, s0 + 2.6, s0 + 3.6);
+      show(q('.rocket'), rk > 0 && rk < 1 ? 1 : 0, `translate(${rk * 200}px, ${-rk * rk * 900}px) rotate(${-10 + rk * 20}deg)`);
+    }
+  });
+
+  // NO SURPRISES
+  show($('#sNo'), win(t, NO, END));
+  k = slam(t, NO, .22); show($('#n1'), k.o, `scale(${k.s})`);
+  [...$('#nrows').children].forEach((r, i) => { const a = pop(t, NO + .75 + i * .5, .25); show(r, a.o, `scale(${a.s})`); r.style.transformOrigin = '0 50%'; });
+
+  show($('#sEnd'), win(t, END, 24));
+  kit.animateCta($('#sEnd'), t, END, pump);
+};
+kit.start();
+</script>
+</body>
+</html>

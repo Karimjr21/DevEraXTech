@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DevEraXTech: What You Get</title>
+<link rel="stylesheet" href="kit/reel-kit.css">
+<style>
+  #h1 { top: 530px; font-size: 86px; white-space: nowrap; } #h2 { top: 640px; font-size: 86px; white-space: nowrap; } #h3 { top: 780px; font-size: 150px; white-space: nowrap; }
+  #unbox { top: 380px; font-size: 104px; white-space: nowrap; }
+  /* gift box */
+  #box { left: 290px; top: 820px; width: 500px; height: 480px; }
+  #boxBody { position: absolute; left: 20px; right: 20px; top: 130px; bottom: 0; border-radius: 22px; background: var(--gold-grad); box-shadow: 0 40px 100px rgba(0,0,0,.7), 0 0 90px rgba(245,213,115,.35); }
+  #boxLid { position: absolute; left: 0; right: 0; top: 60px; height: 100px; border-radius: 20px; background: linear-gradient(135deg, #c79f2e, #f7dc85 50%, #b8912a); box-shadow: 0 14px 30px rgba(0,0,0,.45); transform-origin: 90% 100%; }
+  .ribbonV { position: absolute; left: 50%; margin-left: -34px; width: 68px; top: 0; bottom: 0; background: #1a1406; }
+  #bow { position: absolute; left: 150px; top: -10px; width: 200px; height: 90px; }
+  #boxLight { position: absolute; left: -200px; right: -200px; top: -700px; height: 900px; background: radial-gradient(ellipse at 50% 100%, rgba(255,245,200,.9), rgba(245,213,115,.35) 30%, transparent 65%); opacity: 0; }
+  /* items */
+  .item { width: 470px; height: 150px; border-radius: 24px; background: linear-gradient(160deg, rgba(40,33,18,.95), rgba(14,12,9,.95)); border: 2px solid rgba(212,175,55,.45);
+    display: flex; align-items: center; gap: 22px; padding: 0 26px; box-shadow: 0 20px 50px rgba(0,0,0,.55); }
+  .item .ic { font-size: 64px; flex: none; }
+  .item b { font-size: 40px; font-weight: 800; line-height: 1.1; letter-spacing: -.01em; }
+  #std1 { top: 1260px; font-size: 104px; white-space: nowrap; } #std2 { top: 1380px; font-size: 106px; white-space: nowrap; }
+  /* not */
+  .not { font-size: 92px; white-space: nowrap; color: rgba(255,255,255,.55); }
+  .not i { position: absolute; left: 90px; right: 90px; top: 48%; height: 12px; border-radius: 6px; background: var(--red); transform-origin: 0 50%; }
+  #a1 { top: 980px; font-size: 104px; white-space: nowrap; } #a2 { top: 1100px; font-size: 118px; white-space: nowrap; }
+  /* stats */
+  #big { top: 420px; font-size: 380px; font-weight: 900; letter-spacing: -.06em; line-height: 1; }
+  #bigLbl { top: 820px; font-size: 64px; font-weight: 900; text-transform: uppercase; letter-spacing: .08em; }
+  #row { left: 80px; right: 80px; top: 1000px; display: flex; justify-content: space-around; }
+  #row div { text-align: center; }
+  #row b { display: block; font-size: 130px; font-weight: 900; letter-spacing: -.04em; line-height: 1; }
+  #row span { display: block; margin-top: 10px; font-size: 32px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.65); }
+  .endL2 { font-size: 116px; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="world">
+    <section id="sHook" class="scene">
+      <div id="h1" class="abs cx hv">What you actually</div>
+      <div id="h2" class="abs cx hv">get when you</div>
+      <div id="h3" class="abs cx hv"><span class="hl">hire us <span class="emoji">👇</span></span></div>
+    </section>
+    <section id="sBox" class="scene">
+      <div id="unbox" class="abs cx hv">Let's unbox it.</div>
+      <div id="box" class="abs">
+        <div id="boxLight"></div>
+        <div id="boxBody"><div class="ribbonV"></div></div>
+        <div id="boxLid"><div class="ribbonV"></div>
+          <svg id="bow" viewBox="0 0 200 90"><path d="M100 70 C60 10 10 20 20 55 C28 80 70 78 100 70 Z M100 70 C140 10 190 20 180 55 C172 80 130 78 100 70 Z" fill="#1a1406"/><circle cx="100" cy="68" r="16" fill="#1a1406"/></svg>
+        </div>
+      </div>
+    </section>
+    <section id="sItems" class="scene">
+      <div id="items"></div>
+      <div id="std1" class="abs cx hv">Not extras.</div>
+      <div id="std2" class="abs cx hv"><span class="hl">The standard.</span></div>
+    </section>
+    <section id="sNot" class="scene">
+      <div id="n1" class="abs cx hv not" style="top:520px">Not a template.<i></i></div>
+      <div id="n2" class="abs cx hv not" style="top:680px">Not a rush job.<i></i></div>
+      <div id="a1" class="abs cx hv">A digital asset</div>
+      <div id="a2" class="abs cx hv"><span class="hl">built to last.</span></div>
+    </section>
+    <section id="sStats" class="scene">
+      <div id="big" class="abs cx gold-text">0</div>
+      <div id="bigLbl" class="abs cx">Projects shipped</div>
+      <div id="row" class="abs"><div><b class="gold-text">7</b><span>Countries</span></div><div><b class="gold-text">3</b><span>Languages</span></div><div><b class="gold-text">7</b><span>Days a week</span></div></div>
+    </section>
+    <section id="sEnd" class="scene"></section>
+  </div>
+</div>
+
+<script src="kit/reel-kit.js"></script>
+<script>
+const { seg, easeOut, easeInOut, back, decay, slam, pop, rise, win, show, $ } = kit;
+const BOX = 2, DROP = 4, STD = 9.5, NOT = 13, STATS = 16.5, END = 19.5;
+const ITEMS = [['🎨', 'Custom design'], ['📱', 'Mobile-perfect'], ['⚡', 'Fast-loading pages'], ['🔒', 'Secure by design'], ['🔎', 'SEO-ready'],
+  ['📈', 'Built to grow'], ['🧭', 'Clear milestones'], ['🔄', 'Transparent updates'], ['💬', 'Arabic · English · German'], ['🚀', 'Launch support']];
+const cellPos = (i) => [60 + (i % 2) * 490, 300 + Math.floor(i / 2) * 180];
+$('#items').innerHTML = ITEMS.map(([e, l]) => `<div class="abs item"><span class="ic emoji">${e}</span><b>${l}</b></div>`).join('');
+$('#sEnd').innerHTML = kit.ctaMarkup('Ready to', 'unbox yours?');
+
+const chrome = kit.setup({
+  duration: 24, bpm: 120, beatFrom: DROP, beatTo: 23.5, goldFrom: DROP,
+  hits: [{ t: 0 }, { t: .5 }, { t: 1, amp: 22 }, { t: BOX, amp: 24 }, { t: DROP, amp: 36 }, { t: STD, amp: 16 }, { t: STD + .5, amp: 20 },
+    { t: NOT, amp: 14 }, { t: NOT + .75, amp: 14 }, { t: NOT + 2, amp: 22 }, { t: STATS, amp: 24 }],
+  bursts: [DROP, STATS + 1.2], goldFlashes: [DROP], whiteFlashes: [0, 1, BOX, NOT, STATS], blackouts: [[3.88, DROP]],
+});
+
+window.render = function (t) {
+  const { pump } = chrome(t, { shake: t >= 3 && t < 3.88 ? seg(t, 3, 3.88) * 12 : 0 });
+
+  show($('#sHook'), win(t, 0, BOX));
+  [['#h1', 0], ['#h2', .5], ['#h3', 1]].forEach(([id, at]) => { const s = slam(t, at); show($(id), s.o, `scale(${s.s})`); });
+
+  // BOX 2 - ~5.5 (lid pops on the drop)
+  show($('#sBox'), win(t, BOX, 6) * (1 - seg(t, 5.5, 6)));
+  const u = rise(t, BOX + .3, .3); show($('#unbox'), u * (1 - seg(t, DROP, DROP + .2)), `translateY(${(1 - u) * 30}px)`);
+  const bx = seg(t, BOX, BOX + .3), wob = t < DROP ? Math.sin(t * 40) * seg(t, 3, 3.88) * 5 : 0;
+  show($('#box'), bx > 0 ? 1 : 0, `translateY(${(1 - back(bx)) * -600 + (t >= DROP ? rise(t, DROP + .3, .8) * 500 : 0)}px) rotate(${wob}deg) scale(${1 + decay(t, BOX + .3, 8) * .08})`);
+  const lid = seg(t, DROP, DROP + .7);
+  $('#boxLid').style.transform = lid > 0 ? `translate(${lid * 420}px, ${-lid * 700 + lid * lid * 300}px) rotate(${lid * 110}deg)` : `translateY(${-Math.abs(Math.sin(t * 22)) * seg(t, 3, 3.88) * 26}px)`;
+  $('#boxLight').style.opacity = t >= DROP ? Math.min(1, seg(t, DROP, DROP + .2)) * (1 - seg(t, 5, 6) * .7) : 0;
+
+  // ITEMS fly out of the box into a grid
+  show($('#sItems'), win(t, DROP, NOT) * (1 - seg(t, NOT - .2, NOT)));
+  [...$('#items').children].forEach((el, i) => {
+    const at = DROP + .3 + i * .5, k = seg(t, at, at + .45), e = easeOut(k);
+    const [x, y] = cellPos(i), sx = 305, sy = 1100;            // start inside the box
+    const arc = Math.sin(Math.PI * k) * -260;
+    const dim = t >= STD ? 1 - seg(t, STD, STD + .3) * .6 : 1;
+    show(el, k > 0 ? dim : 0, `translate(${sx + (x - sx) * e}px, ${sy + (y - sy) * e + arc}px) scale(${.3 + back(k) * .7}) rotate(${(1 - e) * (i % 2 ? 20 : -20)}deg)`);
+    el.style.boxShadow = `0 20px 50px rgba(0,0,0,.55), 0 0 ${decay(t, at + .45, 6) * 60}px rgba(245,213,115,.8)`;
+  });
+  let k = slam(t, STD, .2); show($('#std1'), k.o, `scale(${k.s})`);
+  k = slam(t, STD + .5, .22); show($('#std2'), k.o, `scale(${k.s})`);
+
+  // NOT A TEMPLATE
+  show($('#sNot'), win(t, NOT, STATS));
+  [['#n1', NOT], ['#n2', NOT + .75]].forEach(([id, at]) => {
+    const p = pop(t, at, .25); show($(id), p.o, `scale(${p.s})`);
+    $(id).querySelector('i').style.transform = `scaleX(${easeOut(seg(t, at + .3, at + .5))})`;
+  });
+  k = slam(t, NOT + 1.5, .22); show($('#a1'), k.o, `scale(${k.s})`);
+  k = slam(t, NOT + 2, .22); show($('#a2'), k.o, `scale(${k.s})`);
+
+  // STATS
+  show($('#sStats'), win(t, STATS, END));
+  const n = Math.round(easeOut(seg(t, STATS, STATS + 1.2)) * 10);
+  $('#big').textContent = n + (t >= STATS + 1.2 ? '+' : '');
+  $('#big').style.transform = `scale(${1 + decay(t, STATS + 1.2, 8) * .15})`;
+  show($('#bigLbl'), rise(t, STATS + .3, .3));
+  const r = rise(t, STATS + 1.4, .35); show($('#row'), r, `translateY(${(1 - r) * 50}px)`);
+
+  show($('#sEnd'), win(t, END, 24));
+  kit.animateCta($('#sEnd'), t, END, pump);
+};
+kit.start();
+</script>
+</body>
+</html>

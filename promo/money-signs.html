@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DevEraXTech: 3 Signs</title>
+<link rel="stylesheet" href="kit/reel-kit.css">
+<style>
+  #h1 { top: 440px; font-size: 190px; }
+  #h2 { top: 680px; font-size: 84px; white-space: nowrap; }
+  #h3 { top: 790px; font-size: 118px; white-space: nowrap; }
+  #h4 { top: 920px; font-size: 180px; white-space: nowrap; }
+  #bills { overflow: hidden; }
+  #bills span { position: absolute; font-size: 110px; }
+  /* signs */
+  .num { top: 240px; left: 70px; font-size: 230px; font-weight: 900; letter-spacing: -.06em; line-height: 1; }
+  .worst { left: 420px; top: 300px; padding: 14px 28px; border-radius: 999px; background: var(--red); font-size: 34px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
+  .title { left: 70px; right: 60px; top: 500px; font-size: 104px; }
+  .line { left: 70px; right: 60px; top: 1500px; font-size: 58px; font-weight: 800; line-height: 1.15; }
+  .line b { color: var(--red); }
+  .vis { left: 140px; top: 800px; width: 800px; height: 600px; }
+  /* loader */
+  .card { position: absolute; inset: 0; border-radius: 26px; background: #121212; border: 2px solid #2b2b2b; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.7); }
+  .card .bar { height: 50px; background: #1d1d1d; display: flex; gap: 10px; align-items: center; padding: 0 20px; }
+  .card .bar i { width: 14px; height: 14px; border-radius: 50%; background: #3a3a3a; }
+  .spin { position: absolute; left: 330px; top: 170px; width: 140px; height: 140px; border-radius: 50%; border: 14px solid #2e2e2e; border-top-color: #9a9a9a; }
+  .pbar { position: absolute; left: 100px; right: 100px; top: 380px; height: 22px; border-radius: 12px; background: #262626; overflow: hidden; }
+  .pbar i { display: block; height: 100%; background: #8a8a8a; width: 0; }
+  .pct { position: absolute; left: 0; right: 0; top: 430px; text-align: center; font-size: 44px; font-weight: 800; color: #8a8a8a; }
+  .toast { position: absolute; left: 150px; right: 150px; top: -40px; padding: 22px; border-radius: 20px; background: var(--red); text-align: center; font-size: 40px; font-weight: 900; }
+  /* broken phone */
+  .ph { position: absolute; left: 220px; top: 0; width: 360px; height: 600px; border-radius: 48px; border: 12px solid #2a2a2a; background: #f2f2f2; }
+  .ph .blk { position: absolute; border-radius: 8px; }
+  .note { position: absolute; padding: 10px 20px; border-radius: 12px; background: var(--red); font-size: 32px; font-weight: 900; white-space: nowrap; }
+  /* confused */
+  .btn { position: absolute; width: 200px; height: 80px; border-radius: 12px; background: #2a2a2a; border: 2px solid #3a3a3a; display: grid; place-items: center; font-size: 30px; font-weight: 700; color: #8a8a8a; }
+  .q { position: absolute; font-size: 90px; font-weight: 900; color: var(--red); }
+  .cursor { position: absolute; width: 70px; height: 90px; }
+  /* fix */
+  #fx1 { top: 380px; font-size: 130px; }
+  #fx2 { top: 510px; font-size: 220px; }
+  .fixrow { left: 90px; right: 60px; display: flex; align-items: center; gap: 28px; font-size: 72px; font-weight: 900; text-transform: uppercase; letter-spacing: -.03em; white-space: nowrap; }
+  .fixrow .ok { flex: none; width: 90px; height: 90px; border-radius: 50%; background: var(--gold-grad); color: #0b0904; display: grid; place-items: center; font-size: 54px; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="world">
+    <section id="sHook" class="scene">
+      <div id="bills" class="layer"></div>
+      <div id="h1" class="abs cx hv gold-text">3 signs</div>
+      <div id="h2" class="abs cx hv">your website is</div>
+      <div id="h3" class="abs cx hv">costing you</div>
+      <div id="h4" class="abs cx hv"><span class="hl-red">money.</span></div>
+    </section>
+    <div id="signs"></div>
+    <section id="sFix" class="scene">
+      <div id="fx1" class="abs cx hv">We fix</div>
+      <div id="fx2" class="abs cx hv"><span class="hl">all 3.</span></div>
+      <div id="fixes"></div>
+    </section>
+    <section id="sEnd" class="scene"></section>
+  </div>
+</div>
+
+<script src="kit/reel-kit.js"></script>
+<script>
+const { seg, easeOut, easeInOut, back, decay, slam, pop, rise, win, show, rng, $ } = kit;
+const DROP = 2.5, SLEN = 4.5, FIX = 16, END = 19.5;
+const SIGNS = [
+  { n: 3, title: 'It loads<br>too slowly', line: 'Visitors <b>don’t wait</b> around.', vis: 'loader' },
+  { n: 2, title: 'It breaks<br>on phones', line: 'Most people browse <b>on their phone.</b>', vis: 'phone' },
+  { n: 1, title: 'No clear<br>next step', line: 'Confused visitors <b>don’t buy.</b>', vis: 'confused' },
+];
+const VIS = {
+  loader: `<div class="card"><div class="bar"><i></i><i></i><i></i></div><div class="spin"></div><div class="pbar"><i></i></div><div class="pct">0%</div></div><div class="toast">✕ Tab closed</div>`,
+  phone: `<div class="ph">
+      <div class="blk" style="left:-60px;top:40px;width:470px;height:90px;background:#3b6fd6"></div>
+      <div class="blk" style="left:20px;top:160px;width:420px;height:12px;background:#bbb"></div>
+      <div class="blk" style="left:20px;top:182px;width:400px;height:12px;background:#bbb"></div>
+      <div class="blk" style="left:20px;top:204px;width:430px;height:12px;background:#bbb"></div>
+      <div class="blk" style="left:40px;top:250px;width:380px;height:190px;background:#c9c9c9"></div>
+      <div class="blk" style="left:190px;top:470px;width:220px;height:60px;background:#3b6fd6"></div>
+    </div><div class="note" style="left:-10px;top:160px">Text too small</div><div class="note" style="left:560px;top:470px">Cut off</div>`,
+  confused: `<div class="card"><div class="bar"><i></i><i></i><i></i></div>
+      ${[[60, 110], [300, 110], [540, 110], [60, 230], [300, 230], [540, 230], [60, 350], [300, 350], [540, 350]].map(([x, y]) => `<div class="btn" style="left:${x}px;top:${y}px">Click</div>`).join('')}
+      <div class="q" style="left:120px;top:440px">?</div><div class="q" style="left:380px;top:450px">?</div><div class="q" style="left:640px;top:430px">?</div>
+      <svg class="cursor" viewBox="0 0 70 90"><path d="M5 5 L5 75 L22 58 L35 86 L47 80 L34 53 L58 53 Z" fill="#fff" stroke="#000" stroke-width="4"/></svg></div>`,
+};
+$('#signs').innerHTML = SIGNS.map((s, i) => `<section class="scene sign">
+    <div class="abs num gold-text">#${s.n}</div>${s.n === 1 ? '<div class="abs worst">The costliest</div>' : ''}
+    <div class="abs title hv">${s.title}</div><div class="abs vis v-${s.vis}">${VIS[s.vis]}</div><div class="abs line">${s.line}</div></section>`).join('');
+const FIXES = ['Fast-loading pages', 'Perfect on phones', 'A clear path to buy'];
+$('#fixes').innerHTML = FIXES.map((f, i) => `<div class="fixrow abs" style="top:${920 + i * 170}px"><span class="ok">✓</span><span>${f}</span></div>`).join('');
+$('#sEnd').innerHTML = kit.ctaMarkup('Stop losing', 'money.');
+// falling bills in the hook
+const br = rng(11);
+const bills = Array.from({ length: 14 }, () => ({ x: br() * 1000, d: br() * .8, v: 900 + br() * 700, r: br() * 60 - 30 }));
+$('#bills').innerHTML = bills.map(() => '<span class="emoji">💸</span>').join('');
+
+const chrome = kit.setup({
+  duration: 24, bpm: 120, beatFrom: DROP, beatTo: 23.5, goldFrom: FIX,
+  hits: [{ t: 0 }, { t: .5 }, { t: 1 }, { t: 1.4, amp: 22 }, { t: DROP, amp: 26 },
+    ...SIGNS.map((_, i) => ({ t: DROP + i * SLEN + 2.5, amp: 16 })), { t: FIX, amp: 34 }, { t: FIX + .5, amp: 20 }],
+  bursts: [FIX], goldFlashes: [FIX], whiteFlashes: [0, 1.4, DROP, 7, 11.5], blackouts: [[15.88, 16]],
+});
+
+window.render = function (t) {
+  const { pump } = chrome(t);
+
+  // HOOK
+  show($('#sHook'), win(t, 0, DROP));
+  [['#h1', 0], ['#h2', .5], ['#h3', 1], ['#h4', 1.4]].forEach(([id, at]) => { const s = slam(t, at); show($(id), s.o, `scale(${s.s})`); });
+  [...$('#bills').children].forEach((el, i) => {
+    const b = bills[i], dt = t - 1.4 - b.d;
+    show(el, dt > 0 ? 1 : 0, `translate(${b.x}px, ${-150 + dt * b.v}px) rotate(${b.r + dt * 90}deg)`);
+  });
+
+  // SIGNS
+  [...document.querySelectorAll('.sign')].forEach((sc, i) => {
+    const s0 = DROP + i * SLEN, q = (c) => sc.querySelector(c);
+    const out = seg(t, s0 + SLEN - .25, s0 + SLEN);
+    show(sc, win(t, s0, s0 + SLEN), `translateX(${-out * 1100}px)`);
+    let k = slam(t, s0, .2); show(q('.num'), k.o, `scale(${k.s})`); q('.num').style.transformOrigin = '0 50%';
+    if (q('.worst')) { const w = pop(t, s0 + .3, .25); show(q('.worst'), w.o, `scale(${w.s}) rotate(-4deg)`); }
+    k = pop(t, s0 + .5, .3); show(q('.title'), k.o, `scale(${k.s})`); q('.title').style.transformOrigin = '0 50%';
+    const v = rise(t, s0 + .9, .35); show(q('.vis'), v, `translateY(${(1 - v) * 200}px)`);
+    const ln = rise(t, s0 + 2.5, .3); show(q('.line'), ln, `translateY(${(1 - ln) * 30}px)`);
+    const lt = t - s0 - .9;                              // local time inside the visual
+    if (SIGNS[i].vis === 'loader') {
+      q('.spin').style.transform = `rotate(${lt * 540}deg)`;
+      const p = Math.min(92, easeOut(seg(lt, 0, 1.4)) * 92);
+      q('.pbar i').style.width = p + '%'; q('.pct').textContent = `${Math.round(p)}%  loading…`;
+      const tt = pop(t, s0 + 2.5, .25); show(q('.toast'), tt.o, `scale(${tt.s})`);
+    }
+    if (SIGNS[i].vis === 'phone') {
+      q('.ph').style.transform = `rotate(${Math.sin(lt * 9) * 2}deg)`;
+      [...sc.querySelectorAll('.note')].forEach((n, j) => { const a = pop(t, s0 + 1.6 + j * .5, .25); show(n, a.o, `scale(${a.s}) rotate(${j ? 4 : -4}deg)`); });
+    }
+    if (SIGNS[i].vis === 'confused') {
+      const path = (u) => [330 + Math.sin(u * 2.3) * 230 + Math.sin(u * 5.1) * 60, 250 + Math.cos(u * 1.7) * 140 + Math.sin(u * 4.3) * 50];
+      const [x, y] = path(Math.max(0, lt));
+      q('.cursor').style.transform = `translate(${x}px, ${y}px)`;
+      [...sc.querySelectorAll('.q')].forEach((n, j) => { const a = pop(t, s0 + 1.5 + j * .35, .25); show(n, a.o, `scale(${a.s}) rotate(${Math.sin(t * 6 + j) * 10}deg)`); });
+    }
+  });
+
+  // FIX
+  show($('#sFix'), win(t, FIX, END));
+  let k = slam(t, FIX, .2); show($('#fx1'), k.o, `scale(${k.s})`);
+  k = slam(t, FIX + .5, .22); show($('#fx2'), k.o, `scale(${k.s})`);
+  [...$('#fixes').children].forEach((f, i) => { const a = pop(t, FIX + 1 + i * .5, .25); show(f, a.o, `scale(${a.s})`); f.style.transformOrigin = '0 50%'; });
+
+  // END
+  show($('#sEnd'), win(t, END, 24));
+  kit.animateCta($('#sEnd'), t, END, pump);
+};
+kit.start();
+</script>
+</body>
+</html>

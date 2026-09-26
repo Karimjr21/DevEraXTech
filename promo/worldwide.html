@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DevEraXTech: Cairo to the World</title>
+<link rel="stylesheet" href="kit/reel-kit.css">
+<style>
+  @font-face { font-family: 'CairoAr'; src: url(assets/cairo-arabic.woff2) format('woff2'); font-weight: 200 1000; unicode-range: U+0600-06FF, U+FB50-FDFF, U+FE70-FEFF; }
+  body { font-family: 'Inter', 'CairoAr', system-ui, 'Noto Color Emoji', sans-serif; }
+  #h1 { top: 540px; font-size: 104px; white-space: nowrap; } #h2 { top: 670px; font-size: 104px; white-space: nowrap; } #h3 { top: 800px; font-size: 118px; white-space: nowrap; }
+  #globe { left: 0; top: 0; }
+  #country { top: 250px; font-size: 96px; white-space: nowrap; }
+  #countNo { top: 380px; font-size: 34px; font-weight: 800; letter-spacing: .3em; color: rgba(255,255,255,.65); }
+  #flags { left: 0; right: 0; top: 1470px; display: flex; justify-content: center; gap: 22px; }
+  #flags span { font-size: 92px; }
+  #hq { top: 1610px; font-size: 40px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--gold-hi); }
+  .hello { top: 560px; font-size: 230px; font-weight: 900; line-height: 1.2; white-space: nowrap; }
+  .helloLbl { top: 880px; font-size: 44px; font-weight: 800; letter-spacing: .3em; text-transform: uppercase; color: rgba(255,255,255,.7); }
+  #speak1 { top: 1150px; font-size: 96px; white-space: nowrap; } #speak2 { top: 1250px; font-size: 98px; white-space: nowrap; }
+  #o1 { top: 300px; font-size: 104px; white-space: nowrap; }
+  #clock { left: 340px; top: 470px; width: 400px; height: 400px; }
+  #o2 { top: 940px; font-size: 140px; white-space: nowrap; }
+  #o3 { top: 1100px; font-size: 48px; font-weight: 800; letter-spacing: .24em; text-transform: uppercase; color: rgba(255,255,255,.75); }
+  #o4 { top: 1300px; left: 80px; right: 80px; font-size: 52px; font-weight: 800; line-height: 1.2; }
+  .endL1 { font-size: 78px; } .endL2 { font-size: 118px; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="world">
+    <section id="sHook" class="scene">
+      <div id="h1" class="abs cx hv">A studio in Cairo.</div>
+      <div id="h2" class="abs cx hv">Serving</div>
+      <div id="h3" class="abs cx hv"><span class="hl">7 countries. <span class="emoji">🌍</span></span></div>
+    </section>
+    <section id="sGlobe" class="scene">
+      <canvas id="globe" class="abs" width="1080" height="1920"></canvas>
+      <div id="country" class="abs cx hv"></div>
+      <div id="countNo" class="abs cx"></div>
+      <div id="flags" class="abs"></div>
+      <div id="hq" class="abs cx">★ HQ · Cairo, Egypt</div>
+    </section>
+    <section id="sLang" class="scene">
+      <div id="hellos"></div>
+      <div id="speak1" class="abs cx hv">We speak</div>
+      <div id="speak2" class="abs cx hv"><span class="hl">your language.</span></div>
+    </section>
+    <section id="sOpen" class="scene">
+      <div id="o1" class="abs cx hv">Open every day</div>
+      <svg id="clock" class="abs" viewBox="0 0 400 400">
+        <circle cx="200" cy="200" r="186" fill="#120f08" stroke="url(#cg)" stroke-width="14"/>
+        ${''}
+        <g id="ticks"></g>
+        <line id="hh" x1="200" y1="200" x2="200" y2="95" stroke="#f5d573" stroke-width="16" stroke-linecap="round"/>
+        <line id="mh" x1="200" y1="200" x2="200" y2="55" stroke="#fff" stroke-width="10" stroke-linecap="round"/>
+        <circle cx="200" cy="200" r="16" fill="#f5d573"/>
+        <defs><linearGradient id="cg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b8912a"/><stop offset=".5" stop-color="#f7dc85"/><stop offset="1" stop-color="#a8821f"/></linearGradient></defs>
+      </svg>
+      <div id="o2" class="abs cx hv gold-text">9 AM – 5 PM</div>
+      <div id="o3" class="abs cx">Cairo time</div>
+      <div id="o4" class="abs cx">Meetings booked online show <span class="gold-text">your local time</span> too.</div>
+    </section>
+    <section id="sEnd" class="scene"></section>
+  </div>
+</div>
+
+<script src="assets/globe-dots.js"></script>
+<script src="kit/reel-kit.js"></script>
+<script>
+const { seg, easeOut, easeInOut, back, decay, slam, pop, rise, win, show, $ } = kit;
+const DROP = 2, LANG = 12, OPEN = 16, END = 19.5;
+const RAD = Math.PI / 180;
+const HQ = { lon: 31.24, lat: 30.04 };
+const PLACES = [   // Egypt is home; the rest get an arc from Cairo
+  { name: 'Egypt', flag: '🇪🇬', lon: 31.24, lat: 30.04 },
+  { name: 'Saudi Arabia', flag: '🇸🇦', lon: 46.68, lat: 24.71 },
+  { name: 'UAE', flag: '🇦🇪', lon: 55.27, lat: 25.2 },
+  { name: 'Qatar', flag: '🇶🇦', lon: 51.53, lat: 25.29 },
+  { name: 'Kuwait', flag: '🇰🇼', lon: 47.98, lat: 29.37 },
+  { name: 'United States', flag: '🇺🇸', lon: -74.0, lat: 40.71 },
+  { name: 'Canada', flag: '🇨🇦', lon: -79.38, lat: 43.65 },
+];
+const P0 = 2.5, PSTEP = 1.25;
+$('#flags').innerHTML = PLACES.map(p => `<span class="emoji">${p.flag}</span>`).join('');
+const HELLOS = [['مرحبًا', 'Arabic'], ['Hello', 'English'], ['Hallo', 'German']];
+$('#hellos').innerHTML = HELLOS.map(([w, l]) => `<div class="abs cx hello gold-text">${w}</div><div class="abs cx helloLbl">${l}</div>`).join('');
+$('#ticks').innerHTML = Array.from({ length: 12 }, (_, i) => { const a = i * 30 * RAD; return `<line x1="${200 + Math.sin(a) * 150}" y1="${200 - Math.cos(a) * 150}" x2="${200 + Math.sin(a) * 170}" y2="${200 - Math.cos(a) * 170}" stroke="#d4af37" stroke-width="${i % 3 ? 4 : 9}"/>`; }).join('');
+$('#sEnd').innerHTML = kit.ctaMarkup('Wherever you are,', 'let’s build.');
+
+// ---------- globe ----------
+const vec = (lon, lat) => [Math.cos(lat * RAD) * Math.cos(lon * RAD), Math.sin(lat * RAD), Math.cos(lat * RAD) * Math.sin(lon * RAD)];
+const DOTS = window.GLOBE_DOTS.map(([lo, la]) => vec(lo, la));
+function slerp(a, b, u) {
+  const d = Math.acos(Math.min(1, a[0] * b[0] + a[1] * b[1] + a[2] * b[2])), s = Math.sin(d) || 1;
+  const wa = Math.sin((1 - u) * d) / s, wb = Math.sin(u * d) / s;
+  return [a[0] * wa + b[0] * wb, a[1] * wa + b[1] * wb, a[2] * wa + b[2] * wb];
+}
+const gctx = $('#globe').getContext('2d');
+function project(v, lon0, lat0, R, cx, cy) {
+  // rotate so (lon0, lat0) faces the viewer
+  const cl = Math.cos(-lon0), sl = Math.sin(-lon0);
+  const x1 = v[0] * cl - v[2] * sl, z1 = v[0] * sl + v[2] * cl, y1 = v[1];
+  const cp = Math.cos(lat0), sp = Math.sin(lat0);
+  const y2 = y1 * cp - x1 * sp, x2 = y1 * sp + x1 * cp;
+  // x2 = toward viewer, z1 = right, y2 = up
+  return { x: cx + z1 * R, y: cy - y2 * R, z: x2 };
+}
+function drawGlobe(t) {
+  const g = gctx; g.clearRect(0, 0, 1080, 1920);
+  const k = back(seg(t, DROP, DROP + .6)), R = 400 * k, cx = 540, cy = 930;
+  if (R <= 1) return;
+  const lon0 = (48 - easeInOut(seg(t, 2.5, 11)) * 70) * RAD, lat0 = 26 * RAD;
+  const halo = g.createRadialGradient(cx, cy, R * .7, cx, cy, R * 1.35);
+  halo.addColorStop(0, 'rgba(212,175,55,.18)'); halo.addColorStop(1, 'rgba(212,175,55,0)');
+  g.fillStyle = halo; g.beginPath(); g.arc(cx, cy, R * 1.35, 0, 6.283); g.fill();
+  g.fillStyle = '#0d0b07'; g.beginPath(); g.arc(cx, cy, R, 0, 6.283); g.fill();
+  g.strokeStyle = 'rgba(245,213,115,.45)'; g.lineWidth = 3; g.stroke();
+  for (const v of DOTS) {
+    const p = project(v, lon0, lat0, R, cx, cy);
+    if (p.z <= 0) continue;
+    g.fillStyle = `rgba(245,213,115,${.25 + p.z * .6})`; g.fillRect(p.x - 2.2, p.y - 2.2, 4.4, 4.4);
+  }
+  const hq = vec(HQ.lon, HQ.lat), hqP = project(hq, lon0, lat0, R, cx, cy);
+  PLACES.forEach((pl, i) => {
+    const at = P0 + i * PSTEP; if (t < at || i === 0) return;
+    const to = vec(pl.lon, pl.lat), u = easeOut(seg(t, at, at + .6));
+    const d = Math.acos(hq[0] * to[0] + hq[1] * to[1] + hq[2] * to[2]), lift = .06 + d * .18;
+    g.beginPath();
+    for (let s = 0; s <= 40; s++) {
+      const w = (s / 40) * u, v = slerp(hq, to, w), h = 1 + lift * Math.sin(Math.PI * w);
+      const p = project([v[0] * h, v[1] * h, v[2] * h], lon0, lat0, R, cx, cy);
+      s ? g.lineTo(p.x, p.y) : g.moveTo(p.x, p.y);
+    }
+    g.strokeStyle = '#f7dc85'; g.lineWidth = 5; g.shadowColor = 'rgba(245,213,115,.9)'; g.shadowBlur = 18; g.stroke(); g.shadowBlur = 0;
+    const tp = project(to, lon0, lat0, R, cx, cy);
+    if (u >= 1 && tp.z > 0) {
+      const ping = (t - at - .6), r = 10 + (ping % 1) * 40;
+      g.fillStyle = '#fff'; g.beginPath(); g.arc(tp.x, tp.y, 9, 0, 6.283); g.fill();
+      g.strokeStyle = `rgba(245,213,115,${1 - (ping % 1)})`; g.lineWidth = 4; g.beginPath(); g.arc(tp.x, tp.y, r, 0, 6.283); g.stroke();
+    }
+  });
+  if (hqP.z > 0) {                                    // Cairo beacon
+    const r = 14 + Math.sin(t * 8) * 4;
+    g.fillStyle = '#f7dc85'; g.shadowColor = '#f7dc85'; g.shadowBlur = 40; g.beginPath(); g.arc(hqP.x, hqP.y, r, 0, 6.283); g.fill(); g.shadowBlur = 0;
+  }
+}
+
+const chrome = kit.setup({
+  duration: 24, bpm: 120, beatFrom: DROP, beatTo: 23.5, goldFrom: DROP,
+  hits: [{ t: 0 }, { t: .5 }, { t: 1, amp: 22 }, { t: DROP, amp: 30 }, ...PLACES.map((_, i) => ({ t: P0 + i * PSTEP + .6, amp: 10 })),
+    ...HELLOS.map((_, i) => ({ t: LANG + i * .75, amp: 18 })), { t: OPEN, amp: 20 }],
+  bursts: [DROP, END], goldFlashes: [DROP], whiteFlashes: [0, 1, LANG, OPEN], blackouts: [[1.88, DROP]],
+});
+
+window.render = function (t) {
+  const { pump } = chrome(t);
+  show($('#sHook'), win(t, 0, 1.88));
+  [['#h1', 0], ['#h2', .5], ['#h3', 1]].forEach(([id, at]) => { const s = slam(t, at); show($(id), s.o, `scale(${s.s})`); });
+
+  // GLOBE 2 - 12
+  show($('#sGlobe'), win(t, DROP, LANG) * (1 - seg(t, LANG - .2, LANG)));
+  drawGlobe(t);
+  const land = (i) => P0 + i * PSTEP + (i ? .6 : 0);     // name/counter switch when each arc lands
+  let idx = 0; PLACES.forEach((_, i) => { if (t >= land(i)) idx = i; });
+  if (t >= P0) {
+    const c = slam(t, land(idx), .2);
+    $('#country').innerHTML = `<span class="emoji">${PLACES[idx].flag}</span> ${PLACES[idx].name}`;
+    show($('#country'), c.o, `scale(${c.s})`);
+    $('#countNo').textContent = `${String(idx + 1).padStart(2, '0')} / 07`;
+    show($('#countNo'), 1);
+  } else { show($('#country'), 0); show($('#countNo'), 0); }
+  [...$('#flags').children].forEach((f, i) => { const a = pop(t, P0 + i * PSTEP + (i ? .6 : 0), .3); show(f, a.o, `scale(${a.s})`); });
+  show($('#hq'), rise(t, DROP + .4, .3));
+
+  // LANGUAGES 12 - 16
+  show($('#sLang'), win(t, LANG, OPEN));
+  const hs = [...$('#hellos').children];
+  HELLOS.forEach((_, i) => {
+    const at = LANG + i * .75, next = i < 2 ? LANG + (i + 1) * .75 : 99, k = slam(t, at, .2);
+    const vis = t >= at && t < next ? 1 : 0;
+    show(hs[i * 2], vis * k.o, `scale(${k.s})`); show(hs[i * 2 + 1], vis);
+  });
+  let k = slam(t, 14.5, .22); show($('#speak1'), k.o, `scale(${k.s})`);
+  k = slam(t, 15, .22); show($('#speak2'), k.o, `scale(${k.s})`);
+
+  // OPEN 16 - 19.5
+  show($('#sOpen'), win(t, OPEN, END));
+  k = slam(t, OPEN, .2); show($('#o1'), k.o, `scale(${k.s})`);
+  const cl = pop(t, OPEN + .2, .3); show($('#clock'), cl.o, `scale(${cl.s})`);
+  const hrs = 9 + easeInOut(seg(t, OPEN + .3, OPEN + 2.3)) * 8;   // sweep 9:00 → 17:00
+  $('#hh').setAttribute('transform', `rotate(${(hrs % 12) * 30} 200 200)`);
+  $('#mh').setAttribute('transform', `rotate(${(hrs % 1) * 360} 200 200)`);
+  k = slam(t, OPEN + .5, .22); show($('#o2'), k.o, `scale(${k.s})`);
+  show($('#o3'), rise(t, OPEN + 1, .3));
+  const o4 = rise(t, OPEN + 1.8, .3); show($('#o4'), o4, `translateY(${(1 - o4) * 30}px)`);
+
+  show($('#sEnd'), win(t, END, 24));
+  kit.animateCta($('#sEnd'), t, END, pump);
+};
+kit.start();
+</script>
+</body>
+</html>

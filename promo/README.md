@@ -65,3 +65,20 @@ node render.mjs deveraxtech-them-vs-us.mp4 --page them-vs-us.html --audio them-v
 python3 soundtrack.py rate-this rate-this-audio.wav
 node render.mjs deveraxtech-rate-this.mp4 --page rate-this.html --audio rate-this-audio.wav
 ```
+
+## 5–9. Five more vertical reels (9:16, 24 s, with soundtracks)
+
+| File | Hook | Format |
+|---|---|---|
+| `deveraxtech-money-signs.mp4` | "3 signs your website is costing you money" | countdown listicle (#3 → #1), then "We fix all 3" |
+| `deveraxtech-glow-up.mp4` | "Watch this website glow up ✨" | a dated template site vs the Nilora build: gold wipe on the drop, then a before/after slider |
+| `deveraxtech-process.mp4` | "Hiring a web studio shouldn't feel like a gamble" | the 3-step process (call → plan & design → build, secure & launch) |
+| `deveraxtech-worldwide.mp4` | "A studio in Cairo. Serving 7 countries. 🌍" | dotted globe (site's land dots) with arcs from Cairo, languages, opening hours |
+| `deveraxtech-whats-included.mp4` | "What you actually get when you hire us 👇" | unboxing: items fly out of a gold box, "Not extras. The standard." |
+
+```bash
+for r in money-signs glow-up process worldwide whats-included; do
+  python3 soundtrack.py $r $r-audio.wav
+  node render.mjs deveraxtech-$r.mp4 --page $r.html --audio $r-audio.wav
+done
+```

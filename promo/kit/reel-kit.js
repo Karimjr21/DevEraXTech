@@ -88,5 +88,22 @@
     }
   }
 
-  window.kit = { clamp, seg, easeOut, easeInOut, back, decay, slam, pop, rise, win, show, rng, $, setup, start };
+  // Standard closing scene: logo, two lines, CTA button, url, handle.
+  function ctaMarkup(l1, l2, btn = 'Request a meeting →') {
+    return `<img class="abs endLogo" src="assets/logo.png" alt=""><div class="abs cx hv endL1">${l1}</div>
+      <div class="abs cx hv endL2"><span class="hl">${l2}</span></div><div class="abs cta endBtn">${btn}</div>
+      <div class="abs cx url gold-text endUrl">deveraxtech.com</div><div class="abs cx ig endIg">@deveraxtech</div>`;
+  }
+  function animateCta(root, t, at, pump) {
+    const q = (c) => root.querySelector(c);
+    const lg = pop(t, at, .3); show(q('.endLogo'), lg.o, `scale(${lg.s})`);
+    const a = rise(t, at + .1, .25); show(q('.endL1'), a, `translateY(${(1 - a) * 40}px)`);
+    const b = slam(t, at + .5, .22); show(q('.endL2'), b.o, `scale(${b.s})`);
+    const c = pop(t, at + 1, .3); show(q('.endBtn'), c.o, `scale(${c.s * (1 + pump * .05)})`);
+    q('.endBtn').style.boxShadow = `0 0 ${60 + pump * 70}px rgba(212,175,55,${.45 + pump * .3})`;
+    const u = rise(t, at + 1.4, .25); show(q('.endUrl'), u, `translateY(${(1 - u) * 30}px)`);
+    const g = rise(t, at + 1.6, .25); show(q('.endIg'), g, `translateY(${(1 - g) * 30}px)`);
+  }
+
+  window.kit = { ctaMarkup, animateCta, clamp, seg, easeOut, easeInOut, back, decay, slam, pop, rise, win, show, rng, $, setup, start };
 })();

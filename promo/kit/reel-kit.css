@@ -5,7 +5,7 @@
   --gold-grad: linear-gradient(135deg, #b8912a 0%, #d4af37 30%, #f7dc85 55%, #d4af37 80%, #a8821f 100%); }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); }
-body { font-family: 'Inter', system-ui, sans-serif; color: #fff; }
+body { font-family: 'Inter', system-ui, 'Noto Color Emoji', sans-serif; color: #fff; }
 #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); }
 #world { position: absolute; inset: 0; transform-origin: 50% 50%; }
 .abs { position: absolute; }
@@ -36,3 +36,11 @@ body { font-family: 'Inter', system-ui, sans-serif; color: #fff; }
 .cta { left: 130px; right: 130px; padding: 44px 0; border-radius: 999px; background: var(--gold-grad); color: #0b0904; text-align: center; font-size: 62px; font-weight: 900; letter-spacing: -.01em; box-shadow: 0 0 80px rgba(212,175,55,.55); }
 .url { font-size: 58px; font-weight: 800; direction: ltr; unicode-bidi: isolate; }
 .ig { font-size: 42px; font-weight: 600; color: rgba(255,255,255,.7); direction: ltr; unicode-bidi: isolate; }
+
+/* Standard closing scene (kit.ctaMarkup / kit.animateCta) */
+.endLogo { left: 410px; top: 300px; width: 260px; }
+.endL1 { top: 610px; font-size: 82px; white-space: nowrap; }
+.endL2 { top: 720px; font-size: 150px; white-space: nowrap; }
+.endBtn { top: 1100px; }
+.endUrl { top: 1310px; } .endIg { top: 1400px; }
+.emoji { font-family: 'Noto Color Emoji', sans-serif; font-weight: 400; }
