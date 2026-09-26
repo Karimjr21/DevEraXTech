@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DevEraXTech: The Recipe</title>
+<link rel="stylesheet" href="kit/reel-kit.css">
+<link rel="stylesheet" href="kit/fonts2.css">
+<style>
+  /* KITCHEN: marble counter, handwritten recipe card, mixing bowl, oven timer, cloche reveal */
+  #stage { background: #e9e6e1; color: #2b2118; }
+  #marble { background:
+    linear-gradient(115deg, transparent 40%, rgba(120,120,130,.25) 41%, transparent 43%),
+    linear-gradient(35deg, transparent 60%, rgba(120,120,130,.18) 61%, transparent 62.5%),
+    linear-gradient(160deg, transparent 20%, rgba(140,140,150,.2) 21%, transparent 22%),
+    radial-gradient(ellipse at 30% 20%, #fbfaf8, #e3e0da 70%); }
+  .hand { font-family: 'PatrickHand', 'Caveat', cursive; }
+  #card { left: 50px; top: 130px; width: 980px; height: 1150px; background: #fffdf5; border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,.18);
+    background-image: repeating-linear-gradient(0deg, transparent 0 69px, rgba(80,120,200,.22) 69px 71px); padding: 60px 60px; transform: rotate(-1deg); }
+  #card::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 18px; background: #d64b3c; border-radius: 16px 16px 0 0; }
+  #ttl { font-size: 112px; line-height: 1; color: #2b2118; }
+  #meta { font-size: 48px; color: #8a7a66; margin-top: 18px; }
+  .ing { font-size: 76px; line-height: 1.1; margin-top: 26px; display: flex; gap: 20px; align-items: center; }
+  .ing .bx { width: 50px; height: 50px; border: 4px solid #2b2118; border-radius: 8px; flex: none; display: grid; place-items: center; font-size: 44px; color: #d64b3c; }
+  #bowl { left: 340px; top: 1330px; width: 400px; height: 220px; border-radius: 0 0 200px 200px; background: linear-gradient(180deg, #d9e4ea, #9fb3bf); box-shadow: 0 20px 40px rgba(0,0,0,.25); }
+  #bowl::before { content: ''; position: absolute; left: -10px; right: -10px; top: -30px; height: 60px; border-radius: 50%; background: #c6d4dc; box-shadow: inset 0 12px 20px rgba(0,0,0,.25); }
+  .fly { position: absolute; font-size: 110px; }
+  /* method */
+  .step { left: 90px; right: 90px; font-size: 92px; }
+  #oven { left: 290px; top: 1120px; width: 500px; height: 200px; border-radius: 30px; background: #222; color: #ff5a3c; font-family: 'DejaVu Sans Mono', monospace; font-size: 120px; display: grid; place-items: center; box-shadow: 0 0 60px rgba(255,90,60,.4); }
+  /* serve */
+  #plate { left: 140px; top: 520px; width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, #fff 55%, #eceae6 56%, #fff 70%, #dcd8d0 100%); box-shadow: 0 30px 60px rgba(0,0,0,.25); display: grid; place-items: center; }
+  #plate img { width: 520px; border-radius: 16px; box-shadow: 0 10px 20px rgba(0,0,0,.25); }
+  #cloche { left: 150px; top: 300px; width: 780px; height: 620px; }
+  #special { top: 1380px; font-size: 80px; }
+  #special2 { top: 1480px; font-size: 52px; color: #8a7a66; }
+  #frozen { top: 700px; left: 80px; right: 80px; font-size: 104px; line-height: 1.05; }
+  /* CTA */
+  #c1 { top: 430px; font-size: 140px; }
+  #eBtn { left: 150px; right: 150px; top: 850px; padding: 40px 0; border-radius: 999px; background: #d64b3c; color: #fff; text-align: center; font-size: 60px; font-weight: 900; font-family: 'Inter', sans-serif; box-shadow: 0 12px 0 #8e2a20; }
+  #eUrl { top: 1060px; color: #2b2118; } #eIg { top: 1140px; color: #8a7a66; }
+  #sig { top: 1280px; font-size: 76px; color: #b8912a; }
+  #eLogo { left: 440px; top: 170px; width: 200px; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="world">
+    <div id="marble" class="layer"></div>
+    <section id="s1" class="scene">
+      <div id="card" class="abs hand"><div id="ttl">The recipe for a website that sells 🍳</div>
+        <div id="meta">Serves: your customers · Prep: one discovery call</div><div id="ings"></div></div>
+      <div id="bowl" class="abs"></div>
+      <div id="flies"></div>
+    </section>
+    <section id="s2" class="scene"><div id="steps"></div><div id="oven" class="abs">03:00</div></section>
+    <section id="s3" class="scene">
+      <div id="plate" class="abs"><img src="assets/nilora-estates-real-estate-website.webp" alt=""></div>
+      <svg id="cloche" class="abs" viewBox="0 0 780 620"><defs><linearGradient id="cg" x1="0" x2="1"><stop offset="0" stop-color="#9aa3aa"/><stop offset=".4" stop-color="#f4f6f8"/><stop offset="1" stop-color="#8a939a"/></linearGradient></defs>
+        <path d="M40 600 C40 250 740 250 740 600 Z" fill="url(#cg)" stroke="#6e767c" stroke-width="6"/><circle cx="390" cy="300" r="40" fill="#c9cfd3" stroke="#6e767c" stroke-width="6"/><rect x="10" y="590" width="760" height="24" rx="12" fill="#b9c0c5"/></svg>
+      <div id="special" class="abs cx hand">Chef’s special: Nilora Estates ✨</div>
+      <div id="special2" class="abs cx hand">MERN stack · 3 dashboards · served in Cairo</div>
+    </section>
+    <section id="s4" class="scene"><div id="frozen" class="abs cx hand">Every dish is custom.<br>No frozen templates. 🧊🚫</div></section>
+    <section id="s5" class="scene">
+      <img id="eLogo" class="abs" src="assets/logo.png" alt="">
+      <div id="c1" class="abs cx hand">Hungry for yours? 😋</div>
+      <div id="eBtn" class="abs">Request a meeting →</div>
+      <div id="eUrl" class="abs cx url">deveraxtech.com</div>
+      <div id="eIg" class="abs cx ig">@deveraxtech</div>
+      <div id="sig" class="abs cx hand">— Chef DevEraXTech</div>
+    </section>
+  </div>
+</div>
+
+<script src="kit/reel-kit.js"></script>
+<script>
+const { seg, easeOut, easeInOut, back, decay, pop, rise, win, show, $ } = kit;
+const ING = [['🎨', '1 cup custom design'], ['⚡', '2 tbsp speed'], ['🔎', 'a pinch of SEO'], ['🔒', 'security, baked in'], ['👉', '1 clear call to action']];
+$('#ings').innerHTML = ING.map(([e, s]) => `<div class="ing"><span class="bx"></span><span>${s} ${e}</span></div>`).join('');
+$('#flies').innerHTML = ING.map(([e]) => `<div class="fly emoji">${e}</div>`).join('');
+const STEPS = ['1. Mix in Cairo 🇪🇬', '2. Bake with care 🔥', '3. Serve in 7 countries 🌍'];
+$('#steps').innerHTML = STEPS.map((s, i) => `<div class="abs step hand" style="top:${380 + i * 200}px">${s}</div>`).join('');
+const ingAt = (i) => 2.4 + i;
+
+const chrome = kit.setup({
+  duration: 23, bpm: 126, beatFrom: 1.905, beatTo: 20.95, goldFrom: 99,
+  look: { gold: false, progress: false, handle: false, vignette: false, grain: .03, pump: .006, shake: .3 },
+  hits: [{ t: 12.5, amp: 8 }], bursts: [], whiteFlashes: [],
+});
+const write = (el, a, d) => { el.style.clipPath = `inset(-20px ${(1 - easeInOut(seg(window.__t, a, a + d))) * 100}% -20px 0)`; };
+
+window.render = function (t) {
+  window.__t = t;
+  chrome(t);
+  // 1: recipe card + ingredients into the bowl
+  show($('#s1'), win(t, 0, 8) * (1 - seg(t, 7.7, 8)));
+  write($('#ttl'), 0, 1.4); write($('#meta'), 1.6, .6);
+  [...$('#ings').children].forEach((el, i) => {
+    write(el, ingAt(i), .5);
+    el.querySelector('.bx').textContent = t >= ingAt(i) + .5 ? '✓' : '';
+  });
+  [...$('#flies').children].forEach((f, i) => {
+    const k = seg(t, ingAt(i) + .45, ingAt(i) + 1.1);
+    const x0 = 820, y0 = 600 + i * 112, x1 = 490, y1 = 1300;
+    const x = x0 + (x1 - x0) * k, y = y0 + (y1 - y0) * k - Math.sin(Math.PI * k) * 260;
+    show(f, k > 0 && k < 1 ? 1 : 0, `translate(${x}px, ${y}px) rotate(${k * 360}deg) scale(${1 - k * .4})`);
+  });
+  $('#bowl').style.transform = `rotate(${Math.sin(t * 6) * 3 * [0, 1, 2, 3, 4].reduce((m, i) => Math.max(m, decay(t, ingAt(i) + 1.1, 4)), 0)}deg)`;
+
+  // 2: method + oven timer
+  show($('#s2'), win(t, 8, 12) * (1 - seg(t, 11.8, 12)));
+  [...$('#steps').children].forEach((s, i) => { const p = pop(t, 8 + i, .35); show(s, p.o, `scale(${p.s}) rotate(${(i % 2 ? 1 : -1) * 2}deg)`); s.style.transformOrigin = '0 50%'; });
+  const left = Math.max(0, 180 - Math.floor(seg(t, 8.6, 11.4) * 180));
+  $('#oven').textContent = `${String(Math.floor(left / 60)).padStart(2, '0')}:${String(left % 60).padStart(2, '0')}`;
+  const ov = pop(t, 8.4, .3); show($('#oven'), ov.o, `scale(${ov.s * (1 + decay(t, 11.4, 8) * .15)})`);
+  $('#oven').style.color = t >= 11.4 ? '#7dff7a' : '#ff5a3c';
+
+  // 3: the cloche lifts
+  show($('#s3'), win(t, 12, 15.5) * (1 - seg(t, 15.3, 15.5)));
+  const lift = easeInOut(seg(t, 12.5, 13.1));
+  $('#cloche').style.transform = `translate(${lift * 420}px, ${-lift * 900}px) rotate(${lift * 30}deg)`;
+  $('#plate').style.filter = `brightness(${.4 + lift * .6})`;
+  const sp = pop(t, 13.2, .35); show($('#special'), sp.o, `scale(${sp.s})`);
+  show($('#special2'), rise(t, 14, .4));
+
+  // 4: no frozen templates
+  show($('#s4'), win(t, 15.5, 17.5));
+  const fz = pop(t, 15.5, .4); show($('#frozen'), fz.o, `scale(${fz.s}) rotate(-2deg)`);
+
+  // 5: CTA
+  show($('#s5'), win(t, 17.5, 23));
+  show($('#eLogo'), rise(t, 17.5, .4));
+  const c = pop(t, 17.5, .4); show($('#c1'), c.o, `scale(${c.s})`);
+  const eb = pop(t, 18.7, .35); show($('#eBtn'), eb.o, `scale(${eb.s})`);
+  show($('#eUrl'), rise(t, 19.3, .4)); show($('#eIg'), rise(t, 19.5, .4));
+  write($('#sig'), 19.8, .8);
+};
+kit.start();
+</script>
+</body>
+</html>

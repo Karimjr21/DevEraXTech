@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DevEraXTech: POV Chat</title>
+<link rel="stylesheet" href="kit/reel-kit.css">
+<link rel="stylesheet" href="kit/fonts2.css">
+<style>
+  /* MESSENGER: a dark chat app. Three conversations; two go nowhere, one goes somewhere. */
+  :root { --me: #3b5bdb; --them: #26262c; --app: #0c0c10; }
+  #stage { background: var(--app); }
+  #status { left: 0; right: 0; top: 0; height: 70px; display: flex; justify-content: space-between; align-items: center; padding: 0 50px; font-size: 30px; font-weight: 700; color: #ddd; z-index: 4; background: var(--app); }
+  .chat { left: 0; top: 70px; width: 1080px; height: 1850px; background: var(--app); }
+  .hdr { position: absolute; left: 0; right: 0; top: 0; height: 170px; display: flex; align-items: center; gap: 26px; padding: 0 40px; border-bottom: 1px solid #222; background: #121217; }
+  .hdr .back { font-size: 60px; color: #8aa0ff; }
+  .hdr .av { width: 100px; height: 100px; border-radius: 50%; display: grid; place-items: center; font-size: 44px; font-weight: 800; background: #333; color: #aaa; flex: none; overflow: hidden; }
+  .hdr .av img { width: 80px; }
+  .hdr b { display: block; font-size: 44px; }
+  .hdr span { display: block; font-size: 28px; color: #8a8a93; margin-top: 4px; }
+  .msgs { position: absolute; left: 40px; right: 40px; top: 190px; bottom: 170px; display: flex; flex-direction: column; justify-content: flex-end; gap: 18px; overflow: hidden; }
+  .m { max-width: 78%; padding: 26px 34px; border-radius: 42px; font-size: 44px; line-height: 1.25; transform-origin: 100% 100%; }
+  .m.me { align-self: flex-end; background: var(--me); border-bottom-right-radius: 12px; }
+  .m.them { align-self: flex-start; background: var(--them); border-bottom-left-radius: 12px; transform-origin: 0 100%; }
+  .m.dx { align-self: flex-start; background: var(--gold-grad); color: #15100a; font-weight: 600; border-bottom-left-radius: 12px; transform-origin: 0 100%; }
+  .m.photo { padding: 14px; }
+  .m.photo img { display: block; width: 640px; border-radius: 30px; }
+  .m.photo p { margin: 14px 18px 8px; font-size: 38px; }
+  .seen { align-self: flex-end; font-size: 28px; color: #8a8a93; padding-right: 10px; }
+  .typing { align-self: flex-start; background: var(--them); border-radius: 42px; padding: 30px 36px; display: flex; gap: 12px; }
+  .typing i { width: 18px; height: 18px; border-radius: 50%; background: #9a9aa3; }
+  .inp { position: absolute; left: 40px; right: 40px; bottom: 50px; height: 100px; border-radius: 50px; background: #1c1c22; color: #6f6f78; font-size: 36px; display: flex; align-items: center; padding: 0 40px; }
+  .crick { position: absolute; font-size: 90px; }
+  /* hook caption */
+  #cap { left: 60px; right: 60px; top: 330px; text-align: center; z-index: 5; }
+  #cap div { font-size: 104px; font-weight: 900; letter-spacing: -.03em; line-height: 1.02; color: #fff; -webkit-text-stroke: 3px #000; paint-order: stroke fill; text-shadow: 0 8px 30px rgba(0,0,0,.6); }
+  #cap .pov { font-size: 70px; color: #ffd84d; }
+  /* CTA */
+  #end { z-index: 6; }
+  #endBg { background: rgba(8,8,12,.82); backdrop-filter: blur(20px); }
+  #e1 { top: 520px; font-size: 118px; font-weight: 900; letter-spacing: -.04em; line-height: 1; }
+  #eBtn { left: 150px; right: 150px; top: 900px; padding: 40px 0; border-radius: 999px; background: var(--gold-grad); color: #15100a; text-align: center; font-size: 56px; font-weight: 900; }
+  #eUrl { top: 1110px; } #eIg { top: 1190px; }
+  #eNote { top: 1320px; font-size: 34px; color: #8a8a93; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="world">
+    <div id="chats"></div>
+    <div id="cap" class="abs"><div class="pov">POV:</div><div id="c1">you asked 3 agencies</div><div id="c2">for a website 😬</div></div>
+    <section id="end" class="scene">
+      <div id="endBg" class="layer"></div>
+      <div id="e1" class="abs cx">Stop getting<br><span class="gold-text">left on seen.</span></div>
+      <div id="eBtn" class="abs">Message DevEraXTech →</div>
+      <div id="eUrl" class="abs cx url gold-text">deveraxtech.com</div>
+      <div id="eIg" class="abs cx ig">@deveraxtech</div>
+      <div id="eNote" class="abs cx">Arabic · English · German</div>
+    </section>
+  </div>
+  <div id="status" class="abs"><span>12:30</span><span>●●● 5G ▮</span></div>
+</div>
+
+<script src="kit/reel-kit.js"></script>
+<script>
+const { seg, easeOut, easeInOut, back, decay, pop, rise, win, show, $ } = kit;
+const BPM = 132, B = 60 / BPM, at = (beats) => beats * B;
+const CHATS = [
+  { from: 6, to: 12, name: 'Agency #1', sub: 'last seen 2 weeks ago', av: 'A1', msgs: [
+    [6.5, 'me', 'Hi! Can you build our website? 🙏'], [8, 'seen', 'Seen ✓✓']] , crickets: 10 },
+  { from: 12, to: 18, name: 'Agency #2', sub: 'online', av: 'A2', msgs: [
+    [12.5, 'me', 'Hi! Can you build our website? 🙏'], [14, 'them', 'sure, we’ll use a template 👍'], [15, 'them', 'it’ll look like everyone else’s 😅'], [16.5, 'me', '🫠']] },
+  { from: 18, to: 99, name: 'DevEraXTech', sub: 'Web studio · Cairo', av: 'logo', msgs: [
+    [18.5, 'me', 'Hi! Can you build our website? 🙏'], [19.5, 'typing', ''], [21, 'dx', 'Hey! 👋 Tell us your goals, audience and timeline.'],
+    [23, 'dx', 'We design it around your brand. No templates. Ever.'], [25, 'dx', 'Secure from day one 🔒 Fast on every phone ⚡'],
+    [27, 'dx', 'And we speak Arabic, English &amp; German 🇪🇬 🇬🇧 🇩🇪'], [29, 'photo', 'Here’s one we shipped: <b>Nilora Estates</b> 👀'],
+    [31, 'me', 'ok wow 😍 let’s talk!'], [33, 'dx', 'Book a meeting 👉 deveraxtech.com']] },
+];
+$('#chats').innerHTML = CHATS.map((c, i) => `<div class="abs chat" id="chat${i}">
+  <div class="hdr"><span class="back">‹</span><div class="av">${c.av === 'logo' ? '<img src="assets/logo.png" alt="">' : c.av}</div><div><b>${c.name}</b><span>${c.sub}</span></div></div>
+  <div class="msgs">${c.msgs.map(([b, k, txt]) => k === 'seen' ? `<div class="seen">${txt}</div>` : k === 'typing' ? '<div class="typing"><i></i><i></i><i></i></div>'
+    : k === 'photo' ? `<div class="m dx photo"><img src="assets/nilora-estates-real-estate-website.webp" alt=""><p>${txt}</p></div>` : `<div class="m ${k}">${txt}</div>`).join('')}</div>
+  ${c.crickets ? '<div class="crick" style="left:200px;top:900px">🦗</div><div class="crick" style="left:760px;top:760px">🦗</div>' : ''}
+  <div class="inp">Message…</div></div>`).join('');
+
+const chrome = kit.setup({
+  duration: 22, bpm: BPM, beatFrom: at(6), beatTo: at(47.5), goldFrom: 99,
+  look: { gold: false, progress: false, handle: false, vignette: false, grain: .04, pump: .008, shake: .4 },
+  hits: [{ t: at(6), amp: 10 }, { t: at(36), amp: 12 }], bursts: [], whiteFlashes: [],
+});
+
+window.render = function (t) {
+  chrome(t);
+  const bt = t / B;
+  // which conversation is on screen; switching slides the old one out to the left
+  CHATS.forEach((c, i) => {
+    const el = $('#chat' + i);
+    const inK = i === 0 ? 1 : easeInOut(seg(bt, c.from - .6, c.from));
+    const outK = easeInOut(seg(bt, c.to - .6, c.to));
+    el.style.transform = `translateX(${(1 - inK) * 1080 - outK * 1080}px)`;
+    el.style.display = bt >= (i === 0 ? -1 : c.from - .6) && bt < c.to ? '' : 'none';
+    const items = [...el.querySelector('.msgs').children];
+    c.msgs.forEach(([b, k], j) => {
+      const node = items[j];
+      const end = k === 'typing' ? 21 : 999;
+      node.style.display = bt >= b && bt < end ? '' : 'none';
+      const p = seg(bt, b, b + .6);
+      node.style.transform = `scale(${.4 + back(p) * .6})`;
+      if (k === 'typing') [...node.children].forEach((d, q) => { d.style.transform = `translateY(${Math.sin(t * 12 - q) * -8}px)`; });
+    });
+    el.querySelectorAll('.crick').forEach((cr, q) => show(cr, bt >= c.crickets ? rise(bt, c.crickets + q * .5, 1) : 0, `translateY(${Math.sin(t * 9 + q) * 14}px)`));
+  });
+  $('#chat0').style.filter = bt < 6 ? `blur(${10 - seg(bt, 4.5, 6) * 10}px) brightness(.5)` : '';
+
+  // hook caption
+  show($('#cap'), bt < 6 ? 1 - seg(bt, 5.4, 6) : 0);
+  show($('#cap .pov'), rise(bt, 0, .5));
+  const a = pop(bt, 1, .5); show($('#c1'), a.o, `scale(${a.s})`);
+  const b2 = pop(bt, 2, .5); show($('#c2'), b2.o, `scale(${b2.s})`);
+
+  // CTA
+  show($('#end'), bt >= 36 ? 1 : 0);
+  show($('#endBg'), rise(bt, 36, 1));
+  const e1 = pop(bt, 36.3, .6); show($('#e1'), e1.o, `scale(${e1.s})`);
+  const eb = pop(bt, 38, .6); show($('#eBtn'), eb.o, `scale(${eb.s})`);
+  const u = rise(bt, 39, .8); show($('#eUrl'), u, `translateY(${(1 - u) * 20}px)`);
+  show($('#eIg'), rise(bt, 39.5, .8)); show($('#eNote'), rise(bt, 40, .8));
+};
+kit.start();
+</script>
+</body>
+</html>

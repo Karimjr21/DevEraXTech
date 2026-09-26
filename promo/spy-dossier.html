@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DevEraXTech: Classified File</title>
+<link rel="stylesheet" href="kit/reel-kit.css">
+<link rel="stylesheet" href="kit/fonts2.css">
+<style>
+  /* DOSSIER: wooden desk under a lamp, typewriter paper, manila folder, evidence board with red string */
+  #stage { background: #1a120b; }
+  #desk { background:
+    radial-gradient(ellipse at 50% 30%, rgba(255,210,140,.35), transparent 55%),
+    repeating-linear-gradient(92deg, rgba(0,0,0,.18) 0 3px, transparent 3px 22px),
+    linear-gradient(180deg, #4a3020, #2a1a10); }
+  .tw { font-family: 'SpecialElite', 'DejaVu Sans Mono', monospace; color: #1d1a16; }
+  .paper { background: #f1e8d4; box-shadow: 0 30px 70px rgba(0,0,0,.6); background-image: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,.5), transparent 60%), repeating-linear-gradient(0deg, rgba(0,0,0,.03) 0 1px, transparent 1px 46px); }
+  #p1 { left: 110px; top: 470px; width: 860px; height: 900px; padding: 80px 70px; transform: rotate(-2deg); }
+  #p1 .l1 { font-size: 54px; } #p1 .l2 { font-size: 56px; margin-top: 40px; }
+  .stampR { position: absolute; padding: 14px 34px; border: 10px solid #b3261e; color: #b3261e; font-family: 'SpecialElite', monospace; font-size: 96px; letter-spacing: .06em; border-radius: 12px; mix-blend-mode: multiply; }
+  /* folder */
+  #folder { left: 60px; top: 300px; width: 960px; height: 1300px; perspective: 2400px; }
+  #back { position: absolute; inset: 0; background: #d9b877; border-radius: 16px; box-shadow: 0 40px 90px rgba(0,0,0,.6); }
+  #tab { position: absolute; left: 60px; top: -60px; width: 380px; height: 80px; background: #d9b877; border-radius: 16px 16px 0 0; font-family: 'SpecialElite', monospace; font-size: 36px; display: grid; place-items: center; color: #3a2a12; }
+  #sheet { position: absolute; left: 40px; top: 40px; right: 40px; bottom: 40px; padding: 70px 60px; }
+  #cover { position: absolute; inset: 0; background: linear-gradient(135deg, #e3c586, #cfa962); border-radius: 16px; transform-origin: 0 50%; backface-visibility: hidden; display: grid; place-items: center; }
+  #cover b { font-family: 'SpecialElite', monospace; font-size: 80px; color: #5a3f15; text-align: center; line-height: 1.2; }
+  #polar { position: absolute; right: 60px; top: 60px; width: 290px; padding: 18px 18px 60px; background: #fff; box-shadow: 0 10px 25px rgba(0,0,0,.35); transform: rotate(4deg); }
+  #polar div { height: 250px; background: #111; display: grid; place-items: center; }
+  #polar img { width: 220px; }
+  #clip { position: absolute; right: 180px; top: 30px; width: 40px; height: 120px; border: 8px solid #9aa0a6; border-radius: 20px; }
+  .f { font-size: 54px; line-height: 1.2; margin-bottom: 46px; max-width: 520px; }
+  .f b { display: block; font-size: 34px; letter-spacing: .12em; color: #7a5a2a; font-weight: 400; }
+  .f.wide { max-width: none; }
+  .red { position: relative; display: inline-block; }
+  .red i { position: absolute; left: -6px; right: -6px; top: 4px; bottom: 4px; background: #111; transform-origin: 100% 50%; }
+  /* evidence board */
+  #board { left: 30px; top: 240px; width: 1020px; height: 1400px; background: #a67b4f; border: 22px solid #5b3a20; box-shadow: 0 40px 80px rgba(0,0,0,.6);
+    background-image: radial-gradient(rgba(0,0,0,.12) 2px, transparent 2px); background-size: 18px 18px; }
+  .pin { position: absolute; width: 30px; height: 30px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #ff7a6b, #b3261e); box-shadow: 0 4px 6px rgba(0,0,0,.4); z-index: 3; }
+  .ev { position: absolute; background: #fff; padding: 16px 16px 50px; box-shadow: 0 12px 24px rgba(0,0,0,.35); }
+  .ev img { display: block; width: 560px; }
+  .ev p { position: absolute; left: 0; right: 0; bottom: 8px; text-align: center; font-family: 'Caveat', cursive; font-size: 40px; font-weight: 700; color: #222; }
+  .note { position: absolute; width: 340px; padding: 30px; background: #fff27a; font-family: 'Caveat', cursive; font-size: 54px; font-weight: 700; color: #222; line-height: 1.05; box-shadow: 0 10px 20px rgba(0,0,0,.3); }
+  #strings { position: absolute; inset: 0; z-index: 2; }
+  #bTitle { position: absolute; left: 40px; top: 30px; font-family: 'SpecialElite', monospace; font-size: 44px; color: #fff; background: #111; padding: 8px 20px; }
+  /* gauge */
+  #gT { top: 420px; font-size: 60px; color: #f1e8d4; }
+  #gauge { left: 140px; top: 600px; width: 800px; height: 440px; }
+  #gLbl { top: 1080px; font-size: 130px; color: #ff4b3e; font-family: 'SpecialElite', monospace; }
+  /* cta */
+  #p2 { left: 110px; top: 380px; width: 860px; height: 1000px; padding: 80px 70px; transform: rotate(1.5deg); }
+  #p2 .l1 { font-size: 60px; } #p2 .l2 { font-size: 46px; margin-top: 36px; line-height: 1.3; }
+  #accept { left: 190px; right: 190px; top: 1060px; padding: 34px 0; text-align: center; background: #b3261e; color: #fff; font-family: 'SpecialElite', monospace; font-size: 52px; letter-spacing: .06em; box-shadow: 0 10px 0 #6d140f; }
+  #eUrl { top: 1450px; color: #f1e8d4; } #eIg { top: 1530px; color: rgba(241,232,212,.7); }
+  #lampFlicker { background: rgba(0,0,0,1); opacity: 0; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="world">
+    <div id="desk" class="layer"></div>
+    <section id="s1" class="scene">
+      <div id="p1" class="abs paper tw"><div class="l1" id="t1"></div><div class="l2" id="t2"></div>
+        <div class="stampR" id="st1" style="left:180px;top:520px;transform:rotate(-14deg)">EYES ONLY</div></div>
+    </section>
+    <section id="s2" class="scene">
+      <div id="folder" class="abs">
+        <div id="back"></div><div id="tab">DEVERAXTECH</div>
+        <div id="sheet" class="paper tw">
+          <div id="clip"></div><div id="polar"><div><img src="assets/logo.png" alt=""></div></div>
+          <div id="fields"></div>
+        </div>
+        <div id="cover"><b>CLASSIFIED<br>Nº 0127</b></div>
+      </div>
+    </section>
+    <section id="s3" class="scene">
+      <div id="board" class="abs">
+        <div id="bTitle">EVIDENCE #1</div>
+        <div class="ev" id="ev1" style="left:190px;top:150px;transform:rotate(-3deg)"><img src="assets/nilora-estates-real-estate-website.webp" alt=""><p>Nilora Estates · shipped</p></div>
+        <div class="note" id="n1" style="left:40px;top:700px;transform:rotate(-5deg)">MERN stack</div>
+        <div class="note" id="n2" style="left:560px;top:760px;transform:rotate(4deg)">3 role-based dashboards</div>
+        <div class="note" id="n3" style="left:280px;top:1060px;transform:rotate(-2deg)">Cairo, Egypt 🇪🇬</div>
+        <svg id="strings" viewBox="0 0 976 1356"></svg>
+        <div class="pin" style="left:465px;top:140px"></div><div class="pin" style="left:195px;top:690px"></div>
+        <div class="pin" style="left:720px;top:750px"></div><div class="pin" style="left:440px;top:1050px"></div>
+      </div>
+    </section>
+    <section id="s4" class="scene">
+      <div id="gT" class="abs cx tw" style="color:#f1e8d4">THREAT LEVEL<br>TO TEMPLATES</div>
+      <svg id="gauge" class="abs" viewBox="0 0 800 440">
+        <path d="M60 400 A340 340 0 0 1 740 400" fill="none" stroke="#3a2a1a" stroke-width="70"/>
+        <path d="M60 400 A340 340 0 0 1 400 60" fill="none" stroke="#4caf50" stroke-width="60"/>
+        <path d="M400 60 A340 340 0 0 1 640 160" fill="none" stroke="#ffb300" stroke-width="60"/>
+        <path d="M640 160 A340 340 0 0 1 740 400" fill="none" stroke="#e53935" stroke-width="60"/>
+        <g id="needle"><line x1="400" y1="400" x2="400" y2="90" stroke="#f1e8d4" stroke-width="14" stroke-linecap="round"/><circle cx="400" cy="400" r="30" fill="#f1e8d4"/></g>
+      </svg>
+      <div id="gLbl" class="abs cx">EXTREME</div>
+    </section>
+    <section id="s5" class="scene">
+      <div id="p2" class="abs paper tw"><div class="l1" id="t3"></div><div class="l2" id="t4"></div></div>
+      <div id="accept" class="abs">[ ACCEPT MISSION ]</div>
+      <div id="eUrl" class="abs cx url tw">deveraxtech.com</div>
+      <div id="eIg" class="abs cx ig">@deveraxtech</div>
+    </section>
+  </div>
+  <div id="lampFlicker" class="layer"></div>
+</div>
+
+<script src="kit/reel-kit.js"></script>
+<script>
+const { seg, easeOut, easeInOut, back, decay, pop, rise, win, show, $ } = kit;
+const B = 0.5;
+const FIELDS = [
+  ['CODENAME', 'DevEraXTech'], ['BASE OF OPERATIONS', 'Cairo, Egypt'], ['ACTIVE IN', '7 countries'],
+  ['LANGUAGES', 'Arabic · English · German'], ['SPECIALTY', 'Custom websites · online stores · Shopify · WordPress'],
+  ['KNOWN WEAKNESS', '<span class="red">none found<i></i></span>'],
+];
+$('#fields').innerHTML = FIELDS.map(([k, v], i) => `<div class="f ${i > 3 ? 'wide' : ''}"><b>${k}</b><span class="v"></span></div>`).join('');
+const type = (el, full, t, a, d) => { const plain = full; const n = Math.floor(Math.max(0, Math.min(1, (t - a) / d)) * plain.length); el.textContent = plain.slice(0, n) + (t >= a && t < a + d ? '▌' : ''); };
+
+const chrome = kit.setup({
+  duration: 22, bpm: 120, beatFrom: 3, beatTo: 21.5, goldFrom: 99,
+  look: { gold: false, progress: false, handle: false, grain: .12, pump: 0, shake: .5 },
+  hits: [{ t: 2, amp: 16 }, { t: 3, amp: 10 }, { t: 16, amp: 22 }], bursts: [], whiteFlashes: [],
+});
+
+// red strings from the photo to each note
+const PINS = [[480, 155], [210, 705], [735, 765], [455, 1065]];
+$('#strings').innerHTML = [1, 2, 3].map(i => `<path id="rs${i}" d="M${PINS[0][0]} ${PINS[0][1]} Q ${(PINS[0][0] + PINS[i][0]) / 2} ${(PINS[0][1] + PINS[i][1]) / 2 + 80} ${PINS[i][0]} ${PINS[i][1]}" stroke="#d32f2f" stroke-width="6" fill="none"/>`).join('');
+
+window.render = function (t) {
+  chrome(t);
+  $('#lampFlicker').style.opacity = (Math.sin(t * 37) > .97 ? .12 : 0) + (t > 21.4 ? seg(t, 21.4, 22) : 0);
+
+  // 1: the file is typed, then stamped
+  show($('#s1'), win(t, 0, 3) * (1 - seg(t, 2.8, 3)));
+  type($('#t1'), 'CLASSIFIED FILE Nº 0127', t, 0, .9);
+  type($('#t2'), 'SUBJECT: DEVERAXTECH', t, 1.0, .9);
+  const s = seg(t, 2, 2.15); show($('#st1'), s > 0 ? .9 : 0, `rotate(-14deg) scale(${1.8 - s * .8})`);
+
+  // 2: folder slides in and opens
+  show($('#s2'), win(t, 3, 9.5));
+  const fin = easeOut(seg(t, 2.8, 3.3)), fout = easeInOut(seg(t, 9.2, 9.5));
+  $('#folder').style.transform = `translateX(${(1 - fin) * 1100 - fout * 1100}px) rotate(${(1 - fin) * 6}deg)`;
+  $('#cover').style.transform = `rotateY(${-easeInOut(seg(t, 3.2, 3.8)) * 165}deg)`;
+  [...$('#fields').children].forEach((f, i) => {
+    const a = 3.5 + i * .8;
+    show(f, t >= a ? 1 : 0);
+    const v = f.querySelector('.v');
+    if (i < 5) type(v, FIELDS[i][1], t, a, .55);
+    else v.innerHTML = FIELDS[i][1];
+  });
+  const red = document.querySelector('.red i');
+  if (red) red.style.transform = `scaleX(${1 - easeInOut(seg(t, 8.3, 8.8))})`;
+
+  // 3: evidence board
+  show($('#s3'), win(t, 9.5, 14));
+  const bin = easeOut(seg(t, 9.3, 9.8));
+  $('#board').style.transform = `translateY(${(1 - bin) * 1900}px) scale(${1.04 - seg(t, 9.5, 14) * .04})`;
+  [['#ev1', 9.6], ['#n1', 10.5], ['#n2', 11.5], ['#n3', 12.5]].forEach(([id, a]) => { const p = pop(t, a, .25); show($(id), p.o); $(id).style.scale = p.s; });
+  [1, 2, 3].forEach(i => { const p = $('#rs' + i), L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L * (1 - easeInOut(seg(t, 10 + i, 10.8 + i))); });
+
+  // 4: threat gauge
+  show($('#s4'), win(t, 14, 17.5));
+  show($('#gT'), rise(t, 14, .3));
+  const ang = -90 + easeInOut(seg(t, 14.2, 16)) * 170 + (t > 16 ? Math.sin(t * 40) * 2 : 0);
+  $('#needle').setAttribute('transform', `rotate(${ang} 400 400)`);
+  show($('#gLbl'), t >= 16 ? (Math.floor(t * 6) % 2 ? 1 : .35) : 0);
+
+  // 5: the mission
+  show($('#s5'), win(t, 17.5, 22));
+  const p2 = easeOut(seg(t, 17.3, 17.7)); $('#p2').style.transform = `translateY(${(1 - p2) * 1500}px) rotate(1.5deg)`;
+  type($('#t3'), 'MISSION: YOUR WEBSITE', t, 17.5, .9);
+  type($('#t4'), 'A custom site, secure from day one, built by the subject above. Accept?', t, 18.5, 1.2);
+  const ac = pop(t, 19, .3); show($('#accept'), ac.o, `scale(${ac.s})`);
+  $('#accept').style.boxShadow = t > 20.2 && t < 20.4 ? '0 2px 0 #6d140f' : '0 10px 0 #6d140f';
+  show($('#eUrl'), rise(t, 19.8, .4)); show($('#eIg'), rise(t, 20, .4));
+};
+kit.start();
+</script>
+</body>
+</html>

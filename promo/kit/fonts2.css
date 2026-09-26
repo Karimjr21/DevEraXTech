@@ -1,0 +1,9 @@
+/* Display faces for the second batch of reels (OFL, except Special Elite: Apache-2.0) */
+@font-face { font-family: 'Bebas'; src: url(../assets/fonts/bebas.woff2) format('woff2'); }
+@font-face { font-family: 'CinzelDeco'; src: url(../assets/fonts/cinzel-deco.woff2) format('woff2'); font-weight: 700; }
+@font-face { font-family: 'Medieval'; src: url(../assets/fonts/medieval.woff2) format('woff2'); }
+@font-face { font-family: 'PatrickHand'; src: url(../assets/fonts/patrick.woff2) format('woff2'); }
+@font-face { font-family: 'Rye'; src: url(../assets/fonts/rye.woff2) format('woff2'); }
+@font-face { font-family: 'SpecialElite'; src: url(../assets/fonts/special-elite.woff2) format('woff2'); }
+@font-face { font-family: 'Caveat'; src: url(../assets/fonts/caveat.woff2) format('woff2'); font-weight: 400 700; }
+@font-face { font-family: 'Fredoka'; src: url(../assets/fonts/fredoka.woff2) format('woff2'); font-weight: 300 700; }

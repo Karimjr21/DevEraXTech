@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DevEraXTech: Terminal</title>
+<link rel="stylesheet" href="kit/reel-kit.css">
+<style>
+  /* TERMINAL: one full-screen shell session; everything is typed or printed */
+  :root { --ok: #3ddc84; --err: #ff5f56; --dim: #8b949e; --prompt: #f5d573; }
+  #stage { background: #000; }
+  #glow { background: radial-gradient(ellipse at 50% 40%, rgba(245,213,115,.08), transparent 60%); }
+  #win { left: 40px; right: 40px; top: 90px; bottom: 90px; background: #0d1014; border: 2px solid #20262e; border-radius: 22px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,.8); }
+  #bar { height: 70px; background: #161b22; display: flex; align-items: center; gap: 14px; padding: 0 26px; border-bottom: 2px solid #20262e; }
+  #bar i { width: 20px; height: 20px; border-radius: 50%; }
+  #bar span { margin-left: auto; margin-right: auto; font-family: 'DejaVu Sans Mono', monospace; font-size: 26px; color: var(--dim); }
+  #term { position: absolute; left: 40px; right: 30px; top: 110px; bottom: 30px; font-family: 'DejaVu Sans Mono', monospace; font-size: 40px; line-height: 1.45; color: #e6edf3; white-space: pre; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; }
+  #term .p { color: var(--prompt); }
+  #term .ok { color: var(--ok); } #term .err { color: var(--err); } #term .dim { color: var(--dim); } #term .gold { color: var(--prompt); }
+  #big { left: 0; right: 0; top: 560px; text-align: center; }
+  #big .t { font-family: 'DejaVu Sans Mono', monospace; font-weight: 700; font-size: 128px; letter-spacing: -.02em; color: var(--prompt); text-shadow: 0 0 40px rgba(245,213,115,.6); }
+  #big img { width: 260px; margin-bottom: 30px; filter: drop-shadow(0 0 30px rgba(245,213,115,.6)); }
+  #big .s { font-family: 'DejaVu Sans Mono', monospace; font-size: 44px; color: var(--ok); margin-top: 20px; }
+  #slices i { position: absolute; left: 0; right: 0; background: rgba(61,220,132,.25); mix-blend-mode: screen; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="world">
+    <div id="glow" class="layer"></div>
+    <div id="win" class="abs"><div id="bar"><i style="background:#ff5f56"></i><i style="background:#ffbd2e"></i><i style="background:#27c93f"></i><span>deveraxtech — zsh</span></div>
+      <div id="term"></div></div>
+    <div id="big" class="abs"><img src="assets/logo.png" alt=""><div class="t">DEVERAXTECH</div><div class="s">✔ BUILD SUCCEEDED</div></div>
+    <div id="slices" class="layer"></div>
+  </div>
+</div>
+
+<script src="kit/reel-kit.js"></script>
+<script>
+const { seg, easeOut, easeInOut, back, decay, pop, rise, win, show, rng, $ } = kit;
+const P = '<span class="p">❯</span> ';
+const typed = (txt, t, a, d) => { const n = Math.floor(Math.max(0, Math.min(1, (t - a) / d)) * txt.length); return txt.slice(0, n); };
+const SPIN = '⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏';
+const OUT = [
+  ['discovery ', 'goals, audience, timeline'], ['design    ', 'custom · 0 templates'], ['security  ', 'from day one'],
+  ['speed     ', 'fast on every screen'], ['seo       ', 'ready'], ['languages ', 'ar · en · de'],
+  ['markets   ', 'CA US AE SA KW QA EG'], ['updates   ', 'transparent, every step'], ['base      ', 'Cairo, Egypt'],
+];
+
+const chrome = kit.setup({
+  duration: 21, bpm: 174, beatFrom: 3.1, beatTo: 20.7, goldFrom: 99,
+  look: { gold: false, progress: false, handle: false, vignette: true, grain: .05, pump: .01, shake: .6, sparks: '61,220,132' },
+  hits: [{ t: 1.4, amp: 8 }, { t: 3.1, amp: 20 }, { t: 11, amp: 24 }], bursts: [11], whiteFlashes: [3.1],
+});
+
+function screen(t) {
+  const L = [];
+  L.push(P + typed('why is my website so slow?', t, 0, 1.2) + (t < 1.3 ? '▌' : ''));
+  if (t >= 1.4) { L.push('<span class="err">✖ built from a template</span>'); L.push('<span class="err">✖ looks like everyone else’s</span>'); }
+  if (t >= 1.9) L.push(P + typed('npx deveraxtech --premium', t, 1.9, 1.0) + (t < 3.1 ? '▌' : ''));
+  OUT.forEach(([k, v], i) => {
+    const a = 3.3 + i * .55;
+    if (t < a) return;
+    const done = t >= a + .3;
+    L.push(`${done ? '<span class="ok">✔</span>' : `<span class="gold">${SPIN[Math.floor(t * 20) % 10]}</span>`} ${k} <span class="dim">${done ? v : '…'}</span>`);
+  });
+  if (t >= 8.0) {
+    const p = easeInOut(seg(t, 8.0, 9.5)), n = Math.round(p * 20);
+    L.push(`<span class="gold">building</span> [${'█'.repeat(n)}${'░'.repeat(20 - n)}] ${Math.round(p * 100)}%`);
+  }
+  if (t >= 9.8) { L.push('<span class="ok">✔</span> <span class="gold">shipped: Nilora Estates</span>'); L.push('  <span class="dim">MERN · 3 dashboards · live</span>'); }
+  if (t >= 14.0) { L.push(''); L.push('<span class="dim">projects</span> 10+  <span class="dim">countries</span> 7  <span class="dim">languages</span> 3'); }
+  if (t >= 16.0) { L.push(''); L.push(P + typed('contact --now', t, 16, .8) + (t < 17 ? '▌' : '')); }
+  if (t >= 17.0) { L.push('<span class="gold">→ deveraxtech.com</span>'); L.push('<span class="gold">→ @deveraxtech</span>'); }
+  if (t >= 17.5) { L.push(''); L.push(Math.floor(t * 2.5) % 2 ? '<span style="background:#f5d573;color:#0d1014;font-size:54px"> [ REQUEST A MEETING ] </span>' : '<span class="gold" style="font-size:54px"> [ REQUEST A MEETING ] </span>'); }
+  if (t >= 17.5) L.push(P + (Math.floor(t * 2) % 2 ? '▌' : ''));
+  return L.join('\n');
+}
+
+window.render = function (t) {
+  chrome(t);
+  $('#term').innerHTML = '<div>' + screen(t) + '</div>';
+  // the big reveal takes over the screen 11 → 14
+  const on = win(t, 11, 14);
+  show($('#big'), on * Math.min(rise(t, 11, .15), 1 - seg(t, 13.7, 14)), `scale(${1 + decay(t, 11, 5) * .15})`);
+  $('#win').style.filter = on ? `blur(${6 * Math.min(1, (t - 11) * 4) * (1 - seg(t, 13.7, 14))}px) brightness(.35)` : '';
+  // glitch slices on the drop and the reveal
+  const g = Math.max(0, 1 - Math.abs(t - 3.1) / .15, 1 - Math.abs(t - 11) / .2, 1 - Math.abs(t - 13.9) / .12);
+  const r = rng(Math.floor(t * 30) + 3);
+  $('#slices').innerHTML = g > 0 ? Array.from({ length: 6 }, () => `<i style="top:${r() * 1920}px;height:${10 + r() * 70}px;transform:translateX(${(r() - .5) * 160 * g}px)"></i>`).join('') : '';
+  $('#big .t').style.transform = g > 0 ? `translateX(${(r() - .5) * 30 * g}px)` : '';
+};
+kit.start();
+</script>
+</body>
+</html>

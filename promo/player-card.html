@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DevEraXTech: Player Card</title>
+<link rel="stylesheet" href="kit/reel-kit.css">
+<link rel="stylesheet" href="kit/fonts2.css">
+<style>
+  /* STADIUM: floodlights, pack-opening walkout, a gold player card, broadcast stat bars */
+  #stage { background: #050a1c; }
+  .bb { font-family: 'Bebas', 'Inter', sans-serif; letter-spacing: .02em; line-height: .9; }
+  #sky { background: radial-gradient(ellipse at 50% 110%, #1b3a8a 0%, #0a1640 45%, #050a1c 100%); }
+  #pitch { left: -200px; right: -200px; top: 1500px; height: 600px; background: repeating-linear-gradient(90deg, #1f6b2a 0 120px, #1a5e25 120px 240px); transform: perspective(600px) rotateX(55deg); transform-origin: 50% 0; opacity: .8; }
+  .beam { position: absolute; top: -200px; width: 260px; height: 2400px; background: linear-gradient(180deg, rgba(255,255,255,.35), rgba(255,255,255,0) 70%); transform-origin: 50% 0; filter: blur(8px); mix-blend-mode: screen; }
+  .lamp { position: absolute; top: 40px; width: 150px; height: 60px; border-radius: 12px; background: #fff; box-shadow: 0 0 80px 30px rgba(255,255,255,.8); }
+  #h1 { top: 560px; font-size: 128px; color: #fff; white-space: nowrap; } #h2 { top: 700px; font-size: 104px; color: #ffd84d; white-space: nowrap; }
+  /* walkout */
+  #walk { background: radial-gradient(circle at 50% 50%, rgba(160,90,255,.5), rgba(10,5,40,.95) 60%); }
+  .reveal { top: 700px; text-align: center; }
+  .reveal .big { font-size: 360px; line-height: 1; }
+  .reveal .lbl { font-size: 90px; color: #fff; margin-top: 20px; }
+  #badgeImg { width: 420px; filter: drop-shadow(0 0 60px rgba(245,213,115,.8)); }
+  /* card */
+  #card { left: 190px; top: 330px; width: 700px; height: 1000px; transform-origin: 50% 40%; }
+  #cardBg { position: absolute; inset: 0; border-radius: 60px 60px 40px 40px; background: linear-gradient(160deg, #fff2b0 0%, #e7c55a 25%, #b8912a 55%, #f5d573 80%, #a8821f 100%);
+    box-shadow: 0 0 0 8px #3a2a06 inset, 0 0 120px rgba(245,213,115,.7); }
+  #shine { position: absolute; inset: 0; border-radius: 60px 60px 40px 40px; background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.7) 50%, transparent 65%); background-size: 300% 100%; mix-blend-mode: overlay; }
+  #ovr { position: absolute; left: 60px; top: 60px; color: #2b1d04; text-align: center; }
+  #ovr b { display: block; font-size: 170px; }
+  #ovr span { display: block; font-size: 64px; }
+  #ovr i { display: block; font-style: normal; font-size: 70px; margin-top: 16px; }
+  #photo { position: absolute; right: 50px; top: 90px; width: 400px; filter: drop-shadow(0 20px 20px rgba(0,0,0,.35)); }
+  #pname { position: absolute; left: 0; right: 0; top: 500px; text-align: center; font-size: 96px; color: #2b1d04; border-top: 4px solid rgba(43,29,4,.4); border-bottom: 4px solid rgba(43,29,4,.4); margin: 0 60px; padding: 10px 0; }
+  #stats { position: absolute; left: 80px; right: 80px; top: 650px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 60px; }
+  .st { display: flex; gap: 20px; font-size: 78px; color: #2b1d04; }
+  .st b { width: 110px; text-align: right; }
+  #foot { top: 1360px; font-size: 40px; color: rgba(255,255,255,.75); font-family: 'Inter', sans-serif; font-weight: 600; }
+  /* broadcast bars */
+  .bar { left: 0; height: 150px; display: flex; align-items: center; }
+  .bar .k { height: 150px; padding: 0 40px; display: flex; align-items: center; background: #0a2a8a; color: #fff; font-size: 70px; clip-path: polygon(0 0, 100% 0, 92% 100%, 0 100%); }
+  .bar .v { height: 150px; padding: 0 60px 0 50px; margin-left: -30px; display: flex; align-items: center; background: #fff; color: #0a2a8a; font-size: 110px; clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%); }
+  /* CTA */
+  #c1 { top: 400px; font-size: 150px; color: #fff; white-space: nowrap; }
+  #c2 { top: 580px; font-size: 80px; color: #ffd84d; white-space: nowrap; }
+  #eBtn { left: 150px; right: 150px; top: 960px; padding: 40px 0; text-align: center; background: var(--gold-grad); color: #1a1406; font-size: 90px; border-radius: 20px; box-shadow: 0 12px 0 #6d5212; }
+  #eUrl { top: 1170px; } #eIg { top: 1250px; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="world">
+    <div id="sky" class="layer"></div>
+    <div id="pitch" class="abs"></div>
+    <div id="beams"></div>
+    <section id="s1" class="scene">
+      <div id="h1" class="abs cx bb">Rating our web studio</div>
+      <div id="h2" class="abs cx bb">like a football player ⚽</div>
+    </section>
+    <div id="walk" class="layer" style="opacity:0"></div>
+    <section id="s2" class="scene">
+      <div id="rv1" class="abs cx reveal bb"><div class="big emoji">🇪🇬</div><div class="lbl">Egypt · Cairo</div></div>
+      <div id="rv2" class="abs cx reveal bb"><div class="big" style="color:#ffd84d">WEB</div><div class="lbl">Position</div></div>
+      <div id="rv3" class="abs cx reveal bb"><img id="badgeImg" src="assets/logo.png" alt=""><div class="lbl">Club: DevEraXTech</div></div>
+    </section>
+    <section id="s3" class="scene">
+      <div id="card" class="abs bb">
+        <div id="cardBg"></div>
+        <div id="ovr"><b>99</b><span>WEB</span><i class="emoji">🇪🇬</i></div>
+        <img id="photo" src="assets/logo.png" alt="">
+        <div id="pname">DEVERAXTECH</div>
+        <div id="stats"></div>
+        <div id="shine"></div>
+      </div>
+      <div id="foot" class="abs cx">* self-rated. slightly biased 😏</div>
+    </section>
+    <section id="s4" class="scene"><div id="bars"></div></section>
+    <section id="s5" class="scene">
+      <div id="c1" class="abs cx bb">Sign the transfer</div>
+      <div id="c2" class="abs cx bb">Your website · our studio ✍️</div>
+      <div id="eBtn" class="abs bb">Request a meeting →</div>
+      <div id="eUrl" class="abs cx url gold-text">deveraxtech.com</div>
+      <div id="eIg" class="abs cx ig">@deveraxtech</div>
+    </section>
+  </div>
+  <div class="lamp" style="left:120px"></div><div class="lamp" style="left:810px"></div>
+</div>
+
+<script src="kit/reel-kit.js"></script>
+<script>
+const { seg, easeOut, easeInOut, back, decay, slam, pop, rise, win, show, $ } = kit;
+const B = .75, at = (b) => b * B;
+const STATS = [['99', 'DES'], ['97', 'SPD'], ['98', 'SEC'], ['96', 'SEO'], ['99', 'COM'], ['3', 'LNG']];
+$('#stats').innerHTML = STATS.map(([v, k]) => `<div class="st"><b>${v}</b><span>${k}</span></div>`).join('');
+const BARS = [['PROJECTS SHIPPED', '10+'], ['COUNTRIES', '7'], ['LANGUAGES', '3']];
+$('#bars').innerHTML = BARS.map(([k, v], i) => `<div class="abs bar bb" style="top:${1080 + i * 190}px"><div class="k">${k}</div><div class="v">${v}</div></div>`).join('');
+$('#beams').innerHTML = [0, 1, 2, 3].map(i => `<div class="beam" style="left:${[80, 300, 650, 860][i]}px"></div>`).join('');
+
+const chrome = kit.setup({
+  duration: 24, bpm: 80, beatFrom: at(4), beatTo: at(31), goldFrom: 99,
+  look: { gold: false, progress: false, handle: false, grain: .06, pump: .015, shake: .8, sparks: '255,216,77' },
+  hits: [{ t: at(4), amp: 18 }, { t: at(10), amp: 30 }, { t: at(24), amp: 14 }], bursts: [at(10), at(24)], whiteFlashes: [at(4), at(10), at(24)],
+});
+
+window.render = function (t) {
+  const { pump } = chrome(t);
+  [...$('#beams').children].forEach((b, i) => { b.style.transform = `rotate(${Math.sin(t * .9 + i * 1.7) * 18 + (i < 2 ? 10 : -10)}deg)`; b.style.opacity = .6 + pump * .4; });
+
+  // hook
+  show($('#s1'), win(t, 0, 3) * (1 - seg(t, 2.8, 3)));
+  let k = slam(t, 0, .25); show($('#h1'), k.o, `scale(${k.s})`);
+  k = slam(t, .75, .25); show($('#h2'), k.o, `scale(${k.s})`);
+
+  // walkout reveals
+  show($('#walk'), win(t, 3, 7.5) * rise(t, 3, .3));
+  show($('#s2'), win(t, 3, 7.5));
+  [['#rv1', 4.5, 5.25], ['#rv2', 5.25, 6], ['#rv3', 6, 7.5]].forEach(([id, a, b]) => {
+    const p = slam(t, a, .25); show($(id), p.o * (t < b ? 1 : 0), `scale(${p.s})`);
+  });
+
+  // the card
+  show($('#s3'), win(t, 7.5, 18));
+  const c = seg(t, 7.5, 8);
+  const shrink = easeInOut(seg(t, 14.8, 15.4));
+  $('#card').style.transform = `translateY(${-shrink * 170}px) scale(${(2.2 - back(c) * 1.2) * (1 - shrink * .32)}) rotateY(${(1 - easeOut(c)) * 180}deg)`;
+  $('#card').style.opacity = c > 0 ? 1 : 0;
+  $('#shine').style.backgroundPosition = `${150 - seg(t, 8, 9.5) * 200}% 0`;
+  [...$('#stats').children].forEach((s, i) => { const p = pop(t, 9 + i * .75, .25); show(s, p.o, `scale(${p.s})`); });
+  show($('#foot'), rise(t, 13.5, .4) * (1 - shrink));
+
+  // broadcast bars
+  show($('#s4'), win(t, 15, 18));
+  [...$('#bars').children].forEach((b, i) => { const p = easeOut(seg(t, 15 + i * .75, 15.4 + i * .75)); show(b, p > 0 ? 1 : 0, `translateX(${(p - 1) * 1100}px)`); });
+
+  // CTA
+  show($('#s5'), win(t, 18, 24));
+  k = slam(t, 18, .25); show($('#c1'), k.o, `scale(${k.s})`);
+  show($('#c2'), rise(t, 18.6, .4));
+  const eb = pop(t, 19.5, .35); show($('#eBtn'), eb.o, `scale(${eb.s * (1 + pump * .03)})`);
+  show($('#eUrl'), rise(t, 20.25, .4)); show($('#eIg'), rise(t, 20.5, .4));
+};
+kit.start();
+</script>
+</body>
+</html>

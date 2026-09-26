@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DevEraXTech: A Rare Species</title>
+<link rel="stylesheet" href="kit/reel-kit.css">
+<link rel="stylesheet" href="kit/fonts2.css">
+<style>
+  /* WILDLIFE DOCUMENTARY: binocular views, field notebook, herd of templates, subtitles, green lower thirds */
+  #stage { background: #0d130c; }
+  #field { background: radial-gradient(ellipse at 50% 45%, #2f3d22 0%, #172212 55%, #080c06 100%); }
+  #tint { background: linear-gradient(180deg, rgba(60,90,30,.18), rgba(120,90,30,.2)); mix-blend-mode: overlay; }
+  #vig { background: radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,.85) 100%) !important; }
+  .sub { left: 70px; right: 70px; bottom: 260px; text-align: center; font-size: 56px; font-weight: 600; color: #fff; line-height: 1.2;
+    text-shadow: 0 0 6px #000, 0 3px 10px #000, 2px 2px 0 #000, -2px -2px 0 #000; }
+  .l3 { left: 0; top: 1240px; display: flex; align-items: stretch; }
+  .l3 .bar { width: 16px; background: #8bc34a; }
+  .l3 .txt { padding: 20px 34px; background: rgba(10,20,8,.85); }
+  .l3 b { display: block; font-family: 'Playfair', serif; font-size: 48px; font-weight: 700; color: #fff; }
+  .l3 span { display: block; font-size: 28px; letter-spacing: .2em; color: #b5d98c; margin-top: 6px; text-transform: uppercase; }
+  /* binoculars */
+  .bino { left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden;
+    -webkit-mask: radial-gradient(circle 330px at 330px 900px, #000 97%, transparent 100%), radial-gradient(circle 330px at 750px 900px, #000 97%, transparent 100%);
+    mask: radial-gradient(circle 330px at 330px 900px, #000 97%, transparent 100%), radial-gradient(circle 330px at 750px 900px, #000 97%, transparent 100%); }
+  .bino img.ph { position: absolute; left: 0; top: 0; width: 1904px; height: 994px; transform-origin: 0 0; }
+  .reticle { position: absolute; left: 540px; top: 900px; width: 2px; height: 120px; margin: -60px 0 0 -1px; background: rgba(255,255,255,.5); }
+  .reticle::after { content: ''; position: absolute; left: -59px; top: 59px; width: 120px; height: 2px; background: rgba(255,255,255,.5); }
+  #perch { position: absolute; left: 470px; top: 860px; width: 150px; filter: drop-shadow(0 6px 10px rgba(0,0,0,.6)); }
+  #rec { right: 60px; top: 90px; font-family: 'DejaVu Sans Mono', monospace; font-size: 30px; color: #fff; }
+  #rec i { display: inline-block; width: 20px; height: 20px; border-radius: 50%; background: #e53935; margin-right: 12px; }
+  /* notebook */
+  #book { left: 80px; top: 300px; width: 920px; height: 1080px; background: #efe6cc; border-radius: 10px; box-shadow: 0 30px 70px rgba(0,0,0,.6);
+    background-image: repeating-linear-gradient(0deg, transparent 0 63px, rgba(60,90,160,.25) 63px 65px); padding: 70px 70px; font-family: 'Caveat', cursive; color: #26311c; transform: rotate(-1.5deg); }
+  #book .nm { font-size: 120px; font-weight: 700; line-height: 1; }
+  #book .lat { font-size: 76px; font-style: italic; color: #5a6b3a; margin-top: 10px; }
+  #book .row { font-size: 80px; line-height: 1.02; margin-top: 46px; }
+  #book .row b { color: #7a4a1a; }
+  #sketch { position: absolute; right: 50px; top: 40px; width: 170px; filter: grayscale(1) sepia(.8) contrast(1.2) brightness(.9); opacity: .85; transform: rotate(6deg); }
+  #book .tape { position: absolute; width: 180px; height: 56px; background: rgba(255,255,240,.6); }
+  /* herd */
+  .tpl { position: absolute; width: 230px; height: 300px; border-radius: 14px; background: #9ea3a8; padding: 16px; box-shadow: 0 10px 20px rgba(0,0,0,.4); }
+  .tpl i { display: block; height: 30px; margin-bottom: 14px; border-radius: 6px; background: #7f858b; }
+  .tpl i.h { height: 90px; }
+  #unique { position: absolute; left: 390px; top: 800px; width: 300px; height: 390px; border-radius: 18px; background: #0b0904; border: 4px solid #f5d573; overflow: hidden; box-shadow: 0 0 80px rgba(245,213,115,.7); }
+  #unique img.ph { width: 100%; height: 55%; object-fit: cover; display: block; }
+  #unique .lg { display: block; width: 110px; margin: 26px auto 0; }
+  /* end */
+  #eBtn { left: 170px; right: 170px; top: 1040px; padding: 38px 0; border-radius: 999px; background: #8bc34a; color: #10200a; text-align: center; font-size: 54px; font-weight: 900; }
+  #eUrl { top: 1240px; color: #d9f0b8; } #eIg { top: 1320px; }
+  #filmed { top: 1430px; font-size: 30px; letter-spacing: .2em; color: rgba(255,255,255,.6); text-transform: uppercase; }
+  #eLogo { left: 390px; top: 640px; width: 300px; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="world">
+    <div id="field" class="layer"></div>
+    <section id="s1" class="scene">
+      <div class="bino" id="bino1"><img class="ph" src="assets/nilora-estates-real-estate-website.webp" alt=""><img id="perch" src="assets/logo.png" alt=""><div class="reticle"></div></div>
+    </section>
+    <section id="s2" class="scene">
+      <div id="book" class="abs"><span class="tape" style="left:-30px;top:-10px;transform:rotate(-30deg)"></span><span class="tape" style="right:-30px;bottom:-10px;transform:rotate(-30deg)"></span>
+        <img id="sketch" src="assets/logo.png" alt="">
+        <div class="nm" id="bn">DevEraXTech</div><div class="lat" id="bl">(Websitus premiumus)</div>
+        <div id="rows"></div></div>
+    </section>
+    <section id="s3" class="scene"><div id="herd"></div>
+      <div id="unique"><img class="ph" src="assets/nilora-estates-real-estate-website.webp" alt=""><img class="lg" src="assets/logo.png" alt=""></div></section>
+    <section id="s4" class="scene">
+      <div class="bino" id="bino2"><img class="ph" src="assets/nilora-estates-real-estate-website.webp" alt=""><div class="reticle"></div></div>
+    </section>
+    <section id="s5" class="scene">
+      <img id="eLogo" class="abs" src="assets/logo.png" alt="">
+      <div id="eBtn" class="abs">Request a meeting →</div>
+      <div id="eUrl" class="abs cx url">deveraxtech.com</div>
+      <div id="eIg" class="abs cx ig">@deveraxtech</div>
+      <div id="filmed" class="abs cx">Filmed on location · Cairo, Egypt</div>
+    </section>
+    <div id="tint" class="layer"></div>
+    <div id="subs"></div>
+    <div id="l3a" class="abs l3"><div class="bar"></div><div class="txt"><b>A Rare Web Studio</b><span>Episode 1 · Cairo</span></div></div>
+    <div id="l3b" class="abs l3"><div class="bar"></div><div class="txt"><b>Specimen: Nilora Estates</b><span>MERN stack · 3 dashboards</span></div></div>
+  </div>
+  <div id="rec" class="abs"><i></i>OBSERVING</div>
+</div>
+
+<script src="kit/reel-kit.js"></script>
+<script>
+const { seg, easeOut, easeInOut, back, decay, pop, rise, win, show, rng, $ } = kit;
+const SUBS = [
+  [0.3, 1.5, 'Here, in Cairo…'], [1.6, 2.9, 'we observe something rare.'],
+  [3.1, 8.8, 'Meet the DevEraXTech.'],
+  [9.5, 12.0, 'The common template… looks like every other.'], [12.2, 14.9, 'This one never copies.'],
+  [15.4, 19.5, 'Watch as it builds… something magnificent.'],
+  [19.8, 24, 'A rare sighting. Don’t miss it.'],
+];
+$('#subs').innerHTML = SUBS.map(([a, b, s]) => `<div class="abs sub">${s}</div>`).join('');
+const ROWS = [['Habitat', 'Cairo, Egypt'], ['Range', '7 countries'], ['Call', 'Arabic · English · German'], ['Diet', 'coffee &amp; clean code ☕']];
+$('#rows').innerHTML = ROWS.map(([k, v]) => `<div class="row"><b>${k}:</b> ${v}</div>`).join('');
+const hr = rng(4);
+const HERD = Array.from({ length: 12 }, (_, i) => ({ x: 40 + (i % 4) * 250 + (hr() - .5) * 30, y: 380 + Math.floor(i / 4) * 360 + (hr() - .5) * 30, r: (hr() - .5) * 8, p: hr() * 6 }));
+$('#herd').innerHTML = HERD.map(() => '<div class="tpl"><i class="h"></i><i></i><i></i><i style="width:60%"></i></div>').join('');
+
+const chrome = kit.setup({
+  duration: 24, bpm: 84, beatFrom: 99, beatTo: 99, goldFrom: 99,
+  look: { gold: false, progress: false, handle: false, vignette: true, grain: .14, pump: 0, shake: 0 },
+  hits: [], bursts: [], whiteFlashes: [],
+});
+function bino(el, t, a, b, from, to) {
+  const k = easeInOut(seg(t, a, b)), [cx, cy, sc] = from.map((v, i) => v + (to[i] - v) * k);
+  const sway = Math.sin(t * 1.3) * 8, bob = Math.cos(t * 1.1) * 6;           // handheld drift
+  el.querySelector('.ph').style.transform = `translate(${540 - cx * sc + sway}px, ${900 - cy * sc + bob}px) scale(${sc})`;
+}
+
+window.render = function (t) {
+  chrome(t);
+  $('#rec i').style.opacity = Math.floor(t * 2) % 2 ? .3 : 1;
+  [...$('#subs').children].forEach((el, i) => { const [a, b] = SUBS[i]; show(el, Math.min(rise(t, a, .3), 1 - seg(t, b - .25, b))); });
+  const l3 = (el, a, b) => { const k = Math.min(easeOut(seg(t, a, a + .5)), 1 - seg(t, b - .4, b)); show(el, k > 0 ? 1 : 0, `translateX(${(k - 1) * 1000}px)`); };
+  l3($('#l3a'), 1.0, 2.9); l3($('#l3b'), 17.0, 19.6);
+
+  // 1: binoculars find the "rare species" perched on the skyline
+  show($('#s1'), win(t, 0, 2.9) * Math.min(rise(t, 0, .6), 1 - seg(t, 2.6, 2.9)));
+  bino($('#bino1'), t, 0, 2.9, [1250, 480, 1.5], [1180, 470, 2.1]);
+  $('#perch').style.transform = `scale(${.9 + seg(t, 0, 2.9) * .4}) rotate(${Math.sin(t * 3) * 3}deg)`;
+
+  // 2: field notebook
+  show($('#s2'), win(t, 2.9, 9) * Math.min(rise(t, 2.9, .5), 1 - seg(t, 8.7, 9)));
+  const bk = easeOut(seg(t, 2.9, 3.4)); $('#book').style.transform = `translateY(${(1 - bk) * 300}px) rotate(-1.5deg)`;
+  const clip = (el, a, d) => { el.style.clipPath = `inset(0 ${(1 - easeInOut(seg(t, a, a + d))) * 100}% 0 0)`; };   // "handwritten" left to right
+  clip($('#bn'), 3.3, .6); clip($('#bl'), 3.9, .6);
+  [...$('#rows').children].forEach((r, i) => clip(r, 4.8 + i * .7, .6));
+  show($('#sketch'), rise(t, 3.6, .8));
+
+  // 3: the herd, then the one that never copies
+  show($('#s3'), win(t, 9, 15) * Math.min(rise(t, 9, .5), 1 - seg(t, 14.7, 15)));
+  const lift = easeOut(seg(t, 12, 13));
+  [...$('#herd').children].forEach((c, i) => {
+    const h = HERD[i];
+    c.style.left = h.x + 'px'; c.style.top = h.y + 'px';
+    c.style.transform = `rotate(${h.r + Math.sin(t * 2 + h.p) * 2}deg) translateY(${Math.sin(t * 2.4 + h.p) * 8}px)`;
+    c.style.filter = `brightness(${1 - lift * .5}) blur(${lift * 3}px)`;
+  });
+  const u = $('#unique');
+  show(u, t >= 12 ? 1 : 0, `translateY(${(1 - lift) * 600}px) scale(${1 + lift * .35})`);
+
+  // 4: watch it build
+  show($('#s4'), win(t, 15, 19.7) * Math.min(rise(t, 15, .5), 1 - seg(t, 19.4, 19.7)));
+  bino($('#bino2'), t, 15, 19.7, [520, 560, 1.7], [760, 520, 2.3]);
+
+  // 5: end
+  show($('#s5'), win(t, 19.7, 24));
+  const lg = rise(t, 20, .6); show($('#eLogo'), lg, `scale(${.8 + lg * .2})`);
+  const eb = pop(t, 20.8, .4); show($('#eBtn'), eb.o, `scale(${eb.s})`);
+  show($('#eUrl'), rise(t, 21.5, .4)); show($('#eIg'), rise(t, 21.7, .4)); show($('#filmed'), rise(t, 22, .5));
+  $('#world').style.opacity = 1 - seg(t, 23.5, 24);
+};
+kit.start();
+</script>
+</body>
+</html>

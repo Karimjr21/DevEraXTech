@@ -70,3 +70,31 @@ for r in them-vs-us rate-this money-signs glow-up process worldwide whats-includ
   node render.mjs deveraxtech-$r.mp4 --page $r.html --audio $r-audio.wav
 done
 ```
+
+## 10–19. Ten more vertical reels, second batch (9:16, 21–24 s)
+
+Each has its own hook format, visual world, display typeface and music genre (none repeat the first batch). Scene
+cuts are timed in beats of each reel's own tempo, and `soundtrack2.py` places its cues on the same beats.
+
+| File | Hook | Visual world | Music (`soundtrack2.py`) |
+|---|---|---|---|
+| `deveraxtech-dm-chat.mp4` | "POV: you asked 3 agencies for a website 😬" | dark chat app: left on seen, "we'll use a template 👍", then DevEraXTech replies | UK garage 2-step, 132 |
+| `deveraxtech-spy-dossier.mp4` | "CLASSIFIED FILE Nº 0127" | desk + typewriter file, manila folder, redaction bar, evidence board with red string, threat gauge | 60s spy surf, 120 |
+| `deveraxtech-nature-doc.mp4` | "Here, in Cairo… we observe something rare." | wildlife documentary: binoculars, field notebook, herd of templates, subtitles | documentary orchestra, 84 |
+| `deveraxtech-player-card.mp4` | "Rating our web studio like a football player ⚽" | stadium floodlights, pack-opening walkout, gold 99 card (self-rated), broadcast stat bars | stadium stomp anthem, 80 |
+| `deveraxtech-recipe.mp4` | "The recipe for a website that sells 🍳" | marble counter, handwritten recipe card, mixing bowl, oven timer, cloche reveal | bossa nova, 126 |
+| `deveraxtech-terminal.mp4` | `❯ why is my website so slow?` | a full-screen shell session: errors, `npx deveraxtech --premium`, build log, BUILD SUCCEEDED | drum & bass, 174 |
+| `deveraxtech-tarot.mp4` | "Let's read your website's fortune" | velvet, candles, crystal ball; The Past / The Present / The Future cards | ethereal harp + choir, 70 |
+| `deveraxtech-western.mp4` | "This town ain't big enough for two websites 🤠" | sepia desert, WANTED poster, high-noon showdown, sheriff badge | spaghetti western, 96 |
+| `deveraxtech-quest.mp4` | "⚔️ New quest unlocked" | parchment map, hero card, skill tree, legendary loot, level-up | celtic jig in 6/8 |
+| `deveraxtech-dating.mp4` | "Swipe right on your next web studio 💘" | a fictional swipe app ("Studio Match"): nope, nope, like, it's a match | nu-disco, 118 |
+
+Display faces live in `assets/fonts/` (`kit/fonts2.css`): Bebas Neue, Cinzel Decorative, MedievalSharp, Patrick Hand,
+Rye, Caveat, Fredoka (SIL OFL) and Special Elite (Apache 2.0).
+
+```bash
+for r in dm-chat spy-dossier nature-doc player-card recipe terminal tarot western quest dating; do
+  python3 soundtrack2.py $r $r-audio.wav
+  node render.mjs deveraxtech-$r.mp4 --page $r.html --audio $r-audio.wav
+done
+```

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DevEraXTech: It's a Match</title>
+<link rel="stylesheet" href="kit/reel-kit.css">
+<link rel="stylesheet" href="kit/fonts2.css">
+<style>
+  /* DATING APP: a fictional swipe app, "Studio Match". Two NOPEs, one LIKE, a match. */
+  #stage { background: #1a0a12; }
+  .fr { font-family: 'Fredoka', 'Inter', sans-serif; }
+  #bg { background: linear-gradient(160deg, #ff4f79 0%, #ff7a64 55%, #ffb25a 100%); }
+  #app { left: 0; right: 0; top: 70px; height: 140px; display: flex; align-items: center; justify-content: center; gap: 16px; font-size: 64px; font-weight: 700; color: #fff; }
+  #cap { left: 40px; right: 40px; top: 230px; text-align: center; color: #fff; font-weight: 700; line-height: 1.02; text-shadow: 0 6px 20px rgba(120,0,40,.35); }
+  #cap .a { font-size: 88px; } #cap .b { font-size: 104px; }
+  .pcard { position: absolute; left: 70px; top: 470px; width: 940px; height: 1250px; border-radius: 44px; overflow: hidden; background: #222; box-shadow: 0 30px 70px rgba(80,0,30,.45); transform-origin: 50% 120%; }
+  .pcard .ph { position: absolute; inset: 0; }
+  .pcard .info { position: absolute; left: 0; right: 0; bottom: 0; padding: 50px 50px 60px; background: linear-gradient(0deg, rgba(0,0,0,.85) 30%, transparent); color: #fff; }
+  .pcard h2 { font-size: 84px; font-weight: 700; }
+  .pcard .loc { font-size: 40px; opacity: .85; margin-top: 6px; }
+  .pcard .bio { font-size: 46px; margin-top: 20px; line-height: 1.2; }
+  .chips { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 24px; }
+  .chip { padding: 12px 26px; border-radius: 999px; background: rgba(255,255,255,.18); border: 2px solid rgba(255,255,255,.5); font-size: 38px; font-weight: 600; }
+  .stampT { position: absolute; top: 90px; padding: 12px 30px; border: 10px solid; border-radius: 18px; font-size: 110px; font-weight: 700; letter-spacing: .06em; opacity: 0; }
+  .nope { right: 60px; color: #ff3b5c; border-color: #ff3b5c; transform: rotate(18deg); }
+  .like { left: 60px; color: #3ddc84; border-color: #3ddc84; transform: rotate(-18deg); }
+  .tplPh { background: #d7d7d7; padding: 70px; }
+  .tplPh i { display: block; height: 80px; margin-bottom: 30px; border-radius: 16px; background: #b5b5b5; }
+  .ghostPh { background: linear-gradient(#bdbdbd, #8a8a8a); display: grid; place-items: center; font-size: 380px; }
+  .dxPh { background: radial-gradient(circle at 50% 35%, #3a2a08, #0b0904 70%); display: grid; place-items: start center; padding-top: 150px; }
+  .dxPh img { width: 520px; filter: drop-shadow(0 0 50px rgba(245,213,115,.6)); }
+  #btns { left: 0; right: 0; top: 1760px; display: flex; justify-content: center; gap: 80px; }
+  #btns span { width: 130px; height: 130px; border-radius: 50%; background: #fff; display: grid; place-items: center; font-size: 70px; box-shadow: 0 10px 30px rgba(80,0,30,.3); }
+  /* match */
+  #match { background: rgba(20,4,12,.85); }
+  #mt { top: 360px; font-size: 150px; font-weight: 700; color: #fff; font-style: italic; }
+  #mt span { background: linear-gradient(90deg, #ff4f79, #ffb25a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .av { position: absolute; top: 640px; width: 320px; height: 320px; border-radius: 50%; border: 10px solid #fff; display: grid; place-items: center; font-size: 180px; }
+  #avYou { left: 170px; background: linear-gradient(#ffd1dc, #ff9ab0); }
+  #avDx { right: 170px; background: #0b0904; }
+  #avDx img { width: 230px; }
+  #heart { left: 470px; top: 730px; font-size: 140px; }
+  #msg { left: 90px; right: 90px; top: 1100px; height: 130px; border-radius: 65px; background: #fff; color: #333; font-size: 44px; display: flex; align-items: center; padding: 0 50px; }
+  #sent { right: 90px; top: 1270px; max-width: 760px; padding: 28px 40px; border-radius: 44px 44px 12px 44px; background: linear-gradient(90deg, #ff4f79, #ff7a64); color: #fff; font-size: 44px; }
+  #hearts span { position: absolute; font-size: 70px; }
+  /* CTA */
+  #c1 { top: 430px; font-size: 130px; font-weight: 700; color: #fff; line-height: 1.02; }
+  #eBtn { left: 150px; right: 150px; top: 860px; padding: 40px 0; border-radius: 999px; background: #fff; color: #ff4f79; text-align: center; font-size: 60px; font-weight: 700; box-shadow: 0 14px 40px rgba(80,0,30,.35); }
+  #eUrl { top: 1070px; color: #fff; } #eIg { top: 1150px; color: rgba(255,255,255,.85); }
+  #eLogo { left: 440px; top: 190px; width: 200px; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="world">
+    <div id="bg" class="layer"></div>
+    <div id="app" class="abs fr">🔥 Studio Match</div>
+    <div id="cap" class="abs fr"><div class="a" id="ca">Swipe right on your</div><div class="b" id="cb">next web studio 💘</div></div>
+    <div id="deck"></div>
+    <div id="btns" class="abs"><span>✖️</span><span>💛</span></div>
+    <section id="sMatch" class="scene">
+      <div id="match" class="layer"></div>
+      <div id="mt" class="abs cx fr"><span>It’s a Match!</span></div>
+      <div id="avYou" class="av emoji">🙋</div><div id="avDx" class="av"><img src="assets/logo.png" alt=""></div>
+      <div id="heart" class="abs emoji">💛</div>
+      <div id="msg" class="abs fr"></div>
+      <div id="sent" class="abs fr">Hi! Can we talk about our website? 👋</div>
+      <div id="hearts" class="layer"></div>
+    </section>
+    <section id="sEnd" class="scene">
+      <img id="eLogo" class="abs" src="assets/logo.png" alt="">
+      <div id="c1" class="abs cx fr">Make the<br>first move. 😉</div>
+      <div id="eBtn" class="abs fr">Request a meeting →</div>
+      <div id="eUrl" class="abs cx url fr">deveraxtech.com</div>
+      <div id="eIg" class="abs cx ig">@deveraxtech</div>
+    </section>
+  </div>
+</div>
+
+<script src="kit/reel-kit.js"></script>
+<script>
+const { seg, easeOut, easeInOut, back, decay, pop, rise, win, show, rng, $ } = kit;
+const B = 60 / 118, at = (b) => b * B;
+const PROFILES = [
+  { in: at(4), out: at(8), dir: -1, ph: '<div class="ph tplPh"><i style="height:220px"></i><i></i><i></i><i style="width:60%"></i><i></i></div>',
+    name: 'Template Studio', loc: '📍 everywhere', bio: 'I look like everyone else 🙂' },
+  { in: at(8.5), out: at(12), dir: -1, ph: '<div class="ph ghostPh emoji">👻</div>', name: 'Ghost Agency', loc: '📍 unknown', bio: 'Last seen: 2 weeks ago' },
+  { in: at(12.5), out: at(24), dir: 1, ph: '<div class="ph dxPh"><img src="assets/logo.png" alt=""></div>', name: 'DevEraXTech', loc: '📍 Cairo, Egypt 🇪🇬',
+    chips: ['Custom design', 'Secure from day one', 'Fast', 'SEO-ready', 'AR · EN · DE', '10+ projects'], bio: 'Looking for: a long-term digital asset 😉' },
+];
+$('#deck').innerHTML = PROFILES.map((p, i) => `<div class="pcard fr" id="p${i}">${p.ph}<div class="info"><h2>${p.name}</h2><div class="loc">${p.loc}</div>
+  ${p.chips ? `<div class="chips">${p.chips.map(c => `<span class="chip">${c}</span>`).join('')}</div>` : ''}<div class="bio">${p.bio}</div></div>
+  <div class="stampT ${p.dir < 0 ? 'nope' : 'like'}">${p.dir < 0 ? 'NOPE' : 'LIKE'}</div></div>`).join('');
+const hr = rng(12);
+const HEARTS = Array.from({ length: 24 }, () => ({ x: hr() * 1000, v: 500 + hr() * 700, d: hr() * .6, s: .6 + hr() * .8, e: ['💛', '💖', '✨', '💘'][Math.floor(hr() * 4)] }));
+$('#hearts').innerHTML = HEARTS.map(h => `<span class="emoji">${h.e}</span>`).join('');
+const MATCH = at(24.5), END = at(32);
+const MSG = 'Hi! Can we talk about our website? 👋';
+
+const chrome = kit.setup({
+  duration: 22, bpm: 118, beatFrom: at(4), beatTo: at(43), goldFrom: 99,
+  look: { gold: false, progress: false, handle: false, vignette: false, grain: .04, pump: .012, shake: .4 },
+  hits: [{ t: at(8), amp: 8 }, { t: at(12), amp: 8 }, { t: at(24), amp: 12 }], bursts: [], whiteFlashes: [],
+});
+
+window.render = function (t) {
+  const { pump } = chrome(t);
+  // hook caption
+  const ca = pop(t, 0, .35); show($('#ca'), ca.o, `scale(${ca.s})`);
+  const cb = pop(t, B, .35); show($('#cb'), cb.o, `scale(${cb.s})`);
+  $('#cap').style.opacity = t < MATCH ? 1 : 0;
+  $('#app').style.opacity = t < MATCH || t >= END ? 1 : 0;
+
+  // profiles: enter from the bottom of the deck, swipe out left (nope) or right (like)
+  PROFILES.forEach((p, i) => {
+    const el = $('#p' + i);
+    const inK = easeOut(seg(t, p.in, p.in + .35));
+    const outK = easeInOut(seg(t, p.out - .1, p.out + .45));
+    const drag = Math.sin(seg(t, p.out - .6, p.out - .1) * Math.PI / 2) * 60 * p.dir;
+    el.style.display = t >= p.in && t < p.out + .5 ? '' : 'none';
+    el.style.transform = `translate(${drag + outK * 1300 * p.dir}px, ${(1 - inK) * 300 + outK * 120}px) rotate(${(drag / 60) * 4 + outK * 25 * p.dir}deg) scale(${.92 + inK * .08})`;
+    el.style.opacity = inK;
+    show(el.querySelector('.stampT'), seg(t, p.out - .5, p.out - .1), el.querySelector('.stampT').classList.contains('nope') ? 'rotate(18deg)' : 'rotate(-18deg)');
+    el.querySelectorAll('.chip').forEach((c, j) => { const q = pop(t, at(14 + j), .3); show(c, q.o, `scale(${q.s})`); });
+    if (i === 2) show(el.querySelector('.bio'), rise(t, at(20), .4));
+  });
+  $('#btns').style.opacity = t < MATCH ? 1 : 0;
+  [...$('#btns').children].forEach((b, i) => { b.style.transform = `scale(${1 + decay(t, i ? at(24) : at(8), 8) * .25 + (i ? 0 : decay(t, at(12), 8) * .25)})`; });
+
+  // match
+  show($('#sMatch'), win(t, MATCH, END));
+  const m = pop(t, MATCH, .45); show($('#mt'), m.o, `scale(${m.s}) rotate(-4deg)`);
+  const av = easeOut(seg(t, MATCH + .3, MATCH + .8));
+  $('#avYou').style.transform = `translateX(${(1 - av) * -500}px)`; $('#avDx').style.transform = `translateX(${(1 - av) * 500}px)`;
+  const hp = pop(t, MATCH + .8, .3); show($('#heart'), hp.o, `scale(${hp.s * (1 + pump * .15)})`);
+  const typedN = Math.floor(seg(t, at(28), at(28) + 1.4) * MSG.length);
+  $('#msg').textContent = t < at(31) ? (MSG.slice(0, typedN) + (t >= at(28) ? '|' : '')) || 'Say hi to DevEraXTech…' : 'Say hi to DevEraXTech…';
+  show($('#msg'), rise(t, MATCH + 1.2, .4));
+  const sn = pop(t, at(31), .35); show($('#sent'), sn.o, `scale(${sn.s})`); $('#sent').style.transformOrigin = '100% 100%';
+  [...$('#hearts').children].forEach((h, i) => {
+    const d = HEARTS[i], dt = t - MATCH - d.d;
+    show(h, dt > 0 && dt < 3 ? 1 - dt / 3 : 0, `translate(${d.x}px, ${1900 - dt * d.v}px) scale(${d.s}) rotate(${Math.sin(dt * 4 + i) * 20}deg)`);
+  });
+
+  // CTA
+  show($('#sEnd'), t >= END ? 1 : 0);
+  show($('#eLogo'), rise(t, END, .4));
+  const c = pop(t, END + .1, .4); show($('#c1'), c.o, `scale(${c.s})`);
+  const eb = pop(t, END + 1, .35); show($('#eBtn'), eb.o, `scale(${eb.s * (1 + pump * .03)})`);
+  show($('#eUrl'), rise(t, END + 1.5, .4)); show($('#eIg'), rise(t, END + 1.7, .4));
+};
+kit.start();
+</script>
+</body>
+</html>
