@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DevEraXTech Brand Reel</title>
+<style>
+  @font-face { font-family: 'Playfair'; src: url(assets/playfair.woff2) format('woff2'); font-weight: 400 900; }
+  @font-face { font-family: 'Inter'; src: url(assets/inter.woff2) format('woff2'); font-weight: 100 900; }
+  :root {
+    --gold: #d4af37; --gold-hi: #f5d573; --ink: #0a0a0a; --text: #e8e2d0; --muted: #9a927e;
+    --gold-grad: linear-gradient(135deg, #b8912a 0%, #d4af37 25%, #f5d573 50%, #d4af37 75%, #a8821f 100%);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--ink); }
+  body { font-family: 'Inter', system-ui, sans-serif; color: var(--text); }
+  #stage { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: radial-gradient(ellipse at 50% 45%, #1a150a 0%, #0d0b07 45%, #050505 100%); }
+  .layer { position: absolute; inset: 0; }
+  .scene { position: absolute; inset: 0; opacity: 0; will-change: transform, opacity; }
+  .center { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .kicker { font-size: 22px; letter-spacing: .42em; text-transform: uppercase; color: rgba(212,175,55,.8); font-weight: 600; }
+  .gold-text { background: var(--gold-grad); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .display { font-family: 'Playfair', Georgia, serif; }
+  .rule { height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+
+  /* grain + vignette */
+  #vignette { background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.75) 100%); pointer-events: none; }
+  #fade { background: #000; opacity: 0; }
+
+  /* S1 */
+  #s1 .kicker { font-size: 26px; }
+  /* S2 */
+  #logoWrap { position: relative; width: 720px; height: 480px; }
+  #logo { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 40px rgba(212,175,55,.35)); }
+  #logoShine { position: absolute; inset: 0; -webkit-mask: url(assets/logo.png) center / contain no-repeat; mask: url(assets/logo.png) center / contain no-repeat;
+    background: linear-gradient(105deg, transparent 40%, rgba(255,250,220,.95) 50%, transparent 60%); background-size: 300% 100%; mix-blend-mode: screen; }
+  #wordmark { margin-top: 26px; font-size: 118px; font-weight: 700; letter-spacing: .01em; line-height: 1; }
+  #wordmark span { display: inline-block; }
+  #tagline { margin-top: 28px; font-size: 26px; letter-spacing: .32em; text-transform: uppercase; color: var(--muted); }
+  /* S3 */
+  #headline { font-size: 132px; font-weight: 700; line-height: 1.08; max-width: 1500px; }
+  #headline .w { display: inline-block; }
+  #sub { margin-top: 48px; font-size: 34px; color: #cfc7b2; font-weight: 300; }
+  /* S4 */
+  #s4 { padding: 110px 150px; }
+  #s4 h2 { font-size: 76px; font-weight: 700; margin-top: 18px; }
+  .grid { margin-top: 64px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .card { position: relative; padding: 36px 38px 34px; border-radius: 22px; background: linear-gradient(160deg, rgba(40,33,18,.85), rgba(14,12,9,.9));
+    border: 1px solid rgba(212,175,55,.28); box-shadow: 0 20px 60px rgba(0,0,0,.5), inset 0 1px 0 rgba(245,213,115,.12); overflow: hidden; }
+  .card .num { font-family: 'Playfair', serif; font-size: 34px; color: rgba(212,175,55,.75); }
+  .card h3 { margin-top: 12px; font-size: 36px; font-weight: 650; color: #f1e7c8; line-height: 1.15; }
+  .card p { margin-top: 14px; font-size: 20px; color: #a79f8a; line-height: 1.45; }
+  .card .sweep { position: absolute; inset: 0; background: linear-gradient(110deg, transparent 35%, rgba(245,213,115,.16) 50%, transparent 65%); background-size: 300% 100%; }
+  /* S5 */
+  #s5 { display: grid; grid-template-columns: 620px 1fr; align-items: center; gap: 70px; padding: 0 120px 0 150px; }
+  #s5 h2 { font-size: 96px; font-weight: 700; line-height: 1.02; margin-top: 18px; }
+  #s5 .desc { margin-top: 26px; font-size: 27px; line-height: 1.5; color: #c8c0aa; font-weight: 300; }
+  .chips { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; }
+  .chip { padding: 12px 22px; border-radius: 999px; border: 1px solid rgba(212,175,55,.45); color: #ecd98f; font-size: 19px; letter-spacing: .06em; background: rgba(212,175,55,.07); }
+  .stack { margin-top: 34px; font-size: 20px; letter-spacing: .28em; text-transform: uppercase; color: var(--muted); }
+  #browser { position: relative; border-radius: 18px; overflow: hidden; border: 1px solid rgba(212,175,55,.35); box-shadow: 0 50px 120px rgba(0,0,0,.7), 0 0 80px rgba(212,175,55,.12); background: #111; transform-origin: 30% 50%; }
+  #browser .bar { height: 44px; display: flex; align-items: center; gap: 10px; padding: 0 18px; background: #16130d; border-bottom: 1px solid rgba(212,175,55,.2); }
+  #browser .dot { width: 13px; height: 13px; border-radius: 50%; background: #3a3322; }
+  #browser .url { margin-left: 18px; flex: 1; height: 26px; border-radius: 8px; background: #0e0c08; color: #8a826d; font-size: 15px; display: flex; align-items: center; padding: 0 14px; letter-spacing: .02em; }
+  #shotWrap { position: relative; aspect-ratio: 1904 / 994; overflow: hidden; }
+  #shot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 70% 40%; }
+  /* S6 */
+  .big { font-size: 190px; font-weight: 800; letter-spacing: -.01em; line-height: 1; position: absolute; left: 0; right: 0; text-align: center; top: 330px; }
+  #stats { position: absolute; left: 150px; right: 150px; top: 640px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+  .stat { text-align: center; border-top: 1px solid rgba(212,175,55,.35); padding-top: 30px; }
+  .stat b { display: block; font-family: 'Playfair', serif; font-size: 96px; font-weight: 700; line-height: 1; }
+  .stat span { display: block; margin-top: 14px; font-size: 21px; letter-spacing: .24em; text-transform: uppercase; color: var(--muted); }
+  /* S7 */
+  #s7 h2 { font-size: 92px; font-weight: 700; line-height: 1.08; margin-top: 22px; }
+  #countries { margin-top: 44px; display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; max-width: 1500px; }
+  #countries .chip { font-size: 22px; }
+  #cta { margin-top: 64px; display: inline-flex; align-items: center; gap: 16px; padding: 28px 58px; border-radius: 999px; background: var(--gold-grad); color: #1a1406; font-size: 32px; font-weight: 700; letter-spacing: .04em; box-shadow: 0 0 40px rgba(212,175,55,.45); }
+  #contact { margin-top: 44px; font-size: 26px; letter-spacing: .14em; color: #c8c0aa; }
+  #contact em { font-style: normal; color: var(--gold-hi); }
+  #endLogo { width: 170px; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <canvas id="particles" class="layer" width="1920" height="1080"></canvas>
+  <svg id="circuits" class="layer" viewBox="0 0 1920 1080" fill="none" stroke-linecap="round" stroke-linejoin="round"></svg>
+
+  <section id="s1" class="scene center">
+    <p class="kicker">Engineered Excellence</p>
+  </section>
+
+  <section id="s2" class="scene center">
+    <div id="logoWrap"><img id="logo" src="assets/logo.png" alt=""><div id="logoShine"></div></div>
+    <h1 id="wordmark" class="display"></h1>
+    <p id="tagline">Web design &amp; development studio · Cairo</p>
+  </section>
+
+  <section id="s3" class="scene center">
+    <p class="kicker">DevEraXTech</p>
+    <h2 id="headline" class="display" style="margin-top:34px"></h2>
+    <p id="sub">Modern, secure and scalable solutions, from prototypes to production.</p>
+  </section>
+
+  <section id="s4" class="scene">
+    <p class="kicker">What we build</p>
+    <h2 class="display gold-text">Websites engineered to perform</h2>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="s5" class="scene">
+    <div id="s5text">
+      <p class="kicker">Featured work</p>
+      <h2 class="display gold-text">Nilora<br>Estates</h2>
+      <p class="desc">A luxury real estate platform for villas, penthouses and coastal homes across Cairo, with buyer, agent and admin dashboards.</p>
+      <div class="chips" id="s5chips"></div>
+      <p class="stack">MongoDB · Express · React · Node.js</p>
+    </div>
+    <div id="browser">
+      <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i><div class="url">nilora-estates · Cairo, Egypt</div></div>
+      <div id="shotWrap"><img id="shot" src="assets/nilora-estates-real-estate-website.webp" alt=""></div>
+    </div>
+  </section>
+
+  <section id="s6" class="scene">
+    <div class="big display gold-text" id="b0">Secure.</div>
+    <div class="big display gold-text" id="b1">Scalable.</div>
+    <div class="big display gold-text" id="b2">Pixel-perfect.</div>
+    <div id="stats"></div>
+  </section>
+
+  <section id="s7" class="scene center">
+    <img id="endLogo" src="assets/logo.png" alt="">
+    <h2 class="display gold-text">Cairo-based.<br>Serving clients worldwide.</h2>
+    <div id="countries"></div>
+    <div id="cta">Request a meeting →</div>
+    <p id="contact"><em>deveraxtech.com</em> &nbsp;·&nbsp; deveraxtech@gmail.com &nbsp;·&nbsp; @deveraxtech</p>
+  </section>
+
+  <div id="vignette" class="layer"></div>
+  <div id="fade" class="layer"></div>
+</div>
+
+<script>
+const DURATION = 38;
+const $ = (s) => document.querySelector(s);
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const seg = (t, a, b) => clamp((t - a) / (b - a));           // 0..1 progress of t across [a, b]
+const easeOut = (x) => 1 - Math.pow(1 - x, 3);
+const easeInOut = (x) => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const expo = (x) => x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
+// Scene visibility: fades in over [a, a+fi], out over [b-fo, b]
+const vis = (t, a, b, fi = .6, fo = .6) => Math.min(easeOut(seg(t, a, a + fi)), 1 - easeInOut(seg(t, b - fo, b)));
+
+// ---------- build DOM ----------
+const word = 'DevEraXTech';
+$('#wordmark').innerHTML = [...word].map(c => `<span class="gold-text">${c}</span>`).join('');
+const headWords = ['We', 'build', 'premium', 'web', '&amp;', 'app', 'experiences'];
+$('#headline').innerHTML = headWords.map(w => `<span class="w gold-text">${w}</span>`).join(' ');
+
+const services = [
+  ['Business Websites', 'Corporate sites for companies, clinics, schools and agencies.'],
+  ['E-Commerce', 'Online stores with cart, checkout, payments and admin dashboards.'],
+  ['Shopify Stores', 'Bespoke Shopify experiences crafted for premium brands.'],
+  ['WordPress', 'Custom, high-performance WordPress builds you can manage.'],
+  ['Portfolio Sites', 'High-visual showcases for designers, photographers and studios.'],
+  ['Landing Pages', 'High-conversion single pages for marketing campaigns.']
+];
+$('#grid').innerHTML = services.map(([t, d], i) =>
+  `<div class="card"><div class="sweep"></div><div class="num">0${i + 1}</div><h3>${t}</h3><p>${d}</p></div>`).join('');
+$('#s5chips').innerHTML = ['MERN Stack', 'Buyer, Agent & Admin Dashboards', 'Real Estate · Egypt'].map(c => `<span class="chip">${c}</span>`).join('');
+const stats = [['10+', 'Projects shipped'], ['7', 'Countries served'], ['3', 'Languages'], ['7', 'Days a week']];
+$('#stats').innerHTML = stats.map(([n, l]) => `<div class="stat"><b class="gold-text" data-n="${parseInt(n)}" data-suffix="${n.replace(/\d+/, '')}">0</b><span>${l}</span></div>`).join('');
+const countries = ['Canada', 'United States', 'UAE', 'Saudi Arabia', 'Kuwait', 'Qatar', 'Egypt'];
+$('#countries').innerHTML = countries.map(c => `<span class="chip">${c}</span>`).join('');
+
+// ---------- circuit traces (gold PCB lines converging on the centre) ----------
+function rng(seed) { return () => (seed = (seed * 16807) % 2147483647) / 2147483647; }
+const r = rng(42);
+const svg = $('#circuits');
+const traces = [];
+for (let i = 0; i < 22; i++) {
+  const side = i % 4;                                     // start from each edge in turn
+  let x, y;
+  if (side === 0) { x = -20; y = 80 + r() * 920; }
+  else if (side === 1) { x = 1940; y = 80 + r() * 920; }
+  else if (side === 2) { x = 100 + r() * 1720; y = -20; }
+  else { x = 100 + r() * 1720; y = 1100; }
+  const ang = Math.atan2(y - 540, x - 960) + (r() - .5) * .5;
+  const tx = 960 + Math.cos(ang) * (560 + r() * 60), ty = 540 + Math.sin(ang) * (250 + r() * 40);
+  // Manhattan route with a 45° chamfer, like a PCB trace
+  const midX = x + (tx - x) * (.35 + r() * .3);
+  const dy = ty - y, dx = tx - midX, d = Math.min(Math.abs(dy), Math.abs(dx)) * .6;
+  const pts = [[x, y], [midX, y], [midX + Math.sign(dx) * d, y + Math.sign(dy) * d], [midX + Math.sign(dx) * d, ty], [tx, ty]];
+  const dAttr = 'M' + pts.map(p => p.map(v => v.toFixed(1)).join(' ')).join(' L');
+  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  path.setAttribute('d', dAttr);
+  path.setAttribute('stroke', 'url(#tg)');
+  path.setAttribute('stroke-width', (1.2 + r() * 1.6).toFixed(2));
+  svg.appendChild(path);
+  const pad = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  pad.setAttribute('cx', tx); pad.setAttribute('cy', ty); pad.setAttribute('r', 5);
+  pad.setAttribute('stroke', '#f5d573'); pad.setAttribute('stroke-width', 2);
+  svg.appendChild(pad);
+  traces.push({ path, pad, len: 0, delay: r() * 1.4 });
+}
+svg.insertAdjacentHTML('afterbegin', `<defs><linearGradient id="tg" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#8a6a1c"/><stop offset=".5" stop-color="#f5d573"/><stop offset="1" stop-color="#d4af37"/></linearGradient></defs>`);
+traces.forEach(tr => { tr.len = tr.path.getTotalLength(); tr.path.style.strokeDasharray = tr.len; });
+
+// ---------- particles (deterministic, drawn from t) ----------
+const pc = $('#particles'), ctx = pc.getContext('2d');
+const pr = rng(7);
+const parts = Array.from({ length: 140 }, () => ({ x: pr() * 1920, y: pr() * 1080, s: .6 + pr() * 2.4, v: 8 + pr() * 26, ph: pr() * 6.28, a: .15 + pr() * .55 }));
+function drawParticles(t) {
+  ctx.clearRect(0, 0, 1920, 1080);
+  for (const p of parts) {
+    const y = ((p.y - p.v * t) % 1080 + 1080) % 1080;
+    const x = p.x + Math.sin(t * .5 + p.ph) * 18;
+    const a = p.a * (.6 + .4 * Math.sin(t * 1.7 + p.ph));
+    const g = ctx.createRadialGradient(x, y, 0, x, y, p.s * 4);
+    g.addColorStop(0, `rgba(245,213,115,${a})`); g.addColorStop(1, 'rgba(212,175,55,0)');
+    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(x, y, p.s * 4, 0, 6.283); ctx.fill();
+  }
+}
+
+// ---------- timeline ----------
+function set(el, o, tf, extra = '') { el.style.opacity = o; el.style.transform = tf || ''; if (extra) el.style.filter = extra; }
+
+window.render = function (t) {
+  drawParticles(t);
+
+  // Circuits: draw in during the intro, stay as a faint backdrop, pulse again at the finale
+  const drawIn = (tr) => easeInOut(seg(t, .2 + tr.delay, 2.6 + tr.delay));
+  const circuitAlpha = Math.max(1 - seg(t, 4.2, 6) * .82, seg(t, 32.2, 33.4) * .3) * (1 - seg(t, 37.2, 38));
+  svg.style.opacity = circuitAlpha;
+  svg.style.transform = `scale(${1 + t * .004})`;
+  traces.forEach(tr => {
+    const k = drawIn(tr);
+    tr.path.style.strokeDashoffset = tr.len * (1 - k);
+    tr.pad.style.opacity = seg(k, .95, 1);
+  });
+
+  // S1 — intro kicker
+  const s1 = $('#s1');
+  set(s1, vis(t, 1.2, 4.4, .9, .7), `scale(${1 + seg(t, 1, 4.4) * .06})`);
+  s1.querySelector('.kicker').style.letterSpacing = `${.42 + seg(t, 1, 4.4) * .2}em`;
+
+  // S2 — logo reveal, shine, wordmark
+  const s2 = $('#s2'), v2 = vis(t, 3.9, 10.2, .8, .7);
+  set(s2, v2, `translateY(${-seg(t, 9.5, 10.2) * 60}px)`);
+  const lp = easeOut(seg(t, 3.9, 5.4));
+  set($('#logoWrap'), 1, `scale(${.8 + lp * .2}) translateY(${(1 - lp) * 40}px)`, `blur(${(1 - lp) * 14}px) brightness(${.4 + lp * .6 + Math.max(0, 1 - Math.abs(t - 5.6) * 1.5) * .35})`);
+  $('#logoShine').style.backgroundPosition = `${150 - seg(t, 5.2, 6.6) * 200}% 0`;
+  [...$('#wordmark').children].forEach((sp, i) => {
+    const k = easeOut(seg(t, 5.8 + i * .06, 6.6 + i * .06));
+    sp.style.backgroundPosition = `${100 - seg(t, 6, 10) * 100}% 0`;
+    sp.style.opacity = k; sp.style.transform = `translateY(${(1 - k) * 50}px)`; sp.style.filter = `blur(${(1 - k) * 8}px)`;
+  });
+  const tg = easeOut(seg(t, 7, 7.9));
+  set($('#tagline'), tg, `translateY(${(1 - tg) * 20}px)`);
+
+  // S3 — headline word by word
+  const s3 = $('#s3');
+  set(s3, vis(t, 10, 15.4, .4, .6), `scale(${1.04 - seg(t, 10, 15.4) * .04})`);
+  [...$('#headline').children].forEach((w, i) => {
+    const k = expo(seg(t, 10.3 + i * .16, 11.1 + i * .16));
+    w.style.opacity = k; w.style.transform = `translateY(${(1 - k) * 80}px) rotateX(${(1 - k) * 50}deg)`;
+    w.style.backgroundPosition = `${100 - seg(t, 11, 15) * 100}% 0`;
+  });
+  const sb = easeOut(seg(t, 12, 12.9));
+  set($('#sub'), sb, `translateY(${(1 - sb) * 24}px)`);
+
+  // S4 — services grid
+  const s4 = $('#s4');
+  set(s4, vis(t, 15.2, 21.8, .5, .6), `translateY(${-seg(t, 21.2, 21.8) * 40}px)`);
+  [...$('#grid').children].forEach((c, i) => {
+    const k = easeOut(seg(t, 15.8 + i * .18, 16.8 + i * .18));
+    c.style.opacity = k; c.style.transform = `translateY(${(1 - k) * 70}px) scale(${.94 + k * .06})`;
+    c.querySelector('.sweep').style.backgroundPosition = `${150 - seg(t, 17.6 + i * .25, 19 + i * .25) * 200}% 0`;
+  });
+
+  // S5 — featured work
+  const s5 = $('#s5');
+  set(s5, vis(t, 21.6, 28.8, .5, .6));
+  const tx = easeOut(seg(t, 21.8, 22.9));
+  set($('#s5text'), tx, `translateX(${(1 - tx) * -60}px)`);
+  [...$('#s5chips').children].forEach((c, i) => { const k = easeOut(seg(t, 23.2 + i * .15, 23.9 + i * .15)); c.style.opacity = k; c.style.transform = `translateY(${(1 - k) * 16}px)`; });
+  const bp = easeOut(seg(t, 22, 23.6));
+  set($('#browser'), bp, `perspective(1800px) rotateY(${(1 - bp) * -22 - 4 + seg(t, 23.6, 28.8) * 3}deg) translateX(${(1 - bp) * 120}px) scale(${.92 + bp * .08})`);
+  $('#shot').style.transform = `scale(${1.02 + seg(t, 22, 28.8) * .16})`;
+
+  // S6 — three words, then stats
+  const s6 = $('#s6');
+  set(s6, vis(t, 28.6, 33, .3, .6));
+  ['#b0', '#b1', '#b2'].forEach((id, i) => {
+    const a = 28.7 + i * .85, k = expo(seg(t, a, a + .45)), out = i < 2 ? seg(t, a + .7, a + .85) : 0;   // the last word stays and lifts to title the stats
+    const el = $(id);
+    el.style.opacity = k * (1 - out);
+    el.style.transform = `scale(${1.5 - k * .5 - (i === 2 ? seg(t, 30.9, 31.4) * .45 : 0)}) translateY(${i === 2 ? -seg(t, 30.9, 31.4) * 180 : 0}px)`;
+    el.style.filter = `blur(${(1 - k) * 12}px)`;
+  });
+  const st = easeOut(seg(t, 31.1, 31.9));
+  set($('#stats'), st, `translateY(${(1 - st) * 50}px)`);
+  [...$('#stats').querySelectorAll('b')].forEach((b, i) => {
+    const n = +b.dataset.n, k = easeOut(seg(t, 31.2 + i * .12, 32.4 + i * .12));
+    b.textContent = Math.round(n * k) + (k >= 1 ? b.dataset.suffix : '');
+  });
+
+  // S7 — global reach + CTA
+  const s7 = $('#s7');
+  set(s7, vis(t, 32.9, 40, .6, .1));
+  const el = easeOut(seg(t, 33, 34));
+  set($('#endLogo'), el, `scale(${.7 + el * .3})`);
+  const h = easeOut(seg(t, 33.3, 34.3));
+  set(s7.querySelector('h2'), h, `translateY(${(1 - h) * 40}px)`);
+  [...$('#countries').children].forEach((c, i) => { const k = easeOut(seg(t, 34.1 + i * .1, 34.7 + i * .1)); c.style.opacity = k; c.style.transform = `translateY(${(1 - k) * 18}px)`; });
+  const cta = easeOut(seg(t, 35.2, 36));
+  set($('#cta'), cta, `scale(${.9 + cta * .1 + Math.max(0, Math.sin((t - 36) * 3)) * .02 * seg(t, 36, 36.5)})`);
+  const ct = easeOut(seg(t, 35.6, 36.4));
+  set($('#contact'), ct, `translateY(${(1 - ct) * 16}px)`);
+
+  // global fade in/out
+  $('#fade').style.opacity = Math.max(1 - seg(t, 0, .5), seg(t, 37.3, 38));
+};
+
+window.DURATION = DURATION;
+window.ready = document.fonts.ready.then(() => Promise.all([...document.images].map(i => i.decode().catch(() => {})))).then(() => render(0));
+
+// Live preview when opened directly in a browser (the renderer drives render(t) itself)
+if (!navigator.webdriver) {
+  const start = performance.now();
+  const loop = () => { render(((performance.now() - start) / 1000) % DURATION); requestAnimationFrame(loop); };
+  window.ready.then(() => requestAnimationFrame(loop));
+}
+</script>
+</body>
+</html>
