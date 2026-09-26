@@ -43,3 +43,25 @@ Cairo (`assets/cairo-arabic.woff2`, SIL Open Font License). All copy for both la
 ```bash
 node render.mjs deveraxtech-hook-reel-ar.mp4 --page "hook.html?lang=ar" --audio hook-audio.wav
 ```
+
+## 3. "Them vs Us" (9:16, with soundtrack)
+
+`deveraxtech-them-vs-us.mp4`, 24 s. Hook: "Your competitors don't want you to see this" + a CLASSIFIED stamp, a VS
+face-off, then five rounds of other agencies (buzzer) vs DevEraXTech (gold slam + ding), a 0–5 scoreboard
+and the call to action.
+
+## 4. "Rate this website 1–10" (9:16, with soundtrack)
+
+`deveraxtech-rate-this.mp4`, 24 s. Engagement hook with a filling 1–10 bar over a blurred teaser, then a cinematic
+camera over the Nilora Estates build (hero, typography, details), laptop + phone, the feature list, "Built by
+DevEraXTech" and "Your score? Want one like this?".
+
+Both are built on the shared `kit/` (look, effects, beat camera) and `soundtrack.py`, which holds one cue
+sheet per reel:
+
+```bash
+python3 soundtrack.py them-vs-us them-vs-us-audio.wav
+node render.mjs deveraxtech-them-vs-us.mp4 --page them-vs-us.html --audio them-vs-us-audio.wav
+python3 soundtrack.py rate-this rate-this-audio.wav
+node render.mjs deveraxtech-rate-this.mp4 --page rate-this.html --audio rate-this-audio.wav
+```

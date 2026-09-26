@@ -1,0 +1,38 @@
+/* Shared look for the vertical (9:16) DevEraXTech reels. */
+@font-face { font-family: 'Playfair'; src: url(../assets/playfair.woff2) format('woff2'); font-weight: 400 900; }
+@font-face { font-family: 'Inter'; src: url(../assets/inter.woff2) format('woff2'); font-weight: 100 900; }
+:root { --gold: #d4af37; --gold-hi: #f5d573; --red: #ff4b3e; --ink: #070707;
+  --gold-grad: linear-gradient(135deg, #b8912a 0%, #d4af37 30%, #f7dc85 55%, #d4af37 80%, #a8821f 100%); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); }
+body { font-family: 'Inter', system-ui, sans-serif; color: #fff; }
+#stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--ink); }
+#world { position: absolute; inset: 0; transform-origin: 50% 50%; }
+.abs { position: absolute; }
+.layer { position: absolute; inset: 0; pointer-events: none; }
+.scene { position: absolute; inset: 0; opacity: 0; }
+.cx { left: 0; right: 0; text-align: center; }
+.hv { font-weight: 900; text-transform: uppercase; letter-spacing: -.035em; line-height: .92; }
+.serif { font-family: 'Playfair', Georgia, serif; }
+.gold-text { background: var(--gold-grad); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hl { display: inline-block; background: var(--gold-grad); color: #0b0904; padding: .02em .16em .06em; border-radius: .12em; }
+.hl-red { display: inline-block; background: var(--red); color: #fff; padding: .02em .16em .06em; border-radius: .12em; }
+
+#bgGold { background:
+  radial-gradient(circle at 20% 18%, rgba(212,175,55,.28), transparent 38%),
+  radial-gradient(circle at 85% 70%, rgba(212,175,55,.22), transparent 40%),
+  radial-gradient(ellipse at 50% 50%, #17130a 0%, #080706 70%); }
+#rays { opacity: 0; background: repeating-conic-gradient(from 0deg at 50% 50%, rgba(245,213,115,.07) 0deg 6deg, transparent 6deg 18deg); }
+#grain { opacity: .09; mix-blend-mode: overlay; }
+#vig { background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,.8) 100%); }
+#flash { background: #fff; opacity: 0; }
+#goldFlash { background: var(--gold-grad); opacity: 0; }
+#black { background: #000; opacity: 0; }
+#progress { position: absolute; top: 70px; left: 60px; right: 60px; height: 8px; border-radius: 8px; background: rgba(255,255,255,.14); overflow: hidden; }
+#progress i { display: block; height: 100%; width: 0; background: var(--gold-grad); border-radius: 8px; }
+#handle { position: absolute; top: 106px; left: 60px; display: flex; align-items: center; gap: 18px; font-size: 30px; font-weight: 700; }
+#handle img { width: 64px; height: 64px; object-fit: contain; border-radius: 50%; background: #120f08; border: 2px solid rgba(212,175,55,.6); padding: 6px; }
+#handle span { opacity: .75; font-weight: 500; }
+.cta { left: 130px; right: 130px; padding: 44px 0; border-radius: 999px; background: var(--gold-grad); color: #0b0904; text-align: center; font-size: 62px; font-weight: 900; letter-spacing: -.01em; box-shadow: 0 0 80px rgba(212,175,55,.55); }
+.url { font-size: 58px; font-weight: 800; direction: ltr; unicode-bidi: isolate; }
+.ig { font-size: 42px; font-weight: 600; color: rgba(255,255,255,.7); direction: ltr; unicode-bidi: isolate; }

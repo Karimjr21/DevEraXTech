@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DevEraXTech: Them vs Us</title>
+<link rel="stylesheet" href="kit/reel-kit.css">
+<style>
+  /* hook */
+  .hookLine { font-size: 84px; white-space: nowrap; }
+  #h1 { top: 560px; } #h2 { top: 660px; } #h3 { top: 790px; font-size: 128px; }
+  #stamp { left: 170px; top: 1060px; width: 740px; padding: 22px 0; text-align: center; border: 12px solid var(--red); border-radius: 24px; color: var(--red);
+    font-size: 104px; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; }
+  /* versus */
+  #vsTop, #vsBot { left: 0; right: 0; height: 960px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  #vsTop { top: 0; background: linear-gradient(#1d1d1d, #111); }
+  #vsTop b { font-size: 120px; font-weight: 900; color: #8d8d8d; letter-spacing: -.03em; text-transform: uppercase; line-height: .95; text-align: center; margin-top: 120px; }
+  #vsBot { top: 960px; }
+  #vsBot img { width: 360px; }
+  #vsBot b { margin-top: 26px; font-size: 104px; font-weight: 900; letter-spacing: -.03em; }
+  .vsBadge { left: 420px; top: 840px; width: 240px; height: 240px; border-radius: 50%; background: var(--red); display: grid; place-items: center;
+    font-size: 120px; font-weight: 900; font-style: italic; letter-spacing: -.05em; box-shadow: 0 0 0 14px #070707, 0 0 90px rgba(255,75,62,.6); }
+  /* rounds */
+  #themPanel { left: 0; right: 0; top: 0; height: 960px; background: linear-gradient(#1b1b1b, #101010);
+    background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.025) 0 2px, transparent 2px 6px), linear-gradient(#1b1b1b, #101010); }
+  .tag { padding: 12px 30px; border-radius: 999px; font-size: 34px; font-weight: 900; letter-spacing: .2em; text-transform: uppercase; }
+  #tagThem { left: 60px; top: 220px; background: #2a2a2a; color: #9a9a9a; }
+  #tagUs { left: 60px; top: 1010px; background: var(--gold-grad); color: #0b0904; }
+  #roundChip { left: 390px; right: 390px; top: 930px; height: 60px; border-radius: 999px; background: #070707; border: 3px solid rgba(212,175,55,.7); display: grid; place-items: center;
+    font-size: 28px; font-weight: 800; letter-spacing: .16em; color: var(--gold-hi); }
+  .them, .us { left: 70px; right: 70px; display: flex; align-items: center; gap: 34px; }
+  .them { top: 330px; height: 560px; }
+  .us { top: 1110px; height: 600px; }
+  .them b { font-size: 100px; font-weight: 900; color: #8b8b8b; text-transform: uppercase; letter-spacing: -.03em; line-height: .98; }
+  .us b { font-size: 108px; font-weight: 900; text-transform: uppercase; letter-spacing: -.035em; line-height: .96; }
+  .badge { flex: none; width: 110px; height: 110px; border-radius: 50%; display: grid; place-items: center; font-size: 66px; font-weight: 900; }
+  .them .badge { background: #3a1614; color: var(--red); border: 4px solid var(--red); }
+  .us .badge { background: var(--gold-grad); color: #0b0904; box-shadow: 0 0 50px rgba(245,213,115,.6); }
+  .usGlow { left: 0; right: 0; top: 960px; height: 960px; background: radial-gradient(ellipse at 50% 55%, rgba(245,213,115,.35), transparent 60%); }
+  /* score */
+  #scoreTitle { top: 360px; font-size: 64px; font-weight: 800; letter-spacing: .3em; color: rgba(255,255,255,.7); text-transform: uppercase; }
+  .scoreCol { top: 540px; width: 460px; text-align: center; }
+  .scoreCol span { display: block; font-size: 52px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+  .scoreCol b { display: block; font-size: 400px; font-weight: 900; line-height: 1; letter-spacing: -.06em; }
+  #scThem { left: 60px; } #scThem span, #scThem b { color: #6f6f6f; }
+  #scUs { right: 60px; }
+  #close { top: 1180px; font-size: 130px; }
+  /* cta */
+  #cLogo { left: 410px; top: 300px; width: 260px; }
+  #c1 { top: 610px; font-size: 82px; white-space: nowrap; }
+  #c2 { top: 720px; font-size: 150px; }
+  #cta { top: 1100px; }
+  #url { top: 1310px; } #ig { top: 1400px; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="world">
+    <section id="sHook" class="scene">
+      <div id="h1" class="abs cx hv hookLine">Your competitors</div>
+      <div id="h2" class="abs cx hv hookLine">don't want you</div>
+      <div id="h3" class="abs cx hv hookLine"><span class="hl-red">to see this.</span></div>
+      <div id="stamp" class="abs">Classified</div>
+    </section>
+
+    <section id="sVs" class="scene">
+      <div id="vsTop" class="abs"><b>Other<br>agencies</b></div>
+      <div id="vsBot" class="abs"><img src="assets/logo.png" alt=""><b class="gold-text">DevEraXTech</b></div>
+      <div id="vsBadge" class="abs vsBadge">VS</div>
+    </section>
+
+    <section id="sRounds" class="scene">
+      <div id="themPanel" class="abs"></div>
+      <div class="usGlow abs" id="usGlow"></div>
+      <div id="tagThem" class="abs tag">Them</div>
+      <div id="tagUs" class="abs tag">Us</div>
+      <div id="rounds"></div>
+      <div id="roundChip" class="abs">ROUND 1/5</div>
+    </section>
+
+    <section id="sScore" class="scene">
+      <div id="scoreTitle" class="abs cx">Final score</div>
+      <div id="scThem" class="abs scoreCol"><span>Them</span><b>0</b></div>
+      <div id="scUs" class="abs scoreCol"><span class="gold-text">Us</span><b class="gold-text" id="usScore">0</b></div>
+      <div id="close" class="abs cx hv">Not even<br><span class="hl">close.</span></div>
+    </section>
+
+    <section id="sCta" class="scene">
+      <img id="cLogo" class="abs" src="assets/logo.png" alt="">
+      <div id="c1" class="abs cx hv">Stop settling for</div>
+      <div id="c2" class="abs cx hv"><span class="hl">average.</span></div>
+      <div id="cta" class="abs cta">Request a meeting →</div>
+      <div id="url" class="abs cx url gold-text">deveraxtech.com</div>
+      <div id="ig" class="abs cx ig">@deveraxtech</div>
+    </section>
+  </div>
+</div>
+
+<script src="kit/reel-kit.js"></script>
+<script>
+const { seg, easeOut, back, decay, slam, pop, rise, win, show, $ } = kit;
+const R0 = 4, RLEN = 3;                        // rounds start at the drop, 3 s (6 beats) each
+const ROUNDS = [
+  ['Same template<br>as everyone', 'Designed<br>only for you'],
+  ['Slow, heavy<br>pages', 'Built to<br>load fast'],
+  ['Security as an<br>afterthought', 'Secure from<br>day one'],
+  ['Days of<br>silence', 'Updates at<br>every step'],
+  ['One language,<br>one market', '3 languages.<br>7 countries.'],
+];
+$('#rounds').innerHTML = ROUNDS.map(([a, b]) =>
+  `<div class="them abs"><span class="badge">✕</span><b>${a}</b></div><div class="us abs"><span class="badge">✓</span><b class="gold-text">${b}</b></div>`).join('');
+
+const chrome = kit.setup({
+  duration: 24, bpm: 120, beatFrom: 4, beatTo: 23.5, goldFrom: 4,
+  hits: [{ t: 0 }, { t: .5 }, { t: 1 }, { t: 1.5, amp: 24 }, { t: 3, amp: 22 }, { t: 4, amp: 34 },
+    ...ROUNDS.map((_, i) => ({ t: R0 + i * RLEN + 1, amp: 18 })), { t: 20.5, amp: 20 }],
+  bursts: [4, 20.5], goldFlashes: [4], whiteFlashes: [0, 1.5, 3, 20.5], blackouts: [[3.88, 4]],
+});
+
+window.render = function (t) {
+  const { pump } = chrome(t, { zoom: t < 4 ? 1 + seg(t, 3, 3.88) * .1 : 1 });
+
+  // HOOK 0 - 2.5
+  show($('#sHook'), win(t, 0, 2.45));
+  [['#h1', 0], ['#h2', .5], ['#h3', 1]].forEach(([id, at]) => { const s = slam(t, at); show($(id), s.o, `scale(${s.s})`); });
+  const st = seg(t, 1.5, 1.68);
+  show($('#stamp'), st > 0 ? 1 : 0, `rotate(-9deg) scale(${2.4 - back(st) * 1.4})`);
+
+  // VS 2.5 - 4
+  show($('#sVs'), win(t, 2.45, 3.88));
+  const vt = easeOut(seg(t, 2.45, 2.75)), vb = easeOut(seg(t, 2.6, 2.9));
+  show($('#vsTop'), 1, `translateX(${(1 - vt) * -1080}px)`);
+  show($('#vsBot'), 1, `translateX(${(1 - vb) * 1080}px)`);
+  const vs = slam(t, 3, .2);
+  show($('#vsBadge'), vs.o, `scale(${vs.s * (1 + seg(t, 3.2, 3.88) * .15)}) rotate(${-8 + Math.sin(t * 60) * seg(t, 3.2, 3.88) * 4}deg)`);
+
+  // ROUNDS 4 - 19
+  show($('#sRounds'), win(t, 4, 19));
+  const ri = Math.min(ROUNDS.length - 1, Math.max(0, Math.floor((t - R0) / RLEN)));
+  $('#roundChip').textContent = `ROUND ${ri + 1}/${ROUNDS.length}`;
+  $('#roundChip').style.transform = `scale(${1 + decay(t, R0 + ri * RLEN, 8) * .3})`;
+  const them = [...document.querySelectorAll('.them')], us = [...document.querySelectorAll('.us')];
+  ROUNDS.forEach((_, i) => {
+    const r = R0 + i * RLEN, active = win(t, r, r + RLEN), out = seg(t, r + RLEN - .25, r + RLEN);
+    const a = rise(t, r, .25), wob = decay(t, r, 5);
+    show(them[i], active * a * (1 - out), `translateX(${(1 - a) * -300 - out * 1100}px) rotate(${Math.sin((t - r) * 30) * wob * 3}deg)`);
+    const u = seg(t, r + 1, r + 1.2);
+    show(us[i], active * (u > 0 ? 1 : 0) * (1 - out), `translateX(${out * 1100}px) scale(${1 + (1 - back(u)) * 1.2})`);
+    us[i].querySelector('b').style.backgroundPosition = `${100 - seg(t, r + 1, r + 3) * 100}% 0`;
+  });
+  const rr = R0 + ri * RLEN;
+  $('#usGlow').style.opacity = t >= rr + 1 ? .5 + decay(t, rr + 1, 3) * .5 + pump * .2 : .15;
+  $('#themPanel').style.filter = `brightness(${1 - decay(t, rr + 1, 4) * .35})`;
+
+  // SCORE 19 - 21
+  show($('#sScore'), win(t, 19, 21));
+  show($('#scoreTitle'), rise(t, 19, .2));
+  const sc = pop(t, 19, .25); show($('#scThem'), sc.o, `scale(${sc.s})`); show($('#scUs'), sc.o, `scale(${sc.s})`);
+  const pts = Math.min(5, Math.max(0, Math.floor((t - 19.25) / .25) + 1));
+  $('#usScore').textContent = pts;
+  $('#usScore').parentElement.style.transform = `scale(${sc.s * (1 + decay(t, 19.25 + (pts - 1) * .25, 12) * .12)})`;
+  const cl = slam(t, 20.5, .22); show($('#close'), cl.o, `scale(${cl.s})`);
+
+  // CTA 21 - 24
+  show($('#sCta'), win(t, 21, 24));
+  const lg = pop(t, 21, .3); show($('#cLogo'), lg.o, `scale(${lg.s})`);
+  const c1 = rise(t, 21.1, .25); show($('#c1'), c1, `translateY(${(1 - c1) * 40}px)`);
+  const c2 = slam(t, 21.5, .22); show($('#c2'), c2.o, `scale(${c2.s})`);
+  const b = pop(t, 22, .3); show($('#cta'), b.o, `scale(${b.s * (1 + pump * .05)})`);
+  $('#cta').style.boxShadow = `0 0 ${60 + pump * 70}px rgba(212,175,55,${.45 + pump * .3})`;
+  const u = rise(t, 22.5, .25); show($('#url'), u, `translateY(${(1 - u) * 30}px)`);
+  const g = rise(t, 22.75, .25); show($('#ig'), g, `translateY(${(1 - g) * 30}px)`);
+};
+kit.start();
+</script>
+</body>
+</html>
