@@ -33,3 +33,13 @@ All cuts sit on a 120 BPM grid.
 python3 make-hook-audio.py hook-audio.wav
 node render.mjs deveraxtech-hook-reel.mp4 --page hook.html --audio hook-audio.wav
 ```
+
+### Arabic cut
+
+`deveraxtech-hook-reel-ar.mp4` is the same reel in Arabic, laid out right-to-left with Arabic-Indic numerals, set in
+Cairo (`assets/cairo-arabic.woff2`, SIL Open Font License). All copy for both languages lives in the `COPY` object in
+`hook.html`; `?lang=ar` switches it.
+
+```bash
+node render.mjs deveraxtech-hook-reel-ar.mp4 --page "hook.html?lang=ar" --audio hook-audio.wav
+```

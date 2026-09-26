@@ -6,6 +6,7 @@
 <style>
   @font-face { font-family: 'Playfair'; src: url(assets/playfair.woff2) format('woff2'); font-weight: 400 900; }
   @font-face { font-family: 'Inter'; src: url(assets/inter.woff2) format('woff2'); font-weight: 100 900; }
+  @font-face { font-family: 'CairoAr'; src: url(assets/cairo-arabic.woff2) format('woff2'); font-weight: 200 1000; unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+200C-200E, U+FB50-FDFF, U+FE70-FEFF; }
   :root { --gold: #d4af37; --gold-hi: #f5d573; --red: #ff4b3e; --ink: #070707;
     --gold-grad: linear-gradient(135deg, #b8912a 0%, #d4af37 30%, #f7dc85 55%, #d4af37 80%, #a8821f 100%); }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -91,7 +92,42 @@
   #yours { top: 640px; font-size: 136px; }
   #cta { left: 130px; right: 130px; top: 1120px; padding: 44px 0; border-radius: 999px; background: var(--gold-grad); color: #0b0904; text-align: center; font-size: 62px; font-weight: 900; letter-spacing: -.01em; box-shadow: 0 0 80px rgba(212,175,55,.55); }
   #url { top: 1320px; font-size: 58px; font-weight: 800; letter-spacing: .01em; }
+  #url, #ig { direction: ltr; unicode-bidi: isolate; }   /* keep @handle / domain LTR inside the Arabic cut */
   #ig { top: 1410px; font-size: 42px; font-weight: 600; color: rgba(255,255,255,.7); }
+
+  /* ---------- Arabic (RTL) ---------- */
+  html[lang=ar] body { font-family: 'CairoAr', 'Inter', system-ui, sans-serif; }
+  html[lang=ar] *:not(#wm):not(#handle) { letter-spacing: 0 !important; }   /* tracking breaks Arabic joining */
+  html[lang=ar] .hv { line-height: 1.12; font-weight: 1000; }
+  html[lang=ar] .hl { padding: 0 .18em .04em; }
+  html[lang=ar] #stop { top: 560px; font-size: 250px; }
+  html[lang=ar] #scrolling { top: 880px; font-size: 150px; }
+  html[lang=ar] #hasLine { font-size: 84px; font-weight: 900; }
+  html[lang=ar] #num { top: 660px; }
+  html[lang=ar] #impress { top: 1180px; font-size: 100px; line-height: 1.25; }
+  html[lang=ar] #painTitle { font-size: 80px; }
+  html[lang=ar] .pain { left: 60px; right: 90px; font-size: 78px; font-weight: 900; }
+  html[lang=ar] #losing { top: 600px; font-size: 150px; }
+  html[lang=ar] #fix { font-size: 124px; }
+  html[lang=ar] .sub { font-size: 70px; font-weight: 900; }
+  html[lang=ar] #sub1 { top: 850px !important; } html[lang=ar] #sub2 { top: 950px !important; } html[lang=ar] #sub3 { top: 1050px !important; }
+  html[lang=ar] #realWork { top: 230px; font-size: 116px; }
+  html[lang=ar] #caseName, html[lang=ar] #caseSub { left: auto; right: 80px; text-align: right; }
+  html[lang=ar] #caseName { font-family: 'Playfair', serif; }
+  html[lang=ar] #caseSub { font-size: 46px; font-weight: 800; }
+  html[lang=ar] .chip { left: auto; right: 80px; font-size: 36px; }
+  html[lang=ar] #phone { left: 110px; }
+  html[lang=ar] #weBuild { top: 600px; }
+  html[lang=ar] #slot { top: 790px; height: 360px; }
+  html[lang=ar] #slot div { font-size: 136px; line-height: 1.15; }
+  html[lang=ar] .fixrow .old { font-size: 44px; }
+  html[lang=ar] .fixrow .new { font-size: 84px; }
+  html[lang=ar] .stat span { font-size: 34px; }
+  html[lang=ar] #yours { top: 600px; font-size: 150px; }
+  html[lang=ar] #cta { font-size: 66px; padding: 36px 0; }
+  html[lang=ar] #url { top: 1340px; }
+  html[lang=ar] #ig { top: 1430px; }
+  html[lang=ar] #handle { left: auto; right: 60px; }
 </style>
 </head>
 <body>
@@ -104,59 +140,59 @@
 
     <!-- A1: hook -->
     <section id="a1" class="scene">
-      <div id="stop" class="abs cx hv">Stop</div>
-      <div id="scrolling" class="abs cx hv"><span class="hl">scrolling.</span></div>
+      <div id="stop" class="abs cx hv" data-t="stop"></div>
+      <div id="scrolling" class="abs cx hv" data-t="scrolling"></div>
     </section>
 
     <!-- A2: countdown -->
     <section id="a2" class="scene">
-      <div id="hasLine" class="abs cx">Your website has</div>
+      <div id="hasLine" class="abs cx" data-t="hasLine"></div>
       <svg id="ring" class="abs" viewBox="0 0 500 500"><circle cx="250" cy="250" r="230" stroke="rgba(255,255,255,.12)" stroke-width="18" fill="none"/>
         <circle id="ringArc" cx="250" cy="250" r="230" stroke="#d4af37" stroke-width="18" fill="none" stroke-linecap="round" transform="rotate(-90 250 250)"/></svg>
       <div id="num" class="abs cx">3</div>
-      <div id="impress" class="abs cx">seconds<br><span class="hl">to impress.</span></div>
+      <div id="impress" class="abs cx" data-t="impress"></div>
     </section>
 
     <!-- A3: pain -->
     <section id="a3" class="scene">
-      <div id="painTitle" class="abs cx">Is your website…</div>
+      <div id="painTitle" class="abs cx" data-t="painTitle"></div>
       <div id="pains"></div>
-      <div id="losing" class="abs cx hv">You're<br><span class="red">losing</span><br>customers.</div>
+      <div id="losing" class="abs cx hv" data-t="losing"></div>
     </section>
 
     <!-- B1: drop -->
     <section id="b1" class="scene">
       <img id="dropLogo" class="abs" src="assets/logo.png" alt="">
-      <div id="fix" class="abs cx hv gold-text">Let's fix that.</div>
+      <div id="fix" class="abs cx hv gold-text" data-t="fix"></div>
     </section>
 
     <!-- B2: who -->
     <section id="b2" class="scene">
       <div id="wm" class="abs cx gold-text">DevEraXTech</div>
-      <div id="sub1" class="abs cx sub" style="top:860px">Premium websites.</div>
-      <div id="sub2" class="abs cx sub" style="top:950px">Built in Cairo.</div>
-      <div id="sub3" class="abs cx sub" style="top:1040px">For clients <span class="hl">worldwide.</span></div>
+      <div id="sub1" class="abs cx sub" style="top:860px" data-t="sub1"></div>
+      <div id="sub2" class="abs cx sub" style="top:950px" data-t="sub2"></div>
+      <div id="sub3" class="abs cx sub" style="top:1040px" data-t="sub3"></div>
     </section>
 
     <!-- B3: proof -->
     <section id="b3" class="scene">
-      <div id="realWork" class="abs cx hv">Real <span class="hl">work.</span></div>
+      <div id="realWork" class="abs cx hv" data-t="realWork"></div>
       <div id="laptop" class="abs"><div class="bar"><i></i><i></i><i></i></div><img id="lapShot" src="assets/nilora-estates-real-estate-website.webp" alt=""></div>
       <div id="phone" class="abs"><img id="phoneShot" src="assets/nilora-estates-real-estate-website.webp" alt=""></div>
       <div id="caseName" class="abs gold-text">Nilora<br>Estates</div>
-      <div id="caseSub" class="abs">Luxury real estate platform</div>
+      <div id="caseSub" class="abs" data-t="caseSub"></div>
       <div id="chips"></div>
     </section>
 
     <!-- B4: what -->
     <section id="b4" class="scene">
-      <div id="weBuild" class="abs cx hv">We build</div>
+      <div id="weBuild" class="abs cx hv" data-t="weBuild"></div>
       <div id="slot" class="abs"></div>
     </section>
 
     <!-- B5: flip the pains -->
     <section id="b5" class="scene">
-      <div id="fixTitle" class="abs cx hv">Now it's…</div>
+      <div id="fixTitle" class="abs cx hv" data-t="fixTitle"></div>
       <div id="fixes"></div>
       <div id="stats" class="abs"></div>
     </section>
@@ -164,8 +200,8 @@
     <!-- B6: CTA -->
     <section id="b6" class="scene">
       <img id="endLogo" class="abs" src="assets/logo.png" alt="">
-      <div id="yours" class="abs cx hv">Your site<br><span class="hl">is next.</span></div>
-      <div id="cta" class="abs">Request a meeting →</div>
+      <div id="yours" class="abs cx hv" data-t="yours"></div>
+      <div id="cta" class="abs" data-t="cta"></div>
       <div id="url" class="abs cx gold-text">deveraxtech.com</div>
       <div id="ig" class="abs cx">@deveraxtech</div>
     </section>
@@ -174,7 +210,7 @@
   <canvas id="grain" class="layer" width="540" height="960"></canvas>
   <div id="vig" class="layer"></div>
   <div id="progress"><i></i></div>
-  <div id="handle"><img src="assets/logo.png" alt="">deveraxtech <span>· Web studio</span></div>
+  <div id="handle"><img src="assets/logo.png" alt="">deveraxtech <span data-t="studio"></span></div>
   <div id="goldFlash" class="layer"></div>
   <div id="flash" class="layer"></div>
   <div id="black" class="layer"></div>
@@ -197,17 +233,57 @@ const win = (t, a, b) => t >= a && t < b ? 1 : 0;
 // Every impact the soundtrack also hits (kept in sync with make-hook-audio.py)
 const HITS = [0, .5, 2, 2.5, 3, 3.5, 4.5, 5, 5.5, 6, 6.5, 8, 12, 18, 22, 25.5];
 
+// ---------- copy (?lang=ar for the Arabic cut) ----------
+const LANG = new URLSearchParams(location.search).get('lang') === 'ar' ? 'ar' : 'en';
+const DIR = LANG === 'ar' ? -1 : 1;                 // flips horizontal motion for RTL
+const COPY = {
+  en: {
+    stop: 'Stop', scrolling: '<span class="hl">scrolling.</span>', hasLine: 'Your website has',
+    impress: 'seconds<br><span class="hl">to impress.</span>', painTitle: 'Is your website…',
+    losing: 'You\'re<br><span class="red">losing</span><br>customers.', fix: 'Let\'s fix that.',
+    sub1: 'Premium websites.', sub2: 'Built in Cairo.', sub3: 'For clients <span class="hl">worldwide.</span>',
+    realWork: 'Real <span class="hl">work.</span>', caseSub: 'Luxury real estate platform',
+    weBuild: 'We build', fixTitle: 'Now it\'s…', yours: 'Your site<br><span class="hl">is next.</span>',
+    cta: 'Request a meeting →', studio: '· Web studio',
+    pains: ['Slow', 'Outdated', 'Broken on mobile', 'Invisible on Google'],
+    chips: ['MERN stack', '3 role-based dashboards', 'Cairo, Egypt'],
+    slot: ['Business<br>websites', 'Online<br>stores', 'Shopify<br>stores', 'WordPress<br>sites', 'Portfolio<br>sites', 'Landing<br>pages', '<span class="hl">Your next<br>big thing.</span>'],
+    fixes: [['Slow', 'Lightning fast'], ['Outdated', 'Premium design'], ['Broken on mobile', 'Pixel-perfect'], ['Invisible on Google', 'SEO-ready']],
+    stats: ['Projects', 'Countries', 'Languages']
+  },
+  ar: {
+    stop: 'توقّف', scrolling: '<span class="hl">عن التمرير.</span>', hasLine: 'أمام موقعك',
+    impress: 'ثوانٍ فقط<br><span class="hl">ليُبهر عملاءك.</span>', painTitle: 'هل موقعك…',
+    losing: 'أنت<br><span class="red">تخسر</span><br>عملاءك.', fix: 'لنُصلح ذلك.',
+    sub1: 'مواقع فاخرة.', sub2: 'تُصنع في القاهرة.', sub3: 'لعملاء <span class="hl">حول العالم.</span>',
+    realWork: 'أعمال <span class="hl">حقيقية.</span>', caseSub: 'منصة عقارات فاخرة',
+    weBuild: 'نبني لك', fixTitle: 'والآن أصبح…', yours: 'موقعك<br><span class="hl">هو التالي.</span>',
+    cta: 'احجز اجتماعًا ←', studio: '· استوديو ويب',
+    pains: ['بطيء؟', 'تصميمه قديم؟', 'لا يعمل على الجوال؟', 'غير ظاهر على جوجل؟'],
+    chips: ['MERN Stack', '٣ لوحات تحكم', 'القاهرة، مصر'],
+    slot: ['مواقع<br>الشركات', 'متاجر<br>إلكترونية', 'متاجر<br>Shopify', 'مواقع<br>WordPress', 'معارض<br>أعمال', 'صفحات<br>هبوط', '<span class="hl">مشروعك<br>الكبير القادم.</span>'],
+    fixes: [['بطيء', 'سريع جدًا'], ['تصميم قديم', 'تصميم فاخر'], ['لا يعمل على الجوال', 'مثالي على كل شاشة'], ['غير ظاهر على جوجل', 'جاهز لمحركات البحث']],
+    stats: ['مشروع', 'دول', 'لغات']
+  }
+};
+const T = COPY[LANG];
+const ORIGIN = DIR > 0 ? '0 50%' : '100% 50%';          // scale from the reading edge
+const fmt = (n) => LANG === 'ar' ? String(n).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]) : String(n);
+document.documentElement.lang = LANG;
+document.documentElement.dir = LANG === 'ar' ? 'rtl' : 'ltr';
+document.querySelectorAll('[data-t]').forEach(el => { el.innerHTML = T[el.dataset.t]; });
+
 // ---------- DOM ----------
-const pains = ['Slow', 'Outdated', 'Broken on mobile', 'Invisible on Google'];
+const pains = T.pains;
 $('#pains').innerHTML = pains.map((p, i) => `<div class="pain abs" style="top:${600 + i * 170}px"><span class="x">✕</span><span class="t">${p}<i class="strike"></i></span></div>`).join('');
-const chips = ['MERN stack', '3 role-based dashboards', 'Cairo, Egypt'];
+const chips = T.chips;
 $('#chips').innerHTML = chips.map((c, i) => `<div class="chip" style="top:${1430 + i * 92}px">${c}</div>`).join('');
-const slotWords = ['Business<br>websites', 'Online<br>stores', 'Shopify<br>stores', 'WordPress<br>sites', 'Portfolio<br>sites', 'Landing<br>pages', '<span class="hl">Your next<br>big thing.</span>'];
+const slotWords = T.slot;
 $('#slot').innerHTML = slotWords.map(w => `<div class="hv gold-text">${w}</div>`).join('');
 $('#slot').lastElementChild.classList.remove('gold-text');
-const fixes = [['Slow', 'Lightning fast'], ['Outdated', 'Premium design'], ['Broken on mobile', 'Pixel-perfect'], ['Invisible on Google', 'SEO-ready']];
+const fixes = T.fixes;
 $('#fixes').innerHTML = fixes.map(([o, n], i) => `<div class="fixrow abs" style="top:${500 + i * 230}px"><div class="old">${o}</div><div class="new"><span class="ok">✓</span><span class="gold-text">${n}</span></div></div>`).join('');
-const stats = [[10, '+', 'Projects'], [7, '', 'Countries'], [3, '', 'Languages']];
+const stats = [[10, '+', T.stats[0]], [7, '', T.stats[1]], [3, '', T.stats[2]]];
 $('#stats').innerHTML = stats.map(([n, s, l]) => `<div class="stat"><b class="gold-text" data-n="${n}" data-s="${s}">0</b><span>${l}</span></div>`).join('');
 
 // ---------- deterministic noise + sparks ----------
@@ -276,7 +352,7 @@ window.render = function (t) {
   const hl = easeOut(seg(t, 1.5, 1.8)); show($('#hasLine'), hl, `translateY(${(1 - hl) * 40}px)`);
   const n = t < 2 ? 0 : t < 2.5 ? 3 : t < 3 ? 2 : 1;
   const nAt = [0, 3, 2.5, 2][n];
-  $('#num').textContent = n || '';
+  $('#num').textContent = n ? fmt(n) : '';
   s = slam(t, nAt, .18);
   show($('#num'), n ? 1 : 0, `scale(${s.s})`);
   $('#num').style.color = n === 1 ? '#ff4b3e' : '#fff';
@@ -296,7 +372,7 @@ window.render = function (t) {
     const at = 4.5 + i * .5, k = seg(t, at, at + .18);
     const glitch = decay(t, at, 18);
     el.style.opacity = (k > 0 ? 1 : 0) * (1 - listOut);
-    el.style.transform = `translateX(${(1 - easeOut(k)) * -140 + Math.sin(t * 200) * glitch * 26}px)`;
+    el.style.transform = `translateX(${(1 - easeOut(k)) * -140 * DIR + Math.sin(t * 200) * glitch * 26}px)`;
     el.style.textShadow = glitch > .05 ? `${8 * glitch}px 0 rgba(255,0,60,.9), ${-8 * glitch}px 0 rgba(0,220,255,.9)` : 'none';
     el.querySelector('.strike').style.width = `calc(${easeOut(seg(t, at + .25, at + .45)) * 100}% + 16px)`;
   });
@@ -321,7 +397,7 @@ window.render = function (t) {
   // B3 — proof (12 – 18)
   const b3out = seg(t, 17.75, 18);
   show($('#b3'), win(t, 12, 18));
-  $('#b3').style.transform = `translateX(${-b3out * 1100}px)`;
+  $('#b3').style.transform = `translateX(${-b3out * 1100 * DIR}px)`;
   $('#b3').style.filter = b3out > 0 ? `blur(${b3out * 20}px)` : '';
   s = slam(t, 12, .2); show($('#realWork'), s.o, `scale(${s.s})`);
   const lp = easeOut(seg(t, 12.25, 12.8));
@@ -329,12 +405,12 @@ window.render = function (t) {
   $('#lapShot').style.transform = `scale(${1.02 + seg(t, 12.5, 18) * .18})`;
   $('#lapShot').style.transformOrigin = '75% 35%';
   const ph = easeOut(seg(t, 13, 13.5));
-  show($('#phone'), ph, `translateX(${(1 - ph) * 600}px) rotate(${4 - ph * 4 + 3}deg)`);
+  show($('#phone'), ph, `translateX(${(1 - ph) * 600 * DIR}px) rotate(${(7 - ph * 4) * DIR}deg)`);
   // phone shows the hero crop, drifting across the skyline
   $('#phoneShot').style.transform = `translateX(${-60 - seg(t, 13, 18) * 360}px)`;
-  const cn = pop(t, 14, .3); show($('#caseName'), cn.o, `scale(${cn.s})`); $('#caseName').style.transformOrigin = '0 50%';
+  const cn = pop(t, 14, .3); show($('#caseName'), cn.o, `scale(${cn.s})`); $('#caseName').style.transformOrigin = ORIGIN;
   const cs = easeOut(seg(t, 14.5, 14.8)); show($('#caseSub'), cs, `translateY(${(1 - cs) * 30}px)`);
-  [...$('#chips').children].forEach((c, i) => { const k = pop(t, 15 + i * .5, .25); show(c, k.o, `scale(${k.s})`); c.style.transformOrigin = '0 50%'; });
+  [...$('#chips').children].forEach((c, i) => { const k = pop(t, 15 + i * .5, .25); show(c, k.o, `scale(${k.s})`); c.style.transformOrigin = ORIGIN; });
 
   // B4 — we build <slot> (18 – 22)
   show($('#b4'), win(t, 18, 22) * (1 - seg(t, 21.85, 22)));
@@ -351,11 +427,11 @@ window.render = function (t) {
   s = slam(t, 22, .2); show($('#fixTitle'), s.o, `scale(${s.s})`);
   [...$('#fixes').children].forEach((el, i) => {
     const at = 22.25 + i * .5, k = pop(t, at, .25);
-    show(el, k.o, `scale(${k.s})`); el.style.transformOrigin = '0 50%';
+    show(el, k.o, `scale(${k.s})`); el.style.transformOrigin = ORIGIN;
   });
   const st = easeOut(seg(t, 24.3, 24.6)); show($('#stats'), st, `translateY(${(1 - st) * 60}px)`);
   [...$('#stats').querySelectorAll('b')].forEach((b, i) => {
-    const k = easeOut(seg(t, 24.3 + i * .1, 25 + i * .1)); b.textContent = Math.round(+b.dataset.n * k) + (k >= 1 ? b.dataset.s : '');
+    const k = easeOut(seg(t, 24.3 + i * .1, 25 + i * .1)); b.textContent = fmt(Math.round(+b.dataset.n * k)) + (k >= 1 ? b.dataset.s : '');
   });
 
   // B6 — CTA (25.5 – 30)
