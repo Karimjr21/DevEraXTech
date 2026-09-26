@@ -5,7 +5,27 @@
 <title>DevEraXTech: How We Work</title>
 <link rel="stylesheet" href="kit/reel-kit.css">
 <style>
-  #h1 { top: 560px; font-size: 90px; white-space: nowrap; } #h2 { top: 670px; font-size: 90px; white-space: nowrap; } #h3 { top: 800px; font-size: 170px; white-space: nowrap; }
+  /* BLUEPRINT: navy drafting grid, outlined numerals, mono labels, title block, calm slide-ups, APPROVED stamp */
+  :root { --bp: #0c2340; --line: #8fd3ff; }
+  #stage { background: var(--bp); }
+  #grid { background-color: var(--bp);
+    background-image: linear-gradient(rgba(143,211,255,.22) 2px, transparent 2px), linear-gradient(90deg, rgba(143,211,255,.22) 2px, transparent 2px),
+      linear-gradient(rgba(143,211,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(143,211,255,.08) 1px, transparent 1px);
+    background-size: 200px 200px, 200px 200px, 40px 40px, 40px 40px; }
+  .mono { font-family: 'DejaVu Sans Mono', monospace; }
+  .bpH { font-weight: 800; letter-spacing: -.03em; line-height: 1; color: #fff; }
+  .under { display: block; height: 6px; background: var(--gold-grad); margin: 14px auto 0; transform-origin: 0 50%; }
+  #tblock { right: 50px; bottom: 50px; width: 520px; border: 3px solid var(--line); color: var(--line); font-size: 22px; background: rgba(12,35,64,.92); }
+  #tblock div { display: flex; border-top: 2px solid rgba(143,211,255,.6); }
+  #tblock div:first-child { border-top: 0; }
+  #tblock span { padding: 10px 14px; flex: 1; letter-spacing: .08em; }
+  #tblock span + span { border-left: 2px solid rgba(143,211,255,.6); color: #fff; }
+  #corner { left: 50px; top: 80px; font-size: 24px; letter-spacing: .2em; color: var(--line); }
+  .dim { position: absolute; height: 2px; background: var(--line); }
+  .dim::before, .dim::after { content: ''; position: absolute; top: -10px; width: 2px; height: 22px; background: var(--line); }
+  .dim::before { left: 0; } .dim::after { right: 0; }
+  #stamp { left: 560px; top: 430px; padding: 18px 30px; border: 10px solid #e2463f; color: #e2463f; font-size: 72px; font-weight: 900; letter-spacing: .12em; border-radius: 16px; opacity: 0; mix-blend-mode: screen; }
+  #h1 { top: 560px; font-size: 90px; white-space: nowrap; } #h2 { top: 670px; font-size: 90px; white-space: nowrap; } #h3 { top: 800px; font-size: 140px; white-space: nowrap; }
   #x1 { top: 660px; font-size: 108px; white-space: nowrap; } #x2 { top: 790px; font-size: 118px; white-space: nowrap; }
   /* progress rail */
   #rail { left: 120px; right: 120px; top: 250px; height: 90px; }
@@ -13,23 +33,26 @@
   #rail .fill { position: absolute; left: 45px; top: 42px; height: 6px; background: var(--gold-grad); border-radius: 3px; width: 0; }
   #rail .node { position: absolute; top: 0; width: 90px; height: 90px; margin-left: -45px; border-radius: 50%; background: #1a1a1a; border: 4px solid rgba(255,255,255,.2);
     display: grid; place-items: center; font-size: 34px; font-weight: 900; color: rgba(255,255,255,.5); }
-  #rail .node.on { background: var(--gold-grad); color: #0b0904; border-color: transparent; box-shadow: 0 0 30px rgba(245,213,115,.6); }
+  #rail .node { background: var(--bp); border: 4px dashed var(--line); color: var(--line); font-family: 'DejaVu Sans Mono', monospace; }
+  #rail .node.on { background: var(--line); color: var(--bp); border-style: solid; }
+  #rail .ln { background: repeating-linear-gradient(90deg, rgba(143,211,255,.5) 0 14px, transparent 14px 26px) !important; height: 4px !important; }
+  #rail .fill { background: var(--line) !important; }
   /* steps */
-  .big { left: 60px; top: 380px; font-size: 300px; font-weight: 800; line-height: 1; }
+  .big { left: 50px; top: 380px; font-size: 280px; font-weight: 700; line-height: 1; }
   .ttl { left: 70px; right: 60px; top: 720px; font-size: 112px; }
   .dsc { left: 70px; right: 70px; top: 960px; font-size: 46px; font-weight: 600; line-height: 1.3; color: rgba(255,255,255,.82); }
   .vis { left: 90px; right: 90px; top: 1190px; height: 460px; }
   /* 01 call */
-  .ring { position: absolute; left: 350px; top: 60px; width: 200px; height: 200px; border-radius: 50%; border: 4px solid rgba(245,213,115,.7); }
-  .avatar { position: absolute; left: 350px; top: 60px; width: 200px; height: 200px; border-radius: 50%; background: #120f08; border: 4px solid var(--gold); display: grid; place-items: center; }
+  .ring { position: absolute; left: 350px; top: 60px; width: 200px; height: 200px; border-radius: 50%; border: 3px dashed var(--line); }
+  .avatar { position: absolute; left: 350px; top: 60px; width: 200px; height: 200px; border-radius: 50%; background: var(--bp); border: 4px solid var(--line); display: grid; place-items: center; }
   .avatar img { width: 150px; }
   .callTxt { position: absolute; left: 0; right: 0; top: 300px; text-align: center; font-size: 46px; font-weight: 800; }
   .callSub { position: absolute; left: 0; right: 0; top: 370px; text-align: center; font-size: 36px; font-weight: 600; color: rgba(255,255,255,.6); }
   /* 02 wireframe */
   .wf { position: absolute; inset: 0; }
   /* 03 build */
-  .code { position: absolute; left: 0; top: 10px; width: 560px; height: 430px; border-radius: 22px; background: #0e0d0a; border: 2px solid rgba(212,175,55,.35); padding: 28px 30px;
-    font-family: 'DejaVu Sans Mono', monospace; font-size: 27px; line-height: 1.55; color: #d9cfae; white-space: pre; overflow: hidden; }
+  .code { position: absolute; left: 0; top: 10px; width: 560px; height: 430px; border-radius: 22px; background: #081a31; border: 2px solid var(--line); padding: 28px 30px;
+    font-family: 'DejaVu Sans Mono', monospace; font-size: 27px; line-height: 1.55; color: #cfe9ff; white-space: pre; overflow: hidden; }
   .code .k { color: var(--gold-hi); }
   .shield { position: absolute; left: 620px; top: 30px; width: 190px; height: 220px; }
   .rocket { position: absolute; left: 650px; top: 280px; font-size: 120px; }
@@ -37,31 +60,48 @@
   /* no surprises */
   #n1 { top: 500px; font-size: 118px; white-space: nowrap; }
   .nrow { left: 80px; right: 40px; display: flex; align-items: center; gap: 26px; font-size: 58px; font-weight: 900; text-transform: uppercase; letter-spacing: -.03em; white-space: nowrap; }
-  .nrow .ok { flex: none; width: 84px; height: 84px; border-radius: 50%; background: var(--gold-grad); color: #0b0904; display: grid; place-items: center; font-size: 48px; }
+  .nrow { border-bottom: 2px solid rgba(143,211,255,.4); padding-bottom: 26px; text-transform: none !important; font-weight: 700 !important; letter-spacing: -.01em !important; }
+  .nrow .ok { flex: none; width: 76px; height: 76px; border: 4px solid var(--line); color: var(--line); display: grid; place-items: center; font-size: 46px; font-family: 'DejaVu Sans Mono', monospace; }
   .endBtn { font-size: 52px; }
 </style>
 </head>
 <body>
 <div id="stage">
   <div id="world">
+    <div id="grid" class="layer"></div>
     <section id="sHook" class="scene">
-      <div id="h1" class="abs cx hv">Hiring a web studio</div>
-      <div id="h2" class="abs cx hv">shouldn't feel like</div>
-      <div id="h3" class="abs cx hv"><span class="hl-red">a gamble.</span></div>
+      <div id="h1" class="abs cx bpH">Hiring a web studio</div>
+      <div id="h2" class="abs cx bpH">shouldn't feel like</div>
+      <div id="h3" class="abs cx bpH" style="color:#ff8a7a">a gamble. <span class="emoji">🎲</span></div>
     </section>
     <section id="sHere" class="scene">
-      <div id="x1" class="abs cx hv">Here's exactly</div>
-      <div id="x2" class="abs cx hv"><span class="hl">how we work.</span></div>
+      <div id="x1" class="abs cx bpH">Here's exactly</div>
+      <div id="x2" class="abs cx bpH"><span class="gold-text">how we work.</span><i class="under" id="xu" style="width:640px"></i></div>
     </section>
     <section id="sSteps" class="scene">
       <div id="rail" class="abs"><div class="ln"></div><div class="fill"></div></div>
       <div id="steps"></div>
     </section>
     <section id="sNo" class="scene">
-      <div id="n1" class="abs cx hv"><span class="hl">No surprises.</span></div>
+      <div id="n0" class="abs cx mono" style="top:380px;font-size:30px;letter-spacing:.3em;color:var(--line)">SPECIFICATION</div>
+      <div id="n1" class="abs cx bpH">No surprises.</div>
       <div id="nrows"></div>
     </section>
-    <section id="sEnd" class="scene"></section>
+    <section id="sEnd" class="scene">
+      <div id="eSheet" class="abs" style="left:70px;right:70px;top:300px;height:1000px;border:3px solid var(--line)"></div>
+      <div id="eK" class="abs mono" style="left:110px;top:340px;font-size:26px;letter-spacing:.25em;color:var(--line)">SHEET 01 · DISCOVERY CALL</div>
+      <div id="e1" class="abs bpH" style="left:110px;top:520px;font-size:120px">Step 01<br><span class="gold-text">starts today.</span></div>
+      <div id="stamp" class="abs mono">APPROVED</div>
+      <div id="eBtn" class="abs mono" style="left:110px;right:110px;top:900px;padding:40px 0;text-align:center;font-size:46px;font-weight:700;color:#fff;border:4px solid var(--line);background:rgba(143,211,255,.1)">▸ Book a discovery call</div>
+      <div id="eUrl" class="abs url gold-text" style="left:110px;top:1110px">deveraxtech.com</div>
+      <div id="eIg" class="abs ig" style="left:110px;top:1190px">@deveraxtech</div>
+    </section>
+  </div>
+  <div id="corner" class="abs mono">DEVERAXTECH / PROCESS</div>
+  <div id="tblock" class="abs mono">
+    <div><span>PROJECT</span><span>YOUR WEBSITE</span></div>
+    <div><span>DRAWN BY</span><span>DEVERAXTECH</span></div>
+    <div><span>SHEET</span><span id="sheetNo">— OF 3</span></div>
   </div>
 </div>
 
@@ -81,33 +121,41 @@ const CODE = [
 const WF = [[0, 0, 900, 70], [0, 100, 560, 220], [600, 100, 300, 100], [600, 220, 300, 100], [0, 350, 280, 100], [310, 350, 280, 100], [620, 350, 280, 100]];
 const VIS = {
   call: `<div class="ring"></div><div class="ring"></div><div class="avatar"><img src="assets/logo.png" alt=""></div><div class="callTxt">Calling DevEraXTech…</div><div class="callSub">00:00</div>`,
-  design: `<svg class="wf" viewBox="0 0 900 460">${WF.map(([x, y, w, h]) => `<rect x="${x + 3}" y="${y + 3}" width="${w - 6}" height="${h - 6}" rx="14" fill="url(#wg)" fill-opacity="0" stroke="#f5d573" stroke-width="5"/>`).join('')}
+  design: `<svg class="wf" viewBox="0 0 900 460">${WF.map(([x, y, w, h]) => `<rect x="${x + 3}" y="${y + 3}" width="${w - 6}" height="${h - 6}" rx="14" fill="url(#wg)" fill-opacity="0" stroke="#8fd3ff" stroke-width="4" stroke-dasharray="0"/>`).join('')}
       <defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b8912a"/><stop offset=".5" stop-color="#f7dc85"/><stop offset="1" stop-color="#a8821f"/></linearGradient></defs></svg>`,
   build: `<div class="code"></div><svg class="shield" viewBox="0 0 190 220"><path d="M95 8 L178 40 V110 C178 160 142 196 95 212 C48 196 12 160 12 110 V40 Z" fill="url(#sg)"/><path d="M55 112 L85 142 L140 84" stroke="#0b0904" stroke-width="16" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
       <defs><linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b8912a"/><stop offset=".5" stop-color="#f7dc85"/><stop offset="1" stop-color="#a8821f"/></linearGradient></defs></svg>
       <div class="live">LIVE ●</div><div class="rocket emoji">🚀</div>`,
 };
-$('#steps').innerHTML = STEPS.map((s, i) => `<section class="scene step"><div class="abs big serif gold-text">0${i + 1}</div>
-  <div class="abs ttl hv">${s.t}</div><div class="abs dsc">${s.d}</div><div class="abs vis">${VIS[s.v]}</div></section>`).join('');
+$('#steps').innerHTML = STEPS.map((s, i) => `<section class="scene step"><div class="abs big mono" style="color:transparent;-webkit-text-stroke:4px var(--line)">0${i + 1}</div>
+  <div class="dim" style="left:70px;top:700px;width:0" data-w="600"></div>
+  <div class="abs ttl bpH">${s.t}</div><div class="abs dsc">${s.d}</div><div class="abs vis">${VIS[s.v]}</div></section>`).join('');
 $('#rail').insertAdjacentHTML('beforeend', [0, 1, 2].map(i => `<div class="node" style="left:${45 + i * 375}px">0${i + 1}</div>`).join(''));
 const NOS = ['Clear scope &amp; milestones', 'Transparent updates', 'Arabic · English · German'];
 $('#nrows').innerHTML = NOS.map((n, i) => `<div class="abs nrow" style="top:${760 + i * 150}px"><span class="ok">✓</span><span>${n}</span></div>`).join('');
-$('#sEnd').innerHTML = kit.ctaMarkup('Step 01 starts', 'today.', 'Book a discovery call →');
 
 const chrome = kit.setup({
-  duration: 24, bpm: 120, beatFrom: DROP, beatTo: 23.5, goldFrom: DROP,
+  duration: 24, bpm: 90, beatFrom: DROP, beatTo: 23.4, goldFrom: 99,
+  look: { gold: false, progress: false, handle: false, vignette: false, grain: .05, pump: 0, shake: 0, sparks: '143,211,255' },
   hits: [{ t: 0 }, { t: .5 }, { t: 1, amp: 22 }, { t: DROP, amp: 30 }, { t: 3, amp: 18 }, ...STEPS.map((_, i) => ({ t: ST + i * SLEN, amp: 20 })), { t: NO, amp: 24 }],
-  bursts: [DROP, 13.5], goldFlashes: [DROP], whiteFlashes: [0, 1, ST, ST + SLEN, ST + 2 * SLEN, NO], blackouts: [[2.38, DROP]],
+  bursts: [], goldFlashes: [], whiteFlashes: [], blackouts: [],
 });
 
 window.render = function (t) {
   const { pump } = chrome(t);
 
-  show($('#sHook'), win(t, 0, 2.38));
-  [['#h1', 0], ['#h2', .5], ['#h3', 1]].forEach(([id, at]) => { const s = slam(t, at); show($(id), s.o, `scale(${s.s})`); });
-  show($('#sHere'), win(t, DROP, ST));
-  let k = slam(t, DROP, .22); show($('#x1'), k.o, `scale(${k.s})`);
-  k = slam(t, 3, .22); show($('#x2'), k.o, `scale(${k.s})`);
+  const up = (el, at, d = .5) => { const a = rise(t, at, d); show(el, a, `translateY(${(1 - a) * 60}px)`); return a; };
+  $('#grid').style.backgroundPosition = `0 ${-t * 12}px`;
+  const sheet = t < ST ? '— OF 3' : t < NO ? `${Math.min(3, Math.floor((t - ST) / SLEN) + 1)} OF 3` : 'APPROVED';
+  $('#sheetNo').textContent = sheet;
+  show($('#tblock'), rise(t, .3, .5));
+  show($('#sHook'), win(t, 0, 2.4) * (1 - seg(t, 2.2, 2.4)));
+  up($('#h1'), 0); up($('#h2'), .5); up($('#h3'), 1, .4);
+  $('#h3').style.transform += ` rotate(${Math.sin(t * 5) * decay(t, 1.4, 1) * 3}deg)`;
+  show($('#sHere'), win(t, DROP, ST) * (1 - seg(t, ST - .2, ST)));
+  up($('#x1'), DROP); up($('#x2'), 3);
+  $('#xu').style.transform = `scaleX(${easeInOut(seg(t, 3.2, 3.8))})`;
+  let k;
 
   // STEPS
   show($('#sSteps'), win(t, ST, NO));
@@ -117,15 +165,16 @@ window.render = function (t) {
   [...document.querySelectorAll('.step')].forEach((sc, i) => {
     const s0 = ST + i * SLEN, q = (c) => sc.querySelector(c), lt = t - s0;
     const out = seg(t, s0 + SLEN - .2, s0 + SLEN);
-    show(sc, win(t, s0, s0 + SLEN), `translateX(${-out * 1100}px)`);
-    const b = rise(t, s0, .35); show(q('.big'), b, `translateX(${(1 - b) * -300}px)`);
-    k = pop(t, s0 + .25, .3); show(q('.ttl'), k.o, `scale(${k.s})`); q('.ttl').style.transformOrigin = '0 50%';
+    show(sc, win(t, s0, s0 + SLEN), `translateY(${-out * 1920}px)`);   // sheets slide up like pages
+    const b = rise(t, s0, .5); show(q('.big'), b, `translateY(${(1 - b) * 80}px)`);
+    q('.dim').style.width = `${easeInOut(seg(t, s0 + .15, s0 + .7)) * 600}px`;
+    const tt = rise(t, s0 + .25, .45); show(q('.ttl'), tt, `translateY(${(1 - tt) * 50}px)`);
     const d = rise(t, s0 + .6, .3); show(q('.dsc'), d, `translateY(${(1 - d) * 30}px)`);
     show(q('.vis'), rise(t, s0 + .8, .3));
     if (STEPS[i].v === 'call') {
       [...sc.querySelectorAll('.ring')].forEach((r, j) => { const p = ((lt * .9 + j * .5) % 1); r.style.transform = `scale(${1 + p * .9})`; r.style.opacity = lt < 2.2 ? 1 - p : 0; });
       const on = lt >= 2.2;
-      q('.callTxt').innerHTML = on ? '<span class="gold-text">Connected ✓</span>' : 'Calling DevEraXTech…';
+      q('.callTxt').innerHTML = on ? '<span style="color:var(--line)">Connected ✓</span>' : 'Calling DevEraXTech…';
       q('.callSub').textContent = on ? `00:0${Math.min(9, Math.floor((lt - 2.2) * 3))}` : 'Discovery call';
       q('.avatar').style.transform = `scale(${1 + decay(t, s0 + 2.2, 8) * .15})`;
     }
@@ -154,11 +203,16 @@ window.render = function (t) {
 
   // NO SURPRISES
   show($('#sNo'), win(t, NO, END));
-  k = slam(t, NO, .22); show($('#n1'), k.o, `scale(${k.s})`);
-  [...$('#nrows').children].forEach((r, i) => { const a = pop(t, NO + .75 + i * .5, .25); show(r, a.o, `scale(${a.s})`); r.style.transformOrigin = '0 50%'; });
+  up($('#n0'), NO, .4); up($('#n1'), NO + .1);
+  [...$('#nrows').children].forEach((r, i) => { const a = rise(t, NO + .75 + i * .5, .4); show(r, a, `translateX(${(1 - a) * 80}px)`); r.querySelector('.ok').textContent = t >= NO + 1 + i * .5 ? '✓' : ''; });
 
   show($('#sEnd'), win(t, END, 24));
-  kit.animateCta($('#sEnd'), t, END, pump);
+  const sh = easeInOut(seg(t, END, END + .5));
+  $('#eSheet').style.clipPath = `inset(0 ${(1 - sh) * 100}% 0 0)`;
+  up($('#eK'), END + .2, .4); up($('#e1'), END + .4);
+  const stp = seg(t, END + 1, END + 1.15);
+  show($('#stamp'), stp > 0 ? .9 : 0, `rotate(-12deg) scale(${1.8 - stp * .8})`);
+  up($('#eBtn'), END + 1.3, .4); up($('#eUrl'), END + 1.6, .4); up($('#eIg'), END + 1.8, .4);
 };
 kit.start();
 </script>

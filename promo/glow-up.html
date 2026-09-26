@@ -5,78 +5,136 @@
 <title>DevEraXTech: Glow Up</title>
 <link rel="stylesheet" href="kit/reel-kit.css">
 <style>
-  #h1 { top: 560px; font-size: 150px; } #h2 { top: 710px; font-size: 150px; } #h3 { top: 880px; font-size: 170px; white-space: nowrap; }
-  /* BEFORE: a deliberately dated template site */
-  #before { left: 0; top: 0; width: 1080px; height: 1920px; background: #fffef2; color: #222; font-family: 'Times New Roman', 'Liberation Serif', serif; overflow: hidden; opacity: 0; }
-  #before .hdr { position: absolute; left: 0; right: 0; top: 190px; height: 190px; background: linear-gradient(#d8d8d8, #9a9a9a); border-bottom: 6px ridge #777; text-align: center; }
-  #before .hdr b { display: block; margin-top: 40px; font-size: 62px; color: #c00; text-shadow: 3px 3px 0 #ff0; }
-  #before .nav { position: absolute; left: 0; right: 0; top: 400px; text-align: center; font-size: 40px; color: #00e; text-decoration: underline; }
-  #before .mq { position: absolute; left: 0; right: 0; top: 480px; height: 70px; background: #000080; color: #ff0; font-size: 44px; line-height: 70px; white-space: nowrap; overflow: hidden; }
+  /* TWO WORLDS: a 90s desktop (teal wallpaper, grey windows, error dialogs, taskbar)
+     that switches off like a CRT, then a luxury serif world framed in gold. */
+  :root { --w95: #c0c0c0; --w95d: #808080; --w95b: #000080; }
+  .sys { font-family: 'DejaVu Sans', sans-serif; }
+  #desk { background: #008080; }
+  .win { background: var(--w95); border: 4px solid; border-color: #fff #404040 #404040 #fff; box-shadow: 4px 4px 0 #000; color: #000; }
+  .tb { height: 58px; background: linear-gradient(90deg, var(--w95b), #1084d0); color: #fff; font-weight: bold; font-size: 30px; display: flex; align-items: center; padding: 0 14px; gap: 10px; }
+  .tb .x { margin-left: auto; display: flex; gap: 6px; }
+  .tb .x i { width: 40px; height: 36px; background: var(--w95); border: 3px solid; border-color: #fff #404040 #404040 #fff; color: #000; font-style: normal; font-size: 24px; display: grid; place-items: center; }
+  .b95 { display: inline-block; padding: 12px 40px; background: var(--w95); border: 4px solid; border-color: #fff #404040 #404040 #fff; font-size: 34px; color: #000; }
+  .b95.down { border-color: #404040 #fff #fff #404040; }
+  /* hook dialog */
+  #hookWin { left: 90px; right: 90px; top: 560px; }
+  #hookWin .body { padding: 50px 40px 40px; text-align: center; }
+  #hookWin .l1 { font-size: 88px; font-weight: bold; line-height: 1.05; }
+  #hookWin .l2 { margin-top: 20px; font-size: 120px; font-weight: bold; color: var(--w95b); }
+  /* the before site, inside a browser window */
+  #browser { left: 20px; right: 20px; top: 150px; bottom: 120px; opacity: 0; overflow: hidden; }
+  #addr { height: 64px; margin: 8px 14px; background: #fff; border: 3px solid; border-color: #404040 #fff #fff #404040; font-size: 28px; display: flex; align-items: center; padding: 0 16px; color: #000; }
+  #before { position: absolute; left: 14px; right: 14px; top: 144px; bottom: 14px; background: #fffef2; color: #222; font-family: 'Times New Roman', 'Liberation Serif', serif; overflow: hidden; border: 3px solid; border-color: #404040 #fff #fff #404040; }
+  #before .hdr { position: absolute; left: 0; right: 0; top: 0; height: 170px; background: linear-gradient(#d8d8d8, #9a9a9a); border-bottom: 6px ridge #777; text-align: center; }
+  #before .hdr b { display: block; margin-top: 44px; font-size: 56px; color: #c00; text-shadow: 3px 3px 0 #ff0; }
+  #before .nav { position: absolute; left: 0; right: 0; top: 200px; text-align: center; font-size: 38px; color: #00e; text-decoration: underline; }
+  #before .mq { position: absolute; left: 0; right: 0; top: 270px; height: 70px; background: #000080; color: #ff0; font-size: 44px; line-height: 70px; white-space: nowrap; overflow: hidden; }
   #before .mq span { position: absolute; }
-  #before .img { position: absolute; left: 90px; top: 600px; width: 420px; height: 360px; border: 5px outset #bbb; background: #e8e8e8; text-align: center; }
-  #before .img div { font-size: 150px; margin-top: 40px; }
+  #before .img { position: absolute; left: 60px; top: 390px; width: 400px; height: 340px; border: 5px outset #bbb; background: #e8e8e8; text-align: center; }
+  #before .img div { font-size: 150px; margin-top: 36px; }
   #before .img p { font-size: 30px; color: #666; }
-  #before .txt { position: absolute; left: 560px; right: 60px; top: 600px; font-size: 34px; line-height: 1.25; }
-  #before .btn { position: absolute; left: 90px; top: 1020px; padding: 18px 46px; background: #c0c0c0; border: 6px outset #eee; font-size: 44px; font-weight: bold; }
-  #before .uc { position: absolute; left: 0; right: 0; top: 1180px; text-align: center; font-size: 56px; font-weight: bold; color: #e67e00; }
-  #before .cnt { position: absolute; left: 0; right: 0; top: 1300px; text-align: center; font-size: 36px; }
+  #before .txt { position: absolute; left: 500px; right: 40px; top: 390px; font-size: 34px; line-height: 1.25; }
+  #before .btn { position: absolute; left: 60px; top: 790px; padding: 18px 46px; background: #c0c0c0; border: 6px outset #eee; font-size: 44px; font-weight: bold; }
+  #before .uc { position: absolute; left: 0; right: 0; top: 950px; text-align: center; font-size: 56px; font-weight: bold; color: #e67e00; }
+  #before .cnt { position: absolute; left: 0; right: 0; top: 1070px; text-align: center; font-size: 36px; }
   #before .cnt code { background: #000; color: #0f0; padding: 4px 14px; font-size: 40px; }
-  #before .ft { position: absolute; left: 0; right: 0; top: 1420px; text-align: center; font-size: 28px; color: #777; }
-  .tagRed { padding: 16px 30px; border-radius: 14px; background: var(--red); color: #fff; font-family: 'Inter', sans-serif; font-size: 44px; font-weight: 900; text-transform: uppercase; letter-spacing: -.01em; box-shadow: 0 16px 40px rgba(0,0,0,.4); }
-  .label { padding: 14px 28px; border-radius: 999px; font-size: 32px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
-  #lblBefore { left: 60px; top: 1540px; background: #222; color: #ddd; }
-  #lblAfter { right: 60px; top: 1650px; background: var(--gold-grad); color: #0b0904; }
-  #ready { top: 800px; font-size: 200px; }
-  /* AFTER */
+  #before .ft { position: absolute; left: 0; right: 0; top: 1190px; text-align: center; font-size: 28px; color: #777; }
+  /* taskbar */
+  #task { left: 0; right: 0; bottom: 0; height: 110px; background: var(--w95); border-top: 4px solid #fff; display: flex; align-items: center; padding: 0 16px; gap: 16px; opacity: 0; }
+  #task .start { padding: 14px 26px; font-size: 36px; font-weight: bold; background: var(--w95); border: 4px solid; border-color: #fff #404040 #404040 #fff; color: #000; }
+  #task .item { padding: 14px 22px; font-size: 28px; border: 4px solid; border-color: #404040 #fff #fff #404040; color: #000; background: #d8d8d8; white-space: nowrap; }
+  #task .clock { margin-left: auto; padding: 14px 22px; font-size: 30px; border: 3px solid; border-color: #808080 #fff #fff #808080; color: #000; }
+  /* error dialogs */
+  .err { width: 640px; }
+  .err .body { display: flex; align-items: center; gap: 30px; padding: 34px 34px 20px; font-size: 46px; font-weight: bold; }
+  .err .ico { flex: none; width: 90px; height: 90px; border-radius: 50%; background: #c00; color: #fff; display: grid; place-items: center; font-size: 60px; }
+  .err .foot { text-align: center; padding: 10px 0 30px; }
+  #ask { left: 110px; right: 110px; top: 700px; }
+  #ask .body { padding: 40px; font-size: 52px; font-weight: bold; text-align: center; }
+  #ask .foot { display: flex; justify-content: center; gap: 40px; padding-bottom: 40px; }
+  #cursor { width: 64px; height: 84px; left: 0; top: 0; opacity: 0; z-index: 3; }
+  /* AFTER: luxury */
   #after { left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; opacity: 0; background: #000; }
   #photo { position: absolute; left: 0; top: 0; width: 1904px; height: 994px; transform-origin: 0 0; }
-  #afterShade { background: linear-gradient(180deg, rgba(0,0,0,.5) 0%, transparent 20%, transparent 40%, rgba(0,0,0,.92) 72%); }
-  #divider { top: 0; bottom: 0; width: 10px; margin-left: -5px; background: var(--gold-grad); box-shadow: 0 0 40px 10px rgba(245,213,115,.7); opacity: 0; }
-  #knob { width: 110px; height: 110px; margin-left: -55px; top: 905px; border-radius: 50%; background: var(--gold-grad); color: #0b0904; display: grid; place-items: center; font-size: 48px; font-weight: 900; opacity: 0; }
-  .chk { left: 70px; display: flex; align-items: center; gap: 26px; font-size: 76px; font-weight: 900; text-transform: uppercase; letter-spacing: -.03em; white-space: nowrap; }
-  .chk .ok { flex: none; width: 88px; height: 88px; border-radius: 50%; background: var(--gold-grad); color: #0b0904; display: grid; place-items: center; font-size: 52px; }
-  #d1 { top: 720px; font-size: 118px; white-space: nowrap; } #d2 { top: 850px; font-size: 100px; white-space: nowrap; }
+  #afterShade { background: linear-gradient(180deg, rgba(0,0,0,.45) 0%, transparent 20%, transparent 40%, rgba(0,0,0,.92) 72%); }
+  #frame { left: 40px; right: 40px; top: 40px; bottom: 40px; border: 2px solid rgba(245,213,115,.85); opacity: 0; }
+  #divider { top: 0; bottom: 0; width: 6px; margin-left: -3px; background: var(--gold-grad); box-shadow: 0 0 40px 10px rgba(245,213,115,.7); opacity: 0; }
+  #knob { width: 110px; height: 110px; margin-left: -55px; top: 905px; border-radius: 50%; background: #0b0904; border: 3px solid var(--gold); color: var(--gold-hi); display: grid; place-items: center; font-size: 46px; opacity: 0; }
+  .lux { font-family: 'Playfair', Georgia, serif; font-weight: 600; letter-spacing: -.01em; }
+  .kick { font-size: 26px; font-weight: 700; letter-spacing: .5em; text-transform: uppercase; color: var(--gold-hi); }
+  #afterKick { left: 90px; top: 1250px; }
+  .chk { left: 90px; right: 90px; font-size: 80px; line-height: 1.1; color: #fff; }
+  .chk i { display: block; height: 1px; margin-top: 18px; background: linear-gradient(90deg, var(--gold), transparent); transform-origin: 0 50%; }
+  .side { top: 1680px; font-size: 26px; font-weight: 700; letter-spacing: .35em; text-transform: uppercase; }
+  #sideB { left: 80px; color: #000; background: var(--w95); padding: 10px 20px; font-family: 'DejaVu Sans', sans-serif; letter-spacing: 0; font-size: 30px; }
+  #sideA { right: 80px; color: var(--gold-hi); }
+  #d1 { top: 700px; font-size: 96px; color: #fff; }
+  #d2 { top: 830px; font-size: 150px; font-style: italic; }
+  /* CTA: full-gold card */
+  #goldCard { background: var(--gold-grad); }
+  #eLogo { left: 400px; top: 360px; width: 280px; filter: brightness(.25) sepia(1) saturate(3) hue-rotate(5deg); }
+  #e1 { top: 700px; font-size: 104px; color: #1a1406; }
+  #e2 { top: 820px; font-size: 150px; color: #1a1406; font-style: italic; }
+  #eBtn { left: 170px; right: 170px; top: 1120px; padding: 40px 0; border-radius: 999px; background: #0b0904; color: var(--gold-hi); text-align: center; font-size: 54px; font-weight: 800; }
+  #eUrl { top: 1320px; font-size: 58px; color: #1a1406; } #eIg { top: 1400px; font-size: 40px; color: rgba(26,20,6,.75); }
 </style>
 </head>
 <body>
 <div id="stage">
   <div id="world">
-    <div id="before" class="abs">
-      <div class="hdr"><b>★ Welcome To Our Website!!! ★</b></div>
-      <div class="nav">Home | About Us | Services | Contact Us</div>
-      <div class="mq"><span>*** Best prices in town *** Call us now *** Best prices in town *** Call us now ***</span></div>
-      <div class="img"><div class="emoji">🏠</div><p>Image coming soon</p></div>
-      <div class="txt">We are a company that does many things for our customers. Please click the button below for more information about our services and prices!!</div>
-      <div class="btn">Click Here</div>
-      <div class="uc"><span class="emoji">🚧</span> Under Construction <span class="emoji">🚧</span></div>
-      <div class="cnt">Visitors: <code>000127</code></div>
-      <div class="ft">Best viewed in 800×600</div>
+    <div id="desk" class="layer"></div>
+    <div id="browser" class="abs win sys">
+      <div class="tb">🌐 Welcome To Our Website!!! — Browser<span class="x"><i>_</i><i>□</i><i>✕</i></span></div>
+      <div id="addr">http://www.our-company-website.com/index.htm</div>
+      <div id="before">
+        <div class="hdr"><b>★ Welcome To Our Website!!! ★</b></div>
+        <div class="nav">Home | About Us | Services | Contact Us</div>
+        <div class="mq"><span>*** Best prices in town *** Call us now *** Best prices in town *** Call us now ***</span></div>
+        <div class="img"><div class="emoji">🏠</div><p>Image coming soon</p></div>
+        <div class="txt">We are a company that does many things for our customers. Please click the button below for more information about our services and prices!!</div>
+        <div class="btn">Click Here</div>
+        <div class="uc"><span class="emoji">🚧</span> Under Construction <span class="emoji">🚧</span></div>
+        <div class="cnt">Visitors: <code>000127</code></div>
+        <div class="ft">Best viewed in 800×600</div>
+      </div>
     </div>
     <div id="after" class="abs"><img id="photo" src="assets/nilora-estates-real-estate-website.webp" alt=""><div id="afterShade" class="layer"></div></div>
-    <div id="divider" class="abs"></div><div id="knob" class="abs">⇆</div>
+    <div id="divider" class="abs"></div><div id="knob" class="abs lux">⇆</div>
 
     <section id="sHook" class="scene">
-      <div id="h1" class="abs cx hv">Watch this</div>
-      <div id="h2" class="abs cx hv">website</div>
-      <div id="h3" class="abs cx hv"><span class="hl">glow up <span class="emoji">✨</span></span></div>
+      <div id="hookWin" class="abs win sys"><div class="tb">✨ glow_up.exe<span class="x"><i>✕</i></span></div>
+        <div class="body"><div class="l1">Watch this<br>website</div><div class="l2">glow up ✨</div></div></div>
     </section>
 
     <section id="sBefore" class="scene">
-      <div id="tags"></div>
-      <div id="lblBefore" class="abs label">Before · a typical template</div>
-      <div id="ready" class="abs cx hv">Ready?</div>
+      <div id="errs"></div>
+      <div id="ask" class="abs win sys"><div class="tb">DevEraXTech Setup<span class="x"><i>✕</i></span></div>
+        <div class="body">Upgrade this website?</div><div class="foot"><span id="yes" class="b95">Yes</span><span class="b95">No</span></div></div>
+      <svg id="cursor" class="abs" viewBox="0 0 64 84"><path d="M4 4 L4 70 L20 55 L32 80 L43 75 L31 50 L54 50 Z" fill="#fff" stroke="#000" stroke-width="4"/></svg>
     </section>
+    <div id="task" class="abs sys"><span class="start">⊞ Start</span><span class="item">🌐 Welcome To Our Web...</span><span class="clock">12:00 PM</span></div>
 
     <section id="sAfter" class="scene">
-      <div id="lblAfter" class="abs label">After · DevEraXTech</div>
+      <div id="afterKick" class="abs kick">After · DevEraXTech</div>
       <div id="checks"></div>
     </section>
+    <div id="sideB" class="abs side">BEFORE</div><div id="sideA" class="abs side lux">AFTER</div>
 
     <section id="sDeserve" class="scene">
-      <div id="d1" class="abs cx hv">Your website</div>
-      <div id="d2" class="abs cx hv"><span class="hl">deserves this.</span></div>
+      <div id="d1" class="abs cx lux">Your website</div>
+      <div id="d2" class="abs cx lux gold-text">deserves this.</div>
     </section>
-    <section id="sEnd" class="scene"></section>
+
+    <section id="sEnd" class="scene">
+      <div id="goldCard" class="layer"></div>
+      <img id="eLogo" class="abs" src="assets/logo.png" alt="">
+      <div id="e1" class="abs cx lux">Ready for your</div>
+      <div id="e2" class="abs cx lux">glow-up?</div>
+      <div id="eBtn" class="abs">Request a meeting →</div>
+      <div id="eUrl" class="abs cx lux url">deveraxtech.com</div>
+      <div id="eIg" class="abs cx ig">@deveraxtech</div>
+    </section>
+    <div id="frame" class="abs"></div>
   </div>
 </div>
 
@@ -84,69 +142,95 @@
 <script>
 const { seg, easeOut, easeInOut, back, decay, slam, pop, rise, win, show, $ } = kit;
 const BEFORE = 2, DROP = 8, CMP = 14, DES = 17.5, END = 19.5;
-const TAGS = [['Generic', 600, 540, -5], ['Hard to read', 140, 1090, 4], ['Zero trust', 520, 1360, -3]];
-$('#tags').innerHTML = TAGS.map(([s, x, y]) => `<div class="abs tagRed" style="left:${x}px;top:${y}px">✕ ${s}</div>`).join('');
+const ERRS = [['Generic design.', 330, 520], ['Hard to read.', 120, 860], ['Zero trust.', 260, 1200]];
+$('#errs').innerHTML = ERRS.map(([m, x, y]) => `<div class="abs win err sys" style="left:${x}px;top:${y}px"><div class="tb">⚠ Error<span class="x"><i>✕</i></span></div>
+  <div class="body"><span class="ico">✕</span>${m}</div><div class="foot"><span class="b95">OK</span></div></div>`).join('');
 const CHECKS = ['Custom design', 'Cinematic visuals', 'Built to convert'];
-$('#checks').innerHTML = CHECKS.map((c, i) => `<div class="abs chk" style="top:${1330 + i * 110}px"><span class="ok">✓</span><span>${c}</span></div>`).join('');
-$('#sEnd').innerHTML = kit.ctaMarkup('Ready for your', 'glow up?');
+$('#checks').innerHTML = CHECKS.map((c, i) => `<div class="abs chk lux" style="top:${1320 + i * 125}px">${c}<i></i></div>`).join('');
 
 const chrome = kit.setup({
-  duration: 24, bpm: 120, beatFrom: DROP, beatTo: 23.5, goldFrom: DES,
-  hits: [{ t: 0 }, { t: .5 }, { t: 1, amp: 20 }, { t: BEFORE, amp: 12 }, ...TAGS.map((_, i) => ({ t: 3.5 + i, amp: 12 })), { t: 7, amp: 22 },
-    { t: DROP, amp: 34 }, { t: CMP, amp: 14 }, { t: DES, amp: 20 }, { t: DES + .5, amp: 20 }],
-  bursts: [DROP], goldFlashes: [DROP], whiteFlashes: [0, 1, BEFORE, 7], blackouts: [[7.88, 8]],
+  duration: 24, bpm: 150, beatFrom: DROP, beatTo: 23.4, goldFrom: 99,
+  look: { gold: false, progress: false, handle: false, vignette: false, grain: .04, pump: .015, shake: .5 },
+  hits: [{ t: BEFORE, amp: 8 }, ...ERRS.map((_, i) => ({ t: 3.5 + i, amp: 10 })), { t: DROP, amp: 30 }, { t: DES, amp: 14 }],
+  bursts: [DROP, END], goldFlashes: [DROP], whiteFlashes: [], blackouts: [[7.85, 8]],
 });
 
-// the "after" camera over the 1904×994 screenshot
 function camAfter(t) {
   const k = easeInOut(seg(t, DROP, DES));
   const cx = 620 + k * 700, sc = 1.94 + k * .12;
   $('#photo').style.transform = `translate(${540 - cx * sc}px, ${960 - 497 * sc}px) scale(${sc})`;
 }
+const winPop = (t, at) => { const k = seg(t, at, at + .12); return { o: k > 0 ? 1 : 0, s: .3 + Math.round(k * 4) / 4 * .7 }; };   // stepped, 90s-style
 
 window.render = function (t) {
-  const { pump } = chrome(t, { zoom: t >= 7 && t < DROP ? 1 + seg(t, 7, 7.88) * .08 : 1 });
+  const { pump } = chrome(t);
+  const retro = t < DROP;
 
-  // HOOK
-  show($('#sHook'), win(t, 0, BEFORE));
-  [['#h1', 0], ['#h2', .5], ['#h3', 1]].forEach(([id, at]) => { const s = slam(t, at); show($(id), s.o, `scale(${s.s})`); });
+  // desktop world
+  show($('#desk'), retro ? 1 : 0);
+  show($('#hookWin'), 1);
+  let w = winPop(t, 0); show($('#sHook'), win(t, 0, BEFORE)); $('#hookWin').style.transform = `scale(${w.s})`;
+  const l2 = $('#hookWin .l2'); l2.style.opacity = t >= 1 ? 1 : 0; l2.style.transform = `scale(${1 + decay(t, 1, 8) * .2})`;
+  show($('#browser'), t >= BEFORE && t < DES ? 1 : 0);
+  $('#browser').style.transform = t < BEFORE + .12 ? `scale(${winPop(t, BEFORE).s})` : '';
+  $('#before').querySelector('.mq span').style.transform = `translateX(${1000 - ((t - BEFORE) * 260) % 2600}px)`;
+  show($('#task'), t >= BEFORE && t < DROP ? 1 : 0);
+  $('#task .clock').textContent = `12:0${Math.min(9, Math.floor(Math.max(0, t - BEFORE)))} PM`;
 
-  // BEFORE (2 - 8): the dated site with red call-outs
-  show($('#before'), t >= BEFORE && t < DES ? 1 : 0);
-  $('#before').style.filter = t >= 7 && t < DROP ? `brightness(${1 - seg(t, 7, 7.3) * .6})` : '';
-  $('#before').querySelector('.mq span').style.transform = `translateX(${1080 - ((t - BEFORE) * 260) % 2600}px)`;
   show($('#sBefore'), win(t, BEFORE, DROP));
-  [...$('#tags').children].forEach((el, i) => { const a = pop(t, 3.5 + i, .25); show(el, a.o, `scale(${a.s}) rotate(${TAGS[i][3]}deg)`); });
-  show($('#lblBefore'), rise(t, 2.3, .3));
-  const r = slam(t, 7, .22); show($('#ready'), r.o, `scale(${r.s})`);
+  [...$('#errs').children].forEach((el, i) => { w = winPop(t, 3.5 + i); show(el, w.o * (t < 7 ? 1 : 0), `scale(${w.s})`); });
+  w = winPop(t, 6.9); show($('#ask'), w.o, `scale(${w.s})`);
+  // cursor glides to "Yes" and clicks at 7.2
+  const ck = easeInOut(seg(t, 6.95, 7.18));
+  const yx = 380, yy = 950;
+  show($('#cursor'), t >= 6.95 && t < 7.3 ? 1 : 0, `translate(${900 - (900 - yx) * ck}px, ${1500 - (1500 - yy) * ck}px)`);
+  $('#yes').classList.toggle('down', t >= 7.18 && t < 7.28);
 
-  // AFTER: wipe in on the drop, then a before/after slider
+  // CRT switch-off 7.3 → 7.85: squash to a line, then to a dot
+  if (t >= 7.3 && t < DROP) {
+    const a = easeInOut(seg(t, 7.3, 7.55)), b = easeInOut(seg(t, 7.55, 7.8));
+    $('#world').style.transform = `scale(${1 - b * .995}, ${1 - a * .995})`;
+    $('#world').style.filter = `brightness(${1 + a * 3})`;
+  } else $('#world').style.filter = '';
+
+  // AFTER: gold wipe on the drop, then the slider
   camAfter(t);
-  let x = 1080;                                          // after is visible to the right of x
+  let x = 1080;
   if (t >= DROP && t < CMP) x = 1080 * (1 - easeInOut(seg(t, DROP, DROP + .7)));
   if (t >= CMP && t < DES) x = 540 + Math.sin((t - CMP) * 2.4) * 380 * seg(t, CMP, CMP + .4) + (1 - seg(t, CMP, CMP + .4)) * -540;
   if (t >= DES) x = 0;
   show($('#after'), t >= DROP && t < DES ? 1 : 0);
   $('#after').style.clipPath = `inset(0 0 0 ${Math.max(0, x)}px)`;
-  const lineOn = (t >= DROP && t < DROP + .75) || (t >= CMP && t < DES);
   $('#divider').style.left = $('#knob').style.left = x + 'px';
-  $('#divider').style.opacity = lineOn ? 1 : 0;
+  $('#divider').style.opacity = (t >= DROP && t < DROP + .75) || (t >= CMP && t < DES) ? 1 : 0;
   $('#knob').style.opacity = t >= CMP && t < DES ? 1 : 0;
-  show($('#sAfter'), win(t, DROP, DES));
-  show($('#lblAfter'), rise(t, DROP + .7, .3));
+  $('#frame').style.opacity = t >= DROP + .6 && t < END ? rise(t, DROP + .6, .6) : 0;
+  $('#frame').style.inset = `${40 + (1 - rise(t, DROP + .6, .6)) * 30}px`;
+  show($('#sAfter'), win(t, DROP, CMP) * (1 - seg(t, CMP - .25, CMP)));
+  show($('#afterKick'), rise(t, DROP + .8, .5));
   [...$('#checks').children].forEach((c, i) => {
-    const a = pop(t, 9 + i * 1.5, .25); show(c, a.o * (1 - seg(t, CMP - .2, CMP)), `scale(${a.s})`); c.style.transformOrigin = '0 50%';
+    const a = rise(t, 9 + i * 1.5, .6); show(c, a, `translateY(${(1 - a) * 30}px)`); c.style.filter = `blur(${(1 - a) * 8}px)`;
+    c.querySelector('i').style.transform = `scaleX(${rise(t, 9.2 + i * 1.5, .8)})`;
   });
-  show($('#lblBefore'), t >= CMP && t < DES ? 1 : rise(t, 2.3, .3) * win(t, BEFORE, DROP));
-  if (t >= CMP && t < DES) $('#sBefore').style.opacity = 1, $('#ready').style.opacity = 0, [...$('#tags').children].forEach(e => e.style.opacity = 0);
+  show($('#sideB'), t >= CMP && t < DES ? rise(t, CMP + .3, .3) : 0);
+  show($('#sideA'), t >= CMP && t < DES ? rise(t, CMP + .3, .3) : 0);
 
   // DESERVES
   show($('#sDeserve'), win(t, DES, END));
-  let k = slam(t, DES, .2); show($('#d1'), k.o, `scale(${k.s})`);
-  k = slam(t, DES + .5, .22); show($('#d2'), k.o, `scale(${k.s})`);
+  const d1 = rise(t, DES, .5); show($('#d1'), d1, `translateY(${(1 - d1) * 30}px)`); $('#d1').style.filter = `blur(${(1 - d1) * 10}px)`;
+  const d2 = rise(t, DES + .5, .6); show($('#d2'), d2, `scale(${.94 + d2 * .06})`); $('#d2').style.filter = `blur(${(1 - d2) * 10}px)`;
+  $('#d2').style.backgroundPosition = `${100 - seg(t, DES, END) * 100}% 0`;
 
+  // CTA on a full-gold card that sweeps up
   show($('#sEnd'), win(t, END, 24));
-  kit.animateCta($('#sEnd'), t, END, pump);
+  const gc = easeInOut(seg(t, END, END + .45));
+  $('#goldCard').style.clipPath = `inset(${(1 - gc) * 100}% 0 0 0)`;
+  const lg = rise(t, END + .4, .4); show($('#eLogo'), lg, `scale(${.8 + lg * .2})`);
+  const e1 = rise(t, END + .5, .4); show($('#e1'), e1, `translateY(${(1 - e1) * 30}px)`);
+  const e2 = rise(t, END + .8, .5); show($('#e2'), e2, `translateY(${(1 - e2) * 30}px)`);
+  const b = pop(t, END + 1.2, .35); show($('#eBtn'), b.o, `scale(${b.s * (1 + pump * .03)})`);
+  const u = rise(t, END + 1.6, .3); show($('#eUrl'), u, `translateY(${(1 - u) * 20}px)`);
+  const g = rise(t, END + 1.8, .3); show($('#eIg'), g, `translateY(${(1 - g) * 20}px)`);
 };
 kit.start();
 </script>

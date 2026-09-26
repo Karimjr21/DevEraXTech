@@ -5,197 +5,219 @@
 <title>DevEraXTech: Rate This Website</title>
 <link rel="stylesheet" href="kit/reel-kit.css">
 <style>
-  /* the photo camera */
+  /* CINEMA: letterbox, teal/amber grade, serif italics, dissolves and light leaks, film-credit roll */
+  :root { --amber: #f0b45a; --teal: #0f2a2e; }
+  #stage { background: #050707; }
+  .serifI { font-family: 'Playfair', Georgia, serif; font-style: italic; font-weight: 500; letter-spacing: -.01em; line-height: 1.02; }
+  .caps { font-size: 28px; font-weight: 600; letter-spacing: .5em; text-transform: uppercase; color: rgba(240,220,180,.8); }
+  #bgFilm { background: radial-gradient(ellipse at 50% 40%, #16302f 0%, #081314 55%, #030505 100%); }
+  #grade { background: linear-gradient(180deg, rgba(15,60,64,.35), rgba(0,0,0,0) 40%, rgba(240,150,60,.18)); mix-blend-mode: soft-light; }
+  #leak { background: radial-gradient(ellipse at 20% 40%, rgba(255,170,80,.85), rgba(255,90,40,.35) 30%, transparent 60%); mix-blend-mode: screen; opacity: 0; }
+  .bar { position: absolute; left: 0; right: 0; height: 170px; background: #000; z-index: 5; }
+  #barTop { top: 0; } #barBot { bottom: 0; }
+  #barTop span, #barBot span { position: absolute; top: 72px; font-size: 24px; letter-spacing: .4em; color: rgba(240,220,180,.55); font-weight: 600; }
+  #tc { right: 60px; font-family: 'DejaVu Sans Mono', monospace; letter-spacing: .1em !important; }
+  /* photo camera */
   #cam { left: 0; top: 0; width: 1080px; height: 1920px; overflow: hidden; opacity: 0; }
   #photo { position: absolute; left: 0; top: 0; width: 1904px; height: 994px; transform-origin: 0 0; }
-  #camShade { background: linear-gradient(180deg, rgba(0,0,0,.55) 0%, transparent 22%, transparent 55%, rgba(0,0,0,.85) 100%); }
+  #camShade { background: linear-gradient(180deg, transparent 40%, rgba(3,6,6,.92) 78%); }
   /* hook */
-  #hook1 { top: 470px; font-size: 128px; }
-  #hook2 { top: 770px; font-size: 230px; }
-  .bar { left: 86px; display: flex; gap: 12px; }
-  .bar i { width: 80px; height: 110px; border-radius: 18px; background: rgba(255,255,255,.1); border: 2px solid rgba(255,255,255,.18); display: grid; place-items: center;
-    font-style: normal; font-size: 44px; font-weight: 900; color: rgba(255,255,255,.5); }
-  .bar i.on { background: var(--gold-grad); color: #0b0904; border-color: transparent; box-shadow: 0 0 30px rgba(245,213,115,.5); }
-  #bar1 { top: 1110px; }
-  #drop1 { top: 1290px; font-size: 54px; font-weight: 800; color: rgba(255,255,255,.85); }
-  /* captions over photo */
-  .kick { font-size: 34px; font-weight: 800; letter-spacing: .28em; text-transform: uppercase; color: var(--gold-hi); }
-  .cap { font-size: 118px; }
-  #capWrap { left: 70px; right: 70px; top: 1400px; }
+  #hook1 { top: 470px; font-size: 150px; }
+  #hook2 { top: 830px; font-size: 64px; }
+  .stars { left: 0; right: 0; display: flex; justify-content: center; gap: 10px; }
+  .stars i { font-style: normal; font-size: 86px; line-height: 1; color: rgba(255,255,255,.18); }
+  .stars i.on { color: var(--amber); text-shadow: 0 0 24px rgba(240,180,90,.8); }
+  #stars1 { top: 940px; }
+  #drop1 { top: 1110px; }
+  /* captions */
+  #caps { left: 80px; right: 80px; top: 1330px; }
+  .capLine { width: 90px; height: 3px; background: var(--amber); margin-bottom: 26px; }
+  .capTxt { font-size: 104px; color: #f4ead6; }
   /* devices */
-  #laptop { left: 60px; top: 470px; width: 960px; border-radius: 22px; overflow: hidden; border: 2px solid rgba(212,175,55,.55); background: #111; box-shadow: 0 40px 100px rgba(0,0,0,.8), 0 0 70px rgba(212,175,55,.2); }
-  #laptop .bar2 { height: 40px; background: #16130d; display: flex; gap: 10px; align-items: center; padding: 0 18px; }
-  #laptop .bar2 i { width: 13px; height: 13px; border-radius: 50%; background: #3d3524; }
+  #laptop { left: 60px; top: 420px; width: 960px; border-radius: 18px; overflow: hidden; border: 1px solid rgba(240,180,90,.4); background: #111; box-shadow: 0 60px 120px rgba(0,0,0,.9); }
+  #laptop .bar2 { height: 36px; background: #121414; display: flex; gap: 10px; align-items: center; padding: 0 18px; }
+  #laptop .bar2 i { width: 12px; height: 12px; border-radius: 50%; background: #2c3232; }
   #lapShot { display: block; width: 100%; aspect-ratio: 1904/994; object-fit: cover; }
-  #phone { left: 620px; top: 760px; width: 330px; height: 660px; border-radius: 52px; border: 12px solid #16130d; outline: 2px solid rgba(212,175,55,.6); overflow: hidden; background: #000; box-shadow: 0 40px 90px rgba(0,0,0,.85); }
+  #phone { left: 640px; top: 700px; width: 320px; height: 640px; border-radius: 50px; border: 10px solid #151818; overflow: hidden; background: #000; box-shadow: 0 50px 100px rgba(0,0,0,.9); }
   #phoneShot { position: absolute; height: 100%; left: 0; top: 0; }
-  #devCap { top: 1480px; left: 70px; }
-  /* features */
-  #fTitle { top: 330px; font-size: 110px; }
-  .feat { left: 80px; right: 40px; display: flex; align-items: center; gap: 28px; font-size: 64px; font-weight: 900; letter-spacing: -.03em; text-transform: uppercase; white-space: nowrap; }
-  .feat .ok { flex: none; width: 90px; height: 90px; border-radius: 50%; background: var(--gold-grad); color: #0b0904; display: grid; place-items: center; font-size: 54px; }
-  #zero { top: 1390px; font-size: 96px; white-space: nowrap; }
-  /* built by */
-  #byKick { top: 520px; font-size: 60px; font-weight: 800; letter-spacing: .3em; text-transform: uppercase; color: rgba(255,255,255,.75); }
-  #byLogo { left: 240px; top: 640px; width: 600px; filter: drop-shadow(0 0 60px rgba(245,213,115,.55)); }
-  #byName { top: 1080px; font-size: 140px; font-weight: 800; }
-  #byCity { top: 1270px; font-size: 52px; font-weight: 800; letter-spacing: .24em; text-transform: uppercase; color: rgba(255,255,255,.8); }
+  #devCap { left: 80px; top: 1330px; }
+  /* credit roll */
+  #roll { left: 0; right: 0; top: 0; }
+  .cr { display: grid; grid-template-columns: .75fr 1.25fr; gap: 36px; padding-right: 50px; margin-bottom: 70px; align-items: baseline; }
+  .cr .role { text-align: right; font-size: 30px; letter-spacing: .3em; text-transform: uppercase; color: rgba(240,220,180,.65); font-weight: 600; }
+  .cr .name { text-align: left; font-size: 52px; color: #f4ead6; }
+  .crTitle { text-align: center; font-size: 96px; color: var(--amber); margin-bottom: 110px; }
+  /* production card */
+  #aProd { top: 560px; }
+  #byLogo { left: 330px; top: 660px; width: 420px; filter: drop-shadow(0 0 40px rgba(240,180,90,.4)); }
+  #byName { top: 1000px; font-size: 130px; color: #f4ead6; }
+  #byCity { top: 1180px; }
   /* end */
-  #eQ { top: 300px; font-size: 130px; }
-  #bar2 { top: 470px; }
-  #eHint { top: 630px; font-size: 50px; font-weight: 800; color: rgba(255,255,255,.85); }
-  #eWant { top: 800px; font-size: 104px; }
-  #cta { top: 1060px; }
-  #url { top: 1270px; } #ig { top: 1360px; }
+  #eQ { top: 330px; font-size: 130px; color: #f4ead6; }
+  #stars2 { top: 520px; }
+  #eHint { top: 660px; }
+  #eWant { top: 800px; font-size: 110px; color: var(--amber); }
+  #eBtn { left: 190px; right: 190px; top: 1080px; padding: 30px 0; border: 2px solid var(--amber); color: #f4ead6; text-align: center; font-size: 44px; font-weight: 600; letter-spacing: .25em; text-transform: uppercase; }
+  #url { top: 1250px; font-size: 52px; color: var(--amber); } #ig { top: 1330px; }
 </style>
 </head>
 <body>
 <div id="stage">
   <div id="world">
+    <div id="bgFilm" class="layer"></div>
     <div id="cam" class="abs"><img id="photo" src="assets/nilora-estates-real-estate-website.webp" alt=""><div id="camShade" class="layer"></div></div>
 
     <section id="sHook" class="scene">
-      <div id="hook1" class="abs cx hv">Rate this<br>website</div>
-      <div id="hook2" class="abs cx hv"><span class="hl">1–10</span></div>
-      <div id="bar1" class="abs bar"></div>
-      <div id="drop1" class="abs cx">Drop your score in the comments 👇</div>
+      <div id="hook1" class="abs cx serifI" style="color:#f4ead6">Rate this<br>website.</div>
+      <div id="hook2" class="abs cx caps" style="font-size:40px">from one to ten</div>
+      <div id="stars1" class="abs stars"></div>
+      <div id="drop1" class="abs cx caps">Your score · in the comments 👇</div>
     </section>
 
-    <section id="sCaps" class="scene">
-      <div id="capWrap" class="abs"></div>
-    </section>
+    <section id="sCaps" class="scene"><div id="caps" class="abs"></div></section>
 
     <section id="sDev" class="scene">
       <div id="laptop" class="abs"><div class="bar2"><i></i><i></i><i></i></div><img id="lapShot" src="assets/nilora-estates-real-estate-website.webp" alt=""></div>
       <div id="phone" class="abs"><img id="phoneShot" src="assets/nilora-estates-real-estate-website.webp" alt=""></div>
-      <div id="devCap" class="abs"><div class="kick">04 · Responsive</div><div class="cap hv" style="margin-top:16px">Flawless on<br><span class="hl">every screen.</span></div></div>
+      <div id="devCap" class="abs"><div class="capLine"></div><div class="caps">IV · Responsive</div><div class="capTxt serifI" style="margin-top:18px">Flawless on<br>every screen.</div></div>
     </section>
 
-    <section id="sFeat" class="scene">
-      <div id="fTitle" class="abs cx hv gold-text">Under the hood</div>
-      <div id="feats"></div>
-      <div id="zero" class="abs cx hv">Custom-built.<br><span class="hl">Zero templates.</span></div>
-    </section>
+    <section id="sFeat" class="scene"><div id="roll" class="abs serifI"></div></section>
 
     <section id="sBy" class="scene">
-      <div id="byKick" class="abs cx">Built by</div>
+      <div id="aProd" class="abs cx caps">A production by</div>
       <img id="byLogo" class="abs" src="assets/logo.png" alt="">
-      <div id="byName" class="abs cx serif gold-text">DevEraXTech</div>
-      <div id="byCity" class="abs cx">Cairo · Egypt</div>
+      <div id="byName" class="abs cx serifI">DevEraXTech</div>
+      <div id="byCity" class="abs cx caps">Cairo · Egypt</div>
     </section>
 
     <section id="sEnd" class="scene">
-      <div id="eQ" class="abs cx hv">Your score?</div>
-      <div id="bar2" class="abs bar"></div>
-      <div id="eHint" class="abs cx">Tell us in the comments 👇</div>
-      <div id="eWant" class="abs cx hv">Want one<br><span class="hl">like this?</span></div>
-      <div id="cta" class="abs cta">Request a meeting →</div>
-      <div id="url" class="abs cx url gold-text">deveraxtech.com</div>
+      <div id="eQ" class="abs cx serifI">Your score?</div>
+      <div id="stars2" class="abs stars"></div>
+      <div id="eHint" class="abs cx caps">Tell us below 👇</div>
+      <div id="eWant" class="abs cx serifI">Want one<br>like this?</div>
+      <div id="eBtn" class="abs">Request a meeting</div>
+      <div id="url" class="abs cx url serifI">deveraxtech.com</div>
       <div id="ig" class="abs cx ig">@deveraxtech</div>
     </section>
+    <div id="grade" class="layer"></div>
+    <div id="leak" class="layer"></div>
   </div>
+  <div id="barTop" class="bar"><span style="left:60px">DEVERAXTECH · CASE STUDY</span></div>
+  <div id="barBot" class="bar"><span style="left:60px">NILORA ESTATES</span><span id="tc">00:00:00:00</span></div>
 </div>
 
 <script src="kit/reel-kit.js"></script>
 <script>
-const { seg, easeOut, easeInOut, back, decay, slam, pop, rise, win, show, $ } = kit;
-const DROP = 2;
-const cells = Array.from({ length: 10 }, (_, i) => `<i>${i + 1}</i>`).join('');
-$('#bar1').innerHTML = cells; $('#bar2').innerHTML = cells;
-
-// Photo shots: camera keyframes over the 1904×994 screenshot (centre x/y in source px, scale in screen px per source px)
+const { seg, easeOut, easeInOut, back, decay, pop, rise, win, show, $ } = kit;
+const DROP = 2, DEV = 12, FEAT = 16, BY = 19, END = 21;
+const star = Array.from({ length: 10 }, () => '<i>★</i>').join('');
+$('#stars1').innerHTML = star; $('#stars2').innerHTML = star;
 const SHOTS = [
-  { a: 2, b: 6, from: [560, 497, 1.94], to: [1330, 497, 2.06], kick: '01 · The hero', cap: 'Cinematic<br><span class="hl">hero.</span>' },
-  { a: 6, b: 9, from: [470, 600, 2.5], to: [560, 600, 2.8], kick: '02 · The type', cap: 'Editorial<br><span class="hl">typography.</span>' },
-  { a: 9, b: 12, from: [1300, 555, 2.2], to: [1500, 555, 2.5], kick: '03 · The details', cap: 'Every pixel<br><span class="hl">intentional.</span>' },
+  { a: 2, b: 6, from: [560, 497, 1.94], to: [1330, 497, 2.06], kick: 'I · The hero', cap: 'A cinematic<br>first frame.' },
+  { a: 6, b: 9, from: [470, 600, 2.5], to: [560, 600, 2.8], kick: 'II · The type', cap: 'Editorial<br>typography.' },
+  { a: 9, b: 12, from: [1300, 555, 2.2], to: [1500, 555, 2.5], kick: 'III · The details', cap: 'Every pixel,<br>intentional.' },
 ];
-$('#capWrap').innerHTML = SHOTS.map(s => `<div class="abs" style="left:0;right:0;top:0"><div class="kick">${s.kick}</div><div class="cap hv" style="margin-top:16px">${s.cap}</div></div>`).join('');
-const FEATS = ['3 custom dashboards', 'MERN stack', 'Secure REST API', 'SEO-ready pages'];
-$('#feats').innerHTML = FEATS.map((f, i) => `<div class="feat abs" style="top:${560 + i * 180}px"><span class="ok">✓</span><span>${f}</span></div>`).join('');
+$('#caps').innerHTML = SHOTS.map(s => `<div class="abs" style="left:0;right:0;top:0"><div class="capLine"></div><div class="caps">${s.kick}</div><div class="capTxt serifI" style="margin-top:18px">${s.cap}</div></div>`).join('');
+const CREDITS = [['Dashboards', 'Buyer · Agent · Admin'], ['Stack', 'MongoDB · Express<br>React · Node.js'], ['Security', 'Role-based auth<br>& a secure REST API'], ['Search', 'SEO-ready pages'], ['Templates used', 'None']];
+$('#roll').innerHTML = `<div class="crTitle">Under the hood</div>` + CREDITS.map(([r, n]) => `<div class="cr"><div class="role">${r}</div><div class="name">${n}</div></div>`).join('');
+const CUTS = [DROP, 6, 9, DEV, FEAT, BY, END];
 
 const chrome = kit.setup({
-  duration: 24, bpm: 120, beatFrom: DROP, beatTo: 23.5, goldFrom: 12,
-  hits: [{ t: 0 }, { t: .5, amp: 18 }, { t: DROP, amp: 30 }, { t: 6, amp: 10 }, { t: 9, amp: 10 }, { t: 12, amp: 16 }, { t: 16, amp: 16 }, { t: 18, amp: 16 }, { t: 19, amp: 26 }],
-  bursts: [19], goldFlashes: [16, 19], whiteFlashes: [DROP, 6, 9, 12],
+  duration: 24, bpm: 60, beatFrom: 99, beatTo: 99, goldFrom: 99,
+  look: { gold: false, progress: false, handle: false, grain: .16, pump: 0, shake: .35, sparks: '240,180,90', dust: false },
+  hits: [{ t: 0, amp: 8 }, { t: .5, amp: 8 }, { t: DROP, amp: 22 }, { t: BY, amp: 18 }],
+  bursts: [BY], whiteFlashes: [],
 });
 
 function camera(t) {
   const s = SHOTS.find(s => t >= s.a && t < s.b);
-  $('#cam').style.opacity = s ? 1 : t < DROP ? .35 : 0;
+  // dissolve between shots: fade to black-ish around each cut
+  let o = s ? 1 : t < DROP ? .4 : 0;
+  if (s) o *= Math.min(rise(t, s.a, .35), 1 - seg(t, s.b - .3, s.b) * (s.b === DEV ? 1 : .6));
+  $('#cam').style.opacity = o;
   const shot = s || SHOTS[0];
   const k = s ? easeInOut(seg(t, s.a, s.b)) : 0;
   const [cx, cy, sc] = shot.from.map((v, i) => v + (shot.to[i] - v) * k);
   $('#photo').style.transform = `translate(${540 - cx * sc}px, ${960 - cy * sc}px) scale(${sc})`;
-  $('#photo').style.filter = t < DROP ? `blur(${28 - seg(t, 1.6, DROP) * 20}px) brightness(.6)` : '';
+  $('#photo').style.filter = t < DROP ? `blur(${26 - seg(t, 1.5, DROP) * 22}px) brightness(.55) saturate(.8)` : `blur(${(1 - seg(t, s ? s.a : 0, (s ? s.a : 0) + .4)) * 10}px) saturate(1.1) contrast(1.05)`;
 }
-
-function bar(el, t, from, step, keep = 0) {
+function stars(el, t, from, step, twinkle) {
   [...el.children].forEach((c, i) => {
-    const on = t >= from + i * step;
-    c.classList.toggle('on', on);
-    c.style.transform = `scale(${1 + decay(t, from + i * step, 12) * .25 + (i === 9 ? keep : 0)})`;
+    const at = from + i * step;
+    c.classList.toggle('on', t >= at);
+    c.style.transform = `scale(${1 + decay(t, at, 10) * .35 + (twinkle && i === 9 ? Math.sin(t * 6) * .06 : 0)})`;
   });
 }
+const fade = (el, t, a, b, fi = .5, fo = .4) => { const o = Math.min(rise(t, a, fi), 1 - seg(t, b - fo, b)); show(el, o); el.style.filter = `blur(${(1 - o) * 12}px)`; return o; };
 
 window.render = function (t) {
-  const { pump } = chrome(t);
+  chrome(t);
   camera(t);
+  // light leak sweeps across on every cut
+  let leak = 0;
+  for (const c of CUTS) leak = Math.max(leak, Math.exp(-Math.pow((t - c) / .22, 2)));
+  $('#leak').style.opacity = leak;
+  $('#leak').style.transform = `translateX(${(t % 3) * 120 - 180}px)`;
+  const fr = Math.floor(t * 24);
+  $('#tc').textContent = `00:00:${String(Math.floor(t)).padStart(2, '0')}:${String(fr % 24).padStart(2, '0')}`;
+  // letterbox breathes in on the drop
+  const lb = 120 + 50 * easeOut(seg(t, DROP - .2, DROP + .4));
+  $('#barTop').style.height = $('#barBot').style.height = lb + 'px';
 
-  // HOOK 0 - 2 (blurred teaser behind)
+  // HOOK
   show($('#sHook'), win(t, 0, DROP));
-  let s = slam(t, 0); show($('#hook1'), s.o, `scale(${s.s})`);
-  s = slam(t, .5); show($('#hook2'), s.o, `scale(${s.s}) rotate(-3deg)`);
-  show($('#bar1'), rise(t, .8, .15));
-  bar($('#bar1'), t, .9, .1);
-  const d1 = rise(t, 1.25, .25); show($('#drop1'), d1, `translateY(${(1 - d1) * 30}px)`);
+  fade($('#hook1'), t, 0, DROP, .45, .2);
+  fade($('#hook2'), t, .5, DROP, .4, .2);
+  show($('#stars1'), rise(t, .8, .15) * (1 - seg(t, 1.8, DROP)));
+  stars($('#stars1'), t, .9, .1);
+  fade($('#drop1'), t, 1.2, DROP, .3, .2);
 
-  // PHOTO CAPTIONS 2 - 12
-  show($('#sCaps'), win(t, DROP, 12));
-  [...$('#capWrap').children].forEach((c, i) => {
-    const sh = SHOTS[i], k = pop(t, sh.a + .5, .3), out = seg(t, sh.b - .15, sh.b);
-    show(c, win(t, sh.a, sh.b) * k.o * (1 - out), `scale(${k.s})`);
-    c.style.transformOrigin = '0 50%';
+  // CAPTIONS over the photo
+  show($('#sCaps'), win(t, DROP, DEV));
+  [...$('#caps').children].forEach((c, i) => {
+    const sh = SHOTS[i];
+    const o = win(t, sh.a, sh.b) ? Math.min(rise(t, sh.a + .5, .6), 1 - seg(t, sh.b - .4, sh.b)) : 0;
+    show(c, o, `translateY(${(1 - o) * 30}px)`); c.style.filter = `blur(${(1 - o) * 10}px)`;
+    c.querySelector('.capLine').style.width = `${rise(t, sh.a + .4, .6) * 90}px`;
   });
 
-  // DEVICES 12 - 16
-  show($('#sDev'), win(t, 12, 16));
-  const lp = rise(t, 12, .5);
-  show($('#laptop'), lp, `translateY(${(1 - lp) * 900}px) rotate(${(1 - lp) * 8}deg)`);
-  $('#lapShot').style.transform = `scale(${1.02 + seg(t, 12, 16) * .14})`;
-  $('#lapShot').style.transformOrigin = '70% 40%';
-  const ph = rise(t, 12.5, .45);
-  show($('#phone'), ph, `translateX(${(1 - ph) * 600}px) rotate(${7 - ph * 4}deg)`);
-  $('#phoneShot').style.transform = `translateX(${-60 - seg(t, 12.5, 16) * 360}px)`;
-  const dc = pop(t, 13, .3); show($('#devCap'), dc.o, `scale(${dc.s})`); $('#devCap').style.transformOrigin = '0 50%';
+  // DEVICES: slow push with shallow depth of field
+  show($('#sDev'), win(t, DEV, FEAT) * Math.min(rise(t, DEV, .5), 1 - seg(t, FEAT - .4, FEAT)));
+  const push = seg(t, DEV, FEAT);
+  $('#laptop').style.transform = `translateY(${(1 - easeOut(seg(t, DEV, DEV + 1))) * 80}px) scale(${1 + push * .04})`;
+  $('#laptop').style.filter = `blur(${seg(t, DEV + 1, DEV + 1.8) * 4}px) brightness(${1 - seg(t, DEV + 1, DEV + 1.8) * .35})`;
+  const ph = easeOut(seg(t, DEV + .8, DEV + 1.8));
+  show($('#phone'), ph, `translateY(${(1 - ph) * 200}px) scale(${1.02 + push * .05})`);
+  $('#phoneShot').style.transform = `translateX(${-60 - push * 360}px)`;
+  const dc = rise(t, DEV + 1.3, .6); show($('#devCap'), dc, `translateY(${(1 - dc) * 30}px)`); $('#devCap').style.filter = `blur(${(1 - dc) * 10}px)`;
+  $('#lapShot').style.transform = `scale(${1.02 + push * .1})`; $('#lapShot').style.transformOrigin = '70% 40%';
 
-  // FEATURES 16 - 19
-  show($('#sFeat'), win(t, 16, 19));
-  s = slam(t, 16, .2); show($('#fTitle'), s.o, `scale(${s.s})`);
-  $('#fTitle').style.backgroundPosition = `${100 - seg(t, 16, 19) * 100}% 0`;
-  [...$('#feats').children].forEach((f, i) => { const k = pop(t, 16.25 + i * .5, .25); show(f, k.o, `scale(${k.s})`); f.style.transformOrigin = '0 50%'; });
-  s = slam(t, 18.25, .22); show($('#zero'), s.o, `scale(${s.s})`);
+  // CREDIT ROLL
+  show($('#sFeat'), win(t, FEAT, BY) * Math.min(rise(t, FEAT, .4), 1 - seg(t, BY - .3, BY)));
+  $('#roll').style.transform = `translateY(${1700 - seg(t, FEAT, BY) * 1850}px)`;
 
-  // BUILT BY 19 - 21
-  show($('#sBy'), win(t, 19, 21));
-  show($('#byKick'), rise(t, 19, .2));
-  const lg = seg(t, 19, 19.35);
-  show($('#byLogo'), lg > 0 ? 1 : 0, `scale(${2.4 - back(lg) * 1.4}) rotate(${(1 - easeOut(lg)) * -10}deg)`);
-  $('#byLogo').style.filter = `drop-shadow(0 0 ${60 + pump * 50}px rgba(245,213,115,.6)) brightness(${1 + decay(t, 19, 4) * 1.2})`;
-  const nm = rise(t, 19.35, .3); show($('#byName'), nm, `scale(${.8 + nm * .2})`);
-  $('#byName').style.letterSpacing = `${(1 - nm) * .3}em`;
-  const cy = rise(t, 19.75, .25); show($('#byCity'), cy, `translateY(${(1 - cy) * 20}px)`);
+  // PRODUCTION CARD
+  show($('#sBy'), win(t, BY, END));
+  fade($('#aProd'), t, BY, END, .4, .3);
+  const lg = seg(t, BY, BY + .8);
+  show($('#byLogo'), easeOut(lg) * (1 - seg(t, END - .3, END)), `scale(${1.15 - easeOut(lg) * .15})`);
+  $('#byLogo').style.filter = `drop-shadow(0 0 40px rgba(240,180,90,.4)) brightness(${1 + decay(t, BY, 3) * 1.2}) blur(${(1 - easeOut(lg)) * 8}px)`;
+  const nm = fade($('#byName'), t, BY + .4, END, .6, .3);
+  $('#byName').style.letterSpacing = `${(1 - nm) * .12 - .01}em`;
+  fade($('#byCity'), t, BY + .8, END, .5, .3);
 
-  // END 21 - 24
-  show($('#sEnd'), win(t, 21, 24));
-  s = slam(t, 21, .2); show($('#eQ'), s.o, `scale(${s.s})`);
-  show($('#bar2'), rise(t, 21, .15));
-  bar($('#bar2'), t, 21, .05, t > 21.5 ? pump * .18 : 0);
-  const h = rise(t, 21.5, .25); show($('#eHint'), h, `translateY(${(1 - h) * 20}px)`);
-  s = slam(t, 21.75, .22); show($('#eWant'), s.o, `scale(${s.s})`);
-  const b = pop(t, 22.25, .3); show($('#cta'), b.o, `scale(${b.s * (1 + pump * .05)})`);
-  $('#cta').style.boxShadow = `0 0 ${60 + pump * 70}px rgba(212,175,55,${.45 + pump * .3})`;
-  const u = rise(t, 22.6, .25); show($('#url'), u, `translateY(${(1 - u) * 30}px)`);
-  const g = rise(t, 22.8, .25); show($('#ig'), g, `translateY(${(1 - g) * 30}px)`);
+  // END
+  show($('#sEnd'), win(t, END, 24));
+  fade($('#eQ'), t, END, 24, .4, .01);
+  show($('#stars2'), rise(t, END, .2));
+  stars($('#stars2'), t, END + .1, .05, t > END + .7);
+  fade($('#eHint'), t, END + .5, 24, .3, .01);
+  fade($('#eWant'), t, END + .75, 24, .45, .01);
+  const bb = rise(t, 22.25, .4); show($('#eBtn'), bb, `translateY(${(1 - bb) * 20}px)`);
+  $('#eBtn').style.boxShadow = `0 0 ${30 + Math.sin(t * 4) * 12}px rgba(240,180,90,.35)`;
+  fade($('#url'), t, 22.6, 24, .4, .01);
+  fade($('#ig'), t, 22.8, 24, .4, .01);
 };
 kit.start();
 </script>

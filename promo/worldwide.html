@@ -5,63 +5,103 @@
 <title>DevEraXTech: Cairo to the World</title>
 <link rel="stylesheet" href="kit/reel-kit.css">
 <style>
+  /* DEPARTURES: night sky, split-flap board, amber type, boarding-pass CTA */
   @font-face { font-family: 'CairoAr'; src: url(assets/cairo-arabic.woff2) format('woff2'); font-weight: 200 1000; unicode-range: U+0600-06FF, U+FB50-FDFF, U+FE70-FEFF; }
+  :root { --amber: #ffc53d; --board: #111418; }
   body { font-family: 'Inter', 'CairoAr', system-ui, 'Noto Color Emoji', sans-serif; }
-  #h1 { top: 540px; font-size: 104px; white-space: nowrap; } #h2 { top: 670px; font-size: 104px; white-space: nowrap; } #h3 { top: 800px; font-size: 118px; white-space: nowrap; }
+  #stage { background: #03070f; }
+  #sky { background: radial-gradient(ellipse at 50% 110%, #1b2d52 0%, #0a1428 45%, #03070f 100%); }
+  .mono { font-family: 'DejaVu Sans Mono', monospace; font-weight: 700; }
+  .row { left: 0; right: 0; display: flex; justify-content: center; gap: 6px; }
+  .row i { position: relative; width: var(--w); height: calc(var(--w) * 1.42); background: linear-gradient(#2b3444 49%, #181e29 51%); border: 1px solid rgba(255,255,255,.12); border-radius: 6px;
+    font-style: normal; display: grid; place-items: center; color: var(--amber); font-family: 'DejaVu Sans Mono', monospace; font-weight: 700; font-size: calc(var(--w) * 1.05);
+    box-shadow: inset 0 -2px 0 rgba(0,0,0,.6), 0 4px 10px rgba(0,0,0,.5); overflow: hidden; }
+  .row i::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 3px; margin-top: -1px; background: #000; }
+  .row i.sp { background: transparent; box-shadow: none; border: 0; }
+  .row i.sp::after { display: none; }
+  #boardHead { left: 0; right: 0; top: 60px; height: 140px; background: var(--board); border-bottom: 4px solid var(--amber); display: flex; align-items: center; padding: 0 50px; gap: 24px; color: var(--amber); }
+  #boardHead .ttl { font-size: 46px; letter-spacing: .12em; }
+  #boardHead .sub { font-size: 26px; letter-spacing: .2em; color: rgba(255,197,61,.7); }
+  #boardHead .clk { margin-left: auto; font-size: 50px; }
   #globe { left: 0; top: 0; }
-  #country { top: 250px; font-size: 96px; white-space: nowrap; }
-  #countNo { top: 380px; font-size: 34px; font-weight: 800; letter-spacing: .3em; color: rgba(255,255,255,.65); }
-  #flags { left: 0; right: 0; top: 1470px; display: flex; justify-content: center; gap: 22px; }
-  #flags span { font-size: 92px; }
-  #hq { top: 1610px; font-size: 40px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--gold-hi); }
-  .hello { top: 560px; font-size: 230px; font-weight: 900; line-height: 1.2; white-space: nowrap; }
-  .helloLbl { top: 880px; font-size: 44px; font-weight: 800; letter-spacing: .3em; text-transform: uppercase; color: rgba(255,255,255,.7); }
-  #speak1 { top: 1150px; font-size: 96px; white-space: nowrap; } #speak2 { top: 1250px; font-size: 98px; white-space: nowrap; }
-  #o1 { top: 300px; font-size: 104px; white-space: nowrap; }
-  #clock { left: 340px; top: 470px; width: 400px; height: 400px; }
-  #o2 { top: 940px; font-size: 140px; white-space: nowrap; }
-  #o3 { top: 1100px; font-size: 48px; font-weight: 800; letter-spacing: .24em; text-transform: uppercase; color: rgba(255,255,255,.75); }
-  #o4 { top: 1300px; left: 80px; right: 80px; font-size: 52px; font-weight: 800; line-height: 1.2; }
-  .endL1 { font-size: 78px; } .endL2 { font-size: 118px; }
+  #dest { top: 260px; }
+  #flight { top: 400px; font-size: 32px; letter-spacing: .18em; color: rgba(255,197,61,.85); }
+  #flight b { color: #3ddc84; }
+  #flags { left: 0; right: 0; top: 1450px; display: flex; justify-content: center; gap: 22px; }
+  #flags span { font-size: 88px; }
+  #hq { top: 1590px; font-size: 34px; letter-spacing: .24em; color: var(--amber); }
+  .gate { top: 330px; font-size: 34px; letter-spacing: .3em; color: rgba(255,197,61,.8); }
+  .hello { top: 560px; font-size: 220px; font-weight: 800; line-height: 1.2; white-space: nowrap; color: #fff; }
+  .helloLbl { top: 880px; font-size: 40px; letter-spacing: .3em; color: var(--amber); }
+  #speak { top: 1180px; font-size: 84px; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; }
+  #o1 { top: 330px; font-size: 36px; letter-spacing: .3em; color: rgba(255,197,61,.8); }
+  #tFrom { top: 480px; } #tArrow { top: 690px; font-size: 80px; color: var(--amber); } #tTo { top: 820px; }
+  #o3 { top: 1080px; font-size: 64px; font-weight: 800; letter-spacing: -.02em; }
+  #o4 { top: 1230px; left: 100px; right: 100px; font-size: 46px; font-weight: 600; line-height: 1.3; color: rgba(255,255,255,.8); }
+  /* boarding pass */
+  #e0 { top: 300px; font-size: 76px; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; }
+  #pass { left: 70px; right: 70px; top: 560px; height: 720px; display: grid; grid-template-columns: 1fr 250px; border-radius: 30px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,.7); }
+  #pass .main { background: #f6f1e6; color: #111; padding: 40px 44px; position: relative; }
+  #pass .stub { background: var(--gold-grad); color: #111; padding: 40px 26px; border-left: 6px dashed #f6f1e6; display: flex; flex-direction: column; justify-content: space-between; }
+  #pass .hd { display: flex; justify-content: space-between; align-items: center; font-size: 30px; letter-spacing: .2em; font-weight: 800; color: #555; }
+  #pass .hd img { width: 90px; }
+  #pass .route { display: flex; align-items: center; gap: 24px; margin-top: 30px; }
+  #pass .route b { font-size: 120px; font-weight: 900; letter-spacing: -.04em; line-height: 1; }
+  #pass .route span { font-size: 60px; color: #b8912a; }
+  #pass .lbl { font-size: 22px; letter-spacing: .2em; color: #777; font-weight: 700; margin-top: 26px; }
+  #pass .val { font-size: 40px; font-weight: 800; margin-top: 4px; }
+  #pass .bars { position: absolute; left: 44px; right: 44px; bottom: 36px; height: 80px; background: repeating-linear-gradient(90deg, #111 0 4px, transparent 4px 7px, #111 7px 9px, transparent 9px 14px, #111 14px 20px, transparent 20px 23px); }
+  #pass .stub .v { writing-mode: vertical-rl; transform: rotate(180deg); font-size: 44px; font-weight: 900; letter-spacing: .02em; align-self: center; }
+  #eUrl { top: 1330px; } #eIg { top: 1410px; }
 </style>
 </head>
 <body>
 <div id="stage">
   <div id="world">
+    <div id="sky" class="layer"></div>
     <section id="sHook" class="scene">
-      <div id="h1" class="abs cx hv">A studio in Cairo.</div>
-      <div id="h2" class="abs cx hv">Serving</div>
-      <div id="h3" class="abs cx hv"><span class="hl">7 countries. <span class="emoji">🌍</span></span></div>
+      <div id="hk1" class="abs row" style="top:560px;--w:50px"></div>
+      <div id="hk2" class="abs row" style="top:680px;--w:50px"></div>
+      <div id="hk3" class="abs row" style="top:830px;--w:78px"></div>
+      <div id="hkE" class="abs cx emoji" style="top:1000px;font-size:120px">🌍</div>
     </section>
     <section id="sGlobe" class="scene">
       <canvas id="globe" class="abs" width="1080" height="1920"></canvas>
-      <div id="country" class="abs cx hv"></div>
-      <div id="countNo" class="abs cx"></div>
+      <div id="dest" class="abs row" style="--w:62px"></div>
+      <div id="flight" class="abs cx mono"></div>
       <div id="flags" class="abs"></div>
-      <div id="hq" class="abs cx">★ HQ · Cairo, Egypt</div>
+      <div id="hq" class="abs cx mono">★ HQ · CAI · CAIRO, EGYPT</div>
     </section>
     <section id="sLang" class="scene">
       <div id="hellos"></div>
-      <div id="speak1" class="abs cx hv">We speak</div>
-      <div id="speak2" class="abs cx hv"><span class="hl">your language.</span></div>
+      <div id="speak" class="abs cx">We speak<br><span class="gold-text">your language.</span></div>
     </section>
     <section id="sOpen" class="scene">
-      <div id="o1" class="abs cx hv">Open every day</div>
-      <svg id="clock" class="abs" viewBox="0 0 400 400">
-        <circle cx="200" cy="200" r="186" fill="#120f08" stroke="url(#cg)" stroke-width="14"/>
-        ${''}
-        <g id="ticks"></g>
-        <line id="hh" x1="200" y1="200" x2="200" y2="95" stroke="#f5d573" stroke-width="16" stroke-linecap="round"/>
-        <line id="mh" x1="200" y1="200" x2="200" y2="55" stroke="#fff" stroke-width="10" stroke-linecap="round"/>
-        <circle cx="200" cy="200" r="16" fill="#f5d573"/>
-        <defs><linearGradient id="cg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b8912a"/><stop offset=".5" stop-color="#f7dc85"/><stop offset="1" stop-color="#a8821f"/></linearGradient></defs>
-      </svg>
-      <div id="o2" class="abs cx hv gold-text">9 AM – 5 PM</div>
-      <div id="o3" class="abs cx">Cairo time</div>
+      <div id="o1" class="abs cx mono">OPEN EVERY DAY · CAIRO TIME</div>
+      <div id="tFrom" class="abs row" style="--w:120px"></div>
+      <div id="tArrow" class="abs cx mono">↓</div>
+      <div id="tTo" class="abs row" style="--w:120px"></div>
+      <div id="o3" class="abs cx">Every single day.</div>
       <div id="o4" class="abs cx">Meetings booked online show <span class="gold-text">your local time</span> too.</div>
     </section>
-    <section id="sEnd" class="scene"></section>
+    <section id="sEnd" class="scene">
+      <div id="e0" class="abs cx">Wherever you are,<br><span class="gold-text">let’s build.</span></div>
+      <div id="pass" class="abs">
+        <div class="main">
+          <div class="hd"><span>BOARDING PASS</span><img src="assets/logo.png" alt=""></div>
+          <div class="route"><b>CAI</b><span>✈</span><b>YOU</b></div>
+          <div class="lbl">PASSENGER</div><div class="val">Your business</div>
+          <div class="lbl">DESTINATION</div><div class="val">Your new website</div>
+          <div class="lbl">GATE</div><div class="val mono" style="font-size:36px">deveraxtech.com</div>
+          <div class="bars"></div>
+        </div>
+        <div class="stub"><span class="mono" style="font-size:22px;letter-spacing:.2em">SEAT 1A</span><span class="v">Request a meeting →</span><span class="mono" style="font-size:22px;letter-spacing:.2em">NOW BOARDING</span></div>
+      </div>
+      <div id="eUrl" class="abs cx url gold-text">deveraxtech.com</div>
+      <div id="eIg" class="abs cx ig">@deveraxtech</div>
+    </section>
   </div>
+  <div id="boardHead" class="abs mono"><span class="ttl">✈ DEPARTURES</span><span class="sub">FROM CAIRO · CAI</span><span class="clk">09:00</span></div>
 </div>
 
 <script src="assets/globe-dots.js"></script>
@@ -83,9 +123,6 @@ const PLACES = [   // Egypt is home; the rest get an arc from Cairo
 const P0 = 2.5, PSTEP = 1.25;
 $('#flags').innerHTML = PLACES.map(p => `<span class="emoji">${p.flag}</span>`).join('');
 const HELLOS = [['مرحبًا', 'Arabic'], ['Hello', 'English'], ['Hallo', 'German']];
-$('#hellos').innerHTML = HELLOS.map(([w, l]) => `<div class="abs cx hello gold-text">${w}</div><div class="abs cx helloLbl">${l}</div>`).join('');
-$('#ticks').innerHTML = Array.from({ length: 12 }, (_, i) => { const a = i * 30 * RAD; return `<line x1="${200 + Math.sin(a) * 150}" y1="${200 - Math.cos(a) * 150}" x2="${200 + Math.sin(a) * 170}" y2="${200 - Math.cos(a) * 170}" stroke="#d4af37" stroke-width="${i % 3 ? 4 : 9}"/>`; }).join('');
-$('#sEnd').innerHTML = kit.ctaMarkup('Wherever you are,', 'let’s build.');
 
 // ---------- globe ----------
 const vec = (lon, lat) => [Math.cos(lat * RAD) * Math.cos(lon * RAD), Math.sin(lat * RAD), Math.cos(lat * RAD) * Math.sin(lon * RAD)];
@@ -145,57 +182,79 @@ function drawGlobe(t) {
   }
 }
 
+// split-flap rows: each cell flickers through random glyphs, then settles left to right
+const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+function flapRow(el, text) { el.innerHTML = [...text].map(c => `<i class="${c === ' ' ? 'sp' : ''}"></i>`).join(''); el.dataset.text = text; }
+function flap(el, t, at, per = .035, spin = .3) {
+  const text = el.dataset.text, cells = el.children;
+  [...text].forEach((c, i) => {
+    if (c === ' ') return;
+    const settle = at + spin + i * per;
+    cells[i].textContent = t < at ? '' : t >= settle ? c : GLYPHS[Math.floor((t * 40 + i * 7) % GLYPHS.length)];
+    cells[i].style.transform = t >= at && t < settle ? `scaleY(${.75 + .25 * Math.abs(Math.sin(t * 60 + i))})` : '';
+  });
+}
+flapRow($('#hk1'), 'A STUDIO IN CAIRO.'); flapRow($('#hk2'), 'SERVING');  flapRow($('#hk3'), '7 COUNTRIES');
+flapRow($('#tFrom'), '09:00'); flapRow($('#tTo'), '17:00');
+const DESTS = PLACES.map(p => p.name.toUpperCase().padEnd(13, ' ').slice(0, 13));
+$('#hellos').innerHTML = HELLOS.map(([w, l], i) => `<div class="abs cx gate mono">GATE A${i + 1}</div><div class="abs cx hello">${w}</div><div class="abs cx helloLbl mono">${l.toUpperCase()}</div>`).join('');
+
 const chrome = kit.setup({
-  duration: 24, bpm: 120, beatFrom: DROP, beatTo: 23.5, goldFrom: DROP,
-  hits: [{ t: 0 }, { t: .5 }, { t: 1, amp: 22 }, { t: DROP, amp: 30 }, ...PLACES.map((_, i) => ({ t: P0 + i * PSTEP + .6, amp: 10 })),
-    ...HELLOS.map((_, i) => ({ t: LANG + i * .75, amp: 18 })), { t: OPEN, amp: 20 }],
-  bursts: [DROP, END], goldFlashes: [DROP], whiteFlashes: [0, 1, LANG, OPEN], blackouts: [[1.88, DROP]],
+  duration: 24, bpm: 120, beatFrom: DROP, beatTo: 23.4, goldFrom: 0,
+  look: { gold: false, progress: false, handle: false, grain: .06, pump: .01, shake: .5, dust: true, dustColor: '200,220,255', sparks: '255,197,61' },
+  hits: [{ t: DROP, amp: 16 }, ...PLACES.map((_, i) => ({ t: P0 + i * PSTEP + .6, amp: 6 })), { t: END, amp: 10 }],
+  bursts: [END + .8], whiteFlashes: [], blackouts: [[1.88, DROP]],
 });
 
 window.render = function (t) {
-  const { pump } = chrome(t);
-  show($('#sHook'), win(t, 0, 1.88));
-  [['#h1', 0], ['#h2', .5], ['#h3', 1]].forEach(([id, at]) => { const s = slam(t, at); show($(id), s.o, `scale(${s.s})`); });
+  chrome(t);
+  const hh = 9 + Math.floor(t / 3), mm = Math.floor((t * 20) % 60);
+  $('#boardHead .clk').textContent = `${String(hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}`;
+  const bh = easeOut(seg(t, 0, .4)); $('#boardHead').style.transform = `translateY(${(1 - bh) * -220}px)`;
 
-  // GLOBE 2 - 12
+  // HOOK: the board flips the headline in
+  show($('#sHook'), win(t, 0, 1.88));
+  flap($('#hk1'), t, 0); flap($('#hk2'), t, .5); flap($('#hk3'), t, 1, .04, .25);
+  const e = pop(t, 1.6, .25); show($('#hkE'), e.o, `scale(${e.s})`);
+
+  // GLOBE + departures
   show($('#sGlobe'), win(t, DROP, LANG) * (1 - seg(t, LANG - .2, LANG)));
   drawGlobe(t);
-  const land = (i) => P0 + i * PSTEP + (i ? .6 : 0);     // name/counter switch when each arc lands
+  const land = (i) => P0 + i * PSTEP + (i ? .6 : 0);
   let idx = 0; PLACES.forEach((_, i) => { if (t >= land(i)) idx = i; });
-  if (t >= P0) {
-    const c = slam(t, land(idx), .2);
-    $('#country').innerHTML = `<span class="emoji">${PLACES[idx].flag}</span> ${PLACES[idx].name}`;
-    show($('#country'), c.o, `scale(${c.s})`);
-    $('#countNo').textContent = `${String(idx + 1).padStart(2, '0')} / 07`;
-    show($('#countNo'), 1);
-  } else { show($('#country'), 0); show($('#countNo'), 0); }
-  [...$('#flags').children].forEach((f, i) => { const a = pop(t, P0 + i * PSTEP + (i ? .6 : 0), .3); show(f, a.o, `scale(${a.s})`); });
+  if ($('#dest').dataset.text !== DESTS[idx]) flapRow($('#dest'), DESTS[idx]);
+  flap($('#dest'), t, land(idx) - .3, .025, .3);
+  show($('#dest'), t >= P0 - .3 ? 1 : 0);
+  $('#flight').innerHTML = t >= P0 ? `FLIGHT DX-${String(idx + 1).padStart(3, '0')} · ${String(idx + 1).padStart(2, '0')}/07 · <b>${t >= land(idx) ? 'SERVED ✓' : 'EN ROUTE'}</b>` : '';
+  [...$('#flags').children].forEach((f, i) => { const a = pop(t, land(i), .3); show(f, a.o, `scale(${a.s})`); });
   show($('#hq'), rise(t, DROP + .4, .3));
 
-  // LANGUAGES 12 - 16
+  // LANGUAGES: three gates
   show($('#sLang'), win(t, LANG, OPEN));
   const hs = [...$('#hellos').children];
   HELLOS.forEach((_, i) => {
-    const at = LANG + i * .75, next = i < 2 ? LANG + (i + 1) * .75 : 99, k = slam(t, at, .2);
-    const vis = t >= at && t < next ? 1 : 0;
-    show(hs[i * 2], vis * k.o, `scale(${k.s})`); show(hs[i * 2 + 1], vis);
+    const at = LANG + i * .75, next = i < 2 ? LANG + (i + 1) * .75 : 99;
+    const vis = t >= at && t < next ? 1 : 0, k = rise(t, at, .2);
+    show(hs[i * 3], vis); show(hs[i * 3 + 1], vis * k, `translateY(${(1 - k) * -80}px) scaleY(${.6 + k * .4})`); show(hs[i * 3 + 2], vis);
   });
-  let k = slam(t, 14.5, .22); show($('#speak1'), k.o, `scale(${k.s})`);
-  k = slam(t, 15, .22); show($('#speak2'), k.o, `scale(${k.s})`);
+  const sp = rise(t, 14.5, .4); show($('#speak'), sp, `translateY(${(1 - sp) * 40}px)`);
 
-  // OPEN 16 - 19.5
+  // OPEN: the board flips 09:00 → 17:00
   show($('#sOpen'), win(t, OPEN, END));
-  k = slam(t, OPEN, .2); show($('#o1'), k.o, `scale(${k.s})`);
-  const cl = pop(t, OPEN + .2, .3); show($('#clock'), cl.o, `scale(${cl.s})`);
-  const hrs = 9 + easeInOut(seg(t, OPEN + .3, OPEN + 2.3)) * 8;   // sweep 9:00 → 17:00
-  $('#hh').setAttribute('transform', `rotate(${(hrs % 12) * 30} 200 200)`);
-  $('#mh').setAttribute('transform', `rotate(${(hrs % 1) * 360} 200 200)`);
-  k = slam(t, OPEN + .5, .22); show($('#o2'), k.o, `scale(${k.s})`);
-  show($('#o3'), rise(t, OPEN + 1, .3));
-  const o4 = rise(t, OPEN + 1.8, .3); show($('#o4'), o4, `translateY(${(1 - o4) * 30}px)`);
+  show($('#o1'), rise(t, OPEN, .3));
+  flap($('#tFrom'), t, OPEN + .1, .06, .35); flap($('#tTo'), t, OPEN + .8, .06, .35);
+  show($('#tArrow'), rise(t, OPEN + .6, .3));
+  const o3 = rise(t, OPEN + 1.4, .4); show($('#o3'), o3, `translateY(${(1 - o3) * 30}px)`);
+  const o4 = rise(t, OPEN + 1.8, .4); show($('#o4'), o4, `translateY(${(1 - o4) * 30}px)`);
 
+  // BOARDING PASS
   show($('#sEnd'), win(t, END, 24));
-  kit.animateCta($('#sEnd'), t, END, pump);
+  const e0 = rise(t, END, .4); show($('#e0'), e0, `translateY(${(1 - e0) * 30}px)`);
+  const ps = easeOut(seg(t, END + .4, END + 1));
+  show($('#pass'), ps > 0 ? 1 : 0, `translateY(${(1 - ps) * 1300}px) rotate(${(1 - ps) * -8}deg)`);
+  const stub = $('#pass .stub'); stub.style.filter = `brightness(${1 + Math.max(0, Math.sin((t - END) * 4)) * .15 * seg(t, END + 1, END + 1.3)})`;
+  const u = rise(t, END + 1.6, .3); show($('#eUrl'), u, `translateY(${(1 - u) * 20}px)`);
+  const g = rise(t, END + 1.8, .3); show($('#eIg'), g, `translateY(${(1 - g) * 20}px)`);
 };
 kit.start();
 </script>

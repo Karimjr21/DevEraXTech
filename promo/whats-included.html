@@ -5,6 +5,24 @@
 <title>DevEraXTech: What You Get</title>
 <link rel="stylesheet" href="kit/reel-kit.css">
 <style>
+  /* PAPER: the one light reel. Cream paper, ink type, white cards, springy bounces, confetti, gift-tag CTA */
+  :root { --paper: #f7f1e3; --ink: #1a1406; }
+  #stage { background: var(--paper); color: var(--ink); }
+  #paper { background: radial-gradient(ellipse at 50% 30%, #fffaf0 0%, #f7f1e3 55%, #eee4cc 100%); }
+  .pl { font-weight: 900; letter-spacing: -.045em; line-height: .95; color: var(--ink); }
+  .ul { background: linear-gradient(transparent 62%, #f5d573 62%, #f5d573 92%, transparent 92%); padding: 0 .08em; }
+  #counter { left: 50%; top: 80px; transform: translateX(-50%); padding: 16px 34px; border-radius: 999px; background: #fff; box-shadow: 0 10px 30px rgba(26,20,6,.12); font-size: 36px; font-weight: 800; white-space: nowrap; }
+  #confetti { pointer-events: none; }
+  /* gift tag */
+  #tag { left: 150px; top: 330px; width: 780px; height: 700px; background: #fff; border-radius: 40px 40px 40px 40px; box-shadow: 0 30px 70px rgba(26,20,6,.18); transform-origin: 50% -120px; }
+  #tag .hole { position: absolute; left: 360px; top: 36px; width: 60px; height: 60px; border-radius: 50%; background: var(--paper); box-shadow: inset 0 3px 6px rgba(0,0,0,.15); }
+  #tag .str { position: absolute; left: 388px; top: -330px; width: 4px; height: 380px; background: #b8912a; }
+  #tag .to { position: absolute; left: 70px; top: 140px; font-size: 40px; font-weight: 700; color: #8a7d5e; }
+  #tag .big { position: absolute; left: 70px; top: 220px; font-size: 130px; }
+  #tag .from { position: absolute; left: 70px; bottom: 60px; display: flex; align-items: center; gap: 20px; font-size: 40px; font-weight: 800; }
+  #tag .from img { width: 90px; }
+  #eBtn { left: 150px; right: 150px; top: 1110px; padding: 40px 0; border-radius: 999px; background: var(--ink); color: #f5d573; text-align: center; font-size: 56px; font-weight: 900; box-shadow: 0 16px 0 #b8912a; }
+  #eUrl { top: 1320px; font-size: 56px; font-weight: 900; color: var(--ink); } #eIg { top: 1400px; font-size: 40px; color: #8a7d5e; }
   #h1 { top: 530px; font-size: 86px; white-space: nowrap; } #h2 { top: 640px; font-size: 86px; white-space: nowrap; } #h3 { top: 780px; font-size: 150px; white-space: nowrap; }
   #unbox { top: 380px; font-size: 104px; white-space: nowrap; }
   /* gift box */
@@ -15,35 +33,37 @@
   #bow { position: absolute; left: 150px; top: -10px; width: 200px; height: 90px; }
   #boxLight { position: absolute; left: -200px; right: -200px; top: -700px; height: 900px; background: radial-gradient(ellipse at 50% 100%, rgba(255,245,200,.9), rgba(245,213,115,.35) 30%, transparent 65%); opacity: 0; }
   /* items */
-  .item { width: 470px; height: 150px; border-radius: 24px; background: linear-gradient(160deg, rgba(40,33,18,.95), rgba(14,12,9,.95)); border: 2px solid rgba(212,175,55,.45);
-    display: flex; align-items: center; gap: 22px; padding: 0 26px; box-shadow: 0 20px 50px rgba(0,0,0,.55); }
+  .item { width: 470px; height: 150px; border-radius: 30px; background: #fff; color: var(--ink);
+    display: flex; align-items: center; gap: 22px; padding: 0 26px; box-shadow: 0 14px 34px rgba(26,20,6,.14); }
   .item .ic { font-size: 64px; flex: none; }
   .item b { font-size: 40px; font-weight: 800; line-height: 1.1; letter-spacing: -.01em; }
   #std1 { top: 1260px; font-size: 104px; white-space: nowrap; } #std2 { top: 1380px; font-size: 106px; white-space: nowrap; }
   /* not */
-  .not { font-size: 92px; white-space: nowrap; color: rgba(255,255,255,.55); }
+  .not { font-size: 92px; white-space: nowrap; color: #a99c7c !important; }
   .not i { position: absolute; left: 90px; right: 90px; top: 48%; height: 12px; border-radius: 6px; background: var(--red); transform-origin: 0 50%; }
   #a1 { top: 980px; font-size: 104px; white-space: nowrap; } #a2 { top: 1100px; font-size: 118px; white-space: nowrap; }
   /* stats */
   #big { top: 420px; font-size: 380px; font-weight: 900; letter-spacing: -.06em; line-height: 1; }
-  #bigLbl { top: 820px; font-size: 64px; font-weight: 900; text-transform: uppercase; letter-spacing: .08em; }
+  #bigLbl { top: 820px; font-size: 64px; font-weight: 900; text-transform: uppercase; letter-spacing: .08em; color: #b8912a; }
   #row { left: 80px; right: 80px; top: 1000px; display: flex; justify-content: space-around; }
   #row div { text-align: center; }
   #row b { display: block; font-size: 130px; font-weight: 900; letter-spacing: -.04em; line-height: 1; }
-  #row span { display: block; margin-top: 10px; font-size: 32px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.65); }
+  #row span { display: block; margin-top: 10px; font-size: 32px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: #8a7d5e; }
+  #row b { color: var(--ink); }
   .endL2 { font-size: 116px; }
 </style>
 </head>
 <body>
 <div id="stage">
   <div id="world">
+    <div id="paper" class="layer"></div>
     <section id="sHook" class="scene">
-      <div id="h1" class="abs cx hv">What you actually</div>
-      <div id="h2" class="abs cx hv">get when you</div>
-      <div id="h3" class="abs cx hv"><span class="hl">hire us <span class="emoji">👇</span></span></div>
+      <div id="h1" class="abs cx pl">What you actually</div>
+      <div id="h2" class="abs cx pl">get when you</div>
+      <div id="h3" class="abs cx pl"><span class="ul">hire us</span> <span class="emoji">👇</span></div>
     </section>
     <section id="sBox" class="scene">
-      <div id="unbox" class="abs cx hv">Let's unbox it.</div>
+      <div id="unbox" class="abs cx pl">Let's unbox it. <span class="emoji">📦</span></div>
       <div id="box" class="abs">
         <div id="boxLight"></div>
         <div id="boxBody"><div class="ribbonV"></div></div>
@@ -54,22 +74,31 @@
     </section>
     <section id="sItems" class="scene">
       <div id="items"></div>
-      <div id="std1" class="abs cx hv">Not extras.</div>
-      <div id="std2" class="abs cx hv"><span class="hl">The standard.</span></div>
+      <div id="std1" class="abs cx pl">Not extras.</div>
+      <div id="std2" class="abs cx pl"><span class="ul">The standard.</span></div>
     </section>
     <section id="sNot" class="scene">
-      <div id="n1" class="abs cx hv not" style="top:520px">Not a template.<i></i></div>
-      <div id="n2" class="abs cx hv not" style="top:680px">Not a rush job.<i></i></div>
-      <div id="a1" class="abs cx hv">A digital asset</div>
-      <div id="a2" class="abs cx hv"><span class="hl">built to last.</span></div>
+      <div id="n1" class="abs cx pl not" style="top:520px">Not a template.<i></i></div>
+      <div id="n2" class="abs cx pl not" style="top:680px">Not a rush job.<i></i></div>
+      <div id="a1" class="abs cx pl">A digital asset</div>
+      <div id="a2" class="abs cx pl"><span class="ul">built to last.</span></div>
     </section>
     <section id="sStats" class="scene">
-      <div id="big" class="abs cx gold-text">0</div>
+      <div id="big" class="abs cx pl">0</div>
       <div id="bigLbl" class="abs cx">Projects shipped</div>
-      <div id="row" class="abs"><div><b class="gold-text">7</b><span>Countries</span></div><div><b class="gold-text">3</b><span>Languages</span></div><div><b class="gold-text">7</b><span>Days a week</span></div></div>
+      <div id="row" class="abs"><div><b>7</b><span>Countries</span></div><div><b>3</b><span>Languages</span></div><div><b>7</b><span>Days a week</span></div></div>
     </section>
-    <section id="sEnd" class="scene"></section>
+    <section id="sEnd" class="scene">
+      <div id="tag" class="abs"><i class="str"></i><i class="hole"></i><div class="to">To: you</div>
+        <div class="big pl">Unbox<br><span class="ul">yours.</span></div>
+        <div class="from"><img src="assets/logo.png" alt="">From: DevEraXTech</div></div>
+      <div id="eBtn" class="abs">Request a meeting →</div>
+      <div id="eUrl" class="abs cx">deveraxtech.com</div>
+      <div id="eIg" class="abs cx ig">@deveraxtech</div>
+    </section>
+    <canvas id="confetti" class="layer" width="1080" height="1920"></canvas>
   </div>
+  <div id="counter" class="abs"><span class="emoji">📦</span> <span id="cnt">0</span>/10 unboxed</div>
 </div>
 
 <script src="kit/reel-kit.js"></script>
@@ -80,20 +109,41 @@ const ITEMS = [['🎨', 'Custom design'], ['📱', 'Mobile-perfect'], ['⚡', 'F
   ['📈', 'Built to grow'], ['🧭', 'Clear milestones'], ['🔄', 'Transparent updates'], ['💬', 'Arabic · English · German'], ['🚀', 'Launch support']];
 const cellPos = (i) => [60 + (i % 2) * 490, 300 + Math.floor(i / 2) * 180];
 $('#items').innerHTML = ITEMS.map(([e, l]) => `<div class="abs item"><span class="ic emoji">${e}</span><b>${l}</b></div>`).join('');
-$('#sEnd').innerHTML = kit.ctaMarkup('Ready to', 'unbox yours?');
+// confetti in brand colours, launched from the box on the drop and again for the stats and the CTA
+const cr = kit.rng(31), COLORS = ['#d4af37', '#f5d573', '#1a1406', '#ffffff', '#b8912a'];
+const CONF = Array.from({ length: 160 }, () => ({ a: -Math.PI / 2 + (cr() - .5) * 2.2, v: 900 + cr() * 1500, w: 14 + cr() * 18, h: 8 + cr() * 10, spin: (cr() - .5) * 30, c: COLORS[Math.floor(cr() * 5)], d: cr() * .15 }));
+const cctx = $('#confetti').getContext('2d');
+function confetti(t) {
+  cctx.clearRect(0, 0, 1080, 1920);
+  for (const [at, ox, oy] of [[4, 540, 1100], [17.7, 540, 700], [19.5, 540, 1900]]) {
+    const dt0 = t - at; if (dt0 < 0 || dt0 > 3.2) continue;
+    for (const p of CONF) {
+      const dt = dt0 - p.d; if (dt < 0) continue;
+      const x = ox + Math.cos(p.a) * p.v * dt * Math.exp(-dt * 1.2) + Math.sin(dt * 3 + p.spin) * 30;
+      const y = oy + Math.sin(p.a) * p.v * dt * Math.exp(-dt * 1.2) + 420 * dt * dt;
+      cctx.save(); cctx.translate(x, y); cctx.rotate(p.spin * dt); cctx.scale(1, Math.cos(dt * p.spin));
+      cctx.fillStyle = p.c; cctx.globalAlpha = Math.min(1, 3.2 - dt0); cctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h); cctx.restore();
+    }
+  }
+}
 
 const chrome = kit.setup({
-  duration: 24, bpm: 120, beatFrom: DROP, beatTo: 23.5, goldFrom: DROP,
+  duration: 24, bpm: 120, beatFrom: DROP, beatTo: 23.4, goldFrom: 99,
+  look: { gold: false, progress: false, handle: false, vignette: false, grain: .05, pump: .018, shake: .35, dust: false },
   hits: [{ t: 0 }, { t: .5 }, { t: 1, amp: 22 }, { t: BOX, amp: 24 }, { t: DROP, amp: 36 }, { t: STD, amp: 16 }, { t: STD + .5, amp: 20 },
     { t: NOT, amp: 14 }, { t: NOT + .75, amp: 14 }, { t: NOT + 2, amp: 22 }, { t: STATS, amp: 24 }],
-  bursts: [DROP, STATS + 1.2], goldFlashes: [DROP], whiteFlashes: [0, 1, BOX, NOT, STATS], blackouts: [[3.88, DROP]],
+  bursts: [], goldFlashes: [], whiteFlashes: [DROP], blackouts: [],
 });
 
 window.render = function (t) {
   const { pump } = chrome(t, { shake: t >= 3 && t < 3.88 ? seg(t, 3, 3.88) * 12 : 0 });
+  confetti(t);
+  let landed = 0; for (let i = 0; i < 10; i++) if (t >= DROP + .75 + i * .5) landed++;
+  $('#cnt').textContent = landed;
+  show($('#counter'), rise(t, BOX, .3) * (1 - seg(t, END - .3, END)), `translateX(-50%) scale(${1 + (landed ? decay(t, DROP + .75 + (landed - 1) * .5, 10) * .12 : 0)})`);
 
   show($('#sHook'), win(t, 0, BOX));
-  [['#h1', 0], ['#h2', .5], ['#h3', 1]].forEach(([id, at]) => { const s = slam(t, at); show($(id), s.o, `scale(${s.s})`); });
+  [['#h1', 0], ['#h2', .5], ['#h3', 1]].forEach(([id, at]) => { const s = pop(t, at); show($(id), s.o, `scale(${s.s})`); });
 
   // BOX 2 - ~5.5 (lid pops on the drop)
   show($('#sBox'), win(t, BOX, 6) * (1 - seg(t, 5.5, 6)));
@@ -114,8 +164,8 @@ window.render = function (t) {
     show(el, k > 0 ? dim : 0, `translate(${sx + (x - sx) * e}px, ${sy + (y - sy) * e + arc}px) scale(${.3 + back(k) * .7}) rotate(${(1 - e) * (i % 2 ? 20 : -20)}deg)`);
     el.style.boxShadow = `0 20px 50px rgba(0,0,0,.55), 0 0 ${decay(t, at + .45, 6) * 60}px rgba(245,213,115,.8)`;
   });
-  let k = slam(t, STD, .2); show($('#std1'), k.o, `scale(${k.s})`);
-  k = slam(t, STD + .5, .22); show($('#std2'), k.o, `scale(${k.s})`);
+  let k = pop(t, STD, .2); show($('#std1'), k.o, `scale(${k.s})`);
+  k = pop(t, STD + .5, .22); show($('#std2'), k.o, `scale(${k.s})`);
 
   // NOT A TEMPLATE
   show($('#sNot'), win(t, NOT, STATS));
@@ -123,8 +173,8 @@ window.render = function (t) {
     const p = pop(t, at, .25); show($(id), p.o, `scale(${p.s})`);
     $(id).querySelector('i').style.transform = `scaleX(${easeOut(seg(t, at + .3, at + .5))})`;
   });
-  k = slam(t, NOT + 1.5, .22); show($('#a1'), k.o, `scale(${k.s})`);
-  k = slam(t, NOT + 2, .22); show($('#a2'), k.o, `scale(${k.s})`);
+  k = pop(t, NOT + 1.5, .22); show($('#a1'), k.o, `scale(${k.s})`);
+  k = pop(t, NOT + 2, .22); show($('#a2'), k.o, `scale(${k.s})`);
 
   // STATS
   show($('#sStats'), win(t, STATS, END));
@@ -135,7 +185,11 @@ window.render = function (t) {
   const r = rise(t, STATS + 1.4, .35); show($('#row'), r, `translateY(${(1 - r) * 50}px)`);
 
   show($('#sEnd'), win(t, END, 24));
-  kit.animateCta($('#sEnd'), t, END, pump);
+  const tg = seg(t, END, END + .5);
+  show($('#tag'), tg > 0 ? 1 : 0, `translateY(${(1 - easeOut(tg)) * -1200}px) rotate(${Math.sin((t - END) * 5) * 10 * Math.exp(-(t - END) * 1.6)}deg)`);
+  const bt = pop(t, END + 1, .35); show($('#eBtn'), bt.o, `scale(${bt.s}) translateY(${pump * 6}px)`);
+  const eu = rise(t, END + 1.4, .3); show($('#eUrl'), eu, `translateY(${(1 - eu) * 20}px)`);
+  const g = rise(t, END + 1.6, .3); show($('#eIg'), g, `translateY(${(1 - g) * 20}px)`);
 };
 kit.start();
 </script>

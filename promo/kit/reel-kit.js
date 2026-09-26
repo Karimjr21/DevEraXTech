@@ -21,12 +21,19 @@
    */
   function setup(cfg) {
     const stage = $('#stage'), world = $('#world');
+    // Per-reel look: each reel switches off the shared pieces it replaces with its own chrome.
+    const look = Object.assign({ gold: true, progress: true, handle: true, grain: .09, vignette: true, pump: .022, dust: true,
+      sparks: '247,220,133', shake: 1 }, cfg.look || {});
     world.insertAdjacentHTML('afterbegin', `<div id="bgGold" class="layer"></div><div id="rays" class="layer"></div>
       <canvas id="sparks" class="layer" width="1080" height="1920"></canvas>`);
     stage.insertAdjacentHTML('beforeend', `<canvas id="grain" class="layer" width="540" height="960"></canvas><div id="vig" class="layer"></div>
       <div id="progress"><i></i></div><div id="handle"><img src="assets/logo.png" alt="">deveraxtech <span>· Web studio</span></div>
       <div id="goldFlash" class="layer"></div><div id="flash" class="layer"></div><div id="black" class="layer"></div>`);
     const beat = 60 / cfg.bpm;
+    if (!look.progress) $('#progress').style.display = 'none';
+    if (!look.handle) $('#handle').style.display = 'none';
+    if (!look.vignette) $('#vig').style.display = 'none';
+    $('#grain').style.opacity = look.grain;
     const gctx = $('#grain').getContext('2d');
     const tiles = Array.from({ length: 6 }, (_, k) => {
       const r = rng(99 + k), img = gctx.createImageData(540, 960);
@@ -41,26 +48,26 @@
       gctx.putImageData(tiles[Math.floor(t * 30) % tiles.length], 0, 0);
       sctx.clearRect(0, 0, 1080, 1920);
       const gold = t >= (cfg.goldFrom ?? 0);
-      if (gold) for (const d of dust) {
+      if (gold && look.dust) for (const d of dust) {
         const y = ((d.y - d.v * t) % 1920 + 1920) % 1920;
-        sctx.fillStyle = `rgba(245,213,115,${.25 + .25 * Math.sin(t * 2 + d.p)})`; sctx.beginPath(); sctx.arc(d.x, y, d.s, 0, 6.283); sctx.fill();
+        sctx.fillStyle = `rgba(${look.dustColor || '245,213,115'},${.25 + .25 * Math.sin(t * 2 + d.p)})`; sctx.beginPath(); sctx.arc(d.x, y, d.s, 0, 6.283); sctx.fill();
       }
       for (const b of cfg.bursts || []) {
         const dt = t - b; if (dt < 0 || dt > 1.5) continue;
         for (const p of sparks) {
           if (dt > p.life) continue;
           const k = dt / p.life, dist = p.v * (1 - Math.pow(1 - k, 3)) * .9;
-          sctx.fillStyle = `rgba(247,220,133,${1 - k})`; sctx.beginPath();
+          sctx.fillStyle = `rgba(${look.sparks},${1 - k})`; sctx.beginPath();
           sctx.arc(540 + Math.cos(p.a) * dist, 900 + Math.sin(p.a) * dist + 300 * dt * dt, p.s * (1 - k * .5), 0, 6.283); sctx.fill();
         }
       }
       const inBeat = t >= cfg.beatFrom && t < cfg.beatTo;
       const pump = inBeat ? Math.exp(-((t - cfg.beatFrom) % beat) * 9) : 0;
       let shake = extra.shake || 0;
-      for (const h of cfg.hits || []) shake += decay(t, h.t, 14) * (h.amp ?? 14);
-      world.style.transform = `translate(${Math.sin(t * 91) * shake}px, ${Math.cos(t * 77) * shake}px) scale(${(extra.zoom || 1) * (1 + pump * .022)})`;
-      $('#bgGold').style.opacity = gold ? 1 : 0;
-      $('#rays').style.opacity = gold && inBeat ? .6 + pump * .4 : 0;
+      for (const h of cfg.hits || []) shake += decay(t, h.t, 14) * (h.amp ?? 14) * look.shake;
+      world.style.transform = `translate(${Math.sin(t * 91) * shake}px, ${Math.cos(t * 77) * shake}px) scale(${(extra.zoom || 1) * (1 + pump * look.pump)})`;
+      $('#bgGold').style.opacity = gold && look.gold ? 1 : 0;
+      $('#rays').style.opacity = gold && look.gold && inBeat ? .6 + pump * .4 : 0;
       $('#rays').style.transform = `rotate(${t * 6}deg) scale(1.6)`;
       $('#flash').style.opacity = Math.max(0, ...(cfg.whiteFlashes || []).map(f => decay(t, f, 10) * .6));
       $('#goldFlash').style.opacity = Math.max(0, ...(cfg.goldFlashes || []).map(f => decay(t, f, 3.5) * .9));

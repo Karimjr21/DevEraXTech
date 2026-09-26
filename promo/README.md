@@ -44,40 +44,28 @@ Cairo (`assets/cairo-arabic.woff2`, SIL Open Font License). All copy for both la
 node render.mjs deveraxtech-hook-reel-ar.mp4 --page "hook.html?lang=ar" --audio hook-audio.wav
 ```
 
-## 3. "Them vs Us" (9:16, with soundtrack)
+## 3–9. Seven more vertical reels (9:16, 24 s), each with its own look and sound
 
-`deveraxtech-them-vs-us.mp4`, 24 s. Hook: "Your competitors don't want you to see this" + a CLASSIFIED stamp, a VS
-face-off, then five rounds of other agencies (buzzer) vs DevEraXTech (gold slam + ding), a 0–5 scoreboard
-and the call to action.
+No two reels share a visual world, transition style, closing card or music genre. The only shared code is the
+timing helpers in `kit/`; each reel switches off the kit's default chrome (`look: {...}` in its `kit.setup`) and
+draws its own.
 
-## 4. "Rate this website 1–10" (9:16, with soundtrack)
+| File | Hook | Visual world | Transitions | Music (`soundtrack.py` style) |
+|---|---|---|---|---|
+| `deveraxtech-them-vs-us.mp4` | "Your competitors don't want you to see this" | neon arcade fighting game: synthwave sun, neon grid floor, CRT scanlines, health bars, "FIGHT! / K.O. / CONTINUE?" | pixel-block dissolves | 8-bit chiptune, 150 BPM (`chiptune`) |
+| `deveraxtech-rate-this.mp4` | "Rate this website." ★ 1–10 | cinema: letterbox, timecode, teal/amber grade, serif italics, film-credit roll, "A production by" card | slow dissolves + light leaks | trailer score: braams, taiko, strings, piano, 60 BPM (`cinematic`) |
+| `deveraxtech-money-signs.mp4` | "3 signs your website is costing you money" | breaking news: LIVE bug, hazard stripes, scrolling ticker, pulsing alarm edge, headline-card CTA | RGB-split glitch cuts | dark trap: 808 glides, hat rolls, bells, sirens, 150 BPM half-time (`trap`) |
+| `deveraxtech-glow-up.mp4` | "Watch this website glow up ✨" | a 90s desktop (teal wallpaper, grey windows, error dialogs, taskbar) → a luxury serif world framed in gold | CRT switch-off, gold wipe, before/after slider | cheesy retro MIDI → future-bass drop (`glowup`) |
+| `deveraxtech-process.mp4` | "Hiring a web studio shouldn't feel like a gamble" | navy blueprint grid, outlined numerals, drafting title block, spec sheet, APPROVED stamp | calm slide-ups, drawn dimension lines, no shake | lo-fi chillhop: swung drums, Rhodes, vinyl crackle, tape wobble, 90 BPM (`lofi`) |
+| `deveraxtech-worldwide.mp4` | "A studio in Cairo. Serving 7 countries." | airport departures: split-flap board, night-sky globe with arcs from Cairo, boarding-pass CTA | flap flips | Arabic: darbuka maqsum, riq, oud and qanun in maqam Hijaz, 120 BPM (`arabic`) |
+| `deveraxtech-whats-included.mp4` | "What you actually get when you hire us 👇" | the one light reel: cream paper, white cards, brand confetti, unboxed counter, gift-tag CTA | springy bounces | funk-pop: slap bass, clav, brass stabs, marimba, shakers, 120 BPM (`funk`) |
 
-`deveraxtech-rate-this.mp4`, 24 s. Engagement hook with a filling 1–10 bar over a blurred teaser, then a cinematic
-camera over the Nilora Estates build (hero, typography, details), laptop + phone, the feature list, "Built by
-DevEraXTech" and "Your score? Want one like this?".
-
-Both are built on the shared `kit/` (look, effects, beat camera) and `soundtrack.py`, which holds one cue
-sheet per reel:
-
-```bash
-python3 soundtrack.py them-vs-us them-vs-us-audio.wav
-node render.mjs deveraxtech-them-vs-us.mp4 --page them-vs-us.html --audio them-vs-us-audio.wav
-python3 soundtrack.py rate-this rate-this-audio.wav
-node render.mjs deveraxtech-rate-this.mp4 --page rate-this.html --audio rate-this-audio.wav
-```
-
-## 5–9. Five more vertical reels (9:16, 24 s, with soundtracks)
-
-| File | Hook | Format |
-|---|---|---|
-| `deveraxtech-money-signs.mp4` | "3 signs your website is costing you money" | countdown listicle (#3 → #1), then "We fix all 3" |
-| `deveraxtech-glow-up.mp4` | "Watch this website glow up ✨" | a dated template site vs the Nilora build: gold wipe on the drop, then a before/after slider |
-| `deveraxtech-process.mp4` | "Hiring a web studio shouldn't feel like a gamble" | the 3-step process (call → plan & design → build, secure & launch) |
-| `deveraxtech-worldwide.mp4` | "A studio in Cairo. Serving 7 countries. 🌍" | dotted globe (site's land dots) with arcs from Cairo, languages, opening hours |
-| `deveraxtech-whats-included.mp4` | "What you actually get when you hire us 👇" | unboxing: items fly out of a gold box, "Not extras. The standard." |
+`soundtrack.py` is a small numpy synth (mixer with buses, sidechain and convolution reverb; Karplus-Strong strings for
+oud, qanun and slap bass; bit-crushed 8-bit voices; 808s with glide; tape wobble and vinyl crackle). Each reel's cue
+list places sound effects on that reel's cuts.
 
 ```bash
-for r in money-signs glow-up process worldwide whats-included; do
+for r in them-vs-us rate-this money-signs glow-up process worldwide whats-included; do
   python3 soundtrack.py $r $r-audio.wav
   node render.mjs deveraxtech-$r.mp4 --page $r.html --audio $r-audio.wav
 done

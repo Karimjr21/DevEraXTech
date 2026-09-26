@@ -5,19 +5,36 @@
 <title>DevEraXTech: 3 Signs</title>
 <link rel="stylesheet" href="kit/reel-kit.css">
 <style>
-  #h1 { top: 440px; font-size: 190px; }
+  /* BREAKING NEWS: hazard stripes, LIVE bug, ticker lower-third, skewed news type, RGB glitch cuts */
+  :root { --alarm: #e11d2e; --hazard: #ffd400; }
+  #stage { background: #0b0203; }
+  #newsBg { background: radial-gradient(ellipse at 50% 35%, #2a0508 0%, #120204 55%, #050101 100%); }
+  #alarmEdge { box-shadow: inset 0 0 160px 30px rgba(225,29,46,.8); opacity: 0; }
+  .hazard { position: absolute; left: 0; right: 0; height: 34px; background: repeating-linear-gradient(-45deg, var(--hazard) 0 34px, #111 34px 68px); }
+  #hzTop { top: 200px; } #hzBot { top: 1600px; }
+  #live { left: 60px; top: 80px; display: flex; align-items: center; gap: 14px; padding: 12px 24px; background: var(--alarm); font-size: 34px; font-weight: 900; letter-spacing: .12em; }
+  #live i { width: 18px; height: 18px; border-radius: 50%; background: #fff; }
+  #clock { right: 60px; top: 88px; font-family: 'DejaVu Sans Mono', monospace; font-size: 36px; font-weight: 700; color: rgba(255,255,255,.8); }
+  #lower { left: 0; right: 0; top: 1660px; height: 150px; }
+  #lower .tag { position: absolute; left: 0; top: 0; height: 150px; width: 300px; display: grid; place-items: center; background: var(--alarm); font-size: 48px; font-weight: 900; font-style: italic; letter-spacing: .02em; }
+  #lower .tape { position: absolute; left: 300px; right: 0; top: 0; height: 150px; background: var(--hazard); overflow: hidden; }
+  #lower .tape span { position: absolute; top: 44px; white-space: nowrap; color: #111; font-size: 56px; font-weight: 900; text-transform: uppercase; letter-spacing: -.01em; }
+  .news { font-weight: 900; font-style: italic; text-transform: uppercase; letter-spacing: -.035em; line-height: .92; transform-origin: 0 50%; }
+  #glitch i { position: absolute; left: 0; right: 0; mix-blend-mode: screen; }
+  #fixBg { background: radial-gradient(ellipse at 50% 40%, #3a2a06 0%, #140e03 60%, #050402 100%); opacity: 0; }
+  #h1 { top: 420px; font-size: 200px; color: var(--hazard); }
   #h2 { top: 680px; font-size: 84px; white-space: nowrap; }
   #h3 { top: 790px; font-size: 118px; white-space: nowrap; }
   #h4 { top: 920px; font-size: 180px; white-space: nowrap; }
   #bills { overflow: hidden; }
   #bills span { position: absolute; font-size: 110px; }
   /* signs */
-  .num { top: 240px; left: 70px; font-size: 230px; font-weight: 900; letter-spacing: -.06em; line-height: 1; }
-  .worst { left: 420px; top: 300px; padding: 14px 28px; border-radius: 999px; background: var(--red); font-size: 34px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
-  .title { left: 70px; right: 60px; top: 500px; font-size: 104px; }
-  .line { left: 70px; right: 60px; top: 1500px; font-size: 58px; font-weight: 800; line-height: 1.15; }
+  .num { top: 300px; left: 70px; font-size: 176px; color: var(--hazard); font-weight: 900; letter-spacing: -.06em; line-height: 1; }
+  .worst { left: 650px; top: 350px; padding: 14px 28px; border-radius: 999px; background: var(--red); font-size: 34px; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
+  .title { left: 70px; right: 60px; top: 530px; font-size: 104px; }
+  .line { left: 70px; right: 60px; top: 1440px; font-size: 58px; font-weight: 800; line-height: 1.15; }
   .line b { color: var(--red); }
-  .vis { left: 140px; top: 800px; width: 800px; height: 600px; }
+  .vis { left: 140px; top: 790px; width: 800px; height: 600px; transform-origin: 50% 50%; }
   /* loader */
   .card { position: absolute; inset: 0; border-radius: 26px; background: #121212; border: 2px solid #2b2b2b; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.7); }
   .card .bar { height: 50px; background: #1d1d1d; display: flex; gap: 10px; align-items: center; padding: 0 20px; }
@@ -36,8 +53,17 @@
   .q { position: absolute; font-size: 90px; font-weight: 900; color: var(--red); }
   .cursor { position: absolute; width: 70px; height: 90px; }
   /* fix */
-  #fx1 { top: 380px; font-size: 130px; }
-  #fx2 { top: 510px; font-size: 220px; }
+  #fx0 { left: 60px; top: 300px; padding: 12px 26px; background: var(--gold-grad); color: #111; font-size: 36px; font-weight: 900; letter-spacing: .14em; }
+  #fx1 { top: 420px; font-size: 130px; }
+  #fx2 { top: 550px; font-size: 220px; }
+  /* CTA: breaking-news headline card */
+  #eCard { left: 60px; right: 60px; top: 420px; padding: 50px 50px 56px; background: #fff; color: #111; }
+  #eCard small { display: block; font-size: 34px; font-weight: 900; letter-spacing: .14em; color: var(--alarm); }
+  #eCard b { display: block; margin-top: 12px; font-size: 118px; font-weight: 900; font-style: italic; text-transform: uppercase; letter-spacing: -.04em; line-height: .92; }
+  #eLogo { left: 60px; top: 900px; width: 150px; }
+  #eBy { left: 240px; top: 925px; font-size: 44px; font-weight: 800; line-height: 1.15; }
+  #eBtn { left: 60px; right: 60px; top: 1130px; padding: 40px 0; text-align: center; background: var(--hazard); color: #111; font-size: 60px; font-weight: 900; font-style: italic; text-transform: uppercase; letter-spacing: -.02em; box-shadow: 10px 10px 0 var(--alarm); }
+  #eUrl { left: 60px; top: 1340px; font-size: 56px; } #eIg { left: 60px; top: 1420px; }
   .fixrow { left: 90px; right: 60px; display: flex; align-items: center; gap: 28px; font-size: 72px; font-weight: 900; text-transform: uppercase; letter-spacing: -.03em; white-space: nowrap; }
   .fixrow .ok { flex: none; width: 90px; height: 90px; border-radius: 50%; background: var(--gold-grad); color: #0b0904; display: grid; place-items: center; font-size: 54px; }
 </style>
@@ -45,21 +71,37 @@
 <body>
 <div id="stage">
   <div id="world">
+    <div id="newsBg" class="layer"></div>
+    <div id="fixBg" class="layer"></div>
     <section id="sHook" class="scene">
       <div id="bills" class="layer"></div>
-      <div id="h1" class="abs cx hv gold-text">3 signs</div>
-      <div id="h2" class="abs cx hv">your website is</div>
-      <div id="h3" class="abs cx hv">costing you</div>
-      <div id="h4" class="abs cx hv"><span class="hl-red">money.</span></div>
+      <div id="h1" class="abs cx news" style="transform-origin:50% 50%">3 signs</div>
+      <div id="h2" class="abs cx news" style="transform-origin:50% 50%">your website is</div>
+      <div id="h3" class="abs cx news" style="transform-origin:50% 50%">costing you</div>
+      <div id="h4" class="abs cx news" style="transform-origin:50% 50%"><span class="hl-red" style="background:var(--alarm)">money.</span></div>
     </section>
     <div id="signs"></div>
     <section id="sFix" class="scene">
-      <div id="fx1" class="abs cx hv">We fix</div>
-      <div id="fx2" class="abs cx hv"><span class="hl">all 3.</span></div>
+      <div id="fx0" class="abs">UPDATE</div>
+      <div id="fx1" class="abs cx news" style="transform-origin:50% 50%">We fix</div>
+      <div id="fx2" class="abs cx news" style="transform-origin:50% 50%"><span class="hl">all 3.</span></div>
       <div id="fixes"></div>
     </section>
-    <section id="sEnd" class="scene"></section>
+    <section id="sEnd" class="scene">
+      <div id="eCard" class="abs"><small>● BREAKING</small><b>Stop losing<br>money.</b></div>
+      <img id="eLogo" class="abs" src="assets/logo.png" alt="">
+      <div id="eBy" class="abs">DevEraXTech<br><span style="font-weight:600;color:rgba(255,255,255,.7)">Web studio · Cairo</span></div>
+      <div id="eBtn" class="abs">Request a meeting →</div>
+      <div id="eUrl" class="abs url gold-text">deveraxtech.com</div>
+      <div id="eIg" class="abs ig">@deveraxtech</div>
+    </section>
+    <div id="glitch" class="layer"></div>
   </div>
+  <div id="hzTop" class="hazard"></div>
+  <div id="live" class="abs"><i></i>LIVE</div>
+  <div id="clock" class="abs">00:00</div>
+  <div id="lower" class="abs"><div class="tag">BREAKING</div><div class="tape"><span></span></div></div>
+  <div id="alarmEdge" class="layer"></div>
 </div>
 
 <script src="kit/reel-kit.js"></script>
@@ -87,29 +129,55 @@ const VIS = {
       <svg class="cursor" viewBox="0 0 70 90"><path d="M5 5 L5 75 L22 58 L35 86 L47 80 L34 53 L58 53 Z" fill="#fff" stroke="#000" stroke-width="4"/></svg></div>`,
 };
 $('#signs').innerHTML = SIGNS.map((s, i) => `<section class="scene sign">
-    <div class="abs num gold-text">#${s.n}</div>${s.n === 1 ? '<div class="abs worst">The costliest</div>' : ''}
-    <div class="abs title hv">${s.title}</div><div class="abs vis v-${s.vis}">${VIS[s.vis]}</div><div class="abs line">${s.line}</div></section>`).join('');
+    <div class="abs num news">SIGN #${s.n}</div>${s.n === 1 ? '<div class="abs worst">The costliest</div>' : ''}
+    <div class="abs title news">${s.title}</div><div class="abs vis v-${s.vis}">${VIS[s.vis]}</div><div class="abs line">${s.line}</div></section>`).join('');
 const FIXES = ['Fast-loading pages', 'Perfect on phones', 'A clear path to buy'];
 $('#fixes').innerHTML = FIXES.map((f, i) => `<div class="fixrow abs" style="top:${920 + i * 170}px"><span class="ok">✓</span><span>${f}</span></div>`).join('');
-$('#sEnd').innerHTML = kit.ctaMarkup('Stop losing', 'money.');
 // falling bills in the hook
 const br = rng(11);
 const bills = Array.from({ length: 14 }, () => ({ x: br() * 1000, d: br() * .8, v: 900 + br() * 700, r: br() * 60 - 30 }));
 $('#bills').innerHTML = bills.map(() => '<span class="emoji">💸</span>').join('');
 
 const chrome = kit.setup({
-  duration: 24, bpm: 120, beatFrom: DROP, beatTo: 23.5, goldFrom: FIX,
+  duration: 24, bpm: 150, beatFrom: DROP, beatTo: 23.4, goldFrom: 99,
+  look: { gold: false, progress: false, handle: false, vignette: true, grain: .12, pump: .012, sparks: '255,212,0' },
   hits: [{ t: 0 }, { t: .5 }, { t: 1 }, { t: 1.4, amp: 22 }, { t: DROP, amp: 26 },
     ...SIGNS.map((_, i) => ({ t: DROP + i * SLEN + 2.5, amp: 16 })), { t: FIX, amp: 34 }, { t: FIX + .5, amp: 20 }],
-  bursts: [FIX], goldFlashes: [FIX], whiteFlashes: [0, 1.4, DROP, 7, 11.5], blackouts: [[15.88, 16]],
+  bursts: [FIX], goldFlashes: [FIX], whiteFlashes: [0, 1.4], blackouts: [[15.88, 16]],
 });
 
+const TICK_A = '3 signs your website is costing you money  ●  #3 slow pages  ●  #2 broken on phones  ●  #1 no clear next step  ●  ';
+const TICK_B = 'Fixed: fast-loading pages  ●  perfect on phones  ●  a clear path to buy  ●  deveraxtech.com  ●  ';
+const GLITCH = [DROP, 7, 11.5, FIX, END];
 window.render = function (t) {
   const { pump } = chrome(t);
+  const fixed = t >= FIX;
+  // news chrome
+  $('#newsBg').style.opacity = fixed ? 0 : 1;
+  $('#fixBg').style.opacity = fixed ? 1 : 0;
+  $('#live i').style.opacity = Math.floor(t * 2) % 2 ? .3 : 1;
+  $('#clock').textContent = `LIVE ${String(Math.floor(t / 60)).padStart(2, '0')}:${String(Math.floor(t) % 60).padStart(2, '0')}`;
+  const tape = $('#lower .tape span');
+  tape.textContent = (fixed ? TICK_B : TICK_A).repeat(3);
+  tape.style.transform = `translateX(${-((t * 260) % 1800)}px)`;
+  $('#lower .tag').textContent = fixed ? 'UPDATE' : 'BREAKING';
+  $('#lower .tag').style.background = fixed ? 'var(--gold-grad)' : 'var(--alarm)';
+  $('#lower .tag').style.color = fixed ? '#111' : '#fff';
+  $('#hzTop').style.background = fixed ? 'repeating-linear-gradient(-45deg, #d4af37 0 34px, #111 34px 68px)' : '';
+  $('#hzTop').style.backgroundPosition = `${t * 80}px 0`;
+  $('#alarmEdge').style.opacity = !fixed && t >= DROP && t < 15.88 ? .35 + .35 * Math.abs(Math.sin(t * Math.PI * 1.25)) : 0;
+  // RGB glitch slices around every cut
+  const gl = Math.max(0, ...GLITCH.map(g => 1 - Math.abs(t - g) / .14));
+  const gr = rng(Math.floor(t * 30) + 7);
+  $('#glitch').innerHTML = gl > 0 ? Array.from({ length: 7 }, () => {
+    const y = gr() * 1920, h = 10 + gr() * 90, c = gr() > .5 ? '255,0,70' : '0,220,255';
+    return `<i style="top:${y}px;height:${h}px;background:rgba(${c},${.5 * gl});transform:translateX(${(gr() - .5) * 200 * gl}px)"></i>`;
+  }).join('') : '';
+  $('#world').style.filter = gl > .3 ? `drop-shadow(${12 * gl}px 0 rgba(255,0,60,.8)) drop-shadow(${-12 * gl}px 0 rgba(0,220,255,.8))` : '';
 
   // HOOK
   show($('#sHook'), win(t, 0, DROP));
-  [['#h1', 0], ['#h2', .5], ['#h3', 1], ['#h4', 1.4]].forEach(([id, at]) => { const s = slam(t, at); show($(id), s.o, `scale(${s.s})`); });
+  [['#h1', 0], ['#h2', .5], ['#h3', 1], ['#h4', 1.4]].forEach(([id, at]) => { const s = slam(t, at); show($(id), s.o, `scale(${s.s}) skewX(-6deg)`); });
   [...$('#bills').children].forEach((el, i) => {
     const b = bills[i], dt = t - 1.4 - b.d;
     show(el, dt > 0 ? 1 : 0, `translate(${b.x}px, ${-150 + dt * b.v}px) rotate(${b.r + dt * 90}deg)`);
@@ -119,7 +187,7 @@ window.render = function (t) {
   [...document.querySelectorAll('.sign')].forEach((sc, i) => {
     const s0 = DROP + i * SLEN, q = (c) => sc.querySelector(c);
     const out = seg(t, s0 + SLEN - .25, s0 + SLEN);
-    show(sc, win(t, s0, s0 + SLEN), `translateX(${-out * 1100}px)`);
+    show(sc, win(t, s0, s0 + SLEN), `scale(${1 + out * .06})`);          // hard glitch cut, no whip
     let k = slam(t, s0, .2); show(q('.num'), k.o, `scale(${k.s})`); q('.num').style.transformOrigin = '0 50%';
     if (q('.worst')) { const w = pop(t, s0 + .3, .25); show(q('.worst'), w.o, `scale(${w.s}) rotate(-4deg)`); }
     k = pop(t, s0 + .5, .3); show(q('.title'), k.o, `scale(${k.s})`); q('.title').style.transformOrigin = '0 50%';
@@ -146,13 +214,21 @@ window.render = function (t) {
 
   // FIX
   show($('#sFix'), win(t, FIX, END));
-  let k = slam(t, FIX, .2); show($('#fx1'), k.o, `scale(${k.s})`);
-  k = slam(t, FIX + .5, .22); show($('#fx2'), k.o, `scale(${k.s})`);
+  const f0 = pop(t, FIX, .25); show($('#fx0'), f0.o, `scale(${f0.s})`);
+  let k = slam(t, FIX, .2); show($('#fx1'), k.o, `scale(${k.s}) skewX(-6deg)`);
+  k = slam(t, FIX + .5, .22); show($('#fx2'), k.o, `scale(${k.s}) skewX(-6deg)`);
   [...$('#fixes').children].forEach((f, i) => { const a = pop(t, FIX + 1 + i * .5, .25); show(f, a.o, `scale(${a.s})`); f.style.transformOrigin = '0 50%'; });
 
   // END
   show($('#sEnd'), win(t, END, 24));
-  kit.animateCta($('#sEnd'), t, END, pump);
+  const ec = easeOut(seg(t, END, END + .35));
+  show($('#eCard'), ec > 0 ? 1 : 0, `translateX(${(1 - ec) * -1100}px) skewX(-4deg)`);
+  const lg = pop(t, END + .5, .3); show($('#eLogo'), lg.o, `scale(${lg.s})`);
+  const by = rise(t, END + .6, .3); show($('#eBy'), by, `translateX(${(1 - by) * 40}px)`);
+  const bt = easeOut(seg(t, END + 1, END + 1.3));
+  show($('#eBtn'), bt > 0 ? 1 : 0, `translateX(${(1 - bt) * 1100}px) translateY(${pump * 5}px)`);
+  const u = rise(t, END + 1.4, .25); show($('#eUrl'), u, `translateY(${(1 - u) * 30}px)`);
+  const g = rise(t, END + 1.6, .25); show($('#eIg'), g, `translateY(${(1 - g) * 30}px)`);
 };
 kit.start();
 </script>
