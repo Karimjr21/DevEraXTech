@@ -41,6 +41,10 @@
       return img;
     });
     const sctx = $('#sparks').getContext('2d'), sr = rng(5);
+    { // backing store at devicePixelRatio (4K renders), CSS size pinned so the canvas does not grow with it
+      const S = window.devicePixelRatio || 1, c = $('#sparks');
+      c.style.width = '1080px'; c.style.height = '1920px'; c.width = 1080 * S; c.height = 1920 * S; sctx.setTransform(S, 0, 0, S, 0, 0);
+    }
     const sparks = Array.from({ length: 90 }, () => ({ a: sr() * 6.283, v: 400 + sr() * 1400, s: 2 + sr() * 5, life: .5 + sr() * .9 }));
     const dust = Array.from({ length: 70 }, () => ({ x: sr() * 1080, y: sr() * 1920, v: 20 + sr() * 60, s: 1 + sr() * 3, p: sr() * 6.28 }));
 
