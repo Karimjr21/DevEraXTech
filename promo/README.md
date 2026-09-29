@@ -19,6 +19,17 @@ node render.mjs --stills 8.5,25 --dir /tmp           # PNG stills at given secon
 
 The brand reel has no audio track; add music in any editor.
 
+### 4K
+
+`--scale 2` renders any reel at native 4K (1080×1920 → 2160×3840, 1920×1080 → 3840×2160) by rendering the page at a
+device scale factor of 2: every CSS/SVG pixel value (type, positions, strokes, radii, blurs, shadows, transforms) is
+doubled and rasterised natively, and the particle canvases size their backing store from `devicePixelRatio`. Passing
+the existing 1080p MP4 as `--audio` copies its AAC track unchanged.
+
+```bash
+node render.mjs out/deveraxtech-hook-reel.mp4 --page hook.html --scale 2 --audio deveraxtech-hook-reel.mp4
+```
+
 ## 2. Hook reel (9:16, with soundtrack)
 
 `deveraxtech-hook-reel.mp4`: a 30-second vertical cut for Reels / TikTok / Shorts. It opens with a

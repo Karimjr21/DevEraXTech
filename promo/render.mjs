@@ -1,5 +1,9 @@
 // Renders reel.html frame by frame (deterministic, no dropped frames) and encodes an H.264 MP4.
-// Usage: node render.mjs [out.mp4] [--page reel.html] [--audio track.wav] [--fps 30] [--stills t1,t2,... --dir DIR]
+// Usage: node render.mjs [out.mp4] [--page reel.html] [--audio track.wav|reel.mp4] [--fps 30] [--scale 2] [--stills t1,t2,... --dir DIR]
+// --scale S renders at S× the page's CSS size (S=2: 1080×1920 -> 2160×3840, 1920×1080 -> 3840×2160). It is Chromium's
+// device scale factor, so every CSS/SVG pixel value (type, positions, strokes, radii, blurs, shadows, transforms) is
+// multiplied by S and rasterised natively, not upscaled. Canvases read window.devicePixelRatio to size their backing store.
+// --audio also accepts an .mp4: its AAC track is copied unchanged (used to keep a re-render's audio identical).
 import { chromium } from 'playwright';
 import { spawn, execSync } from 'node:child_process';
 import path from 'node:path';
@@ -13,10 +17,11 @@ const audio = opt('--audio');
 const out = path.resolve(args.find(a => a.endsWith('.mp4')) || path.join(here, 'deveraxtech-brand-reel.mp4'));
 const fps = +opt('--fps', 30);
 const stills = opt('--stills');
+const scale = +opt('--scale', 1);
 const ffmpeg = process.env.FFMPEG || execSync('python3 -c "import imageio_ffmpeg;print(imageio_ffmpeg.get_ffmpeg_exe())"').toString().trim();
 
 const browser = await chromium.launch();
-const page = await browser.newPage({ viewport: { width: 1920, height: 1080 }, deviceScaleFactor: 1 });
+const page = await browser.newPage({ viewport: { width: 1920, height: 1080 }, deviceScaleFactor: scale });
 await page.goto('file://' + path.join(here, pageFile));
 const size = await page.evaluate(() => window.SIZE);
 if (size) await page.setViewportSize(size);
@@ -33,8 +38,10 @@ if (stills) {
 }
 
 const enc = spawn(ffmpeg, ['-y', '-f', 'image2pipe', '-framerate', String(fps), '-c:v', 'mjpeg', '-i', '-',
-  ...(audio ? ['-i', path.resolve(audio), '-c:a', 'aac', '-b:a', '192k', '-shortest'] : []),
-  '-c:v', 'libx264', '-preset', 'slow', '-crf', '18', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', out],
+  ...(audio ? ['-i', path.resolve(audio), '-map', '0:v:0', '-map', '1:a:0', '-shortest',
+    ...(audio.endsWith('.mp4') ? ['-c:a', 'copy'] : ['-c:a', 'aac', '-b:a', '192k'])] : []),
+  '-c:v', 'libx264', '-preset', 'slow', '-crf', '18', '-pix_fmt', 'yuv420p', '-profile:v', 'high',
+  ...(scale > 1 ? ['-level:v', '5.1'] : []), '-movflags', '+faststart', out],
   { stdio: ['pipe', 'inherit', 'inherit'] });
 const total = Math.round(duration * fps);
 for (let f = 0; f < total; f++) {

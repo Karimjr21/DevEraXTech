@@ -295,6 +295,7 @@ const grainTiles = Array.from({ length: 6 }, (_, k) => {
   return img;
 });
 const sctx = $('#sparks').getContext('2d');
+{ const S = window.devicePixelRatio || 1, c = $('#sparks'); c.style.width = '1080px'; c.style.height = '1920px'; c.width = 1080 * S; c.height = 1920 * S; sctx.setTransform(S, 0, 0, S, 0, 0); }
 const sr = rng(5);
 const sparks = Array.from({ length: 90 }, () => ({ a: sr() * 6.283, v: 400 + sr() * 1400, s: 2 + sr() * 5, life: .5 + sr() * .9 }));
 const dust = Array.from({ length: 70 }, () => ({ x: sr() * 1080, y: sr() * 1920, v: 20 + sr() * 60, s: 1 + sr() * 3, p: sr() * 6.28 }));

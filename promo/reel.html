@@ -208,6 +208,7 @@ traces.forEach(tr => { tr.len = tr.path.getTotalLength(); tr.path.style.strokeDa
 
 // ---------- particles (deterministic, drawn from t) ----------
 const pc = $('#particles'), ctx = pc.getContext('2d');
+{ const S = window.devicePixelRatio || 1; pc.style.width = '1920px'; pc.style.height = '1080px'; pc.width = 1920 * S; pc.height = 1080 * S; ctx.setTransform(S, 0, 0, S, 0, 0); }
 const pr = rng(7);
 const parts = Array.from({ length: 140 }, () => ({ x: pr() * 1920, y: pr() * 1080, s: .6 + pr() * 2.4, v: 8 + pr() * 26, ph: pr() * 6.28, a: .15 + pr() * .55 }));
 function drawParticles(t) {
