@@ -510,3 +510,16 @@ def cursor(im, x, y, scale=1.0, color=C["ivory"], alpha=1.0):
            (x + s * 0.64, y + s * 1.03), (x + s * 0.44, y + s * 0.68), (x + s * 0.8, y + s * 0.68)]
     with Vec(im) as d:
         d.polygon(list(np.ravel(pts)), pen(C["obs"], 3, alpha), brush(color, alpha))
+
+
+def push_in(im, s, cx=900, cy=900):
+    """Scale the whole frame by s about (cx, cy): a slow camera push on the hook.
+
+    Anchored near the right edge of the safe box so the push never moves text into the right 140 px."""
+    if s <= 1.0001:
+        return im
+    w, h = im.size
+    cw, ch = w / s, h / s
+    x0 = cx - (cx * cw / w)
+    y0 = cy - (cy * ch / h)
+    return im.resize((w, h), Image.BICUBIC, box=(x0, y0, x0 + cw, y0 + ch))

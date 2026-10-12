@@ -88,7 +88,7 @@ def r19(t):
     if t < 12.0:
         a = win(t, -1, 12.0, 0, 0.25)
         p = prog(t, 0, 12.0)
-        s = 0.86 + 0.34 * eio(p)
+        s = 0.86 + 0.34 * (1 - (1 - p) ** 2)
         x0, y0, x1, y1 = browser(im, (SX0, 540, SX1, 1460), "dark", a)
         mask_box = (x0 + 16, y0 + 70, x1 - 16, y1 - 120)
         layer = Image.new("RGB", (int(mask_box[2] - mask_box[0]), int(mask_box[3] - mask_box[1])), C["obs"])
@@ -149,7 +149,7 @@ M20 = dict(
 )
 
 
-@reel(20, "wrong-answers-only", 14.0, a20, M20, qc=[0.2, 3.0, 6.0, 7.2, 10.5, 13.0])
+@reel(20, "wrong-answers-only", 14.0, a20, M20, push=6.4, qc=[0.2, 3.0, 6.0, 7.2, 10.5, 13.0])
 def r20(t):
     im = bg(C["obs"], (30, 26, 18))
     if t < 6.4:
@@ -338,7 +338,7 @@ def stopwatch(im, t, cx, cy, r, stopped_at=None):
         r0 = r - (34 if i % 5 == 0 else 18)
         line(im, [(cx + r0 * math.cos(ang), cy + r0 * math.sin(ang)), (cx + (r - 8) * math.cos(ang), cy + (r - 8) * math.sin(ang))],
              C["ivory"] if i % 5 == 0 else C["muted"], 3 if i % 5 == 0 else 1)
-    ang = math.radians((tt % 1.0) * 360 - 90)
+    ang = math.radians((tt % 2.0) / 2.0 * 360 - 90)
     line(im, [(cx, cy), (cx + (r - 50) * math.cos(ang), cy + (r - 50) * math.sin(ang))], C["gold"], 5)
     circle(im, cx, cy, 14, fill=C["gold"])
     rect(im, (cx - 20, cy - r - 40, cx + 20, cy - r - 4), C["line"])
@@ -346,7 +346,7 @@ def stopwatch(im, t, cx, cy, r, stopped_at=None):
         txt(im, f"{tt:05.2f}", cx, cy + r * 0.45, "sans", 52, 600, C["ivory"])
 
 
-@reel(22, "seconds-your-homepage-gets", 13.0, a22, M22, qc=[0.4, 2.2, 7.0, 9.8, 12.0])
+@reel(22, "seconds-your-homepage-gets", 13.0, a22, M22, push=1.8, qc=[0.4, 2.2, 7.0, 9.8, 12.0])
 def r22(t):
     im = bg(C["obs"], (24, 23, 21))
     if t < 11.0:
@@ -610,7 +610,7 @@ M25 = dict(
 )
 
 
-@reel(25, "customers-will-expect", 13.0, a25, M25, qc=[0.5, 2.5, 5.5, 8.5, 12.0])
+@reel(25, "customers-will-expect", 13.0, a25, M25, push=1.8, qc=[0.5, 2.5, 5.5, 8.5, 12.0])
 def r25(t):
     im = bg(C["obs"], (10, 28, 23))
     if t < 11.0:
@@ -734,7 +734,6 @@ def r26(t):
         cy = 1150 - 60 * frame
         if frame > 0:
             x0, y0, x1, y1 = browser(im, (SX0, 760, SX1, 1480), "dark", a * frame)
-            txt(im, "اسم محلك", x0 + 40, y0 + 40, "arabic", 34, 700, C["gold_l"], "lm", a * frame)
             button(im, (x0 + 40, y1 - 90, x0 + 300, y1 - 30), "", C["gold"], C["obs"], 26, a * frame)
             txt(im, "اطلب دلوقتي", x0 + 170, y1 - 62, "arabic", 30, 700, C["obs"], alpha=a * frame)
         shopfront(im, SCX, cy, s, lit, a)

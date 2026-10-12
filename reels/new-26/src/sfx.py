@@ -351,7 +351,7 @@ class Mix:
             e[-f:] = np.minimum(e[-f:], np.linspace(1, 0, f))
         self.add(x * e, start, gain)
 
-    def render(self, room=0.18, peak=0.89):
+    def render(self, room=0.18, peak=0.6):
         ir_n = int(1.6 * SR)
         tt = np.arange(ir_n) / SR
         irL = _rng.standard_normal(ir_n) * np.exp(-tt / 0.45)
@@ -368,5 +368,9 @@ class Mix:
         # tail fade so the loop point is clean
         f = int(0.06 * SR)
         st[-f:] *= np.linspace(1, 0, f)[:, None]
+        m = np.max(np.abs(st)) or 1.0
+        st = st * (peak / m)
+        # gentle high-pass to remove sub rumble below 30 Hz (saves headroom for the AAC encoder)
+        st = np.stack([_filt(st[:, 0], "highpass", 30), _filt(st[:, 1], "highpass", 30)], 1)
         m = np.max(np.abs(st)) or 1.0
         return (st * (peak / m)).astype(np.float32)

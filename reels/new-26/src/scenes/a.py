@@ -94,7 +94,7 @@ def r01(t):
         dxo = -16 * t
         size = fit_size("…so they booked", "serif", 600, 820, 116)
         for i, (s, col) in enumerate([("…so they booked", C["ivory"]), ("the clinic", C["ivory"]), ("next door.", C["champ"])]):
-            txt(im, s, SX0 + 20 + dxo, 640 + i * size * 1.12, "serif", size, 600, col, "lm")
+            txt(im, s, SX0 + 44 + dxo, 640 + i * size * 1.12, "serif", size, 600, col, "lm")
     say(im, t, 1.6, 3.0, ("Same skill.", "Similar prices."), 820, 100)
     if 3.0 <= t < 4.4:
         glow_txt(im, "So why them?", SCX, 820, "serif", 120, 600, C["gold"], win(t, 3.0, 4.4, 0.12, 0.12))
@@ -314,7 +314,7 @@ M04 = dict(
 )
 
 
-@reel(4, "not-your-price", 13.0, a04, M04, qc=[0.2, 2.2, 5.5, 8.8, 10.0, 12.0])
+@reel(4, "not-your-price", 13.0, a04, M04, push=1.8, qc=[0.2, 2.2, 5.5, 8.8, 10.0, 12.0])
 def r04(t):
     im = bg(C["obs"], (12, 30, 25))
     if t < 1.8:
@@ -434,7 +434,7 @@ M05 = dict(
 )
 
 
-@reel(5, "tower-unfinished", 15.0, a05, M05, qc=[1.0, 5.0, 9.0, 11.5, 14.0])
+@reel(5, "tower-unfinished", 15.0, a05, M05, push=2.0, qc=[1.0, 5.0, 9.0, 11.5, 14.0])
 def r05(t):
     im = bg(C["obs"], (30, 25, 14), cy=1000)
     k = 0.33 + 0.67 * eio(prog(t, 0, 10.5)) if t < 10.5 else 1.0
@@ -651,7 +651,7 @@ M07 = dict(
 )
 
 
-@reel(7, "gym-near-me", 13.0, a07, M07, qc=[0.5, 2.0, 7.0, 9.2, 12.0])
+@reel(7, "gym-near-me", 13.0, a07, M07, push=2.5, qc=[0.5, 2.0, 7.0, 9.2, 12.0])
 def r07(t):
     im = bg(C["obs"], (25, 23, 20))
     if t < 11.0:
@@ -749,7 +749,7 @@ M08 = dict(
 )
 
 
-@reel(8, "booking-dies-here", 14.0, a08, M08, qc=[1.0, 4.5, 6.5, 8.5, 11.3, 13.0])
+@reel(8, "booking-dies-here", 14.0, a08, M08, push=6.0, qc=[1.0, 4.5, 6.5, 8.5, 11.3, 13.0])
 def r08(t):
     im = bg(C["obs"], (12, 28, 24))
     if t < 12.0:
@@ -849,7 +849,7 @@ M09 = dict(
 )
 
 
-@reel(9, "salon-look-cheap", 12.0, a09, M09, qc=[0.6, 2.0, 4.5, 7.5, 9.0, 11.0])
+@reel(9, "salon-look-cheap", 12.0, a09, M09, push=1.5, qc=[0.6, 2.0, 4.5, 7.5, 9.0, 11.0])
 def r09(t):
     im = bg(C["obs"], (30, 27, 22))
     starts = [1.5, 2.8, 4.1, 5.4, 6.7]

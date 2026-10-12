@@ -25,7 +25,9 @@ L = ["# DeveraXTech: 26 new reels, spec", "",
 for n, r in sorted(REELS.items()):
     m = r.meta
     snd = m["sound"].split(";")[0].replace("0.00 ", "")
-    kw = m["cta"].split("DM ")[-1].split(" ")[0] if "DM" in m["cta"] else m["cta"]
+    import re
+    mm = re.search(r"DM '([^']+)'", m["cta"])
+    kw = f"'{mm.group(1)}'" if mm else m["cta"]
     if n == 15:
         kw = "'THIS MONTH' (reply)"
     if n == 26:

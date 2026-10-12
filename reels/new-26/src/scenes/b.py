@@ -310,7 +310,7 @@ M12 = dict(
 )
 
 
-@reel(12, "stop-the-counter", 13.0, a12, M12, qc=[0.5, 2.5, 6.0, 9.0, 10.5, 12.0])
+@reel(12, "stop-the-counter", 13.0, a12, M12, push=1.8, qc=[0.5, 2.5, 6.0, 9.0, 10.5, 12.0])
 def r12(t):
     im = bg(C["obs"], (30, 26, 16), cy=820)
     if t < 11.0:
@@ -362,7 +362,7 @@ def a13(m):
         m.add(sfx.shutter(), 6.0 + i * 0.5, 0.35)
         m.add(sfx.heartbeat_pulse(), 6.0 + i * 0.5, 0.4)
     m.add(sfx.whoosh(0.4), 7.8, 0.2)
-    m.add(sfx.hit808(1.2), 9.6, 0.55)
+    m.add(sfx.hit808(1.2), 9.6, 0.32)
     end_sting(m, 10.0)
 
 
@@ -404,7 +404,7 @@ def lookbook(im, i, a=1.0):
 @reel(13, "expensive", 12.0, a13, M13, qc=[0.1, 2.0, 5.0, 6.7, 8.8, 11.0])
 def r13(t):
     im = bg(C["obs"], (18, 18, 18))
-    size = fit_size("Expensive.", "serif_i", 600, 860, 240)
+    size = fit_size("Expensive.", "serif_i", 600, 800, 240)
     if t < 3.0:
         shake = 16 * math.exp(-t * 5) * SIN(t * 70)
         s = 1 + 0.06 * math.exp(-t * 6)
@@ -491,7 +491,7 @@ def playhead(im, f, t, pulse=True, a=1.0):
     circle(im, x, y, 16, fill=C["gold_l"], alpha=a)
 
 
-@reel(14, "second-you-lose-them", 13.0, a14, M14, qc=[0.4, 2.5, 5.5, 8.5, 10.4, 12.0])
+@reel(14, "second-you-lose-them", 13.0, a14, M14, push=1.8, qc=[0.4, 2.5, 5.5, 8.5, 10.4, 12.0])
 def r14(t):
     im = bg(C["obs"], (28, 26, 22))
     if t < 7.8:
@@ -644,7 +644,7 @@ M16 = dict(
 )
 
 
-@reel(16, "agencies-stop-building", 13.0, a16, M16, qc=[0.2, 2.5, 5.5, 8.6, 10.4, 12.0])
+@reel(16, "agencies-stop-building", 13.0, a16, M16, push=1.8, qc=[0.2, 2.5, 5.5, 8.6, 10.4, 12.0])
 def r16(t):
     im = bg(C["obs"], (12, 30, 25))
     if t < 1.8:
@@ -709,7 +709,7 @@ M17 = dict(
 )
 
 
-@reel(17, "drop-your-website", 12.0, a17, M17, qc=[0.3, 2.0, 5.0, 7.8, 9.0, 11.0])
+@reel(17, "drop-your-website", 12.0, a17, M17, push=1.6, qc=[0.3, 2.0, 5.0, 7.8, 9.0, 11.0])
 def r17(t):
     im = bg(C["obs"], (34, 28, 14))
     if t < 1.6:

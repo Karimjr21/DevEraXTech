@@ -13,6 +13,7 @@ class Reel:
     room: float = 0.18
     grain: int = 6
     qc: list = field(default_factory=list)
+    push: float = 0.0  # seconds of slow camera push-in on the hook (0 = none)
 
 
 REELS = {}
