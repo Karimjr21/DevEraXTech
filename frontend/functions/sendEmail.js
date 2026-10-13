@@ -19,6 +19,7 @@ function corsHeaders(origin) {
 }
 
 import services from '../src/data/services.json' assert { type: 'json' };
+import { renderBrandedEmail, mailtoHref } from './_lib/emailTemplate.js';
 
 // Must match GENERAL_INQUIRY in pages/Contact.jsx.
 const ALLOWED_SERVICES = new Set([...services.map(s => s.title), 'Other / General Inquiry']);
@@ -92,13 +93,26 @@ function singleLine(str) {
   return String(str).replace(/[\u0000-\u001f\u007f]+/g, ' ').trim();
 }
 
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
+// Contact notification -> shared branded template (see _lib/emailTemplate.js).
+function renderContactEmail(body) {
+  return renderBrandedEmail({
+    eyebrow: 'New website inquiry',
+    title: `${body.name} wants to talk`,
+    intro: 'Sent from the contact form on deveraxtech.com. Reply to this email to answer directly.',
+    greeting: 'Hello DevEraXTech team,',
+    paragraphs: ['A new inquiry just came in through the website contact form. The details are below.'],
+    rowsTitle: 'Inquiry details',
+    rows: [
+      { label: 'Name', value: body.name },
+      { label: 'Email', value: body.email, href: mailtoHref(body.email) },
+      { label: 'Phone', value: body.phone },
+      { label: 'Service', value: body.service },
+      { label: 'Preferred meeting', value: body.meetingDateTime },
+    ],
+    message: { label: 'Message', body: body.message },
+    cta: { label: `Reply to ${body.name}`, href: mailtoHref(body.email) },
+    footerNote: 'You received this because someone submitted the contact form on deveraxtech.com.',
+  }).html;
 }
 
 export async function onRequest(context) {
@@ -151,17 +165,7 @@ export async function onRequest(context) {
       body.message,
     ].filter(Boolean);
 
-    const html = `
-      <div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;line-height:1.6">
-        <p><strong>Name:</strong> ${escapeHtml(body.name)}</p>
-        <p><strong>Email:</strong> ${escapeHtml(body.email)}</p>
-        ${body.phone ? `<p><strong>Phone:</strong> ${escapeHtml(body.phone)}</p>` : ''}
-        ${body.service ? `<p><strong>Service:</strong> ${escapeHtml(body.service)}</p>` : ''}
-        ${body.meetingDateTime ? `<p><strong>Preferred Meeting:</strong> ${escapeHtml(body.meetingDateTime)}</p>` : ''}
-        <hr/>
-        <pre style="white-space:pre-wrap;font-family:inherit">${escapeHtml(body.message)}</pre>
-      </div>
-    `;
+    const html = renderContactEmail(body);
 
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',

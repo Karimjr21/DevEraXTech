@@ -1,6 +1,6 @@
 # Local Netlify folder
 .netlify
-
+.claude/work/
 # Secrets — never commit real env files
 .env
 .env.*

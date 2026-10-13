@@ -1,0 +1,43 @@
+{
+  "covered": [
+    { "title": "Updates", "text": "Core, theme, plugin and dependency updates, tested before they reach your live site." },
+    { "title": "Security patches", "text": "Vulnerabilities patched promptly, with security checks built into every round of updates." },
+    { "title": "Backups", "text": "Regular backups of your files and data, kept separate from your live server and ready to restore." },
+    { "title": "Uptime monitoring", "text": "Your site is monitored for uptime and issues, so we hear about outages early and act fast." },
+    { "title": "Performance checks", "text": "Periodic speed and Core Web Vitals reviews, with fixes when pages start to slow down." },
+    { "title": "Small content and feature changes", "text": "Text, image and layout updates, plus small feature additions, without starting a new project." },
+    { "title": "Priority support", "text": "Your requests are handled with priority, with a direct line to the team." }
+  ],
+  "plans": [
+    {
+      "id": "essential",
+      "name": "Essential",
+      "bestFor": "For websites that need to stay secure, backed up and online.",
+      "items": ["Core, theme and plugin updates", "Security patches", "Regular backups", "Uptime monitoring", "A regular summary of the work done"]
+    },
+    {
+      "id": "growth",
+      "name": "Growth",
+      "bestFor": "For businesses that update their site often and want it to keep improving.",
+      "items": ["Everything in Essential", "Performance checks and tuning", "Small content and feature changes", "SEO health checks"]
+    },
+    {
+      "id": "partner",
+      "name": "Partner",
+      "bestFor": "For websites and apps that are central to your business and need a dedicated team.",
+      "items": ["Everything in Growth", "Priority support", "A larger allowance for feature work", "Regular planning calls"]
+    }
+  ],
+  "steps": [
+    { "title": "Review.", "text": "We look at your website or app, hosting and current setup to understand what it needs." },
+    { "title": "Choose a plan.", "text": "We recommend a plan, agree the scope with you and set up backups and monitoring." },
+    { "title": "Ongoing care.", "text": "Updates, checks and your change requests are handled on a steady, predictable schedule." },
+    { "title": "Clear reporting.", "text": "You get regular summaries of what was done and what we suggest next." }
+  ],
+  "faq": [
+    { "question": "Can you maintain a website you did not build?", "answer": "Yes, in most cases. We start with a short review of the code, hosting and plugins so we know what we are taking on, and we tell you up front if anything needs fixing first." },
+    { "question": "Which platforms do your care plans cover?", "answer": "WordPress websites, Shopify stores and custom-built websites and web apps. If your setup is different, tell us about it and we will confirm whether we can look after it." },
+    { "question": "How much does a care plan cost?", "answer": "Each plan is scoped to your website or app, so we share pricing after the initial review rather than publishing a fixed price list." },
+    { "question": "Can I switch plans later?", "answer": "Yes. Your needs will change over time, and you can move between plans. We agree how changes work with you before any plan starts." }
+  ]
+}

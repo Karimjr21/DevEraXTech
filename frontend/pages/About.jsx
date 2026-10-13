@@ -83,7 +83,9 @@ const audiences = [
   'Shops, clinics, factories and schools that want to be found and trusted online',
   'Brands selling online through custom e-commerce websites or Shopify stores',
   'Designers, photographers, developers and agencies who need a high-visual portfolio',
-  'Marketing teams launching campaigns, apps, products and services with dedicated landing pages'
+  'Marketing teams launching campaigns, apps, products and services with dedicated landing pages',
+  'Teams that need custom web apps, mobile apps or desktop software to run their operations',
+  'Businesses with a live website that needs ongoing care, better performance or a redesign'
 ];
 
 function getInitials(name) {
@@ -217,8 +219,9 @@ export default function About() {
             </p>
             <p className="text-gray-400 leading-relaxed">
               Our work balances modern product design with robust implementation to help ambitious brands launch and scale with
-              confidence. We build business and corporate websites, e-commerce stores, Shopify stores, WordPress websites, portfolio
-              websites and high-conversion landing pages, each engineered to be secure, fast and easy to grow.
+              confidence. We build business and corporate websites, e-commerce and Shopify stores, WordPress websites, portfolios
+              and landing pages, as well as custom web applications, mobile apps, Windows software and AI and payment
+              integrations, each engineered to be secure, fast and easy to grow. After launch, our care plans keep them that way.
             </p>
             <p className="text-gray-400 leading-relaxed">
               Every project is treated as a long-term digital asset rather than a one-off deliverable. That means clean foundations,

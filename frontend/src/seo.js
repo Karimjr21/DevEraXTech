@@ -4,6 +4,7 @@ import services from './data/services.json';
 import faq from './data/faq.json';
 import business from './data/business.json';
 import portfolio from './data/portfolio.json';
+import maintenance from './data/maintenance.json';
 
 const AREAS_SHORT = 'Canada, the United States, the UAE, Saudi Arabia, Kuwait, Qatar and Egypt';
 
@@ -15,7 +16,7 @@ export const SITE = {
   image: 'https://deveraxtech.com/og-image.jpg',
   imageAlt: 'DevEraXTech: premium web and app experiences',
   description:
-    `DevEraXTech is a web design and development studio based in Cairo, Egypt, building secure, scalable, pixel-perfect websites (business and corporate sites, e-commerce, Shopify stores, WordPress websites, portfolios and landing pages) for clients in ${AREAS_SHORT}.`,
+    `DevEraXTech is a web design and development studio based in Cairo, Egypt, building secure, scalable, pixel-perfect websites, online stores, web and mobile apps, desktop software and AI integrations, with ongoing care plans, for clients in ${AREAS_SHORT}.`,
   foundingDate: '2024',
   founders: [
     { name: 'Karim Ahmed', jobTitle: 'Founder' },
@@ -31,17 +32,27 @@ export const ROUTES = [
     name: 'Home',
     title: 'DevEraXTech | Web Design & Development Studio in Cairo',
     description:
-      'Cairo-based studio building secure, pixel-perfect websites, e-commerce, Shopify and WordPress sites for clients in Egypt, the Gulf, the US and Canada.',
+      'Cairo studio building secure, pixel-perfect websites, online stores, web and mobile apps, AI integrations and care plans for Egypt, the Gulf, US and Canada.',
     priority: '1.0'
   },
   {
     path: '/services',
     file: 'services.html',
     name: 'Services',
-    title: 'Web Design & Development Services | DevEraXTech',
+    title: 'Web, App & Software Development Services | DevEraXTech',
     description:
-      'Business websites, e-commerce, Shopify, WordPress, portfolio sites and landing pages for clients in Egypt, UAE, Saudi Arabia, Kuwait, Qatar, US and Canada.',
+      'Websites, online stores, web and mobile apps, desktop software, AI and payment integrations, SEO, redesigns, UI/UX design and care plans from a Cairo studio.',
     priority: '0.9'
+  },
+  {
+    path: '/maintenance',
+    file: 'maintenance.html',
+    name: 'Maintenance & Care Plans',
+    parent: '/services',
+    title: 'Website Maintenance & Care Plans | DevEraXTech',
+    description:
+      'Website and app care plans from DevEraXTech in Cairo: updates, security patches, backups, uptime monitoring, performance checks and priority support.',
+    priority: '0.8'
   },
   {
     path: '/portfolio',
@@ -132,7 +143,20 @@ function organization() {
       'Shopify development',
       'WordPress development',
       'Landing page design',
-      'Website security'
+      'Website security',
+      'Web application development',
+      'Mobile app development',
+      'React Native',
+      'Desktop software development',
+      'AI integration',
+      'Chatbot development',
+      'Payment gateway integration',
+      'Website maintenance',
+      'Search engine optimization',
+      'Website performance optimization',
+      'Website redesign',
+      'Website migration',
+      'UI/UX design'
     ],
     contactPoint: {
       '@type': 'ContactPoint',
@@ -146,7 +170,7 @@ function organization() {
     },
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
-      name: 'Web design and development services',
+      name: 'Web, app and software development services',
       itemListElement: services.map(s => ({
         '@type': 'Offer',
         itemOffered: { '@type': 'Service', '@id': `${SITE.url}/services#${s.id}`, name: s.title }
@@ -167,6 +191,19 @@ function website() {
   };
 }
 
+function serviceNode(s) {
+  return {
+    '@type': 'Service',
+    '@id': `${SITE.url}/services#${s.id}`,
+    name: s.title,
+    serviceType: s.title,
+    ...(s.group ? { category: s.group } : {}),
+    description: s.summary,
+    provider: { '@id': ORG_ID },
+    url: s.link ? `${SITE.url}${s.link}` : `${SITE.url}/contact?service=${encodeURIComponent(s.title)}`
+  };
+}
+
 function servicesList() {
   return {
     '@type': 'ItemList',
@@ -175,15 +212,7 @@ function servicesList() {
     itemListElement: services.map((s, i) => ({
       '@type': 'ListItem',
       position: i + 1,
-      item: {
-        '@type': 'Service',
-        '@id': `${SITE.url}/services#${s.id}`,
-        name: s.title,
-        serviceType: s.title,
-        description: s.summary,
-        provider: { '@id': ORG_ID },
-        url: `${SITE.url}/contact?service=${encodeURIComponent(s.title)}`
-      }
+      item: serviceNode(s)
     }))
   };
 }
@@ -225,11 +254,11 @@ function portfolioList() {
   };
 }
 
-function faqPage(url) {
+function faqPage(url, items = faq) {
   return {
     '@type': 'FAQPage',
     '@id': `${url}#faq`,
-    mainEntity: faq.map(f => ({
+    mainEntity: items.map(f => ({
       '@type': 'Question',
       name: f.question,
       acceptedAnswer: { '@type': 'Answer', text: f.answer }
@@ -255,18 +284,29 @@ export function buildJsonLd(route) {
     inLanguage: 'en'
   };
   if (route.path !== '/') {
+    const parent = route.parent && ROUTES.find(r => r.path === route.parent);
+    const crumbs = [
+      { name: 'Home', item: `${SITE.url}/` },
+      ...(parent ? [{ name: parent.name, item: canonicalUrl(parent.path) }] : []),
+      { name: route.name, item: url }
+    ];
     page.breadcrumb = {
       '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE.url}/` },
-        { '@type': 'ListItem', position: 2, name: route.name, item: url }
-      ]
+      itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, ...c }))
     };
   }
   graph.push(page);
   if (route.path === '/services') {
     graph.push(servicesList(), faqPage(url));
     page.mainEntity = { '@id': `${SITE.url}/services#list` };
+  }
+  if (route.path === '/maintenance') {
+    const svc = services.find(s => s.id === 'maintenance-care-plans');
+    if (svc) {
+      graph.push(serviceNode(svc));
+      page.mainEntity = { '@id': `${SITE.url}/services#${svc.id}` };
+    }
+    graph.push(faqPage(url, maintenance.faq));
   }
   if (route.path === '/portfolio' && portfolio.length) {
     graph.push(portfolioList());

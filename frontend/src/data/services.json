@@ -1,84 +1,139 @@
 [
   {
     "id": "business-websites",
+    "group": "Websites & Stores",
     "title": "Business / Corporate Websites",
     "summary": "Professional websites for companies, startups, agencies, shops, clinics, factories and schools, with home, about, services, team, portfolio and contact pages.",
     "description": "For companies, startups, agencies, shops, clinics, factories, schools, etc.",
     "label": "Includes",
-    "features": [
-      "Home",
-      "About",
-      "Services",
-      "Contact",
-      "Team",
-      "Portfolio"
-    ]
+    "features": ["Home", "About", "Services", "Contact", "Team", "Portfolio"]
   },
   {
     "id": "ecommerce-websites",
+    "group": "Websites & Stores",
     "title": "E-Commerce Websites",
     "summary": "Online stores with product pages, a shopping cart, checkout, payment integrations and an admin dashboard.",
     "description": "Online stores with:",
     "label": "Includes",
-    "features": [
-      "Product pages",
-      "Shopping cart",
-      "Checkout",
-      "Payment integrations",
-      "Admin dashboard"
-    ]
+    "features": ["Product pages", "Shopping cart", "Checkout", "Payment integrations", "Admin dashboard"]
   },
   {
     "id": "shopify-stores",
+    "group": "Websites & Stores",
     "title": "Shopify Stores",
     "summary": "Bespoke Shopify stores for premium brands, with designed product pages, a seamless cart, trusted payments and full store control.",
     "description": "Bespoke Shopify experiences crafted for premium brands, featuring:",
     "label": "Includes",
-    "features": [
-      "Elegantly designed product pages",
-      "Seamless shopping cart experience",
-      "Secure, trusted payment integrations",
-      "Powerful Shopify admin & store control"
-    ]
+    "features": ["Elegantly designed product pages", "Seamless shopping cart experience", "Secure, trusted payment integrations", "Powerful Shopify admin & store control"]
   },
   {
     "id": "wordpress-websites",
+    "group": "Websites & Stores",
     "title": "WordPress Websites",
     "summary": "Custom WordPress websites with responsive, high-performance layouts, secure plugins and easy content management.",
     "description": "Bespoke WordPress experiences crafted for premium brands, featuring:",
     "label": "Includes",
-    "features": [
-      "Custom-designed pages & layouts",
-      "Fully responsive, high-performance builds",
-      "Secure plugins & advanced functionality",
-      "Powerful content management & admin control"
-    ]
+    "features": ["Custom-designed pages & layouts", "Fully responsive, high-performance builds", "Secure plugins & advanced functionality", "Powerful content management & admin control"]
   },
   {
     "id": "portfolio-websites",
+    "group": "Websites & Stores",
     "title": "Portfolio Websites",
     "summary": "High-visual showcase websites for designers, photographers, developers and agencies.",
     "description": "For creatives:",
     "label": "Includes",
-    "features": [
-      "Designers",
-      "Photographers",
-      "Developers",
-      "Agencies",
-      "High-visual showcase sites"
-    ]
+    "features": ["Designers", "Photographers", "Developers", "Agencies", "High-visual showcase sites"]
   },
   {
     "id": "landing-pages",
+    "group": "Websites & Stores",
     "title": "Landing Pages",
     "summary": "High-conversion single pages for marketing campaigns, app launches, product launches and service promotions.",
     "description": "High-conversion single pages for:",
     "label": "Includes",
-    "features": [
-      "Marketing campaigns",
-      "App launches",
-      "Product launches",
-      "Service promotions"
-    ]
+    "features": ["Marketing campaigns", "App launches", "Product launches", "Service promotions"]
+  },
+  {
+    "id": "custom-web-applications",
+    "group": "Apps & Software",
+    "title": "Custom Web Applications",
+    "summary": "Custom web applications built around how your business runs, from CRMs and booking systems to client portals and dashboards.",
+    "description": "Software shaped around the way your business actually works, including:",
+    "label": "Includes",
+    "features": ["CRMs & customer records", "Booking & scheduling systems", "Secure client portals", "Admin & reporting dashboards", "Role-based access & permissions"]
+  },
+  {
+    "id": "mobile-apps",
+    "group": "Apps & Software",
+    "title": "Mobile Apps",
+    "summary": "iOS and Android apps built with React Native from one shared codebase, designed to feel native on every device.",
+    "description": "Cross-platform mobile apps built with React Native, featuring:",
+    "label": "Includes",
+    "features": ["iOS & Android from one codebase", "Native-feeling interfaces & navigation", "Push notifications", "Secure sign-in & user accounts", "App Store & Google Play release support"]
+  },
+  {
+    "id": "desktop-software",
+    "group": "Apps & Software",
+    "title": "Desktop Software",
+    "summary": "Windows apps like Klozcrew: fast, dependable desktop software for teams that work on their own machines.",
+    "description": "Dedicated Windows apps like Klozcrew, built for:",
+    "label": "Includes",
+    "features": ["Windows desktop applications", "Offline-capable workflows", "Local file & device access", "Installers & automatic updates", "Sync with your web systems"]
+  },
+  {
+    "id": "ai-integrations",
+    "group": "Apps & Software",
+    "title": "AI Integrations",
+    "summary": "AI chatbots, WhatsApp assistants, automated lead handling and document processing, connected to the tools you already use.",
+    "description": "Practical AI built into your day-to-day workflows, including:",
+    "label": "Includes",
+    "features": ["Website chatbots", "WhatsApp assistants", "Automated lead capture & follow-up", "Document reading & processing", "Integration with your existing tools"]
+  },
+  {
+    "id": "payment-business-integrations",
+    "group": "Apps & Software",
+    "title": "Payment & Business Integrations",
+    "summary": "Payment and business integrations with Paymob, Fawry, Stripe, WhatsApp Business, CRMs and accounting tools.",
+    "description": "Your website or app connected to the services that run your business:",
+    "label": "Includes",
+    "features": ["Paymob & Fawry payments", "Stripe payments", "WhatsApp Business", "CRM integrations", "Accounting tool integrations"]
+  },
+  {
+    "id": "maintenance-care-plans",
+    "group": "Growth & Support",
+    "title": "Maintenance & Care Plans",
+    "summary": "Ongoing care for live websites and apps: updates, security patches, backups, uptime monitoring, performance checks and priority support.",
+    "description": "Ongoing care that keeps your site secure, fast and current, covering:",
+    "label": "Includes",
+    "features": ["Updates & security patches", "Regular backups", "Uptime monitoring", "Performance checks", "Small content & feature changes", "Priority support"],
+    "link": "/maintenance",
+    "linkLabel": "See Care Plans"
+  },
+  {
+    "id": "seo-performance-optimization",
+    "group": "Growth & Support",
+    "title": "SEO & Performance Optimization",
+    "summary": "Technical SEO, structured data and Core Web Vitals improvements that help your website load faster and get found.",
+    "description": "Faster pages and stronger search visibility through:",
+    "label": "Includes",
+    "features": ["Technical SEO audits & fixes", "Core Web Vitals & page speed", "Structured data (schema markup)", "On-page SEO & metadata", "Image & asset optimization"]
+  },
+  {
+    "id": "redesigns-migrations",
+    "group": "Growth & Support",
+    "title": "Redesigns & Migrations",
+    "summary": "Modern redesigns and careful platform migrations that refresh your website without losing content, rankings or data.",
+    "description": "A fresh design or a new platform, delivered with care for:",
+    "label": "Includes",
+    "features": ["Full visual redesigns", "Moves to Shopify, WordPress or a custom build", "Content & data migration", "SEO-safe redirects", "Launches with minimal downtime"]
+  },
+  {
+    "id": "ui-ux-design",
+    "group": "Growth & Support",
+    "title": "UI/UX Design",
+    "summary": "Figma designs for teams with their own developers: user flows, wireframes, high-fidelity screens and developer-ready handoff.",
+    "description": "Figma design for teams with their own developers, including:",
+    "label": "Includes",
+    "features": ["User flows & wireframes", "High-fidelity screens", "Interactive prototypes", "Design systems & components", "Developer-ready handoff"]
   }
 ]

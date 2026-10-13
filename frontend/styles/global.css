@@ -1217,8 +1217,8 @@ body { background: var(--color-bg); overflow-y: auto; }
   max-width: 70ch;
 }
 
-.home-service-card:hover h3,
-.home-service-card:focus-visible h3 {
+.home-service-card:hover :is(h3, h4),
+.home-service-card:focus-visible :is(h3, h4) {
   color: #f5d573;
 }
 
@@ -1308,7 +1308,7 @@ body { background: var(--color-bg); overflow-y: auto; }
   cursor: pointer;
 }
 
-.home-service-card:hover h3 {
+.home-service-card:hover :is(h3, h4) {
   color: #f5d573;
 }
 

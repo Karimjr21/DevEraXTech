@@ -107,12 +107,15 @@ Sitemap: ${SITE.url}/sitemap.xml
 `;
 fs.writeFileSync(path.join(dist, 'robots.txt'), robots);
 
+const serviceGroupNames = [...new Set(services.map(s => s.group || 'More services'))];
+const serviceLine = s => `- [${s.title}](${s.link ? SITE.url + s.link : `${SITE.url}/services#${s.id}`}): ${s.summary} Includes: ${s.features.join('; ')}.`;
+
 // llms.txt: a plain-language summary for AI assistants (https://llmstxt.org).
 const llms = `# ${SITE.name}
 
 > ${SITE.description}
 
-${SITE.name} was founded in ${SITE.foundingDate} by ${SITE.founders.map(f => `${f.name} (${f.jobTitle})`).join(' and ')}. We design and build websites that are secure by design, scalable and pixel-perfect, and we treat every project as a long-term digital asset. Most inquiries receive a response within one business day.
+${SITE.name} was founded in ${SITE.foundingDate} by ${SITE.founders.map(f => `${f.name} (${f.jobTitle})`).join(' and ')}. We design and build websites, apps and software that are secure by design, scalable and pixel-perfect, and we treat every project as a long-term digital asset. Most inquiries receive a response within one business day.
 
 ## At a glance
 
@@ -126,7 +129,7 @@ ${SITE.name} was founded in ${SITE.foundingDate} by ${SITE.founders.map(f => `${
 
 ## Services
 
-${services.map(s => `- [${s.title}](${SITE.url}/services#${s.id}): ${s.summary} Includes: ${s.features.join('; ')}.`).join('\n')}
+${serviceGroupNames.map(g => `### ${g}\n\n${services.filter(s => (s.group || 'More services') === g).map(serviceLine).join('\n')}`).join('\n\n')}
 
 ${portfolio.length ? `## Recent work
 

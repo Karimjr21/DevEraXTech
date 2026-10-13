@@ -34,6 +34,9 @@ Cloudflare Pages Functions run on the Workers runtime and cannot use Nodemailer/
 
 For local development put these in `frontend/.dev.vars` (git-ignored). Never commit real secrets.
 
+### Email templates
+All outgoing email HTML must be built with `frontend/functions/_lib/emailTemplate.js` (`renderBrandedEmail`), so every message keeps the same branded look and escapes user input. Do not hand-write HTML strings in a function. The `_lib` folder holds shared helpers and is not a route.
+
 ## Security headers
 `frontend/public/_headers` sets the Content-Security-Policy and other security headers for Cloudflare Pages.
 

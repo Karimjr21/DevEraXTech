@@ -9,6 +9,7 @@ const GoldGlobe = lazy(() => import('../components/fx/GoldGlobe'));
 import ErrorBoundary from '../components/ui/ErrorBoundary';
 import { fetchServices } from '../lib/api';
 import useApiData from '../lib/useApiData';
+import { groupServices, cardSpanClass, serviceHref } from '../lib/serviceGroups';
 import business from '../src/data/business.json';
 
 // Loads the globe only when its card approaches the viewport.
@@ -192,35 +193,45 @@ export default function Home() {
       <div className="max-w-3xl mb-8 md:mb-10 space-y-3">
         <p className="text-[11px] tracking-[0.2em] uppercase text-gold/70">What We Build</p>
         <h2 id="home-services-heading" className="text-2xl md:text-3xl font-semibold text-gold leading-tight">
-          Websites engineered to be secure, scalable and pixel-perfect
+          Websites, apps and software built to be secure, scalable and pixel-perfect
         </h2>
         <p className="text-sm md:text-base text-gray-300/90 leading-relaxed">
-          DevEraXTech is a web design and development studio in Cairo, Egypt. We build premium web and app experiences
-          for companies, startups and creatives: business websites, online stores and high-conversion pages that look
-          exceptional and work flawlessly on every device. Every project is treated as a long-term digital asset,
-          engineered for resilience, elegant usability and growth. Whether you need a corporate website, a new online store
+          DevEraXTech is a web design and development studio in Cairo, Egypt. We build premium websites and online stores,
+          custom web and mobile apps, Windows software and the AI and payment integrations that connect them, then keep
+          everything secure and fast with ongoing care. Every project is treated as a long-term digital asset, engineered
+          for resilience, elegant usability and growth. Whether you need a corporate website, a client portal, a mobile app
           or a single campaign landing page, we plan, design and build it end to end with the same care and attention to
           detail.
         </p>
       </div>
 
       {servicesStatus === 'ready' && services.length > 0 && (
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5" role="list">
-          {services.map(service => (
-            <li key={service.id || service.title} className="about-card home-service-card relative h-full p-5 md:p-6">
-              {/* Only the title is the link (short anchor text); its ::after overlay keeps the whole card clickable. */}
-              <h3 className="text-lg font-semibold text-gold leading-snug">
-                <Link to={`/services#${service.id}`} className="card-stretched-link">{service.title}</Link>
-              </h3>
-              <p className="mt-2 text-sm text-gray-400 leading-relaxed">
-                {service.summary || service.description}
-              </p>
-              <span className="mt-4 inline-flex items-center gap-1 text-xs uppercase tracking-[0.12em] text-gold/80" aria-hidden>
-                View details →
-              </span>
-            </li>
+        <div className="space-y-9 md:space-y-11">
+          {groupServices(services).map(group => (
+            <div key={group.id}>
+              <div className="flex items-center gap-4 mb-4 md:mb-5">
+                <h3 id={`home-${group.id}`} className="text-xs font-semibold uppercase tracking-[0.18em] text-gold/80 whitespace-nowrap">{group.name}</h3>
+                <span className="h-px flex-1 bg-gradient-to-r from-gold/35 to-transparent" aria-hidden />
+              </div>
+              <ul aria-labelledby={`home-${group.id}`} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 md:gap-5" role="list">
+                {group.items.map((service, i) => (
+                  <li key={service.id || service.title} className={`about-card home-service-card relative h-full p-5 md:p-6 ${cardSpanClass(group.items.length, i)}`}>
+                    {/* Only the title is the link (short anchor text); its ::after overlay keeps the whole card clickable. */}
+                    <h4 className="text-lg font-semibold text-gold leading-snug">
+                      <Link to={serviceHref(service)} className="card-stretched-link">{service.title}</Link>
+                    </h4>
+                    <p className="mt-2 text-sm text-gray-400 leading-relaxed">
+                      {service.summary || service.description}
+                    </p>
+                    <span className="mt-4 inline-flex items-center gap-1 text-xs uppercase tracking-[0.12em] text-gold/80" aria-hidden>
+                      {service.linkLabel || 'View details'} →
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
 
       {servicesStatus === 'loading' && (
