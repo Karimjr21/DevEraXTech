@@ -15,6 +15,21 @@ const CITIES = [
 
 const RAD = Math.PI / 180;
 const GOLD = '242,209,123';
+const HI = '255,241,191';
+
+// Colors come from CSS custom properties (see global.css) so the globe follows
+// the active theme. Fallbacks equal the original dark palette.
+function readPalette() {
+  const cs = getComputedStyle(document.documentElement);
+  const get = (name, fallback) => cs.getPropertyValue(name).trim() || fallback;
+  return {
+    gold: get('--globe-gold', GOLD),
+    hi: get('--globe-hi', HI),
+    body0: get('--globe-body-0', '#1d1809'),
+    body1: get('--globe-body-1', '#0d0b06'),
+    body2: get('--globe-body-2', '#050505')
+  };
+}
 
 function toVec(lon, lat) {
   const l = lon * RAD;
@@ -61,6 +76,7 @@ export default function GoldGlobe({ className = '' }) {
     let raf = 0;
     let visible = true;
     const start = performance.now();
+    let pal = readPalette();
 
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
@@ -95,26 +111,26 @@ export default function GoldGlobe({ className = '' }) {
 
       // Halo and sphere.
       const halo = ctx.createRadialGradient(cx, cy, R * 0.9, cx, cy, R * 1.35);
-      halo.addColorStop(0, `rgba(${GOLD},0.16)`);
-      halo.addColorStop(1, `rgba(${GOLD},0)`);
+      halo.addColorStop(0, `rgba(${pal.gold},0.16)`);
+      halo.addColorStop(1, `rgba(${pal.gold},0)`);
       ctx.fillStyle = halo;
       ctx.fillRect(0, 0, W, W);
 
       const body = ctx.createRadialGradient(cx - R * 0.35, cy - R * 0.4, R * 0.1, cx, cy, R);
-      body.addColorStop(0, '#1d1809');
-      body.addColorStop(0.6, '#0d0b06');
-      body.addColorStop(1, '#050505');
+      body.addColorStop(0, pal.body0);
+      body.addColorStop(0.6, pal.body1);
+      body.addColorStop(1, pal.body2);
       ctx.beginPath();
       ctx.arc(cx, cy, R, 0, Math.PI * 2);
       ctx.fillStyle = body;
       ctx.fill();
       ctx.lineWidth = 1.2 * dpr;
-      ctx.strokeStyle = `rgba(${GOLD},0.35)`;
+      ctx.strokeStyle = `rgba(${pal.gold},0.35)`;
       ctx.stroke();
 
       // Graticule.
       ctx.lineWidth = 0.6 * dpr;
-      ctx.strokeStyle = `rgba(${GOLD},0.07)`;
+      ctx.strokeStyle = `rgba(${pal.gold},0.07)`;
       const line = (fn) => {
         ctx.beginPath();
         let pen = false;
@@ -135,7 +151,7 @@ export default function GoldGlobe({ className = '' }) {
         const [x, y, depth] = project(DOT_VECS[i]);
         if (depth <= 0.02) continue;
         const r = (0.5 + depth * 0.7) * dpr;
-        ctx.fillStyle = `rgba(${GOLD},${(0.16 + depth * 0.62).toFixed(3)})`;
+        ctx.fillStyle = `rgba(${pal.gold},${(0.16 + depth * 0.62).toFixed(3)})`;
         ctx.beginPath();
         ctx.arc(x, y, r, 0, Math.PI * 2);
         ctx.fill();
@@ -146,7 +162,7 @@ export default function GoldGlobe({ className = '' }) {
         const P = arc.pts.map(project);
         const hidden = p => p[2] < 0 && p[3] < 1;
         ctx.lineWidth = 1.1 * dpr;
-        ctx.strokeStyle = `rgba(${GOLD},0.5)`;
+        ctx.strokeStyle = `rgba(${pal.gold},0.5)`;
         ctx.beginPath();
         let pen = false;
         P.forEach(p => {
@@ -165,7 +181,7 @@ export default function GoldGlobe({ className = '' }) {
             const b = P[k + 1];
             if (hidden(a) || hidden(b)) continue;
             const f = (k - tail) / Math.max(1, head - tail);
-            ctx.strokeStyle = `rgba(255,241,191,${(0.15 + f * 0.85).toFixed(3)})`;
+            ctx.strokeStyle = `rgba(${pal.hi},${(0.15 + f * 0.85).toFixed(3)})`;
             ctx.lineWidth = (1 + f * 1.6) * dpr;
             ctx.beginPath();
             ctx.moveTo(a[0], a[1]);
@@ -183,13 +199,13 @@ export default function GoldGlobe({ className = '' }) {
         if (isHQ) {
           ctx.beginPath();
           ctx.arc(x, y, (7 + pulse * 7) * dpr, 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(${GOLD},${(0.5 - pulse * 0.4).toFixed(3)})`;
+          ctx.strokeStyle = `rgba(${pal.gold},${(0.5 - pulse * 0.4).toFixed(3)})`;
           ctx.lineWidth = 1 * dpr;
           ctx.stroke();
         }
         const glow = ctx.createRadialGradient(x, y, 0, x, y, (isHQ ? 9 : 6) * dpr);
-        glow.addColorStop(0, 'rgba(255,241,191,0.95)');
-        glow.addColorStop(1, 'rgba(255,241,191,0)');
+        glow.addColorStop(0, `rgba(${pal.hi},0.95)`);
+        glow.addColorStop(1, `rgba(${pal.hi},0)`);
         ctx.fillStyle = glow;
         ctx.beginPath();
         ctx.arc(x, y, (isHQ ? 9 : 6) * dpr, 0, Math.PI * 2);
@@ -217,8 +233,16 @@ export default function GoldGlobe({ className = '' }) {
     const io = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; restart(); });
     io.observe(canvas);
     document.addEventListener('visibilitychange', restart);
+    // Recolor on theme change: motion mode picks the palette up on the next
+    // frame; reduced motion has no loop, so redraw once.
+    const onTheme = () => {
+      pal = readPalette();
+      if (reduce) draw(performance.now());
+    };
+    window.addEventListener('dx-themechange', onTheme);
 
     return () => {
+      window.removeEventListener('dx-themechange', onTheme);
       cancelAnimationFrame(raf);
       ro.disconnect();
       io.disconnect();

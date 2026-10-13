@@ -87,9 +87,9 @@ function Board({ data, className }) {
     <svg className={`circuit-board ${className}`} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid slice" aria-hidden focusable="false">
       <defs>
         <linearGradient id={`ct-gold-${className}`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#8a6a1c" />
-          <stop offset="0.45" stopColor="#e9c565" />
-          <stop offset="1" stopColor="#8a6a1c" />
+          <stop className="ct-stop-edge" offset="0" stopColor="#8a6a1c" />
+          <stop className="ct-stop-mid" offset="0.45" stopColor="#e9c565" />
+          <stop className="ct-stop-edge" offset="1" stopColor="#8a6a1c" />
         </linearGradient>
         <radialGradient id={`ct-fade-${className}`} cx="50%" cy="50%" r="62%">
           <stop offset="0.35" stopColor="#fff" stopOpacity="1" />

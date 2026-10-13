@@ -314,7 +314,7 @@ export default function Contact() {
                       {servicesStatus === 'loading' ? 'Loading services…' : 'Select a service'}
                     </option>
                     {serviceOptions.map(opt => (
-                      <option key={opt} value={opt} className="bg-[#0a0a0a]">{opt}</option>
+                      <option key={opt} value={opt} className="bg-page">{opt}</option>
                     ))}
                   </select>
                   {errors.service && <p className="mt-1.5 text-xs text-red-400">{errors.service}</p>}

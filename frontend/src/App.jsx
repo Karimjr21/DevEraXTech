@@ -12,7 +12,7 @@ import '../styles/global.css';
 // Layout shared by the browser app and the build-time prerender (entry-server.jsx).
 export function AppShell() {
   return (
-    <div className="min-h-screen flex flex-col bg-dark">
+    <div className="min-h-screen flex flex-col bg-page">
       <SeoManager />
       <ScrollManager />
       <RevealManager />

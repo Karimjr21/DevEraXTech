@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import AnimatedButton from './AnimatedButton';
+import ThemeToggle from './ThemeToggle';
 
 const navItems = [
   { to: '/', label: 'Home' },
@@ -63,6 +64,7 @@ export default function Navbar() {
         </ul>
         {/* CTA (one element for all sizes, so the link isn't duplicated) + mobile menu toggle */}
         <div className="flex items-center gap-2 justify-self-end flex-shrink-0">
+          <ThemeToggle className="hidden lg:inline-flex" />
           {!hideCTA ? (
             <AnimatedButton
               className="navbar-cta h-10 px-4 lg:px-5 text-[0.92rem] max-[380px]:h-9 max-[380px]:px-3 max-[380px]:text-[0.82rem]"
@@ -172,6 +174,9 @@ function MobileMenuPanel() {
             </li>
           ))}
         </ul>
+        <div className="mt-3 pt-3 border-t border-white/10">
+          <ThemeToggle variant="row" />
+        </div>
       </div>
     </div>
   );

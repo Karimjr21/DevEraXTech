@@ -55,9 +55,9 @@ export function GoldOrnament({ className = '' }) {
     <svg className={`fx-ornament ${className}`} viewBox="0 0 200 200" aria-hidden focusable="false">
       <defs>
         <linearGradient id="fx-gold" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#b8912a" />
-          <stop offset="0.5" stopColor="#f5d573" />
-          <stop offset="1" stopColor="#b8912a" />
+          <stop className="orn-stop-edge" offset="0" stopColor="#b8912a" />
+          <stop className="orn-stop-mid" offset="0.5" stopColor="#f5d573" />
+          <stop className="orn-stop-edge" offset="1" stopColor="#b8912a" />
         </linearGradient>
       </defs>
       <g className="fx-ornament-spin">
