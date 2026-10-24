@@ -15,7 +15,7 @@ const P = new THREE.Vector2(0.12, 0.35); // impact point in slab space
 const TIMING = {
   main: { shock: 1.0, crack0: 0.0, text0: 0.2 },
   shock: { shock: 0.32, crack0: 0.0, text0: 0.5 },
-  curiosity: { shock: 1.9, crack0: 0.6, text0: 0.35 },
+  curiosity: { shock: 1.9, crack0: 0.6, text0: 1.0 },
 };
 
 const SHARD_GLSL_HEAD = /* glsl */ `
@@ -257,9 +257,15 @@ export default function (ctx) {
   const dust = new THREE.Points(dustGeo, dustMat);
   rig.add(dust);
 
+  // Shock alt opening: a polished titanium slug is fired through the slab.
+  const slug = new THREE.Mesh(new THREE.SphereGeometry(0.07, 48, 32), new THREE.MeshPhysicalMaterial({ color: 0xd0d5dc, metalness: 1, roughness: 0.12, clearcoat: 0.5 }));
+  slug.visible = false;
+  const slugDir = new THREE.Vector3(-0.12, 0.05, -1).normalize();
+  rig.add(slug);
+
   // Minimal white edge light.
-  const key = new THREE.DirectionalLight(0xffffff, 1.4); key.position.set(-2, 3, 1.5);
-  const rim = new THREE.DirectionalLight(0xe9ecef, 2.2); rim.position.set(1.5, 2, -3);
+  const key = new THREE.DirectionalLight(0xffffff, 0.7); key.position.set(-2, 3, 1.5);
+  const rim = new THREE.DirectionalLight(0xe9ecef, 0.9); rim.position.set(1.5, 2, -3);
   scene.add(key, rim);
 
   // Crack network = every shard edge, revealed outward from the impact.
@@ -320,6 +326,10 @@ export default function (ctx) {
     const crackR = t < tm.crack0 ? 0 : 0.05 + 1.2 * Math.pow(inv(tm.crack0, ts, t), 2.4);
     paintCracks(broken ? 3 : crackR);
     uniforms.uT.value = t - ts;
+    if (ctx.variant === 'shock') {
+      slug.visible = t > ts - 0.3 && t < ts + 0.6;
+      slug.position.set(P.x, P.y, 0).addScaledVector(slugDir, (t - ts) * 11);
+    }
     const die = smooth(ts, ts + 0.9, t);
     faceMat.emissiveIntensity = 0.2 * (1 - 0.75 * die);
     faceMat.color.setHex(0x6a6e74).multiplyScalar(1 - 0.6 * die);
@@ -369,7 +379,7 @@ export default function (ctx) {
     return {
       scene, camera,
       exposure: 1.0 + 0.9 * smooth(2.7, 3.0, t),
-      bloom: [0.32 + 0.6 * smooth(2.6, 3.0, t), 0.5, 0.8],
+      bloom: [0.26 + 0.6 * smooth(2.6, 3.0, t), 0.5, 0.88 - 0.1 * smooth(2.6, 3.0, t)],
       grain: 0.02,
     };
   }

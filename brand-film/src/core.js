@@ -23,6 +23,7 @@ const params = new URLSearchParams(location.search);
 const W = +(params.get('w') || 1080);
 const H = +(params.get('h') || 1920);
 const VARIANT = params.get('variant') || 'main'; // main | shock | curiosity
+const NO_TEXT = params.get('notext') === '1'; // clean plates for thumbnails: scenes 01–08 without type
 
 // Film grain, vignette and a hint of highlight roll-off, applied in display space.
 const FinishShader = {
@@ -80,6 +81,7 @@ export async function boot() {
   };
 
   const scenes = [s01, s02, s03, s04, s05, s06, s07, s08, s09, s10].map((S) => S(ctx));
+  if (NO_TEXT) scenes.slice(0, 8).forEach((s) => { s.overlay = null; });
 
   // Render one scene's 3D plate into the composite canvas.
   // three.js only honours envMapIntensity for a material's own envMap, so bind the scene's
