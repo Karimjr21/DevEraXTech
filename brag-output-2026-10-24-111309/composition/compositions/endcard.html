@@ -1,0 +1,82 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+    }
+    #ec-logo {
+      position: absolute;
+      left: 240px;
+      top: 560px;
+      width: 600px;
+      height: 421px;
+    }
+    #ec-logo img {
+      width: 600px;
+      height: 421px;
+      object-fit: contain;
+      display: block;
+    }
+    #ec-word {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1020px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 116px;
+      letter-spacing: -0.015em;
+      line-height: 1.1;
+      color: #e6c45a;
+      background: linear-gradient(100deg, #c9a133 0%, #d4af37 22%, #fff1bf 45%, #f5d573 55%, #d4af37 78%, #c9a133 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    #ec-tag {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1172px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 36px;
+      letter-spacing: 0.32em;
+      text-indent: 0.32em;
+      color: #e6c45a;
+    }
+    #ec-url {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1242px;
+      text-align: center;
+      font-weight: 500;
+      font-size: 30px;
+      letter-spacing: 0.04em;
+      color: #b5b5b5;
+    }
+  </style>
+  <div id="root" data-composition-id="endcard" data-width="1080" data-height="1920">
+    <div id="ec-wrap" class="clip" data-start="0" data-duration="3">
+      <div id="ec-logo"><img src="assets/brand/deveraxtech-logo.png" alt="DevEraXTech logo" /></div>
+      <div id="ec-word">DevEraXTech</div>
+      <div id="ec-tag">ENGINEERED EXCELLENCE</div>
+      <div id="ec-url">deveraxtech.com</div>
+    </div>
+  </div>
+  <script>
+    // host starts at 15.5 s
+    gsap.set("#ec-logo", { clipPath: "circle(0% at 93.5% 22.6%)" });
+    gsap.set(["#ec-word", "#ec-tag", "#ec-url"], { opacity: 0, filter: "blur(8px)" });
+    const tl = gsap.timeline({ paused: true });
+    // the logo opens out of its own ring terminal, where the line just landed
+    tl.to("#ec-logo", { clipPath: "circle(120% at 93.5% 22.6%)", duration: 0.45, ease: "expo.out" }, 0.5); // beat-locked: 16.0s
+    tl.to("#ec-word", { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.72);
+    tl.to("#ec-tag", { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.8);
+    tl.to("#ec-url", { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.88);
+    tl.to("#ec-url", { opacity: 1, duration: 0.01 }, 2.98);
+    window.__timelines["endcard"] = tl;
+  </script>
+</template>

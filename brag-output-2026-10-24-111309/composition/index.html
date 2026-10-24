@@ -1,0 +1,82 @@
+<!doctype html>
+<html
+  lang="en"
+  data-resolution="portrait"
+  data-composition-variables='[
+    {"id":"color-ground","type":"color","label":"Background","default":"#0a0a0a"},
+    {"id":"color-accent","type":"color","label":"Accent (DevEraXTech gold)","default":"#d4af37"}
+  ]'
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/MotionPathPlugin.min.js"></script>
+    <style>
+      :root {
+        --color-ground: #0a0a0a;
+        --color-accent: #d4af37;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: var(--color-ground);
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+      #stage {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 75% 40% at 50% 50%, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0) 70%),
+          var(--color-ground);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="18.5" data-width="1080" data-height="1920">
+      <div id="stage"></div>
+      <div id="line" data-composition-id="line" data-composition-src="compositions/line.html" data-start="0" data-duration="16.4" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 2"></div>
+      <div id="endcard" data-composition-id="endcard" data-composition-src="compositions/endcard.html" data-start="15.5" data-duration="3" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 3"></div>
+      <div id="brandcue" data-composition-id="brandcue" data-composition-src="compositions/brandcue.html" data-start="0" data-duration="15.6" data-track-index="3" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 4"></div>
+
+      <!-- Music: Sascha Ende, ende.app (CC BY 4.0) · 120 BPM, a section per bar -->
+      <audio id="music" class="clip" data-start="0" data-duration="18.5" data-track-index="10" data-volume="0.32" data-fade-out="1.2" src="assets/music/happy-beats-business-moves-vol-1-by-ende-dot-app.mp3"></audio>
+      <audio id="sfx-hook" class="clip" data-start="0.05" data-duration="1.6" data-track-index="11" data-volume="0.7" src="assets/sfx/sig-note.wav"></audio>
+      <!-- each outline closes -->
+      <audio id="sfx-c1" class="clip" data-start="3.04" data-duration="0.11" data-track-index="12" data-volume="0.5" src="assets/sfx/drop_001.ogg"></audio>
+      <audio id="sfx-c2" class="clip" data-start="5.04" data-duration="0.19" data-track-index="13" data-volume="0.5" src="assets/sfx/drop_002.ogg"></audio>
+      <audio id="sfx-c3" class="clip" data-start="7.04" data-duration="0.11" data-track-index="14" data-volume="0.5" src="assets/sfx/drop_001.ogg"></audio>
+      <audio id="sfx-c4" class="clip" data-start="9.04" data-duration="0.19" data-track-index="15" data-volume="0.5" src="assets/sfx/drop_002.ogg"></audio>
+      <audio id="sfx-c5" class="clip" data-start="11.04" data-duration="0.11" data-track-index="16" data-volume="0.5" src="assets/sfx/drop_001.ogg"></audio>
+      <audio id="sfx-c6" class="clip" data-start="13.04" data-duration="0.19" data-track-index="17" data-volume="0.5" src="assets/sfx/drop_002.ogg"></audio>
+      <!-- camera moves between sections (three rotating takes) -->
+      <audio id="sfx-m1" class="clip" data-start="3.45" data-duration="0.6" data-track-index="18" data-volume="0.28" src="assets/sfx/card-slide-1.ogg"></audio>
+      <audio id="sfx-m2" class="clip" data-start="5.45" data-duration="0.6" data-track-index="19" data-volume="0.28" src="assets/sfx/card-slide-3.ogg"></audio>
+      <audio id="sfx-m3" class="clip" data-start="7.45" data-duration="0.6" data-track-index="20" data-volume="0.28" src="assets/sfx/card-slide-5.ogg"></audio>
+      <audio id="sfx-m4" class="clip" data-start="9.45" data-duration="0.6" data-track-index="21" data-volume="0.28" src="assets/sfx/card-slide-1.ogg"></audio>
+      <audio id="sfx-m5" class="clip" data-start="11.45" data-duration="0.6" data-track-index="22" data-volume="0.28" src="assets/sfx/card-slide-3.ogg"></audio>
+      <!-- AI typing, payment chip -->
+      <audio id="sfx-k1" class="clip" data-start="8.73" data-duration="0.25" data-track-index="23" data-volume="0.45" src="assets/sfx/keypress-004.wav"></audio>
+      <audio id="sfx-k2" class="clip" data-start="8.83" data-duration="0.25" data-track-index="24" data-volume="0.45" src="assets/sfx/keypress-011.wav"></audio>
+      <audio id="sfx-k3" class="clip" data-start="8.93" data-duration="0.25" data-track-index="25" data-volume="0.45" src="assets/sfx/keypress-019.wav"></audio>
+      <audio id="sfx-chip" class="clip" data-start="10.8" data-duration="0.17" data-track-index="26" data-volume="0.55" src="assets/sfx/chip-lay-1.ogg"></audio>
+      <!-- rewind lands; logo -->
+      <audio id="sfx-rew" class="clip" data-start="15.33" data-duration="0.18" data-track-index="27" data-volume="0.55" src="assets/sfx/impactSoft_medium_001.ogg"></audio>
+      <audio id="sfx-sig" class="clip" data-start="15.98" data-duration="2.52" data-track-index="28" data-volume="0.95" src="assets/sfx/sig-full.wav"></audio>
+    </div>
+    <script>
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>
