@@ -174,8 +174,8 @@ export default function (ctx) {
   const uniforms = { uT: { value: -10 } };
   const faceMat = shardMaterial({
     color: 0x6a6e74, map: siteTex, emissive: 0xffffff, emissiveMap: siteTex, emissiveIntensity: 0.2,
-    roughness: 0.06, metalness: 0.0, clearcoat: 1, clearcoatRoughness: 0.02, ior: 1.6, specularIntensity: 1,
-    envMapIntensity: 1.2,
+    roughness: 0.16, metalness: 0.0, clearcoat: 0.45, clearcoatRoughness: 0.14, ior: 1.6, specularIntensity: 0.6,
+    envMapIntensity: 0.65,
   }, uniforms);
   const sideMat = shardMaterial({
     color: 0x0c0e11, roughness: 0.02, metalness: 0.0, clearcoat: 1, ior: 1.9, specularIntensity: 1, envMapIntensity: 2.2,

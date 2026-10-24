@@ -106,7 +106,7 @@ export default function (ctx) {
       const d = prog(CUT1, CUT2, t, ease.inOutSine);
       B.environmentRotation.set(0, lerp(-1.1, 1.3, prog(CUT1, CUT2, t, ease.inOutCubic)), 0);
       glint.position.set(lerp(-0.9, 0.9, prog(CUT1 + 0.1, CUT2, t, ease.inOutCubic)), 0.6, 0.5);
-      glint.intensity = 2.5 * Math.sin(Math.PI * inv(CUT1, CUT2, t));
+      glint.intensity = 0;
       camB.position.set(lerp(0.15, 0.05, d), lerp(0.55, 0.5, d), lerp(1.05, 0.95, d));
       camB.lookAt(0.02, 0.33, 0.08);
       camB.updateMatrixWorld();

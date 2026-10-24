@@ -33,6 +33,7 @@ export default function (ctx) {
   const SCW = 720, SCH = Math.round(720 * (PH - 0.05) / (PW - 0.05));
   const scr = canvas(SCW, SCH), sg = scr.getContext('2d');
   const dash = canvas(SCH, SCW), dg = dash.getContext('2d');
+  const store = canvas(SCW, SCH), stg = store.getContext('2d');
   const scrTex = new THREE.CanvasTexture(scr);
   scrTex.colorSpace = THREE.SRGBColorSpace; scrTex.anisotropy = 8;
   const shape = new THREE.Shape();
@@ -92,9 +93,17 @@ export default function (ctx) {
     else if (k === 'app') drawPhoneApp(sg, SCW, SCH, t, inv(12.25, 13.0, t));
     else if (k === 'store') drawPhoneStore(sg, SCW, SCH, t, inv(13.45, 14.05, t));
     else {
-      drawDashboard(dg, SCH, SCW, t, inv(14.35, 15.0, t), smooth(15.15, 15.85, t));
+      drawDashboard(dg, SCH, SCW, t, inv(14.2, 14.9, t), smooth(15.15, 15.85, t));
+      sg.save();
       sg.translate(SCW, 0); sg.rotate(Math.PI / 2);
       sg.drawImage(dash, 0, 0);
+      sg.restore();
+      // the store dissolves into the dashboard rather than cutting through black
+      const xf = 1 - smooth(14.35, 14.7, t);
+      if (xf > 0) {
+        drawPhoneStore(stg, SCW, SCH, t, 1);
+        sg.globalAlpha = xf; sg.drawImage(store, 0, 0); sg.globalAlpha = 1;
+      }
     }
     sg.restore();
     // power-on: the display wakes with a soft rise
@@ -131,11 +140,11 @@ export default function (ctx) {
     const R = lerp(START_DIST, 3.9, prog(12.1, 15.0, t, ease.inOutCubic));
     const pos = new THREE.Vector3(Math.sin(phi) * R, 0.12 * Math.sin(phi * 2), Math.cos(phi) * R);
     const look = new THREE.Vector3(0, 0, 0);
-    const push = prog(15.0, 16.1, t, ease.inQuart);
+    const push = prog(15.0, 16.35, t, ease.inOutCubic);
     if (push > 0) {
       const gw = phone.localToWorld(graphLocal());
       const nrm = new THREE.Vector3(0, 0, 1).applyQuaternion(phone.quaternion);
-      pos.lerp(gw.clone().addScaledVector(nrm, 0.06), push);
+      pos.lerp(gw.clone().addScaledVector(nrm, 0.42), push);
       look.lerp(gw, smooth(15.0, 15.4, t));
     }
     camera.position.copy(pos);
