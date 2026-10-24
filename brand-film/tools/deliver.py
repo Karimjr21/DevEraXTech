@@ -105,7 +105,8 @@ def encode(frames_dir, audio, out, profile):
     """profile: master | tiktok | instagram | preview"""
     v_in = ['-framerate', str(FPS), '-i', os.path.join(frames_dir, '%05d.png')]
     a_in = ['-i', audio] if audio else ['-f', 'lavfi', '-i', f'anullsrc=r={SR}:cl=stereo']
-    common = ['-map', '0:v', '-map', '1:a', '-shortest', '-color_primaries', 'bt709', '-color_trc', 'bt709', '-colorspace', 'bt709']
+    # audio is padded so the picture always sets the length (crossfaded edits run a few ms short)
+    common = ['-map', '0:v', '-map', '1:a', '-af', 'apad', '-shortest', '-color_primaries', 'bt709', '-color_trc', 'bt709', '-colorspace', 'bt709']
     if profile == 'master':
         v = ['-c:v', 'libx264', '-preset', 'slow', '-crf', '8', '-pix_fmt', 'yuv420p', '-profile:v', 'high', '-tune', 'film', '-x264-params', 'keyint=60']
         a = ['-c:a', 'pcm_s24le']
