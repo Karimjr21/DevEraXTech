@@ -1,4 +1,5 @@
 // Render individual stills for review: node tools/still.cjs <out_dir> <w> <h> <variant> t1 t2 ...
+// NOTEXT=1 renders clean plates (no typography on scenes 01–08) for thumbnails.
 const { chromium } = require('playwright');
 const fs = require('fs'), path = require('path');
 (async () => {
@@ -8,7 +9,7 @@ const fs = require('fs'), path = require('path');
   const p = await b.newPage({ viewport: { width: 400, height: 400 } });
   p.on('console', (m) => { if (m.type() === 'error' || m.type() === 'warning') console.log('[page]', m.text().slice(0, 400)); });
   p.on('pageerror', (e) => console.log('[pageerror]', e.message));
-  await p.goto(`http://localhost:8765/src/index.html?w=${w}&h=${h}&variant=${variant}`);
+  await p.goto(`http://localhost:8765/src/index.html?w=${w}&h=${h}&variant=${variant}${process.env.NOTEXT ? "&notext=1" : ""}`);
   await p.waitForFunction('window.filmReady === true', null, { timeout: 180000 });
   for (const t of ts) {
     const t0 = Date.now();

@@ -43,7 +43,14 @@ function shardMaterial(params, uniforms, displaced = true) {
           vec3 objectTangent = vec3(tangent.xyz);
         #endif`)
       .replace('#include <begin_vertex>', /* glsl */ `
-        vec3 transformed = R * (position - aCenter) + aCenter + aVel * tw + vec3(0.0, -0.025, 0.0) * te * te;`);
+        vec3 transformed = R * (position - aCenter) + aCenter + aVel * tw + vec3(0.0, -0.025, 0.0) * te * te;`)
+      .replace('#include <project_vertex>', '#include <project_vertex>\n vViewDist = -mvPosition.z;')
+      .replace('void main() {', 'varying float vViewDist;\nvoid main() {');
+    // shards that pass right in front of the lens read as dark silhouettes rather than
+    // mirroring a strip light across a quarter of the frame for a single frame
+    sh.fragmentShader = sh.fragmentShader
+      .replace('void main() {', 'varying float vViewDist;\nvoid main() {')
+      .replace('#include <dithering_fragment>', '#include <dithering_fragment>\n gl_FragColor.rgb = min(gl_FragColor.rgb, vec3(1.15)) * smoothstep(0.35, 0.95, vViewDist);');
   };
   return m;
 }
