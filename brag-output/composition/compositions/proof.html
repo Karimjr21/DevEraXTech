@@ -1,0 +1,863 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Cormorant Garamond";
+      font-style: normal;
+      font-weight: 500;
+      src: url("assets/fonts/CormorantGaramond-500.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Cormorant Garamond";
+      font-style: italic;
+      font-weight: 500;
+      src: url("assets/fonts/CormorantGaramond-500i.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Inter Tight";
+      font-style: normal;
+      font-weight: 300 700;
+      src: url("assets/fonts/InterTight-var.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+    }
+    /* ---------- context ---------- */
+    #pf-cap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 292px;
+      text-align: center;
+    }
+    #pf-cap .t {
+      display: block;
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      font-size: 92px;
+      line-height: 1;
+      color: #f5f5f5;
+    }
+    #pf-cap .t em {
+      color: #f2d17b;
+    }
+    #pf-cap .s {
+      display: block;
+      margin-top: 14px;
+      font-weight: 600;
+      font-size: 28px;
+      letter-spacing: 0.22em;
+      color: #e6c45a;
+    }
+    .lab {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 478px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 34px;
+      letter-spacing: 0.24em;
+      color: #f5f5f5;
+    }
+    .lab::before {
+      content: "";
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 4px solid #e6c45a;
+      border-radius: 50%;
+      margin-right: 16px;
+      vertical-align: 3px;
+    }
+    #pf-floor {
+      position: absolute;
+      left: 140px;
+      top: 1215px;
+      width: 800px;
+      height: 90px;
+      border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(212, 175, 55, 0.28), rgba(212, 175, 55, 0));
+    }
+    /* ---------- desktop window ---------- */
+    #pf-win {
+      position: absolute;
+      left: 60px;
+      top: 610px;
+      width: 960px;
+      height: 600px;
+    }
+    #pf-cam {
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #0b1216;
+      box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55);
+    }
+    .chrome {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 960px;
+      height: 40px;
+      background: #141a1e;
+      border-bottom: 1px solid rgba(237, 230, 218, 0.08);
+      z-index: 3;
+    }
+    .chrome i {
+      position: absolute;
+      top: 14px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #3a4349;
+    }
+    .chrome .pill {
+      position: absolute;
+      left: 330px;
+      top: 9px;
+      width: 300px;
+      height: 22px;
+      border-radius: 11px;
+      background: #0b1216;
+      color: #9aa7ae;
+      font: 500 13px/22px "Inter Tight", sans-serif;
+      text-align: center;
+      letter-spacing: 0.04em;
+    }
+    .vp {
+      position: absolute;
+      left: 0;
+      top: 40px;
+      width: 960px;
+      height: 560px;
+      overflow: hidden;
+    }
+    .page {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1440px;
+      height: 840px;
+      transform: scale(0.66667);
+      transform-origin: 0 0;
+      color: #ede6da;
+      font-family: "Inter Tight", sans-serif;
+    }
+    .pagefill {
+      position: absolute;
+      inset: 0;
+    }
+    .nav {
+      position: absolute;
+      left: 120px;
+      right: 60px;
+      top: 18px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      z-index: 2;
+    }
+    .brandN {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 30px;
+      color: #ede6da;
+    }
+    .brandN em {
+      font-style: italic;
+      color: #e3c893;
+    }
+    .links {
+      display: flex;
+      gap: 30px;
+      margin-left: 120px;
+      font-size: 14px;
+      letter-spacing: 0.22em;
+      color: #c9c2b6;
+    }
+    .pv {
+      margin-left: auto;
+      height: 44px;
+      padding: 0 28px;
+      border-radius: 22px;
+      background: #c8a46b;
+      color: #0b1216;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      line-height: 44px;
+    }
+    /* hero page (matches the end of the reveal) */
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      background: url("assets/img/nile-zamalek.jpg") 30% 55% / cover no-repeat;
+    }
+    .hero-shade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(11, 18, 22, 0.86) 0%, rgba(11, 18, 22, 0.55) 45%, rgba(11, 18, 22, 0.12) 100%);
+    }
+    .kicker {
+      position: absolute;
+      left: 120px;
+      top: 318px;
+      font-size: 16px;
+      letter-spacing: 0.3em;
+    }
+    .kicker b {
+      display: inline-block;
+      width: 60px;
+      height: 1px;
+      background: #c8a46b;
+      vertical-align: middle;
+      margin: 0 22px;
+    }
+    .h1 {
+      position: absolute;
+      left: 112px;
+      top: 410px;
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      font-size: 122px;
+      line-height: 0.94;
+      letter-spacing: -0.01em;
+    }
+    .body {
+      position: absolute;
+      left: 120px;
+      top: 770px;
+      width: 640px;
+      font-size: 21px;
+      line-height: 1.45;
+      color: #e2dbcf;
+    }
+    .nums {
+      position: absolute;
+      right: 70px;
+      top: 380px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 22px;
+      line-height: 2.1;
+      color: #c9c2b6;
+      text-align: right;
+    }
+    /* residence page: Villa Amara */
+    .res-img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 800px;
+      height: 840px;
+      background: url("assets/img/villa-amara.jpg") 40% 50% / cover no-repeat;
+    }
+    .res-panel {
+      position: absolute;
+      left: 800px;
+      top: 0;
+      width: 640px;
+      height: 840px;
+      background: #0b1216;
+    }
+    .eyebrow {
+      font-size: 17px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      color: #9aa7ae;
+    }
+    #pf-res .eb1 {
+      position: absolute;
+      left: 870px;
+      top: 150px;
+    }
+    #pf-res .ttl {
+      position: absolute;
+      left: 864px;
+      top: 186px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 112px;
+      line-height: 1;
+    }
+    #pf-res .price {
+      position: absolute;
+      left: 870px;
+      top: 318px;
+      font-size: 38px;
+      font-weight: 500;
+      color: #e3c893;
+    }
+    #pf-res .specs {
+      position: absolute;
+      left: 870px;
+      top: 380px;
+      font-size: 23px;
+      color: #9aa7ae;
+    }
+    #pf-res .rule {
+      position: absolute;
+      left: 870px;
+      top: 440px;
+      width: 500px;
+      height: 1px;
+      background: rgba(237, 230, 218, 0.16);
+    }
+    #pf-form {
+      position: absolute;
+      left: 870px;
+      top: 478px;
+      width: 520px;
+    }
+    #pf-form .slots {
+      margin-top: 22px;
+      display: flex;
+      gap: 12px;
+    }
+    .slot {
+      height: 50px;
+      padding: 0 20px;
+      border-radius: 25px;
+      border: 1px solid rgba(237, 230, 218, 0.22);
+      font-size: 20px;
+      line-height: 48px;
+      color: #9aa7ae;
+    }
+    .slot.on {
+      background: #c8a46b;
+      border-color: #c8a46b;
+      color: #0b1216;
+    }
+    #pf-req {
+      margin-top: 36px;
+      width: 500px;
+      height: 84px;
+      border-radius: 42px;
+      background: #c8a46b;
+      color: #0b1216;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-align: center;
+      line-height: 84px;
+    }
+    #pf-done {
+      position: absolute;
+      left: 870px;
+      top: 490px;
+      width: 520px;
+    }
+    #pf-done .chk {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      border: 3px solid #8fbab7;
+      color: #8fbab7;
+      font-size: 40px;
+      line-height: 70px;
+      text-align: center;
+    }
+    #pf-done .msg {
+      margin-top: 22px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 54px;
+      line-height: 1.05;
+    }
+    #pf-done .sub {
+      margin-top: 14px;
+      font-size: 21px;
+      color: #9aa7ae;
+    }
+    /* cursor */
+    #pf-cur {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 52px;
+      height: 64px;
+    }
+    /* carried card */
+    #pf-thumb {
+      position: absolute;
+      left: 60px;
+      top: 650px;
+      width: 534px;
+      height: 560px;
+      border-radius: 14px;
+      background: url("assets/img/villa-amara.jpg") 40% 50% / cover no-repeat;
+      transform-origin: 0 0;
+    }
+    /* ---------- phone ---------- */
+    #pf-phone {
+      position: absolute;
+      left: 350px;
+      top: 545px;
+      width: 380px;
+      height: 780px;
+      border-radius: 56px;
+      background: #05080a;
+      border: 2px solid #3a4349;
+      box-shadow: 0 40px 90px rgba(0, 0, 0, 0.6), inset 0 0 0 10px #05080a;
+      transform-origin: 50% 50%;
+    }
+    .scr {
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      right: 12px;
+      bottom: 12px;
+      border-radius: 44px;
+      background: #0b1216;
+      overflow: hidden;
+      font-family: "Inter Tight", sans-serif;
+      color: #ede6da;
+    }
+    .notch {
+      position: absolute;
+      left: 50%;
+      top: 14px;
+      width: 110px;
+      height: 30px;
+      margin-left: -55px;
+      border-radius: 15px;
+      background: #05080a;
+    }
+    .m-brand {
+      position: absolute;
+      left: 26px;
+      top: 64px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 28px;
+    }
+    .m-brand em {
+      font-style: italic;
+      color: #e3c893;
+    }
+    .m-title {
+      position: absolute;
+      left: 26px;
+      top: 108px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 50px;
+    }
+    .m-tabs {
+      position: absolute;
+      left: 26px;
+      top: 176px;
+      display: flex;
+      gap: 26px;
+      font-size: 20px;
+      color: #9aa7ae;
+    }
+    .m-tabs .on {
+      color: #ede6da;
+      border-bottom: 2px solid #c8a46b;
+      padding-bottom: 6px;
+    }
+    .m-card {
+      position: absolute;
+      left: 16px;
+      top: 222px;
+      width: 324px;
+    }
+    .m-img {
+      width: 324px;
+      height: 200px;
+      border-radius: 18px;
+      background: url("assets/img/villa-amara.jpg") 40% 50% / cover no-repeat;
+    }
+    .m-name {
+      margin-top: 16px;
+      margin-left: 6px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 44px;
+      line-height: 1;
+    }
+    .m-meta {
+      margin-top: 8px;
+      margin-left: 6px;
+      font-size: 20px;
+      color: #9aa7ae;
+    }
+    .m-pills {
+      position: relative;
+      margin-top: 14px;
+      margin-left: 6px;
+      height: 44px;
+    }
+    .st {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 44px;
+      padding: 0 20px;
+      border-radius: 22px;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      line-height: 42px;
+      white-space: nowrap;
+    }
+    .st.pend {
+      border: 1px solid rgba(200, 164, 107, 0.55);
+      background: rgba(200, 164, 107, 0.12);
+      color: #e3c893;
+    }
+    .st.conf {
+      border: 1px solid rgba(143, 186, 183, 0.55);
+      background: rgba(94, 140, 138, 0.18);
+      color: #a9d2cf;
+    }
+    .m-ghost {
+      position: absolute;
+      left: 16px;
+      top: 590px;
+      width: 324px;
+      height: 150px;
+      border-radius: 18px;
+      background: url("assets/img/villa-amara-2.jpg") 50% 50% / cover no-repeat;
+      opacity: 0.35;
+    }
+    /* ---------- agent dashboard ---------- */
+    #pf-dash {
+      position: absolute;
+      left: 40px;
+      top: 560px;
+      width: 1000px;
+      height: 700px;
+      border-radius: 18px;
+      background: #0b1216;
+      border: 1px solid rgba(237, 230, 218, 0.12);
+      box-shadow: 0 40px 90px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      font-family: "Inter Tight", sans-serif;
+      color: #ede6da;
+    }
+    .side {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 170px;
+      background: #111b21;
+      border-right: 1px solid rgba(237, 230, 218, 0.08);
+      padding: 30px 0 0 26px;
+      font-size: 19px;
+      color: #9aa7ae;
+      line-height: 2.4;
+    }
+    .side .mk {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 30px;
+      color: #ede6da;
+      line-height: 1.4;
+      margin-bottom: 18px;
+    }
+    .side .mk em {
+      font-style: italic;
+      color: #e3c893;
+    }
+    .side .act {
+      color: #ede6da;
+      border-left: 3px solid #c8a46b;
+      margin-left: -26px;
+      padding-left: 23px;
+    }
+    .d-title {
+      position: absolute;
+      left: 210px;
+      top: 40px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 62px;
+      line-height: 1;
+    }
+    .chips {
+      position: absolute;
+      left: 210px;
+      top: 128px;
+      display: flex;
+      gap: 10px;
+      font-size: 18px;
+    }
+    .chips span {
+      height: 38px;
+      padding: 0 16px;
+      border-radius: 19px;
+      border: 1px solid rgba(237, 230, 218, 0.18);
+      line-height: 36px;
+      color: #9aa7ae;
+    }
+    .chips .on {
+      background: #ede6da;
+      color: #0b1216;
+      border-color: #ede6da;
+    }
+    .thead {
+      position: absolute;
+      left: 210px;
+      top: 206px;
+      right: 30px;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: #9aa7ae;
+    }
+    .row {
+      position: absolute;
+      left: 194px;
+      right: 20px;
+      height: 96px;
+      border-top: 1px solid rgba(237, 230, 218, 0.08);
+      font-size: 22px;
+    }
+    .row > span {
+      position: absolute;
+      top: 0;
+      line-height: 96px;
+      white-space: nowrap;
+    }
+    .c1 {
+      left: 16px;
+    }
+    .c2 {
+      left: 196px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 30px;
+    }
+    .c3 {
+      left: 450px;
+      font-size: 20px;
+      color: #9aa7ae;
+    }
+    .c4 {
+      left: 636px;
+    }
+    .row .st {
+      top: 26px;
+      line-height: 42px;
+    }
+    #pf-r1 {
+      top: 238px;
+      background: rgba(200, 164, 107, 0.09);
+      border-left: 4px solid #c8a46b;
+    }
+    .muted {
+      color: #9aa7ae;
+    }
+    #pf-fly {
+      position: absolute;
+      left: 368px;
+      top: 1010px;
+      width: 344px;
+      height: 96px;
+      border-radius: 14px;
+      background: #172530;
+      border: 1px solid rgba(200, 164, 107, 0.5);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 34px;
+      color: #ede6da;
+      line-height: 94px;
+      padding-left: 22px;
+      transform-origin: 0 0;
+    }
+  </style>
+
+  <div id="root" data-composition-id="proof" data-width="1080" data-height="1920">
+    <div id="pf-capw" class="clip" data-start="0" data-duration="7">
+      <div id="pf-cap"><span class="t">Nilora <em>Estates</em></span><span class="s">A REAL DEVERAXTECH BUILD</span></div>
+    </div>
+
+    <div id="pf-labw" class="clip" data-start="0" data-duration="7" data-layout-allow-overlap>
+      <div class="lab" id="pf-l1">WEBSITE</div>
+      <div class="lab" id="pf-l2">MOBILE APP VIEW</div>
+      <div class="lab" id="pf-l3">AGENT DASHBOARD</div>
+    </div>
+
+    <div id="pf-stage" class="clip" data-start="0" data-duration="7" data-layout-allow-overflow data-layout-allow-overlap>
+      <div id="pf-floor"></div>
+      <!-- desktop: website -->
+      <div id="pf-win">
+        <div id="pf-cam">
+          <div class="chrome"><i style="left: 18px"></i><i style="left: 38px"></i><i style="left: 58px"></i><div class="pill">Nilora Estates</div></div>
+          <div class="vp">
+            <div class="page" id="pf-hero">
+              <div class="hero-photo"></div>
+              <div class="hero-shade"></div>
+              <div class="nav">
+                <span class="brandN">Nilora <em>Estates</em></span>
+                <span class="links"><span>RESIDENCES</span><span>NEIGHBORHOODS</span><span>ADVISORS</span><span>JOURNAL</span><span>ABOUT</span><span>CONTACT</span></span>
+                <span class="pv">PRIVATE VIEWING</span>
+              </div>
+              <div class="kicker">I<b></b>NILORA ESTATES</div>
+              <div class="h1">Where the<br />river meets<br />the light.</div>
+              <div class="body">A private residential agency for villas, penthouses and coastal homes across Cairo and the Egyptian shore.</div>
+              <div class="nums">I<br />II<br />III<br />IV<br />V</div>
+            </div>
+            <div class="page" id="pf-res">
+              <div class="pagefill" style="background: #0b1216"></div>
+              <div class="res-img"></div>
+              <div class="res-panel"></div>
+              <div class="nav">
+                <span class="brandN">Nilora <em>Estates</em></span>
+                <span class="links"><span>RESIDENCES</span><span>NEIGHBORHOODS</span><span>ADVISORS</span><span>JOURNAL</span><span>ABOUT</span><span>CONTACT</span></span>
+                <span class="pv">PRIVATE VIEWING</span>
+              </div>
+              <div class="eyebrow eb1">NEW CAIRO · VILLA</div>
+              <div class="ttl">Villa Amara</div>
+              <div class="price">EGP 86,500,000</div>
+              <div class="specs">5 bedrooms · 6 baths · 620 m²</div>
+              <div class="rule"></div>
+              <div id="pf-form">
+                <div class="eyebrow">PRIVATE VIEWING</div>
+                <div class="slots"><span class="slot">10:00 – 11:00</span><span class="slot on">11:30 – 12:30</span><span class="slot">13:00 – 14:00</span></div>
+                <div id="pf-req">REQUEST VIEWING</div>
+              </div>
+              <div id="pf-done">
+                <div class="chk">✓</div>
+                <div class="msg">Your viewing is requested</div>
+                <div class="sub">Saturday 14 November · 11:30 – 12:30</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- mobile -->
+      <div id="pf-phone">
+        <div class="scr">
+          <div class="notch"></div>
+          <div class="m-brand">Nilora <em>Estates</em></div>
+          <div class="m-title">Your account</div>
+          <div class="m-tabs"><span>Saved</span><span class="on">Viewings</span></div>
+          <div class="m-card">
+            <div class="m-img" id="pf-mimg"></div>
+            <div class="m-name">Villa Amara</div>
+            <div class="m-meta">Sat 14 Nov · 11:30 – 12:30</div>
+            <div class="m-pills"><span class="st pend" id="pf-mpend">Pending</span></div>
+          </div>
+          <div class="m-ghost"></div>
+        </div>
+      </div>
+
+      <!-- agent dashboard -->
+      <div id="pf-dash">
+        <div class="side">
+          <div class="mk">Nilora <em>Estates</em></div>
+          <div>Dashboard</div>
+          <div>Properties</div>
+          <div class="act">Viewings</div>
+          <div>Inquiries</div>
+        </div>
+        <div class="d-title">Viewing requests</div>
+        <div class="chips"><span class="on">All</span><span>pending</span><span>confirmed</span><span>completed</span></div>
+        <div class="thead"><span style="position: absolute; left: 0">VISITOR</span><span style="position: absolute; left: 180px">RESIDENCE</span><span style="position: absolute; left: 434px">SLOT</span><span style="position: absolute; left: 620px">STATUS</span></div>
+        <div class="row" id="pf-r1">
+          <span class="c1">Private client</span><span class="c2">Villa Amara</span><span class="c3">Sat 14 Nov · 11:30</span>
+          <span class="c4"><span class="st pend" id="pf-dpend">Pending ▾</span><span class="st conf" id="pf-dconf">Confirmed</span></span>
+        </div>
+        <div class="row" style="top: 334px">
+          <span class="c1 muted">Private client</span><span class="c2">Lakeside Townhouse</span><span class="c3">Fri 13 Nov · 10:00</span>
+          <span class="c4"><span class="st conf">Confirmed</span></span>
+        </div>
+        <div class="row" style="top: 430px">
+          <span class="c1 muted">Private client</span><span class="c2">Olive Grove Villa</span><span class="c3">Thu 12 Nov · 16:30</span>
+          <span class="c4"><span class="st conf" style="opacity: 0.7">Completed</span></span>
+        </div>
+        <div class="row" style="top: 526px">
+          <span class="c1 muted">Private client</span><span class="c2">The Cedar Twin House</span><span class="c3">Wed 11 Nov · 13:00</span>
+          <span class="c4"><span class="st conf" style="opacity: 0.7">Completed</span></span>
+        </div>
+      </div>
+
+      <!-- carried elements -->
+      <div id="pf-thumb"></div>
+      <div id="pf-fly">Villa Amara · Pending</div>
+
+      <svg id="pf-cur" viewBox="0 0 26 32">
+        <path d="M2 2 L2 26 L8.5 20 L13 30 L17 28.2 L12.6 18.6 L21.5 18.6 Z" fill="#ffffff" stroke="#0a0a0a" stroke-width="1.6" stroke-linejoin="round" />
+      </svg>
+    </div>
+  </div>
+
+  <script>
+    // initial states (outside the timeline so frame 0 is exact)
+    gsap.set(["#pf-l2", "#pf-l3"], { opacity: 0 });
+    gsap.set("#pf-l1", { opacity: 0 });
+    gsap.set("#pf-res", { opacity: 0 });
+    gsap.set("#pf-done", { opacity: 0 });
+    gsap.set("#pf-cur", { x: 960, y: 1500, opacity: 0 });
+    gsap.set("#pf-thumb", { opacity: 0 });
+    gsap.set("#pf-phone", { opacity: 0, y: 260 });
+    gsap.set("#pf-mimg", { opacity: 0 });
+    gsap.set("#pf-mpend", { opacity: 0, scale: 0.8 });
+    gsap.set("#pf-dash", { opacity: 0, x: 260 });
+    gsap.set("#pf-r1", { opacity: 0 });
+    gsap.set("#pf-dconf", { opacity: 0, scale: 0.85 });
+    gsap.set("#pf-fly", { opacity: 0 });
+    gsap.set("#pf-cap", { opacity: 0 });
+
+    const tl = gsap.timeline({ paused: true });
+
+    // context: what you're looking at is real
+    tl.to("#pf-cap", { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.1);
+    tl.to("#pf-l1", { opacity: 1, duration: 0.25, ease: "power2.out" }, 0.3);
+
+    // website: hero → Villa Amara residence page (blur swap on one stage)
+    tl.to("#pf-hero", { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power3.in" }, 0.15);
+    tl.fromTo("#pf-res", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power3.out" }, 0.3);
+    // camera pushes toward the booking panel
+    tl.fromTo("#pf-cam", { scale: 1, transformOrigin: "78% 62%" }, { scale: 1.14, duration: 0.9, ease: "power2.inOut" }, 0.45);
+
+    // cursor arrives and presses the real "Request viewing" button
+    tl.to("#pf-cur", { opacity: 1, duration: 0.15 }, 0.85);
+    tl.to("#pf-cur", { x: 812, y: 1088, duration: 0.7, ease: "power3.out" }, 0.85);
+    tl.to("#pf-cur", { scale: 0.86, duration: 0.07, ease: "power2.in" }, 1.6);
+    tl.to("#pf-cur", { scale: 1, duration: 0.12, ease: "power2.out" }, 1.67);
+    tl.to("#pf-req", { backgroundColor: "#e3c893", duration: 0.07 }, 1.6);
+    tl.to("#pf-form", { opacity: 0, filter: "blur(6px)", duration: 0.15, ease: "power3.in" }, 1.72);
+    tl.fromTo("#pf-done", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power3.out" }, 1.85);
+    tl.to("#pf-cur", { opacity: 0, duration: 0.15 }, 2.0);
+
+    // pattern interrupt: the residence card carries across into the buyer's phone
+    tl.to("#pf-l1", { opacity: 0, duration: 0.15 }, 2.0);
+    tl.set("#pf-thumb", { opacity: 1 }, 2.0);
+    tl.to("#pf-thumb", { x: 318, y: 119, scaleX: 324 / 534, scaleY: 200 / 560, borderRadius: 30, duration: 0.62, ease: "power3.inOut" }, 2.02);
+    tl.to("#pf-floor", { opacity: 0, duration: 0.4, ease: "power2.in" }, 0.5);
+    tl.to("#pf-win", { scale: 0.86, opacity: 0, filter: "blur(10px)", duration: 0.45, ease: "power3.in" }, 2.02);
+    tl.to("#pf-phone", { opacity: 1, y: 0, duration: 0.6, ease: "expo.out" }, 2.1);
+    tl.to("#pf-l2", { opacity: 1, duration: 0.25, ease: "power2.out" }, 2.3);
+    tl.set("#pf-mimg", { opacity: 1 }, 2.64);
+    tl.set("#pf-thumb", { opacity: 0 }, 2.64);
+    tl.to("#pf-mpend", { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.4)" }, 2.72);
+
+    // the same request lands in the agent's "Viewing requests"
+    tl.set("#pf-fly", { opacity: 1 }, 3.7);
+    tl.fromTo("#pf-fly", { x: 0, y: 0, scale: 1 }, { x: -134, y: -212, scale: 1, duration: 0.6, ease: "power3.inOut" }, 3.7);
+    tl.to("#pf-l2", { opacity: 0, duration: 0.15 }, 3.7);
+    tl.to("#pf-phone", { x: -460, opacity: 0, duration: 0.3, ease: "power3.in" }, 3.7);
+    tl.to("#pf-dash", { opacity: 1, x: 0, duration: 0.6, ease: "expo.out" }, 3.92);
+    // punch-in on the request row so the status reads on a phone
+    tl.fromTo("#pf-dash", { scale: 1, transformOrigin: "75% 40%" }, { scale: 1.22, duration: 0.7, ease: "power2.inOut" }, 4.55);
+    tl.to("#pf-l3", { opacity: 1, duration: 0.25, ease: "power2.out" }, 4.0);
+    tl.to("#pf-r1", { opacity: 1, duration: 0.12 }, 4.28);
+    tl.to("#pf-fly", { opacity: 0, duration: 0.14 }, 4.3);
+
+    // agent confirms → Confirmed
+    tl.set("#pf-cur", { x: 1100, y: 1300, scale: 1 }, 4.6);
+    tl.to("#pf-cur", { opacity: 1, duration: 0.12 }, 4.65);
+    tl.to("#pf-cur", { x: 958, y: 852, duration: 0.65, ease: "power3.out" }, 4.65);
+    tl.to("#pf-cur", { scale: 0.86, duration: 0.07, ease: "power2.in" }, 5.4);
+    tl.to("#pf-cur", { scale: 1, duration: 0.12, ease: "power2.out" }, 5.47);
+    tl.to("#pf-dpend", { opacity: 0, duration: 0.1 }, 5.42);
+    tl.to("#pf-dconf", { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.4)" }, 5.45);
+    tl.to("#pf-r1", { backgroundColor: "rgba(94,140,138,0.14)", borderLeftColor: "#8fbab7", duration: 0.3 }, 5.45);
+    tl.to("#pf-cur", { opacity: 0, duration: 0.2 }, 5.9);
+
+    // hand-off to the payoff (overlaps the next scene by 0.5 s)
+    tl.to(["#pf-dash", "#pf-l3"], { opacity: 0, filter: "blur(10px)", duration: 0.3, ease: "power3.in" }, 6.2);
+    tl.to("#pf-cap", { opacity: 0, filter: "blur(8px)", duration: 0.25, ease: "power3.in" }, 6.2);
+
+    window.__timelines["proof"] = tl;
+  </script>
+</template>

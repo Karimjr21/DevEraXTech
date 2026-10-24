@@ -1,0 +1,171 @@
+<!doctype html>
+<html
+  lang="en"
+  data-resolution="portrait"
+  data-composition-variables='[
+    {"id":"color-ground","type":"color","label":"Background","default":"#0a0a0a"},
+    {"id":"color-ink","type":"color","label":"Text","default":"#f5f5f5"},
+    {"id":"color-accent","type":"color","label":"Accent (DevEraXTech gold)","default":"#d4af37"},
+    {"id":"font-display","type":"string","label":"Display font","default":"Inter"}
+  ]'
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --color-ground: #0a0a0a;
+        --color-ink: #f5f5f5;
+        --color-accent: #d4af37;
+        --font-display: "Inter";
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: var(--color-ground);
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        font-family: var(--font-display);
+      }
+      /* Studio ground: solid plus one warm key glow (no full-frame linear gradients: H.264 bands them) */
+      #stage {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 70% 38% at 50% 46%, rgba(212, 175, 55, 0.13) 0%, rgba(212, 175, 55, 0) 70%),
+          radial-gradient(ellipse 60% 30% at 18% 8%, rgba(242, 209, 123, 0.08) 0%, rgba(242, 209, 123, 0) 70%),
+          var(--color-ground);
+      }
+      #glow {
+        position: absolute;
+        left: 90px;
+        top: 560px;
+        width: 900px;
+        height: 760px;
+        border-radius: 50%;
+        background: radial-gradient(closest-side, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0));
+        opacity: 0.55;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="20"
+      data-width="1080"
+      data-height="1920"
+    >
+      <div id="stage"></div>
+      <div id="glow"></div>
+
+      <div
+        id="reveal"
+        data-composition-id="reveal"
+        data-composition-src="compositions/reveal.html"
+        data-start="0"
+        data-duration="6"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 2"
+      ></div>
+      <div
+        id="proof"
+        data-composition-id="proof"
+        data-composition-src="compositions/proof.html"
+        data-start="6"
+        data-duration="7"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 2"
+      ></div>
+      <div
+        id="payoff"
+        data-composition-id="payoff"
+        data-composition-src="compositions/payoff.html"
+        data-start="12.5"
+        data-duration="4.5"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 2"
+      ></div>
+      <div
+        id="brand"
+        data-composition-id="brand"
+        data-composition-src="compositions/brand.html"
+        data-start="17"
+        data-duration="3"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 2"
+      ></div>
+      <div
+        id="brandcue"
+        data-composition-id="brandcue"
+        data-composition-src="compositions/brandcue.html"
+        data-start="0"
+        data-duration="17"
+        data-track-index="2"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 5"
+      ></div>
+
+      <!-- Music: Sascha Ende, ende.app (CC BY 4.0) -->
+      <audio id="music" class="clip" data-start="0" data-duration="20" data-track-index="10" data-volume="0.3" data-fade-out="1.2" src="assets/music/happy-beats-business-moves-vol-12-by-ende-dot-app.mp3"></audio>
+
+      <!-- S1: seam draws (sonic note 1), page parts -->
+      <audio id="sfx-seam" class="clip" data-start="0.32" data-duration="1.6" data-track-index="11" data-volume="0.75" src="assets/sfx/sig-note.wav"></audio>
+      <audio id="sfx-part" class="clip" data-start="0.80" data-duration="0.5" data-track-index="12" data-volume="0.6" src="assets/sfx/impactSoft_medium_001.ogg"></audio>
+      <!-- S2: layers separate, viewings trace, lock back -->
+      <audio id="sfx-lay1" class="clip" data-start="2.62" data-duration="0.5" data-track-index="13" data-volume="0.5" src="assets/sfx/drop_001.ogg"></audio>
+      <audio id="sfx-lay2" class="clip" data-start="2.90" data-duration="0.5" data-track-index="14" data-volume="0.45" src="assets/sfx/drop_002.ogg"></audio>
+      <audio id="sfx-trace" class="clip" data-start="4.12" data-duration="0.5" data-track-index="15" data-volume="0.45" src="assets/sfx/rollover2.ogg"></audio>
+      <audio id="sfx-node" class="clip" data-start="4.52" data-duration="0.5" data-track-index="16" data-volume="0.55" src="assets/sfx/chip-lay-1.ogg"></audio>
+      <audio id="sfx-lock" class="clip" data-start="5.82" data-duration="0.5" data-track-index="17" data-volume="0.55" src="assets/sfx/impactSoft_medium_004.ogg"></audio>
+      <!-- S3: click request, card carry, confirm -->
+      <audio id="sfx-click1" class="clip" data-start="7.62" data-duration="0.4" data-track-index="18" data-volume="0.7" src="assets/sfx/mouseclick1.ogg"></audio>
+      <audio id="sfx-carry1" class="clip" data-start="8.02" data-duration="0.8" data-track-index="19" data-volume="0.45" src="assets/sfx/card-slide-1.ogg"></audio>
+      <audio id="sfx-carry2" class="clip" data-start="9.72" data-duration="0.8" data-track-index="20" data-volume="0.4" src="assets/sfx/card-slide-1.ogg"></audio>
+      <audio id="sfx-click2" class="clip" data-start="11.42" data-duration="0.4" data-track-index="21" data-volume="0.7" src="assets/sfx/click_003.ogg"></audio>
+      <audio id="sfx-confirm" class="clip" data-start="11.47" data-duration="0.5" data-track-index="22" data-volume="0.6" src="assets/sfx/chip-lay-1.ogg"></audio>
+      <!-- S4: seam arrives on the strong cue (two-note signature), locks tick on the grid -->
+      <audio id="sfx-sig2" class="clip" data-start="13.11" data-duration="2.2" data-track-index="23" data-volume="0.8" src="assets/sfx/sig-two.wav"></audio>
+      <audio id="sfx-lockA" class="clip" data-start="14.20" data-duration="0.5" data-track-index="24" data-volume="0.45" src="assets/sfx/drop_001.ogg"></audio>
+      <audio id="sfx-lockB" class="clip" data-start="14.73" data-duration="0.5" data-track-index="25" data-volume="0.45" src="assets/sfx/drop_002.ogg"></audio>
+      <!-- S5: full three-note signature lands the logo (strong cue 17.47) -->
+      <audio id="sfx-sig3" class="clip" data-start="17.45" data-duration="2.55" data-track-index="26" data-volume="0.95" src="assets/sfx/sig-full.wav"></audio>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      // Stage key light breathes with the build of the edit, not on a loop.
+      tl.fromTo("#glow", { opacity: 0.45 }, { opacity: 0.8, duration: 4, ease: "power2.inOut" }, 2);
+      tl.to("#glow", { opacity: 0.55, duration: 2, ease: "power2.inOut" }, 9);
+      tl.to("#glow", { opacity: 0.9, duration: 1.2, ease: "power2.out" }, 13);
+      tl.to("#glow", { opacity: 0.6, duration: 1.5, ease: "power2.inOut" }, 17);
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+@font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 500; src: url("assets/fonts/CormorantGaramond-500.woff2") format("woff2"); }
+@font-face { font-family: "Cormorant Garamond"; font-style: italic; font-weight: 500; src: url("assets/fonts/CormorantGaramond-500i.woff2") format("woff2"); }
+@font-face { font-family: "Inter Tight"; font-style: normal; font-weight: 300 700; src: url("assets/fonts/InterTight-var.woff2") format("woff2"); }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0a0a0a; }
+#root { position: relative; width: 100%; height: 100%; font-family: "Inter", sans-serif; }
+#stage { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 38% at 50% 46%, rgba(212,175,55,0.13) 0%, rgba(212,175,55,0) 70%), #0a0a0a; }
+#row { position: absolute; left: 0; right: 0; top: 186px; display: flex; align-items: center; justify-content: center; gap: 18px; }
+#row img { width: 96px; height: 67px; object-fit: contain; }
+#row span { font-weight: 700; font-size: 38px; color: #e6c45a; }
+.copy { position: absolute; left: 0; right: 0; top: 302px; text-align: center; font-weight: 800; text-transform: uppercase; letter-spacing: -0.025em; color: #f5f5f5; line-height: 1; font-size: 120px; }
+.copy em { font-style: normal; color: #e6c45a; }
+.win { position: absolute; left: 60px; top: 610px; width: 960px; height: 600px; border-radius: 14px; overflow: hidden; background: #0b1216; box-shadow: 0 40px 90px rgba(0,0,0,0.55); }
+.chrome { position: absolute; left: 0; top: 0; width: 960px; height: 40px; background: #141a1e; z-index: 5; }
+.chrome i { position: absolute; top: 14px; width: 12px; height: 12px; border-radius: 50%; background: #3a4349; }
+.chrome .pill { position: absolute; left: 330px; top: 9px; width: 300px; height: 22px; border-radius: 11px; background: #0b1216; color: #9aa7ae; font: 500 13px/22px "Inter Tight", sans-serif; text-align: center; }
+.photo { position: absolute; left: 0; top: 40px; width: 960px; height: 560px; background: url("assets/img/nile-zamalek.jpg") 30% 55% / cover no-repeat; }
+.shade { position: absolute; left: 0; top: 40px; width: 960px; height: 560px; background: linear-gradient(90deg, rgba(11,18,22,0.86) 0%, rgba(11,18,22,0.55) 45%, rgba(11,18,22,0.12) 100%); }
+.page { position: absolute; left: 0; top: 40px; width: 1440px; height: 840px; transform: scale(0.66667); transform-origin: 0 0; color: #ede6da; font-family: "Inter Tight", sans-serif; }
+.nav { position: absolute; left: 120px; right: 60px; top: 18px; height: 44px; display: flex; align-items: center; white-space: nowrap; }
+.brandN { font-family: "Cormorant Garamond", serif; font-size: 30px; }
+.brandN em { font-style: italic; color: #e3c893; }
+.links { display: flex; gap: 30px; margin-left: 120px; font-size: 14px; letter-spacing: 0.22em; color: #c9c2b6; }
+.pv { position: absolute; right: 60px; top: 18px; height: 44px; padding: 0 28px; border-radius: 22px; background: #c8a46b; color: #0b1216; font-size: 14px; font-weight: 600; letter-spacing: 0.2em; line-height: 44px; white-space: nowrap; }
+.kicker { position: absolute; left: 120px; top: 318px; font-size: 16px; letter-spacing: 0.3em; }
+.kicker b { display: inline-block; width: 60px; height: 1px; background: #c8a46b; vertical-align: middle; margin: 0 22px; }
+.h1 { position: absolute; left: 112px; top: 410px; font-family: "Cormorant Garamond", serif; font-weight: 500; font-size: 122px; line-height: 0.94; }
+.body { position: absolute; left: 120px; top: 770px; width: 640px; font-size: 21px; line-height: 1.45; color: #e2dbcf; }
+.grid { position: absolute; left: 0; top: 0; width: 960px; height: 600px; background: rgba(14,13,10,1); }
+.term { position: absolute; width: 24px; height: 24px; border-radius: 50%; border: 4px solid #f2d17b; background: #0a0a0a; box-shadow: 0 0 16px rgba(242,209,123,0.9); }
+</style>
+</head>
+<body><div id="root" data-composition-id="main" data-start="0" data-duration="2.5" data-width="1080" data-height="1920">
+<div id="stage"></div>
+<div id="all" class="clip" data-start="0" data-duration="2.5" data-layout-allow-overlap data-layout-allow-overflow>
+<div id="row"><img src="assets/brand/deveraxtech-logo.png" alt="DevEraXTech logo"/><span>DevEraXTech</span></div>
+<h1 class="copy" id="cp">What makes<br/><em>it work?</em></h1>
+<div class="win"><svg class="grid" viewBox="0 0 960 600">
+<g stroke="rgba(212,175,55,0.16)"><line x1="0" y1="56" x2="960" y2="56"/><line x1="0" y1="72" x2="960" y2="72"/><line x1="0" y1="88" x2="960" y2="88"/><line x1="0" y1="104" x2="960" y2="104"/><line x1="0" y1="120" x2="960" y2="120"/><line x1="0" y1="136" x2="960" y2="136"/><line x1="0" y1="152" x2="960" y2="152"/><line x1="0" y1="168" x2="960" y2="168"/><line x1="0" y1="184" x2="960" y2="184"/><line x1="0" y1="200" x2="960" y2="200"/><line x1="0" y1="216" x2="960" y2="216"/><line x1="0" y1="232" x2="960" y2="232"/><line x1="0" y1="248" x2="960" y2="248"/><line x1="0" y1="264" x2="960" y2="264"/><line x1="0" y1="280" x2="960" y2="280"/><line x1="0" y1="296" x2="960" y2="296"/><line x1="0" y1="312" x2="960" y2="312"/><line x1="0" y1="328" x2="960" y2="328"/><line x1="0" y1="344" x2="960" y2="344"/><line x1="0" y1="360" x2="960" y2="360"/><line x1="0" y1="376" x2="960" y2="376"/><line x1="0" y1="392" x2="960" y2="392"/><line x1="0" y1="408" x2="960" y2="408"/><line x1="0" y1="424" x2="960" y2="424"/><line x1="0" y1="440" x2="960" y2="440"/><line x1="0" y1="456" x2="960" y2="456"/><line x1="0" y1="472" x2="960" y2="472"/><line x1="0" y1="488" x2="960" y2="488"/><line x1="0" y1="504" x2="960" y2="504"/><line x1="0" y1="520" x2="960" y2="520"/><line x1="0" y1="536" x2="960" y2="536"/><line x1="0" y1="552" x2="960" y2="552"/><line x1="0" y1="568" x2="960" y2="568"/><line x1="0" y1="584" x2="960" y2="584"/></g>
+<g stroke="rgba(212,175,55,0.55)" stroke-width="1.5"><line x1="80.0" y1="0" x2="80.0" y2="600"/><line x1="146.7" y1="0" x2="146.7" y2="600"/><line x1="213.3" y1="0" x2="213.3" y2="600"/><line x1="280.0" y1="0" x2="280.0" y2="600"/><line x1="346.7" y1="0" x2="346.7" y2="600"/><line x1="413.3" y1="0" x2="413.3" y2="600"/><line x1="480.0" y1="0" x2="480.0" y2="600"/><line x1="546.7" y1="0" x2="546.7" y2="600"/><line x1="613.3" y1="0" x2="613.3" y2="600"/><line x1="680.0" y1="0" x2="680.0" y2="600"/><line x1="746.7" y1="0" x2="746.7" y2="600"/><line x1="813.3" y1="0" x2="813.3" y2="600"/><line x1="880.0" y1="0" x2="880.0" y2="600"/></g>
+<g fill="none" stroke="#f2d17b" stroke-width="2" stroke-dasharray="7 6"><rect x="80" y="52" width="840" height="30" rx="4"/><rect x="80" y="246" width="240" height="20" rx="3"/><rect x="74" y="312" width="520" height="226" rx="4"/><rect x="786" y="52" width="134" height="30" rx="15"/><rect x="80" y="550" width="430" height="40" rx="3"/></g>
+</svg>
+<div id="surface" style="position:absolute;inset:0"><div class="photo"></div><div class="shade"></div><div class="page">
+<div class="nav" id="p-nav"><span class="brandN">Nilora <em>Estates</em></span><span class="links"><span>RESIDENCES</span><span>NEIGHBORHOODS</span><span>ADVISORS</span><span>JOURNAL</span><span>ABOUT</span><span>CONTACT</span></span></div>
+<span class="pv" id="p-pv">PRIVATE VIEWING</span>
+<div class="kicker" id="p-kick">I<b></b>NILORA ESTATES</div>
+<div class="h1" id="p-h1">Where the<br/>river meets<br/>the light.</div>
+<div class="body" id="p-body">A private residential agency for villas, penthouses and coastal homes across Cairo and the Egyptian shore.</div>
+</div></div>
+<div class="chrome"><i style="left:18px"></i><i style="left:38px"></i><i style="left:58px"></i><div class="pill">Nilora Estates</div></div>
+<div id="guide" style="position:absolute;left:-2px;top:40px;width:4px;height:560px;background:linear-gradient(180deg,#fff1bf,#d4af37);box-shadow:0 0 14px rgba(242,209,123,0.9)"></div>
+<div class="term" id="gterm" style="left:-12px;top:30px"></div>
+</div>
+</div>
+<audio id="sfx" class="clip" data-start="0.32" data-duration="1.6" data-track-index="11" data-volume="0.75" src="assets/sfx/sig-note.wav"></audio>
+</div>
+<script>
+gsap.set("#surface", { clipPath: "inset(0px 0px 0px 0px)" });
+gsap.set(["#guide","#gterm"], { x: 0, opacity: 0 });
+const tl = gsap.timeline({ paused: true });
+tl.to(["#guide","#gterm"], { opacity: 1, duration: 0.05 }, 0.3);
+// a precise alignment guide reveals the engineered layer beneath the page
+tl.to(["#guide","#gterm"], { x: 500, duration: 0.7, ease: "expo.out" }, 0.3);
+tl.to("#surface", { clipPath: "inset(0px 0px 0px 500px)", duration: 0.7, ease: "expo.out" }, 0.3);
+window.__timelines["main"] = tl;
+</script></body></html>

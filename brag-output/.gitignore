@@ -1,0 +1,9 @@
+# Hyperframes render cache / history
+composition/.hyperframes/
+hooks/*/.hyperframes/
+node_modules/
+# scratch
+brag.raw.mp4
+*.log
+hooks/*.log
+qa/*.png

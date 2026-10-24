@@ -1,0 +1,214 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Cormorant Garamond";
+      font-style: normal;
+      font-weight: 500;
+      src: url("assets/fonts/CormorantGaramond-500.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Inter Tight";
+      font-style: normal;
+      font-weight: 300 700;
+      src: url("assets/fonts/InterTight-var.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter Tight", sans-serif;
+      color: #ede6da;
+    }
+    .comp {
+      position: absolute;
+      left: 150px;
+      width: 860px;
+      border-radius: 20px;
+      background: #0b1216;
+      border: 1px solid rgba(237, 230, 218, 0.12);
+      border-left: 3px solid rgba(212, 175, 55, 0.35);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
+      overflow: hidden;
+      transform-origin: 0 50%;
+    }
+    .tagc {
+      position: absolute;
+      right: 26px;
+      top: 22px;
+      font-family: "Inter", sans-serif;
+      font-weight: 700;
+      font-size: 26px;
+      letter-spacing: 0.22em;
+      color: #e6c45a;
+    }
+    .img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      background: url("assets/img/villa-amara.jpg") 40% 50% / cover no-repeat;
+    }
+    .eb {
+      font-size: 26px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      color: #9aa7ae;
+    }
+    .nm {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      line-height: 1;
+    }
+    .st {
+      display: inline-block;
+      height: 52px;
+      padding: 0 24px;
+      border-radius: 26px;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      line-height: 50px;
+      border: 1px solid rgba(143, 186, 183, 0.55);
+      background: rgba(94, 140, 138, 0.18);
+      color: #a9d2cf;
+    }
+    #po-c1 {
+      top: 420px;
+      height: 230px;
+    }
+    #po-c2 {
+      top: 690px;
+      height: 230px;
+      width: 720px;
+    }
+    #po-c3 {
+      top: 960px;
+      height: 200px;
+    }
+    #po-sheen {
+      position: absolute;
+      left: 150px;
+      top: 420px;
+      width: 860px;
+      height: 740px;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    #po-sheen i {
+      position: absolute;
+      left: -420px;
+      top: -200px;
+      width: 260px;
+      height: 1200px;
+      transform: rotate(18deg);
+      background: linear-gradient(90deg, rgba(255, 241, 191, 0) 0%, rgba(255, 241, 191, 0.16) 50%, rgba(255, 241, 191, 0) 100%);
+    }
+    /* the Precision Seam */
+    #po-seamw {
+      position: absolute;
+      left: 118px;
+      top: 400px;
+      width: 4px;
+      height: 780px;
+      transform-origin: 50% 50%;
+    }
+    #po-seam {
+      position: absolute;
+      inset: 0;
+      border-radius: 2px;
+      background: linear-gradient(180deg, rgba(212, 175, 55, 0) 0%, #d4af37 6%, #fff1bf 55%, #f2d17b 100%);
+      box-shadow: 0 0 14px rgba(242, 209, 123, 0.85), 0 0 36px rgba(212, 175, 55, 0.45);
+      transform-origin: 50% 0;
+    }
+    #po-term {
+      position: absolute;
+      left: -10px;
+      top: -12px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 4px solid #f2d17b;
+      background: #0a0a0a;
+      box-shadow: 0 0 16px rgba(242, 209, 123, 0.9);
+    }
+  </style>
+
+  <div id="root" data-composition-id="payoff" data-width="1080" data-height="1920">
+    <div id="po-wrap" class="clip" data-start="0" data-duration="4.5" data-layout-allow-overflow data-layout-allow-overlap>
+      <!-- the same residence, the same request, three surfaces -->
+      <div class="comp" id="po-c1">
+        <div class="img" style="width: 260px"></div>
+        <div style="position: absolute; left: 296px; top: 40px">
+          <div class="eb">NEW CAIRO · VILLA</div>
+          <div class="nm" style="font-size: 76px; margin-top: 12px">Villa Amara</div>
+          <div style="font-size: 34px; font-weight: 500; color: #e3c893; margin-top: 12px">EGP 86,500,000</div>
+        </div>
+        <div class="tagc">WEBSITE</div>
+      </div>
+      <div class="comp" id="po-c2">
+        <div class="img" style="width: 200px; border-radius: 0"></div>
+        <div style="position: absolute; left: 228px; top: 40px">
+          <div class="nm" style="font-size: 58px">Villa Amara</div>
+          <div style="font-size: 30px; color: #9aa7ae; margin-top: 8px">Sat 14 Nov · 11:30 – 12:30</div>
+          <div class="st" style="margin-top: 14px">Confirmed</div>
+        </div>
+        <div class="tagc" style="top: auto; bottom: 22px">MOBILE</div>
+      </div>
+      <div class="comp" id="po-c3">
+        <div class="eb" style="position: absolute; left: 34px; top: 30px">VIEWING REQUESTS</div>
+        <div class="nm" style="position: absolute; left: 34px; top: 92px; font-size: 64px">Villa Amara</div>
+        <div style="position: absolute; left: 372px; top: 112px; font-size: 30px; color: #9aa7ae">Sat 14 Nov · 11:30</div>
+        <div class="st" style="position: absolute; left: 650px; top: 102px">Confirmed</div>
+        <div class="tagc">DASHBOARD</div>
+      </div>
+      <div id="po-sheen"><i></i></div>
+
+      <div id="po-seamw">
+        <div id="po-seam"></div>
+        <div id="po-term"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    gsap.set(["#po-c1", "#po-c2", "#po-c3"], { opacity: 0, x: 160, filter: "blur(10px)" });
+    gsap.set("#po-seam", { scaleY: 0 });
+    gsap.set("#po-term", { y: 0, opacity: 0 });
+
+    const tl = gsap.timeline({ paused: true });
+    // host starts at 12.5 s: local t = absolute − 12.5
+
+    // three surfaces arrive, deliberately a few pixels out of line
+    tl.to("#po-c1", { opacity: 1, x: 56, filter: "blur(0px)", duration: 0.55, ease: "expo.out" }, 0.0);
+    tl.to("#po-c2", { opacity: 1, x: -42, filter: "blur(0px)", duration: 0.55, ease: "expo.out" }, 0.12);
+    tl.to("#po-c3", { opacity: 1, x: 74, filter: "blur(0px)", duration: 0.55, ease: "expo.out" }, 0.24);
+
+    // the seam draws down and lands on the strong cue
+    tl.to("#po-term", { opacity: 1, duration: 0.06 }, 0.16);
+    tl.to("#po-seam", { scaleY: 1, duration: 0.45, ease: "expo.out" }, 0.16); // beat-locked: 13.11s
+    tl.to("#po-term", { y: 780, duration: 0.45, ease: "expo.out" }, 0.16);
+
+    // each surface locks to the seam — reveal → precision alignment → stillness
+    // beat-grid: 13.65s, 14.20s, 14.73s
+    tl.to("#po-c1", { x: 0, duration: 0.35, ease: "power3.out" }, 1.15);
+    tl.to("#po-c1", { borderLeftColor: "#fff1bf", duration: 0.08 }, 1.15);
+    tl.to("#po-c1", { borderLeftColor: "rgba(212,175,55,0.9)", duration: 0.4 }, 1.25);
+    tl.to("#po-c2", { x: 0, duration: 0.35, ease: "power3.out" }, 1.7);
+    tl.to("#po-c2", { borderLeftColor: "#fff1bf", duration: 0.08 }, 1.7);
+    tl.to("#po-c2", { borderLeftColor: "rgba(212,175,55,0.9)", duration: 0.4 }, 1.8);
+    tl.to("#po-c3", { x: 0, duration: 0.35, ease: "power3.out" }, 2.23);
+    tl.to("#po-c3", { borderLeftColor: "#fff1bf", duration: 0.08 }, 2.23);
+    tl.to("#po-c3", { borderLeftColor: "rgba(212,175,55,0.9)", duration: 0.4 }, 2.33);
+
+    // one controlled reflection across the finished system, then stillness
+    tl.fromTo("#po-sheen i", { x: 0 }, { x: 1500, duration: 0.7, ease: "power2.inOut" }, 2.5);
+
+    // everything folds into the seam
+    tl.to("#po-c3", { scaleX: 0, opacity: 0, duration: 0.32, ease: "power3.in" }, 3.7);
+    tl.to("#po-c2", { scaleX: 0, opacity: 0, duration: 0.32, ease: "power3.in" }, 3.74);
+    tl.to("#po-c1", { scaleX: 0, opacity: 0, duration: 0.32, ease: "power3.in" }, 3.78);
+    // the seam turns horizontal and centres — the start of the end card
+    tl.to("#po-seamw", { rotation: -90, x: 420, y: 185, scaleY: 0.9, duration: 0.4, ease: "power3.inOut" }, 4.07);
+
+    window.__timelines["payoff"] = tl;
+  </script>
+</template>

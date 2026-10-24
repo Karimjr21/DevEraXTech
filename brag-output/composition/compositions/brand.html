@@ -1,0 +1,115 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+    }
+    #br-logo {
+      position: absolute;
+      left: 280px;
+      top: 585px;
+      width: 520px;
+      height: 365px;
+    }
+    #br-logo img {
+      width: 520px;
+      height: 365px;
+      object-fit: contain;
+      display: block;
+    }
+    /* seam picks up exactly where the payoff left it: centre (540, 975), 702 px long */
+    #br-seam {
+      position: absolute;
+      left: 189px;
+      top: 973px;
+      width: 702px;
+      height: 4px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, rgba(212, 175, 55, 0) 0%, #d4af37 6%, #fff1bf 55%, #f2d17b 100%);
+      box-shadow: 0 0 14px rgba(242, 209, 123, 0.85), 0 0 36px rgba(212, 175, 55, 0.45);
+      transform-origin: 50% 50%;
+    }
+    #br-term {
+      position: absolute;
+      left: 879px;
+      top: 963px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 4px solid #f2d17b;
+      background: #0a0a0a;
+      box-shadow: 0 0 16px rgba(242, 209, 123, 0.9);
+    }
+    #br-word {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1010px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 116px;
+      letter-spacing: -0.015em;
+      line-height: 1.1;
+      color: #e6c45a;
+      background: linear-gradient(100deg, #c9a133 0%, #d4af37 22%, #fff1bf 45%, #f5d573 55%, #d4af37 78%, #c9a133 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    #br-tag {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1162px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 36px;
+      letter-spacing: 0.32em;
+      text-indent: 0.32em;
+      color: #e6c45a;
+    }
+    #br-url {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1232px;
+      text-align: center;
+      font-weight: 500;
+      font-size: 30px;
+      letter-spacing: 0.04em;
+      color: #b5b5b5;
+    }
+  </style>
+
+  <div id="root" data-composition-id="brand" data-width="1080" data-height="1920">
+    <div id="br-wrap" class="clip" data-start="0" data-duration="3">
+      <div id="br-logo"><img src="assets/brand/deveraxtech-logo.png" alt="DevEraXTech logo" /></div>
+      <div id="br-seam"></div>
+      <div id="br-term"></div>
+      <div id="br-word">DevEraXTech</div>
+      <div id="br-tag">ENGINEERED EXCELLENCE</div>
+      <div id="br-url">deveraxtech.com</div>
+    </div>
+  </div>
+
+  <script>
+    gsap.set("#br-logo", { clipPath: "inset(100% 0% 0% 0%)" });
+    gsap.set(["#br-word", "#br-tag", "#br-url"], { opacity: 0, filter: "blur(8px)" });
+
+    const tl = gsap.timeline({ paused: true });
+    // host starts at 17.0 s
+    // the official logo rises out of the seam; lands on the strong cue at 17.47 s
+    tl.to("#br-logo", { clipPath: "inset(0% 0% 0% 0%)", duration: 0.47, ease: "expo.out" }, 0.0); // beat-locked: 17.47s
+    tl.to("#br-seam", { scaleX: 0.6, duration: 0.47, ease: "expo.out" }, 0.0);
+    tl.to("#br-term", { x: -140, duration: 0.47, ease: "expo.out" }, 0.0);
+    // name, statement, address
+    tl.to("#br-word", { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.45);
+    tl.to("#br-tag", { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.62);
+    tl.to("#br-url", { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.8);
+    // held dead still to the last frame
+    tl.to("#br-url", { opacity: 1, duration: 0.01 }, 2.98);
+
+    window.__timelines["brand"] = tl;
+  </script>
+</template>
