@@ -110,10 +110,10 @@ def encode(frames_dir, audio, out, profile):
         v = ['-c:v', 'libx264', '-preset', 'slow', '-crf', '8', '-pix_fmt', 'yuv420p', '-profile:v', 'high', '-tune', 'film', '-x264-params', 'keyint=60']
         a = ['-c:a', 'pcm_s24le']
     elif profile == 'tiktok':
-        v = ['-c:v', 'libx264', '-preset', 'slow', '-crf', '15', '-maxrate', '24M', '-bufsize', '48M', '-pix_fmt', 'yuv420p', '-profile:v', 'high', '-level', '4.2', '-tune', 'film', '-g', '60']
+        v = ['-c:v', 'libx264', '-preset', 'slow', '-crf', '19', '-maxrate', '12M', '-bufsize', '24M', '-pix_fmt', 'yuv420p', '-profile:v', 'high', '-level', '4.2', '-tune', 'film', '-g', '60']
         a = ['-c:a', 'aac', '-b:a', '320k', '-ar', '48000']
     elif profile == 'instagram':
-        v = ['-vf', 'fps=30', '-c:v', 'libx264', '-preset', 'slow', '-crf', '16', '-maxrate', '14M', '-bufsize', '28M', '-pix_fmt', 'yuv420p', '-profile:v', 'high', '-level', '4.1', '-tune', 'film', '-g', '30']
+        v = ['-vf', 'fps=30', '-c:v', 'libx264', '-preset', 'slow', '-crf', '19', '-maxrate', '8M', '-bufsize', '16M', '-pix_fmt', 'yuv420p', '-profile:v', 'high', '-level', '4.1', '-tune', 'film', '-g', '30']
         a = ['-c:a', 'aac', '-b:a', '256k', '-ar', '48000']
     else:
         v = ['-vf', 'scale=540:960:flags=lanczos', '-c:v', 'libx264', '-preset', 'slow', '-crf', '22', '-pix_fmt', 'yuv420p', '-g', '60']
@@ -125,7 +125,7 @@ def encode(frames_dir, audio, out, profile):
 
 def main():
     os.makedirs(TMP, exist_ok=True)
-    for sub in ('master', 'tiktok', 'instagram', 'cuts', 'openings', 'thumbnails', 'audio'):
+    for sub in ('master', 'tiktok', 'instagram', 'openings', 'thumbnails', 'audio'):
         os.makedirs(os.path.join(DEL, sub), exist_ok=True)
     A = lambda v, s: read_wav(os.path.join(OUT, 'audio', v, f'{s}.wav'))
     mix = {v: A(v, 'music') + A(v, 'sfx') for v in ('main', 'shock', 'curiosity')}
@@ -151,7 +151,9 @@ def main():
     c06 = stage_frames(frames_main, CUT_06, 'c06')
 
     print('encoding main film')
-    encode(full, au(f'{NAME}_36s_music+sfx_master.wav'), os.path.join(DEL, 'master', f'{NAME}_36s_1080x1920_60p_master.mov'), 'master')
+    mpath = os.path.join(DEL, 'master', f'{NAME}_36s_1080x1920_60p_master.mov')
+    if not os.path.exists(mpath) or '--force-master' in sys.argv:
+        encode(full, au(f'{NAME}_36s_music+sfx_master.wav'), mpath, 'master')
     for prof, fold in (('tiktok', 'tiktok'), ('instagram', 'instagram')):
         tag = '60p' if prof == 'tiktok' else '30p'
         encode(full, au(f'{NAME}_36s_music+sfx_master.wav'), os.path.join(DEL, fold, f'{NAME}_36s_{prof}_{tag}_music.mp4'), prof)
