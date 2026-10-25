@@ -1,0 +1,274 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+      overflow: hidden;
+    }
+    .ttl {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 300px;
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.02;
+    }
+    .ttl .a {
+      display: block;
+      font-size: 84px;
+      color: #f5f5f5;
+    }
+    .ttl .b {
+      display: block;
+      color: #e6c45a;
+      margin-top: 4px;
+    }
+    /* ---------- editor ---------- */
+    #sc-ed {
+      position: absolute;
+      left: 40px;
+      top: 600px;
+      width: 1000px;
+      height: 720px;
+      border-radius: 18px;
+      background: #0f0f10;
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      box-shadow: 0 40px 90px rgba(0, 0, 0, 0.6);
+    }
+    #sc-tabs {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      height: 52px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.16);
+    }
+    #sc-tabs i {
+      position: absolute;
+      top: 20px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #34312a;
+    }
+    #sc-tab {
+      position: absolute;
+      left: 96px;
+      top: 0;
+      height: 52px;
+      padding: 0 22px;
+      line-height: 52px;
+      font: 500 22px/52px "JetBrains Mono", monospace;
+      color: #f2e6c4;
+      border-bottom: 2px solid #d4af37;
+    }
+    #sc-path {
+      position: absolute;
+      right: 24px;
+      top: 0;
+      font: 400 20px/52px "JetBrains Mono", monospace;
+      color: #8f8a7e;
+    }
+    .ln {
+      position: absolute;
+      left: 0;
+      height: 37px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 26px;
+      line-height: 37px;
+      white-space: pre;
+    }
+    .num {
+      position: absolute;
+      left: 40px;
+      width: 60px;
+      text-align: right;
+      color: #6f6a5f;
+    }
+    .code {
+      position: absolute;
+      left: 130px;
+      display: inline-block;
+    }
+    .tg {
+      color: #d9b54a;
+    }
+    .at {
+      color: #a9b4bb;
+    }
+    .st {
+      color: #f2d17b;
+    }
+    .pu {
+      color: #8f8a7e;
+    }
+    .tx {
+      color: #f5f1e6;
+    }
+    #sc-cur {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 14px;
+      height: 30px;
+      background: #f2d17b;
+    }
+    /* ---------- rendered homepage hero (deveraxtech.com) ---------- */
+    #sc-stars i {
+      position: absolute;
+      border-radius: 50%;
+      background: #f2e6c4;
+    }
+    #sc-glow {
+      position: absolute;
+      left: 40px;
+      top: 620px;
+      width: 1000px;
+      height: 620px;
+      border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(212, 175, 55, 0.22), rgba(212, 175, 55, 0));
+    }
+    .r {
+      position: absolute;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+    #sc-r-sup {
+      top: 650px;
+      font-weight: 600;
+      font-size: 28px;
+      letter-spacing: 0.3em;
+      text-indent: 0.3em;
+      color: #d4b453;
+    }
+    #sc-r-h1 {
+      top: 708px;
+      font-weight: 700;
+      font-size: 98px;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: #e6c45a;
+      background: linear-gradient(100deg, #b8912a 0%, #d4af37 22%, #fff1bf 45%, #f5d573 55%, #d4af37 78%, #b8912a 100%);
+      background-size: 200% 100%;
+      background-position: 100% 0;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    #sc-r-body {
+      top: 1046px;
+      font-size: 32px;
+      line-height: 1.45;
+      color: #cfc9bc;
+    }
+    .btn {
+      position: absolute;
+      top: 1178px;
+      height: 78px;
+      border-radius: 39px;
+      font-weight: 600;
+      font-size: 28px;
+      line-height: 76px;
+      text-align: center;
+    }
+    #sc-r-b1 {
+      left: 150px;
+      width: 380px;
+      background: linear-gradient(135deg, #d4af37 0%, #f5d573 50%, #d4af37 100%);
+      color: #0a0a0a;
+      border: 1px solid #d4af37;
+    }
+    #sc-r-b2 {
+      left: 552px;
+      width: 380px;
+      border: 2px solid #d4af37;
+      color: #f2d17b;
+    }
+    #sc-r-tri {
+      top: 1286px;
+      font-size: 28px;
+      letter-spacing: 0.1em;
+      color: #a5a5a5;
+    }
+    #sc-r-tri b {
+      color: #d4af37;
+      font-weight: 400;
+      margin: 0 12px;
+    }
+  </style>
+
+  <div id="root" data-composition-id="compile" data-width="1080" data-height="1920">
+    <div id="sc-wrap" class="clip" data-start="0" data-duration="7.95" data-layout-allow-overflow data-layout-allow-overlap>
+      <div class="ttl" id="sc-t1"><span class="a">Every pixel</span><span class="b" style="font-size: 92px">starts as code.</span></div>
+      <div class="ttl" id="sc-t2"><span class="a">This is our</span><span class="b" style="font-size: 128px">homepage.</span></div>
+
+      <div id="sc-hero">
+        <div id="sc-stars">__STARS__</div>
+        <div id="sc-glow"></div>
+      </div>
+
+      <div id="sc-ed">
+        <div id="sc-tabs"><i style="left: 22px"></i><i style="left: 42px"></i><i style="left: 62px"></i>
+          <div id="sc-tab">Home.jsx</div><div id="sc-path">frontend/pages</div></div>
+      </div>
+      <div id="sc-code">
+__LINES__
+        <div id="sc-cur"></div>
+      </div>
+
+      <div class="r" id="sc-r-sup">ENGINEERED EXCELLENCE</div>
+      <div class="r" id="sc-r-h1">We build premium<br />web &amp; app<br />experiences</div>
+      <div class="r" id="sc-r-body">Modern, secure and scalable solutions,<br />from prototypes to production.</div>
+      <div class="btn" id="sc-r-b1">Request a Meeting</div>
+      <div class="btn" id="sc-r-b2">View Our Services</div>
+      <div class="r" id="sc-r-tri">SECURE<b>•</b>SCALABLE<b>•</b>PIXEL-PERFECT</div>
+    </div>
+  </div>
+
+  <script>
+    const TYPING = __TYPING__;
+    const CW = __CW__, LEFT = __LEFT__;
+    // initial state: first three lines already typed (frame 0 is never empty)
+    TYPING.forEach(([i]) => gsap.set("#sc-c" + i, { clipPath: "inset(0% 100% 0% 0%)" }));
+    gsap.set("#sc-cur", { x: LEFT + CW * 4, y: 676 + 37 * 2 + 4 });
+    gsap.set("#sc-t2", { opacity: 0, filter: "blur(10px)" });
+    gsap.set(["#sc-hero"], { opacity: 0 });
+    // rendered elements start where their source line sits, small and blurred
+    const FLY = [
+      ["#sc-r-sup", 63, 0], ["#sc-r-h1", 116, 0.07], ["#sc-r-body", -111, 0.14],
+      ["#sc-r-b1", -95, 0.21], ["#sc-r-b2", 16, 0.26], ["#sc-r-tri", -22, 0.32],
+    ];
+    FLY.forEach(([sel, dy]) => gsap.set(sel, { y: dy, x: -140, scale: 0.55, opacity: 0, filter: "blur(10px)", transformOrigin: "50% 50%" }));
+
+    const tl = gsap.timeline({ paused: true });
+
+    // typing: each line types out character by character, the caret riding its end
+    TYPING.forEach(([i, t0, dur, n, top]) => {
+      tl.set("#sc-cur", { x: LEFT, y: top + 4 }, t0);
+      tl.fromTo("#sc-c" + i, { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: dur, ease: "steps(" + n + ")" }, t0);
+      tl.fromTo("#sc-cur", { x: LEFT }, { x: LEFT + CW * n, duration: dur, ease: "steps(" + n + ")" }, t0);
+    });
+
+    // compile on the strong cue (3.70 s): the code lets go, each line becomes its pixels
+    tl.to("#sc-t1", { opacity: 0, filter: "blur(10px)", duration: 0.18, ease: "power3.in" }, 3.5);
+    tl.to("#sc-cur", { opacity: 0, duration: 0.1 }, 3.6);
+    tl.to(".ln", { opacity: 0, filter: "blur(8px)", duration: 0.3, ease: "power3.in", stagger: 0.012 }, 3.62);
+    tl.to("#sc-ed", { opacity: 0, scale: 0.96, filter: "blur(8px)", duration: 0.4, ease: "power3.in" }, 3.66);
+    tl.to("#sc-hero", { opacity: 1, duration: 0.5, ease: "power2.out" }, 3.75);
+    FLY.forEach(([sel, , d]) => {
+      tl.to(sel, { y: 0, x: 0, scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.62, ease: "expo.out" }, 3.7 + d); // beat-locked: 3.70s
+    });
+    tl.to("#sc-t2", { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 3.95);
+    // the site's own gold sheen passes once over the headline
+    tl.to("#sc-r-h1", { backgroundPosition: "0% 0", duration: 1.4, ease: "power2.inOut" }, 5.3);
+    // hand-off to the process
+    tl.to(["#sc-t2", ".r", ".btn", "#sc-hero"], { opacity: 0, filter: "blur(10px)", duration: 0.22, ease: "power3.in" }, 7.62);
+
+    window.__timelines["compile"] = tl;
+  </script>
+</template>

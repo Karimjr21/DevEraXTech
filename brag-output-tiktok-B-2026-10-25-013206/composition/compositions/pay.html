@@ -1,0 +1,258 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+    }
+    .ans {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 300px;
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.02;
+    }
+    .ans span {
+      display: block;
+      font-size: 80px;
+      color: #f5f5f5;
+    }
+    .ans .g {
+      color: #e6c45a;
+    }
+    .ans .big {
+      font-size: 150px;
+    }
+    .phone {
+      position: absolute;
+      left: 330px;
+      top: 600px;
+      width: 420px;
+      height: 720px;
+      border-radius: 58px;
+      background: #050506;
+      border: 2px solid #3a3730;
+      box-shadow: 0 40px 90px rgba(0, 0, 0, 0.6), 0 0 80px rgba(212, 175, 55, 0.12);
+    }
+    .scr {
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      right: 12px;
+      bottom: 12px;
+      border-radius: 46px;
+      background: #101012;
+      overflow: hidden;
+      color: #f2efe6;
+    }
+    .notch {
+      position: absolute;
+      left: 50%;
+      top: 14px;
+      width: 104px;
+      height: 28px;
+      margin-left: -52px;
+      border-radius: 14px;
+      background: #050506;
+    }
+    .sb {
+      position: absolute;
+      left: 30px;
+      right: 30px;
+      top: 16px;
+      font-weight: 600;
+      font-size: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .hdr {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 62px;
+      height: 74px;
+      border-bottom: 1px solid rgba(242, 239, 230, 0.08);
+      padding: 0 26px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 700;
+      font-size: 24px;
+    }
+    .hdr small {
+      display: block;
+      font-weight: 500;
+      font-size: 17px;
+      color: #9fb7a6;
+    }
+    .tot {
+      position: absolute;
+      left: 26px;
+      right: 26px;
+      top: 160px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 22px;
+      color: #b9b4a6;
+    }
+    .tot b {
+      color: #f2efe6;
+      font-size: 30px;
+    }
+    .mlab {
+      position: absolute;
+      left: 26px;
+      top: 232px;
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: 0.18em;
+      color: #8f8a7e;
+    }
+    .opt {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      height: 76px;
+      border-radius: 18px;
+      border: 1px solid rgba(242, 239, 230, 0.14);
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 74px;
+      padding-left: 74px;
+    }
+    .opt i {
+      position: absolute;
+      left: 26px;
+      top: 26px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid #8f8a7e;
+    }
+    .opt i b {
+      position: absolute;
+      left: 3px;
+      top: 3px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #d4af37;
+    }
+    #py-sel {
+      border-color: rgba(212, 175, 55, 0.9);
+      background: rgba(212, 175, 55, 0.1);
+    }
+    #py-btn {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      bottom: 26px;
+      height: 80px;
+      border-radius: 40px;
+      background: linear-gradient(135deg, #d4af37 0%, #f5d573 50%, #d4af37 100%);
+      color: #14110a;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 80px;
+      text-align: center;
+    }
+    #py-done {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: #101012;
+      text-align: center;
+    }
+    #py-done .c {
+      margin: 230px auto 0;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 4px solid #d4af37;
+      color: #f2d17b;
+      font-size: 60px;
+      line-height: 102px;
+    }
+    #py-done .t {
+      margin-top: 28px;
+      font-weight: 700;
+      font-size: 30px;
+    }
+    #py-done .s {
+      margin-top: 10px;
+      font-size: 21px;
+      color: #b9b4a6;
+    }
+    #py-cur {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 52px;
+      height: 64px;
+    }
+  </style>
+  <div id="root" data-composition-id="pay" data-width="1080" data-height="1920">
+    <div id="py-wrap" class="clip" data-start="0" data-duration="7" data-layout-allow-overlap>
+      <div class="ans" id="py-a1"><span class="g big">They can.</span></div>
+      <div class="ans" id="py-a2"><span id="py-n1" class="g">Paymob.</span><span id="py-n2">Fawry.</span><span id="py-n3" class="g">Stripe.</span></div>
+      <div class="ans" id="py-a3"><span>Connected to</span><span class="g">your website.</span></div>
+      <div class="phone" id="py-phone">
+        <div class="scr">
+          <div class="notch"></div>
+          <div class="sb"><span>12:40</span><span>●●●</span></div>
+          <div class="hdr"><div>Checkout</div></div>
+          <div class="tot"><span>Total</span><b>EGP 1,250</b></div>
+          <div class="mlab">PAY WITH</div>
+          <div class="opt" style="top: 266px"><i></i>Card · Paymob</div>
+          <div class="opt" id="py-sel" style="top: 356px"><i><b id="py-dot"></b></i>Fawry</div>
+          <div class="opt" style="top: 446px"><i></i>Card · Stripe</div>
+          <div id="py-btn">Pay EGP 1,250</div>
+          <div id="py-done"><div class="c">✓</div><div class="t">Payment confirmed</div><div class="s">Order received</div></div>
+        </div>
+      </div>
+      <svg id="py-cur" viewBox="0 0 26 32"><path d="M2 2 L2 26 L8.5 20 L13 30 L17 28.2 L12.6 18.6 L21.5 18.6 Z" fill="#ffffff" stroke="#0a0a0a" stroke-width="1.6" stroke-linejoin="round" /></svg>
+    </div>
+  </div>
+  <script>
+    gsap.set(["#py-a1", "#py-a3"], { opacity: 0, filter: "blur(10px)" });
+    gsap.set(["#py-n1", "#py-n2", "#py-n3"], { opacity: 0, filter: "blur(10px)" });
+    gsap.set("#py-phone", { opacity: 0, y: 80 });
+    gsap.set("#py-sel", { borderColor: "rgba(242,239,230,0.14)", backgroundColor: "rgba(212,175,55,0)" });
+    gsap.set("#py-dot", { scale: 0, transformOrigin: "50% 50%" });
+    gsap.set("#py-done", { opacity: 0 });
+    gsap.set("#py-cur", { x: 900, y: 1500, opacity: 0 });
+    const tl = gsap.timeline({ paused: true });
+    // host starts 19.5 s
+    tl.to("#py-phone", { opacity: 1, y: 0, duration: 0.8, ease: "expo.out" }, 0.0);
+    tl.to("#py-a1", { opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "power3.out" }, 0.3);
+    // choose Fawry
+    tl.to("#py-cur", { opacity: 1, duration: 0.15 }, 0.7);
+    tl.to("#py-cur", { x: 560, y: 1010, duration: 0.7, ease: "power3.out" }, 0.7);
+    tl.to("#py-cur", { scale: 0.86, duration: 0.07 }, 1.45);
+    tl.to("#py-cur", { scale: 1, duration: 0.12 }, 1.52);
+    tl.to("#py-sel", { borderColor: "rgba(212,175,55,0.9)", backgroundColor: "rgba(212,175,55,0.1)", duration: 0.2 }, 1.47);
+    tl.to("#py-dot", { scale: 1, duration: 0.25, ease: "back.out(1.6)" }, 1.47);
+    tl.to("#py-a1", { opacity: 0, filter: "blur(10px)", duration: 0.25, ease: "power3.in" }, 2.15);
+    // the three providers, one per beat
+    tl.to("#py-n1", { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 2.4);
+    tl.to("#py-n2", { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 3.04);
+    tl.to("#py-n3", { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 3.68);
+    // pay
+    tl.to("#py-cur", { x: 560, y: 1262, duration: 0.6, ease: "power3.inOut" }, 2.6);
+    tl.to("#py-cur", { scale: 0.86, duration: 0.07 }, 3.3);
+    tl.to("#py-cur", { scale: 1, duration: 0.12 }, 3.37);
+    tl.to("#py-btn", { filter: "brightness(1.15)", duration: 0.07 }, 3.3);
+    tl.to("#py-done", { opacity: 1, duration: 0.35, ease: "power2.out" }, 3.7);
+    tl.to("#py-cur", { opacity: 0, duration: 0.2 }, 3.75);
+    tl.to("#py-a2", { opacity: 0, filter: "blur(10px)", duration: 0.25, ease: "power3.in" }, 4.82);
+    tl.to("#py-a3", { opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "power3.out" }, 5.0);
+    tl.to(["#py-a3", "#py-phone"], { opacity: 0, filter: "blur(10px)", duration: 0.3, ease: "power3.in" }, 6.7);
+    window.__timelines["pay"] = tl;
+  </script>
+</template>
