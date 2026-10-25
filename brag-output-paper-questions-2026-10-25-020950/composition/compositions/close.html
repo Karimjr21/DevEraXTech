@@ -1,0 +1,178 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Caveat";
+      font-style: normal;
+      font-weight: 400 700;
+      src: url("assets/fonts/Caveat-var.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+      color: #2f2d29;
+    }
+    .ttl {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 286px;
+      text-align: center;
+    }
+    .ttl .n {
+      display: block;
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-size: 64px;
+      line-height: 1;
+      color: #7a5c0e;
+    }
+    .ttl .t {
+      display: block;
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 100px;
+      line-height: 1.06;
+      letter-spacing: -0.01em;
+      color: #2f2d29;
+    }
+    .pencil {
+      fill: none;
+      stroke: #3a3833;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .pencil.thin {
+      stroke-width: 3;
+      stroke: #55524b;
+    }
+    .ink {
+      fill: none;
+      stroke: #b8912a;
+      stroke-width: 7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .hw {
+      position: absolute;
+      font-family: "Caveat", cursive;
+      font-weight: 600;
+      color: #2f2d29;
+      white-space: nowrap;
+      line-height: 1;
+    }
+    .note {
+      position: absolute;
+      width: 240px;
+      height: 200px;
+      background: #f2d67f;
+      box-shadow: 0 14px 24px rgba(90, 70, 20, 0.22), inset 0 -8px 14px rgba(160, 120, 30, 0.12);
+      transform-origin: 50% 0%;
+    }
+    .note .hw {
+      left: 22px;
+      top: 30px;
+      font-size: 50px;
+      line-height: 1.02;
+      white-space: normal;
+      width: 200px;
+    }
+    .note svg {
+      position: absolute;
+      right: 10px;
+      bottom: 6px;
+      overflow: visible;
+    }
+    .card {
+      position: absolute;
+      left: 110px;
+      top: 700px;
+      width: 860px;
+      height: 440px;
+      background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0) 92px, rgba(184, 145, 42, 0.55) 92px, rgba(184, 145, 42, 0.55) 95px, rgba(0, 0, 0, 0) 95px),
+        repeating-linear-gradient(180deg, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 55px, rgba(90, 110, 130, 0.16) 55px, rgba(90, 110, 130, 0.16) 57px),
+        #fffdf6;
+      box-shadow: 0 26px 48px rgba(90, 70, 30, 0.24);
+      transform-origin: 50% 50%;
+    }
+    .card .q {
+      position: absolute;
+      left: 128px;
+      top: 74px;
+      width: 690px;
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-size: 74px;
+      line-height: 1.13;
+      color: #2f2d29;
+    }
+  </style>
+  <div id="root" data-composition-id="close" data-width="1080" data-height="1920">
+    <div id="close-wrap" class="clip" data-start="0" data-duration="7.5" data-layout-allow-overflow data-layout-allow-overlap>
+      <div class="hw" id="cl-so" style="left:130px;top:600px;font-size:80px;color:#7a5c0e">So…</div>
+      <div class="card" id="clc"><div class="q">What do we do before writing any code?</div></div>
+      <div class="ttl" id="cl-t1"><span class="t">We listen first.</span></div>
+      <div class="ttl" id="cl-t2"><span class="t">A clarity-first</span><span class="t">discovery conversation.</span></div>
+      <div class="hw cll" id="cl-l0" style="left:290px;top:748px;font-size:92px">your goals</div>
+      <div class="hw cll" id="cl-l1" style="left:290px;top:868px;font-size:92px">your audience</div>
+      <div class="hw cll" id="cl-l2" style="left:290px;top:988px;font-size:92px">your timeline</div>
+      <svg  width="1080" height="1920" viewBox="0 0 1080 1920" style="position:absolute;left:0;top:0;overflow:visible;"><path class="ink" id="cl-k0" d="M 201.5 789.1 L 205.4 794.1 L 209.1 798.7 L 212.7 803.4 L 216.6 807.5 L 220.5 811.9 L 223.7 807.1 L 227.2 802.4 L 230.9 797.3 L 234.7 792.3 L 237.7 787.4 L 241.6 782.8 L 245.1 777.9 L 249.0 772.3 L 252.4 767.3 L 256.5 762.3 L 260.2 757.3" /><path class="ink" id="cl-k1" d="M 198.9 910.8 L 202.8 914.8 L 206.8 919.4 L 210.7 924.6 L 214.8 928.7 L 219.2 933.4 L 222.7 928.1 L 225.9 922.8 L 229.9 918.1 L 233.9 913.1 L 237.8 907.9 L 241.5 902.8 L 245.4 897.8 L 248.7 892.6 L 252.3 887.4 L 256.6 882.9 L 260.5 877.6" /><path class="ink" id="cl-k2" d="M 200.3 1029.5 L 204.0 1034.7 L 208.4 1039.2 L 212.4 1043.1 L 216.3 1047.7 L 219.4 1053.0 L 222.8 1047.4 L 226.4 1043.2 L 230.2 1038.4 L 233.5 1033.3 L 237.1 1028.2 L 240.4 1023.0 L 243.7 1018.6 L 247.3 1013.5 L 251.5 1008.1 L 255.0 1003.5 L 258.3 998.3" /><g transform="translate(470 1130)"><path class="pencil" id="cl-h" d="M 0.5 -0.2 L -1.8 5.5 L -4.5 11.2 L -5.9 17.3 L -6.9 23.6 L -7.9 29.3 L -9.4 35.5 L -9.6 41.9 L -9.3 48.3 L -9.4 54.6 L -8.4 60.4 L -7.7 66.7 L -6.4 73.4 L -4.7 79.4 L -2.8 85.6 L -0.2 92.7 L 3.1 98.9 L 6.0 105.1 L 9.6 111.2 L 13.7 117.6 L 18.4 124.6 L 23.1 131.0 L 28.1 137.0 L 34.1 143.6 L 40.2 149.8 L 40.3 149.7 L 44.5 151.2 L 49.0 152.9 L 52.6 153.3 L 56.7 154.5 L 60.4 154.9 L 63.9 155.7 L 68.2 156.1 L 71.0 155.6 L 74.5 155.6 L 77.4 155.5 L 80.3 155.4 L 83.5 154.3 L 86.3 153.7 L 88.9 152.6 L 91.3 151.6 L 93.7 150.0 L 95.6 148.0 L 97.8 146.5 L 100.4 144.5 L 102.0 142.2 L 104.6 138.9 L 106.0 136.5 L 108.4 133.7 L 110.0 130.0" style="stroke-width:9" /><path class="pencil thin" id="cl-w" d="M 70.1 19.9 L 72.5 21.5 L 74.4 23.4 L 76.6 25.0 L 78.7 26.5 L 81.1 28.4 L 83.2 30.2 L 84.6 31.8 L 86.3 34.3 L 87.5 35.7 L 89.2 38.0 L 90.3 40.1 L 90.8 41.4 L 91.5 44.2 L 92.3 46.1 L 93.2 48.4 L 93.2 50.7 L 93.1 52.7 L 93.7 54.7 L 93.2 57.4 L 92.7 60.0 L 92.6 62.6 L 92.1 64.7 L 91.2 67.1 L 90.0 70.1 M 90.4 -5.6 L 95.0 -2.5 L 98.7 0.1 L 102.1 4.0 L 105.4 6.4 L 108.6 10.3 L 111.8 13.8 L 113.8 16.8 L 116.6 20.5 L 118.8 24.4 L 120.5 28.0 L 121.9 31.8 L 122.6 35.7 L 123.7 39.7 L 124.9 43.9 L 125.2 48.8 L 125.4 53.0 L 125.5 57.1 L 125.8 61.8 L 125.0 66.5 L 124.3 71.0 L 123.7 75.3 L 122.7 80.3 L 121.5 84.7 L 119.8 90.3" /></g></svg>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // every stroke gets its own length so it can be drawn on like a pencil line
+    document.querySelectorAll("#root svg path").forEach((p) => {
+      const L = p.getTotalLength();
+      p.style.strokeDasharray = L + " " + (L + 16);
+      p.dataset.len = L + 8;
+    });
+    const D = (sel, on) => document.querySelectorAll(sel).forEach((p) => (p.style.strokeDashoffset = on ? 0 : +p.dataset.len));
+    function draw(sel, t, dur, stagger) {
+      document.querySelectorAll(sel).forEach((p, i) => {
+        tl.fromTo(p, { strokeDashoffset: +p.dataset.len }, { strokeDashoffset: 0, duration: dur, ease: "power1.inOut" }, t + i * (stagger || 0));
+      });
+    }
+    document.querySelectorAll(".note").forEach((n) => gsap.set(n, { rotation: +n.dataset.rot }));
+    // stop-motion boil: swap between two takes of the same drawing at 8 fps (finite repeats)
+    function boil(groupA, groupB, t, secs) {
+      const n = Math.floor(secs / 0.125);
+      tl.fromTo(groupB, { opacity: 0 }, { opacity: 1, duration: 0.125, ease: "steps(1)", repeat: n, yoyo: true }, t);
+      tl.fromTo(groupA, { opacity: 1 }, { opacity: 0, duration: 0.125, ease: "steps(1)", repeat: n, yoyo: true }, t);
+    }
+    // a question card is slapped onto the page: no count, no warning
+    function slam(sel, t, rot) {
+      tl.fromTo(sel, { opacity: 0, scale: 1.18, rotation: rot - 7, y: -70 }, { opacity: 1, scale: 1, rotation: rot, y: 0, duration: 0.24, ease: "power4.out" }, t);
+    }
+    function toss(sel, t, dir) {
+      tl.to(sel, { x: 900 * dir, y: -260, rotation: 24 * dir, opacity: 0, duration: 0.42, ease: "power3.in" }, t);
+    }
+    // host starts 29.22 s (on the beat): the first question comes back
+    gsap.set(["#cl-t1", "#cl-t2"], { opacity: 0, filter: "blur(8px)" });
+    gsap.set("#clc", { opacity: 0 });
+    gsap.set("#cl-so", { clipPath: "inset(0% 100% 0% 0%)", rotation: -4 });
+    gsap.set(".cll", { clipPath: "inset(0% 100% 0% 0%)" });
+    D("#cl-k0,#cl-k1,#cl-k2,#cl-h,#cl-w", false);
+    slam("#clc", 0.0, -2);
+    tl.to("#cl-so", { clipPath: "inset(0% 0% 0% 0%)", duration: 0.35, ease: "steps(4)" }, 0.3);
+    // the answer (32.03 s)
+    toss("#clc", 2.75, -1);
+    tl.to("#cl-so", { opacity: 0, duration: 0.2 }, 2.75);
+    tl.to("#cl-t1", { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power2.out" }, 2.85);
+    draw("#cl-h", 2.95, 0.4);
+    draw("#cl-w", 3.3, 0.3);
+    // beat-grid: 32.50, 32.97, 33.44
+    [0, 1, 2].forEach((i) => {
+      const t = [3.28, 3.75, 4.22][i];
+      tl.to("#cl-l" + i, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.42, ease: "steps(12)" }, t);
+      draw("#cl-k" + i, t + 0.3, 0.22);
+    });
+    tl.to("#cl-t1", { opacity: 0, filter: "blur(8px)", duration: 0.22, ease: "power2.in" }, 4.95);
+    tl.to("#cl-t2", { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power2.out" }, 5.15);
+    tl.to("#cl-wrap", { opacity: 0, y: 30, duration: 0.25, ease: "power2.in" }, 7.25);
+    window.__timelines["close"] = tl;
+  </script>
+</template>

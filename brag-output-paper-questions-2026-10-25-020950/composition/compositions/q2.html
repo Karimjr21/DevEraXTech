@@ -1,0 +1,151 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Caveat";
+      font-style: normal;
+      font-weight: 400 700;
+      src: url("assets/fonts/Caveat-var.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+      color: #2f2d29;
+    }
+    .ttl {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 286px;
+      text-align: center;
+    }
+    .ttl .n {
+      display: block;
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-size: 64px;
+      line-height: 1;
+      color: #7a5c0e;
+    }
+    .ttl .t {
+      display: block;
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 100px;
+      line-height: 1.06;
+      letter-spacing: -0.01em;
+      color: #2f2d29;
+    }
+    .pencil {
+      fill: none;
+      stroke: #3a3833;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .pencil.thin {
+      stroke-width: 3;
+      stroke: #55524b;
+    }
+    .ink {
+      fill: none;
+      stroke: #b8912a;
+      stroke-width: 7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .hw {
+      position: absolute;
+      font-family: "Caveat", cursive;
+      font-weight: 600;
+      color: #2f2d29;
+      white-space: nowrap;
+      line-height: 1;
+    }
+    .note {
+      position: absolute;
+      width: 240px;
+      height: 200px;
+      background: #f2d67f;
+      box-shadow: 0 14px 24px rgba(90, 70, 20, 0.22), inset 0 -8px 14px rgba(160, 120, 30, 0.12);
+      transform-origin: 50% 0%;
+    }
+    .note .hw {
+      left: 22px;
+      top: 30px;
+      font-size: 50px;
+      line-height: 1.02;
+      white-space: normal;
+      width: 200px;
+    }
+    .note svg {
+      position: absolute;
+      right: 10px;
+      bottom: 6px;
+      overflow: visible;
+    }
+    .card {
+      position: absolute;
+      left: 110px;
+      top: 700px;
+      width: 860px;
+      height: 440px;
+      background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0) 92px, rgba(184, 145, 42, 0.55) 92px, rgba(184, 145, 42, 0.55) 95px, rgba(0, 0, 0, 0) 95px),
+        repeating-linear-gradient(180deg, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 55px, rgba(90, 110, 130, 0.16) 55px, rgba(90, 110, 130, 0.16) 57px),
+        #fffdf6;
+      box-shadow: 0 26px 48px rgba(90, 70, 30, 0.24);
+      transform-origin: 50% 50%;
+    }
+    .card .q {
+      position: absolute;
+      left: 128px;
+      top: 74px;
+      width: 690px;
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-size: 74px;
+      line-height: 1.13;
+      color: #2f2d29;
+    }
+  </style>
+  <div id="root" data-composition-id="q2" data-width="1080" data-height="1920">
+    <div id="q2-wrap" class="clip" data-start="0" data-duration="2.49" data-layout-allow-overflow data-layout-allow-overlap>
+      <div class="card" id="q2c"><div class="q">Will it work on every screen?</div></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // every stroke gets its own length so it can be drawn on like a pencil line
+    document.querySelectorAll("#root svg path").forEach((p) => {
+      const L = p.getTotalLength();
+      p.style.strokeDasharray = L + " " + (L + 16);
+      p.dataset.len = L + 8;
+    });
+    const D = (sel, on) => document.querySelectorAll(sel).forEach((p) => (p.style.strokeDashoffset = on ? 0 : +p.dataset.len));
+    function draw(sel, t, dur, stagger) {
+      document.querySelectorAll(sel).forEach((p, i) => {
+        tl.fromTo(p, { strokeDashoffset: +p.dataset.len }, { strokeDashoffset: 0, duration: dur, ease: "power1.inOut" }, t + i * (stagger || 0));
+      });
+    }
+    document.querySelectorAll(".note").forEach((n) => gsap.set(n, { rotation: +n.dataset.rot }));
+    // stop-motion boil: swap between two takes of the same drawing at 8 fps (finite repeats)
+    function boil(groupA, groupB, t, secs) {
+      const n = Math.floor(secs / 0.125);
+      tl.fromTo(groupB, { opacity: 0 }, { opacity: 1, duration: 0.125, ease: "steps(1)", repeat: n, yoyo: true }, t);
+      tl.fromTo(groupA, { opacity: 1 }, { opacity: 0, duration: 0.125, ease: "steps(1)", repeat: n, yoyo: true }, t);
+    }
+    // a question card is slapped onto the page: no count, no warning
+    function slam(sel, t, rot) {
+      tl.fromTo(sel, { opacity: 0, scale: 1.18, rotation: rot - 7, y: -70 }, { opacity: 1, scale: 1, rotation: rot, y: 0, duration: 0.24, ease: "power4.out" }, t);
+    }
+    function toss(sel, t, dir) {
+      tl.to(sel, { x: 900 * dir, y: -260, rotation: 24 * dir, opacity: 0, duration: 0.42, ease: "power3.in" }, t);
+    }
+    gsap.set("#q2c", { opacity: 0 });
+    slam("#q2c", 0.0, 3);
+    toss("#q2c", 2.04, 1);
+    window.__timelines["q2"] = tl;
+  </script>
+</template>

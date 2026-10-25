@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait"
+  data-composition-variables='[{"id":"color-paper","type":"color","label":"Paper","default":"#f4eedf"},{"id":"color-ink","type":"color","label":"Gold ink","default":"#7a5c0e"}]'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/MotionPathPlugin.min.js"></script>
+    <style>
+      :root {
+        --color-paper: #f4eedf;
+        --color-ink: #7a5c0e;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: var(--color-paper);
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+      /* paper: warm stock, a faint dot grid, soft edges */
+      #paper {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 85% 60% at 50% 48%, rgba(255, 252, 240, 0.9) 0%, rgba(255, 252, 240, 0) 70%),
+          radial-gradient(circle, rgba(58, 56, 51, 0.16) 1.4px, rgba(58, 56, 51, 0) 1.9px) 0 0 / 40px 40px,
+          var(--color-paper);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="40.32" data-width="1080" data-height="1920">
+      <div id="paper"></div>
+      <div id="q1" data-composition-id="q1" data-composition-src="compositions/q1.html" data-start="0" data-duration="8.0" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 2"></div>
+      <div id="q2" data-composition-id="q2" data-composition-src="compositions/q2.html" data-start="7.65" data-duration="2.49" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 4"></div>
+      <div id="a2" data-composition-id="a2" data-composition-src="compositions/a2.html" data-start="9.99" data-duration="7.5" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 2"></div>
+      <div id="q3" data-composition-id="q3" data-composition-src="compositions/q3.html" data-start="17.5" data-duration="3.43" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 4"></div>
+      <div id="a3" data-composition-id="a3" data-composition-src="compositions/a3.html" data-start="20.77" data-duration="7.9" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 2"></div>
+      <div id="close" data-composition-id="close" data-composition-src="compositions/close.html" data-start="29.22" data-duration="7.5" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 2"></div>
+      <div id="logo" data-composition-id="logo" data-composition-src="compositions/logo.html" data-start="36.56" data-duration="3.76" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 3"></div>
+      <div id="brandcue" data-composition-id="brandcue" data-composition-src="compositions/brandcue.html" data-start="0" data-duration="36.52" data-track-index="3" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 5"></div>
+
+      <!-- Music: "Lobby Time" by Kevin MacLeod (incompetech.com), CC BY 4.0 -->
+      <audio id="music" class="clip" data-start="0" data-duration="40.32" data-track-index="10" data-volume="0.55" data-fade-out="1.8" src="assets/music/lobby-time-kevin-macleod.mp3"></audio>
+      <audio id="s-doodle" class="clip" data-start="0.35" data-duration="0.2" data-track-index="11" data-volume="0.3" src="assets/sfx/impactWood_light_001.ogg"></audio>
+      <audio id="s-g1" class="clip" data-start="4.7" data-duration="0.2" data-track-index="12" data-volume="0.4" src="assets/sfx/switch2.ogg"></audio>
+      <audio id="s-g2" class="clip" data-start="6.2" data-duration="0.2" data-track-index="13" data-volume="0.4" src="assets/sfx/switch2.ogg"></audio>
+      <audio id="s-out1" class="clip" data-start="7.5" data-duration="0.6" data-track-index="14" data-volume="0.3" src="assets/sfx/card-shove-1.ogg"></audio>
+      <audio id="s-slap2" class="clip" data-start="7.65" data-duration="0.3" data-track-index="15" data-volume="0.75" src="assets/sfx/impactSoft_heavy_001.ogg"></audio>
+      <audio id="s-p2" class="clip" data-start="7.68" data-duration="0.3" data-track-index="16" data-volume="0.5" src="assets/sfx/card-place-1.ogg"></audio>
+      <audio id="s-toss2" class="clip" data-start="9.65" data-duration="0.6" data-track-index="17" data-volume="0.35" src="assets/sfx/card-slide-2.ogg"></audio>
+      <audio id="s-d1" class="clip" data-start="10.24" data-duration="0.2" data-track-index="18" data-volume="0.35" src="assets/sfx/impactWood_light_001.ogg"></audio>
+      <audio id="s-d2" class="clip" data-start="12.04" data-duration="0.2" data-track-index="19" data-volume="0.35" src="assets/sfx/impactWood_light_001.ogg"></audio>
+      <audio id="s-d3" class="clip" data-start="13.84" data-duration="0.2" data-track-index="20" data-volume="0.35" src="assets/sfx/impactWood_light_001.ogg"></audio>
+      <audio id="s-row" class="clip" data-start="15.59" data-duration="0.3" data-track-index="21" data-volume="0.5" src="assets/sfx/card-place-2.ogg"></audio>
+      <audio id="s-slap3" class="clip" data-start="17.5" data-duration="0.3" data-track-index="22" data-volume="0.75" src="assets/sfx/impactSoft_heavy_001.ogg"></audio>
+      <audio id="s-p3" class="clip" data-start="17.53" data-duration="0.3" data-track-index="23" data-volume="0.5" src="assets/sfx/card-place-3.ogg"></audio>
+      <audio id="s-toss3" class="clip" data-start="20.48" data-duration="0.6" data-track-index="24" data-volume="0.35" src="assets/sfx/card-slide-2.ogg"></audio>
+      <audio id="s-c1" class="clip" data-start="22.02" data-duration="0.09" data-track-index="25" data-volume="0.4" src="assets/sfx/click3.ogg"></audio>
+      <audio id="s-c2" class="clip" data-start="22.49" data-duration="0.09" data-track-index="26" data-volume="0.4" src="assets/sfx/click3.ogg"></audio>
+      <audio id="s-c3" class="clip" data-start="22.96" data-duration="0.09" data-track-index="27" data-volume="0.4" src="assets/sfx/click3.ogg"></audio>
+      <audio id="s-mag" class="clip" data-start="24.37" data-duration="0.6" data-track-index="28" data-volume="0.3" src="assets/sfx/card-slide-2.ogg"></audio>
+      <audio id="s-k1" class="clip" data-start="24.87" data-duration="0.2" data-track-index="29" data-volume="0.4" src="assets/sfx/impactWood_light_001.ogg"></audio>
+      <audio id="s-k2" class="clip" data-start="25.34" data-duration="0.2" data-track-index="30" data-volume="0.4" src="assets/sfx/impactWood_light_001.ogg"></audio>
+      <audio id="s-k3" class="clip" data-start="25.81" data-duration="0.2" data-track-index="31" data-volume="0.4" src="assets/sfx/impactWood_light_001.ogg"></audio>
+      <audio id="s-slap1" class="clip" data-start="29.22" data-duration="0.3" data-track-index="32" data-volume="0.75" src="assets/sfx/impactSoft_heavy_001.ogg"></audio>
+      <audio id="s-p1" class="clip" data-start="29.25" data-duration="0.3" data-track-index="33" data-volume="0.5" src="assets/sfx/card-place-4.ogg"></audio>
+      <audio id="s-toss1" class="clip" data-start="31.97" data-duration="0.6" data-track-index="34" data-volume="0.35" src="assets/sfx/card-slide-2.ogg"></audio>
+      <audio id="s-ans" class="clip" data-start="32.03" data-duration="0.3" data-track-index="35" data-volume="0.55" src="assets/sfx/impactWood_medium_001.ogg"></audio>
+      <audio id="s-l1" class="clip" data-start="32.8" data-duration="0.2" data-track-index="36" data-volume="0.4" src="assets/sfx/impactWood_light_001.ogg"></audio>
+      <audio id="s-l2" class="clip" data-start="33.27" data-duration="0.2" data-track-index="37" data-volume="0.4" src="assets/sfx/impactWood_light_001.ogg"></audio>
+      <audio id="s-l3" class="clip" data-start="33.74" data-duration="0.2" data-track-index="38" data-volume="0.4" src="assets/sfx/impactWood_light_001.ogg"></audio>
+      <audio id="s-stamp" class="clip" data-start="36.56" data-duration="0.3" data-track-index="39" data-volume="0.8" src="assets/sfx/impactWood_medium_002.ogg"></audio>
+      <audio id="s-sig" class="clip" data-start="36.61" data-duration="2.8" data-track-index="40" data-volume="0.6" src="assets/sfx/sig-full.wav"></audio>
+    </div>
+    <script>
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>
