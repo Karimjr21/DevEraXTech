@@ -1,0 +1,544 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Cormorant Garamond";
+      font-style: normal;
+      font-weight: 500;
+      src: url("assets/fonts/CormorantGaramond-500.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Cormorant Garamond";
+      font-style: italic;
+      font-weight: 500;
+      src: url("assets/fonts/CormorantGaramond-500i.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Inter Tight";
+      font-style: normal;
+      font-weight: 300 700;
+      src: url("assets/fonts/InterTight-var.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+    }
+    /* ---------- campaign copy ---------- */
+    .rv-copy {
+      position: absolute;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: "Inter", sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.025em;
+      color: #f5f5f5;
+      line-height: 1;
+    }
+    #rv-c1 {
+      top: 288px;
+    }
+    #rv-c1 .qa {
+      display: block;
+      font-size: 70px;
+    }
+    #rv-c1 .qb {
+      display: block;
+      font-size: 108px;
+      color: #e6c45a;
+      margin: 4px 0 2px;
+    }
+    #rv-ans {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 552px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 28px;
+      letter-spacing: 0.24em;
+      text-indent: 0.24em;
+      color: #e6c45a;
+    }
+    .rv-c2x {
+      top: 310px;
+    }
+    .rv-c2x .l1 {
+      font-size: 86px;
+      display: block;
+    }
+    .rv-c2x .l2 {
+      font-size: 122px;
+      display: block;
+      margin-top: 14px;
+      color: #e6c45a;
+    }
+    .w {
+      display: inline-block;
+    }
+    /* ---------- window stage ---------- */
+    #rv-floor {
+      position: absolute;
+      left: 140px;
+      top: 1255px;
+      width: 800px;
+      height: 90px;
+      border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(212, 175, 55, 0.28), rgba(212, 175, 55, 0));
+    }
+    #rv-persp {
+      position: absolute;
+      left: 60px;
+      top: 650px;
+      width: 960px;
+      height: 600px;
+      perspective: 2600px;
+      perspective-origin: 50% 40%;
+    }
+    #rv-tilt,
+    #rv-spin {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+    }
+    .layer {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 960px;
+      height: 600px;
+      transform-style: preserve-3d;
+    }
+    .half {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 960px;
+      height: 600px;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .half.top {
+      clip-path: inset(0 0 300px 0);
+    }
+    .half.bot {
+      clip-path: inset(300px 0 0 0);
+    }
+    /* visual layer */
+    .vis {
+      background: #0b1216;
+      box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55);
+    }
+    .chrome {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 960px;
+      height: 40px;
+      background: #141a1e;
+      border-bottom: 1px solid rgba(237, 230, 218, 0.08);
+    }
+    .chrome i {
+      position: absolute;
+      top: 14px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #3a4349;
+    }
+    .chrome .pill {
+      position: absolute;
+      left: 330px;
+      top: 9px;
+      width: 300px;
+      height: 22px;
+      border-radius: 11px;
+      background: #0b1216;
+      color: #9aa7ae;
+      font: 500 13px/22px "Inter Tight", sans-serif;
+      text-align: center;
+      letter-spacing: 0.04em;
+    }
+    .photo {
+      position: absolute;
+      left: 0;
+      top: 40px;
+      width: 960px;
+      height: 560px;
+      background: url("assets/img/nile-zamalek.jpg") 30% 55% / cover no-repeat;
+    }
+    .shade {
+      position: absolute;
+      left: 0;
+      top: 40px;
+      width: 960px;
+      height: 560px;
+      background: linear-gradient(90deg, rgba(11, 18, 22, 0.86) 0%, rgba(11, 18, 22, 0.55) 45%, rgba(11, 18, 22, 0.12) 100%);
+    }
+    /* type layer: the Nilora page at 1440x840, scaled into the 960x560 viewport */
+    .page {
+      position: absolute;
+      left: 0;
+      top: 40px;
+      width: 1440px;
+      height: 840px;
+      transform: scale(0.66667);
+      transform-origin: 0 0;
+      color: #ede6da;
+      font-family: "Inter Tight", sans-serif;
+    }
+    .nav {
+      position: absolute;
+      left: 120px;
+      right: 60px;
+      top: 18px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+    .brandN {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 30px;
+      color: #ede6da;
+    }
+    .brandN em {
+      font-style: italic;
+      color: #e3c893;
+    }
+    .links {
+      display: flex;
+      gap: 30px;
+      margin-left: 120px;
+      font-size: 14px;
+      letter-spacing: 0.22em;
+      color: #c9c2b6;
+    }
+    .pv {
+      margin-left: auto;
+      height: 44px;
+      padding: 0 28px;
+      border-radius: 22px;
+      background: #c8a46b;
+      color: #0b1216;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      line-height: 44px;
+    }
+    .kicker {
+      position: absolute;
+      left: 120px;
+      top: 318px;
+      font-size: 16px;
+      letter-spacing: 0.3em;
+      color: #ede6da;
+    }
+    .kicker b {
+      display: inline-block;
+      width: 60px;
+      height: 1px;
+      background: #c8a46b;
+      vertical-align: middle;
+      margin: 0 22px;
+    }
+    .h1 {
+      position: absolute;
+      left: 112px;
+      top: 410px;
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      font-size: 122px;
+      line-height: 0.94;
+      letter-spacing: -0.01em;
+      color: #ede6da;
+    }
+    .body {
+      position: absolute;
+      left: 120px;
+      top: 770px;
+      width: 640px;
+      font-size: 21px;
+      line-height: 1.45;
+      color: #e2dbcf;
+    }
+    .nums {
+      position: absolute;
+      right: 70px;
+      top: 380px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 22px;
+      line-height: 2.1;
+      color: #c9c2b6;
+      text-align: right;
+    }
+    /* grid layer */
+    .gridfill {
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      background: rgba(14, 13, 10, 0.92);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+    }
+    .tag {
+      font-family: "Inter Tight", sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      fill: #e6c45a;
+    }
+    /* system layer */
+    .sysfill {
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      background: #0d0d0e;
+      border: 1px solid rgba(212, 175, 55, 0.55);
+    }
+    .node-l {
+      font-family: "Inter Tight", sans-serif;
+      font-weight: 600;
+      font-size: 26px;
+      fill: #f2e6c4;
+    }
+    /* the Precision Seam: the logo's circuit trace with its ring terminal */
+    #rv-seam {
+      position: absolute;
+      left: -24px;
+      top: 298px;
+      width: 1008px;
+      height: 4px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, rgba(212, 175, 55, 0) 0%, #d4af37 7%, #fff1bf 55%, #f2d17b 100%);
+      box-shadow: 0 0 14px rgba(242, 209, 123, 0.85), 0 0 36px rgba(212, 175, 55, 0.45);
+      transform-origin: 0 50%;
+    }
+    #rv-term {
+      position: absolute;
+      left: -36px;
+      top: 288px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 4px solid #f2d17b;
+      background: #0a0a0a;
+      box-shadow: 0 0 16px rgba(242, 209, 123, 0.9);
+    }
+    #rv-pillar {
+      position: absolute;
+      left: 852px;
+      top: 70px;
+      width: 4px;
+      height: 660px;
+      transform-origin: 0 0;
+      transform: translate3d(0, 0, 330px) rotateX(-90deg);
+    }
+    #rv-pillar-line {
+      width: 4px;
+      height: 660px;
+      background: linear-gradient(180deg, #fff1bf, #d4af37);
+      box-shadow: 0 0 12px rgba(242, 209, 123, 0.9);
+      transform-origin: 50% 0;
+    }
+    /* 2D layer callouts */
+    .callout {
+      position: absolute;
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 28px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #e6c45a;
+      white-space: nowrap;
+    }
+    .callout::before {
+      content: "";
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 3px solid #e6c45a;
+      border-radius: 50%;
+      margin-right: 14px;
+      vertical-align: 2px;
+    }
+  </style>
+
+  <div id="root" data-composition-id="reveal" data-width="1080" data-height="1920">
+    <!-- Hook copy: on screen from frame 0 -->
+    <div id="rv-c1w" class="clip" data-start="0" data-duration="2.3">
+      <h1 id="rv-c1" class="rv-copy"><span class="qa">Why do some websites</span><span class="qb">feel premium</span><span class="qa">in one second?</span></h1>
+      <div id="rv-ans">ANSWER AT THE END</div>
+    </div>
+    <div id="rv-c2w" class="clip" data-start="2.2" data-duration="5.8">
+      <h2 id="rv-n1" class="rv-copy rv-c2x"><span class="l1">It's not</span><span class="l2">the colors.</span></h2>
+      <h2 id="rv-n2" class="rv-copy rv-c2x"><span class="l1">It's not</span><span class="l2">the photos.</span></h2>
+    </div>
+
+    <div id="rv-stagew" class="clip" data-start="0" data-duration="8" data-layout-allow-overflow data-layout-allow-overlap>
+      <div id="rv-floor"></div>
+      <div id="rv-persp">
+        <div id="rv-tilt">
+          <div id="rv-spin">
+            <!-- 4: system layer (Nilora's role-based REST API, conceptual schematic) -->
+            <div class="layer" id="rv-sys">
+              <div class="sysfill"></div>
+              <svg width="960" height="600" viewBox="0 0 960 600" style="position: absolute; inset: 0">
+                <g fill="none" stroke="#d4af37" stroke-width="3" stroke-linejoin="round">
+                  <polyline points="420,300 300,300 210,210 168,210" />
+                  <polyline points="540,300 640,300 760,180 760,120 846,70" />
+                  <polyline points="420,330 330,330 230,430 186,430" />
+                  <polyline points="540,330 650,330 730,410 776,410" />
+                </g>
+                <rect x="400" y="268" width="160" height="94" rx="12" fill="#14120c" stroke="#e6c45a" stroke-width="3" />
+                <text x="480" y="326" text-anchor="middle" class="node-l" style="font-size: 28px">REST API</text>
+                <g fill="#0d0d0e" stroke="#f2d17b" stroke-width="4">
+                  <circle cx="156" cy="210" r="12" />
+                  <circle id="rv-node-v" cx="856" cy="70" r="13" />
+                  <circle cx="174" cy="430" r="12" />
+                  <circle cx="788" cy="410" r="12" />
+                </g>
+                <text x="140" y="180" text-anchor="start" class="node-l">Listings</text>
+                <text x="836" y="122" text-anchor="end" class="node-l" id="rv-node-vl">Viewings</text>
+                <text x="140" y="478" text-anchor="start" class="node-l">Leads</text>
+                <text x="800" y="460" text-anchor="end" class="node-l">Roles &amp; auth</text>
+              </svg>
+            </div>
+            <!-- 3: layout grid -->
+            <div class="layer" id="rv-grid">
+              <div class="gridfill"></div>
+              <svg width="960" height="600" viewBox="0 0 960 600" style="position: absolute; inset: 0">
+                <g stroke="rgba(212,175,55,0.16)" stroke-width="1">
+                  <line x1="0" y1="56" x2="960" y2="56" /><line x1="0" y1="72" x2="960" y2="72" /><line x1="0" y1="88" x2="960" y2="88" /><line x1="0" y1="104" x2="960" y2="104" /><line x1="0" y1="120" x2="960" y2="120" /><line x1="0" y1="136" x2="960" y2="136" /><line x1="0" y1="152" x2="960" y2="152" /><line x1="0" y1="168" x2="960" y2="168" /><line x1="0" y1="184" x2="960" y2="184" /><line x1="0" y1="200" x2="960" y2="200" /><line x1="0" y1="216" x2="960" y2="216" /><line x1="0" y1="232" x2="960" y2="232" /><line x1="0" y1="248" x2="960" y2="248" /><line x1="0" y1="264" x2="960" y2="264" /><line x1="0" y1="280" x2="960" y2="280" /><line x1="0" y1="296" x2="960" y2="296" /><line x1="0" y1="312" x2="960" y2="312" /><line x1="0" y1="328" x2="960" y2="328" /><line x1="0" y1="344" x2="960" y2="344" /><line x1="0" y1="360" x2="960" y2="360" /><line x1="0" y1="376" x2="960" y2="376" /><line x1="0" y1="392" x2="960" y2="392" /><line x1="0" y1="408" x2="960" y2="408" /><line x1="0" y1="424" x2="960" y2="424" /><line x1="0" y1="440" x2="960" y2="440" /><line x1="0" y1="456" x2="960" y2="456" /><line x1="0" y1="472" x2="960" y2="472" /><line x1="0" y1="488" x2="960" y2="488" /><line x1="0" y1="504" x2="960" y2="504" /><line x1="0" y1="520" x2="960" y2="520" /><line x1="0" y1="536" x2="960" y2="536" /><line x1="0" y1="552" x2="960" y2="552" /><line x1="0" y1="568" x2="960" y2="568" /><line x1="0" y1="584" x2="960" y2="584" />
+                </g>
+                <g stroke="rgba(212,175,55,0.55)" stroke-width="1.5">
+                  <line x1="80" y1="0" x2="80" y2="600" /><line x1="146.7" y1="0" x2="146.7" y2="600" /><line x1="213.3" y1="0" x2="213.3" y2="600" /><line x1="280" y1="0" x2="280" y2="600" /><line x1="346.7" y1="0" x2="346.7" y2="600" /><line x1="413.3" y1="0" x2="413.3" y2="600" /><line x1="480" y1="0" x2="480" y2="600" /><line x1="546.7" y1="0" x2="546.7" y2="600" /><line x1="613.3" y1="0" x2="613.3" y2="600" /><line x1="680" y1="0" x2="680" y2="600" /><line x1="746.7" y1="0" x2="746.7" y2="600" /><line x1="813.3" y1="0" x2="813.3" y2="600" /><line x1="880" y1="0" x2="880" y2="600" />
+                </g>
+                <g fill="none" stroke="#f2d17b" stroke-width="2" stroke-dasharray="7 6">
+                  <rect x="80" y="52" width="840" height="30" rx="4" />
+                  <rect x="80" y="246" width="240" height="20" rx="3" />
+                  <rect x="74" y="312" width="520" height="226" rx="4" />
+                  <rect x="786" y="52" width="134" height="30" rx="15" />
+                </g>
+                <text x="90" y="306" class="tag" style="font-size: 15px">12 COL · 8 PT GRID</text>
+                <text x="700" y="306" class="tag" style="font-size: 15px">GUTTER 24 · MARGIN 80</text>
+              </svg>
+            </div>
+            <!-- 2: visual (photo) layer, split along the seam -->
+            <div class="layer" id="rv-vis">
+              <div class="half top vis" id="rv-vis-top">
+                <div class="photo"></div>
+                <div class="shade"></div>
+                <div class="chrome"><i style="left: 18px"></i><i style="left: 38px"></i><i style="left: 58px"></i><div class="pill">Nilora Estates</div></div>
+              </div>
+              <div class="half bot vis" id="rv-vis-bot">
+                <div class="photo"></div>
+                <div class="shade"></div>
+              </div>
+            </div>
+            <!-- 1: type & components layer (real Nilora Estates copy), split along the seam -->
+            <div class="layer" id="rv-type">
+              <div class="half top" id="rv-type-top">
+                <div class="page">
+                  <div class="nav">
+                    <span class="brandN">Nilora <em>Estates</em></span>
+                    <span class="links"><span>RESIDENCES</span><span>NEIGHBORHOODS</span><span>ADVISORS</span><span>JOURNAL</span><span>ABOUT</span><span>CONTACT</span></span>
+                    <span class="pv" id="rv-pv">PRIVATE VIEWING</span>
+                  </div>
+                  <div class="kicker">I<b></b>NILORA ESTATES</div>
+                </div>
+              </div>
+              <div class="half bot" id="rv-type-bot">
+                <div class="page">
+                  <div class="h1">Where the<br />river meets<br />the light.</div>
+                  <div class="body">A private residential agency for villas, penthouses and coastal homes across Cairo and the Egyptian shore.</div>
+                  <div class="nums">I<br />II<br />III<br />IV<br />V</div>
+                </div>
+              </div>
+              <div id="rv-seam"></div>
+              <div id="rv-term"></div>
+            </div>
+            <div id="rv-pillar"><div id="rv-pillar-line"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Layer callouts (screen space, placed beside the exploded stack) -->
+      <div class="callout" id="rv-k1" style="left: 64px; top: 630px">Type &amp; components</div>
+      <div class="callout" id="rv-k2" style="left: 40px; top: 1100px">Design system grid</div>
+      <div class="callout" id="rv-k3" style="left: 640px; top: 1296px">Connected API</div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    // ---- initial (flat) state: tiny z offsets keep coplanar layers sorted ----
+    gsap.set("#rv-sys", { z: -3, opacity: 0 });
+    gsap.set("#rv-grid", { z: -2 });
+    gsap.set("#rv-vis", { z: -1 });
+    gsap.set("#rv-type", { z: 0 });
+    gsap.set(["#rv-vis-top", "#rv-type-top", "#rv-vis-bot", "#rv-type-bot"], { y: 0 });
+    gsap.set("#rv-seam", { scaleX: 0, opacity: 1 });
+    gsap.set("#rv-term", { x: 0, opacity: 0 });
+    gsap.set("#rv-pillar-line", { scaleY: 0 });
+    gsap.set([".callout"], { opacity: 0 });
+    gsap.set(["#rv-n1", "#rv-n2"], { opacity: 0, filter: "blur(10px)" });
+
+    // ---- SCENE 01 · 0.00–2.00 ----
+    // short forward move (50 mm feel), never orbiting
+    tl.fromTo("#rv-persp", { scale: 1 }, { scale: 1.035, duration: 2.0, ease: "power1.out" }, 0);
+    // the Precision Seam draws across the page (0.33 s → 0.80 s)
+    tl.to("#rv-term", { opacity: 1, duration: 0.06 }, 0.33);
+    tl.fromTo("#rv-seam", { scaleX: 0 }, { scaleX: 1, duration: 0.47, ease: "expo.out" }, 0.33);
+    tl.fromTo("#rv-term", { x: 0 }, { x: 1008, duration: 0.47, ease: "expo.out" }, 0.33);
+    // the page parts along it, revealing the engineered grid underneath (reveal → align → still)
+    tl.to(["#rv-vis-top", "#rv-type-top"], { y: -30, duration: 0.45, ease: "expo.out" }, 0.8);
+    tl.to(["#rv-vis-bot", "#rv-type-bot"], { y: 30, duration: 0.45, ease: "expo.out" }, 0.8);
+
+    // ---- SCENE 02 · 2.00–6.00 ----
+    tl.to(["#rv-c1", "#rv-ans"], { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power3.in" }, 2.0);
+    // the halves seal back on the seam while the stack tilts to an exploded view
+    tl.to(["#rv-vis-top", "#rv-type-top", "#rv-vis-bot", "#rv-type-bot"], { y: 0, duration: 0.4, ease: "power3.inOut" }, 2.0);
+    tl.to(["#rv-seam", "#rv-term"], { opacity: 0, duration: 0.25, ease: "power2.in" }, 2.1);
+    tl.to("#rv-persp", { scale: 1, y: 70, duration: 1.0, ease: "power2.inOut" }, 2.05);
+    tl.to("#rv-tilt", { rotationX: 56, scale: 0.63, duration: 1.0, ease: "power2.inOut" }, 2.05);
+    tl.to("#rv-spin", { rotation: -34, duration: 1.0, ease: "power2.inOut" }, 2.05);
+    tl.to("#rv-type", { z: 330, duration: 0.8, ease: "expo.out" }, 2.55);
+    tl.to("#rv-vis", { z: 110, duration: 0.8, ease: "expo.out" }, 2.62);
+    tl.to("#rv-grid", { z: -110, duration: 0.8, ease: "expo.out" }, 2.84);
+    tl.to("#rv-sys", { opacity: 1, duration: 0.3, ease: "power2.out" }, 2.6);
+    tl.to("#rv-sys", { z: -330, duration: 0.8, ease: "expo.out" }, 2.9);
+    // the tease: two wrong answers, while the real one is visible underneath
+    tl.to("#rv-n1", { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 2.4);
+    tl.to("#rv-n1", { opacity: 0, filter: "blur(10px)", duration: 0.16, ease: "power3.in" }, 4.42);
+    tl.to("#rv-n2", { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 4.62);
+    tl.to("#rv-n2", { opacity: 0, filter: "blur(10px)", duration: 0.16, ease: "power3.in" }, 7.78);
+    // callouts name the layers
+    tl.to("#rv-k1", { opacity: 1, duration: 0.25, ease: "power2.out" }, 3.35);
+    tl.to("#rv-k2", { opacity: 1, duration: 0.25, ease: "power2.out" }, 3.45);
+    tl.to("#rv-k3", { opacity: 1, duration: 0.25, ease: "power2.out" }, 3.55);
+    // re-hook: the real "Private viewing" button is wired straight to the Viewings endpoint
+    tl.to("#rv-pv", { boxShadow: "0 0 0 6px rgba(242,209,123,0.55), 0 0 40px rgba(242,209,123,0.9)", duration: 0.2, ease: "power2.out" }, 4.0);
+    // see-through: the layers fade back so the trace is visible all the way down
+    tl.to("#rv-vis", { opacity: 0.22, duration: 0.25, ease: "power2.out" }, 3.9);
+    tl.to("#rv-grid .gridfill", { opacity: 0.25, duration: 0.25, ease: "power2.out" }, 3.9);
+    tl.to("#rv-pillar-line", { scaleY: 1, duration: 0.42, ease: "power3.in" }, 4.1);
+    tl.to("#rv-node-v", { fill: "#f2d17b", duration: 0.15, ease: "power2.out" }, 4.52);
+    tl.to("#rv-node-vl", { fill: "#fff1bf", duration: 0.15 }, 4.52);
+    // lock back into one flat, finished page
+    tl.to([".callout"], { opacity: 0, duration: 0.2, ease: "power2.in" }, 7.00);
+    tl.to("#rv-pillar-line", { opacity: 0, duration: 0.2 }, 7.05);
+    tl.to("#rv-vis", { opacity: 1, duration: 0.3, ease: "power2.inOut" }, 7.00);
+    tl.to("#rv-grid .gridfill", { opacity: 1, duration: 0.3, ease: "power2.inOut" }, 7.00);
+    tl.to("#rv-pv", { boxShadow: "0 0 0 0px rgba(242,209,123,0), 0 0 0px rgba(242,209,123,0)", duration: 0.3 }, 7.05);
+    tl.to(["#rv-type", "#rv-vis", "#rv-grid", "#rv-sys"], { z: 0, duration: 0.75, ease: "power3.inOut" }, 7.10);
+    tl.set("#rv-sys", { z: -3, opacity: 0 }, 7.86);
+    tl.set("#rv-grid", { z: -2 }, 7.86);
+    tl.set("#rv-vis", { z: -1 }, 7.86);
+    tl.to("#rv-tilt", { rotationX: 0, scale: 1, duration: 0.75, ease: "power3.inOut" }, 7.10);
+    tl.to("#rv-spin", { rotation: 0, duration: 0.75, ease: "power3.inOut" }, 7.10);
+    tl.to("#rv-persp", { y: 0, duration: 0.75, ease: "power3.inOut" }, 7.10);
+
+    window.__timelines["reveal"] = tl;
+  </script>
+</template>

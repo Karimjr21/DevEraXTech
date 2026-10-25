@@ -1,0 +1,232 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+      overflow: hidden;
+    }
+    #ol-world {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 8600px;
+    }
+    #ol-lines {
+      position: absolute;
+      inset: 0;
+    }
+    #ol-svg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      overflow: visible;
+    }
+    .main {
+      fill: none;
+      stroke: #f2d17b;
+      stroke-width: 6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .thin {
+      fill: none;
+      stroke: #e6c45a;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.85;
+    }
+    .bar {
+      fill: none;
+      stroke: #e6c45a;
+      stroke-width: 12;
+      stroke-linecap: round;
+      opacity: 0.5;
+    }
+    .dot {
+      fill: #f2d17b;
+    }
+    #ol-msg {
+      position: absolute;
+      font-weight: 600;
+      font-size: 60px;
+      letter-spacing: -0.01em;
+      color: #f5f1e6;
+      white-space: nowrap;
+    }
+    /* the line's head: the logo's ring terminal */
+    #ol-head {
+      position: absolute;
+      left: -12px;
+      top: -12px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 4px solid #fff1bf;
+      background: #0a0a0a;
+      box-shadow: 0 0 18px rgba(242, 209, 123, 0.95), 0 0 42px rgba(212, 175, 55, 0.5);
+    }
+    /* screen-space shade: the title band stays clean while the world scrolls under it */
+    #ol-shade {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 690px;
+      background: linear-gradient(180deg, #0a0a0a 0%, #0a0a0a 86%, rgba(10, 10, 10, 0) 100%);
+    }
+    /* screen-space titles */
+    .lab {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 300px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .lab .t {
+      display: block;
+      font-weight: 800;
+      font-size: 104px;
+      line-height: 1.02;
+      letter-spacing: -0.025em;
+      color: #f5f5f5;
+    }
+    .lab .t.g {
+      color: #e6c45a;
+    }
+    .lab .t.big {
+      font-size: 150px;
+    }
+    .lab .e {
+      display: block;
+      margin-top: 22px;
+      font-weight: 600;
+      font-size: 28px;
+      letter-spacing: 0.12em;
+      color: #e6c45a;
+    }
+    .lab.hook .a {
+      display: block;
+      font-weight: 800;
+      font-size: 84px;
+      letter-spacing: -0.02em;
+      color: #f5f5f5;
+      line-height: 1;
+    }
+    .lab.hook .b {
+      display: block;
+      font-weight: 800;
+      font-size: 156px;
+      letter-spacing: -0.035em;
+      color: #e6c45a;
+      line-height: 1.02;
+      margin-top: 6px;
+    }
+  </style>
+
+  <div id="root" data-composition-id="line" data-width="1080" data-height="1920">
+    <div id="ol-stage" class="clip" data-start="0" data-duration="7.4" data-layout-allow-overflow data-layout-allow-overlap>
+      <div id="ol-world">
+        <div id="ol-lines">
+          <svg id="ol-svg" width="1080" height="8600" viewBox="0 0 1080 8600">
+            <defs>
+              <filter id="ol-glow" x="-10%" y="-10%" width="120%" height="120%">
+                <feGaussianBlur stdDeviation="5" result="b" />
+                <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+              </filter>
+            </defs>
+            <g filter="url(#ol-glow)">
+<path id="ol-hook" class="main" d="M -20 1000 L 380 1000 L 460 920 L 760 920 L 840 1000 L 970 1000 Q 1010 1000 1010 1040 L 1010 1850 Q 1010 1890 970 1890 L 932 1890" />
+<path id="ol-o1" class="main" d="M 932 1890 L 148 1890 Q 130 1890 130 1908 L 130 2392 Q 130 2410 148 2410 L 932 2410 Q 950 2410 950 2392 L 950 1908 Q 950 1890 932 1890" />
+<path id="ol-b1" class="main" d="M 932 1890 L 970 1890 Q 1010 1890 1010 1930 L 1010 2940 Q 1010 2980 970 2980 L 658 2980" />
+<path id="ol-o2" class="main" d="M 658 2980 L 422 2980 Q 370 2980 370 3032 L 370 3568 Q 370 3620 422 3620 L 658 3620 Q 710 3620 710 3568 L 710 3032 Q 710 2980 658 2980" />
+<path id="ol-b2" class="main" d="M 658 2980 L 970 2980 Q 1010 2980 1010 3020 L 1010 4140 Q 1010 4180 970 4180 L 940 4180" />
+<path id="ol-o3" class="main" d="M 940 4180 L 120 4180 Q 110 4180 110 4190 L 110 4710 Q 110 4720 120 4720 L 940 4720 Q 950 4720 950 4710 L 950 4190 Q 950 4180 940 4180" />
+<path id="ol-b3" class="main" d="M 940 4180 L 970 4180 Q 1010 4180 1010 4220 L 1010 5360 Q 1010 5400 970 5400 L 886 5400" />
+<path id="ol-o4" class="main" d="M 886 5400 L 194 5400 Q 150 5400 150 5444 L 150 5726 Q 150 5770 194 5770 L 220 5770 L 190 5850 L 310 5770 L 886 5770 Q 930 5770 930 5726 L 930 5444 Q 930 5400 886 5400" />
+<path id="ol-b4" class="main" d="M 886 5400 L 970 5400 Q 1010 5400 1010 5440 L 1010 6495 Q 1010 6535 970 6535 L 850 6535" />
+<path id="ol-o5" class="main" d="M 850 6535 L 230 6535 Q 200 6535 200 6565 L 200 6935 Q 200 6965 230 6965 L 850 6965 Q 880 6965 880 6935 L 880 6565 Q 880 6535 850 6535" />
+<path id="ol-b5" class="main" d="M 850 6535 L 970 6535 Q 1010 6535 1010 6575 L 1010 7560 Q 1010 7600 970 7600 L 810 7600" />
+<path id="ol-o6" class="main" d="M 810 7600 L 270 7600 L 270 7890 C 270 8100 450 8190 540 8230 C 630 8190 810 8100 810 7890 L 810 7600" />
+<path id="ol-b6" class="main" d="M 810 7600 L 970 7600 Q 1010 7600 1010 7640 L 1010 8370" />
+            </g>
+<g id="ol-d1"><path class="thin" d="M 130 1954 L 950 1954" /><path class="thin" d="M 161 1922 a 9 9 0 1 0 18 0 a 9 9 0 1 0 -18 0" /><path class="thin" d="M 620 1922 l 56 0 M 700 1922 l 56 0" /><path class="thin" d="M 816 1906 L 900 1906 Q 916 1906 916 1922 L 916 1922 Q 916 1938 900 1938 L 816 1938 Q 800 1938 800 1922 L 800 1922 Q 800 1906 816 1906 Z" /><path class="thin" d="M 219 2220 L 351 2220 Q 380 2220 380 2249 L 380 2249 Q 380 2278 351 2278 L 219 2278 Q 190 2278 190 2249 L 190 2249 Q 190 2220 219 2220 Z" /><path class="thin" d="M 620 2000 L 890 2000 Q 900 2000 900 2010 L 900 2350 Q 900 2360 890 2360 L 620 2360 Q 610 2360 610 2350 L 610 2010 Q 610 2000 620 2000 Z" /><path class="thin" d="M 746 2080 a 34 34 0 1 0 68 0 a 34 34 0 1 0 -68 0" /><path class="thin" d="M 610 2360 L 710 2240 L 780 2300 L 860 2200 L 900 2320" /><path class="thin" d="M 190 2140 L 520 2140 M 190 2172 L 460 2172" /><path class="bar" d="M 190 2040 L 560 2040 M 190 2088 L 490 2088" /></g>
+<g id="ol-d2"><path class="thin" d="M 503 3000 L 577 3000 Q 590 3000 590 3013 L 590 3013 Q 590 3026 577 3026 L 503 3026 Q 490 3026 490 3013 L 490 3013 Q 490 3000 503 3000 Z" /><path class="thin" d="M 412 3120 L 668 3120 Q 686 3120 686 3138 L 686 3292 Q 686 3310 668 3310 L 412 3310 Q 394 3310 394 3292 L 394 3138 Q 394 3120 412 3120 Z" /><path class="thin" d="M 412 3332 L 668 3332 Q 686 3332 686 3350 L 686 3424 Q 686 3442 668 3442 L 412 3442 Q 394 3442 394 3424 L 394 3350 Q 394 3332 412 3332 Z" /><path class="thin" d="M 412 3464 L 668 3464 Q 686 3464 686 3482 L 686 3502 Q 686 3520 668 3520 L 412 3520 Q 394 3520 394 3502 L 394 3482 Q 394 3464 412 3464 Z" /><path class="thin" d="M 370 3528 L 710 3528" /><path class="thin" d="M 423 3572 a 7 7 0 1 0 14 0 a 7 7 0 1 0 -14 0" /><path class="thin" d="M 496 3572 a 7 7 0 1 0 14 0 a 7 7 0 1 0 -14 0" /><path class="thin" d="M 569 3572 a 7 7 0 1 0 14 0 a 7 7 0 1 0 -14 0" /><path class="thin" d="M 643 3572 a 7 7 0 1 0 14 0 a 7 7 0 1 0 -14 0" /><path class="bar" d="M 404 3080 L 550 3080" /><path class="bar" d="M 418 3272 L 570 3272" /></g>
+<g id="ol-d3"><path class="thin" d="M 110 4236 L 950 4236" /><path class="thin" d="M 798 4208 l 22 0" /><path class="thin" d="M 850 4197 L 868 4197 Q 870 4197 870 4199 L 870 4217 Q 870 4219 868 4219 L 850 4219 Q 848 4219 848 4217 L 848 4199 Q 848 4197 850 4197 Z" /><path class="thin" d="M 900 4197 l 22 22 M 922 4197 l -22 22" /><path class="thin" d="M 330 4236 L 330 4720" /><path class="thin" d="M 380 4270 L 630 4270 Q 640 4270 640 4280 L 640 4430 Q 640 4440 630 4440 L 380 4440 Q 370 4440 370 4430 L 370 4280 Q 370 4270 380 4270 Z" /><path class="thin" d="M 680 4270 L 900 4270 Q 910 4270 910 4280 L 910 4430 Q 910 4440 900 4440 L 680 4440 Q 670 4440 670 4430 L 670 4280 Q 670 4270 680 4270 Z" /><path class="thin" d="M 380 4470 L 900 4470 Q 910 4470 910 4480 L 910 4670 Q 910 4680 900 4680 L 380 4680 Q 370 4680 370 4670 L 370 4480 Q 370 4470 380 4470 Z" /><path class="thin" d="M 400 4640 L 510 4570 L 610 4600 L 730 4520 L 850 4550 L 880 4500" /><path class="bar" d="M 140 4208 l 120 0" /><path class="bar" d="M 150 4290 l 130 0 M 150 4340 l 100 0 M 150 4390 l 120 0 M 150 4440 l 90 0" /></g>
+<g id="ol-d4"><circle class="dot" cx="240" cy="5500" r="15" /><circle class="dot" cx="290" cy="5500" r="15" /><circle class="dot" cx="340" cy="5500" r="15" /></g>
+<g id="ol-d5"><path class="thin" d="M 272 6625 L 338 6625 Q 350 6625 350 6637 L 350 6683 Q 350 6695 338 6695 L 272 6695 Q 260 6695 260 6683 L 260 6637 Q 260 6625 272 6625 Z" /><path class="thin" d="M 260 6660 l 90 0 M 305 6625 l 0 70" /><path class="thin" d="M 396 6643 q 12 17 0 34 M 414 6633 q 20 27 0 54 M 432 6623 q 28 37 0 74" /><path class="bar" d="M 260 6795 l 100 0 M 390 6795 l 100 0 M 520 6795 l 100 0 M 650 6795 l 100 0" /><path class="bar" d="M 260 6895 l 220 0" /><path class="bar" d="M 700 6895 l 110 0" /></g>
+<g id="ol-d6"><path class="thin" d="M 320 7910 L 430 7910 L 470 7820 L 520 8010 L 566 7870 L 600 7910 L 760 7910" /></g>
+          </svg>
+          <div id="ol-msg">Hi! How can I help?</div>
+        </div>
+        <div id="ol-head"></div>
+      </div>
+      <div id="ol-shade"></div>
+<div class="lab" id="ol-l1"><span class="t">Websites</span><span class="e"></span></div>
+<div class="lab" id="ol-l2"><span class="t">Mobile apps</span><span class="e"></span></div>
+<div class="lab" id="ol-l3"><span class="t">Software</span><span class="e"></span></div>
+<div class="lab" id="ol-l4"><span class="t">AI</span><span class="e"></span></div>
+<div class="lab" id="ol-l5"><span class="t">Payments</span><span class="e"></span></div>
+<div class="lab" id="ol-l6"><span class="t">Care plans</span><span class="e"></span></div>
+<div class="lab" id="ol-l7"><span class="t g big">Yes.</span><span class="t">End to end.</span><span class="e">PLANNED, DESIGNED AND BUILT</span></div>
+    </div>
+  </div>
+
+  <script>
+    gsap.registerPlugin(MotionPathPlugin);
+    const CFG = {"cam": {"1": -1150, "2": -2300, "3": -3450, "4": -4600, "5": -5750, "6": -6900}, "wx": 1161.4285714285716, "wy": 773.8095238095239, "s_end": 0.42, "y_end": 330.0, "cy6": 7900, "bubble": [210, 5560]};
+    const L = {};
+    document.querySelectorAll("#ol-svg path").forEach((p) => {
+      const len = p.getTotalLength();
+      L[p.id || ""] = len;
+      p.style.strokeDasharray = len + " " + (len + 2);
+      p.style.strokeDashoffset = len;
+      p.dataset.len = len;
+    });
+    // frame 0: the hook line is already moving, 10 % drawn
+    const hook = document.getElementById("ol-hook");
+    gsap.set("#ol-msg", { display: "none" });
+    const h0 = hook.getPointAtLength(L["ol-hook"] * 0.1);
+    hook.style.strokeDashoffset = L["ol-hook"] * 0.9;
+    gsap.set("#ol-head", { x: h0.x, y: h0.y, scale: 1, opacity: 1 });
+    gsap.set("#ol-world", { y: 0, scale: 1, transformOrigin: "540px 0px" });
+    gsap.set("#ol-msg", { left: CFG.bubble[0], top: CFG.bubble[1], opacity: 0, filter: "blur(8px)" });
+    gsap.set(".dot", { opacity: 0, scale: 0.4, transformOrigin: "50% 50%" });
+    gsap.set(["#ol-l1", "#ol-l2", "#ol-l3", "#ol-l4", "#ol-l5", "#ol-l6", "#ol-l7"], { opacity: 0, filter: "blur(10px)" });
+
+    const tl = gsap.timeline({ paused: true });
+    function draw(id, t0, dur, ease, start) {
+      const len = L[id];
+      tl.fromTo("#" + id, { strokeDashoffset: len * (1 - (start || 0)) }, { strokeDashoffset: 0, duration: dur, ease }, t0);
+      tl.to("#ol-head", { motionPath: { path: "#" + id, start: start || 0, end: 1 }, duration: dur, ease }, t0);
+    }
+    function details(k, t0) {
+      document.querySelectorAll("#ol-d" + k + " path").forEach((p, i) => {
+        tl.fromTo(p, { strokeDashoffset: +p.dataset.len }, { strokeDashoffset: 0, duration: 0.26, ease: "power2.out" }, t0 + i * 0.015);
+      });
+    }
+    // host starts 16.75 s, under the question card; one service per 0.85 s, each held before the camera moves on
+    draw("ol-hook", 0, 0.55, "power1.in", 0.1);
+    for (let k = 1; k <= 6; k++) {
+      const t = 0.55 + (k - 1) * 0.85;
+      tl.to("#ol-world", { y: CFG.cam[k], duration: 0.22, ease: "power2.inOut" }, t - 0.22);
+      draw("ol-o" + k, t, 0.3, "power2.inOut");
+      details(k, t + 0.14);
+      if (k < 6) draw("ol-b" + k, t + 0.6, 0.25, "power1.in");
+      else draw("ol-b6", t + 0.6, 0.15, "power2.out");
+      tl.to("#ol-l" + k, { opacity: 1, filter: "blur(0px)", duration: 0.12, ease: "power4.out" }, t);
+      tl.to("#ol-l" + k, { opacity: 0, filter: "blur(8px)", duration: 0.1, ease: "power3.in" }, t + 0.73);
+    }
+    tl.to(".dot", { opacity: 1, scale: 1, duration: 0.12, ease: "back.out(1.6)", stagger: 0.06 }, 3.4);
+    // pull back: everything one team builds, as one line
+    tl.to("#ol-world", { scale: CFG.s_end, y: 1000 - CFG.s_end * CFG.cy6, duration: 0.35, ease: "power2.inOut" }, 5.6);
+    tl.to("#ol-head", { scale: 2.1, duration: 0.35, ease: "power2.inOut" }, 5.6);
+    tl.to("#ol-world", { y: CFG.y_end, duration: 0.65, ease: "power3.inOut" }, 5.95);
+    tl.to("#ol-l7", { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 5.62);
+    tl.to(["#ol-l7", "#ol-lines", "#ol-head"], { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power3.in" }, 7.15);
+    window.__timelines["line"] = tl;
+  </script>
+</template>

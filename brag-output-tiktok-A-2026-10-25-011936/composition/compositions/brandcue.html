@@ -1,0 +1,46 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    #bc-row {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 186px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+    }
+    #bc-logo {
+      width: 96px;
+      height: 67px;
+      object-fit: contain;
+    }
+    #bc-word {
+      font-family: "Inter", sans-serif;
+      font-weight: 700;
+      font-size: 38px;
+      letter-spacing: -0.01em;
+      color: #e6c45a;
+    }
+  </style>
+  <div id="root" data-composition-id="brandcue" data-width="1080" data-height="1920">
+    <div id="bc-wrap" class="clip" data-start="0" data-duration="28.3">
+      <div id="bc-row">
+        <img id="bc-logo" src="assets/brand/deveraxtech-logo.png" alt="DevEraXTech logo" />
+        <span id="bc-word">DevEraXTech</span>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // Present from frame 0 (authentic brand cue inside the first two seconds), quiet until the end card.
+    tl.fromTo("#bc-row", { opacity: 1 }, { opacity: 1, duration: 0.01 }, 0);
+    tl.to("#bc-row", { opacity: 0, filter: "blur(6px)", duration: 0.3, ease: "power3.in" }, 27.95);
+    window.__timelines["brandcue"] = tl;
+  </script>
+</template>

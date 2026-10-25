@@ -1,0 +1,223 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+      overflow: hidden;
+    }
+    #ol-world {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 8600px;
+    }
+    #ol-lines {
+      position: absolute;
+      inset: 0;
+    }
+    #ol-svg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      overflow: visible;
+    }
+    .main {
+      fill: none;
+      stroke: #f2d17b;
+      stroke-width: 6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .thin {
+      fill: none;
+      stroke: #e6c45a;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.85;
+    }
+    .bar {
+      fill: none;
+      stroke: #e6c45a;
+      stroke-width: 12;
+      stroke-linecap: round;
+      opacity: 0.5;
+    }
+    .dot {
+      fill: #f2d17b;
+    }
+    #ol-msg {
+      position: absolute;
+      font-weight: 600;
+      font-size: 60px;
+      letter-spacing: -0.01em;
+      color: #f5f1e6;
+      white-space: nowrap;
+    }
+    /* the line's head: the logo's ring terminal */
+    #ol-head {
+      position: absolute;
+      left: -12px;
+      top: -12px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 4px solid #fff1bf;
+      background: #0a0a0a;
+      box-shadow: 0 0 18px rgba(242, 209, 123, 0.95), 0 0 42px rgba(212, 175, 55, 0.5);
+    }
+    /* screen-space shade: the title band stays clean while the world scrolls under it */
+    #ol-shade {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 690px;
+      background: linear-gradient(180deg, #0a0a0a 0%, #0a0a0a 86%, rgba(10, 10, 10, 0) 100%);
+    }
+    /* screen-space titles */
+    .lab {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 300px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .lab .t {
+      display: block;
+      font-weight: 800;
+      font-size: 88px;
+      line-height: 1.02;
+      letter-spacing: -0.025em;
+      color: #f5f5f5;
+    }
+    .lab .t.g {
+      color: #e6c45a;
+    }
+    .lab .e {
+      display: block;
+      margin-top: 22px;
+      font-weight: 600;
+      font-size: 28px;
+      letter-spacing: 0.12em;
+      color: #e6c45a;
+    }
+    .lab.hook .a {
+      display: block;
+      font-weight: 800;
+      font-size: 84px;
+      letter-spacing: -0.02em;
+      color: #f5f5f5;
+      line-height: 1;
+    }
+    .lab.hook .b {
+      display: block;
+      font-weight: 800;
+      font-size: 156px;
+      letter-spacing: -0.035em;
+      color: #e6c45a;
+      line-height: 1.02;
+      margin-top: 6px;
+    }
+  </style>
+
+  <div id="root" data-composition-id="line" data-width="1080" data-height="1920">
+    <div id="ol-stage" class="clip" data-start="0" data-duration="16.4" data-layout-allow-overflow data-layout-allow-overlap>
+      <div id="ol-world">
+        <div id="ol-lines">
+          <svg id="ol-svg" width="1080" height="8600" viewBox="0 0 1080 8600">
+            <defs>
+              <filter id="ol-glow" x="-10%" y="-10%" width="120%" height="120%">
+                <feGaussianBlur stdDeviation="5" result="b" />
+                <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+              </filter>
+            </defs>
+            <g filter="url(#ol-glow)">
+__MAIN__
+            </g>
+__THIN__
+          </svg>
+          <div id="ol-msg">Hi! How can I help?</div>
+        </div>
+        <div id="ol-head"></div>
+      </div>
+      <div id="ol-shade"></div>
+__LABELS__
+    </div>
+  </div>
+
+  <script>
+    gsap.registerPlugin(MotionPathPlugin);
+    const CFG = __CFG__;
+    const L = {};
+    document.querySelectorAll("#ol-svg path").forEach((p) => {
+      const len = p.getTotalLength();
+      L[p.id || ""] = len;
+      p.style.strokeDasharray = len + " " + (len + 2);
+      p.style.strokeDashoffset = len;
+      p.dataset.len = len;
+    });
+    // frame 0: the hook line is already moving, 10 % drawn
+    const hook = document.getElementById("ol-hook");
+    const h0 = hook.getPointAtLength(L["ol-hook"] * 0.1);
+    hook.style.strokeDashoffset = L["ol-hook"] * 0.9;
+    gsap.set("#ol-head", { x: h0.x, y: h0.y, scale: 1, opacity: 1 });
+    gsap.set("#ol-world", { y: 0, scale: 1, transformOrigin: "540px 0px" });
+    gsap.set("#ol-msg", { left: CFG.bubble[0], top: CFG.bubble[1], opacity: 0, filter: "blur(8px)" });
+    gsap.set(".dot", { opacity: 0, scale: 0.4, transformOrigin: "50% 50%" });
+    gsap.set(["#ol-l1", "#ol-l2", "#ol-l3", "#ol-l4", "#ol-l5", "#ol-l6", "#ol-l7"], { opacity: 0, filter: "blur(10px)" });
+
+    const tl = gsap.timeline({ paused: true });
+
+    // one stroke, drawn as one line: the dash and the ring terminal share the same ease and window
+    function draw(id, t0, dur, ease, start) {
+      const len = L[id];
+      tl.fromTo("#" + id, { strokeDashoffset: len * (1 - (start || 0)) }, { strokeDashoffset: 0, duration: dur, ease }, t0);
+      tl.to("#ol-head", { motionPath: { path: "#" + id, start: start || 0, end: 1 }, duration: dur, ease }, t0);
+    }
+    function details(k, t0) {
+      const ps = document.querySelectorAll("#ol-d" + k + " path");
+      ps.forEach((p, i) => {
+        tl.fromTo(p, { strokeDashoffset: +p.dataset.len }, { strokeDashoffset: 0, duration: 0.42, ease: "power2.out" }, t0 + i * 0.03);
+      });
+    }
+
+    draw("ol-hook", 0, 1.95, "sine.inOut", 0.1);
+    for (let k = 1; k <= 6; k++) {
+      const t = 2 * k;
+      // camera arrives on the bar as the outline starts
+      tl.to("#ol-world", { y: CFG.cam[k], duration: 0.6, ease: "power2.inOut" }, t - 0.6);
+      draw("ol-o" + k, t, 1.05, "power2.inOut");
+      details(k, t + 0.72);
+      if (k < 6) draw("ol-b" + k, t + 1.45, 0.55, "power1.in");
+      else draw("ol-b6", 13.55, 0.4, "power2.out");
+      // titles: blur in on the bar, out just before the next
+      tl.to("#ol-l" + k, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, t);
+      tl.to("#ol-l" + k, { opacity: 0, filter: "blur(10px)", duration: 0.16, ease: "power3.in" }, t + 1.82);
+    }
+    tl.to("#ol-l0", { opacity: 0, filter: "blur(10px)", duration: 0.16, ease: "power3.in" }, 1.82);
+
+    // AI: typing dots, then the answer
+    tl.to(".dot", { opacity: 1, scale: 1, duration: 0.18, ease: "back.out(1.6)", stagger: 0.1 }, 8.72);
+    tl.to(".dot", { opacity: 0, duration: 0.1 }, 9.02);
+    tl.to("#ol-msg", { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 9.04);
+
+    // pull back: the whole line, everything it drew, in one rewind
+    tl.to("#ol-world", { scale: CFG.s_end, y: 1000 - CFG.s_end * CFG.cy6, duration: 0.45, ease: "power2.inOut" }, 14.0);
+    tl.to("#ol-head", { scale: 2.1, duration: 0.45, ease: "power2.inOut" }, 14.0);
+    tl.to("#ol-world", { y: CFG.y_end, duration: 0.9, ease: "power3.inOut" }, 14.45);
+    tl.to("#ol-l7", { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 13.92);
+    tl.to("#ol-l7", { opacity: 0, filter: "blur(10px)", duration: 0.18, ease: "power3.in" }, 15.6);
+
+    // the ring terminal flies home to its place in the logo
+    tl.to("#ol-lines", { opacity: 0.14, filter: "blur(4px)", duration: 0.4, ease: "power2.inOut" }, 15.35);
+    tl.to("#ol-head", { x: CFG.wx, y: CFG.wy, duration: 0.55, ease: "power3.inOut" }, 15.45);
+    tl.to("#ol-head", { opacity: 0, duration: 0.15 }, 16.05);
+    tl.to("#ol-lines", { opacity: 0, duration: 0.25 }, 16.1);
+
+    window.__timelines["line"] = tl;
+  </script>
+</template>
