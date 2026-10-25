@@ -1,0 +1,134 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Cormorant Garamond";
+      font-style: italic;
+      font-weight: 500;
+      src: url("assets/fonts/CormorantGaramond-italic.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Cormorant Garamond";
+      font-style: normal;
+      font-weight: 500;
+      src: url("assets/fonts/CormorantGaramond-normal.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Cinzel";
+      font-style: normal;
+      font-weight: 500;
+      src: url("assets/fonts/Cinzel-normal.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+    }
+    #sg-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 45% at 50% 44%, #1b1710 0%, #0a0907 55%, #050504 100%);
+    }
+    #sg-logo {
+      position: absolute;
+      left: 320px;
+      top: 560px;
+      width: 440px;
+      height: 310px;
+      background: url("assets/brand/deveraxtech-logo.png") center / contain no-repeat;
+    }
+    /* a slow band of light passes across the logo, like light on polished metal */
+    #sg-sheen {
+      position: absolute;
+      left: 320px;
+      top: 560px;
+      width: 440px;
+      height: 310px;
+      background: linear-gradient(105deg, rgba(255, 255, 255, 0) 35%, rgba(255, 246, 220, 0.55) 50%, rgba(255, 255, 255, 0) 65%) 0 0 / 300% 100% no-repeat;
+      -webkit-mask: url("assets/brand/deveraxtech-logo.png") center / contain no-repeat;
+      mask: url("assets/brand/deveraxtech-logo.png") center / contain no-repeat;
+    }
+    #sg-word {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 930px;
+      text-align: center;
+      font-family: "Cinzel", serif;
+      font-weight: 500;
+      font-size: 84px;
+      letter-spacing: 0.08em;
+      text-indent: 0.08em;
+      color: #e3c77e;
+    }
+    #sg-rule {
+      position: absolute;
+      left: 440px;
+      top: 1052px;
+      width: 200px;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(217, 185, 104, 0), #d9b968, rgba(217, 185, 104, 0));
+    }
+    #sg-tag {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1082px;
+      text-align: center;
+      font-family: "Cinzel", serif;
+      font-size: 30px;
+      letter-spacing: 0.5em;
+      text-indent: 0.5em;
+      color: #cfc4ad;
+    }
+    #sg-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1180px;
+      text-align: center;
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: 64px;
+      color: #f7f2e8;
+    }
+    #sg-url {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1300px;
+      text-align: center;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 40px;
+      letter-spacing: 0.18em;
+      text-indent: 0.18em;
+      color: #d9b968;
+    }
+  </style>
+  <div id="root" data-composition-id="signature" data-width="1080" data-height="1920">
+    <div id="sg-wrap" class="clip" data-start="0" data-duration="6.23">
+      <div id="sg-bg"></div>
+      <div id="sg-logo" role="img" aria-label="DevEraXTech logo"></div>
+      <div id="sg-sheen"></div>
+      <div id="sg-word">DevEraXTech</div>
+      <div id="sg-rule"></div>
+      <div id="sg-tag">ENGINEERED EXCELLENCE</div>
+      <div id="sg-line">Websites, crafted.</div>
+      <div id="sg-url">deveraxtech.com</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // host starts 25.77 s (strong cue); everything arrives slowly, nothing bounces
+    gsap.set(["#sg-word", "#sg-tag", "#sg-line", "#sg-url"], { opacity: 0, y: 14 });
+    gsap.set("#sg-rule", { scaleX: 0 });
+    tl.fromTo("#sg-bg", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.out" }, 0.0);
+    tl.fromTo("#sg-logo", { opacity: 0, scale: 0.94, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.6, ease: "power2.out" }, 0.2);
+    tl.fromTo("#sg-sheen", { backgroundPosition: "100% 0" }, { backgroundPosition: "-50% 0", duration: 1.8, ease: "power1.inOut" }, 1.2);
+    tl.to("#sg-word", { opacity: 1, y: 0, duration: 1.0, ease: "power2.out" }, 1.2);
+    tl.to("#sg-rule", { scaleX: 1, duration: 1.0, ease: "power2.out" }, 1.7);
+    tl.to("#sg-tag", { opacity: 1, y: 0, duration: 1.0, ease: "power2.out" }, 1.9);
+    tl.to("#sg-line", { opacity: 1, y: 0, duration: 1.0, ease: "power2.out" }, 2.7);
+    tl.to("#sg-url", { opacity: 1, y: 0, duration: 1.0, ease: "power2.out" }, 3.3);
+    tl.fromTo("#sg-sheen", { backgroundPosition: "100% 0" }, { backgroundPosition: "-50% 0", duration: 1.8, ease: "power1.inOut", immediateRender: false }, 4.2);
+    window.__timelines["signature"] = tl;
+  </script>
+</template>

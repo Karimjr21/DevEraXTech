@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Cinzel";
+        font-style: normal;
+        font-weight: 500;
+        src: url("assets/fonts/Cinzel-normal.woff2") format("woff2");
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #000;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      /* lens vignette and a warm lift */
+      #grade {
+        position: absolute;
+        inset: 0;
+        z-index: 20;
+        background:
+          radial-gradient(ellipse 85% 70% at 50% 48%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.62) 100%),
+          linear-gradient(180deg, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.0) 46%, rgba(0, 0, 0, 0.62) 62%, rgba(0, 0, 0, 0.72) 80%, rgba(0, 0, 0, 0.6) 100%);
+      }
+      /* cinema bars, with a quiet maker's mark in the top one */
+      .bar {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 150px;
+        background: #000;
+        z-index: 30;
+      }
+      #mark {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 66px;
+        z-index: 31;
+        text-align: center;
+        font-family: "Cinzel", serif;
+        font-size: 28px;
+        letter-spacing: 0.6em;
+        text-indent: 0.6em;
+        color: #b99a52;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="32.0" data-width="1080" data-height="1920">
+      <video id="v0" class="clip" data-start="0.0" data-duration="4.73" data-track-index="1" muted playsinline src="assets/footage/l1-watch.mp4" style="position:absolute;inset:0;width:1080px;height:1920px;object-fit:cover;z-index:1"></video>
+      <video id="v1" class="clip" data-start="4.13" data-duration="5.26" data-track-index="2" muted playsinline src="assets/footage/l2-pen.mp4" style="position:absolute;inset:0;width:1080px;height:1920px;object-fit:cover;z-index:2"></video>
+      <video id="v2" class="clip" data-start="8.79" data-duration="5.28" data-track-index="1" muted playsinline src="assets/footage/l3-gold.mp4" style="position:absolute;inset:0;width:1080px;height:1920px;object-fit:cover;z-index:3"></video>
+      <video id="v3" class="clip" data-start="13.47" data-duration="5.27" data-track-index="2" muted playsinline src="assets/footage/l4-code.mp4" style="position:absolute;inset:0;width:1080px;height:1920px;object-fit:cover;z-index:4"></video>
+      <video id="v4" class="clip" data-start="18.14" data-duration="2.94" data-track-index="1" muted playsinline src="assets/footage/l5-keys.mp4" style="position:absolute;inset:0;width:1080px;height:1920px;object-fit:cover;z-index:5"></video>
+      <video id="v5" class="clip" data-start="20.48" data-duration="2.95" data-track-index="2" muted playsinline src="assets/footage/l5-face.mp4" style="position:absolute;inset:0;width:1080px;height:1920px;object-fit:cover;z-index:6"></video>
+      <video id="v6" class="clip" data-start="22.83" data-duration="2.94" data-track-index="1" muted playsinline src="assets/footage/l6-movement.mp4" style="position:absolute;inset:0;width:1080px;height:1920px;object-fit:cover;z-index:7"></video>
+      <div id="grade"></div>
+      <div id="chapters" data-composition-id="chapters" data-composition-src="compositions/chapters.html" data-start="0" data-duration="25.77" data-track-index="4" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 25"></div>
+      <div id="signature" data-composition-id="signature" data-composition-src="compositions/signature.html" data-start="25.77" data-duration="6.23" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 26"></div>
+      <div class="bar" style="top:0"></div>
+      <div class="bar" style="bottom:0"></div>
+      <div id="mark">DEVERAXTECH</div>
+
+      <!-- Footage: Mixkit (mixkit.co), Mixkit Stock Video Free License -->
+      <!-- Music: "Gymnopedie No. 1" (Erik Satie) performed by Kevin MacLeod (incompetech.com), CC BY 4.0 -->
+      <audio id="music" class="clip" data-start="0" data-duration="32.0" data-track-index="10" data-volume="0.9" data-fade-out="2.2" src="assets/music/gymnopedie-no1-kevin-macleod.mp3"></audio>
+      <audio id="s-sig" class="clip" data-start="26.0" data-duration="2.8" data-track-index="11" data-volume="0.35" src="assets/sfx/sig-full.wav"></audio>
+    </div>
+    <script>
+      const main = gsap.timeline({ paused: true });
+      // each shot drifts in slowly; shots dissolve into one another
+      main.fromTo("#v0", { scale: 1.0 }, { scale: 1.05, duration: 4.73, ease: "none" }, 0.0);
+      main.fromTo("#v1", { scale: 1.0 }, { scale: 1.05, duration: 5.26, ease: "none" }, 4.13);
+      main.fromTo("#v1", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.inOut", immediateRender: false }, 4.13);
+      main.fromTo("#v2", { scale: 1.0 }, { scale: 1.05, duration: 5.28, ease: "none" }, 8.79);
+      main.fromTo("#v2", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.inOut", immediateRender: false }, 8.79);
+      main.fromTo("#v3", { scale: 1.0 }, { scale: 1.05, duration: 5.27, ease: "none" }, 13.47);
+      main.fromTo("#v3", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.inOut", immediateRender: false }, 13.47);
+      main.fromTo("#v4", { scale: 1.0 }, { scale: 1.05, duration: 2.94, ease: "none" }, 18.14);
+      main.fromTo("#v4", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.inOut", immediateRender: false }, 18.14);
+      main.fromTo("#v5", { scale: 1.0 }, { scale: 1.05, duration: 2.95, ease: "none" }, 20.48);
+      main.fromTo("#v5", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.inOut", immediateRender: false }, 20.48);
+      main.fromTo("#v6", { scale: 1.0 }, { scale: 1.05, duration: 2.94, ease: "none" }, 22.83);
+      main.fromTo("#v6", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.inOut", immediateRender: false }, 22.83);
+      main.to("#v6", { opacity: 0, duration: 0.55, ease: "power1.in" }, 25.2);
+      main.fromTo("#mark", { opacity: 0.0 }, { opacity: 1, duration: 1.5, ease: "power1.out" }, 0.0);
+      main.to("#mark", { opacity: 0, duration: 0.8 }, 25.4);
+      window.__timelines["main"] = main;
+    </script>
+  </body>
+</html>
