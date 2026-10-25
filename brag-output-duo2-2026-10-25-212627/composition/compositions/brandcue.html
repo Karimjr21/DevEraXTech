@@ -1,0 +1,38 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+    }
+    #bc {
+      position: absolute;
+      left: 60px;
+      top: 96px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    #bc i {
+      width: 56px;
+      height: 40px;
+      background: url("assets/brand/deveraxtech-logo.png") center / contain no-repeat;
+    }
+    #bc span {
+      font-family: "DejaVu Sans Mono", monospace;
+      font-weight: 700;
+      font-size: 28px;
+      letter-spacing: 0.08em;
+      color: #c9d2f5;
+    }
+  </style>
+  <div id="root" data-composition-id="brandcue" data-width="1080" data-height="1920">
+    <div id="bc-wrap" class="clip" data-start="0" data-duration="26.5">
+      <div id="bc"><i role="img" aria-label="DevEraXTech logo"></i><span>DEVERAXTECH // DUO CHECK</span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.to("#bc", { opacity: 0, duration: 0.2 }, 26.3);
+    window.__timelines["brandcue"] = tl;
+  </script>
+</template>

@@ -1,0 +1,223 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+      color: #ffffff;
+    }
+    .hd {
+      position: absolute;
+      left: 60px;
+      right: 60px;
+      top: 250px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 86px;
+      line-height: 1.04;
+      letter-spacing: -0.035em;
+      color: #ffffff;
+    }
+    .hd em {
+      font-style: normal;
+      color: #f6c42b;
+    }
+    .mono {
+      font-family: "DejaVu Sans Mono", monospace;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .pov {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 180px;
+      text-align: center;
+      font-size: 40px;
+      color: #f6c42b;
+    }
+    .tag {
+      position: absolute;
+      padding: 10px 18px 12px;
+      background: #f6c42b;
+      color: #0b0b0c;
+      border-radius: 10px;
+      font-size: 28px;
+      white-space: nowrap;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+    }
+    .chip {
+      position: absolute;
+      padding: 12px 26px 14px;
+      border: 3px solid #f6c42b;
+      color: #f6c42b;
+      border-radius: 999px;
+      font-size: 32px;
+      white-space: nowrap;
+    }
+    /* the unfolded inner screen, full width: hinge down the middle */
+    .band {
+      position: absolute;
+      left: 40px;
+      top: 640px;
+      width: 1000px;
+      height: 760px;
+      padding: 14px;
+      background: #1a2140;
+      border-radius: 48px;
+      box-shadow: 0 0 0 2px rgba(120, 150, 255, 0.25), 0 40px 90px rgba(0, 0, 0, 0.6);
+    }
+    .scr {
+      position: relative;
+      width: 972px;
+      height: 732px;
+      background: #ffffff;
+      border-radius: 36px;
+      overflow: hidden;
+      color: #0b0b0c;
+    }
+    .hinge {
+      position: absolute;
+      left: 494px;
+      top: 0;
+      width: 12px;
+      height: 760px;
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3) 45%, rgba(255, 255, 255, 0.35) 55%, rgba(0, 0, 0, 0));
+    }
+    /* closed: the outer screen */
+    .closed {
+      position: absolute;
+      left: 340px;
+      top: 720px;
+      width: 400px;
+      height: 600px;
+      padding: 14px;
+      background: #1a2140;
+      border-radius: 50px;
+      box-shadow: 0 0 0 2px rgba(120, 150, 255, 0.25), 0 40px 90px rgba(0, 0, 0, 0.6);
+    }
+    .closed .in {
+      position: relative;
+      width: 372px;
+      height: 572px;
+      background: #fff;
+      border-radius: 38px;
+      overflow: hidden;
+      color: #0b0b0c;
+    }
+    .bar {
+      position: absolute;
+      height: 18px;
+      border-radius: 9px;
+      background: #dedbe6;
+    }
+    .btn {
+      position: absolute;
+      height: 76px;
+      border-radius: 38px;
+      background: #0b0b0c;
+      color: #f6c42b;
+      font-weight: 800;
+      font-size: 32px;
+      line-height: 76px;
+      text-align: center;
+    }
+    .half {
+      position: absolute;
+      top: 300px;
+      width: 160px;
+      height: 96px;
+      background: #e0483e;
+      color: #fff;
+      font-weight: 800;
+      font-size: 40px;
+      line-height: 96px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    #bt-tap {
+      position: absolute;
+      left: 446px;
+      top: 300px;
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      border: 6px solid #4a63c9;
+      background: rgba(74, 99, 201, 0.18);
+    }
+    #bt-good {
+      left: 80px;
+      width: 330px;
+      top: 470px;
+      height: 96px;
+      line-height: 96px;
+      border-radius: 48px;
+      font-size: 40px;
+      box-shadow: 0 0 0 0 rgba(246, 196, 43, 0.0);
+    }
+  </style>
+  <div id="root" data-composition-id="button" data-width="1080" data-height="1920">
+    <div id="button-wrap" class="clip" data-start="0" data-duration="5.92" data-layout-allow-overflow data-layout-allow-overlap>
+      <div class="hd" id="bt-q">Where did your <em>“Book now”</em> button go?</div>
+      <div class="band" id="bt-b"><div class="scr" data-layout-ignore>
+          <div style="position:absolute;left:0;top:0;right:0;height:70px;border-bottom:2px solid #eee"></div>
+          <div style="position:absolute;left:30px;top:20px;font-weight:900;font-size:28px">YourBrand</div>
+          <div style="position:absolute;left:80px;top:130px;width:360px;font-weight:900;font-size:56px;line-height:1.0;letter-spacing:-0.035em">Open daily.</div>
+          <div class="half" id="bt-l" style="left:326px;border-radius:14px 0 0 14px;text-align:right;padding-right:4px">Book&nbsp;</div>
+          <div class="half" id="bt-r" style="left:486px;border-radius:0 14px 14px 0;text-align:left;padding-left:4px">now</div>
+          <div id="bt-tap"></div>
+          <div class="btn" id="bt-good">Book now</div>
+          <div class="bar" style="left:540px;top:150px;width:360px"></div>
+          <div class="bar" style="left:540px;top:186px;width:300px"></div></div><div class="hinge"></div></div>
+      <div class="hd" id="bt-a1">Lost in <em>the fold.</em></div>
+      <div class="hd" id="bt-a2">We design <em>around the hinge.</em></div>
+      <div class="tag mono" id="bt-safe" style="left:150px;top:1250px">safe zone ✓</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // times are written in film time; the host starts this scene at 7.38 s
+    const G = (t) => +(t - 7.38).toFixed(3);
+    function rise(sel, t) {
+      tl.fromTo(sel, { opacity: 0, y: 50, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.32, ease: "power3.out", immediateRender: false }, t);
+    }
+    function sink(sel, t) {
+      tl.to(sel, { opacity: 0, y: -40, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, t);
+    }
+    function pop(sel, t) {
+      tl.fromTo(sel, { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.6)", immediateRender: false }, t);
+    }
+    // closed outer screen -> the whole band unfolds out of it
+    function unfold(closed, band, t) {
+      tl.to(closed, { opacity: 0, duration: 0.05 }, t);
+      tl.fromTo(band, { opacity: 0, clipPath: "inset(10.5% 30% 10.5% 30% round 48px)" }, { opacity: 1, clipPath: "inset(0% 0% 0% 0% round 48px)", duration: 0.4, ease: "expo.out", immediateRender: false }, t);
+    }
+    function fold(closed, band, t) {
+      tl.to(band, { clipPath: "inset(10.5% 30% 10.5% 30% round 48px)", duration: 0.3, ease: "power3.in" }, t);
+      tl.to(band, { opacity: 0, duration: 0.05 }, t + 0.3);
+      tl.fromTo(closed, { opacity: 0 }, { opacity: 1, duration: 0.05, immediateRender: false }, t + 0.28);
+    }
+    gsap.set(["#bt-a1", "#bt-a2", "#bt-safe", "#bt-good", "#bt-tap", "#bt-q"], { opacity: 0 });
+    tl.fromTo("#bt-q", { opacity: 0, scale: 1.3 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power4.out", immediateRender: false }, G(7.42));
+    tl.fromTo("#bt-b", { opacity: 0, y: 200 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, G(7.5));
+    // the button tears along the hinge
+    tl.to("#bt-l", { x: -46, rotation: -6, duration: 0.5, ease: "back.out(2)" }, G(7.91));
+    tl.to("#bt-r", { x: 46, rotation: 7, y: 20, duration: 0.5, ease: "back.out(2)" }, G(7.91));
+    // a thumb taps the gap, and nothing happens
+    tl.fromTo("#bt-tap", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.18, ease: "power2.out", immediateRender: false }, G(8.89));
+    tl.to("#bt-tap", { opacity: 0, scale: 1.6, duration: 0.3, ease: "power2.out" }, G(9.07));
+    sink("#bt-q", G(9.25));
+    rise("#bt-a1", G(9.38));
+    // the fix: one whole button, clear of the hinge
+    tl.to(["#bt-l", "#bt-r"], { opacity: 0, y: 60, duration: 0.25, ease: "power2.in" }, G(10.7));
+    tl.fromTo("#bt-good", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.4)", immediateRender: false }, G(10.87));
+    tl.fromTo("#bt-good", { boxShadow: "0 0 0 0 rgba(246,196,43,0.9)" }, { boxShadow: "0 0 0 26px rgba(246,196,43,0)", duration: 0.49, ease: "power2.out", repeat: 3, immediateRender: false }, G(10.9));
+    sink("#bt-a1", G(10.72));
+    rise("#bt-a2", G(10.87));
+    pop("#bt-safe", G(11.35));
+    tl.to(["#bt-b", "#bt-safe"], { opacity: 0, x: -160, duration: 0.25, ease: "power2.in" }, G(13.05));
+    sink("#bt-a2", G(13.05));
+    window.__timelines["button"] = tl;
+  </script>
+</template>

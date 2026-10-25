@@ -1,0 +1,241 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+      color: #ffffff;
+    }
+    .hd {
+      position: absolute;
+      left: 60px;
+      right: 60px;
+      top: 250px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 86px;
+      line-height: 1.04;
+      letter-spacing: -0.035em;
+      color: #ffffff;
+    }
+    .hd em {
+      font-style: normal;
+      color: #f6c42b;
+    }
+    .mono {
+      font-family: "DejaVu Sans Mono", monospace;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .pov {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 180px;
+      text-align: center;
+      font-size: 40px;
+      color: #f6c42b;
+    }
+    .tag {
+      position: absolute;
+      padding: 10px 18px 12px;
+      background: #f6c42b;
+      color: #0b0b0c;
+      border-radius: 10px;
+      font-size: 28px;
+      white-space: nowrap;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+    }
+    .chip {
+      position: absolute;
+      padding: 12px 26px 14px;
+      border: 3px solid #f6c42b;
+      color: #f6c42b;
+      border-radius: 999px;
+      font-size: 32px;
+      white-space: nowrap;
+    }
+    /* the unfolded inner screen, full width: hinge down the middle */
+    .band {
+      position: absolute;
+      left: 40px;
+      top: 640px;
+      width: 1000px;
+      height: 760px;
+      padding: 14px;
+      background: #1a2140;
+      border-radius: 48px;
+      box-shadow: 0 0 0 2px rgba(120, 150, 255, 0.25), 0 40px 90px rgba(0, 0, 0, 0.6);
+    }
+    .scr {
+      position: relative;
+      width: 972px;
+      height: 732px;
+      background: #ffffff;
+      border-radius: 36px;
+      overflow: hidden;
+      color: #0b0b0c;
+    }
+    .hinge {
+      position: absolute;
+      left: 494px;
+      top: 0;
+      width: 12px;
+      height: 760px;
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3) 45%, rgba(255, 255, 255, 0.35) 55%, rgba(0, 0, 0, 0));
+    }
+    /* closed: the outer screen */
+    .closed {
+      position: absolute;
+      left: 340px;
+      top: 720px;
+      width: 400px;
+      height: 600px;
+      padding: 14px;
+      background: #1a2140;
+      border-radius: 50px;
+      box-shadow: 0 0 0 2px rgba(120, 150, 255, 0.25), 0 40px 90px rgba(0, 0, 0, 0.6);
+    }
+    .closed .in {
+      position: relative;
+      width: 372px;
+      height: 572px;
+      background: #fff;
+      border-radius: 38px;
+      overflow: hidden;
+      color: #0b0b0c;
+    }
+    .bar {
+      position: absolute;
+      height: 18px;
+      border-radius: 9px;
+      background: #dedbe6;
+    }
+    .btn {
+      position: absolute;
+      height: 76px;
+      border-radius: 38px;
+      background: #0b0b0c;
+      color: #f6c42b;
+      font-weight: 800;
+      font-size: 32px;
+      line-height: 76px;
+      text-align: center;
+    }
+    #bs-empty {
+      position: absolute;
+      left: 530px;
+      top: 100px;
+      width: 400px;
+      height: 590px;
+      border: 5px dashed #c9c5d3;
+      border-radius: 28px;
+    }
+    #bs-et {
+      position: absolute;
+      left: 530px;
+      width: 400px;
+      top: 370px;
+      text-align: center;
+      font-size: 30px;
+      color: #9a96a6;
+    }
+    #bs-card {
+      position: absolute;
+      left: 530px;
+      top: 100px;
+      width: 400px;
+      height: 590px;
+      border-radius: 28px;
+      background: #f4f3f8;
+    }
+    .dchip {
+      position: absolute;
+      width: 104px;
+      height: 104px;
+      border-radius: 20px;
+      background: #fff;
+      border: 3px solid #e2e0ea;
+      text-align: center;
+      font-weight: 800;
+      font-size: 26px;
+      padding-top: 22px;
+      line-height: 1.2;
+    }
+    .dchip.on {
+      background: #0b0b0c;
+      color: #f6c42b;
+      border-color: #0b0b0c;
+    }
+    .tile {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 22px;
+    }
+  </style>
+  <div id="root" data-composition-id="both" data-width="1080" data-height="1920">
+    <div id="both-wrap" class="clip" data-start="0" data-duration="8.32" data-layout-allow-overflow data-layout-allow-overlap>
+      <div class="hd" id="bs-q">Two screens.<br>Is your website <em>using both?</em></div>
+      <div class="band" id="bs-b"><div class="scr" data-layout-ignore>
+          <div style="position:absolute;left:0;top:0;right:0;height:70px;border-bottom:2px solid #eee"></div>
+          <div style="position:absolute;left:36px;top:20px;font-weight:900;font-size:28px">YourBrand</div>
+          <div style="position:absolute;left:36px;top:110px;width:420px;font-weight:900;font-size:54px;line-height:1.0;letter-spacing:-0.035em">Our work</div>
+          <div class="tile bs-t" style="left:36px;top:260px;background:linear-gradient(135deg,#1a2140,#4a63c9)"></div><div class="tile bs-t" style="left:256px;top:260px;background:#f6c42b"></div><div class="tile bs-t" style="left:36px;top:480px;background:#e9e4d8"></div><div class="tile bs-t" style="left:256px;top:480px;background:linear-gradient(135deg,#4a63c9,#9fc3ff)"></div>
+          <div id="bs-empty"></div><div id="bs-et" class="mono">empty space</div>
+          <div id="bs-card">
+            <div style="position:absolute;left:30px;top:40px;font-weight:900;font-size:44px;letter-spacing:-0.03em">Book a visit</div>
+            <div class="dchip" id="bs-d0" style="left:30px;top:150px">Mon<br><span style="font-weight:600;font-size:22px">27</span></div><div class="dchip" id="bs-d1" style="left:152px;top:150px">Tue<br><span style="font-weight:600;font-size:22px">28</span></div><div class="dchip on" id="bs-d2" style="left:274px;top:150px">Wed<br><span style="font-weight:600;font-size:22px">29</span></div>
+            <div class="bar" style="left:30px;top:310px;width:300px;background:#dcd9e5"></div>
+            <div class="bar" style="left:30px;top:346px;width:240px;background:#dcd9e5"></div>
+            <div class="btn" id="bs-btn" style="left:30px;right:30px;top:470px">Book now</div>
+          </div></div><div class="hinge"></div></div>
+      <div class="hd" id="bs-a1">We make <em>both sides</em> work.</div>
+      <div class="chip mono" id="bs-l1" style="left:150px;top:1460px">browse</div>
+      <div class="chip mono" id="bs-l2" style="left:640px;top:1460px">book</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // times are written in film time; the host starts this scene at 13.28 s
+    const G = (t) => +(t - 13.28).toFixed(3);
+    function rise(sel, t) {
+      tl.fromTo(sel, { opacity: 0, y: 50, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.32, ease: "power3.out", immediateRender: false }, t);
+    }
+    function sink(sel, t) {
+      tl.to(sel, { opacity: 0, y: -40, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, t);
+    }
+    function pop(sel, t) {
+      tl.fromTo(sel, { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.6)", immediateRender: false }, t);
+    }
+    // closed outer screen -> the whole band unfolds out of it
+    function unfold(closed, band, t) {
+      tl.to(closed, { opacity: 0, duration: 0.05 }, t);
+      tl.fromTo(band, { opacity: 0, clipPath: "inset(10.5% 30% 10.5% 30% round 48px)" }, { opacity: 1, clipPath: "inset(0% 0% 0% 0% round 48px)", duration: 0.4, ease: "expo.out", immediateRender: false }, t);
+    }
+    function fold(closed, band, t) {
+      tl.to(band, { clipPath: "inset(10.5% 30% 10.5% 30% round 48px)", duration: 0.3, ease: "power3.in" }, t);
+      tl.to(band, { opacity: 0, duration: 0.05 }, t + 0.3);
+      tl.fromTo(closed, { opacity: 0 }, { opacity: 1, duration: 0.05, immediateRender: false }, t + 0.28);
+    }
+    gsap.set(["#bs-a1", "#bs-l1", "#bs-l2", "#bs-q", "#bs-card"], { opacity: 0 });
+    gsap.set(".bs-t", { opacity: 0, scale: 0.6 });
+    tl.fromTo("#bs-q", { opacity: 0, scale: 1.3 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power4.out", immediateRender: false }, G(13.32));
+    tl.fromTo("#bs-b", { opacity: 0, y: 200 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, G(13.4));
+    tl.to(".bs-t", { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)", stagger: 0.12 }, G(13.82));
+    // the right half just sits there
+    tl.fromTo("#bs-empty", { opacity: 1 }, { opacity: 0.35, duration: 0.25, ease: "steps(1)", repeat: 7, yoyo: true, immediateRender: false }, G(14.8));
+    // the fix: browse on the left, book on the right
+    sink("#bs-q", G(16.6));
+    rise("#bs-a1", G(16.76));
+    tl.to(["#bs-empty", "#bs-et"], { opacity: 0, duration: 0.15 }, G(16.76));
+    tl.fromTo("#bs-card", { opacity: 0, x: 140 }, { opacity: 1, x: 0, duration: 0.4, ease: "expo.out", immediateRender: false }, G(16.76));
+    [17.74, 18.24, 18.73].forEach((t, i) => tl.fromTo("#bs-d" + i, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.25, ease: "back.out(2.4)", immediateRender: false }, G(t)));
+    pop("#bs-l1", G(19.23)); pop("#bs-l2", G(19.71));
+    tl.fromTo("#bs-btn", { scale: 1 }, { scale: 0.92, duration: 0.1, ease: "power2.in", yoyo: true, repeat: 1, immediateRender: false }, G(20.21));
+    tl.to(["#bs-b", "#bs-l1", "#bs-l2"], { opacity: 0, scale: 0.92, duration: 0.25, ease: "power2.in" }, G(21.3));
+    sink("#bs-a1", G(21.3));
+    window.__timelines["both"] = tl;
+  </script>
+</template>

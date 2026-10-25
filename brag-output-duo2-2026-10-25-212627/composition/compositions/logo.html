@@ -1,0 +1,226 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+      color: #ffffff;
+    }
+    .hd {
+      position: absolute;
+      left: 60px;
+      right: 60px;
+      top: 250px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 86px;
+      line-height: 1.04;
+      letter-spacing: -0.035em;
+      color: #ffffff;
+    }
+    .hd em {
+      font-style: normal;
+      color: #f6c42b;
+    }
+    .mono {
+      font-family: "DejaVu Sans Mono", monospace;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .pov {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 180px;
+      text-align: center;
+      font-size: 40px;
+      color: #f6c42b;
+    }
+    .tag {
+      position: absolute;
+      padding: 10px 18px 12px;
+      background: #f6c42b;
+      color: #0b0b0c;
+      border-radius: 10px;
+      font-size: 28px;
+      white-space: nowrap;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+    }
+    .chip {
+      position: absolute;
+      padding: 12px 26px 14px;
+      border: 3px solid #f6c42b;
+      color: #f6c42b;
+      border-radius: 999px;
+      font-size: 32px;
+      white-space: nowrap;
+    }
+    /* the unfolded inner screen, full width: hinge down the middle */
+    .band {
+      position: absolute;
+      left: 40px;
+      top: 640px;
+      width: 1000px;
+      height: 760px;
+      padding: 14px;
+      background: #1a2140;
+      border-radius: 48px;
+      box-shadow: 0 0 0 2px rgba(120, 150, 255, 0.25), 0 40px 90px rgba(0, 0, 0, 0.6);
+    }
+    .scr {
+      position: relative;
+      width: 972px;
+      height: 732px;
+      background: #ffffff;
+      border-radius: 36px;
+      overflow: hidden;
+      color: #0b0b0c;
+    }
+    .hinge {
+      position: absolute;
+      left: 494px;
+      top: 0;
+      width: 12px;
+      height: 760px;
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3) 45%, rgba(255, 255, 255, 0.35) 55%, rgba(0, 0, 0, 0));
+    }
+    /* closed: the outer screen */
+    .closed {
+      position: absolute;
+      left: 340px;
+      top: 720px;
+      width: 400px;
+      height: 600px;
+      padding: 14px;
+      background: #1a2140;
+      border-radius: 50px;
+      box-shadow: 0 0 0 2px rgba(120, 150, 255, 0.25), 0 40px 90px rgba(0, 0, 0, 0.6);
+    }
+    .closed .in {
+      position: relative;
+      width: 372px;
+      height: 572px;
+      background: #fff;
+      border-radius: 38px;
+      overflow: hidden;
+      color: #0b0b0c;
+    }
+    .bar {
+      position: absolute;
+      height: 18px;
+      border-radius: 9px;
+      background: #dedbe6;
+    }
+    .btn {
+      position: absolute;
+      height: 76px;
+      border-radius: 38px;
+      background: #0b0b0c;
+      color: #f6c42b;
+      font-weight: 800;
+      font-size: 32px;
+      line-height: 76px;
+      text-align: center;
+    }
+    #lg-glow {
+      position: absolute;
+      left: 240px;
+      top: 380px;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(246, 196, 43, 0.35) 0%, rgba(246, 196, 43, 0) 65%);
+    }
+    #lg-logo {
+      position: absolute;
+      left: 290px;
+      top: 500px;
+      width: 500px;
+      height: 352px;
+      background: url("assets/brand/deveraxtech-logo.png") center / contain no-repeat;
+    }
+    #lg-word {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 890px;
+      text-align: center;
+      font-weight: 900;
+      font-size: 104px;
+      letter-spacing: -0.03em;
+      color: #f6c42b;
+    }
+    #lg-tag {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1022px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 30px;
+      letter-spacing: 0.3em;
+      text-indent: 0.3em;
+      color: #c9d2f5;
+    }
+    #lg-ask {
+      top: 1120px;
+      font-size: 72px;
+    }
+    #lg-url {
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      width: 440px;
+      text-align: center;
+      top: 1250px;
+      background: #f6c42b;
+      color: #0b0b0c;
+      border-color: #f6c42b;
+    }
+  </style>
+  <div id="root" data-composition-id="logo" data-width="1080" data-height="1920">
+    <div id="logo-wrap" class="clip" data-start="0" data-duration="4.42" data-layout-allow-overflow data-layout-allow-overlap>
+      <div id="lg-glow"></div>
+      <div id="lg-logo" role="img" aria-label="DevEraXTech logo"></div>
+      <div id="lg-word">DevEraXTech</div>
+      <div id="lg-tag">ENGINEERED EXCELLENCE</div>
+      <div class="hd" id="lg-ask">Is your website <em>Duo-ready?</em></div>
+      <div class="chip mono" id="lg-url">deveraxtech.com</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // times are written in film time; the host starts this scene at 26.58 s
+    const G = (t) => +(t - 26.58).toFixed(3);
+    function rise(sel, t) {
+      tl.fromTo(sel, { opacity: 0, y: 50, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.32, ease: "power3.out", immediateRender: false }, t);
+    }
+    function sink(sel, t) {
+      tl.to(sel, { opacity: 0, y: -40, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, t);
+    }
+    function pop(sel, t) {
+      tl.fromTo(sel, { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.6)", immediateRender: false }, t);
+    }
+    // closed outer screen -> the whole band unfolds out of it
+    function unfold(closed, band, t) {
+      tl.to(closed, { opacity: 0, duration: 0.05 }, t);
+      tl.fromTo(band, { opacity: 0, clipPath: "inset(10.5% 30% 10.5% 30% round 48px)" }, { opacity: 1, clipPath: "inset(0% 0% 0% 0% round 48px)", duration: 0.4, ease: "expo.out", immediateRender: false }, t);
+    }
+    function fold(closed, band, t) {
+      tl.to(band, { clipPath: "inset(10.5% 30% 10.5% 30% round 48px)", duration: 0.3, ease: "power3.in" }, t);
+      tl.to(band, { opacity: 0, duration: 0.05 }, t + 0.3);
+      tl.fromTo(closed, { opacity: 0 }, { opacity: 1, duration: 0.05, immediateRender: false }, t + 0.28);
+    }
+    gsap.set(["#lg-word", "#lg-tag", "#lg-ask", "#lg-url"], { opacity: 0, y: 20 });
+    gsap.set("#lg-glow", { opacity: 0, scale: 0.4, transformOrigin: "50% 50%" });
+    tl.fromTo("#lg-logo", { opacity: 0, scaleX: 0.05, scaleY: 1, transformOrigin: "50% 50%" }, { opacity: 1, scaleX: 1, duration: 0.4, ease: "expo.out" }, 0.0);
+    tl.to("#lg-glow", { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, 0.05);
+    tl.to("#lg-word", { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 0.45);
+    tl.to("#lg-tag", { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 0.6);
+    tl.to("#lg-ask", { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)" }, 0.98);
+    tl.to("#lg-url", { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)" }, 1.47);
+    tl.to("#lg-glow", { scale: 1.12, duration: 0.49, ease: "sine.inOut", repeat: 4, yoyo: true }, 1.0);
+    window.__timelines["logo"] = tl;
+  </script>
+</template>

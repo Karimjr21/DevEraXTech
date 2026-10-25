@@ -1,0 +1,199 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+      color: #ffffff;
+    }
+    .hd {
+      position: absolute;
+      left: 60px;
+      right: 60px;
+      top: 250px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 86px;
+      line-height: 1.04;
+      letter-spacing: -0.035em;
+      color: #ffffff;
+    }
+    .hd em {
+      font-style: normal;
+      color: #f6c42b;
+    }
+    .mono {
+      font-family: "DejaVu Sans Mono", monospace;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .pov {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 180px;
+      text-align: center;
+      font-size: 40px;
+      color: #f6c42b;
+    }
+    .tag {
+      position: absolute;
+      padding: 10px 18px 12px;
+      background: #f6c42b;
+      color: #0b0b0c;
+      border-radius: 10px;
+      font-size: 28px;
+      white-space: nowrap;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+    }
+    .chip {
+      position: absolute;
+      padding: 12px 26px 14px;
+      border: 3px solid #f6c42b;
+      color: #f6c42b;
+      border-radius: 999px;
+      font-size: 32px;
+      white-space: nowrap;
+    }
+    /* the unfolded inner screen, full width: hinge down the middle */
+    .band {
+      position: absolute;
+      left: 40px;
+      top: 640px;
+      width: 1000px;
+      height: 760px;
+      padding: 14px;
+      background: #1a2140;
+      border-radius: 48px;
+      box-shadow: 0 0 0 2px rgba(120, 150, 255, 0.25), 0 40px 90px rgba(0, 0, 0, 0.6);
+    }
+    .scr {
+      position: relative;
+      width: 972px;
+      height: 732px;
+      background: #ffffff;
+      border-radius: 36px;
+      overflow: hidden;
+      color: #0b0b0c;
+    }
+    .hinge {
+      position: absolute;
+      left: 494px;
+      top: 0;
+      width: 12px;
+      height: 760px;
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3) 45%, rgba(255, 255, 255, 0.35) 55%, rgba(0, 0, 0, 0));
+    }
+    /* closed: the outer screen */
+    .closed {
+      position: absolute;
+      left: 340px;
+      top: 720px;
+      width: 400px;
+      height: 600px;
+      padding: 14px;
+      background: #1a2140;
+      border-radius: 50px;
+      box-shadow: 0 0 0 2px rgba(120, 150, 255, 0.25), 0 40px 90px rgba(0, 0, 0, 0.6);
+    }
+    .closed .in {
+      position: relative;
+      width: 372px;
+      height: 572px;
+      background: #fff;
+      border-radius: 38px;
+      overflow: hidden;
+      color: #0b0b0c;
+    }
+    .bar {
+      position: absolute;
+      height: 18px;
+      border-radius: 9px;
+      background: #dedbe6;
+    }
+    .btn {
+      position: absolute;
+      height: 76px;
+      border-radius: 38px;
+      background: #0b0b0c;
+      color: #f6c42b;
+      font-weight: 800;
+      font-size: 32px;
+      line-height: 76px;
+      text-align: center;
+    }
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
+    <div id="hook-wrap" class="clip" data-start="0" data-duration="7.4" data-layout-allow-overflow data-layout-allow-overlap>
+      <div class="pov mono" id="hk-pov">POV:</div>
+      <div class="hd" id="hk-t1">your customer just unfolded their new <em>iPhone Duo</em>…</div>
+      <div class="hd" id="hk-t2">…and opened <em>your website.</em></div>
+      <div class="closed" id="hk-c"><div class="in" data-layout-ignore>
+          <div style="position:absolute;left:0;top:0;right:0;height:70px;border-bottom:2px solid #eee"></div>
+          <div style="position:absolute;left:26px;top:20px;font-weight:900;font-size:28px">YourBrand</div>
+          <div style="position:absolute;right:26px;top:24px;width:36px;height:4px;background:#0b0b0c;box-shadow:0 10px 0 #0b0b0c,0 20px 0 #0b0b0c"></div>
+          <div style="position:absolute;left:22px;right:22px;top:92px;height:190px;border-radius:24px;background:linear-gradient(135deg,#1a2140,#4a63c9)"></div>
+          <div style="position:absolute;left:26px;right:22px;top:302px;font-weight:900;font-size:42px;line-height:1.02;letter-spacing:-0.03em">Open daily.<br>Book online.</div>
+          <div class="bar" style="left:26px;top:412px;width:300px"></div>
+          <div class="bar" style="left:26px;top:442px;width:230px"></div>
+          <div class="btn" style="left:26px;right:26px;top:478px">Book now</div></div></div>
+      <div class="band" id="hk-b"><div class="scr" data-layout-ignore>
+          <div style="position:absolute;left:0;top:0;width:972px;height:70px;background:#1a2140"></div>
+          <div id="bk-nav" style="position:absolute;left:30px;top:20px;width:1200px;white-space:nowrap;color:#fff;font-weight:700;font-size:30px">LOGO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Home &nbsp; About &nbsp; Services &nbsp; Gallery &nbsp; Blog &nbsp; Contact &nbsp; Shop</div>
+          <div id="bk-img" style="position:absolute;left:0;top:70px;width:972px;height:300px;background:linear-gradient(180deg,#7fb0f0,#f0d9a8);overflow:hidden">
+            <div style="position:absolute;left:120px;top:40px;width:730px;height:200px;border-radius:50%;background:#e9963c"></div>
+            <div style="position:absolute;left:0;top:220px;width:972px;height:90px;background:#5f8a52"></div>
+          </div>
+          <div id="bk-h" style="position:absolute;left:60px;top:400px;width:1300px;white-space:nowrap;font-weight:900;font-size:96px;letter-spacing:-0.035em;color:#1a2140">Welcome to our website</div>
+          <div class="btn" style="left:376px;width:220px;top:540px;border-radius:12px;background:#e0483e;color:#fff">Book now</div>
+          <div class="bar" style="left:40px;top:650px;width:1100px"></div>
+          <div class="bar" style="left:40px;top:684px;width:820px"></div></div><div class="hinge"></div></div>
+      <div class="tag mono" id="hk-g1" style="left:90px;top:760px">image stretched</div>
+      <div class="tag mono" id="hk-g2" style="left:560px;top:1010px">text in the fold</div>
+      <div class="tag mono" id="hk-g3" style="left:300px;top:1250px">button split in half</div>
+      <div class="chip mono" id="hk-stay" style="left:0;right:0;margin:0 auto;width:600px;text-align:center;top:1480px">we fix it at the end ↓</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // times are written in film time; the host starts this scene at 0 s
+    const G = (t) => +(t - 0).toFixed(3);
+    function rise(sel, t) {
+      tl.fromTo(sel, { opacity: 0, y: 50, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.32, ease: "power3.out", immediateRender: false }, t);
+    }
+    function sink(sel, t) {
+      tl.to(sel, { opacity: 0, y: -40, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, t);
+    }
+    function pop(sel, t) {
+      tl.fromTo(sel, { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.6)", immediateRender: false }, t);
+    }
+    // closed outer screen -> the whole band unfolds out of it
+    function unfold(closed, band, t) {
+      tl.to(closed, { opacity: 0, duration: 0.05 }, t);
+      tl.fromTo(band, { opacity: 0, clipPath: "inset(10.5% 30% 10.5% 30% round 48px)" }, { opacity: 1, clipPath: "inset(0% 0% 0% 0% round 48px)", duration: 0.4, ease: "expo.out", immediateRender: false }, t);
+    }
+    function fold(closed, band, t) {
+      tl.to(band, { clipPath: "inset(10.5% 30% 10.5% 30% round 48px)", duration: 0.3, ease: "power3.in" }, t);
+      tl.to(band, { opacity: 0, duration: 0.05 }, t + 0.3);
+      tl.fromTo(closed, { opacity: 0 }, { opacity: 1, duration: 0.05, immediateRender: false }, t + 0.28);
+    }
+    gsap.set(["#hk-t2", "#hk-g1", "#hk-g2", "#hk-g3", "#hk-stay", "#hk-b"], { opacity: 0 });
+    // frame 0: the closed phone is already drifting toward us
+    tl.fromTo("#hk-c", { scale: 1, rotation: -3 }, { scale: 1.06, rotation: 0, duration: 0.5, ease: "power2.in" }, 0);
+    tl.fromTo("#hk-pov", { scale: 1 }, { scale: 1.25, duration: 0.12, ease: "power2.out", yoyo: true, repeat: 1 }, 0.05);
+    unfold("#hk-c", "#hk-b", 0.53);
+    // the layout falls apart on the bigger screen
+    tl.fromTo("#bk-h", { x: 0 }, { x: -90, duration: 0.5, ease: "steps(4)", immediateRender: false }, 1.02);
+    tl.fromTo("#bk-nav", { x: 0 }, { x: -8, duration: 0.06, ease: "steps(1)", repeat: 29, yoyo: true, immediateRender: false }, 1.02);
+    tl.fromTo("#hk-b", { x: 0 }, { x: 10, duration: 0.05, ease: "steps(1)", repeat: 5, yoyo: true, immediateRender: false }, 2.01);
+    sink("#hk-t1", 2.36);
+    rise("#hk-t2", 2.5);
+    pop("#hk-g1", 2.94); pop("#hk-g2", 3.38); pop("#hk-g3", 3.85);
+    tl.fromTo("#hk-stay", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)", immediateRender: false }, 4.84);
+    tl.fromTo("#hk-stay", { y: 0 }, { y: 12, duration: 0.25, ease: "sine.inOut", repeat: 5, yoyo: true, immediateRender: false }, 5.2);
+    sink(["#hk-pov", "#hk-t2", "#hk-g1", "#hk-g2", "#hk-g3", "#hk-stay"], 7.0);
+    tl.to("#hk-b", { opacity: 0, scale: 0.92, duration: 0.25, ease: "power2.in" }, 7.0);
+    window.__timelines["hook"] = tl;
+  </script>
+</template>
