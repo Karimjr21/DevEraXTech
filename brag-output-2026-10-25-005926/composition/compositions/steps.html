@@ -1,0 +1,151 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+      overflow: hidden;
+    }
+    .ttl {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 300px;
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.02;
+    }
+    .ttl .a {
+      display: block;
+      font-size: 84px;
+      color: #f5f5f5;
+    }
+    .ttl .b {
+      display: block;
+      font-size: 118px;
+      color: #e6c45a;
+      margin-top: 4px;
+    }
+    #st-win {
+      position: absolute;
+      left: 60px;
+      top: 590px;
+      width: 640px;
+      height: 400px;
+      overflow: hidden;
+    }
+    #st-col {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 640px;
+    }
+    #st-col div {
+      height: 400px;
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 400px;
+      line-height: 400px;
+      letter-spacing: -0.04em;
+      color: #e6c45a;
+    }
+    #st-meta {
+      position: absolute;
+      left: 640px;
+      top: 650px;
+      font: 400 28px/1.5 "JetBrains Mono", monospace;
+      color: #c9a84a;
+    }
+    .step {
+      position: absolute;
+      left: 80px;
+      top: 1010px;
+      width: 920px;
+    }
+    .step .t {
+      display: block;
+      font-weight: 700;
+      font-size: 70px;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: #f5f5f5;
+    }
+    .step .d {
+      display: block;
+      margin-top: 22px;
+      font-size: 36px;
+      line-height: 1.35;
+      color: #c4bdaf;
+    }
+    #st-track {
+      position: absolute;
+      left: 80px;
+      top: 1262px;
+      width: 920px;
+      height: 2px;
+      background: rgba(212, 175, 55, 0.25);
+    }
+    #st-fill {
+      position: absolute;
+      left: 80px;
+      top: 1261px;
+      width: 920px;
+      height: 4px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, #d4af37, #fff1bf);
+      box-shadow: 0 0 12px rgba(242, 209, 123, 0.8);
+      transform-origin: 0 50%;
+    }
+    #st-term {
+      position: absolute;
+      left: 68px;
+      top: 1251px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 4px solid #f2d17b;
+      background: #0a0a0a;
+      box-shadow: 0 0 16px rgba(242, 209, 123, 0.9);
+    }
+  </style>
+  <div id="root" data-composition-id="steps" data-width="1080" data-height="1920">
+    <div id="st-wrap" class="clip" data-start="0" data-duration="6.33" data-layout-allow-overlap data-layout-allow-overflow>
+      <div class="ttl" id="st-ttl"><span class="a">From first call</span><span class="b">to launch.</span></div>
+      <div id="st-win"><div id="st-col"><div>01</div><div>02</div><div>03</div></div></div>
+      <div id="st-meta"><span id="st-m1">// step 1 of 3</span></div>
+      <div class="step" id="st-s1"><span class="t">Discovery call.</span><span class="d">Goals, audience and timeline first.</span></div>
+      <div class="step" id="st-s2"><span class="t">Plan and design.</span><span class="d">A clear scope with milestones.</span></div>
+      <div class="step" id="st-s3"><span class="t">Build, secure and launch.</span><span class="d">Fast, secure and responsive.</span></div>
+      <div id="st-track"></div>
+      <div id="st-fill"></div>
+      <div id="st-term"></div>
+    </div>
+  </div>
+  <script>
+    gsap.set("#st-col", { y: 400 });
+    gsap.set(["#st-ttl", "#st-s1", "#st-s2", "#st-s3", "#st-meta"], { opacity: 0, filter: "blur(10px)" });
+    gsap.set("#st-fill", { scaleX: 0 });
+    gsap.set("#st-term", { x: 0 });
+    const tl = gsap.timeline({ paused: true });
+    // host starts 7.87 s; one step per bar (2.09 s at 114.8 BPM)
+    tl.to("#st-ttl", { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.0);
+    tl.to("#st-meta", { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.25);
+    const BAR = 2.09;
+    [1, 2, 3].forEach((n, i) => {
+      const t = i * BAR;
+      // the numeral rolls like a counter
+      tl.to("#st-col", { y: -400 * i, duration: i === 0 ? 0.5 : 0.38, ease: i === 0 ? "expo.out" : "power3.inOut" }, i === 0 ? 0.05 : t - 0.12);
+      if (i > 0) tl.to("#st-s" + i, { opacity: 0, filter: "blur(10px)", duration: 0.16, ease: "power3.in" }, t - 0.16);
+      tl.to("#st-s" + n, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, t + 0.08);
+      tl.to("#st-fill", { scaleX: n / 3, duration: 0.5, ease: "expo.out" }, t + 0.05);
+      tl.to("#st-term", { x: (920 * n) / 3, duration: 0.5, ease: "expo.out" }, t + 0.05);
+    });
+    tl.set("#st-m1", { textContent: "// step 2 of 3" }, BAR);
+    tl.set("#st-m1", { textContent: "// step 3 of 3" }, 2 * BAR);
+    tl.to(["#st-ttl", "#st-s3", "#st-meta", "#st-win", "#st-track", "#st-fill", "#st-term"], { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power3.in" }, 6.08);
+    window.__timelines["steps"] = tl;
+  </script>
+</template>

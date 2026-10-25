@@ -1,0 +1,103 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+    }
+    #ec-logo {
+      position: absolute;
+      left: 240px;
+      top: 560px;
+      width: 600px;
+      height: 421px;
+    }
+    #ec-logo img {
+      width: 600px;
+      height: 421px;
+      object-fit: contain;
+      display: block;
+    }
+    #ec-code {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1044px;
+      display: flex;
+      justify-content: center;
+      font: 500 64px/1.3 "JetBrains Mono", monospace;
+      white-space: pre;
+    }
+    #ec-code .p {
+      color: #d9b54a;
+    }
+    #ec-code .n {
+      color: #f2d17b;
+    }
+    #ec-word {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1020px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 116px;
+      letter-spacing: -0.015em;
+      line-height: 1.1;
+      color: #e6c45a;
+      background: linear-gradient(100deg, #c9a133 0%, #d4af37 22%, #fff1bf 45%, #f5d573 55%, #d4af37 78%, #c9a133 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    #ec-tag {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1172px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 36px;
+      letter-spacing: 0.32em;
+      text-indent: 0.32em;
+      color: #e6c45a;
+    }
+    #ec-url {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1242px;
+      text-align: center;
+      font-weight: 500;
+      font-size: 30px;
+      letter-spacing: 0.04em;
+      color: #b5b5b5;
+    }
+  </style>
+  <div id="root" data-composition-id="endcard" data-width="1080" data-height="1920">
+    <div id="ec-wrap" class="clip" data-start="0" data-duration="3.2" data-layout-allow-overlap>
+      <div id="ec-logo"><img src="assets/brand/deveraxtech-logo.png" alt="DevEraXTech logo" /></div>
+      <div id="ec-code"><span class="p" id="ec-lt">&lt;</span><span class="n" id="ec-nm">DevEraXTech</span><span class="p" id="ec-gt"> /&gt;</span></div>
+      <div id="ec-word">DevEraXTech</div>
+      <div id="ec-tag">ENGINEERED EXCELLENCE</div>
+      <div id="ec-url">deveraxtech.com</div>
+    </div>
+  </div>
+  <script>
+    gsap.set("#ec-logo", { clipPath: "circle(0% at 50% 55%)" });
+    gsap.set("#ec-code", { clipPath: "inset(0% 100% 0% 0%)" });
+    gsap.set(["#ec-word", "#ec-tag", "#ec-url"], { opacity: 0, filter: "blur(8px)" });
+    const tl = gsap.timeline({ paused: true });
+    // host starts 16.8 s: the brand is written as a component, then compiles
+    tl.to("#ec-code", { clipPath: "inset(0% 0% 0% 0%)", duration: 0.3, ease: "steps(15)" }, 0.08);
+    tl.to("#ec-lt", { x: -90, opacity: 0, duration: 0.3, ease: "power3.in" }, 0.47);
+    tl.to("#ec-gt", { x: 90, opacity: 0, duration: 0.3, ease: "power3.in" }, 0.47);
+    tl.to("#ec-nm", { opacity: 0, filter: "blur(8px)", duration: 0.22, ease: "power3.in" }, 0.5);
+    tl.to("#ec-word", { opacity: 1, filter: "blur(0px)", duration: 0.24, ease: "power4.out" }, 0.55);
+    tl.to("#ec-logo", { clipPath: "circle(110% at 50% 55%)", duration: 0.5, ease: "expo.out" }, 0.475); // beat-locked: 17.275s
+    tl.to("#ec-tag", { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.75);
+    tl.to("#ec-url", { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.88);
+    tl.to("#ec-url", { opacity: 1, duration: 0.01 }, 3.18);
+    window.__timelines["endcard"] = tl;
+  </script>
+</template>
