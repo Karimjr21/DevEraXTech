@@ -1,0 +1,215 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+      color: #0b0b0c;
+    }
+    .big {
+      position: absolute;
+      left: 70px;
+      right: 70px;
+      top: 250px;
+      font-weight: 900;
+      font-size: 104px;
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+    .big .hl {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 4px 22px 12px;
+      background: #0b0b0c;
+      color: #f6c42b;
+      border-radius: 18px;
+    }
+    .q {
+      position: absolute;
+      left: 60px;
+      width: 960px;
+      top: 230px;
+      padding: 44px 50px 50px;
+      background: #0b0b0c;
+      color: #fffaf0;
+      border-radius: 34px;
+      font-weight: 900;
+      font-size: 80px;
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+      box-shadow: 0 22px 0 rgba(0, 0, 0, 0.18);
+      transform-origin: 50% 50%;
+    }
+    .q b {
+      color: #f6c42b;
+      font-weight: 900;
+    }
+    .pill {
+      position: absolute;
+      padding: 14px 30px 16px;
+      background: #0b0b0c;
+      color: #f6c42b;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 44px;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+    /* foldable phone: a passport-shaped outer screen, a book-style inner screen */
+    .dev {
+      position: absolute;
+      left: 130px;
+      top: 720px;
+      width: 820px;
+      height: 600px;
+    }
+    .outer {
+      position: absolute;
+      left: 205px;
+      top: 0;
+      width: 410px;
+      height: 600px;
+      background: #111;
+      border-radius: 50px;
+      box-shadow: 0 30px 50px rgba(60, 40, 0, 0.35);
+    }
+    .outer .scr {
+      position: absolute;
+      inset: 16px;
+      background: #fff;
+      border-radius: 36px;
+      overflow: hidden;
+    }
+    .open {
+      position: absolute;
+      inset: 0;
+    }
+    .half {
+      position: absolute;
+      top: 0;
+      width: 410px;
+      height: 600px;
+      background: #111;
+    }
+    .half.L {
+      left: 0;
+      border-radius: 50px 0 0 50px;
+      box-shadow: 0 30px 50px rgba(60, 40, 0, 0.35);
+    }
+    .half.R {
+      left: 410px;
+      border-radius: 0 50px 50px 0;
+      transform-origin: 0% 50%;
+      box-shadow: 0 30px 50px rgba(60, 40, 0, 0.35);
+    }
+    .site {
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      width: 788px;
+      height: 568px;
+      background: #fff;
+      border-radius: 36px;
+      overflow: hidden;
+    }
+    .hinge {
+      position: absolute;
+      left: 404px;
+      top: 0;
+      width: 12px;
+      height: 600px;
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.28) 45%, rgba(255, 255, 255, 0.25) 55%, rgba(0, 0, 0, 0.0));
+    }
+    .bar {
+      position: absolute;
+      height: 16px;
+      border-radius: 8px;
+      background: #d9d6cf;
+    }
+    .warn {
+      position: absolute;
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      background: #f6c42b;
+      border: 6px solid #0b0b0c;
+      color: #0b0b0c;
+      font-weight: 900;
+      font-size: 50px;
+      line-height: 64px;
+      text-align: center;
+    }
+  </style>
+  <div id="root" data-composition-id="fix" data-width="1080" data-height="1920">
+    <div id="fix-wrap" class="clip" data-start="0" data-duration="4.82" data-layout-allow-overflow data-layout-allow-overlap>
+      <div class="big" id="fx-t1" style="font-size:96px">So… is <span style="white-space:nowrap">your website</span><br>ready for the<br><span class="hl">iPhone Duo?</span></div>
+      <div class="big" id="fx-t2">Ours are.<br><span style="font-size:64px;line-height:1.05;letter-spacing:-0.03em;display:block;margin-top:24px">Responsive on every screen, even the newest.</span></div>
+      <div class="dev" id="fx">
+        <div class="open" id="fx-open">
+          <div class="half L"></div>
+          <div class="half R" id="fx-R"></div>
+          <div class="site" id="fx-site" data-layout-ignore>
+            <div style="position:absolute;left:0;top:0;right:0;height:64px;background:#fff;border-bottom:2px solid #eee"></div>
+            <div style="position:absolute;left:28px;top:18px;font-weight:900;font-size:26px">YourBrand</div>
+            <div style="position:absolute;left:426px;top:22px;font-weight:600;font-size:22px;color:#555;white-space:nowrap">Home &nbsp; Services &nbsp; Contact</div>
+            <div style="position:absolute;left:28px;top:96px;width:340px;font-weight:900;font-size:50px;line-height:1.0;letter-spacing:-0.035em">Your business, looking sharp.</div>
+            <div class="bar" style="left:28px;top:280px;width:320px"></div>
+            <div class="bar" style="left:28px;top:308px;width:270px"></div>
+            <div class="bar" style="left:28px;top:336px;width:300px"></div>
+            <div style="position:absolute;left:28px;width:250px;top:392px;height:68px;border-radius:34px;background:#0b0b0c;color:#f6c42b;font-weight:800;font-size:28px;line-height:68px;text-align:center">Book now</div><div style="position:absolute;left:426px;top:90px;width:172px;height:222px;border-radius:20px;background:linear-gradient(135deg,#1d2b4a,#3d5a99)"></div><div style="position:absolute;left:612px;top:90px;width:172px;height:222px;border-radius:20px;background:#f6c42b"></div><div style="position:absolute;left:426px;top:326px;width:172px;height:222px;border-radius:20px;background:#e9e4d8"></div><div style="position:absolute;left:612px;top:326px;width:172px;height:222px;border-radius:20px;background:linear-gradient(135deg,#3d5a99,#9fc3e8)"></div></div>
+          <div class="hinge" id="fx-hinge"></div>
+        </div>
+        <div class="outer" id="fx-outer"><div class="scr" data-layout-ignore>
+            <div style="position:absolute;left:0;top:0;right:0;height:64px;background:#fff;border-bottom:2px solid #eee"></div>
+            <div style="position:absolute;left:24px;top:18px;font-weight:900;font-size:26px">YourBrand</div>
+            <div style="position:absolute;right:24px;top:22px;width:34px;height:4px;background:#0b0b0c;box-shadow:0 9px 0 #0b0b0c,0 18px 0 #0b0b0c"></div>
+            <div style="position:absolute;left:20px;top:82px;right:20px;height:170px;border-radius:22px;background:linear-gradient(135deg,#1d2b4a,#3d5a99)"></div>
+            <div style="position:absolute;left:24px;top:272px;right:20px;font-weight:900;font-size:40px;line-height:1.02;letter-spacing:-0.03em">Your business, looking sharp.</div>
+            <div class="bar" style="left:24px;top:378px;width:290px"></div>
+            <div class="bar" style="left:24px;top:404px;width:220px"></div>
+            <div style="position:absolute;left:24px;right:24px;top:446px;height:64px;border-radius:32px;background:#0b0b0c;color:#f6c42b;font-weight:800;font-size:26px;line-height:64px;text-align:center">Book now</div></div></div>
+      </div>
+      <div class="pill" id="fx-p1" style="left:250px;top:1380px">5.4″ ✓</div>
+      <div class="pill" id="fx-p2" style="left:590px;top:1380px">7.6″ ✓</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // times below are written in film time; the host starts this scene at 21.58 s
+    const G = (t) => +(t - 21.58).toFixed(3);  // scenes after 12 s also slide 1.19 s (two beats) later in the host
+    // unfold: the outer phone gives way to the book-style inner screen
+    function setClosed(d) {
+      gsap.set(d + "-open", { opacity: 0 });
+      gsap.set(d + "-R", { scaleX: 0 });
+      gsap.set(d + "-site", { clipPath: "inset(0% 50% 0% 0%)" });
+    }
+    function unfold(d, t) {
+      tl.to(d + "-outer", { opacity: 0, duration: 0.06 }, t);
+      tl.to(d + "-open", { opacity: 1, duration: 0.06 }, t);
+      tl.to(d + "-R", { scaleX: 1, duration: 0.36, ease: "back.out(1.6)" }, t);
+      tl.to(d + "-site", { clipPath: "inset(0% 0% 0% 0%)", duration: 0.36, ease: "back.out(1.6)" }, t);
+      tl.fromTo(d, { x: 205 }, { x: 0, duration: 0.36, ease: "back.out(1.6)", immediateRender: false }, t);
+    }
+    function slam(sel, t, rot) {
+      tl.fromTo(sel, { opacity: 0, scale: 1.25, rotation: rot - 6 }, { opacity: 1, scale: 1, rotation: rot, duration: 0.22, ease: "power4.out", immediateRender: false }, t);
+    }
+    function toss(sel, t, dir) {
+      tl.to(sel, { x: 1100 * dir, rotation: 18 * dir, duration: 0.4, ease: "power3.in" }, t);
+    }
+    function pop(sel, t) {
+      tl.fromTo(sel, { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.4)", immediateRender: false }, t);
+    }
+    setClosed("#fx");
+    gsap.set(["#fx-t2", "#fx-p1", "#fx-p2"], { opacity: 0 });
+    tl.fromTo("#fx-t1", { opacity: 0, scale: 1.15 }, { opacity: 1, scale: 1, transformOrigin: "0% 50%", duration: 0.22, ease: "power4.out" }, G(21.61));
+    tl.fromTo("#fx", { y: 900 }, { y: 0, duration: 0.4, ease: "expo.out" }, G(21.7));
+    pop("#fx-p1", G(22.2));
+    unfold("#fx", G(22.79));
+    pop("#fx-p2", G(23.39));
+    tl.to("#fx-t1", { opacity: 0, x: -60, duration: 0.14, ease: "power2.in" }, G(23.85));
+    tl.fromTo("#fx-t2", { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.22, ease: "power3.out", immediateRender: false }, G(23.99));
+    tl.fromTo("#fx", { y: 0 }, { y: -14, duration: 0.6, ease: "sine.inOut", repeat: 2, yoyo: true, immediateRender: false }, G(24.4));
+    tl.to(["#fx", "#fx-p1", "#fx-p2", "#fx-t2"], { opacity: 0, duration: 0.2 }, G(26.2));
+    window.__timelines["fix"] = tl;
+  </script>
+</template>

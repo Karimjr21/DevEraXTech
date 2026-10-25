@@ -1,0 +1,270 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+      color: #0b0b0c;
+    }
+    .big {
+      position: absolute;
+      left: 70px;
+      right: 70px;
+      top: 250px;
+      font-weight: 900;
+      font-size: 104px;
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+    .big .hl {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 4px 22px 12px;
+      background: #0b0b0c;
+      color: #f6c42b;
+      border-radius: 18px;
+    }
+    .q {
+      position: absolute;
+      left: 60px;
+      width: 960px;
+      top: 230px;
+      padding: 44px 50px 50px;
+      background: #0b0b0c;
+      color: #fffaf0;
+      border-radius: 34px;
+      font-weight: 900;
+      font-size: 80px;
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+      box-shadow: 0 22px 0 rgba(0, 0, 0, 0.18);
+      transform-origin: 50% 50%;
+    }
+    .q b {
+      color: #f6c42b;
+      font-weight: 900;
+    }
+    .pill {
+      position: absolute;
+      padding: 14px 30px 16px;
+      background: #0b0b0c;
+      color: #f6c42b;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 44px;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+    /* foldable phone: a passport-shaped outer screen, a book-style inner screen */
+    .dev {
+      position: absolute;
+      left: 130px;
+      top: 720px;
+      width: 820px;
+      height: 600px;
+    }
+    .outer {
+      position: absolute;
+      left: 205px;
+      top: 0;
+      width: 410px;
+      height: 600px;
+      background: #111;
+      border-radius: 50px;
+      box-shadow: 0 30px 50px rgba(60, 40, 0, 0.35);
+    }
+    .outer .scr {
+      position: absolute;
+      inset: 16px;
+      background: #fff;
+      border-radius: 36px;
+      overflow: hidden;
+    }
+    .open {
+      position: absolute;
+      inset: 0;
+    }
+    .half {
+      position: absolute;
+      top: 0;
+      width: 410px;
+      height: 600px;
+      background: #111;
+    }
+    .half.L {
+      left: 0;
+      border-radius: 50px 0 0 50px;
+      box-shadow: 0 30px 50px rgba(60, 40, 0, 0.35);
+    }
+    .half.R {
+      left: 410px;
+      border-radius: 0 50px 50px 0;
+      transform-origin: 0% 50%;
+      box-shadow: 0 30px 50px rgba(60, 40, 0, 0.35);
+    }
+    .site {
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      width: 788px;
+      height: 568px;
+      background: #fff;
+      border-radius: 36px;
+      overflow: hidden;
+    }
+    .hinge {
+      position: absolute;
+      left: 404px;
+      top: 0;
+      width: 12px;
+      height: 600px;
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.28) 45%, rgba(255, 255, 255, 0.25) 55%, rgba(0, 0, 0, 0.0));
+    }
+    .bar {
+      position: absolute;
+      height: 16px;
+      border-radius: 8px;
+      background: #d9d6cf;
+    }
+    .warn {
+      position: absolute;
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      background: #f6c42b;
+      border: 6px solid #0b0b0c;
+      color: #0b0b0c;
+      font-weight: 900;
+      font-size: 50px;
+      line-height: 64px;
+      text-align: center;
+    }
+    #sp-ring {
+      position: absolute;
+      left: 129px;
+      top: 150px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 12px solid #e9e4d8;
+      border-top-color: #0b0b0c;
+    }
+    .num {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 300px;
+      text-align: center;
+      font-weight: 900;
+      font-size: 150px;
+      letter-spacing: -0.04em;
+      color: #0b0b0c;
+    }
+    #sp-load {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 470px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 26px;
+      color: #8a857a;
+    }
+    #sp-prog {
+      position: absolute;
+      left: 40px;
+      width: 298px;
+      top: 72px;
+      height: 10px;
+      border-radius: 5px;
+      background: #0b0b0c;
+      transform-origin: 0% 50%;
+    }
+  </style>
+  <div id="root" data-composition-id="speed" data-width="1080" data-height="1920">
+    <div id="speed-wrap" class="clip" data-start="0" data-duration="8.34" data-layout-allow-overflow data-layout-allow-overlap>
+      <div class="q" id="sp-q">Would you wait <b>5 seconds</b> for a website to load?</div>
+      <div class="dev" id="sp">
+        <div class="open" id="sp-open">
+          <div class="half L"></div>
+          <div class="half R" id="sp-R"></div>
+          <div class="site" id="sp-site" data-layout-ignore></div>
+          <div class="hinge" id="sp-hinge"></div>
+        </div>
+        <div class="outer" id="sp-outer"><div class="scr" data-layout-ignore><div id="sp-prog"></div><div id="sp-ring"></div><div class="num" id="sp-n1">1</div><div class="num" id="sp-n2">2</div><div class="num" id="sp-n3">3</div><div class="num" id="sp-n4">4</div><div class="num" id="sp-n5">5</div><div id="sp-load">loading…</div></div></div>
+      </div>
+      <div class="big" id="sp-a1" style="top:330px">Neither would<br><span class="hl">your customers.</span></div>
+      <div class="big" id="sp-a2" style="top:330px;font-size:96px">So we build<br>websites that<br><span class="hl">load fast.</span></div>
+      <div class="pill" id="sp-swipe" style="left:340px;top:1040px">swiped away.</div>
+      <div class="dev" id="sp2">
+        <div class="open" id="sp2-open">
+          <div class="half L"></div>
+          <div class="half R" id="sp2-R"></div>
+          <div class="site" id="sp2-site" data-layout-ignore></div>
+          <div class="hinge" id="sp2-hinge"></div>
+        </div>
+        <div class="outer" id="sp2-outer"><div class="scr" data-layout-ignore>
+            <div style="position:absolute;left:0;top:0;right:0;height:64px;background:#fff;border-bottom:2px solid #eee"></div>
+            <div style="position:absolute;left:24px;top:18px;font-weight:900;font-size:26px">YourBrand</div>
+            <div style="position:absolute;right:24px;top:22px;width:34px;height:4px;background:#0b0b0c;box-shadow:0 9px 0 #0b0b0c,0 18px 0 #0b0b0c"></div>
+            <div style="position:absolute;left:20px;top:82px;right:20px;height:170px;border-radius:22px;background:linear-gradient(135deg,#1d2b4a,#3d5a99)"></div>
+            <div style="position:absolute;left:24px;top:272px;right:20px;font-weight:900;font-size:40px;line-height:1.02;letter-spacing:-0.03em">Your business, looking sharp.</div>
+            <div class="bar" style="left:24px;top:378px;width:290px"></div>
+            <div class="bar" style="left:24px;top:404px;width:220px"></div>
+            <div style="position:absolute;left:24px;right:24px;top:446px;height:64px;border-radius:32px;background:#0b0b0c;color:#f6c42b;font-weight:800;font-size:26px;line-height:64px;text-align:center">Book now</div></div></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // times below are written in film time; the host starts this scene at 7.3 s
+    const G = (t) => +(t - 7.3).toFixed(3);  // scenes after 12 s also slide 1.19 s (two beats) later in the host
+    // unfold: the outer phone gives way to the book-style inner screen
+    function setClosed(d) {
+      gsap.set(d + "-open", { opacity: 0 });
+      gsap.set(d + "-R", { scaleX: 0 });
+      gsap.set(d + "-site", { clipPath: "inset(0% 50% 0% 0%)" });
+    }
+    function unfold(d, t) {
+      tl.to(d + "-outer", { opacity: 0, duration: 0.06 }, t);
+      tl.to(d + "-open", { opacity: 1, duration: 0.06 }, t);
+      tl.to(d + "-R", { scaleX: 1, duration: 0.36, ease: "back.out(1.6)" }, t);
+      tl.to(d + "-site", { clipPath: "inset(0% 0% 0% 0%)", duration: 0.36, ease: "back.out(1.6)" }, t);
+      tl.fromTo(d, { x: 205 }, { x: 0, duration: 0.36, ease: "back.out(1.6)", immediateRender: false }, t);
+    }
+    function slam(sel, t, rot) {
+      tl.fromTo(sel, { opacity: 0, scale: 1.25, rotation: rot - 6 }, { opacity: 1, scale: 1, rotation: rot, duration: 0.22, ease: "power4.out", immediateRender: false }, t);
+    }
+    function toss(sel, t, dir) {
+      tl.to(sel, { x: 1100 * dir, rotation: 18 * dir, duration: 0.4, ease: "power3.in" }, t);
+    }
+    function pop(sel, t) {
+      tl.fromTo(sel, { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.4)", immediateRender: false }, t);
+    }
+    gsap.set("#sp-open", { opacity: 0 });
+    gsap.set(["#sp-n1", "#sp-n2", "#sp-n3", "#sp-n4", "#sp-n5", "#sp-a1", "#sp-a2", "#sp-swipe", "#sp-q"], { opacity: 0 });
+    gsap.set("#sp-prog", { scaleX: 0.04 });
+    slam("#sp-q", G(7.35), -2);
+    tl.fromTo("#sp", { y: 900 }, { y: 0, duration: 0.45, ease: "expo.out", immediateRender: false }, G(7.45));
+    tl.fromTo("#sp-ring", { rotation: 0 }, { rotation: 1440, duration: 3.6, ease: "none", immediateRender: false }, G(7.45));
+    tl.to("#sp-prog", { scaleX: 0.22, duration: 3.2, ease: "power4.out" }, G(7.6));
+    // one count per beat — painfully slow
+    [7.94, 8.53, 9.13, 9.72, 10.32].forEach((t, i) => {
+      if (i > 0) tl.to("#sp-n" + i, { opacity: 0, duration: 0.05 }, G(t));
+      tl.fromTo("#sp-n" + (i + 1), { opacity: 0, scale: 1.5 }, { opacity: 1, scale: 1, duration: 0.18, ease: "power3.out", immediateRender: false }, G(t));
+    });
+    // and the thumb gives up
+    tl.to("#sp", { y: -1500, rotation: -8, duration: 0.42, ease: "power3.in" }, G(10.91));
+    tl.fromTo("#sp-swipe", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)", immediateRender: false }, G(11.2));
+    toss("#sp-q", G(11.2), 1);
+    tl.fromTo("#sp-a1", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.25, ease: "power3.out", immediateRender: false }, G(11.51));
+    tl.to(["#sp-a1", "#sp-swipe"], { opacity: 0, duration: 0.15 }, G(12.85));
+    tl.fromTo("#sp-a2", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.25, ease: "power3.out", immediateRender: false }, G(12.99));
+    // ...and the next one is simply there, ready
+    gsap.set("#sp2-open", { opacity: 0 });
+    tl.fromTo("#sp2", { opacity: 0, scale: 0.6, y: 120 }, { opacity: 1, scale: 1, y: 0, duration: 0.3, ease: "back.out(2.2)" }, G(12.99));
+    tl.fromTo("#sp2", { rotation: 0 }, { rotation: 2, duration: 0.3, ease: "sine.inOut", repeat: 5, yoyo: true, immediateRender: false }, G(13.4));
+    tl.to(["#sp-a2", "#sp2"], { opacity: 0, x: -80, duration: 0.2, ease: "power2.in" }, G(15.41));
+    window.__timelines["speed"] = tl;
+  </script>
+</template>
