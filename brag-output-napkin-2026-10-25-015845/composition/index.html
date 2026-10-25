@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait"
+  data-composition-variables='[{"id":"color-paper","type":"color","label":"Paper","default":"#f4eedf"},{"id":"color-ink","type":"color","label":"Gold ink","default":"#7a5c0e"}]'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/MotionPathPlugin.min.js"></script>
+    <style>
+      :root {
+        --color-paper: #f4eedf;
+        --color-ink: #7a5c0e;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: var(--color-paper);
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+      /* paper: warm stock, a faint dot grid, soft edges */
+      #paper {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 85% 60% at 50% 48%, rgba(255, 252, 240, 0.9) 0%, rgba(255, 252, 240, 0) 70%),
+          radial-gradient(circle, rgba(58, 56, 51, 0.16) 1.4px, rgba(58, 56, 51, 0) 1.9px) 0 0 / 40px 40px,
+          var(--color-paper);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="32.6" data-width="1080" data-height="1920">
+      <div id="paper"></div>
+      <div id="s1" data-composition-id="s1" data-composition-src="compositions/s1.html" data-start="0" data-duration="7.35" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 2"></div>
+      <div id="s2" data-composition-id="s2" data-composition-src="compositions/s2.html" data-start="7.3" data-duration="6.95" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 2"></div>
+      <div id="s3" data-composition-id="s3" data-composition-src="compositions/s3.html" data-start="14.18" data-duration="6.95" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 2"></div>
+      <div id="s4" data-composition-id="s4" data-composition-src="compositions/s4.html" data-start="21.05" data-duration="6.9" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 2"></div>
+      <div id="s5" data-composition-id="s5" data-composition-src="compositions/s5.html" data-start="27.75" data-duration="4.85" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 3"></div>
+      <div id="brandcue" data-composition-id="brandcue" data-composition-src="compositions/brandcue.html" data-start="0" data-duration="27.7" data-track-index="3" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 5"></div>
+
+      <!-- Music: "Bossa Antigua" by Kevin MacLeod (incompetech.com), CC BY 4.0 -->
+      <audio id="music" class="clip" data-start="0" data-duration="32.6" data-track-index="10" data-volume="0.55" data-fade-out="1.8" src="assets/music/bossa-antigua-kevin-macleod.mp3"></audio>
+      <audio id="s-nap" class="clip" data-start="0.0" data-duration="0.6" data-track-index="11" data-volume="0.35" src="assets/sfx/card-slide-2.ogg"></audio>
+      <audio id="s-und" class="clip" data-start="0.45" data-duration="0.2" data-track-index="12" data-volume="0.4" src="assets/sfx/impactWood_light_001.ogg"></audio>
+      <audio id="s-pinmove" class="clip" data-start="6.55" data-duration="0.6" data-track-index="13" data-volume="0.35" src="assets/sfx/card-slide-2.ogg"></audio>
+      <audio id="s-pin" class="clip" data-start="7.35" data-duration="0.2" data-track-index="14" data-volume="0.55" src="assets/sfx/click3.ogg"></audio>
+      <audio id="s-ck1" class="clip" data-start="8.19" data-duration="0.2" data-track-index="15" data-volume="0.4" src="assets/sfx/impactWood_light_001.ogg"></audio>
+      <audio id="s-ck2" class="clip" data-start="9.03" data-duration="0.2" data-track-index="16" data-volume="0.4" src="assets/sfx/impactWood_light_001.ogg"></audio>
+      <audio id="s-ck3" class="clip" data-start="9.9" data-duration="0.2" data-track-index="17" data-volume="0.4" src="assets/sfx/impactWood_light_001.ogg"></audio>
+      <audio id="s-out" class="clip" data-start="10.6" data-duration="0.6" data-track-index="18" data-volume="0.3" src="assets/sfx/card-shove-1.ogg"></audio>
+      <audio id="s-n1" class="clip" data-start="12.48" data-duration="0.3" data-track-index="19" data-volume="0.55" src="assets/sfx/card-place-1.ogg"></audio>
+      <audio id="s-n2" class="clip" data-start="12.89" data-duration="0.3" data-track-index="20" data-volume="0.55" src="assets/sfx/card-place-2.ogg"></audio>
+      <audio id="s-n3" class="clip" data-start="13.32" data-duration="0.3" data-track-index="21" data-volume="0.55" src="assets/sfx/card-place-3.ogg"></audio>
+      <audio id="s-ink" class="clip" data-start="14.58" data-duration="0.6" data-track-index="22" data-volume="0.3" src="assets/sfx/card-slide-2.ogg"></audio>
+      <audio id="s-t1" class="clip" data-start="16.34" data-duration="0.2" data-track-index="23" data-volume="0.35" src="assets/sfx/impactWood_light_001.ogg"></audio>
+      <audio id="s-t2" class="clip" data-start="17.18" data-duration="0.2" data-track-index="24" data-volume="0.35" src="assets/sfx/impactWood_light_001.ogg"></audio>
+      <audio id="s-t3" class="clip" data-start="18.03" data-duration="0.2" data-track-index="25" data-volume="0.35" src="assets/sfx/impactWood_light_001.ogg"></audio>
+      <audio id="s-tap" class="clip" data-start="21.9" data-duration="0.2" data-track-index="26" data-volume="0.6" src="assets/sfx/click3.ogg"></audio>
+      <audio id="s-seal" class="clip" data-start="23.2" data-duration="0.3" data-track-index="27" data-volume="0.7" src="assets/sfx/impactSoft_heavy_001.ogg"></audio>
+      <audio id="s-fold" class="clip" data-start="24.45" data-duration="0.6" data-track-index="28" data-volume="0.45" src="assets/sfx/card-shove-1.ogg"></audio>
+      <audio id="s-fly" class="clip" data-start="25.25" data-duration="0.6" data-track-index="29" data-volume="0.4" src="assets/sfx/card-slide-2.ogg"></audio>
+      <audio id="s-stamp" class="clip" data-start="27.9" data-duration="0.3" data-track-index="30" data-volume="0.8" src="assets/sfx/impactWood_medium_002.ogg"></audio>
+      <audio id="s-sig" class="clip" data-start="27.95" data-duration="2.8" data-track-index="31" data-volume="0.6" src="assets/sfx/sig-full.wav"></audio>
+    </div>
+    <script>
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

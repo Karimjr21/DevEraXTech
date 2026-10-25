@@ -1,0 +1,5 @@
+composition/.hyperframes/
+node_modules/
+napkin.raw.mp4
+*.log
+qa/*.png

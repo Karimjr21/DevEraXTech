@@ -1,0 +1,203 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Caveat";
+      font-style: normal;
+      font-weight: 400 700;
+      src: url("assets/fonts/Caveat-var.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+      color: #2f2d29;
+    }
+    .ttl {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 286px;
+      text-align: center;
+    }
+    .ttl .n {
+      display: block;
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-size: 64px;
+      line-height: 1;
+      color: #7a5c0e;
+    }
+    .ttl .t {
+      display: block;
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 100px;
+      line-height: 1.06;
+      letter-spacing: -0.01em;
+      color: #2f2d29;
+    }
+    .pencil {
+      fill: none;
+      stroke: #3a3833;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .pencil.thin {
+      stroke-width: 3;
+      stroke: #55524b;
+    }
+    .ink {
+      fill: none;
+      stroke: #b8912a;
+      stroke-width: 7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .hw {
+      position: absolute;
+      font-family: "Caveat", cursive;
+      font-weight: 600;
+      color: #2f2d29;
+      white-space: nowrap;
+      line-height: 1;
+    }
+    .note {
+      position: absolute;
+      width: 240px;
+      height: 200px;
+      background: #f2d67f;
+      box-shadow: 0 14px 24px rgba(90, 70, 20, 0.22), inset 0 -8px 14px rgba(160, 120, 30, 0.12);
+      transform-origin: 50% 0%;
+    }
+    .note .hw {
+      left: 22px;
+      top: 30px;
+      font-size: 50px;
+      line-height: 1.02;
+      white-space: normal;
+      width: 200px;
+    }
+    .note svg {
+      position: absolute;
+      right: 10px;
+      bottom: 6px;
+      overflow: visible;
+    }
+    #st-logo {
+      position: absolute;
+      left: 280px;
+      top: 560px;
+      width: 520px;
+      height: 365px;
+    }
+    #st-logo img {
+      width: 520px;
+      height: 365px;
+      object-fit: contain;
+      display: block;
+    }
+    #st-ring {
+      position: absolute;
+      left: 290px;
+      top: 490px;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      border: 6px solid rgba(184, 145, 42, 0.5);
+    }
+    #st-word {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 980px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 110px;
+      letter-spacing: -0.02em;
+      color: #7a5c0e;
+    }
+    #st-tag {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1122px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 34px;
+      letter-spacing: 0.3em;
+      text-indent: 0.3em;
+      color: #7a5c0e;
+    }
+    #st-hw {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1188px;
+      text-align: center;
+      font-family: "Caveat", cursive;
+      font-weight: 600;
+      font-size: 70px;
+      color: #2f2d29;
+    }
+    #st-url {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1282px;
+      text-align: center;
+      font-weight: 500;
+      font-size: 30px;
+      color: #5f5a50;
+    }
+  </style>
+  <div id="root" data-composition-id="s5" data-width="1080" data-height="1920">
+    <div id="s5-wrap" class="clip" data-start="0" data-duration="4.85" data-layout-allow-overflow data-layout-allow-overlap>
+      <div id="st-ring"></div>
+      <div id="st-logo"><img src="assets/brand/deveraxtech-logo.png" alt="DevEraXTech logo" /></div>
+      <div id="st-word">DevEraXTech</div>
+      <div id="st-tag">ENGINEERED EXCELLENCE</div>
+      <div id="st-hw"><span id="st-hwi" style="display:inline-block">from first call to launch.</span></div>
+      <div id="st-url">deveraxtech.com</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // every stroke gets its own length so it can be drawn on like a pencil line
+    document.querySelectorAll("#root svg path").forEach((p) => {
+      const L = p.getTotalLength();
+      p.style.strokeDasharray = L + " " + (L + 4);
+      p.dataset.len = L;
+    });
+    const D = (sel, on) => document.querySelectorAll(sel).forEach((p) => (p.style.strokeDashoffset = on ? 0 : +p.dataset.len));
+    function draw(sel, t, dur, stagger) {
+      document.querySelectorAll(sel).forEach((p, i) => {
+        tl.fromTo(p, { strokeDashoffset: +p.dataset.len }, { strokeDashoffset: 0, duration: dur, ease: "power1.inOut" }, t + i * (stagger || 0));
+      });
+    }
+    document.querySelectorAll(".note").forEach((n) => gsap.set(n, { rotation: +n.dataset.rot }));
+    // stop-motion boil: swap between two takes of the same drawing at 8 fps (finite repeats)
+    function boil(groupA, groupB, t, secs) {
+      const n = Math.floor(secs / 0.125);
+      tl.fromTo(groupB, { opacity: 0 }, { opacity: 1, duration: 0.125, ease: "steps(1)", repeat: n, yoyo: true }, t);
+      tl.fromTo(groupA, { opacity: 1 }, { opacity: 0, duration: 0.125, ease: "steps(1)", repeat: n, yoyo: true }, t);
+    }
+    // host starts 27.75 s; the logo is stamped down on the strong cue (27.9 s)
+    gsap.set("#st-logo", { opacity: 0, scale: 1.6, rotation: -12, transformOrigin: "50% 50%", filter: "blur(6px)" });
+    gsap.set("#st-ring", { opacity: 0, scale: 0.6, transformOrigin: "50% 50%" });
+    gsap.set(["#st-word", "#st-tag", "#st-url"], { opacity: 0, y: 12 });
+    gsap.set("#st-hwi", { clipPath: "inset(0% 100% 0% 0%)" });
+    tl.to("#st-logo", { opacity: 1, scale: 1, rotation: -4, filter: "blur(0px)", duration: 0.16, ease: "power4.in" }, 0.0); // beat-locked: 27.9s
+    tl.to("#st-logo", { scale: 1.03, duration: 0.07, ease: "power2.out" }, 0.16);
+    tl.to("#st-logo", { scale: 1, duration: 0.14, ease: "power2.inOut" }, 0.23);
+    tl.to("#st-ring", { opacity: 1, scale: 1, duration: 0.12, ease: "power3.out" }, 0.15);
+    tl.to("#st-ring", { opacity: 0, scale: 1.25, duration: 0.6, ease: "power2.out" }, 0.27);
+    tl.to("#st-word", { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.45);
+    tl.to("#st-tag", { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.62);
+    tl.to("#st-hwi", { clipPath: "inset(0% 0% 0% 0%)", duration: 0.9, ease: "steps(24)" }, 0.85);
+    tl.to("#st-url", { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 1.0);
+    tl.to("#st-url", { opacity: 1, duration: 0.01 }, 4.8);
+    window.__timelines["s5"] = tl;
+  </script>
+</template>

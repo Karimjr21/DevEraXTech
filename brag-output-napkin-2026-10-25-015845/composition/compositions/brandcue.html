@@ -1,0 +1,39 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+    }
+    #bc-row {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 168px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+    #bc-row img {
+      width: 86px;
+      height: 60px;
+      object-fit: contain;
+    }
+    #bc-row span {
+      font-family: "Inter", sans-serif;
+      font-weight: 800;
+      font-size: 36px;
+      color: #7a5c0e;
+    }
+  </style>
+  <div id="root" data-composition-id="brandcue" data-width="1080" data-height="1920">
+    <div id="bc-wrap" class="clip" data-start="0" data-duration="27.7">
+      <div id="bc-row"><img src="assets/brand/deveraxtech-logo.png" alt="DevEraXTech logo" /><span>DevEraXTech</span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.to("#bc-row", { opacity: 0, duration: 0.3, ease: "power2.in" }, 27.3);
+    window.__timelines["brandcue"] = tl;
+  </script>
+</template>
