@@ -1,0 +1,112 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+    }
+    /* TikTok-style caption: white bold type with a black outline and soft shadow */
+    .cap {
+      position: absolute;
+      left: 60px;
+      right: 60px;
+      top: 300px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 70px;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      -webkit-text-stroke: 10px #000000;
+      paint-order: stroke fill;
+      text-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+    }
+    .cap em {
+      font-style: normal;
+      color: #ffd23f;
+    }
+    .small {
+      position: absolute;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-weight: 700;
+      font-size: 34px;
+      color: #ffffff;
+      -webkit-text-stroke: 6px #000;
+      paint-order: stroke fill;
+    }
+    /* headline card, like a screenshot of a news story */
+    .news {
+      position: absolute;
+      left: 90px;
+      width: 900px;
+      padding: 26px 32px 30px;
+      background: #ffffff;
+      border-radius: 22px;
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+      color: #111;
+      transform-origin: 50% 50%;
+    }
+    .news .src {
+      font-weight: 800;
+      font-size: 28px;
+      letter-spacing: 0.02em;
+      color: #c8102e;
+      margin-bottom: 10px;
+    }
+    .news .hl {
+      font-family: Georgia, "DejaVu Serif", serif;
+      font-weight: 700;
+      font-size: 38px;
+      line-height: 1.2;
+    }
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1080" data-height="1920">
+    <div id="cap-wrap" class="clip" data-start="0" data-duration="24.04" data-layout-allow-overflow data-layout-allow-overlap>
+      <div class="cap" id="c1" style="top:300px">Black Friday is <em>33 days</em> away.</div>
+      <div class="small" id="s0" style="top:1500px">Friday, November 27</div>
+      <div class="cap" id="c2" style="top:300px">Early deals are <em>already live</em>…</div>
+      <div class="cap" id="c3" style="top:300px">…here’s the check <em>everyone forgets.</em></div>
+      <div class="cap" id="c4" style="top:300px">What happens when <em>everyone</em> clicks at once?</div>
+      <div class="small" id="s2" style="top:1500px">answer at the end ↓</div>
+      <div class="cap" id="c5" style="top:300px">How long would you wait for a <em>checkout</em> to load?</div>
+      <div class="cap" id="c6" style="top:300px">A few seconds… <em>then you’re gone.</em></div>
+      <div class="cap" id="c7" style="top:300px">So are <em>your customers.</em></div>
+      <div class="cap" id="c8" style="top:300px">Build it to <em>handle the rush.</em></div>
+      <div class="cap" id="c9" style="top:300px">Fast pages. <em>Smooth checkout.</em></div>
+      <div class="cap" id="c10" style="top:300px">That’s what we build.</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    gsap.set(["#s0", "#c2", "#c3", "#c4", "#s2", "#c5", "#c6", "#c7", "#c8", "#c9", "#c10"], { opacity: 0 });
+    // frame 0: hook 1 is already on screen and punching in
+    tl.fromTo("#c1", { scale: 1.12 }, { scale: 1, duration: 0.3, ease: "power3.out" }, 0);
+    tl.fromTo("#c1", { scale: 1 }, { scale: 1.08, duration: 0.12, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, 2.93);
+    tl.to("#c1", { opacity: 0, duration: 0.12 }, 3.76);
+    tl.fromTo("#s0", { opacity: 0, scale: 0.88 }, { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2.2)", immediateRender: false }, 1.0);
+    tl.to("#s0", { opacity: 0, duration: 0.12 }, 3.76);
+    tl.fromTo("#c2", { opacity: 0, scale: 0.88 }, { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2.2)", immediateRender: false }, 3.88);
+    tl.to("#c2", { opacity: 0, duration: 0.12 }, 5.68);
+    tl.fromTo("#c3", { opacity: 0, scale: 0.88 }, { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2.2)", immediateRender: false }, 5.8);
+    tl.to("#c3", { opacity: 0, duration: 0.12 }, 7.6);
+    tl.fromTo("#c4", { opacity: 0, scale: 0.88 }, { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2.2)", immediateRender: false }, 7.72);
+    tl.to("#c4", { opacity: 0, duration: 0.12 }, 11.92);
+    tl.fromTo("#s2", { opacity: 0, scale: 0.88 }, { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2.2)", immediateRender: false }, 9.65);
+    tl.to("#s2", { opacity: 0, duration: 0.12 }, 11.92);
+    tl.fromTo("#c5", { opacity: 0, scale: 0.88 }, { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2.2)", immediateRender: false }, 12.04);
+    tl.to("#c5", { opacity: 0, duration: 0.12 }, 14.8);
+    tl.fromTo("#c6", { opacity: 0, scale: 0.88 }, { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2.2)", immediateRender: false }, 14.92);
+    tl.to("#c6", { opacity: 0, duration: 0.12 }, 16.73);
+    tl.fromTo("#c7", { opacity: 0, scale: 0.88 }, { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2.2)", immediateRender: false }, 16.85);
+    tl.to("#c7", { opacity: 0, duration: 0.12 }, 18.17);
+    tl.fromTo("#c8", { opacity: 0, scale: 0.88 }, { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2.2)", immediateRender: false }, 18.29);
+    tl.to("#c8", { opacity: 0, duration: 0.12 }, 20.08);
+    tl.fromTo("#c9", { opacity: 0, scale: 0.88 }, { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2.2)", immediateRender: false }, 20.2);
+    tl.to("#c9", { opacity: 0, duration: 0.12 }, 22.01);
+    tl.fromTo("#c10", { opacity: 0, scale: 0.88 }, { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2.2)", immediateRender: false }, 22.13);
+    tl.to("#c10", { opacity: 0, duration: 0.12 }, 23.92);
+    window.__timelines["captions"] = tl;
+  </script>
+</template>
