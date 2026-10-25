@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #1b130d;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      /* a real café table, shot from above, softly out of focus */
+      #table {
+        position: absolute;
+        left: -100px;
+        top: 0;
+        width: 1280px;
+        height: 1920px;
+        background: url("assets/photos/table.jpg") center / cover;
+      }
+      /* warm window light and a lens vignette */
+      #light {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 70% 50% at 30% 20%, rgba(255, 214, 160, 0.22), rgba(255, 214, 160, 0) 70%),
+          radial-gradient(ellipse 90% 75% at 50% 50%, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.55) 100%);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="31" data-width="1080" data-height="1920">
+      <div id="table"></div>
+      <div id="light"></div>
+      <div id="hook" data-composition-id="hook" data-composition-src="compositions/hook.html" data-start="0" data-duration="7.45" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 1"></div>
+      <div id="zoom" data-composition-id="zoom" data-composition-src="compositions/zoom.html" data-start="7.42" data-duration="7.1" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 2"></div>
+      <div id="call" data-composition-id="call" data-composition-src="compositions/call.html" data-start="14.5" data-duration="7.3" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 1"></div>
+      <div id="ret" data-composition-id="ret" data-composition-src="compositions/ret.html" data-start="21.8" data-duration="5.7" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 2"></div>
+      <div id="logo" data-composition-id="logo" data-composition-src="compositions/logo.html" data-start="27.46" data-duration="3.54" data-track-index="3" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 3"></div>
+      <div id="brandcue" data-composition-id="brandcue" data-composition-src="compositions/brandcue.html" data-start="0" data-duration="27.4" data-track-index="4" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 5"></div>
+
+      <!-- Music: "Wallpaper" by Kevin MacLeod (incompetech.com), CC BY 4.0 -->
+      <audio id="music" class="clip" data-start="0" data-duration="31" data-track-index="10" data-volume="0.42" data-fade-out="1.2" src="assets/music/wallpaper-kevin-macleod.mp3"></audio>
+      <audio id="s-lift" class="clip" data-start="0.0" data-duration="0.6" data-track-index="11" data-volume="0.35" src="assets/sfx/card-slide-2.ogg"></audio>
+      <audio id="s-open" class="clip" data-start="0.36" data-duration="0.6" data-track-index="12" data-volume="0.5" src="assets/sfx/card-shove-1.ogg"></audio>
+      <audio id="s-click" class="clip" data-start="1.0" data-duration="0.2" data-track-index="13" data-volume="0.6" src="assets/sfx/impactWood_light_001.ogg"></audio>
+      <audio id="s-gl" class="clip" data-start="1.34" data-duration="0.03" data-track-index="14" data-volume="0.4" src="assets/sfx/glitch_002.ogg"></audio>
+      <audio id="s-cap2" class="clip" data-start="2.62" data-duration="0.05" data-track-index="15" data-volume="0.5" src="assets/sfx/select_008.ogg"></audio>
+      <audio id="s-tap1" class="clip" data-start="3.8" data-duration="0.09" data-track-index="16" data-volume="0.6" src="assets/sfx/click3.ogg"></audio>
+      <audio id="s-tap2" class="clip" data-start="3.96" data-duration="0.09" data-track-index="17" data-volume="0.6" src="assets/sfx/click3.ogg"></audio>
+      <audio id="s-err" class="clip" data-start="4.24" data-duration="0.5" data-track-index="18" data-volume="0.45" src="assets/sfx/error_005.ogg"></audio>
+      <audio id="s-lab" class="clip" data-start="5.2" data-duration="0.05" data-track-index="19" data-volume="0.5" src="assets/sfx/select_008.ogg"></audio>
+      <audio id="s-q2" class="clip" data-start="7.45" data-duration="0.3" data-track-index="20" data-volume="0.6" src="assets/sfx/impactWood_medium_002.ogg"></audio>
+      <audio id="s-in2" class="clip" data-start="7.5" data-duration="0.6" data-track-index="21" data-volume="0.3" src="assets/sfx/card-slide-2.ogg"></audio>
+      <audio id="s-pinch" class="clip" data-start="8.9" data-duration="0.6" data-track-index="22" data-volume="0.3" src="assets/sfx/card-slide-2.ogg"></audio>
+      <audio id="s-a1" class="clip" data-start="10.37" data-duration="0.2" data-track-index="23" data-volume="0.5" src="assets/sfx/impactWood_medium_001.ogg"></audio>
+      <audio id="s-swap" class="clip" data-start="11.97" data-duration="0.19" data-track-index="24" data-volume="0.5" src="assets/sfx/drop_002.ogg"></audio>
+      <audio id="s-q3" class="clip" data-start="14.56" data-duration="0.3" data-track-index="25" data-volume="0.6" src="assets/sfx/impactWood_medium_002.ogg"></audio>
+      <audio id="s-in3" class="clip" data-start="14.6" data-duration="0.6" data-track-index="26" data-volume="0.3" src="assets/sfx/card-slide-2.ogg"></audio>
+      <audio id="s-drag" class="clip" data-start="17.14" data-duration="0.6" data-track-index="27" data-volume="0.3" src="assets/sfx/card-slide-2.ogg"></audio>
+      <audio id="s-cut" class="clip" data-start="17.45" data-duration="0.12" data-track-index="28" data-volume="0.5" src="assets/sfx/bong_001.ogg"></audio>
+      <audio id="s-a2" class="clip" data-start="18.12" data-duration="0.2" data-track-index="29" data-volume="0.5" src="assets/sfx/impactWood_medium_001.ogg"></audio>
+      <audio id="s-swap2" class="clip" data-start="19.4" data-duration="0.19" data-track-index="30" data-volume="0.5" src="assets/sfx/drop_002.ogg"></audio>
+      <audio id="s-tap3" class="clip" data-start="20.05" data-duration="0.09" data-track-index="31" data-volume="0.6" src="assets/sfx/click3.ogg"></audio>
+      <audio id="s-q4" class="clip" data-start="21.83" data-duration="0.3" data-track-index="32" data-volume="0.6" src="assets/sfx/impactWood_medium_002.ogg"></audio>
+      <audio id="s-l1" class="clip" data-start="22.3" data-duration="0.05" data-track-index="33" data-volume="0.5" src="assets/sfx/select_008.ogg"></audio>
+      <audio id="s-open2" class="clip" data-start="22.95" data-duration="0.6" data-track-index="34" data-volume="0.5" src="assets/sfx/card-shove-1.ogg"></audio>
+      <audio id="s-click2" class="clip" data-start="23.59" data-duration="0.2" data-track-index="35" data-volume="0.6" src="assets/sfx/impactWood_light_001.ogg"></audio>
+      <audio id="s-l3" class="clip" data-start="23.91" data-duration="0.05" data-track-index="36" data-volume="0.5" src="assets/sfx/select_008.ogg"></audio>
+      <audio id="s-c2" class="clip" data-start="24.88" data-duration="0.2" data-track-index="37" data-volume="0.5" src="assets/sfx/impactWood_medium_001.ogg"></audio>
+      <audio id="s-stamp" class="clip" data-start="27.46" data-duration="0.3" data-track-index="38" data-volume="0.7" src="assets/sfx/impactSoft_heavy_001.ogg"></audio>
+      <audio id="s-sig" class="clip" data-start="27.52" data-duration="2.8" data-track-index="39" data-volume="0.6" src="assets/sfx/sig-full.wav"></audio>
+    </div>
+    <script>
+      const main = gsap.timeline({ paused: true });
+      // handheld camera: a slow push-in with a gentle drift
+      main.fromTo("#table", { scale: 1.0, x: 0, y: 0 }, { scale: 1.12, x: 30, y: -20, duration: 31, ease: "none" }, 0);
+      window.__timelines["main"] = main;
+    </script>
+  </body>
+</html>

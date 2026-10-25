@@ -1,0 +1,356 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+    }
+    /* TikTok-native caption: black type on white line boxes */
+    .cap {
+      position: absolute;
+      left: 70px;
+      right: 70px;
+      top: 230px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 62px;
+      line-height: 1.42;
+      letter-spacing: -0.02em;
+    }
+    .cap span {
+      background: #ffffff;
+      color: #111111;
+      padding: 4px 18px 8px;
+      border-radius: 14px;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+    }
+    .cap.dark span {
+      background: #111111;
+      color: #ffffff;
+    }
+    .cap b {
+      color: #c8102e;
+      font-weight: 800;
+    }
+    .cap.dark b {
+      color: #f6c42b;
+    }
+    .lab {
+      position: absolute;
+      padding: 10px 22px 12px;
+      border-radius: 999px;
+      background: rgba(17, 17, 17, 0.82);
+      color: #fff;
+      font-weight: 700;
+      font-size: 34px;
+      white-space: nowrap;
+    }
+    /* ---------- the phone ---------- */
+    .ph {
+      position: absolute;
+      left: 110px;
+      top: 720px;
+      width: 860px;
+      height: 640px;
+      perspective: 2400px;
+    }
+    .shadow {
+      position: absolute;
+      left: 40px;
+      top: 590px;
+      width: 780px;
+      height: 90px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at 50% 50%, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 70%);
+      transform-origin: 75% 50%;
+    }
+    .body {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+    }
+    .half {
+      position: absolute;
+      top: 0;
+      width: 430px;
+      height: 640px;
+      padding: 5px;
+      /* brushed titanium edge */
+      background: linear-gradient(135deg, #e9eaee 0%, #8e9198 22%, #d7d9de 48%, #6c7077 72%, #c9cbd0 100%);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+    }
+    .half .glass {
+      position: absolute;
+      inset: 5px;
+      background: #050505;
+      overflow: hidden;
+    }
+    .half .win {
+      position: absolute;
+      top: 7px;
+      width: 418px;
+      height: 616px;
+      overflow: hidden;
+      background: #fff;
+    }
+    .inR {
+      left: 430px;
+      border-radius: 0 52px 52px 0;
+    }
+    .inR .glass {
+      border-radius: 0 47px 47px 0;
+    }
+    .inR .win {
+      left: 0;
+      border-radius: 0 40px 40px 0;
+    }
+    .cover {
+      position: absolute;
+      left: 430px;
+      top: 0;
+      width: 430px;
+      height: 640px;
+      transform-style: preserve-3d;
+      transform-origin: 0% 50%;
+    }
+    .face {
+      position: absolute;
+      inset: 0;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+    .face.front {
+      border-radius: 52px;
+    }
+    .face.front .glass {
+      border-radius: 47px;
+    }
+    .face.front .win {
+      left: 6px;
+      border-radius: 40px;
+    }
+    .face.back {
+      transform: rotateY(180deg);
+      border-radius: 52px 0 0 52px;
+    }
+    .face.back .glass {
+      border-radius: 47px 0 0 47px;
+    }
+    .face.back .win {
+      left: 7px;
+      border-radius: 40px 0 0 40px;
+    }
+    .crease {
+      position: absolute;
+      left: 424px;
+      top: 0;
+      width: 12px;
+      height: 640px;
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.22) 45%, rgba(255, 255, 255, 0.28) 55%, rgba(0, 0, 0, 0));
+    }
+    .glare {
+      position: absolute;
+      left: -300px;
+      top: -100px;
+      width: 220px;
+      height: 900px;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0));
+    }
+    .site {
+      position: absolute;
+      top: 0;
+      width: 836px;
+      height: 616px;
+      background: #fffdf8;
+      color: #2a211c;
+      overflow: hidden;
+    }
+    .mob {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 418px;
+      height: 616px;
+      background: #fffdf8;
+      color: #2a211c;
+      overflow: hidden;
+    }
+    .sb {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 40px;
+      font-weight: 700;
+      font-size: 17px;
+      color: #111;
+      z-index: 3;
+    }
+    .sb i {
+      position: absolute;
+      top: 15px;
+      height: 11px;
+      border-radius: 3px;
+      background: #111;
+    }
+    .touch {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.55);
+      border: 3px solid rgba(80, 80, 80, 0.55);
+      box-shadow: 0 0 18px rgba(0, 0, 0, 0.25);
+      z-index: 9;
+    }
+  </style>
+  <div id="root" data-composition-id="zoom" data-width="1080" data-height="1920">
+    <div id="zoom-wrap" class="clip" data-start="0" data-duration="7.1" data-layout-allow-overflow data-layout-allow-overlap>
+      <div class="cap dark" id="zm-q"><span>Can they read your menu</span><br><span><b>without zooming?</b></span></div>
+      <div class="cap" id="zm-a1"><span>Nobody wants to</span><br><span>pinch and zoom.</span></div>
+      <div class="cap" id="zm-a2"><span>So we size text for</span><br><span><b>every screen.</b></span></div>
+      <div class="ph" id="zm">
+        <div class="shadow" id="zm-sh"></div>
+        <div class="body" id="zm-body">
+          <div class="half inR"><div class="glass"><div class="win" data-layout-ignore><div class="site zm-z" style="left:-418px;transform-origin:418px 220px"><div class="sb"><span style="position:absolute;left:34px;top:11px">10:24</span><i style="left:746px;width:22px;height:9px;top:16px"></i><i style="left:774px;width:30px;background:none;border:2px solid #111;top:14px;height:13px"></i><i style="left:777px;width:20px;top:17px;height:7px"></i></div>
+          <div style="position:absolute;left:0;top:40px;width:836px;height:60px;background:#2a211c"></div>
+          <div style="position:absolute;left:24px;top:56px;font-family:Georgia,'DejaVu Serif',serif;font-size:26px;font-weight:700;color:#f4e9dc">Corner Café</div>
+          <div style="position:absolute;left:40px;top:124px;font-family:Georgia,'DejaVu Serif',serif;font-weight:700;font-size:30px">Our menu</div>
+          <div class="mt-txt" style="position:absolute;left:40px;top:174px;width:756px;font-size:11px;line-height:1.55;color:#4a3d34">
+            <b>COFFEE</b> — Espresso 2.80 · Double espresso 3.20 · Americano 3.00 · Flat white 3.60 · Latte 3.90 · Cappuccino 3.70 · Mocha 4.20 · Iced coffee 4.10 · Cold brew 4.30<br>
+            <b>TEA</b> — Breakfast tea 2.60 · Green tea 2.60 · Mint tea 2.60 · Chai latte 3.80<br>
+            <b>BRUNCH</b> — Pancakes with berries 7.50 · Avocado toast 8.20 · Eggs on sourdough 7.90 · Granola bowl 6.40 · Halloumi wrap 8.60 · Shakshuka 9.20<br>
+            <b>CAKES</b> — Banana bread 3.20 · Carrot cake 3.80 · Brownie 3.10 · Cinnamon roll 3.40<br>
+            All prices include tax. Ask our team about allergens. Oat, soy and almond milk available on request at no extra charge.
+          </div>
+          <div style="position:absolute;left:40px;top:330px;width:360px;height:250px;border-radius:14px;background:url('assets/photos/espresso.jpg') center / cover"></div>
+          <div style="position:absolute;left:436px;top:330px;width:360px;height:250px;border-radius:14px;background:url('assets/photos/latte.jpg') center / cover"></div></div></div><div class="glare zm-gl"></div></div></div>
+          <div class="crease" id="zm-crease"></div>
+          <div class="cover" id="zm-cover">
+            <div class="half face front"><div class="glass"><div class="win" data-layout-ignore><div class="mob"><div class="sb"><span style="position:absolute;left:34px;top:11px">10:24</span><i style="left:328px;width:22px;height:9px;top:16px"></i><i style="left:356px;width:30px;background:none;border:2px solid #111;top:14px;height:13px"></i><i style="left:359px;width:20px;top:17px;height:7px"></i></div>
+          <div style="position:absolute;left:0;right:0;top:40px;height:62px;border-bottom:1px solid #eee3d6"></div>
+          <div style="position:absolute;left:26px;top:56px;font-family:Georgia,'DejaVu Serif',serif;font-weight:700;font-size:28px">Corner Café</div>
+          <div style="position:absolute;right:26px;top:66px;width:32px;height:3px;background:#2a211c;box-shadow:0 9px 0 #2a211c,0 18px 0 #2a211c"></div>
+          <div style="position:absolute;left:18px;right:18px;top:118px;height:200px;border-radius:20px;background:url('assets/photos/latte.jpg') center / cover"></div>
+          <div style="position:absolute;left:26px;right:18px;top:336px;font-family:Georgia,'DejaVu Serif',serif;font-weight:700;font-size:38px;line-height:1.05">Fresh coffee.<br>Brunch all day.</div>
+          <div style="position:absolute;left:26px;top:434px;width:330px;font-size:18px;line-height:1.4;color:#6b5d52">Open 8–4 every day. Walk in or book a table.</div>
+          <div style="position:absolute;left:26px;right:26px;top:504px;height:62px;border-radius:31px;background:#2a211c;color:#fff;font-weight:700;font-size:22px;line-height:62px;text-align:center">Book a table</div></div></div><div class="glare zm-gl"></div></div></div>
+            <div class="half face back"><div class="glass"><div class="win" data-layout-ignore><div class="site zm-z" style="left:0;transform-origin:418px 220px"><div class="sb"><span style="position:absolute;left:34px;top:11px">10:24</span><i style="left:746px;width:22px;height:9px;top:16px"></i><i style="left:774px;width:30px;background:none;border:2px solid #111;top:14px;height:13px"></i><i style="left:777px;width:20px;top:17px;height:7px"></i></div>
+          <div style="position:absolute;left:0;top:40px;width:836px;height:60px;background:#2a211c"></div>
+          <div style="position:absolute;left:24px;top:56px;font-family:Georgia,'DejaVu Serif',serif;font-size:26px;font-weight:700;color:#f4e9dc">Corner Café</div>
+          <div style="position:absolute;left:40px;top:124px;font-family:Georgia,'DejaVu Serif',serif;font-weight:700;font-size:30px">Our menu</div>
+          <div class="mt-txt" style="position:absolute;left:40px;top:174px;width:756px;font-size:11px;line-height:1.55;color:#4a3d34">
+            <b>COFFEE</b> — Espresso 2.80 · Double espresso 3.20 · Americano 3.00 · Flat white 3.60 · Latte 3.90 · Cappuccino 3.70 · Mocha 4.20 · Iced coffee 4.10 · Cold brew 4.30<br>
+            <b>TEA</b> — Breakfast tea 2.60 · Green tea 2.60 · Mint tea 2.60 · Chai latte 3.80<br>
+            <b>BRUNCH</b> — Pancakes with berries 7.50 · Avocado toast 8.20 · Eggs on sourdough 7.90 · Granola bowl 6.40 · Halloumi wrap 8.60 · Shakshuka 9.20<br>
+            <b>CAKES</b> — Banana bread 3.20 · Carrot cake 3.80 · Brownie 3.10 · Cinnamon roll 3.40<br>
+            All prices include tax. Ask our team about allergens. Oat, soy and almond milk available on request at no extra charge.
+          </div>
+          <div style="position:absolute;left:40px;top:330px;width:360px;height:250px;border-radius:14px;background:url('assets/photos/espresso.jpg') center / cover"></div>
+          <div style="position:absolute;left:436px;top:330px;width:360px;height:250px;border-radius:14px;background:url('assets/photos/latte.jpg') center / cover"></div></div></div><div class="glare zm-gl"></div></div></div>
+          </div>
+        </div>
+        <div class="touch" id="zm-t1" style="left:0;top:0"></div><div class="touch" id="zm-t2" style="left:0;top:0"></div>
+      </div>
+      <div class="ph" id="zb">
+        <div class="shadow" id="zb-sh"></div>
+        <div class="body" id="zb-body">
+          <div class="half inR"><div class="glass"><div class="win" data-layout-ignore><div class="site" style="left:-418px"><div class="sb"><span style="position:absolute;left:34px;top:11px">10:24</span><i style="left:746px;width:22px;height:9px;top:16px"></i><i style="left:774px;width:30px;background:none;border:2px solid #111;top:14px;height:13px"></i><i style="left:777px;width:20px;top:17px;height:7px"></i></div>
+          <div style="position:absolute;left:0;top:40px;right:0;height:62px;border-bottom:1px solid #eee3d6"></div>
+          <div style="position:absolute;left:30px;top:56px;font-family:Georgia,'DejaVu Serif',serif;font-size:26px;font-weight:700">Corner Café</div>
+          <div style="position:absolute;left:30px;top:122px;font-family:Georgia,'DejaVu Serif',serif;font-weight:700;font-size:40px">Coffee</div>
+          <div style="position:absolute;left:30px;top:186px;width:350px;font-size:25px;line-height:1.75;color:#2a211c">Espresso <span style="float:right">2.80</span><br>Flat white <span style="float:right">3.60</span><br>Latte <span style="float:right">3.90</span><br>Cappuccino <span style="float:right">3.70</span><br>Iced coffee <span style="float:right">4.10</span></div>
+          <div style="position:absolute;left:448px;top:122px;font-family:Georgia,'DejaVu Serif',serif;font-weight:700;font-size:40px">Brunch</div>
+          <div style="position:absolute;left:448px;top:186px;width:350px;font-size:25px;line-height:1.75;color:#2a211c">Pancakes <span style="float:right">7.50</span><br>Avocado toast <span style="float:right">8.20</span><br>Eggs on sourdough <span style="float:right">7.90</span><br>Granola bowl <span style="float:right">6.40</span><br>Shakshuka <span style="float:right">9.20</span></div>
+          <div style="position:absolute;left:30px;width:350px;top:500px;height:68px;border-radius:34px;background:#2a211c;color:#fff;font-weight:700;font-size:24px;line-height:68px;text-align:center">Book a table</div>
+          <div style="position:absolute;left:448px;width:350px;top:500px;height:68px;border-radius:34px;border:3px solid #2a211c;color:#2a211c;font-weight:700;font-size:24px;line-height:62px;text-align:center">Order ahead</div></div></div><div class="glare zb-gl"></div></div></div>
+          <div class="crease" id="zb-crease"></div>
+          <div class="cover" id="zb-cover">
+            <div class="half face front"><div class="glass"><div class="win" data-layout-ignore><div class="mob"><div class="sb"><span style="position:absolute;left:34px;top:11px">10:24</span><i style="left:328px;width:22px;height:9px;top:16px"></i><i style="left:356px;width:30px;background:none;border:2px solid #111;top:14px;height:13px"></i><i style="left:359px;width:20px;top:17px;height:7px"></i></div>
+          <div style="position:absolute;left:0;right:0;top:40px;height:62px;border-bottom:1px solid #eee3d6"></div>
+          <div style="position:absolute;left:26px;top:56px;font-family:Georgia,'DejaVu Serif',serif;font-weight:700;font-size:28px">Corner Café</div>
+          <div style="position:absolute;right:26px;top:66px;width:32px;height:3px;background:#2a211c;box-shadow:0 9px 0 #2a211c,0 18px 0 #2a211c"></div>
+          <div style="position:absolute;left:18px;right:18px;top:118px;height:200px;border-radius:20px;background:url('assets/photos/latte.jpg') center / cover"></div>
+          <div style="position:absolute;left:26px;right:18px;top:336px;font-family:Georgia,'DejaVu Serif',serif;font-weight:700;font-size:38px;line-height:1.05">Fresh coffee.<br>Brunch all day.</div>
+          <div style="position:absolute;left:26px;top:434px;width:330px;font-size:18px;line-height:1.4;color:#6b5d52">Open 8–4 every day. Walk in or book a table.</div>
+          <div style="position:absolute;left:26px;right:26px;top:504px;height:62px;border-radius:31px;background:#2a211c;color:#fff;font-weight:700;font-size:22px;line-height:62px;text-align:center">Book a table</div></div></div><div class="glare zb-gl"></div></div></div>
+            <div class="half face back"><div class="glass"><div class="win" data-layout-ignore><div class="site" style="left:0"><div class="sb"><span style="position:absolute;left:34px;top:11px">10:24</span><i style="left:746px;width:22px;height:9px;top:16px"></i><i style="left:774px;width:30px;background:none;border:2px solid #111;top:14px;height:13px"></i><i style="left:777px;width:20px;top:17px;height:7px"></i></div>
+          <div style="position:absolute;left:0;top:40px;right:0;height:62px;border-bottom:1px solid #eee3d6"></div>
+          <div style="position:absolute;left:30px;top:56px;font-family:Georgia,'DejaVu Serif',serif;font-size:26px;font-weight:700">Corner Café</div>
+          <div style="position:absolute;left:30px;top:122px;font-family:Georgia,'DejaVu Serif',serif;font-weight:700;font-size:40px">Coffee</div>
+          <div style="position:absolute;left:30px;top:186px;width:350px;font-size:25px;line-height:1.75;color:#2a211c">Espresso <span style="float:right">2.80</span><br>Flat white <span style="float:right">3.60</span><br>Latte <span style="float:right">3.90</span><br>Cappuccino <span style="float:right">3.70</span><br>Iced coffee <span style="float:right">4.10</span></div>
+          <div style="position:absolute;left:448px;top:122px;font-family:Georgia,'DejaVu Serif',serif;font-weight:700;font-size:40px">Brunch</div>
+          <div style="position:absolute;left:448px;top:186px;width:350px;font-size:25px;line-height:1.75;color:#2a211c">Pancakes <span style="float:right">7.50</span><br>Avocado toast <span style="float:right">8.20</span><br>Eggs on sourdough <span style="float:right">7.90</span><br>Granola bowl <span style="float:right">6.40</span><br>Shakshuka <span style="float:right">9.20</span></div>
+          <div style="position:absolute;left:30px;width:350px;top:500px;height:68px;border-radius:34px;background:#2a211c;color:#fff;font-weight:700;font-size:24px;line-height:68px;text-align:center">Book a table</div>
+          <div style="position:absolute;left:448px;width:350px;top:500px;height:68px;border-radius:34px;border:3px solid #2a211c;color:#2a211c;font-weight:700;font-size:24px;line-height:62px;text-align:center">Order ahead</div></div></div><div class="glare zb-gl"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // times are written in film time; the host starts this scene at 7.42 s
+    const G = (t) => +(t - 7.42).toFixed(3);
+    // closed: only the cover (outer screen) shows, centred on the table
+    function closedState(p) {
+      gsap.set(p + "-cover", { rotationY: 0 });
+      gsap.set(p + "-body", { x: -215 });
+      gsap.set(p + "-crease", { opacity: 0 });
+      gsap.set(p + "-sh", { scaleX: 0.5, x: -215 });
+    }
+    function openState(p) {
+      gsap.set(p + "-cover", { rotationY: -180 });
+      gsap.set(p + "-body", { x: 0 });
+      gsap.set(p + "-sh", { scaleX: 1, x: 0 });
+    }
+    // opens like a book: the cover swings over the hinge and becomes the left half of the inner screen
+    function unfold(p, t) {
+      tl.to(p + "-cover", { rotationY: -180, duration: 0.7, ease: "power2.inOut" }, t);
+      tl.to(p + "-body", { x: 0, duration: 0.7, ease: "power2.inOut" }, t);
+      tl.to(p + "-sh", { scaleX: 1, x: 0, duration: 0.7, ease: "power2.inOut" }, t);
+      tl.to(p + "-crease", { opacity: 1, duration: 0.2 }, t + 0.5);
+    }
+    function fold(p, t) {
+      tl.to(p + "-crease", { opacity: 0, duration: 0.1 }, t);
+      tl.to(p + "-cover", { rotationY: 0, duration: 0.6, ease: "power2.inOut" }, t);
+      tl.to(p + "-body", { x: -215, duration: 0.6, ease: "power2.inOut" }, t);
+      tl.to(p + "-sh", { scaleX: 0.5, x: -215, duration: 0.6, ease: "power2.inOut" }, t);
+    }
+    function glare(p, t) {
+      tl.fromTo("." + p.slice(1) + "-gl", { x: 0 }, { x: 1100, duration: 1.2, ease: "power1.inOut", immediateRender: false }, t);
+    }
+    function cap(sel, t) {
+      tl.fromTo(sel, { opacity: 0, scale: 0.9, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.22, ease: "back.out(2)", immediateRender: false }, t);
+    }
+    function uncap(sel, t) {
+      tl.to(sel, { opacity: 0, duration: 0.14, ease: "power1.in" }, t);
+    }
+    function touch(sel, t, x, y) {
+      tl.fromTo(sel, { opacity: 0, scale: 1.4, x: x, y: y }, { opacity: 1, scale: 1, x: x, y: y, duration: 0.15, ease: "power2.out", immediateRender: false }, t);
+    }
+    openState("#zm"); openState("#zb");
+    gsap.set(["#zm-a1", "#zm-a2", "#zm-q", "#zm-t1", "#zm-t2", "#zb"], { opacity: 0 });
+    
+    cap("#zm-q", G(7.45));
+    tl.fromTo("#zm", { opacity: 0, y: 120 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out", immediateRender: false }, G(7.5));
+    glare("#zm", G(7.7));
+    // two fingers pinch outward over the tiny text
+    touch("#zm-t1", G(8.74), 300, 180); touch("#zm-t2", G(8.74), 360, 230);
+    tl.to("#zm-t1", { x: 170, y: 90, duration: 0.9, ease: "power2.inOut" }, G(8.9));
+    tl.to("#zm-t2", { x: 520, y: 330, duration: 0.9, ease: "power2.inOut" }, G(8.9));
+    tl.fromTo(".zm-z", { scale: 1 }, { scale: 2.6, duration: 0.9, ease: "power2.inOut", immediateRender: false }, G(8.9));
+    tl.to(["#zm-t1", "#zm-t2"], { opacity: 0, duration: 0.2 }, G(10.0));
+    uncap("#zm-q", G(10.25));
+    cap("#zm-a1", G(10.37));
+    // the fix: the same menu, readable at a glance
+    tl.to("#zm", { opacity: 0, duration: 0.2 }, G(11.9));
+    tl.to("#zb", { opacity: 1, duration: 0.2 }, G(11.9));
+    uncap("#zm-a1", G(11.9));
+    cap("#zm-a2", G(11.97));
+    glare("#zb", G(12.1));
+    tl.to(["#zb", "#zm-a2"], { opacity: 0, duration: 0.2, ease: "power1.in" }, G(14.3));
+    window.__timelines["zoom"] = tl;
+  </script>
+</template>
