@@ -1,0 +1,381 @@
+<template>
+  <style>
+
+    @font-face {
+      font-family: "Cormorant Garamond";
+      font-style: normal;
+      font-weight: 500;
+      src: url("assets/fonts/CormorantGaramond-500.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Cormorant Garamond";
+      font-style: italic;
+      font-weight: 500;
+      src: url("assets/fonts/CormorantGaramond-500i.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Inter Tight";
+      font-style: normal;
+      font-weight: 300 700;
+      src: url("assets/fonts/InterTight-var.woff2") format("woff2");
+    }
+    #root-x {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+    }
+    #root-x {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+    }
+    .ttl {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 290px;
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.02;
+    }
+    .ttl span {
+      display: block;
+      font-size: 80px;
+      color: #f5f5f5;
+    }
+    .ttl .g {
+      color: #e6c45a;
+    }
+    .ttl .s {
+      font-size: 70px;
+    }
+    .ttl .big {
+      font-size: 140px;
+    }
+    .seam {
+      position: absolute;
+      height: 4px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, rgba(212, 175, 55, 0), #d4af37 8%, #fff1bf 55%, #f2d17b 100%);
+      box-shadow: 0 0 14px rgba(242, 209, 123, 0.85);
+      transform-origin: 0 50%;
+    }
+    .term {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 4px solid #f2d17b;
+      background: #0a0a0a;
+      box-shadow: 0 0 16px rgba(242, 209, 123, 0.9);
+    }
+    #live {
+      position: absolute;
+      left: 790px;
+      top: 622px;
+      height: 54px;
+      padding: 0 24px 0 20px;
+      border-radius: 27px;
+      background: #0f1a18;
+      border: 2px solid #8fbab7;
+      color: #cfe7e4;
+      font-weight: 800;
+      font-size: 26px;
+      letter-spacing: 0.16em;
+      line-height: 50px;
+      z-index: 3;
+    }
+    #live i {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #8fbab7;
+      margin-right: 12px;
+      vertical-align: 1px;
+    }
+    #day {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1214px;
+      text-align: center;
+      z-index: 3;
+    }
+    #day b {
+      display: inline-block;
+      padding: 0 30px;
+      height: 76px;
+      border-radius: 38px;
+      background: #14120c;
+      border: 2px solid #d4af37;
+      color: #f2d17b;
+      font: 700 40px/72px "JetBrains Mono", monospace;
+    }
+    #cr-panel {
+      position: absolute;
+      left: 110px;
+      top: 760px;
+      width: 860px;
+      height: 470px;
+      border-radius: 26px;
+      background: rgba(12, 12, 13, 0.94);
+      border: 2px solid rgba(212, 175, 55, 0.6);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+      z-index: 4;
+    }
+    .ck {
+      position: absolute;
+      left: 56px;
+      font-weight: 700;
+      font-size: 46px;
+      color: #f5f5f5;
+    }
+    .ck i {
+      display: inline-block;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 3px solid #d4af37;
+      color: #f2d17b;
+      font-style: normal;
+      font-size: 30px;
+      line-height: 46px;
+      text-align: center;
+      margin-right: 26px;
+      vertical-align: 4px;
+    }
+    /* ---------- desktop window ---------- */
+    #pf-win {
+      position: absolute;
+      left: 60px;
+      top: 650px;
+      width: 960px;
+      height: 600px;
+    }
+    #pf-cam {
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #0b1216;
+      box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55);
+    }
+    .chrome {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 960px;
+      height: 40px;
+      background: #141a1e;
+      border-bottom: 1px solid rgba(237, 230, 218, 0.08);
+      z-index: 3;
+    }
+    .chrome i {
+      position: absolute;
+      top: 14px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #3a4349;
+    }
+    .chrome .pill {
+      position: absolute;
+      left: 330px;
+      top: 9px;
+      width: 300px;
+      height: 22px;
+      border-radius: 11px;
+      background: #0b1216;
+      color: #9aa7ae;
+      font: 500 13px/22px "Inter Tight", sans-serif;
+      text-align: center;
+      letter-spacing: 0.04em;
+    }
+    .vp {
+      position: absolute;
+      left: 0;
+      top: 40px;
+      width: 960px;
+      height: 560px;
+      overflow: hidden;
+    }
+    .page {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1440px;
+      height: 840px;
+      transform: scale(0.66667);
+      transform-origin: 0 0;
+      color: #ede6da;
+      font-family: "Inter Tight", sans-serif;
+    }
+    .pagefill {
+      position: absolute;
+      inset: 0;
+    }
+    .nav {
+      position: absolute;
+      left: 120px;
+      right: 60px;
+      top: 18px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      z-index: 2;
+    }
+    .brandN {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 30px;
+      color: #ede6da;
+    }
+    .brandN em {
+      font-style: italic;
+      color: #e3c893;
+    }
+    .links {
+      display: flex;
+      gap: 30px;
+      margin-left: 120px;
+      font-size: 14px;
+      letter-spacing: 0.22em;
+      color: #c9c2b6;
+    }
+    .pv {
+      margin-left: auto;
+      height: 44px;
+      padding: 0 28px;
+      border-radius: 22px;
+      background: #c8a46b;
+      color: #0b1216;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      line-height: 44px;
+    }
+    /* hero page (matches the end of the reveal) */
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      background: url("assets/img/nile-zamalek.jpg") 30% 55% / cover no-repeat;
+    }
+    .hero-shade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(11, 18, 22, 0.86) 0%, rgba(11, 18, 22, 0.55) 45%, rgba(11, 18, 22, 0.12) 100%);
+    }
+    .kicker {
+      position: absolute;
+      left: 120px;
+      top: 318px;
+      font-size: 16px;
+      letter-spacing: 0.3em;
+    }
+    .kicker b {
+      display: inline-block;
+      width: 60px;
+      height: 1px;
+      background: #c8a46b;
+      vertical-align: middle;
+      margin: 0 22px;
+    }
+    .h1 {
+      position: absolute;
+      left: 112px;
+      top: 410px;
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      font-size: 122px;
+      line-height: 0.94;
+      letter-spacing: -0.01em;
+    }
+    .body {
+      position: absolute;
+      left: 120px;
+      top: 770px;
+      width: 640px;
+      font-size: 21px;
+      line-height: 1.45;
+      color: #e2dbcf;
+    }
+    .nums {
+      position: absolute;
+      right: 70px;
+      top: 380px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 22px;
+      line-height: 2.1;
+      color: #c9c2b6;
+      text-align: right;
+    }
+  </style>
+  <div id="root" data-composition-id="care" data-width="1080" data-height="1920">
+    <div id="care-wrap" class="clip" data-start="0" data-duration="8.9" data-layout-allow-overflow data-layout-allow-overlap>
+      <div class="ttl" id="cr-q"><span class="s" style="font-size:60px">So… what happens to</span><span class="g">your website</span><span class="s">after launch?</span></div>
+      <div class="ttl" id="cr-a1"><span>It gets</span><span class="g big" style="font-size:118px">looked after.</span></div>
+      <div class="ttl" id="cr-a2"><span>Maintenance &amp;</span><span class="g big" style="font-size:118px">care plans.</span></div>
+      <div id="pf-win">
+        <div id="pf-cam">
+          <div class="chrome"><i style="left: 18px"></i><i style="left: 38px"></i><i style="left: 58px"></i><div class="pill">Nilora Estates</div></div>
+          <div class="vp">
+            <div class="page">
+              <div class="hero-photo"></div>
+              <div class="hero-shade"></div>
+              <div class="nav">
+                <span class="brandN">Nilora <em>Estates</em></span>
+                <span class="links"><span>RESIDENCES</span><span>NEIGHBORHOODS</span><span>ADVISORS</span><span>JOURNAL</span><span>ABOUT</span><span>CONTACT</span></span>
+                <span class="pv">PRIVATE VIEWING</span>
+              </div>
+              <div class="kicker">I<b></b>NILORA ESTATES</div>
+              <div class="h1">Where the<br />river meets<br />the light.</div>
+              <div class="body">A private residential agency for villas, penthouses and coastal homes across Cairo and the Egyptian shore.</div>
+              <div class="nums">I<br />II<br />III<br />IV<br />V</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="live"><i></i>LIVE</div>
+      <div id="day"><b>DAY 365</b></div>
+      <div id="cr-panel">
+        <div class="ck" id="cr-c1" style="top:46px"><i>✓</i>Updates</div>
+        <div class="ck" id="cr-c2" style="top:146px"><i>✓</i>Security patches</div>
+        <div class="ck" id="cr-c3" style="top:246px"><i>✓</i>Backups</div>
+        <div class="ck" id="cr-c4" style="top:346px"><i>✓</i>Uptime monitoring</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    gsap.set(["#cr-q", "#cr-a1", "#cr-a2"], { opacity: 0, filter: "blur(10px)" });
+    gsap.set("#cr-panel", { opacity: 0, y: 60 });
+    gsap.set([".ck"], { opacity: 0, x: -30 });
+    gsap.set("#pf-win", { opacity: 0, scale: 0.96 });
+    gsap.set(["#live", "#day"], { opacity: 0 });
+    const tl = gsap.timeline({ paused: true });
+    // host starts 26.32 s (strong cue): back to the website, a year later
+    tl.to("#pf-win", { opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" }, 0.0);
+    tl.to(["#live", "#day"], { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.3);
+    tl.to("#cr-q", { opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "power3.out" }, 0.1);
+    tl.to("#cr-q", { opacity: 0, filter: "blur(10px)", duration: 0.25, ease: "power3.in" }, 3.6);
+    // the answer (strong cue 30.17 s): looked after, item by item on the beat
+    tl.to("#cr-a1", { opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "power3.out" }, 3.87);
+    tl.to("#cr-panel", { opacity: 1, y: 0, duration: 0.6, ease: "expo.out" }, 3.87);
+    // beat-grid: 30.83, 31.46, 32.11, 32.74
+    tl.to("#cr-c1", { opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }, 4.51);
+    tl.to("#cr-c2", { opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }, 5.14);
+    tl.to("#cr-c3", { opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }, 5.79);
+    tl.to("#cr-c4", { opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }, 6.42);
+    tl.to("#cr-a1", { opacity: 0, filter: "blur(10px)", duration: 0.25, ease: "power3.in" }, 6.6);
+    tl.to("#cr-a2", { opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "power3.out" }, 6.85);
+    tl.to("#care-wrap", { opacity: 0, filter: "blur(10px)", duration: 0.3, ease: "power3.in" }, 8.6);
+    window.__timelines["care"] = tl;
+  </script>
+</template>

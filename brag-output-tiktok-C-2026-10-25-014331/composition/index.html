@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait"
+  data-composition-variables='[{"id":"color-ground","type":"color","label":"Background","default":"#0a0a0a"},{"id":"color-accent","type":"color","label":"Accent (DevEraXTech gold)","default":"#d4af37"}]'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --color-ground: #0a0a0a;
+        --color-accent: #d4af37;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: var(--color-ground);
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+      #stage {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 70% 38% at 50% 50%, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0) 70%),
+          var(--color-ground);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="38.8" data-width="1080" data-height="1920">
+      <div id="stage"></div>
+      <div id="hook" data-composition-id="hook" data-composition-src="compositions/hook.html" data-start="0" data-duration="8.5" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 2"></div>
+      <div id="q2" data-composition-id="q2" data-composition-src="compositions/q2.html" data-start="8.35" data-duration="2.34" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 6"></div>
+      <div id="contact" data-composition-id="contact" data-composition-src="compositions/contact.html" data-start="10.5" data-duration="7.0" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 2"></div>
+      <div id="q3" data-composition-id="q3" data-composition-src="compositions/q3.html" data-start="17.33" data-duration="2.32" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 6"></div>
+      <div id="dash" data-composition-id="dash" data-composition-src="compositions/dash.html" data-start="19.5" data-duration="7.0" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 2"></div>
+      <div id="care" data-composition-id="care" data-composition-src="compositions/care.html" data-start="26.32" data-duration="8.9" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 2"></div>
+      <div id="endcard" data-composition-id="endcard" data-composition-src="compositions/endcard.html" data-start="35.2" data-duration="3.6" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 3"></div>
+      <div id="brandcue" data-composition-id="brandcue" data-composition-src="compositions/brandcue.html" data-start="0" data-duration="35.1" data-track-index="3" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 5"></div>
+
+      <!-- Music: "Happy Beats / Business Moves Vol. 12", Sascha Ende, ende.app (CC BY 4.0), tempo slowed to 85 % -->
+      <audio id="music" class="clip" data-start="0" data-duration="38.8" data-track-index="10" data-volume="0.3" data-fade-out="1.5" src="assets/music/vol-12-slowed-085.mp3"></audio>
+      <audio id="s-live" class="clip" data-start="0.35" data-duration="0.17" data-track-index="11" data-volume="0.55" src="assets/sfx/chip-lay-1.ogg"></audio>
+      <audio id="s-seam" class="clip" data-start="0.45" data-duration="1.6" data-track-index="12" data-volume="0.6" src="assets/sfx/sig-note.wav"></audio>
+      <audio id="s-day1" class="clip" data-start="5.6" data-duration="0.11" data-track-index="13" data-volume="0.4" src="assets/sfx/drop_001.ogg"></audio>
+      <audio id="s-day2" class="clip" data-start="6.4" data-duration="0.19" data-track-index="14" data-volume="0.4" src="assets/sfx/drop_002.ogg"></audio>
+      <audio id="s-day3" class="clip" data-start="7.2" data-duration="0.11" data-track-index="15" data-volume="0.45" src="assets/sfx/drop_001.ogg"></audio>
+      <audio id="s-q2" class="clip" data-start="8.37" data-duration="0.18" data-track-index="16" data-volume="0.75" src="assets/sfx/impactSoft_medium_004.ogg"></audio>
+      <audio id="s-q2s" class="clip" data-start="8.71" data-duration="0.06" data-track-index="17" data-volume="0.45" src="assets/sfx/rollover2.ogg"></audio>
+      <audio id="s-type1" class="clip" data-start="11.1" data-duration="0.25" data-track-index="18" data-volume="0.3" src="assets/sfx/keypress-005.wav"></audio>
+      <audio id="s-type2" class="clip" data-start="11.45" data-duration="0.25" data-track-index="19" data-volume="0.3" src="assets/sfx/keypress-017.wav"></audio>
+      <audio id="s-slot" class="clip" data-start="12.1" data-duration="0.3" data-track-index="20" data-volume="0.45" src="assets/sfx/click2.ogg"></audio>
+      <audio id="s-send" class="clip" data-start="12.95" data-duration="0.4" data-track-index="21" data-volume="0.6" src="assets/sfx/mouseclick1.ogg"></audio>
+      <audio id="s-reply" class="clip" data-start="13.85" data-duration="0.17" data-track-index="22" data-volume="0.55" src="assets/sfx/chip-lay-1.ogg"></audio>
+      <audio id="s-q3" class="clip" data-start="17.35" data-duration="0.18" data-track-index="23" data-volume="0.75" src="assets/sfx/impactSoft_medium_004.ogg"></audio>
+      <audio id="s-q3s" class="clip" data-start="17.69" data-duration="0.06" data-track-index="24" data-volume="0.45" src="assets/sfx/rollover2.ogg"></audio>
+      <audio id="s-k1" class="clip" data-start="20.06" data-duration="0.11" data-track-index="25" data-volume="0.45" src="assets/sfx/drop_001.ogg"></audio>
+      <audio id="s-k2" class="clip" data-start="20.56" data-duration="0.19" data-track-index="26" data-volume="0.45" src="assets/sfx/drop_002.ogg"></audio>
+      <audio id="s-k3" class="clip" data-start="21.2" data-duration="0.11" data-track-index="27" data-volume="0.45" src="assets/sfx/drop_001.ogg"></audio>
+      <audio id="s-role" class="clip" data-start="24.1" data-duration="0.3" data-track-index="28" data-volume="0.5" src="assets/sfx/click2.ogg"></audio>
+      <audio id="s-c1" class="clip" data-start="30.83" data-duration="0.11" data-track-index="29" data-volume="0.45" src="assets/sfx/drop_001.ogg"></audio>
+      <audio id="s-c2" class="clip" data-start="31.46" data-duration="0.19" data-track-index="30" data-volume="0.45" src="assets/sfx/drop_002.ogg"></audio>
+      <audio id="s-c3" class="clip" data-start="32.11" data-duration="0.11" data-track-index="31" data-volume="0.45" src="assets/sfx/drop_001.ogg"></audio>
+      <audio id="s-c4" class="clip" data-start="32.74" data-duration="0.17" data-track-index="32" data-volume="0.55" src="assets/sfx/chip-lay-1.ogg"></audio>
+      <audio id="s-ans" class="clip" data-start="30.17" data-duration="2.2" data-track-index="33" data-volume="0.7" src="assets/sfx/sig-two.wav"></audio>
+      <audio id="s-logo" class="clip" data-start="35.93" data-duration="2.87" data-track-index="34" data-volume="0.95" src="assets/sfx/sig-full.wav"></audio>
+    </div>
+    <script>
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

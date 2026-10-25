@@ -1,0 +1,257 @@
+<template>
+  <style>
+
+    @font-face {
+      font-family: "Cormorant Garamond";
+      font-style: normal;
+      font-weight: 500;
+      src: url("assets/fonts/CormorantGaramond-500.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Cormorant Garamond";
+      font-style: italic;
+      font-weight: 500;
+      src: url("assets/fonts/CormorantGaramond-500i.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Inter Tight";
+      font-style: normal;
+      font-weight: 300 700;
+      src: url("assets/fonts/InterTight-var.woff2") format("woff2");
+    }
+    #root-x {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+    }
+    #root-x {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+    }
+    .ttl {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 290px;
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.02;
+    }
+    .ttl span {
+      display: block;
+      font-size: 80px;
+      color: #f5f5f5;
+    }
+    .ttl .g {
+      color: #e6c45a;
+    }
+    .ttl .s {
+      font-size: 70px;
+    }
+    .ttl .big {
+      font-size: 140px;
+    }
+    .seam {
+      position: absolute;
+      height: 4px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, rgba(212, 175, 55, 0), #d4af37 8%, #fff1bf 55%, #f2d17b 100%);
+      box-shadow: 0 0 14px rgba(242, 209, 123, 0.85);
+      transform-origin: 0 50%;
+    }
+    .term {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 4px solid #f2d17b;
+      background: #0a0a0a;
+      box-shadow: 0 0 16px rgba(242, 209, 123, 0.9);
+    }
+    #live {
+      position: absolute;
+      left: 790px;
+      top: 622px;
+      height: 54px;
+      padding: 0 24px 0 20px;
+      border-radius: 27px;
+      background: #0f1a18;
+      border: 2px solid #8fbab7;
+      color: #cfe7e4;
+      font-weight: 800;
+      font-size: 26px;
+      letter-spacing: 0.16em;
+      line-height: 50px;
+      z-index: 3;
+    }
+    #live i {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #8fbab7;
+      margin-right: 12px;
+      vertical-align: 1px;
+    }
+    #day {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 1214px;
+      text-align: center;
+      z-index: 3;
+    }
+    #day b {
+      display: inline-block;
+      padding: 0 30px;
+      height: 76px;
+      border-radius: 38px;
+      background: #14120c;
+      border: 2px solid #d4af37;
+      color: #f2d17b;
+      font: 700 40px/72px "JetBrains Mono", monospace;
+    }
+    #ds {
+      position: absolute;
+      left: 60px;
+      top: 640px;
+      width: 960px;
+      height: 640px;
+      border-radius: 22px;
+      background: #0d0d0f;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      box-shadow: 0 40px 90px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      color: #f2efe6;
+    }
+    .sd {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 220px;
+      background: #121214;
+      border-right: 1px solid rgba(212, 175, 55, 0.16);
+      padding: 30px 0 0 28px;
+      font-size: 22px;
+      line-height: 2.3;
+      color: #9a958a;
+    }
+    .sd .on {
+      color: #f2d17b;
+    }
+    .sd .lock {
+      color: #6b675e;
+    }
+    .kp {
+      position: absolute;
+      top: 40px;
+      width: 220px;
+      height: 150px;
+      border-radius: 18px;
+      background: #17161a;
+      border: 1px solid rgba(212, 175, 55, 0.22);
+      padding: 22px;
+    }
+    .kp small {
+      display: block;
+      font-size: 18px;
+      color: #9a958a;
+    }
+    .kp b {
+      display: block;
+      margin-top: 10px;
+      font-size: 46px;
+      color: #f2d17b;
+    }
+    .rw {
+      position: absolute;
+      left: 250px;
+      right: 30px;
+      height: 70px;
+      border-top: 1px solid rgba(242, 239, 230, 0.08);
+      font-size: 22px;
+      line-height: 70px;
+      white-space: nowrap;
+    }
+    .rw span {
+      position: absolute;
+    }
+    .tag {
+      height: 36px;
+      padding: 0 14px;
+      border-radius: 18px;
+      font-size: 17px;
+      line-height: 34px;
+      top: 17px;
+      border: 1px solid rgba(143, 186, 183, 0.6);
+      color: #a9d2cf;
+    }
+    #ds-role {
+      position: absolute;
+      right: 30px;
+      top: 230px;
+      height: 46px;
+      padding: 0 20px;
+      border-radius: 23px;
+      border: 2px solid #d4af37;
+      color: #f2d17b;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 42px;
+    }
+  </style>
+  <div id="root" data-composition-id="dash" data-width="1080" data-height="1920">
+    <div id="dash-wrap" class="clip" data-start="0" data-duration="7" data-layout-allow-overflow data-layout-allow-overlap>
+      <div class="ttl" id="ds-a1"><span class="g big">You can.</span></div>
+      <div class="ttl" id="ds-a2"><span>CRMs. Bookings.</span><span class="g">Dashboards.</span></div>
+      <div class="ttl" id="ds-a3"><span>With role-based</span><span class="g">access.</span></div>
+      <div id="ds">
+        <div class="sd"><div class="on">Dashboard</div><div>Customers</div><div>Bookings</div><div id="ds-rep">Reports</div><div>Team</div></div>
+        <div class="kp" id="ds-k1" style="left:250px"><small>Customers</small><b>1,284</b></div>
+        <div class="kp" id="ds-k2" style="left:490px"><small>Bookings today</small><b>36</b></div>
+        <div class="kp" id="ds-k3" style="left:730px"><small>Open invoices</small><b>12</b></div>
+        <div id="ds-role">Role: Manager</div>
+        <div class="rw" id="ds-r1" style="top:300px"><span style="left:0">Mona K.</span><span style="left:220px;color:#9a958a">Consultation · 10:00</span><span class="tag" style="left:520px">Confirmed</span></div>
+        <div class="rw" id="ds-r2" style="top:370px"><span style="left:0">Omar S.</span><span style="left:220px;color:#9a958a">Follow-up · 11:30</span><span class="tag" style="left:520px">Confirmed</span></div>
+        <div class="rw" id="ds-r3" style="top:440px"><span style="left:0">Lina A.</span><span style="left:220px;color:#9a958a">New lead · website</span><span class="tag" style="left:520px;color:#f2d17b;border-color:rgba(212,175,55,0.6)">New</span></div>
+        <div class="rw" id="ds-r4" style="top:510px"><span style="left:0">Karim H.</span><span style="left:220px;color:#9a958a">Invoice #1042</span><span class="tag" style="left:520px">Paid</span></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    gsap.set(["#ds-a1", "#ds-a2", "#ds-a3"], { opacity: 0, filter: "blur(10px)" });
+    gsap.set("#ds", { opacity: 0, y: 80 });
+    gsap.set([".kp", ".rw"], { opacity: 0, y: 20 });
+    gsap.set("#ds-role", { opacity: 0 });
+    const tl = gsap.timeline({ paused: true });
+    // host starts 19.5 s; example data, not a real client
+    tl.to("#ds", { opacity: 1, y: 0, duration: 0.8, ease: "expo.out" }, 0.0);
+    tl.to("#ds-a1", { opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "power3.out" }, 0.3);
+    // beat-grid: the cards build on the beat
+    tl.to("#ds-k1", { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.56);
+    tl.to("#ds-k2", { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 1.06);
+    tl.to("#ds-k3", { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 1.70);
+    tl.to(".rw", { opacity: 1, y: 0, duration: 0.3, ease: "power3.out", stagger: 0.12 }, 2.1);
+    tl.to("#ds-a1", { opacity: 0, filter: "blur(10px)", duration: 0.25, ease: "power3.in" }, 2.15);
+    tl.to("#ds-a2", { opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "power3.out" }, 2.4);
+    // switch the role: reports lock for staff
+    tl.to("#ds-role", { opacity: 1, duration: 0.3 }, 3.6);
+    tl.set("#ds-role", { textContent: "Role: Staff" }, 4.6);
+    tl.to("#ds-rep", { color: "#5d5a52", duration: 0.2 }, 4.6);
+    tl.set("#ds-rep", { textContent: "Reports · locked" }, 4.6);
+    tl.to("#ds-k3", { opacity: 0.25, duration: 0.25 }, 4.6);
+    tl.to("#ds-a2", { opacity: 0, filter: "blur(10px)", duration: 0.25, ease: "power3.in" }, 4.4);
+    tl.to("#ds-a3", { opacity: 1, filter: "blur(0px)", duration: 0.35, ease: "power3.out" }, 4.65);
+    tl.to(["#ds-a3", "#ds"], { opacity: 0, filter: "blur(10px)", duration: 0.3, ease: "power3.in" }, 6.7);
+    window.__timelines["dash"] = tl;
+  </script>
+</template>
