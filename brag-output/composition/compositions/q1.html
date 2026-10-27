@@ -1,0 +1,135 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Playfair Display", serif;
+      color: #ffffff;
+    }
+    #q1-wrap {
+      position: absolute;
+      inset: 0;
+    }
+    #q1-kicker {
+      position: absolute;
+      top: 560px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: "Inter", sans-serif;
+      font-weight: 700;
+      font-size: 28px;
+      letter-spacing: 0.4em;
+      color: #d4af37;
+    }
+    #q1-title {
+      position: absolute;
+      top: 650px;
+      left: 90px;
+      right: 90px;
+      text-align: center;
+      font-size: 118px;
+      line-height: 1.08;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+    }
+    .q1-w {
+      display: inline-block;
+      margin: 0 0.11em;
+    }
+    .gold {
+      color: #d4af37;
+      background: linear-gradient(135deg, #d4af37 0%, #f5d573 50%, #d4af37 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    #q1-meter {
+      position: absolute;
+      top: 1130px;
+      left: 130px;
+      width: 820px;
+      font-family: "Inter", sans-serif;
+    }
+    .q1-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      color: #d1d5db;
+    }
+    #q1-pct {
+      font-size: 44px;
+      letter-spacing: 0.02em;
+      color: #f5d573;
+      font-variant-numeric: tabular-nums;
+    }
+    .q1-track {
+      margin-top: 18px;
+      height: 6px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.12);
+      overflow: hidden;
+    }
+    #q1-fill {
+      width: 100%;
+      height: 100%;
+      transform-origin: 0 50%;
+      background: linear-gradient(90deg, #d4af37, #f5d573);
+      box-shadow: 0 0 18px rgba(245, 213, 115, 0.9);
+    }
+    #q1-note {
+      margin-top: 34px;
+      text-align: center;
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-size: 40px;
+      color: #d1d5db;
+    }
+  </style>
+  <div id="root" data-composition-id="q1" data-width="1080" data-height="1920">
+    <div id="q1-wrap">
+      <div id="q1-kicker">QUESTION 01</div>
+      <div id="q1-title">
+        <span class="q1-w">Will</span><span class="q1-w gold">AI</span><span class="q1-w">replace</span><br />
+        <span class="q1-w">web</span><span class="q1-w">developers?</span>
+      </div>
+      <div id="q1-meter">
+        <div class="q1-row"><span>ANSWER LOADING</span><span id="q1-pct">0%</span></div>
+        <div class="q1-track"><div id="q1-fill"></div></div>
+        <div id="q1-note">The answer is unlocking…</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const pctEl = document.getElementById("q1-pct");
+      const p = { v: 0 };
+
+      tl.fromTo("#q1-kicker", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 0.05);
+      // beat-locked: title lands on 4.91s (local 0.52)
+      gsap.utils.toArray("#q1-title .q1-w").forEach((w, i) => {
+        tl.fromTo(w, { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power4.out" }, 0.45 + i * 0.08);
+      });
+
+      tl.fromTo("#q1-meter", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "expo.out" }, 1.75);
+      tl.fromTo("#q1-fill", { scaleX: 0 }, { scaleX: 0.18, duration: 1.5, ease: "power2.out" }, 1.95);
+      tl.fromTo(p, { v: 0 }, { v: 18, duration: 1.5, ease: "power2.out", onUpdate: () => (pctEl.textContent = Math.round(p.v) + "%") }, 1.95);
+      tl.fromTo("#q1-note", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 2.3);
+
+      // Stall: three-frame flicker, the bar refuses to finish.
+      tl.to("#q1-fill", { opacity: 0.25, duration: 0.05 }, 3.47)
+        .to("#q1-fill", { opacity: 1, duration: 0.05 }, 3.53)
+        .to("#q1-fill", { opacity: 0.3, duration: 0.05 }, 3.6)
+        .to("#q1-fill", { opacity: 1, duration: 0.05 }, 3.66);
+
+      // Whip up and out.
+      tl.to("#q1-wrap", { y: -260, opacity: 0, filter: "blur(14px)", duration: 0.32, ease: "power3.in" }, 4.55);
+
+      window.__timelines["q1"] = tl;
+    })();
+  </script>
+</template>

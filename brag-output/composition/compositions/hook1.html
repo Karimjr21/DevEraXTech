@@ -1,0 +1,85 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Playfair Display", serif;
+      color: #ffffff;
+    }
+    #h1-kicker {
+      position: absolute;
+      top: 330px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: "Inter", sans-serif;
+      font-weight: 700;
+      font-size: 30px;
+      letter-spacing: 0.38em;
+      color: #d4af37;
+    }
+    #h1-text {
+      position: absolute;
+      top: 700px;
+      left: 90px;
+      right: 90px;
+      text-align: center;
+      font-size: 104px;
+      line-height: 1.12;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .h1-w {
+      display: inline-block;
+      margin: 0 0.12em;
+    }
+    .gold {
+      color: #d4af37;
+      background: linear-gradient(135deg, #d4af37 0%, #f5d573 50%, #d4af37 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-style: italic;
+    }
+    #h1-line {
+      position: absolute;
+      top: 1170px;
+      left: 140px;
+      width: 800px;
+      height: 3px;
+      background: linear-gradient(90deg, rgba(212, 175, 55, 0) 0%, #f5d573 50%, rgba(212, 175, 55, 0) 100%);
+      box-shadow: 0 0 24px rgba(245, 213, 115, 0.8);
+    }
+  </style>
+  <div id="root" data-composition-id="hook1" data-width="1080" data-height="1920">
+    <div id="h1-kicker">DEVERAXTECH · TECH TALK</div>
+    <div id="h1-text">
+      <span class="h1-w">This</span><span class="h1-w">question</span><span class="h1-w">is</span><br />
+      <span class="h1-w">splitting</span><span class="h1-w">the</span><span class="h1-w">tech</span><br />
+      <span class="h1-w">world</span><span class="h1-w">in</span><span class="h1-w gold" id="h1-two">two.</span>
+    </div>
+    <div id="h1-line" data-layout-ignore></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#h1-kicker", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.6, ease: "expo.out" }, 0.05);
+
+      // Per-word blur-in, no translate; the accent word lands on the beat with the bell.
+      const words = gsap.utils.toArray("#h1-text .h1-w:not(#h1-two)");
+      words.forEach((w, i) => {
+        tl.fromTo(w, { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power4.out" }, 0.18 + i * 0.09);
+      });
+      // beat-locked: 1.09s
+      tl.fromTo("#h1-two", { opacity: 0, scale: 1.35, filter: "blur(18px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, 1.07);
+      tl.fromTo("#h1-line", { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.9, ease: "expo.out" }, 1.12);
+
+      // The split line tears the frame open into Q1.
+      tl.to("#h1-text .h1-w", { opacity: 0, filter: "blur(8px)", duration: 0.22, stagger: 0.015, ease: "power2.in" }, 3.78);
+      tl.to("#h1-kicker", { opacity: 0, duration: 0.2 }, 3.8);
+      tl.to("#h1-line", { scaleX: 1.5, scaleY: 6, opacity: 0, duration: 0.42, ease: "power3.in" }, 3.92);
+
+      window.__timelines["hook1"] = tl;
+    })();
+  </script>
+</template>

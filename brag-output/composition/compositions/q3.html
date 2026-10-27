@@ -1,0 +1,162 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Playfair Display", serif;
+      color: #ffffff;
+    }
+    #q3-hook {
+      position: absolute;
+      top: 770px;
+      left: 90px;
+      right: 90px;
+      text-align: center;
+      font-size: 100px;
+      line-height: 1.12;
+      font-weight: 600;
+    }
+    .gold {
+      color: #d4af37;
+      background: linear-gradient(135deg, #d4af37 0%, #f5d573 50%, #d4af37 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .it {
+      font-style: italic;
+    }
+    #q3-main {
+      position: absolute;
+      inset: 0;
+    }
+    #q3-kicker {
+      position: absolute;
+      top: 520px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: "Inter", sans-serif;
+      font-weight: 700;
+      font-size: 28px;
+      letter-spacing: 0.4em;
+      color: #d4af37;
+    }
+    #q3-title {
+      position: absolute;
+      top: 600px;
+      left: 90px;
+      right: 90px;
+      text-align: center;
+      font-size: 104px;
+      line-height: 1.1;
+      font-weight: 700;
+    }
+    .q3-w {
+      display: inline-block;
+      margin: 0 0.1em;
+    }
+    #q3-panel {
+      position: absolute;
+      top: 990px;
+      left: 140px;
+      width: 800px;
+      padding: 30px 40px 18px;
+      border-radius: 28px;
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      background: rgba(20, 18, 12, 0.85);
+      box-shadow: 0 0 50px rgba(212, 175, 55, 0.14);
+      font-family: "Inter", sans-serif;
+    }
+    #q3-panel-head {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      color: #d4af37;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    }
+    .q3-row {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 40px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .q3-row:last-child {
+      border-bottom: none;
+    }
+    .q3-stat {
+      position: relative;
+      width: 200px;
+      height: 60px;
+    }
+    .q3-chk,
+    .q3-pass {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+    }
+    .q3-chk {
+      color: #d1d5db;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .q3-pass {
+      color: #0a0a0a;
+      background: linear-gradient(135deg, #d4af37 0%, #f5d573 50%, #d4af37 100%);
+      box-shadow: 0 0 20px rgba(245, 213, 115, 0.6);
+    }
+  </style>
+  <div id="root" data-composition-id="q3" data-width="1080" data-height="1920">
+    <div id="q3-hook">Your competitors<br />already <span class="gold it">know</span> this one.</div>
+    <div id="q3-main">
+      <div id="q3-kicker">QUESTION 03</div>
+      <div id="q3-title">
+        <span class="q3-w">Why</span><span class="q3-w">is</span><span class="q3-w gold">Google</span><br />
+        <span class="q3-w">ignoring</span><span class="q3-w">your</span><br />
+        <span class="q3-w">website?</span>
+      </div>
+      <div id="q3-panel">
+        <div id="q3-panel-head">SEO · SITE HEALTH</div>
+        <div class="q3-row" id="q3-r1"><span>Core Web Vitals</span><span class="q3-stat" data-layout-allow-overlap><span class="q3-chk" id="q3-k1"></span><span class="q3-pass" id="q3-p1">PASS ✓</span></span></div>
+        <div class="q3-row" id="q3-r2"><span>Page speed</span><span class="q3-stat" data-layout-allow-overlap><span class="q3-chk" id="q3-k2"></span><span class="q3-pass" id="q3-p2">PASS ✓</span></span></div>
+        <div class="q3-row" id="q3-r3"><span>Schema markup</span><span class="q3-stat" data-layout-allow-overlap><span class="q3-chk" id="q3-k3"></span><span class="q3-pass" id="q3-p3">PASS ✓</span></span></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // beat-locked: 17.47s strong cue. Hook 3 slams in.
+      tl.fromTo("#q3-hook", { opacity: 0, scale: 1.12, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 0.02);
+      tl.to("#q3-hook", { opacity: 0, filter: "blur(10px)", duration: 0.22, ease: "power2.in" }, 2.5);
+
+      tl.fromTo("#q3-kicker", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 2.72);
+      gsap.utils.toArray("#q3-title .q3-w").forEach((w, i) => {
+        tl.fromTo(w, { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power4.out" }, 2.82 + i * 0.07);
+      });
+
+      tl.fromTo("#q3-panel", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.7, ease: "expo.out" }, 3.75);
+      // beat-grid: rows at 21.84s, 22.93s (strong cue), 24.02s; PASS flips +0.35s
+      [1, 2, 3].forEach((n, i) => {
+        const at = 4.37 + i * 1.09;
+        tl.fromTo("#q3-r" + n, { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.45, ease: "expo.out" }, at);
+        tl.fromTo("#q3-p" + n, { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(1.6)" }, at + 0.33);
+        tl.fromTo("#q3-k" + n, { opacity: 1 }, { opacity: 0, duration: 0.1 }, at + 0.33);
+      });
+
+      tl.to("#q3-main", { opacity: 0, filter: "blur(10px)", duration: 0.28, ease: "power2.in" }, 8.42);
+      window.__timelines["q3"] = tl;
+    })();
+  </script>
+</template>

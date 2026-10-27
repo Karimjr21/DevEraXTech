@@ -1,0 +1,130 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Playfair Display", serif;
+      color: #ffffff;
+    }
+    #q2-hook {
+      position: absolute;
+      top: 760px;
+      left: 90px;
+      right: 90px;
+      text-align: center;
+      font-size: 100px;
+      line-height: 1.12;
+      font-weight: 600;
+    }
+    .gold {
+      color: #d4af37;
+      background: linear-gradient(135deg, #d4af37 0%, #f5d573 50%, #d4af37 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .it {
+      font-style: italic;
+    }
+    #q2-main {
+      position: absolute;
+      inset: 0;
+    }
+    #q2-kicker {
+      position: absolute;
+      top: 520px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: "Inter", sans-serif;
+      font-weight: 700;
+      font-size: 28px;
+      letter-spacing: 0.4em;
+      color: #d4af37;
+    }
+    #q2-title {
+      position: absolute;
+      top: 600px;
+      left: 90px;
+      right: 90px;
+      text-align: center;
+      font-size: 96px;
+      line-height: 1.1;
+      font-weight: 700;
+    }
+    .q2-w {
+      display: inline-block;
+      margin: 0 0.1em;
+    }
+    #q2-chips {
+      position: absolute;
+      top: 1010px;
+      left: 140px;
+      width: 800px;
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+      align-items: center;
+    }
+    .q2-chip {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      padding: 24px 40px;
+      min-width: 640px;
+      border-radius: 999px;
+      border: 1px solid rgba(212, 175, 55, 0.55);
+      background: rgba(24, 20, 10, 0.82);
+      font-family: "Inter", sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+      color: #ffffff;
+      box-shadow: 0 0 34px rgba(212, 175, 55, 0.16);
+    }
+    .q2-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #f5d573;
+      box-shadow: 0 0 14px #f5d573;
+      flex: none;
+    }
+  </style>
+  <div id="root" data-composition-id="q2" data-width="1080" data-height="1920">
+    <div id="q2-hook">Most agencies will<br /><span class="gold it">never</span> tell you this.</div>
+    <div id="q2-main">
+      <div id="q2-kicker">QUESTION 02</div>
+      <div id="q2-title">
+        <span class="q2-w">Does</span><span class="q2-w">your</span><span class="q2-w">business</span><br />
+        <span class="q2-w">need</span><span class="q2-w">an</span><span class="q2-w gold">AI</span><span class="q2-w gold">assistant</span><br />
+        <span class="q2-w">in</span><span class="q2-w">2026?</span>
+      </div>
+      <div id="q2-chips">
+        <div class="q2-chip" id="q2-c1"><span class="q2-dot"></span>Website chatbots</div>
+        <div class="q2-chip" id="q2-c2"><span class="q2-dot"></span>WhatsApp assistants</div>
+        <div class="q2-chip" id="q2-c3"><span class="q2-dot"></span>Automated lead capture</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // Hook 2: whole line blurs in, holds, leaves.
+      tl.fromTo("#q2-hook", { opacity: 0, filter: "blur(14px)", scale: 1.04 }, { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.55, ease: "expo.out" }, 0.1);
+      tl.to("#q2-hook", { opacity: 0, filter: "blur(10px)", duration: 0.22, ease: "power2.in" }, 2.55);
+
+      tl.fromTo("#q2-kicker", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 2.75);
+      gsap.utils.toArray("#q2-title .q2-w").forEach((w, i) => {
+        tl.fromTo(w, { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power4.out" }, 2.85 + i * 0.07);
+      });
+
+      // beat-grid: chips at 13.64s, 14.73s, 15.82s (every other beat, readable holds)
+      ["#q2-c1", "#q2-c2", "#q2-c3"].forEach((c, i) => {
+        tl.fromTo(c, { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: "expo.out" }, 4.35 + i * 1.09);
+      });
+
+      tl.to("#q2-main", { opacity: 0, filter: "blur(10px)", duration: 0.28, ease: "power2.in" }, 7.86);
+      window.__timelines["q2"] = tl;
+    })();
+  </script>
+</template>

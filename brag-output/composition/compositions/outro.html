@@ -1,0 +1,100 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Inter", sans-serif;
+      color: #ffffff;
+    }
+    #ot-logo {
+      position: absolute;
+      top: 380px;
+      left: 210px;
+      width: 660px;
+      height: 440px;
+    }
+    #ot-name {
+      position: absolute;
+      top: 840px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: 112px;
+      letter-spacing: -0.01em;
+    }
+    .ot-l {
+      display: inline-block;
+      color: #d4af37;
+      background: linear-gradient(135deg, #d4af37 0%, #f5d573 50%, #d4af37 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gold {
+      color: #d4af37;
+      background: linear-gradient(135deg, #d4af37 0%, #f5d573 50%, #d4af37 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    #ot-tag {
+      position: absolute;
+      top: 1000px;
+      left: 90px;
+      right: 90px;
+      text-align: center;
+      font-size: 38px;
+      line-height: 1.3;
+      color: #d1d5db;
+    }
+    #ot-pillars {
+      position: absolute;
+      top: 1080px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: #d4af37;
+    }
+    #ot-cta {
+      position: absolute;
+      top: 1180px;
+      left: 250px;
+      width: 580px;
+      padding: 26px 0;
+      text-align: center;
+      border-radius: 999px;
+      border: 2px solid #d4af37;
+      background: rgba(20, 17, 8, 0.85);
+      font-size: 38px;
+      font-weight: 700;
+      color: #f5d573;
+      box-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+    }
+  </style>
+  <div id="root" data-composition-id="outro" data-width="1080" data-height="1920">
+    <img id="ot-logo" src="assets/img/logo.webp" alt="DevEraXTech logo" />
+    <div id="ot-name"><span class="ot-l">D</span><span class="ot-l">e</span><span class="ot-l">v</span><span class="ot-l">E</span><span class="ot-l">r</span><span class="ot-l">a</span><span class="ot-l">X</span><span class="ot-l">T</span><span class="ot-l">e</span><span class="ot-l">c</span><span class="ot-l">h</span></div>
+    <div id="ot-tag">We build premium web &amp; app experiences</div>
+    <div id="ot-pillars">SECURE · SCALABLE · PIXEL-PERFECT</div>
+    <div id="ot-cta">Follow for Part 2 →</div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#ot-logo", { opacity: 0, scale: 1.1, filter: "blur(30px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 1.1, ease: "expo.out" }, 0.08);
+      // per-letter name reveal
+      gsap.utils.toArray("#ot-name .ot-l").forEach((l, i) => {
+        tl.fromTo(l, { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.25, ease: "power3.out" }, 0.75 + i * 0.05);
+      });
+      tl.fromTo("#ot-tag", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.25, ease: "power3.out" }, 1.25);
+      tl.fromTo("#ot-pillars", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 1.6);
+      tl.fromTo("#ot-cta", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease: "expo.out" }, 2.1);
+      window.__timelines["outro"] = tl;
+    })();
+  </script>
+</template>
