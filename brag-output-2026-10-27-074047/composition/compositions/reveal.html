@@ -1,0 +1,146 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      color: #111111;
+      overflow: hidden;
+    }
+    #rv-page {
+      position: absolute;
+      inset: 0;
+    }
+    #rv-label {
+      position: absolute;
+      top: 740px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 30px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: #7a5c0e;
+    }
+    #rv-row {
+      position: absolute;
+      top: 820px;
+      left: 90px;
+      width: 900px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+    .rv-t {
+      position: relative;
+      width: 130px;
+      height: 152px;
+    }
+    .rv-face,
+    .rv-back {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 4px solid #111111;
+      font-family: "EB Garamond", serif;
+      font-size: 104px;
+      font-weight: 600;
+      color: #111111;
+    }
+    .rv-face {
+      background: #f3e7c4;
+    }
+    .rv-gold {
+      background: #d4af37;
+    }
+    .rv-back {
+      background: #111111;
+    }
+    #rv-l1 {
+      position: absolute;
+      top: 820px;
+      left: 90px;
+      right: 90px;
+      text-align: center;
+      font-family: "EB Garamond", serif;
+      font-size: 104px;
+      line-height: 1.02;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+    .gi {
+      font-style: italic;
+      color: #7a5c0e;
+    }
+    #rv-l2 {
+      position: absolute;
+      top: 820px;
+      left: 90px;
+      right: 90px;
+      text-align: center;
+      font-family: "EB Garamond", serif;
+      font-size: 96px;
+      line-height: 1.04;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+    #rv-foot {
+      position: absolute;
+      top: 1130px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: #111111;
+    }
+  </style>
+  <div id="root" data-composition-id="reveal" data-width="1080" data-height="1920">
+    <div id="rv-page">
+      <div id="rv-label">ANSWER 01 · DECODED</div>
+      <div id="rv-row" data-layout-allow-overlap>
+        <div class="rv-t"><div class="rv-face" id="rv-f0">S</div></div>
+        <div class="rv-t"><div class="rv-face" id="rv-f1">C</div></div>
+        <div class="rv-t"><div class="rv-face" id="rv-f2">H</div></div>
+        <div class="rv-t"><div class="rv-face" id="rv-f3">E</div></div>
+        <div class="rv-t"><div class="rv-back" id="rv-b4"></div><div class="rv-face" id="rv-f4">M</div></div>
+        <div class="rv-t"><div class="rv-back" id="rv-b5"></div><div class="rv-face" id="rv-f5">A</div></div>
+      </div>
+      <div id="rv-l1">No. But it's changing<br /><span class="gi">who gets found.</span></div>
+      <div id="rv-l2">Schema tells Google<br />and AI <span class="gi">who you are.</span></div>
+      <div id="rv-foot">DEVERAXTECH · SEO &amp; PERFORMANCE</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // Flip M then A on the returning drop (28.0s, 28.25s).
+      [4, 5].forEach((n, i) => {
+        tl.fromTo("#rv-b" + n, { rotationX: 0, opacity: 1 }, { rotationX: -90, opacity: 0, duration: 0.12, ease: "power2.in", transformPerspective: 500 }, i * 0.25);
+        tl.fromTo("#rv-f" + n, { rotationX: 90, opacity: 0 }, { rotationX: 0, opacity: 1, duration: 0.14, ease: "power2.out", transformPerspective: 500 }, i * 0.25 + 0.12);
+      });
+      // beat-locked: solved at 28.5s. The whole word turns gold.
+      for (let i = 0; i < 6; i++) {
+        tl.to("#rv-f" + i, { backgroundColor: "#d4af37", duration: 0.12, ease: "none" }, 0.5 + i * 0.04);
+      }
+      tl.fromTo("#rv-row", { scale: 1 }, { scale: 1.08, duration: 0.12, ease: "power2.out" }, 0.5)
+        .to("#rv-row", { scale: 1, duration: 0.3, ease: "power2.out" }, 0.62);
+      tl.fromTo("#rv-label", { opacity: 1 }, { opacity: 1, duration: 0.01 }, 0);
+
+      // Word steps up, the answer lands underneath.
+      tl.to("#rv-row", { y: -330, scale: 0.8, duration: 0.5, ease: "power3.inOut" }, 1.05);
+      tl.to("#rv-label", { y: -330, opacity: 0, duration: 0.4, ease: "power3.inOut" }, 1.05);
+      tl.fromTo("#rv-l1", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, ease: "expo.out" }, 1.35);
+      tl.to("#rv-l1", { opacity: 0, y: -20, duration: 0.2, ease: "power2.in" }, 3.25);
+      tl.fromTo("#rv-l2", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, ease: "expo.out" }, 3.45);
+      tl.fromTo("#rv-foot", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 3.9);
+
+      tl.to("#rv-page", { x: -1080, duration: 0.35, ease: "power3.in" }, 6.05);
+      window.__timelines["reveal"] = tl;
+    })();
+  </script>
+</template>

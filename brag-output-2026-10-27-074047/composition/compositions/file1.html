@@ -1,0 +1,126 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      color: #111111;
+      overflow: hidden;
+    }
+    #f1-page {
+      position: absolute;
+      inset: 0;
+    }
+    #f1-num {
+      position: absolute;
+      top: 250px;
+      right: 70px;
+      font-family: "EB Garamond", serif;
+      font-size: 520px;
+      line-height: 1;
+      font-weight: 500;
+      color: rgba(250, 247, 240, 0);
+      -webkit-text-stroke: 2px rgba(176, 138, 36, 0.6);
+    }
+    .f-label {
+      position: absolute;
+      left: 90px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 30px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: #7a5c0e;
+    }
+    #f1-q {
+      position: absolute;
+      top: 700px;
+      left: 90px;
+      right: 120px;
+      font-family: "EB Garamond", serif;
+      font-size: 124px;
+      line-height: 1.02;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+    .f1-w {
+      display: inline-block;
+      margin-right: 0.22em;
+    }
+    .gi {
+      font-style: italic;
+      color: #7a5c0e;
+    }
+    #f1-card {
+      position: absolute;
+      top: 1120px;
+      left: 90px;
+      width: 860px;
+      padding: 34px 40px 40px;
+      border: 2px solid #111111;
+      background: #fffdf8;
+    }
+    #f1-card-label {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: #111111;
+    }
+    .f1-bar {
+      height: 44px;
+      margin-top: 22px;
+      background: #111111;
+      transform-origin: 0 50%;
+    }
+    #f1-stamp {
+      position: absolute;
+      top: 1190px;
+      left: 520px;
+      padding: 14px 26px;
+      border: 5px solid #7a5c0e;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 44px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: #7a5c0e;
+      background: rgba(250, 247, 240, 0.88);
+    }
+  </style>
+  <div id="root" data-composition-id="file1" data-width="1080" data-height="1920">
+    <div id="f1-page">
+      <div id="f1-num" data-layout-ignore aria-hidden="true">01</div>
+      <div class="f-label" id="f1-label" style="top: 630px">FILE 01 · THE QUESTION</div>
+      <div id="f1-q">
+        <span class="f1-w">Is</span><span class="f1-w">ChatGPT</span><br />
+        <span class="f1-w gi">killing</span><span class="f1-w">Google</span><br />
+        <span class="f1-w">search?</span>
+      </div>
+      <div id="f1-card">
+        <div id="f1-card-label">ANSWER 01</div>
+        <div class="f1-bar" style="width: 92%"></div>
+        <div class="f1-bar" style="width: 70%"></div>
+        <div class="f1-bar" style="width: 48%"></div>
+      </div>
+      <div id="f1-stamp" data-layout-allow-occlusion>CLASSIFIED</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // Page slides in from the right (matches the hook's push).
+      tl.fromTo("#f1-page", { x: 1080 }, { x: 0, duration: 0.4, ease: "power3.out" }, 0);
+      tl.fromTo("#f1-num", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.9, ease: "expo.out" }, 0.25);
+      tl.fromTo("#f1-label", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0.55);
+      gsap.utils.toArray("#f1-q .f1-w").forEach((w, i) => {
+        tl.fromTo(w, { opacity: 0, color: "#cfc6b4" }, { opacity: 1, color: w.classList.contains("gi") ? "#7a5c0e" : "#111111", duration: 0.2, ease: "power2.out" }, 0.6 + i * 0.09);
+      });
+      tl.fromTo("#f1-card", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" }, 2.6);
+      gsap.utils.toArray("#f1-card .f1-bar").forEach((b, i) => {
+        tl.fromTo(b, { scaleX: 0 }, { scaleX: 1, duration: 0.2, ease: "power3.out" }, 3.0 + i * 0.15);
+      });
+      tl.fromTo("#f1-stamp", { opacity: 0, scale: 1.7, rotation: -14 }, { opacity: 1, scale: 1, rotation: -8, duration: 0.22, ease: "power4.in" }, 3.78);
+
+      tl.to("#f1-page", { x: -1080, duration: 0.35, ease: "power3.in" }, 5.15);
+      window.__timelines["file1"] = tl;
+    })();
+  </script>
+</template>

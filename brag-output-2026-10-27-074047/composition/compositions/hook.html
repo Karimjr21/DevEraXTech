@@ -1,0 +1,95 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      color: #111111;
+    }
+    #hk-page {
+      position: absolute;
+      inset: 0;
+    }
+    #hk-type {
+      position: absolute;
+      top: 440px;
+      left: 90px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 34px;
+      font-weight: 500;
+      color: #7a5c0e;
+    }
+    #hk-cursor {
+      display: inline-block;
+      width: 18px;
+      height: 38px;
+      margin-left: 6px;
+      vertical-align: -6px;
+      background: #111111;
+    }
+    #hk-text {
+      position: absolute;
+      top: 560px;
+      left: 90px;
+      right: 120px;
+      font-family: "EB Garamond", serif;
+      font-size: 128px;
+      line-height: 1.02;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+    .hk-w {
+      display: inline-block;
+      margin-right: 0.22em;
+    }
+    #hk-mark-wrap {
+      position: relative;
+      isolation: isolate;
+      display: inline-block;
+    }
+    #hk-mark {
+      position: absolute;
+      left: -10px;
+      right: -10px;
+      top: 58%;
+      height: 40%;
+      background: rgba(212, 175, 55, 0.55);
+      transform-origin: 0 50%;
+      z-index: -1;
+    }
+    #hk-it {
+      font-style: italic;
+    }
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
+    <div id="hk-page">
+      <div id="hk-type"><span class="hk-c">&gt;</span><span class="hk-c"> </span><span class="hk-c">t</span><span class="hk-c">r</span><span class="hk-c">a</span><span class="hk-c">n</span><span class="hk-c">s</span><span class="hk-c">m</span><span class="hk-c">i</span><span class="hk-c">s</span><span class="hk-c">s</span><span class="hk-c">i</span><span class="hk-c">o</span><span class="hk-c">n</span><span class="hk-c">_</span><span class="hk-c">0</span><span class="hk-c">0</span><span class="hk-c">1</span><span id="hk-cursor"></span></div>
+      <div id="hk-text" data-layout-allow-overlap>
+        <span class="hk-w">If</span><span class="hk-w">you</span><span class="hk-w">already</span><br />
+        <span class="hk-w">know</span><span class="hk-w">the</span><span class="hk-w">answer,</span><br />
+        <span id="hk-mark-wrap"><span id="hk-mark"></span><span class="hk-w" id="hk-it">delete this video.</span></span>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      // Mono line types out.
+      gsap.utils.toArray("#hk-type .hk-c").forEach((c, i) => {
+        tl.fromTo(c, { opacity: 0 }, { opacity: 1, duration: 0.01 }, 0.1 + i * 0.03);
+      });
+      // Cursor blink, stepped and finite.
+      [0.75, 1.25, 1.75, 2.25, 2.75, 3.25].forEach((t, i) => tl.set("#hk-cursor", { opacity: i % 2 ? 1 : 0 }, t));
+
+      // Words turn from pale grey to ink: no movement, an editorial reveal.
+      gsap.utils.toArray("#hk-text .hk-w").forEach((w, i) => {
+        tl.fromTo(w, { opacity: 0, color: "#cfc6b4" }, { opacity: 1, color: "#111111", duration: 0.18, ease: "power2.out" }, 0.55 + i * 0.1);
+      });
+      // Highlighter sweep under the dare.
+      tl.fromTo("#hk-mark", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "power3.out" }, 1.48);
+
+      // Page pushes left.
+      tl.to("#hk-page", { x: -1080, duration: 0.35, ease: "power3.in" }, 3.65);
+      window.__timelines["hook"] = tl;
+    })();
+  </script>
+</template>

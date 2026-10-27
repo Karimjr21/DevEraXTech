@@ -1,0 +1,187 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      color: #111111;
+      overflow: hidden;
+    }
+    #f2-page {
+      position: absolute;
+      inset: 0;
+    }
+    #f2-hook {
+      position: absolute;
+      top: 640px;
+      left: 90px;
+      right: 90px;
+      height: 520px;
+    }
+    #f2-hook-text {
+      position: absolute;
+      top: 150px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: "EB Garamond", serif;
+      font-style: italic;
+      font-size: 150px;
+      line-height: 1;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+    .f2-corner {
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      border-color: #111111;
+      border-style: solid;
+      border-width: 0;
+    }
+    #f2-flash {
+      position: absolute;
+      inset: 0;
+      background: #ffffff;
+    }
+    #f2-num {
+      position: absolute;
+      top: 400px;
+      right: 70px;
+      font-family: "EB Garamond", serif;
+      font-size: 520px;
+      line-height: 1;
+      font-weight: 500;
+      color: rgba(250, 247, 240, 0);
+      -webkit-text-stroke: 2px rgba(176, 138, 36, 0.6);
+    }
+    #f2-main {
+      position: absolute;
+      inset: 0;
+    }
+    .f-label {
+      position: absolute;
+      left: 90px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 30px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: #7a5c0e;
+    }
+    #f2-q {
+      position: absolute;
+      top: 560px;
+      left: 90px;
+      right: 120px;
+      font-family: "EB Garamond", serif;
+      font-size: 112px;
+      line-height: 1.02;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+    .f2-w {
+      display: inline-block;
+      margin-right: 0.22em;
+    }
+    .gi {
+      font-style: italic;
+      color: #7a5c0e;
+    }
+    #f2-table {
+      position: absolute;
+      top: 1000px;
+      left: 90px;
+      width: 860px;
+      border-top: 3px solid #111111;
+    }
+    .f2-tr {
+      display: grid;
+      grid-template-columns: 1fr 170px 170px;
+      align-items: center;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(17, 17, 17, 0.25);
+    }
+    .f2-th {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 1.2;
+      text-align: center;
+      color: #111111;
+    }
+    .f2-td {
+      font-family: "EB Garamond", serif;
+      font-size: 50px;
+      font-weight: 500;
+      color: #111111;
+    }
+    .f2-mk {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 50px;
+      font-weight: 700;
+      text-align: center;
+    }
+    .ok {
+      color: #7a5c0e;
+    }
+    .no {
+      color: #6b6b6b;
+    }
+  </style>
+  <div id="root" data-composition-id="file2" data-width="1080" data-height="1920">
+    <div id="f2-page">
+      <div id="f2-hook">
+        <span class="f2-corner" style="left: 0; top: 0; border-left-width: 6px; border-top-width: 6px"></span>
+        <span class="f2-corner" style="right: 0; top: 0; border-right-width: 6px; border-top-width: 6px"></span>
+        <span class="f2-corner" style="left: 0; bottom: 0; border-left-width: 6px; border-bottom-width: 6px"></span>
+        <span class="f2-corner" style="right: 0; bottom: 0; border-right-width: 6px; border-bottom-width: 6px"></span>
+        <div id="f2-hook-text">Screenshot<br />this one.</div>
+      </div>
+      <div id="f2-main">
+        <div id="f2-num" data-layout-ignore aria-hidden="true">02</div>
+        <div class="f-label" id="f2-label" style="top: 490px">FILE 02 · THE QUESTION</div>
+        <div id="f2-q">
+          <span class="f2-w">Can</span><span class="f2-w">AI</span><span class="f2-w">build</span><span class="f2-w">your</span><br />
+          <span class="f2-w">business</span><span class="f2-w">website</span><br />
+          <span class="f2-w gi">in</span><span class="f2-w gi">a</span><span class="f2-w gi">weekend?</span>
+        </div>
+        <div id="f2-table">
+          <div class="f2-tr" id="f2-head"><span></span><span class="f2-th">AI<br />weekend</span><span class="f2-th">Engineered<br />build</span></div>
+          <div class="f2-tr" id="f2-r1"><span class="f2-td">Looks finished</span><span class="f2-mk ok">✓</span><span class="f2-mk ok">✓</span></div>
+          <div class="f2-tr" id="f2-r2"><span class="f2-td">Security from day one</span><span class="f2-mk no">✗</span><span class="f2-mk ok">✓</span></div>
+          <div class="f2-tr" id="f2-r3"><span class="f2-td">Scales as you grow</span><span class="f2-mk no">✗</span><span class="f2-mk ok">✓</span></div>
+        </div>
+      </div>
+    </div>
+    <div id="f2-flash" data-layout-ignore></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#f2-page", { x: 1080 }, { x: 0, duration: 0.4, ease: "power3.out" }, 0);
+      tl.fromTo("#f2-flash", { opacity: 0 }, { opacity: 0, duration: 0.01 }, 0);
+      tl.fromTo("#f2-main", { opacity: 0 }, { opacity: 0, duration: 0.01 }, 0);
+
+      // Hook 2: a screenshot. Crop marks snap in, the shutter flashes.
+      tl.fromTo(".f2-corner", { scale: 1.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.25, ease: "power4.out" }, 0.3);
+      tl.fromTo("#f2-hook-text", { opacity: 0 }, { opacity: 1, duration: 0.15, ease: "power2.out" }, 0.4);
+      tl.to("#f2-flash", { opacity: 0.9, duration: 0.05 }, 0.48).to("#f2-flash", { opacity: 0, duration: 0.3, ease: "power2.out" }, 0.53);
+      tl.to("#f2-hook", { opacity: 0, scale: 0.92, duration: 0.25, ease: "power2.in" }, 2.15);
+
+      tl.to("#f2-main", { opacity: 1, duration: 0.01 }, 2.4);
+      tl.fromTo("#f2-num", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.9, ease: "expo.out" }, 2.4);
+      tl.fromTo("#f2-label", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 2.45);
+      gsap.utils.toArray("#f2-q .f2-w").forEach((w, i) => {
+        tl.fromTo(w, { opacity: 0, color: "#cfc6b4" }, { opacity: 1, color: w.classList.contains("gi") ? "#7a5c0e" : "#111111", duration: 0.2, ease: "power2.out" }, 2.5 + i * 0.08);
+      });
+      tl.fromTo("#f2-table", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 3.9);
+      tl.fromTo("#f2-head", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, 3.9);
+      // beat-grid: rows at 14.0s, 15.0s, 16.0s
+      ["#f2-r1", "#f2-r2", "#f2-r3"].forEach((r, i) => {
+        tl.fromTo(r, { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.45, ease: "expo.out" }, 4.5 + i);
+      });
+
+      tl.to("#f2-page", { x: -1080, duration: 0.35, ease: "power3.in" }, 7.65);
+      window.__timelines["file2"] = tl;
+    })();
+  </script>
+</template>

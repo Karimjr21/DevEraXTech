@@ -1,0 +1,83 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+    }
+    #tl-box {
+      position: absolute;
+      top: 296px;
+      left: 90px;
+      width: 860px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    #tl-label {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: 0.08em;
+      color: #111111;
+    }
+    #tl-label b {
+      color: #7a5c0e;
+    }
+    #tl-row {
+      display: flex;
+      gap: 12px;
+    }
+    .tl-t {
+      position: relative;
+      width: 80px;
+      height: 92px;
+    }
+    .tl-back,
+    .tl-face {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .tl-back {
+      background: #111111;
+    }
+    .tl-face {
+      border: 3px solid #111111;
+      background: #f3e7c4;
+      font-family: "EB Garamond", serif;
+      font-size: 64px;
+      font-weight: 600;
+      color: #111111;
+    }
+  </style>
+  <div id="root" data-composition-id="tiles" data-width="1080" data-height="1920">
+    <div id="tl-box">
+      <div id="tl-label"><b>ANSWER 01</b><br />DECODING…</div>
+      <div id="tl-row" data-layout-allow-overlap>
+        <div class="tl-t"><div class="tl-back"></div><div class="tl-face" id="tl-f0">S</div></div>
+        <div class="tl-t"><div class="tl-back"></div><div class="tl-face" id="tl-f1">C</div></div>
+        <div class="tl-t"><div class="tl-back"></div><div class="tl-face" id="tl-f2">H</div></div>
+        <div class="tl-t"><div class="tl-back"></div><div class="tl-face" id="tl-f3">E</div></div>
+        <div class="tl-t"><div class="tl-back"></div><div class="tl-face" id="tl-f4">M</div></div>
+        <div class="tl-t"><div class="tl-back"></div><div class="tl-face" id="tl-f5">A</div></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#tl-box", { opacity: 0, y: -24 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" }, 0.15);
+      // Faces start hidden; the last two never open here.
+      for (let i = 0; i < 6; i++) tl.fromTo("#tl-f" + i, { opacity: 0, rotationX: 90 }, { opacity: 0, rotationX: 90, duration: 0.01 }, 0);
+      // One letter per file: 11.0s, 16.5s, 21.0s, 24.5s
+      [1.5, 7.0, 11.5, 15.0].forEach((at, i) => {
+        tl.to("#tl-f" + i, { opacity: 1, rotationX: 0, transformPerspective: 400, duration: 0.4, ease: "back.out(1.4)" }, at);
+      });
+      tl.to("#tl-box", { opacity: 0, duration: 0.2 }, 16.25);
+      window.__timelines["tiles"] = tl;
+    })();
+  </script>
+</template>
