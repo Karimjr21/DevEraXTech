@@ -1,0 +1,467 @@
+# DevEraXTech
+
+> DevEraXTech is a web design and development studio based in Cairo, Egypt, building secure, scalable, pixel-perfect websites, online stores, web and mobile apps, desktop software and AI integrations, with ongoing care plans, for clients in Canada, the United States, the UAE, Saudi Arabia, Kuwait, Qatar and Egypt.
+
+DevEraXTech was founded in 2024 by Karim Ahmed (Founder) and Loay Mohamed (Co-founder). We design and build websites, apps and software that are secure by design, scalable and pixel-perfect, and we treat every project as a long-term digital asset. Most inquiries receive a response within one business day.
+
+## At a glance
+
+- Based in: Cairo, Egypt
+- Serving clients in: Canada, United States, United Arab Emirates, Saudi Arabia, Kuwait, Qatar, Egypt
+- Languages: Arabic, English, German
+- Hours: Every day, 9:00 AM to 5:00 PM (Cairo time)
+- Phone: +20 100 001 6216
+- Email: deveraxtech@gmail.com
+- Founded: 2024; 10+ projects shipped
+
+## Services
+
+### Websites & Stores
+
+- [Business / Corporate Websites](https://deveraxtech.com/services/business-websites): Professional websites for companies, startups, agencies, shops, clinics, factories and schools, with home, about, services, team, portfolio and contact pages. Includes: Home; About; Services; Contact; Team; Portfolio.
+- [E-Commerce Websites](https://deveraxtech.com/services/ecommerce-websites): Online stores with product pages, a shopping cart, checkout, payment integrations and an admin dashboard. Includes: Product pages; Shopping cart; Checkout; Payment integrations; Admin dashboard.
+- [Shopify Stores](https://deveraxtech.com/services/shopify-stores): Bespoke Shopify stores for premium brands, with designed product pages, a seamless cart, trusted payments and full store control. Includes: Elegantly designed product pages; Seamless shopping cart experience; Secure, trusted payment integrations; Powerful Shopify admin & store control.
+- [WordPress Websites](https://deveraxtech.com/services/wordpress-websites): Custom WordPress websites with responsive, high-performance layouts, secure plugins and easy content management. Includes: Custom-designed pages & layouts; Fully responsive, high-performance builds; Secure plugins & advanced functionality; Powerful content management & admin control.
+- [Portfolio Websites](https://deveraxtech.com/services/portfolio-websites): High-visual showcase websites for designers, photographers, developers and agencies. Includes: Designers; Photographers; Developers; Agencies; High-visual showcase sites.
+- [Landing Pages](https://deveraxtech.com/services/landing-pages): High-conversion single pages for marketing campaigns, app launches, product launches and service promotions. Includes: Marketing campaigns; App launches; Product launches; Service promotions.
+
+### Apps & Software
+
+- [Custom Web Applications](https://deveraxtech.com/services/custom-web-applications): Custom web applications built around how your business runs, from CRMs and booking systems to client portals and dashboards. Includes: CRMs & customer records; Booking & scheduling systems; Secure client portals; Admin & reporting dashboards; Role-based access & permissions.
+- [Mobile Apps](https://deveraxtech.com/services/mobile-apps): iOS and Android apps built with React Native from one shared codebase, designed to feel native on every device. Includes: iOS & Android from one codebase; Native-feeling interfaces & navigation; Push notifications; Secure sign-in & user accounts; App Store & Google Play release support.
+- [Desktop Software](https://deveraxtech.com/services/desktop-software): Windows apps like Klozcrew: fast, dependable desktop software for teams that work on their own machines. Includes: Windows desktop applications; Offline-capable workflows; Local file & device access; Installers & automatic updates; Sync with your web systems.
+- [AI Integrations](https://deveraxtech.com/services/ai-integrations): AI chatbots, WhatsApp assistants, automated lead handling and document processing, connected to the tools you already use. Includes: Website chatbots; WhatsApp assistants; Automated lead capture & follow-up; Document reading & processing; Integration with your existing tools.
+- [Payment & Business Integrations](https://deveraxtech.com/services/payment-business-integrations): Payment and business integrations with Paymob, Fawry, Stripe, WhatsApp Business, CRMs and accounting tools. Includes: Paymob & Fawry payments; Stripe payments; WhatsApp Business; CRM integrations; Accounting tool integrations.
+
+### Growth & Support
+
+- [Maintenance & Care Plans](https://deveraxtech.com/maintenance): Ongoing care for live websites and apps: updates, security patches, backups, uptime monitoring, performance checks and priority support. Includes: Updates & security patches; Regular backups; Uptime monitoring; Performance checks; Small content & feature changes; Priority support.
+- [SEO & Performance Optimization](https://deveraxtech.com/services/seo-performance-optimization): Technical SEO, structured data and Core Web Vitals improvements that help your website load faster and get found. Includes: Technical SEO audits & fixes; Core Web Vitals & page speed; Structured data (schema markup); On-page SEO & metadata; Image & asset optimization.
+- [Redesigns & Migrations](https://deveraxtech.com/services/redesigns-migrations): Modern redesigns and careful platform migrations that refresh your website without losing content, rankings or data. Includes: Full visual redesigns; Moves to Shopify, WordPress or a custom build; Content & data migration; SEO-safe redirects; Launches with minimal downtime.
+- [UI/UX Design](https://deveraxtech.com/services/ui-ux-design): Figma designs for teams with their own developers: user flows, wireframes, high-fidelity screens and developer-ready handoff. Includes: User flows & wireframes; High-fidelity screens; Interactive prototypes; Design systems & components; Developer-ready handoff.
+
+## Recent work
+
+### Nilora Estates: Luxury Real Estate Platform, Cairo
+
+A full MERN stack (MongoDB, Express, React, Node.js) platform for Nilora Estates, a private residential agency selling villas, penthouses and coastal homes across Cairo and the Egyptian coast. It has a cinematic public site plus three role-based dashboards: buyers save homes and book private viewings, agents manage their listings and leads, and admins control properties, advisors, users and content.
+
+- Client: Nilora Estates
+- Industry: Real estate
+- Location: Cairo, Egypt
+- Built with: MongoDB, Express.js, React, Node.js
+- Live site: https://frontend-kappa-ashen-67.vercel.app/
+- Services: [Custom Web Applications](https://deveraxtech.com/services/custom-web-applications), [Business / Corporate Websites](https://deveraxtech.com/services/business-websites), [SEO & Performance Optimization](https://deveraxtech.com/services/seo-performance-optimization)
+- Property listings for villas, penthouses and coastal homes with neighborhood guides
+- User dashboard to save homes, track enquiries and request private viewings
+- Agent dashboard to publish and edit listings and manage client leads
+- Admin dashboard to manage properties, advisors, users, journal posts and site content
+- Role-based authentication and secure REST API
+- SEO-ready pages with fast, responsive, cinematic design
+
+### Karim Ahmed: Full-Stack Developer Portfolio Website
+
+A personal portfolio website for Karim Ahmed, a full-stack MERN developer and the founder of DevEraXTech, based in Cairo. Its cinematic, darkroom and film-roll design presents featured projects such as a university events and facilities management platform, along with skills, work experience, private one-on-one teaching sessions and a contact form. It is built to be secure, accessible and fast, with no third-party trackers.
+
+- Client: Karim Ahmed
+- Industry: Software development (personal brand)
+- Location: Cairo, Egypt
+- Built with: React, Vite, GSAP, Lenis smooth scroll
+- Live site: https://karim.deveraxtech.com/
+- Services: [Portfolio Websites](https://deveraxtech.com/services/portfolio-websites), [UI/UX Design](https://deveraxtech.com/services/ui-ux-design), [SEO & Performance Optimization](https://deveraxtech.com/services/seo-performance-optimization)
+- Cinematic, film-roll inspired design with animated typography
+- Contact-sheet project gallery with featured case studies
+- Skills, experience and education sections
+- Private one-on-one teaching sessions people can book
+- Accessible navigation with a skip link and keyboard support
+- Privacy-first: no third-party trackers or analytics
+
+More projects: https://deveraxtech.com/portfolio
+
+## How we work
+
+- Secure by design: security is embedded from architecture decisions to final QA.
+- Scalable delivery: structured execution that stays reliable as scope grows.
+- Design-led execution: interfaces shaped for clarity, conversion and brand consistency.
+- Clear communication: transparent updates, aligned milestones and accountability.
+
+## Frequently asked questions
+
+### What types of websites does DevEraXTech build?
+
+We design and build business and corporate websites, e-commerce websites, Shopify stores, WordPress websites, portfolio websites and high-conversion landing pages. Every project is built to be secure, scalable and pixel-perfect.
+
+### Do you build Shopify stores and WordPress websites?
+
+Yes. We build bespoke Shopify stores with designed product pages, a seamless cart and secure payment integrations, and custom WordPress websites with responsive, high-performance layouts and full content management.
+
+### Do you build mobile apps and custom software as well as websites?
+
+Yes. Beyond websites, we build custom web applications such as CRMs, booking systems, client portals and dashboards, iOS and Android apps with React Native, and Windows desktop software.
+
+### Can you add AI or payment integrations to an existing website or system?
+
+Yes. We add AI chatbots, WhatsApp assistants, automated lead handling and document processing, and connect payment and business tools such as Paymob, Fawry, Stripe, WhatsApp Business, CRMs and accounting software.
+
+### Do you offer website maintenance after launch?
+
+Yes. Our Maintenance & Care Plans cover updates, security patches, backups, uptime monitoring, performance checks, small content and feature changes and priority support, with three plans scoped to your site.
+
+### Where is DevEraXTech based?
+
+DevEraXTech is based in Cairo, Egypt, and works with clients remotely across North America, the Gulf and Egypt.
+
+### Which countries does DevEraXTech serve?
+
+We serve clients in Canada, the United States, the United Arab Emirates, Saudi Arabia, Kuwait, Qatar and Egypt.
+
+### Can you build an online store with payments and an admin dashboard?
+
+Yes. Our e-commerce websites include product pages, a shopping cart, checkout, payment integrations and an admin dashboard for managing your store.
+
+### How quickly will I hear back after contacting you?
+
+Most inquiries receive a response within one business day.
+
+### How do I start a project with DevEraXTech?
+
+Use the contact form to choose the service you need, describe your goals and, if you like, pick a preferred meeting date and time. We start with a clarity-first discovery conversation before proposing scope or delivery.
+
+### How does DevEraXTech approach security?
+
+Security is embedded from architecture decisions to final QA, reducing risk before launch. Each project is treated as a long-term digital asset, engineered for resilience, usability and growth.
+
+### What languages can we work with you in?
+
+We work in Arabic, English and German.
+
+### What are your working hours?
+
+We are available every day from 9:00 AM to 5:00 PM Cairo time. You can reach us at +20 100 001 6216 or deveraxtech@gmail.com, or book a meeting through the contact form.
+
+## Pages
+
+- [Home](https://deveraxtech.com/): Cairo studio building secure, pixel-perfect websites, online stores, web and mobile apps, AI integrations and care plans for Egypt, the Gulf, US and Canada.
+- [Services](https://deveraxtech.com/services): Websites, online stores, web and mobile apps, desktop software, AI and payment integrations, SEO, redesigns, UI/UX design and care plans from a Cairo studio.
+- [Maintenance & Care Plans](https://deveraxtech.com/maintenance): Website and app care plans from DevEraXTech in Cairo: updates, security patches, backups, uptime monitoring, performance checks and priority support.
+- [Work](https://deveraxtech.com/portfolio): DevEraXTech web design portfolio: the Nilora Estates MERN real estate platform, the karim.deveraxtech.com developer portfolio website and more from Cairo.
+- [About](https://deveraxtech.com/about): Founded in 2024 in Cairo, Egypt by Karim Ahmed and Loay Mohamed, DevEraXTech builds premium digital products with security at the core.
+- [Contact](https://deveraxtech.com/contact): Book a meeting with DevEraXTech in Cairo. Call +20 100 001 6216 or email deveraxtech@gmail.com. Open daily 9 AM to 5 PM Cairo time. Arabic, English, German.
+- [Business / Corporate Websites](https://deveraxtech.com/services/business-websites): Custom business and corporate websites for companies, clinics, schools and startups: fast, secure, SEO-ready and easy to update. Built by DevEraXTech in Cairo.
+- [E-Commerce Websites](https://deveraxtech.com/services/ecommerce-websites): Custom online stores with product pages, cart, checkout, Paymob, Fawry or Stripe payments and an admin dashboard. E-commerce development by DevEraXTech.
+- [Shopify Stores](https://deveraxtech.com/services/shopify-stores): Bespoke Shopify stores for premium brands: custom theme design, product pages, seamless cart, trusted payments and full store setup by DevEraXTech in Cairo.
+- [WordPress Websites](https://deveraxtech.com/services/wordpress-websites): Custom WordPress websites with bespoke layouts, fast responsive builds, secure plugins and easy content management. WordPress development by DevEraXTech.
+- [Portfolio Websites](https://deveraxtech.com/services/portfolio-websites): Custom portfolio websites for designers, photographers, developers and agencies: high-visual showcases, case studies, fast loading and SEO. See live examples.
+- [Landing Pages](https://deveraxtech.com/services/landing-pages): Landing pages for marketing campaigns, app and product launches and service promotions: one clear message, fast load and tracking. Designed by DevEraXTech.
+- [Custom Web Applications](https://deveraxtech.com/services/custom-web-applications): Custom web apps built around your business: CRMs, booking systems, client portals and dashboards with role-based access. MERN stack development in Cairo.
+- [Mobile Apps](https://deveraxtech.com/services/mobile-apps): Cross-platform iOS and Android apps built with React Native from one codebase: native feel, push notifications, secure sign-in and App Store release support.
+- [Desktop Software](https://deveraxtech.com/services/desktop-software): Custom Windows desktop apps like Klozcrew: offline-capable workflows, local file and device access, installers, auto-updates and sync with your web systems.
+- [AI Integrations](https://deveraxtech.com/services/ai-integrations): AI integrations for business: website chatbots, WhatsApp AI assistants, automated lead capture and follow-up, and document processing connected to your tools.
+- [Payment & Business Integrations](https://deveraxtech.com/services/payment-business-integrations): Connect your website or app to Paymob, Fawry, Stripe, WhatsApp Business, CRMs and accounting tools. Secure payment and business integrations by DevEraXTech.
+- [SEO & Performance Optimization](https://deveraxtech.com/services/seo-performance-optimization): Technical SEO audits, Core Web Vitals and page speed fixes, schema markup and on-page SEO that help your website load faster and rank on Google and AI search.
+- [Redesigns & Migrations](https://deveraxtech.com/services/redesigns-migrations): Modern website redesigns and careful migrations to Shopify, WordPress or a custom build, with content transfer, SEO-safe redirects and minimal downtime.
+- [UI/UX Design](https://deveraxtech.com/services/ui-ux-design): Figma UI/UX design for teams with their own developers: user flows, wireframes, high-fidelity screens, interactive prototypes, design systems and clean handoff.
+
+## Contact
+
+- Start a project or book a meeting: https://deveraxtech.com/contact
+- Phone: +20 100 001 6216
+- Email: deveraxtech@gmail.com
+- Hours: Every day, 9:00 AM to 5:00 PM (Cairo time)
+- Instagram: https://www.instagram.com/deveraxtech
+
+## Service details
+
+### Business & Corporate Website Design
+
+URL: https://deveraxtech.com/services/business-websites
+
+A business website is usually the first place a client checks before they call you. DevEraXTech designs and builds custom corporate websites that explain what you do in seconds, load fast on any phone and turn visitors into enquiries.
+
+Every site includes the pages a company needs (home, about, services, team, portfolio and contact), structured data for Google, and a layout you can grow as the business grows.
+
+- Includes: Home; About; Services; Contact; Team; Portfolio
+- Built for: Companies and startups; Agencies and consultancies; Clinics, schools and factories; Shops and local service businesses
+- Technology: React; Prerendered static pages; WordPress (on request); Cloudflare hosting; Schema.org structured data
+
+**What pages does a business website from DevEraXTech include?**
+A standard business website includes Home, About, Services, Team, Portfolio and Contact pages. We add pages such as careers, case studies or a blog when your business needs them.
+
+**Will my business website be optimized for Google?**
+Yes. Every business website ships with unique titles and descriptions, a clean heading structure, a sitemap, schema.org structured data and fast load times, which are the technical foundations Google uses to rank pages.
+
+**Can I update the website content myself?**
+Yes. We can build on WordPress or add a simple content editor so your team can change text, images and team members without a developer.
+
+### E-Commerce Website Development
+
+URL: https://deveraxtech.com/services/ecommerce-websites
+
+An e-commerce website has one job: make buying easy. DevEraXTech builds custom online stores with clear product pages, a fast cart, a short checkout and payment gateways your customers already trust.
+
+Behind the store you get an admin dashboard to manage products, stock, orders and customers, so running the shop does not depend on a developer.
+
+- Includes: Product pages; Shopping cart; Checkout; Payment integrations; Admin dashboard
+- Built for: Retail and fashion brands; Wholesalers moving online; Restaurants and food brands; Startups launching a first product
+- Technology: React; Node.js & Express; MongoDB; Paymob, Fawry & Stripe; Secure admin dashboard
+
+**Which payment gateways can my online store accept?**
+We integrate Paymob and Fawry for customers in Egypt and Stripe for international cards, and can add cash on delivery or other regional gateways on request.
+
+**Should I choose a custom e-commerce website or Shopify?**
+Shopify is faster to launch and simpler to run for standard stores. A custom e-commerce build suits stores with unusual pricing, B2B ordering, custom integrations or very specific design needs. We help you choose during the first meeting.
+
+**Does the store include an admin dashboard?**
+Yes. Every custom store includes an admin dashboard for products, categories, stock, orders, customers and discount codes.
+
+### Shopify Store Design & Development
+
+URL: https://deveraxtech.com/services/shopify-stores
+
+Shopify gives you reliable hosting, checkout and order management out of the box. DevEraXTech adds what a template cannot: a bespoke design that matches your brand and product pages that are built to sell.
+
+We set up the store end to end, from theme design and product import to payments, shipping, apps and analytics, and hand it over with training so your team can run it.
+
+- Includes: Elegantly designed product pages; Seamless shopping cart experience; Secure, trusted payment integrations; Powerful Shopify admin & store control
+- Built for: Premium and luxury brands; Direct-to-consumer startups; Brands moving from a marketplace; Stores outgrowing a free theme
+- Technology: Shopify & Liquid; Custom Shopify themes; Shopify apps; Shopify Payments & regional gateways; Google Analytics & Meta pixel
+
+**Do you build custom Shopify themes or use templates?**
+We design custom Shopify themes for brands that want a distinctive store, and customize premium themes when budget or launch date matters more. Either way the store is tailored to your products.
+
+**Can you migrate my store to Shopify?**
+Yes. We migrate products, customers and order history from WooCommerce, custom stores and other platforms, and set up redirects so you keep your search rankings.
+
+**Will I be able to manage the Shopify store myself?**
+Yes. Shopify's admin lets you manage products, orders and discounts, and we include a handover session so your team is comfortable from day one.
+
+### Custom WordPress Website Development
+
+URL: https://deveraxtech.com/services/wordpress-websites
+
+WordPress runs a large share of the web because it makes content easy to manage. DevEraXTech builds custom WordPress websites that keep that ease of editing while avoiding the slow, bloated feel of off-the-shelf themes.
+
+We design custom layouts, keep plugins to a vetted minimum, harden security and tune performance so the site stays fast and safe as your content grows.
+
+- Includes: Custom-designed pages & layouts; Fully responsive, high-performance builds; Secure plugins & advanced functionality; Powerful content management & admin control
+- Built for: Content-heavy businesses and blogs; Marketing teams that publish often; Organizations with several editors; Businesses already on WordPress
+- Technology: WordPress; Custom themes & blocks; WooCommerce (on request); Security hardening; Caching & image optimization
+
+**Is WordPress secure enough for a business website?**
+Yes, when it is built and maintained properly. We use a small set of trusted plugins, harden logins and file permissions, and recommend a care plan for ongoing updates and backups.
+
+**Will my WordPress website be fast?**
+Yes. We build lightweight custom themes, optimize images and set up caching so pages load quickly and pass Google's Core Web Vitals.
+
+**Can you fix or redesign an existing WordPress site?**
+Yes. We redesign existing WordPress websites, clean up plugins and speed problems, and can take over maintenance after a short review.
+
+### Portfolio Website Design for Creatives & Developers
+
+URL: https://deveraxtech.com/services/portfolio-websites
+
+A portfolio website is your work's first impression. DevEraXTech designs portfolio websites for designers, photographers, developers and agencies that put the work first, load quickly and make it easy for the right client to get in touch.
+
+A recent example is karim.deveraxtech.com, the personal portfolio of our founder Karim Ahmed: a cinematic, film-inspired site with project case studies, skills, experience and a booking flow for private teaching sessions.
+
+- Includes: Designers; Photographers; Developers; Agencies; High-visual showcase sites
+- Built for: Designers and illustrators; Photographers and videographers; Software developers; Creative agencies and studios
+- Technology: React; GSAP & scroll animation; Optimized image delivery; Accessible, privacy-friendly builds; Person & CreativeWork schema
+
+**What should a portfolio website include?**
+A strong portfolio website includes a short introduction, selected projects with case studies, an about section, skills or services, and a clear contact path. Developers often add experience and a CV; photographers add full-screen galleries.
+
+**Do you have examples of portfolio websites you built?**
+Yes. karim.deveraxtech.com is a portfolio website we designed and built for full-stack developer Karim Ahmed, with featured projects, skills, experience, teaching and contact sections.
+
+**Will my portfolio show up when people search my name?**
+We set up your name as the main entity with Person structured data, a descriptive title and meta description, and fast pages, which helps Google and AI assistants connect your name to your site.
+
+### High-Conversion Landing Page Design
+
+URL: https://deveraxtech.com/services/landing-pages
+
+A landing page converts best when it does one thing. DevEraXTech designs single-page sites for ad campaigns, app launches, product launches and service promotions, with one message, one call to action and nothing that distracts from it.
+
+Pages are built to load fast on mobile data, connect to your forms, CRM or WhatsApp, and include analytics and pixels so you can measure every campaign.
+
+- Includes: Marketing campaigns; App launches; Product launches; Service promotions
+- Built for: Paid ad campaigns; App and product launches; Events and webinars; Service promotions and offers
+- Technology: React; Lightweight static builds; Form, CRM & WhatsApp hand-off; Google Analytics, Meta & TikTok pixels; A/B-test friendly sections
+
+**What is the difference between a landing page and a website?**
+A website explains your whole business across many pages. A landing page is a single page built around one campaign or offer and one action, such as booking a call or downloading an app, so it usually converts better for paid traffic.
+
+**Can the landing page send leads to WhatsApp or my CRM?**
+Yes. We connect forms to email, WhatsApp, Google Sheets or your CRM so every lead reaches your team immediately.
+
+**Do you add tracking for ads?**
+Yes. We install Google Analytics and the ad pixels you use, such as Meta or TikTok, and set up conversion events for form submissions and clicks.
+
+### Custom Web Application Development
+
+URL: https://deveraxtech.com/services/custom-web-applications
+
+Off-the-shelf software makes you change how you work. A custom web application is shaped around how your business already runs. DevEraXTech builds CRMs, booking systems, client portals and admin dashboards on the MERN stack (MongoDB, Express, React and Node.js).
+
+Our Nilora Estates real estate platform is a good example: a public site plus three role-based dashboards for buyers, agents and admins, backed by a secure REST API.
+
+- Includes: CRMs & customer records; Booking & scheduling systems; Secure client portals; Admin & reporting dashboards; Role-based access & permissions
+- Built for: Businesses outgrowing spreadsheets; Real estate, clinics and education; Service companies that need client portals; Startups building a first product
+- Technology: MongoDB; Express.js; React; Node.js; Role-based authentication & REST APIs
+
+**What is a custom web application?**
+A custom web application is software that runs in the browser and is built for your specific workflow, such as a CRM, booking system, client portal or internal dashboard, instead of a generic product you have to adapt to.
+
+**Which technology do you use for web apps?**
+We mainly build on the MERN stack: MongoDB, Express.js, React and Node.js, with role-based authentication and a secure REST API. It is fast, widely supported and easy to extend.
+
+**Have you built a web application with multiple user roles?**
+Yes. Nilora Estates, a real estate platform in Cairo, has separate dashboards for buyers, agents and admins, each with its own permissions.
+
+### iOS & Android Mobile App Development
+
+URL: https://deveraxtech.com/services/mobile-apps
+
+DevEraXTech builds mobile apps for iOS and Android with React Native, so one shared codebase powers both platforms. You launch on both stores sooner and maintain one app instead of two.
+
+Apps are designed to feel native, with smooth navigation, push notifications and secure accounts, and we support you through App Store and Google Play review and release.
+
+- Includes: iOS & Android from one codebase; Native-feeling interfaces & navigation; Push notifications; Secure sign-in & user accounts; App Store & Google Play release support
+- Built for: Startups launching an app; Businesses adding a customer app; Companies with an existing web platform; Teams replacing an outdated app
+- Technology: React Native; Expo; Node.js APIs; Push notifications; App Store & Google Play publishing
+
+**Why build with React Native instead of separate native apps?**
+React Native lets one codebase run on both iOS and Android, which lowers cost and keeps features in sync across platforms while still delivering a native look and feel.
+
+**Do you publish the app to the App Store and Google Play?**
+Yes. We prepare store listings, screenshots and builds, and guide you through Apple and Google review until the app is live.
+
+**Can the mobile app connect to my existing website or system?**
+Yes. The app can share accounts and data with your website, web app or CRM through a secure API.
+
+### Windows Desktop Software Development
+
+URL: https://deveraxtech.com/services/desktop-software
+
+Some work is better done on the machine in front of you. DevEraXTech builds Windows desktop software, such as our Klozcrew app, for teams that need speed, offline access or direct access to local files and devices.
+
+Each app ships with a proper installer and automatic updates, and can sync with your web platform so data stays consistent between the office and the cloud.
+
+- Includes: Windows desktop applications; Offline-capable workflows; Local file & device access; Installers & automatic updates; Sync with your web systems
+- Built for: Teams that work offline; Operations using local files or devices; Businesses replacing legacy desktop tools; Products that need a desktop companion app
+- Technology: Electron or .NET (chosen per project); React; Node.js; Windows installers & auto-update; Cloud sync APIs
+
+**When should I choose desktop software over a web app?**
+Desktop software is the better choice when your team needs to work offline, process large local files, connect to printers, scanners or other devices, or wants an app that opens instantly on their own machine.
+
+**Does the desktop app update automatically?**
+Yes. We ship a signed Windows installer with automatic updates so every user stays on the latest version.
+
+**Can the desktop app sync with my website or web app?**
+Yes. The app can sync data with your web systems through a secure API, and keep working offline until a connection returns.
+
+### AI Integration & Chatbot Development
+
+URL: https://deveraxtech.com/services/ai-integrations
+
+AI is useful when it saves your team time on real, repeated work. DevEraXTech builds practical AI integrations: website chatbots that answer from your own content, WhatsApp assistants that qualify leads, and automations that read documents and update your systems.
+
+Every integration connects to the tools you already use, such as your website, CRM, inbox or spreadsheets, and keeps a human in the loop where it matters.
+
+- Includes: Website chatbots; WhatsApp assistants; Automated lead capture & follow-up; Document reading & processing; Integration with your existing tools
+- Built for: Businesses with many repeated enquiries; Sales teams handling WhatsApp leads; Operations processing invoices or forms; Support teams answering the same questions
+- Technology: Large language model APIs; WhatsApp Business API; Retrieval from your own content; Node.js automations; CRM & spreadsheet integrations
+
+**What can an AI chatbot do for my business?**
+An AI chatbot can answer customer questions from your own content around the clock, capture lead details, book meetings and hand complex conversations to your team.
+
+**Can you build an AI assistant on WhatsApp?**
+Yes. We build WhatsApp assistants on the WhatsApp Business API that reply instantly, qualify leads and pass them to your sales team or CRM.
+
+**Will the AI give wrong answers about my business?**
+We ground answers in your own approved content, limit the assistant to your topics and route anything uncertain to a person, which keeps answers accurate and on brand.
+
+### Payment Gateway & Business Integrations
+
+URL: https://deveraxtech.com/services/payment-business-integrations
+
+Your website or app works best when it talks to the rest of your business. DevEraXTech integrates payment gateways such as Paymob, Fawry and Stripe, and connects WhatsApp Business, CRMs and accounting tools so data moves without copy and paste.
+
+Payments are built with secure, verified callbacks so orders are only confirmed when the money has actually arrived.
+
+- Includes: Paymob & Fawry payments; Stripe payments; WhatsApp Business; CRM integrations; Accounting tool integrations
+- Built for: Online stores in Egypt and the Gulf; Subscription and booking businesses; Companies syncing sales and accounting; Teams selling through WhatsApp
+- Technology: Paymob; Fawry; Stripe; WhatsApp Business API; CRM & accounting APIs
+
+**Which payment gateways do you integrate?**
+We integrate Paymob and Fawry for payments in Egypt, Stripe for international card payments, and other regional gateways on request.
+
+**Can you add online payments to my existing website?**
+Yes. We add checkout and payment links to existing websites and apps, with secure server-side verification of every payment.
+
+**Can you connect my website to my CRM or accounting software?**
+Yes. We connect forms, orders and customers to CRMs and accounting tools so new leads and sales appear there automatically.
+
+### Technical SEO & Website Performance Optimization
+
+URL: https://deveraxtech.com/services/seo-performance-optimization
+
+A beautiful website still needs to be found. DevEraXTech fixes the technical side of SEO: crawlability, indexing, page speed, Core Web Vitals, structured data and on-page metadata, so search engines and AI assistants can read, trust and cite your site.
+
+We also prepare sites for AI search with llms.txt files, clear answer-first content and open access for AI crawlers such as OAI-SearchBot, ClaudeBot and PerplexityBot.
+
+- Includes: Technical SEO audits & fixes; Core Web Vitals & page speed; Structured data (schema markup); On-page SEO & metadata; Image & asset optimization
+- Built for: Sites that are slow on mobile; Businesses not showing on Google; Sites after a redesign or migration; Brands that want to appear in AI answers
+- Technology: Google Search Console; Lighthouse & Core Web Vitals; Schema.org JSON-LD; Prerendering & image optimization; llms.txt & AI crawler access
+
+**What is technical SEO?**
+Technical SEO is the work that lets search engines crawl, render and index your site correctly, such as fast load times, clean URLs, sitemaps, canonical tags, structured data and mobile-friendly pages.
+
+**What are Core Web Vitals?**
+Core Web Vitals are Google's measures of real-user experience: Largest Contentful Paint (loading), Interaction to Next Paint (responsiveness) and Cumulative Layout Shift (visual stability). Passing them supports better rankings.
+
+**Can you help my business appear in ChatGPT, Perplexity or Google AI Overviews?**
+Yes. We apply generative engine optimization (GEO): structured data, llms.txt, answer-first content, clear entity information and AI crawler access, which make your site easier for AI assistants to understand and cite.
+
+### Website Redesign & Platform Migration
+
+URL: https://deveraxtech.com/services/redesigns-migrations
+
+An outdated website costs you trust and enquiries. DevEraXTech redesigns websites with a modern, brand-aligned look and moves them to a better platform, whether that is Shopify, WordPress or a custom build.
+
+We map every old URL to its new page with SEO-safe 301 redirects, migrate content and data carefully, and launch with minimal downtime so you keep your rankings and your customers.
+
+- Includes: Full visual redesigns; Moves to Shopify, WordPress or a custom build; Content & data migration; SEO-safe redirects; Launches with minimal downtime
+- Built for: Outdated or slow websites; Stores moving to Shopify; Sites leaving a page builder; Businesses after a rebrand
+- Technology: Shopify, WordPress & custom React; Content & data migration scripts; 301 redirect mapping; Search Console monitoring; Staged, low-downtime launches
+
+**Will I lose my Google rankings after a redesign?**
+Not if the migration is done carefully. We keep important URLs where possible, set 301 redirects for every changed URL, carry over titles and content, and monitor Search Console after launch.
+
+**Can you move my site to Shopify or WordPress?**
+Yes. We migrate content, products, customers and media to Shopify, WordPress or a custom build and test everything before switching over.
+
+**How much downtime is there during a migration?**
+We build and test the new site on a staging address, then switch DNS at a quiet time, so most launches have little to no visible downtime.
+
+### UI/UX Design in Figma
+
+URL: https://deveraxtech.com/services/ui-ux-design
+
+Good software starts with a clear design. DevEraXTech provides UI/UX design in Figma for teams that already have developers: user flows, wireframes, high-fidelity screens and interactive prototypes you can test with real users.
+
+We deliver a reusable design system and a developer-ready handoff with components, spacing, states and breakpoints, so what gets built matches what was designed.
+
+- Includes: User flows & wireframes; High-fidelity screens; Interactive prototypes; Design systems & components; Developer-ready handoff
+- Built for: Startups with in-house developers; Product teams redesigning an app; Agencies needing design support; Founders preparing an investor demo
+- Technology: Figma; Interactive prototypes; Design systems & components; Accessibility (WCAG) checks; Developer handoff specs
+
+**What do I receive from a UI/UX design project?**
+You receive user flows, wireframes, high-fidelity Figma screens, an interactive prototype, a design system with reusable components and a handoff file your developers can build from.
+
+**Do you only design, or can you also build it?**
+Both. This service is design only for teams with their own developers, but we can also build the website, web app or mobile app from the same designs.
+
+**Do your designs consider accessibility?**
+Yes. We check color contrast, text sizes, touch targets and focus states against WCAG guidelines during design, not after.

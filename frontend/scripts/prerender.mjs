@@ -12,7 +12,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
 const ssrDir = path.join(root, '.ssr');
 
-const { render, ROUTES, NOT_FOUND, SITE, buildJsonLd, canonicalUrl, services, faq, business } = await import(
+const { render, ROUTES, NOT_FOUND, SITE, buildJsonLd, canonicalUrl, services, faq, business, serviceDetails, servicePath } = await import(
   pathToFileURL(path.join(ssrDir, 'entry-server.js')).href
 );
 const portfolio = JSON.parse(fs.readFileSync(path.join(root, 'src/data/portfolio.json'), 'utf8'));
@@ -24,7 +24,9 @@ const today = new Date().toISOString().slice(0, 10);
 // <lastmod> is the date a page's own source last changed, not the build date: a lastmod that
 // moves on every deploy is ignored by Google. Falls back to today when git history is unavailable.
 function lastModified(route) {
-  const files = [`pages/${route.path === '/' ? 'Home' : route.path.slice(1, 2).toUpperCase() + route.path.slice(2)}.jsx`, 'src/seo.js'];
+  const files = route.source
+    ? [...route.source, 'src/seo.js']
+    : [`pages/${route.path === '/' ? 'Home' : route.path.slice(1, 2).toUpperCase() + route.path.slice(2)}.jsx`, 'src/seo.js'];
   try {
     const date = execFileSync('git', ['log', '-1', '--format=%cs', '--', ...files], { cwd: root, encoding: 'utf8' }).trim();
     return /^\d{4}-\d{2}-\d{2}$/.test(date) ? date : today;
@@ -73,8 +75,9 @@ function page(route) {
     .replace('<!--app-html-->', `<!--email_off-->${appHtml}<!--/email_off-->`)
     .replace('<!--prerender-data-->', `<script type="application/json" id="__PRERENDER_DATA__">${safeJson(prerenderData)}</script>`);
   if (html.includes('<!--seo-head-->') || html.includes('<!--app-html-->')) throw new Error(`Template markers missing for ${route.path}`);
+  fs.mkdirSync(path.dirname(path.join(dist, route.file)), { recursive: true });
   fs.writeFileSync(path.join(dist, route.file), html);
-  console.log(`prerendered ${route.path.padEnd(11)} -> dist/${route.file} (${(html.length / 1024).toFixed(1)} KB)`);
+  console.log(`prerendered ${route.path.padEnd(40)} -> dist/${route.file} (${(html.length / 1024).toFixed(1)} KB)`);
 }
 
 for (const route of ROUTES) page(route);
@@ -86,7 +89,10 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 ${ROUTES.map(r => `  <url>
     <loc>${canonicalUrl(r.path)}</loc>
     <lastmod>${lastModified(r)}</lastmod>
-    <priority>${r.priority}</priority>${r.path === '/portfolio' ? portfolio.filter(p => p.image).map(p => `
+    <priority>${r.priority}</priority>${r.serviceId ? portfolio.filter(p => p.image && (serviceDetails[r.serviceId]?.work || []).includes(p.id)).map(p => `
+    <image:image>
+      <image:loc>${escText(p.image.startsWith('http') ? p.image : SITE.url + p.image)}</image:loc>
+    </image:image>`).join('') : ''}${r.path === '/portfolio' ? portfolio.filter(p => p.image).map(p => `
     <image:image>
       <image:loc>${escText(p.image.startsWith('http') ? p.image : SITE.url + p.image)}</image:loc>
     </image:image>`).join('') : ''}
@@ -108,7 +114,7 @@ Sitemap: ${SITE.url}/sitemap.xml
 fs.writeFileSync(path.join(dist, 'robots.txt'), robots);
 
 const serviceGroupNames = [...new Set(services.map(s => s.group || 'More services'))];
-const serviceLine = s => `- [${s.title}](${s.link ? SITE.url + s.link : `${SITE.url}/services#${s.id}`}): ${s.summary} Includes: ${s.features.join('; ')}.`;
+const serviceLine = s => `- [${s.title}](${SITE.url}${servicePath(s)}): ${s.summary} Includes: ${s.features.join('; ')}.`;
 
 // llms.txt: a plain-language summary for AI assistants (https://llmstxt.org).
 const llms = `# ${SITE.name}
@@ -142,7 +148,7 @@ ${p.description}
 - Location: ${p.location || business.city}
 - Built with: ${(p.stack || p.tags || []).join(', ')}
 - Live site: ${p.url}
-${(p.features || []).map(f => `- ${f}`).join('\n')}`).join('\n\n')}
+${(p.services || []).length ? `- Services: ${p.services.map(id => services.find(s => s.id === id)).filter(Boolean).map(s => `[${s.title}](${SITE.url}${servicePath(s)})`).join(', ')}\n` : ''}${(p.features || []).map(f => `- ${f}`).join('\n')}`).join('\n\n')}
 
 More projects: ${SITE.url}/portfolio
 
@@ -169,7 +175,62 @@ ${ROUTES.map(r => `- [${r.name}](${canonicalUrl(r.path)}): ${r.description}`).jo
 - Hours: ${business.hours.label}
 - Instagram: ${SITE.sameAs[0]}
 `;
-fs.writeFileSync(path.join(dist, 'llms.txt'), llms);
+fs.writeFileSync(path.join(dist, 'llms.txt'), llms.replace('\n## Contact', `\n## Optional\n\n- [Full service details and FAQs](${SITE.url}/llms-full.txt): every service page with its audience, technology and answers to common questions.\n\n## Contact`));
+
+// llms-full.txt: the long form, with every service page's content and FAQs.
+const llmsFull = `${llms}
+## Service details
+
+${services.filter(s => serviceDetails[s.id]).map(s => {
+  const d = serviceDetails[s.id];
+  return `### ${d.h1}
+
+URL: ${SITE.url}${servicePath(s)}
+
+${d.intro.join('\n\n')}
+
+- Includes: ${s.features.join('; ')}
+- Built for: ${d.audience.join('; ')}
+- Technology: ${d.stack.join('; ')}
+
+${d.faq.map(f => `**${f.question}**\n${f.answer}`).join('\n\n')}`;
+}).join('\n\n')}
+`;
+fs.writeFileSync(path.join(dist, 'llms-full.txt'), llmsFull);
+
+// AI discovery endpoints: compact, machine-readable summaries for AI assistants and agents.
+const aiDir = path.join(dist, 'ai');
+fs.mkdirSync(aiDir, { recursive: true });
+fs.writeFileSync(path.join(aiDir, 'summary.json'), JSON.stringify({
+  name: SITE.name,
+  url: `${SITE.url}/`,
+  description: SITE.description,
+  founded: SITE.foundingDate,
+  founders: SITE.founders,
+  location: { city: business.city, country: business.country },
+  areasServed: business.areasServed.map(a => a.name),
+  languages: business.languages.map(l => l.name),
+  contact: { email: business.email, phone: business.phoneE164, page: `${SITE.url}/contact`, hours: business.hours.label },
+  services: services.map(s => ({ name: s.title, category: s.group, url: `${SITE.url}${servicePath(s)}`, summary: s.summary, includes: s.features })),
+  portfolio: portfolio.map(p => ({ name: p.title, url: p.url, category: p.category, client: p.client, year: p.year, stack: p.stack, summary: p.description })),
+  llms: `${SITE.url}/llms.txt`,
+  sitemap: `${SITE.url}/sitemap.xml`
+}, null, 2));
+const allFaq = [...faq, ...services.flatMap(s => (serviceDetails[s.id]?.faq || []).map(f => ({ ...f, service: s.title, url: `${SITE.url}${servicePath(s)}` })))];
+fs.writeFileSync(path.join(aiDir, 'faq.json'), JSON.stringify(allFaq, null, 2));
+fs.mkdirSync(path.join(dist, '.well-known'), { recursive: true });
+fs.writeFileSync(path.join(dist, '.well-known', 'ai.txt'), `# ${SITE.name} AI policy
+# Search, answer and AI assistant crawlers may read, summarize and cite this site.
+User-Agent: *
+Allow: /
+
+Summary: ${SITE.url}/ai/summary.json
+FAQ: ${SITE.url}/ai/faq.json
+LLMs: ${SITE.url}/llms.txt
+LLMs-Full: ${SITE.url}/llms-full.txt
+Sitemap: ${SITE.url}/sitemap.xml
+Contact: ${business.email}
+`);
 
 fs.rmSync(ssrDir, { recursive: true, force: true });
-console.log('wrote sitemap.xml, robots.txt, llms.txt');
+console.log('wrote sitemap.xml, robots.txt, llms.txt, ai/summary.json, ai/faq.json, .well-known/ai.txt');

@@ -2,6 +2,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import Home from '../pages/Home';
 import Services from '../pages/Services';
+import ServiceDetail from '../pages/ServiceDetail';
 import Maintenance from '../pages/Maintenance';
 import Portfolio from '../pages/Portfolio';
 import About from '../pages/About';
@@ -26,6 +27,7 @@ export default function RoutesIndex() {
         <Routes location={location}>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/services/:serviceId" element={<ServiceDetail />} />
           <Route path="/maintenance" element={<Maintenance />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/about" element={<About />} />

@@ -14,4 +14,4 @@ export function render(url, prerenderData) {
   );
 }
 
-export { ROUTES, NOT_FOUND, SITE, buildJsonLd, canonicalUrl, services, faq, business } from './seo.js';
+export { ROUTES, NOT_FOUND, SITE, buildJsonLd, canonicalUrl, services, faq, business, serviceDetails, servicePath } from './seo.js';

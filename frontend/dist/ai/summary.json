@@ -1,0 +1,269 @@
+{
+  "name": "DevEraXTech",
+  "url": "https://deveraxtech.com/",
+  "description": "DevEraXTech is a web design and development studio based in Cairo, Egypt, building secure, scalable, pixel-perfect websites, online stores, web and mobile apps, desktop software and AI integrations, with ongoing care plans, for clients in Canada, the United States, the UAE, Saudi Arabia, Kuwait, Qatar and Egypt.",
+  "founded": "2024",
+  "founders": [
+    {
+      "name": "Karim Ahmed",
+      "jobTitle": "Founder",
+      "url": "https://karim.deveraxtech.com/"
+    },
+    {
+      "name": "Loay Mohamed",
+      "jobTitle": "Co-founder"
+    }
+  ],
+  "location": {
+    "city": "Cairo",
+    "country": "Egypt"
+  },
+  "areasServed": [
+    "Canada",
+    "United States",
+    "United Arab Emirates",
+    "Saudi Arabia",
+    "Kuwait",
+    "Qatar",
+    "Egypt"
+  ],
+  "languages": [
+    "Arabic",
+    "English",
+    "German"
+  ],
+  "contact": {
+    "email": "deveraxtech@gmail.com",
+    "phone": "+201000016216",
+    "page": "https://deveraxtech.com/contact",
+    "hours": "Every day, 9:00 AM to 5:00 PM (Cairo time)"
+  },
+  "services": [
+    {
+      "name": "Business / Corporate Websites",
+      "category": "Websites & Stores",
+      "url": "https://deveraxtech.com/services/business-websites",
+      "summary": "Professional websites for companies, startups, agencies, shops, clinics, factories and schools, with home, about, services, team, portfolio and contact pages.",
+      "includes": [
+        "Home",
+        "About",
+        "Services",
+        "Contact",
+        "Team",
+        "Portfolio"
+      ]
+    },
+    {
+      "name": "E-Commerce Websites",
+      "category": "Websites & Stores",
+      "url": "https://deveraxtech.com/services/ecommerce-websites",
+      "summary": "Online stores with product pages, a shopping cart, checkout, payment integrations and an admin dashboard.",
+      "includes": [
+        "Product pages",
+        "Shopping cart",
+        "Checkout",
+        "Payment integrations",
+        "Admin dashboard"
+      ]
+    },
+    {
+      "name": "Shopify Stores",
+      "category": "Websites & Stores",
+      "url": "https://deveraxtech.com/services/shopify-stores",
+      "summary": "Bespoke Shopify stores for premium brands, with designed product pages, a seamless cart, trusted payments and full store control.",
+      "includes": [
+        "Elegantly designed product pages",
+        "Seamless shopping cart experience",
+        "Secure, trusted payment integrations",
+        "Powerful Shopify admin & store control"
+      ]
+    },
+    {
+      "name": "WordPress Websites",
+      "category": "Websites & Stores",
+      "url": "https://deveraxtech.com/services/wordpress-websites",
+      "summary": "Custom WordPress websites with responsive, high-performance layouts, secure plugins and easy content management.",
+      "includes": [
+        "Custom-designed pages & layouts",
+        "Fully responsive, high-performance builds",
+        "Secure plugins & advanced functionality",
+        "Powerful content management & admin control"
+      ]
+    },
+    {
+      "name": "Portfolio Websites",
+      "category": "Websites & Stores",
+      "url": "https://deveraxtech.com/services/portfolio-websites",
+      "summary": "High-visual showcase websites for designers, photographers, developers and agencies.",
+      "includes": [
+        "Designers",
+        "Photographers",
+        "Developers",
+        "Agencies",
+        "High-visual showcase sites"
+      ]
+    },
+    {
+      "name": "Landing Pages",
+      "category": "Websites & Stores",
+      "url": "https://deveraxtech.com/services/landing-pages",
+      "summary": "High-conversion single pages for marketing campaigns, app launches, product launches and service promotions.",
+      "includes": [
+        "Marketing campaigns",
+        "App launches",
+        "Product launches",
+        "Service promotions"
+      ]
+    },
+    {
+      "name": "Custom Web Applications",
+      "category": "Apps & Software",
+      "url": "https://deveraxtech.com/services/custom-web-applications",
+      "summary": "Custom web applications built around how your business runs, from CRMs and booking systems to client portals and dashboards.",
+      "includes": [
+        "CRMs & customer records",
+        "Booking & scheduling systems",
+        "Secure client portals",
+        "Admin & reporting dashboards",
+        "Role-based access & permissions"
+      ]
+    },
+    {
+      "name": "Mobile Apps",
+      "category": "Apps & Software",
+      "url": "https://deveraxtech.com/services/mobile-apps",
+      "summary": "iOS and Android apps built with React Native from one shared codebase, designed to feel native on every device.",
+      "includes": [
+        "iOS & Android from one codebase",
+        "Native-feeling interfaces & navigation",
+        "Push notifications",
+        "Secure sign-in & user accounts",
+        "App Store & Google Play release support"
+      ]
+    },
+    {
+      "name": "Desktop Software",
+      "category": "Apps & Software",
+      "url": "https://deveraxtech.com/services/desktop-software",
+      "summary": "Windows apps like Klozcrew: fast, dependable desktop software for teams that work on their own machines.",
+      "includes": [
+        "Windows desktop applications",
+        "Offline-capable workflows",
+        "Local file & device access",
+        "Installers & automatic updates",
+        "Sync with your web systems"
+      ]
+    },
+    {
+      "name": "AI Integrations",
+      "category": "Apps & Software",
+      "url": "https://deveraxtech.com/services/ai-integrations",
+      "summary": "AI chatbots, WhatsApp assistants, automated lead handling and document processing, connected to the tools you already use.",
+      "includes": [
+        "Website chatbots",
+        "WhatsApp assistants",
+        "Automated lead capture & follow-up",
+        "Document reading & processing",
+        "Integration with your existing tools"
+      ]
+    },
+    {
+      "name": "Payment & Business Integrations",
+      "category": "Apps & Software",
+      "url": "https://deveraxtech.com/services/payment-business-integrations",
+      "summary": "Payment and business integrations with Paymob, Fawry, Stripe, WhatsApp Business, CRMs and accounting tools.",
+      "includes": [
+        "Paymob & Fawry payments",
+        "Stripe payments",
+        "WhatsApp Business",
+        "CRM integrations",
+        "Accounting tool integrations"
+      ]
+    },
+    {
+      "name": "Maintenance & Care Plans",
+      "category": "Growth & Support",
+      "url": "https://deveraxtech.com/maintenance",
+      "summary": "Ongoing care for live websites and apps: updates, security patches, backups, uptime monitoring, performance checks and priority support.",
+      "includes": [
+        "Updates & security patches",
+        "Regular backups",
+        "Uptime monitoring",
+        "Performance checks",
+        "Small content & feature changes",
+        "Priority support"
+      ]
+    },
+    {
+      "name": "SEO & Performance Optimization",
+      "category": "Growth & Support",
+      "url": "https://deveraxtech.com/services/seo-performance-optimization",
+      "summary": "Technical SEO, structured data and Core Web Vitals improvements that help your website load faster and get found.",
+      "includes": [
+        "Technical SEO audits & fixes",
+        "Core Web Vitals & page speed",
+        "Structured data (schema markup)",
+        "On-page SEO & metadata",
+        "Image & asset optimization"
+      ]
+    },
+    {
+      "name": "Redesigns & Migrations",
+      "category": "Growth & Support",
+      "url": "https://deveraxtech.com/services/redesigns-migrations",
+      "summary": "Modern redesigns and careful platform migrations that refresh your website without losing content, rankings or data.",
+      "includes": [
+        "Full visual redesigns",
+        "Moves to Shopify, WordPress or a custom build",
+        "Content & data migration",
+        "SEO-safe redirects",
+        "Launches with minimal downtime"
+      ]
+    },
+    {
+      "name": "UI/UX Design",
+      "category": "Growth & Support",
+      "url": "https://deveraxtech.com/services/ui-ux-design",
+      "summary": "Figma designs for teams with their own developers: user flows, wireframes, high-fidelity screens and developer-ready handoff.",
+      "includes": [
+        "User flows & wireframes",
+        "High-fidelity screens",
+        "Interactive prototypes",
+        "Design systems & components",
+        "Developer-ready handoff"
+      ]
+    }
+  ],
+  "portfolio": [
+    {
+      "name": "Nilora Estates: Luxury Real Estate Platform, Cairo",
+      "url": "https://frontend-kappa-ashen-67.vercel.app/",
+      "category": "Real Estate Web App",
+      "client": "Nilora Estates",
+      "year": "2026",
+      "stack": [
+        "MongoDB",
+        "Express.js",
+        "React",
+        "Node.js"
+      ],
+      "summary": "A full MERN stack (MongoDB, Express, React, Node.js) platform for Nilora Estates, a private residential agency selling villas, penthouses and coastal homes across Cairo and the Egyptian coast. It has a cinematic public site plus three role-based dashboards: buyers save homes and book private viewings, agents manage their listings and leads, and admins control properties, advisors, users and content."
+    },
+    {
+      "name": "Karim Ahmed: Full-Stack Developer Portfolio Website",
+      "url": "https://karim.deveraxtech.com/",
+      "category": "Portfolio Website",
+      "client": "Karim Ahmed",
+      "year": "2026",
+      "stack": [
+        "React",
+        "Vite",
+        "GSAP",
+        "Lenis smooth scroll"
+      ],
+      "summary": "A personal portfolio website for Karim Ahmed, a full-stack MERN developer and the founder of DevEraXTech, based in Cairo. Its cinematic, darkroom and film-roll design presents featured projects such as a university events and facilities management platform, along with skills, work experience, private one-on-one teaching sessions and a contact form. It is built to be secure, accessible and fast, with no third-party trackers."
+    }
+  ],
+  "llms": "https://deveraxtech.com/llms.txt",
+  "sitemap": "https://deveraxtech.com/sitemap.xml"
+}

@@ -1,0 +1,306 @@
+[
+  {
+    "question": "What types of websites does DevEraXTech build?",
+    "answer": "We design and build business and corporate websites, e-commerce websites, Shopify stores, WordPress websites, portfolio websites and high-conversion landing pages. Every project is built to be secure, scalable and pixel-perfect."
+  },
+  {
+    "question": "Do you build Shopify stores and WordPress websites?",
+    "answer": "Yes. We build bespoke Shopify stores with designed product pages, a seamless cart and secure payment integrations, and custom WordPress websites with responsive, high-performance layouts and full content management."
+  },
+  {
+    "question": "Do you build mobile apps and custom software as well as websites?",
+    "answer": "Yes. Beyond websites, we build custom web applications such as CRMs, booking systems, client portals and dashboards, iOS and Android apps with React Native, and Windows desktop software."
+  },
+  {
+    "question": "Can you add AI or payment integrations to an existing website or system?",
+    "answer": "Yes. We add AI chatbots, WhatsApp assistants, automated lead handling and document processing, and connect payment and business tools such as Paymob, Fawry, Stripe, WhatsApp Business, CRMs and accounting software."
+  },
+  {
+    "question": "Do you offer website maintenance after launch?",
+    "answer": "Yes. Our Maintenance & Care Plans cover updates, security patches, backups, uptime monitoring, performance checks, small content and feature changes and priority support, with three plans scoped to your site."
+  },
+  {
+    "question": "Where is DevEraXTech based?",
+    "answer": "DevEraXTech is based in Cairo, Egypt, and works with clients remotely across North America, the Gulf and Egypt."
+  },
+  {
+    "question": "Which countries does DevEraXTech serve?",
+    "answer": "We serve clients in Canada, the United States, the United Arab Emirates, Saudi Arabia, Kuwait, Qatar and Egypt."
+  },
+  {
+    "question": "Can you build an online store with payments and an admin dashboard?",
+    "answer": "Yes. Our e-commerce websites include product pages, a shopping cart, checkout, payment integrations and an admin dashboard for managing your store."
+  },
+  {
+    "question": "How quickly will I hear back after contacting you?",
+    "answer": "Most inquiries receive a response within one business day."
+  },
+  {
+    "question": "How do I start a project with DevEraXTech?",
+    "answer": "Use the contact form to choose the service you need, describe your goals and, if you like, pick a preferred meeting date and time. We start with a clarity-first discovery conversation before proposing scope or delivery."
+  },
+  {
+    "question": "How does DevEraXTech approach security?",
+    "answer": "Security is embedded from architecture decisions to final QA, reducing risk before launch. Each project is treated as a long-term digital asset, engineered for resilience, usability and growth."
+  },
+  {
+    "question": "What languages can we work with you in?",
+    "answer": "We work in Arabic, English and German."
+  },
+  {
+    "question": "What are your working hours?",
+    "answer": "We are available every day from 9:00 AM to 5:00 PM Cairo time. You can reach us at +20 100 001 6216 or deveraxtech@gmail.com, or book a meeting through the contact form."
+  },
+  {
+    "question": "What pages does a business website from DevEraXTech include?",
+    "answer": "A standard business website includes Home, About, Services, Team, Portfolio and Contact pages. We add pages such as careers, case studies or a blog when your business needs them.",
+    "service": "Business / Corporate Websites",
+    "url": "https://deveraxtech.com/services/business-websites"
+  },
+  {
+    "question": "Will my business website be optimized for Google?",
+    "answer": "Yes. Every business website ships with unique titles and descriptions, a clean heading structure, a sitemap, schema.org structured data and fast load times, which are the technical foundations Google uses to rank pages.",
+    "service": "Business / Corporate Websites",
+    "url": "https://deveraxtech.com/services/business-websites"
+  },
+  {
+    "question": "Can I update the website content myself?",
+    "answer": "Yes. We can build on WordPress or add a simple content editor so your team can change text, images and team members without a developer.",
+    "service": "Business / Corporate Websites",
+    "url": "https://deveraxtech.com/services/business-websites"
+  },
+  {
+    "question": "Which payment gateways can my online store accept?",
+    "answer": "We integrate Paymob and Fawry for customers in Egypt and Stripe for international cards, and can add cash on delivery or other regional gateways on request.",
+    "service": "E-Commerce Websites",
+    "url": "https://deveraxtech.com/services/ecommerce-websites"
+  },
+  {
+    "question": "Should I choose a custom e-commerce website or Shopify?",
+    "answer": "Shopify is faster to launch and simpler to run for standard stores. A custom e-commerce build suits stores with unusual pricing, B2B ordering, custom integrations or very specific design needs. We help you choose during the first meeting.",
+    "service": "E-Commerce Websites",
+    "url": "https://deveraxtech.com/services/ecommerce-websites"
+  },
+  {
+    "question": "Does the store include an admin dashboard?",
+    "answer": "Yes. Every custom store includes an admin dashboard for products, categories, stock, orders, customers and discount codes.",
+    "service": "E-Commerce Websites",
+    "url": "https://deveraxtech.com/services/ecommerce-websites"
+  },
+  {
+    "question": "Do you build custom Shopify themes or use templates?",
+    "answer": "We design custom Shopify themes for brands that want a distinctive store, and customize premium themes when budget or launch date matters more. Either way the store is tailored to your products.",
+    "service": "Shopify Stores",
+    "url": "https://deveraxtech.com/services/shopify-stores"
+  },
+  {
+    "question": "Can you migrate my store to Shopify?",
+    "answer": "Yes. We migrate products, customers and order history from WooCommerce, custom stores and other platforms, and set up redirects so you keep your search rankings.",
+    "service": "Shopify Stores",
+    "url": "https://deveraxtech.com/services/shopify-stores"
+  },
+  {
+    "question": "Will I be able to manage the Shopify store myself?",
+    "answer": "Yes. Shopify's admin lets you manage products, orders and discounts, and we include a handover session so your team is comfortable from day one.",
+    "service": "Shopify Stores",
+    "url": "https://deveraxtech.com/services/shopify-stores"
+  },
+  {
+    "question": "Is WordPress secure enough for a business website?",
+    "answer": "Yes, when it is built and maintained properly. We use a small set of trusted plugins, harden logins and file permissions, and recommend a care plan for ongoing updates and backups.",
+    "service": "WordPress Websites",
+    "url": "https://deveraxtech.com/services/wordpress-websites"
+  },
+  {
+    "question": "Will my WordPress website be fast?",
+    "answer": "Yes. We build lightweight custom themes, optimize images and set up caching so pages load quickly and pass Google's Core Web Vitals.",
+    "service": "WordPress Websites",
+    "url": "https://deveraxtech.com/services/wordpress-websites"
+  },
+  {
+    "question": "Can you fix or redesign an existing WordPress site?",
+    "answer": "Yes. We redesign existing WordPress websites, clean up plugins and speed problems, and can take over maintenance after a short review.",
+    "service": "WordPress Websites",
+    "url": "https://deveraxtech.com/services/wordpress-websites"
+  },
+  {
+    "question": "What should a portfolio website include?",
+    "answer": "A strong portfolio website includes a short introduction, selected projects with case studies, an about section, skills or services, and a clear contact path. Developers often add experience and a CV; photographers add full-screen galleries.",
+    "service": "Portfolio Websites",
+    "url": "https://deveraxtech.com/services/portfolio-websites"
+  },
+  {
+    "question": "Do you have examples of portfolio websites you built?",
+    "answer": "Yes. karim.deveraxtech.com is a portfolio website we designed and built for full-stack developer Karim Ahmed, with featured projects, skills, experience, teaching and contact sections.",
+    "service": "Portfolio Websites",
+    "url": "https://deveraxtech.com/services/portfolio-websites"
+  },
+  {
+    "question": "Will my portfolio show up when people search my name?",
+    "answer": "We set up your name as the main entity with Person structured data, a descriptive title and meta description, and fast pages, which helps Google and AI assistants connect your name to your site.",
+    "service": "Portfolio Websites",
+    "url": "https://deveraxtech.com/services/portfolio-websites"
+  },
+  {
+    "question": "What is the difference between a landing page and a website?",
+    "answer": "A website explains your whole business across many pages. A landing page is a single page built around one campaign or offer and one action, such as booking a call or downloading an app, so it usually converts better for paid traffic.",
+    "service": "Landing Pages",
+    "url": "https://deveraxtech.com/services/landing-pages"
+  },
+  {
+    "question": "Can the landing page send leads to WhatsApp or my CRM?",
+    "answer": "Yes. We connect forms to email, WhatsApp, Google Sheets or your CRM so every lead reaches your team immediately.",
+    "service": "Landing Pages",
+    "url": "https://deveraxtech.com/services/landing-pages"
+  },
+  {
+    "question": "Do you add tracking for ads?",
+    "answer": "Yes. We install Google Analytics and the ad pixels you use, such as Meta or TikTok, and set up conversion events for form submissions and clicks.",
+    "service": "Landing Pages",
+    "url": "https://deveraxtech.com/services/landing-pages"
+  },
+  {
+    "question": "What is a custom web application?",
+    "answer": "A custom web application is software that runs in the browser and is built for your specific workflow, such as a CRM, booking system, client portal or internal dashboard, instead of a generic product you have to adapt to.",
+    "service": "Custom Web Applications",
+    "url": "https://deveraxtech.com/services/custom-web-applications"
+  },
+  {
+    "question": "Which technology do you use for web apps?",
+    "answer": "We mainly build on the MERN stack: MongoDB, Express.js, React and Node.js, with role-based authentication and a secure REST API. It is fast, widely supported and easy to extend.",
+    "service": "Custom Web Applications",
+    "url": "https://deveraxtech.com/services/custom-web-applications"
+  },
+  {
+    "question": "Have you built a web application with multiple user roles?",
+    "answer": "Yes. Nilora Estates, a real estate platform in Cairo, has separate dashboards for buyers, agents and admins, each with its own permissions.",
+    "service": "Custom Web Applications",
+    "url": "https://deveraxtech.com/services/custom-web-applications"
+  },
+  {
+    "question": "Why build with React Native instead of separate native apps?",
+    "answer": "React Native lets one codebase run on both iOS and Android, which lowers cost and keeps features in sync across platforms while still delivering a native look and feel.",
+    "service": "Mobile Apps",
+    "url": "https://deveraxtech.com/services/mobile-apps"
+  },
+  {
+    "question": "Do you publish the app to the App Store and Google Play?",
+    "answer": "Yes. We prepare store listings, screenshots and builds, and guide you through Apple and Google review until the app is live.",
+    "service": "Mobile Apps",
+    "url": "https://deveraxtech.com/services/mobile-apps"
+  },
+  {
+    "question": "Can the mobile app connect to my existing website or system?",
+    "answer": "Yes. The app can share accounts and data with your website, web app or CRM through a secure API.",
+    "service": "Mobile Apps",
+    "url": "https://deveraxtech.com/services/mobile-apps"
+  },
+  {
+    "question": "When should I choose desktop software over a web app?",
+    "answer": "Desktop software is the better choice when your team needs to work offline, process large local files, connect to printers, scanners or other devices, or wants an app that opens instantly on their own machine.",
+    "service": "Desktop Software",
+    "url": "https://deveraxtech.com/services/desktop-software"
+  },
+  {
+    "question": "Does the desktop app update automatically?",
+    "answer": "Yes. We ship a signed Windows installer with automatic updates so every user stays on the latest version.",
+    "service": "Desktop Software",
+    "url": "https://deveraxtech.com/services/desktop-software"
+  },
+  {
+    "question": "Can the desktop app sync with my website or web app?",
+    "answer": "Yes. The app can sync data with your web systems through a secure API, and keep working offline until a connection returns.",
+    "service": "Desktop Software",
+    "url": "https://deveraxtech.com/services/desktop-software"
+  },
+  {
+    "question": "What can an AI chatbot do for my business?",
+    "answer": "An AI chatbot can answer customer questions from your own content around the clock, capture lead details, book meetings and hand complex conversations to your team.",
+    "service": "AI Integrations",
+    "url": "https://deveraxtech.com/services/ai-integrations"
+  },
+  {
+    "question": "Can you build an AI assistant on WhatsApp?",
+    "answer": "Yes. We build WhatsApp assistants on the WhatsApp Business API that reply instantly, qualify leads and pass them to your sales team or CRM.",
+    "service": "AI Integrations",
+    "url": "https://deveraxtech.com/services/ai-integrations"
+  },
+  {
+    "question": "Will the AI give wrong answers about my business?",
+    "answer": "We ground answers in your own approved content, limit the assistant to your topics and route anything uncertain to a person, which keeps answers accurate and on brand.",
+    "service": "AI Integrations",
+    "url": "https://deveraxtech.com/services/ai-integrations"
+  },
+  {
+    "question": "Which payment gateways do you integrate?",
+    "answer": "We integrate Paymob and Fawry for payments in Egypt, Stripe for international card payments, and other regional gateways on request.",
+    "service": "Payment & Business Integrations",
+    "url": "https://deveraxtech.com/services/payment-business-integrations"
+  },
+  {
+    "question": "Can you add online payments to my existing website?",
+    "answer": "Yes. We add checkout and payment links to existing websites and apps, with secure server-side verification of every payment.",
+    "service": "Payment & Business Integrations",
+    "url": "https://deveraxtech.com/services/payment-business-integrations"
+  },
+  {
+    "question": "Can you connect my website to my CRM or accounting software?",
+    "answer": "Yes. We connect forms, orders and customers to CRMs and accounting tools so new leads and sales appear there automatically.",
+    "service": "Payment & Business Integrations",
+    "url": "https://deveraxtech.com/services/payment-business-integrations"
+  },
+  {
+    "question": "What is technical SEO?",
+    "answer": "Technical SEO is the work that lets search engines crawl, render and index your site correctly, such as fast load times, clean URLs, sitemaps, canonical tags, structured data and mobile-friendly pages.",
+    "service": "SEO & Performance Optimization",
+    "url": "https://deveraxtech.com/services/seo-performance-optimization"
+  },
+  {
+    "question": "What are Core Web Vitals?",
+    "answer": "Core Web Vitals are Google's measures of real-user experience: Largest Contentful Paint (loading), Interaction to Next Paint (responsiveness) and Cumulative Layout Shift (visual stability). Passing them supports better rankings.",
+    "service": "SEO & Performance Optimization",
+    "url": "https://deveraxtech.com/services/seo-performance-optimization"
+  },
+  {
+    "question": "Can you help my business appear in ChatGPT, Perplexity or Google AI Overviews?",
+    "answer": "Yes. We apply generative engine optimization (GEO): structured data, llms.txt, answer-first content, clear entity information and AI crawler access, which make your site easier for AI assistants to understand and cite.",
+    "service": "SEO & Performance Optimization",
+    "url": "https://deveraxtech.com/services/seo-performance-optimization"
+  },
+  {
+    "question": "Will I lose my Google rankings after a redesign?",
+    "answer": "Not if the migration is done carefully. We keep important URLs where possible, set 301 redirects for every changed URL, carry over titles and content, and monitor Search Console after launch.",
+    "service": "Redesigns & Migrations",
+    "url": "https://deveraxtech.com/services/redesigns-migrations"
+  },
+  {
+    "question": "Can you move my site to Shopify or WordPress?",
+    "answer": "Yes. We migrate content, products, customers and media to Shopify, WordPress or a custom build and test everything before switching over.",
+    "service": "Redesigns & Migrations",
+    "url": "https://deveraxtech.com/services/redesigns-migrations"
+  },
+  {
+    "question": "How much downtime is there during a migration?",
+    "answer": "We build and test the new site on a staging address, then switch DNS at a quiet time, so most launches have little to no visible downtime.",
+    "service": "Redesigns & Migrations",
+    "url": "https://deveraxtech.com/services/redesigns-migrations"
+  },
+  {
+    "question": "What do I receive from a UI/UX design project?",
+    "answer": "You receive user flows, wireframes, high-fidelity Figma screens, an interactive prototype, a design system with reusable components and a handoff file your developers can build from.",
+    "service": "UI/UX Design",
+    "url": "https://deveraxtech.com/services/ui-ux-design"
+  },
+  {
+    "question": "Do you only design, or can you also build it?",
+    "answer": "Both. This service is design only for teams with their own developers, but we can also build the website, web app or mobile app from the same designs.",
+    "service": "UI/UX Design",
+    "url": "https://deveraxtech.com/services/ui-ux-design"
+  },
+  {
+    "question": "Do your designs consider accessibility?",
+    "answer": "Yes. We check color contrast, text sizes, touch targets and focus states against WCAG guidelines during design, not after.",
+    "service": "UI/UX Design",
+    "url": "https://deveraxtech.com/services/ui-ux-design"
+  }
+]

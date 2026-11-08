@@ -18,27 +18,27 @@ DevEraXTech was founded in 2024 by Karim Ahmed (Founder) and Loay Mohamed (Co-fo
 
 ### Websites & Stores
 
-- [Business / Corporate Websites](https://deveraxtech.com/services#business-websites): Professional websites for companies, startups, agencies, shops, clinics, factories and schools, with home, about, services, team, portfolio and contact pages. Includes: Home; About; Services; Contact; Team; Portfolio.
-- [E-Commerce Websites](https://deveraxtech.com/services#ecommerce-websites): Online stores with product pages, a shopping cart, checkout, payment integrations and an admin dashboard. Includes: Product pages; Shopping cart; Checkout; Payment integrations; Admin dashboard.
-- [Shopify Stores](https://deveraxtech.com/services#shopify-stores): Bespoke Shopify stores for premium brands, with designed product pages, a seamless cart, trusted payments and full store control. Includes: Elegantly designed product pages; Seamless shopping cart experience; Secure, trusted payment integrations; Powerful Shopify admin & store control.
-- [WordPress Websites](https://deveraxtech.com/services#wordpress-websites): Custom WordPress websites with responsive, high-performance layouts, secure plugins and easy content management. Includes: Custom-designed pages & layouts; Fully responsive, high-performance builds; Secure plugins & advanced functionality; Powerful content management & admin control.
-- [Portfolio Websites](https://deveraxtech.com/services#portfolio-websites): High-visual showcase websites for designers, photographers, developers and agencies. Includes: Designers; Photographers; Developers; Agencies; High-visual showcase sites.
-- [Landing Pages](https://deveraxtech.com/services#landing-pages): High-conversion single pages for marketing campaigns, app launches, product launches and service promotions. Includes: Marketing campaigns; App launches; Product launches; Service promotions.
+- [Business / Corporate Websites](https://deveraxtech.com/services/business-websites): Professional websites for companies, startups, agencies, shops, clinics, factories and schools, with home, about, services, team, portfolio and contact pages. Includes: Home; About; Services; Contact; Team; Portfolio.
+- [E-Commerce Websites](https://deveraxtech.com/services/ecommerce-websites): Online stores with product pages, a shopping cart, checkout, payment integrations and an admin dashboard. Includes: Product pages; Shopping cart; Checkout; Payment integrations; Admin dashboard.
+- [Shopify Stores](https://deveraxtech.com/services/shopify-stores): Bespoke Shopify stores for premium brands, with designed product pages, a seamless cart, trusted payments and full store control. Includes: Elegantly designed product pages; Seamless shopping cart experience; Secure, trusted payment integrations; Powerful Shopify admin & store control.
+- [WordPress Websites](https://deveraxtech.com/services/wordpress-websites): Custom WordPress websites with responsive, high-performance layouts, secure plugins and easy content management. Includes: Custom-designed pages & layouts; Fully responsive, high-performance builds; Secure plugins & advanced functionality; Powerful content management & admin control.
+- [Portfolio Websites](https://deveraxtech.com/services/portfolio-websites): High-visual showcase websites for designers, photographers, developers and agencies. Includes: Designers; Photographers; Developers; Agencies; High-visual showcase sites.
+- [Landing Pages](https://deveraxtech.com/services/landing-pages): High-conversion single pages for marketing campaigns, app launches, product launches and service promotions. Includes: Marketing campaigns; App launches; Product launches; Service promotions.
 
 ### Apps & Software
 
-- [Custom Web Applications](https://deveraxtech.com/services#custom-web-applications): Custom web applications built around how your business runs, from CRMs and booking systems to client portals and dashboards. Includes: CRMs & customer records; Booking & scheduling systems; Secure client portals; Admin & reporting dashboards; Role-based access & permissions.
-- [Mobile Apps](https://deveraxtech.com/services#mobile-apps): iOS and Android apps built with React Native from one shared codebase, designed to feel native on every device. Includes: iOS & Android from one codebase; Native-feeling interfaces & navigation; Push notifications; Secure sign-in & user accounts; App Store & Google Play release support.
-- [Desktop Software](https://deveraxtech.com/services#desktop-software): Windows apps like Klozcrew: fast, dependable desktop software for teams that work on their own machines. Includes: Windows desktop applications; Offline-capable workflows; Local file & device access; Installers & automatic updates; Sync with your web systems.
-- [AI Integrations](https://deveraxtech.com/services#ai-integrations): AI chatbots, WhatsApp assistants, automated lead handling and document processing, connected to the tools you already use. Includes: Website chatbots; WhatsApp assistants; Automated lead capture & follow-up; Document reading & processing; Integration with your existing tools.
-- [Payment & Business Integrations](https://deveraxtech.com/services#payment-business-integrations): Payment and business integrations with Paymob, Fawry, Stripe, WhatsApp Business, CRMs and accounting tools. Includes: Paymob & Fawry payments; Stripe payments; WhatsApp Business; CRM integrations; Accounting tool integrations.
+- [Custom Web Applications](https://deveraxtech.com/services/custom-web-applications): Custom web applications built around how your business runs, from CRMs and booking systems to client portals and dashboards. Includes: CRMs & customer records; Booking & scheduling systems; Secure client portals; Admin & reporting dashboards; Role-based access & permissions.
+- [Mobile Apps](https://deveraxtech.com/services/mobile-apps): iOS and Android apps built with React Native from one shared codebase, designed to feel native on every device. Includes: iOS & Android from one codebase; Native-feeling interfaces & navigation; Push notifications; Secure sign-in & user accounts; App Store & Google Play release support.
+- [Desktop Software](https://deveraxtech.com/services/desktop-software): Windows apps like Klozcrew: fast, dependable desktop software for teams that work on their own machines. Includes: Windows desktop applications; Offline-capable workflows; Local file & device access; Installers & automatic updates; Sync with your web systems.
+- [AI Integrations](https://deveraxtech.com/services/ai-integrations): AI chatbots, WhatsApp assistants, automated lead handling and document processing, connected to the tools you already use. Includes: Website chatbots; WhatsApp assistants; Automated lead capture & follow-up; Document reading & processing; Integration with your existing tools.
+- [Payment & Business Integrations](https://deveraxtech.com/services/payment-business-integrations): Payment and business integrations with Paymob, Fawry, Stripe, WhatsApp Business, CRMs and accounting tools. Includes: Paymob & Fawry payments; Stripe payments; WhatsApp Business; CRM integrations; Accounting tool integrations.
 
 ### Growth & Support
 
 - [Maintenance & Care Plans](https://deveraxtech.com/maintenance): Ongoing care for live websites and apps: updates, security patches, backups, uptime monitoring, performance checks and priority support. Includes: Updates & security patches; Regular backups; Uptime monitoring; Performance checks; Small content & feature changes; Priority support.
-- [SEO & Performance Optimization](https://deveraxtech.com/services#seo-performance-optimization): Technical SEO, structured data and Core Web Vitals improvements that help your website load faster and get found. Includes: Technical SEO audits & fixes; Core Web Vitals & page speed; Structured data (schema markup); On-page SEO & metadata; Image & asset optimization.
-- [Redesigns & Migrations](https://deveraxtech.com/services#redesigns-migrations): Modern redesigns and careful platform migrations that refresh your website without losing content, rankings or data. Includes: Full visual redesigns; Moves to Shopify, WordPress or a custom build; Content & data migration; SEO-safe redirects; Launches with minimal downtime.
-- [UI/UX Design](https://deveraxtech.com/services#ui-ux-design): Figma designs for teams with their own developers: user flows, wireframes, high-fidelity screens and developer-ready handoff. Includes: User flows & wireframes; High-fidelity screens; Interactive prototypes; Design systems & components; Developer-ready handoff.
+- [SEO & Performance Optimization](https://deveraxtech.com/services/seo-performance-optimization): Technical SEO, structured data and Core Web Vitals improvements that help your website load faster and get found. Includes: Technical SEO audits & fixes; Core Web Vitals & page speed; Structured data (schema markup); On-page SEO & metadata; Image & asset optimization.
+- [Redesigns & Migrations](https://deveraxtech.com/services/redesigns-migrations): Modern redesigns and careful platform migrations that refresh your website without losing content, rankings or data. Includes: Full visual redesigns; Moves to Shopify, WordPress or a custom build; Content & data migration; SEO-safe redirects; Launches with minimal downtime.
+- [UI/UX Design](https://deveraxtech.com/services/ui-ux-design): Figma designs for teams with their own developers: user flows, wireframes, high-fidelity screens and developer-ready handoff. Includes: User flows & wireframes; High-fidelity screens; Interactive prototypes; Design systems & components; Developer-ready handoff.
 
 ## Recent work
 
@@ -51,12 +51,30 @@ A full MERN stack (MongoDB, Express, React, Node.js) platform for Nilora Estates
 - Location: Cairo, Egypt
 - Built with: MongoDB, Express.js, React, Node.js
 - Live site: https://frontend-kappa-ashen-67.vercel.app/
+- Services: [Custom Web Applications](https://deveraxtech.com/services/custom-web-applications), [Business / Corporate Websites](https://deveraxtech.com/services/business-websites), [SEO & Performance Optimization](https://deveraxtech.com/services/seo-performance-optimization)
 - Property listings for villas, penthouses and coastal homes with neighborhood guides
 - User dashboard to save homes, track enquiries and request private viewings
 - Agent dashboard to publish and edit listings and manage client leads
 - Admin dashboard to manage properties, advisors, users, journal posts and site content
 - Role-based authentication and secure REST API
 - SEO-ready pages with fast, responsive, cinematic design
+
+### Karim Ahmed: Full-Stack Developer Portfolio Website
+
+A personal portfolio website for Karim Ahmed, a full-stack MERN developer and the founder of DevEraXTech, based in Cairo. Its cinematic, darkroom and film-roll design presents featured projects such as a university events and facilities management platform, along with skills, work experience, private one-on-one teaching sessions and a contact form. It is built to be secure, accessible and fast, with no third-party trackers.
+
+- Client: Karim Ahmed
+- Industry: Software development (personal brand)
+- Location: Cairo, Egypt
+- Built with: React, Vite, GSAP, Lenis smooth scroll
+- Live site: https://karim.deveraxtech.com/
+- Services: [Portfolio Websites](https://deveraxtech.com/services/portfolio-websites), [UI/UX Design](https://deveraxtech.com/services/ui-ux-design), [SEO & Performance Optimization](https://deveraxtech.com/services/seo-performance-optimization)
+- Cinematic, film-roll inspired design with animated typography
+- Contact-sheet project gallery with featured case studies
+- Skills, experience and education sections
+- Private one-on-one teaching sessions people can book
+- Accessible navigation with a skip link and keyboard support
+- Privacy-first: no third-party trackers or analytics
 
 More projects: https://deveraxtech.com/portfolio
 
@@ -126,9 +144,27 @@ We are available every day from 9:00 AM to 5:00 PM Cairo time. You can reach us 
 - [Home](https://deveraxtech.com/): Cairo studio building secure, pixel-perfect websites, online stores, web and mobile apps, AI integrations and care plans for Egypt, the Gulf, US and Canada.
 - [Services](https://deveraxtech.com/services): Websites, online stores, web and mobile apps, desktop software, AI and payment integrations, SEO, redesigns, UI/UX design and care plans from a Cairo studio.
 - [Maintenance & Care Plans](https://deveraxtech.com/maintenance): Website and app care plans from DevEraXTech in Cairo: updates, security patches, backups, uptime monitoring, performance checks and priority support.
-- [Work](https://deveraxtech.com/portfolio): Web design portfolio of DevEraXTech, a Cairo studio: MERN stack web apps like the Nilora Estates real estate platform, business websites, e-commerce and landing pages.
+- [Work](https://deveraxtech.com/portfolio): DevEraXTech web design portfolio: the Nilora Estates MERN real estate platform, the karim.deveraxtech.com developer portfolio website and more from Cairo.
 - [About](https://deveraxtech.com/about): Founded in 2024 in Cairo, Egypt by Karim Ahmed and Loay Mohamed, DevEraXTech builds premium digital products with security at the core.
 - [Contact](https://deveraxtech.com/contact): Book a meeting with DevEraXTech in Cairo. Call +20 100 001 6216 or email deveraxtech@gmail.com. Open daily 9 AM to 5 PM Cairo time. Arabic, English, German.
+- [Business / Corporate Websites](https://deveraxtech.com/services/business-websites): Custom business and corporate websites for companies, clinics, schools and startups: fast, secure, SEO-ready and easy to update. Built by DevEraXTech in Cairo.
+- [E-Commerce Websites](https://deveraxtech.com/services/ecommerce-websites): Custom online stores with product pages, cart, checkout, Paymob, Fawry or Stripe payments and an admin dashboard. E-commerce development by DevEraXTech.
+- [Shopify Stores](https://deveraxtech.com/services/shopify-stores): Bespoke Shopify stores for premium brands: custom theme design, product pages, seamless cart, trusted payments and full store setup by DevEraXTech in Cairo.
+- [WordPress Websites](https://deveraxtech.com/services/wordpress-websites): Custom WordPress websites with bespoke layouts, fast responsive builds, secure plugins and easy content management. WordPress development by DevEraXTech.
+- [Portfolio Websites](https://deveraxtech.com/services/portfolio-websites): Custom portfolio websites for designers, photographers, developers and agencies: high-visual showcases, case studies, fast loading and SEO. See live examples.
+- [Landing Pages](https://deveraxtech.com/services/landing-pages): Landing pages for marketing campaigns, app and product launches and service promotions: one clear message, fast load and tracking. Designed by DevEraXTech.
+- [Custom Web Applications](https://deveraxtech.com/services/custom-web-applications): Custom web apps built around your business: CRMs, booking systems, client portals and dashboards with role-based access. MERN stack development in Cairo.
+- [Mobile Apps](https://deveraxtech.com/services/mobile-apps): Cross-platform iOS and Android apps built with React Native from one codebase: native feel, push notifications, secure sign-in and App Store release support.
+- [Desktop Software](https://deveraxtech.com/services/desktop-software): Custom Windows desktop apps like Klozcrew: offline-capable workflows, local file and device access, installers, auto-updates and sync with your web systems.
+- [AI Integrations](https://deveraxtech.com/services/ai-integrations): AI integrations for business: website chatbots, WhatsApp AI assistants, automated lead capture and follow-up, and document processing connected to your tools.
+- [Payment & Business Integrations](https://deveraxtech.com/services/payment-business-integrations): Connect your website or app to Paymob, Fawry, Stripe, WhatsApp Business, CRMs and accounting tools. Secure payment and business integrations by DevEraXTech.
+- [SEO & Performance Optimization](https://deveraxtech.com/services/seo-performance-optimization): Technical SEO audits, Core Web Vitals and page speed fixes, schema markup and on-page SEO that help your website load faster and rank on Google and AI search.
+- [Redesigns & Migrations](https://deveraxtech.com/services/redesigns-migrations): Modern website redesigns and careful migrations to Shopify, WordPress or a custom build, with content transfer, SEO-safe redirects and minimal downtime.
+- [UI/UX Design](https://deveraxtech.com/services/ui-ux-design): Figma UI/UX design for teams with their own developers: user flows, wireframes, high-fidelity screens, interactive prototypes, design systems and clean handoff.
+
+## Optional
+
+- [Full service details and FAQs](https://deveraxtech.com/llms-full.txt): every service page with its audience, technology and answers to common questions.
 
 ## Contact
 

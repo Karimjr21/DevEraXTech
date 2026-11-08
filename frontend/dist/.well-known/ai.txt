@@ -1,0 +1,11 @@
+# DevEraXTech AI policy
+# Search, answer and AI assistant crawlers may read, summarize and cite this site.
+User-Agent: *
+Allow: /
+
+Summary: https://deveraxtech.com/ai/summary.json
+FAQ: https://deveraxtech.com/ai/faq.json
+LLMs: https://deveraxtech.com/llms.txt
+LLMs-Full: https://deveraxtech.com/llms-full.txt
+Sitemap: https://deveraxtech.com/sitemap.xml
+Contact: deveraxtech@gmail.com

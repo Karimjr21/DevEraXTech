@@ -31,4 +31,5 @@ export function cardSpanClass(count, i) {
   classes.push(i >= count - tail ? 'lg:col-span-3' : 'lg:col-span-2');
   return classes.join(' ');
 }
-export const serviceHref = s => s.link || `/services#${s.id}`;
+// Each service has its own page; services with `link` point to an existing dedicated page instead.
+export const serviceHref = s => s.link || `/services/${s.id}`;

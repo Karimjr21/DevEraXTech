@@ -4,7 +4,11 @@
     "title": "Nilora Estates: Luxury Real Estate Platform, Cairo",
     "category": "Real Estate Web App",
     "description": "A full MERN stack (MongoDB, Express, React, Node.js) platform for Nilora Estates, a private residential agency selling villas, penthouses and coastal homes across Cairo and the Egyptian coast. It has a cinematic public site plus three role-based dashboards: buyers save homes and book private viewings, agents manage their listings and leads, and admins control properties, advisors, users and content.",
-    "tags": ["MERN Stack", "Agent, Admin & User Dashboards", "Real Estate Egypt"],
+    "tags": [
+      "MERN Stack",
+      "Agent, Admin & User Dashboards",
+      "Real Estate Egypt"
+    ],
     "image": "/work/nilora-estates-real-estate-website.webp",
     "imageAlt": "Nilora Estates real estate website homepage: Cairo skyline at sunset over the Nile at Zamalek with the headline 'Where the river meets the light.'",
     "imageWidth": 1904,
@@ -14,7 +18,12 @@
     "industry": "Real estate",
     "location": "Cairo, Egypt",
     "year": "2026",
-    "stack": ["MongoDB", "Express.js", "React", "Node.js"],
+    "stack": [
+      "MongoDB",
+      "Express.js",
+      "React",
+      "Node.js"
+    ],
     "features": [
       "Property listings for villas, penthouses and coastal homes with neighborhood guides",
       "User dashboard to save homes, track enquiries and request private viewings",
@@ -22,6 +31,50 @@
       "Admin dashboard to manage properties, advisors, users, journal posts and site content",
       "Role-based authentication and secure REST API",
       "SEO-ready pages with fast, responsive, cinematic design"
+    ],
+    "services": [
+      "custom-web-applications",
+      "business-websites",
+      "seo-performance-optimization"
+    ]
+  },
+  {
+    "id": "karim-ahmed-portfolio",
+    "title": "Karim Ahmed: Full-Stack Developer Portfolio Website",
+    "category": "Portfolio Website",
+    "description": "A personal portfolio website for Karim Ahmed, a full-stack MERN developer and the founder of DevEraXTech, based in Cairo. Its cinematic, darkroom and film-roll design presents featured projects such as a university events and facilities management platform, along with skills, work experience, private one-on-one teaching sessions and a contact form. It is built to be secure, accessible and fast, with no third-party trackers.",
+    "tags": [
+      "Portfolio Website",
+      "Developer Portfolio",
+      "Accessible & Privacy-First"
+    ],
+    "image": "/work/karim-ahmed-full-stack-developer-portfolio-website.webp",
+    "imageAlt": "Karim Ahmed portfolio website homepage: large striped serif lettering of the name Karim Ahmed on a black film-grain background, with the tagline Full-Stack Developer / Founder of DevEraXTech / Cairo.",
+    "imageWidth": 1904,
+    "imageHeight": 994,
+    "url": "https://karim.deveraxtech.com/",
+    "client": "Karim Ahmed",
+    "industry": "Software development (personal brand)",
+    "location": "Cairo, Egypt",
+    "year": "2026",
+    "stack": [
+      "React",
+      "Vite",
+      "GSAP",
+      "Lenis smooth scroll"
+    ],
+    "features": [
+      "Cinematic, film-roll inspired design with animated typography",
+      "Contact-sheet project gallery with featured case studies",
+      "Skills, experience and education sections",
+      "Private one-on-one teaching sessions people can book",
+      "Accessible navigation with a skip link and keyboard support",
+      "Privacy-first: no third-party trackers or analytics"
+    ],
+    "services": [
+      "portfolio-websites",
+      "ui-ux-design",
+      "seo-performance-optimization"
     ]
   }
 ]

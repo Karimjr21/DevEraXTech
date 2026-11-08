@@ -5,6 +5,7 @@ import faq from './data/faq.json';
 import business from './data/business.json';
 import portfolio from './data/portfolio.json';
 import maintenance from './data/maintenance.json';
+import serviceDetails from './data/service-details.json';
 
 const AREAS_SHORT = 'Canada, the United States, the UAE, Saudi Arabia, Kuwait, Qatar and Egypt';
 
@@ -19,7 +20,7 @@ export const SITE = {
     `DevEraXTech is a web design and development studio based in Cairo, Egypt, building secure, scalable, pixel-perfect websites, online stores, web and mobile apps, desktop software and AI integrations, with ongoing care plans, for clients in ${AREAS_SHORT}.`,
   foundingDate: '2024',
   founders: [
-    { name: 'Karim Ahmed', jobTitle: 'Founder' },
+    { name: 'Karim Ahmed', jobTitle: 'Founder', url: 'https://karim.deveraxtech.com/' },
     { name: 'Loay Mohamed', jobTitle: 'Co-founder' }
   ],
   sameAs: ['https://www.instagram.com/deveraxtech']
@@ -60,7 +61,7 @@ export const ROUTES = [
     name: 'Work',
     title: 'Web Design Portfolio | DevEraXTech, Cairo',
     description:
-      'Web design portfolio of DevEraXTech, a Cairo studio: MERN stack web apps like the Nilora Estates real estate platform, business websites, e-commerce and landing pages.',
+      'DevEraXTech web design portfolio: the Nilora Estates MERN real estate platform, the karim.deveraxtech.com developer portfolio website and more from Cairo.',
     priority: '0.7'
   },
   {
@@ -82,6 +83,26 @@ export const ROUTES = [
     priority: '0.9'
   }
 ];
+
+// Every service has its own page at /services/<id>, except services that already
+// point to a dedicated page through `link` (e.g. Maintenance & Care Plans -> /maintenance).
+export const servicePath = s => s.link || `/services/${s.id}`;
+
+export const SERVICE_ROUTES = services
+  .filter(s => !s.link && serviceDetails[s.id])
+  .map(s => ({
+    path: servicePath(s),
+    file: `services/${s.id}.html`,
+    name: s.title,
+    parent: '/services',
+    serviceId: s.id,
+    source: ['pages/ServiceDetail.jsx', 'src/data/service-details.json', 'src/data/services.json'],
+    title: serviceDetails[s.id].seoTitle,
+    description: serviceDetails[s.id].seoDescription,
+    priority: '0.8'
+  }));
+
+ROUTES.push(...SERVICE_ROUTES);
 
 export const NOT_FOUND = {
   path: '/404',
@@ -123,7 +144,12 @@ function organization() {
     image: SITE.image,
     description: SITE.description,
     foundingDate: SITE.foundingDate,
-    founder: SITE.founders.map(f => ({ '@type': 'Person', name: f.name, jobTitle: f.jobTitle })),
+    founder: SITE.founders.map(f => ({
+      '@type': 'Person',
+      name: f.name,
+      jobTitle: f.jobTitle,
+      ...(f.url ? { url: f.url, sameAs: [f.url] } : {})
+    })),
     sameAs: SITE.sameAs,
     email: business.email,
     telephone: business.phoneE164,
@@ -173,7 +199,7 @@ function organization() {
       name: 'Web, app and software development services',
       itemListElement: services.map(s => ({
         '@type': 'Offer',
-        itemOffered: { '@type': 'Service', '@id': `${SITE.url}/services#${s.id}`, name: s.title }
+        itemOffered: { '@type': 'Service', '@id': serviceId(s), name: s.title, url: `${SITE.url}${servicePath(s)}` }
       }))
     }
   };
@@ -191,16 +217,38 @@ function website() {
   };
 }
 
-function serviceNode(s) {
+function serviceId(s) {
+  return `${SITE.url}${servicePath(s)}#service`;
+}
+
+function serviceNode(s, full = false) {
+  const detail = serviceDetails[s.id];
   return {
     '@type': 'Service',
-    '@id': `${SITE.url}/services#${s.id}`,
+    '@id': serviceId(s),
     name: s.title,
     serviceType: s.title,
     ...(s.group ? { category: s.group } : {}),
     description: s.summary,
     provider: { '@id': ORG_ID },
-    url: s.link ? `${SITE.url}${s.link}` : `${SITE.url}/contact?service=${encodeURIComponent(s.title)}`
+    url: `${SITE.url}${servicePath(s)}`,
+    ...(full
+      ? {
+          areaServed: business.areasServed.map(a => ({ '@type': 'Country', name: a.name })),
+          availableLanguage: business.languages.map(l => l.name),
+          ...(detail?.audience ? { audience: { '@type': 'Audience', audienceType: detail.audience.join(', ') } } : {}),
+          hasOfferCatalog: {
+            '@type': 'OfferCatalog',
+            name: `${s.title}: what is included`,
+            itemListElement: (s.features || []).map(f => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: f } }))
+          },
+          potentialAction: {
+            '@type': 'CommunicateAction',
+            name: `Start a ${s.title} project`,
+            target: `${SITE.url}/contact?service=${encodeURIComponent(s.title)}`
+          }
+        }
+      : {})
   };
 }
 
@@ -237,6 +285,7 @@ function portfolioList() {
         keywords: [...(p.tags || []), ...(p.stack || [])].join(', '),
         dateCreated: p.year,
         creator: { '@id': ORG_ID },
+        ...(p.services ? { about: p.services.map(id => services.find(s => s.id === id)).filter(Boolean).map(s => ({ '@id': serviceId(s) })) } : {}),
         ...(p.client ? { sourceOrganization: { '@type': 'Organization', name: p.client, url: p.url } } : {}),
         ...(p.location ? { locationCreated: { '@type': 'Place', name: p.location } } : {}),
         ...(p.image
@@ -304,9 +353,19 @@ export function buildJsonLd(route) {
     const svc = services.find(s => s.id === 'maintenance-care-plans');
     if (svc) {
       graph.push(serviceNode(svc));
-      page.mainEntity = { '@id': `${SITE.url}/services#${svc.id}` };
+      page.mainEntity = { '@id': serviceId(svc) };
     }
     graph.push(faqPage(url, maintenance.faq));
+  }
+  if (route.serviceId) {
+    const svc = services.find(s => s.id === route.serviceId);
+    const detail = serviceDetails[route.serviceId];
+    graph.push(serviceNode(svc, true));
+    page.mainEntity = { '@id': serviceId(svc) };
+    page.about = { '@id': serviceId(svc) };
+    if (detail?.faq?.length) graph.push(faqPage(url, detail.faq));
+    const work = portfolio.filter(p => (detail?.work || []).includes(p.id));
+    if (work.length) page.mentions = work.map(p => ({ '@type': 'CreativeWork', '@id': `${SITE.url}/portfolio#${p.id}`, name: p.title, url: p.url }));
   }
   if (route.path === '/portfolio' && portfolio.length) {
     graph.push(portfolioList());
@@ -315,4 +374,4 @@ export function buildJsonLd(route) {
   return { '@context': 'https://schema.org', '@graph': graph };
 }
 
-export { services, faq, business, portfolio };
+export { services, faq, business, portfolio, serviceDetails };

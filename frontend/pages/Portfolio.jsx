@@ -7,6 +7,11 @@ import { fetchPortfolio } from '../lib/api';
 import useApiData from '../lib/useApiData';
 import Lightbox from '../components/ui/Lightbox';
 import ShowcaseMedia from '../components/ui/ShowcaseMedia';
+import { Link } from 'react-router-dom';
+import services from '../src/data/services.json';
+import { serviceHref } from '../lib/serviceGroups';
+
+const relatedServices = item => (item?.services || []).map(id => services.find(s => s.id === id)).filter(Boolean);
 
 function getDescription(item) {
   if (item?.description && String(item.description).trim()) {
@@ -33,7 +38,8 @@ export default function Portfolio() {
 
   const categories = ['All', ...Array.from(new Set(items.map(i => i.category)))];
   const shown = filter === 'All' ? items : items.filter(i => i.category === filter);
-  const hasSingle = shown.length === 1;
+  // Up to two projects get the full showcase layout; more switch to the card grid.
+  const showcaseLayout = shown.length <= 2;
 
   const openItem = (item) => {
     if (item.url) {
@@ -52,7 +58,7 @@ export default function Portfolio() {
             <p className="text-[11px] tracking-[0.2em] uppercase text-gold/72">Selected Work</p>
             <h1 className="text-4xl md:text-[2.8rem] font-bold gold-gradient-text leading-[1.08]">Web Design Portfolio</h1>
             <p className="text-sm md:text-base text-gray-300/90 max-w-2xl leading-relaxed">
-              Curated digital products delivered with design precision, technical rigor, and premium execution standards.
+              Curated digital products delivered with design precision, technical rigor, and premium execution standards, from full-stack MERN platforms to personal portfolio websites.
             </p>
             <p className="text-sm md:text-base text-gray-400 max-w-2xl leading-relaxed">
               Our work spans business and corporate websites, e-commerce and Shopify stores, WordPress websites, portfolio sites and
@@ -118,16 +124,18 @@ export default function Portfolio() {
           />
         )}
 
-        {shown.length === 0 ? null : hasSingle ? (
-          (() => {
-            const item = shown[0];
+        {shown.length === 0 ? null : showcaseLayout ? (
+          <div className="space-y-10 md:space-y-14">
+          {shown.map((item) => {
             const tags = getTags(item);
             const description = getDescription(item);
             const showPlaceholder = !item.image || imageFallbacks[item.id];
 
             return (
               <SectionWrapper
-                className="portfolio-card portfolio-featured-card max-w-6xl mx-auto group cursor-pointer"
+                key={item.id}
+                id={item.id}
+                className="portfolio-card portfolio-featured-card max-w-6xl mx-auto group cursor-pointer scroll-mt-28"
                 onClick={() => openItem(item)}
                 onKeyDown={(event) => {
                   if (event.key === 'Enter' || event.key === ' ') {
@@ -176,6 +184,18 @@ export default function Portfolio() {
                     ))}
                   </div>
 
+                  {relatedServices(item).length > 0 && (
+                    <p className="text-xs text-gray-400 leading-relaxed">
+                      <span className="uppercase tracking-[0.14em] text-gray-500 mr-2">Services</span>
+                      {relatedServices(item).map((svc, i) => (
+                        <span key={svc.id}>
+                          {i > 0 && <span className="text-gold/40 mx-1.5" aria-hidden>·</span>}
+                          <Link to={serviceHref(svc)} onClick={(event) => event.stopPropagation()} className="text-gray-300 hover:text-gold focus-visible:text-gold underline-offset-4 hover:underline">{svc.title}</Link>
+                        </span>
+                      ))}
+                    </p>
+                  )}
+
                   <div>
                     {item.url ? (
                       <a
@@ -203,7 +223,8 @@ export default function Portfolio() {
                 </div>
               </SectionWrapper>
             );
-          })()
+          })}
+          </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-6">
             {shown.map((item, index) => {
@@ -215,7 +236,8 @@ export default function Portfolio() {
               return (
                 <SectionWrapper
                   key={item.id}
-                  className={`portfolio-card group cursor-pointer ${featured ? 'md:col-span-2' : ''}`}
+                  id={item.id}
+                  className={`portfolio-card group cursor-pointer scroll-mt-28 ${featured ? 'md:col-span-2' : ''}`}
                   onClick={() => openItem(item)}
                   onKeyDown={(event) => {
                     if (event.key === 'Enter' || event.key === ' ') {

@@ -7,7 +7,7 @@ import EmptyState, { LoadingCards } from '../components/ui/EmptyState';
 import { fetchServices } from '../lib/api';
 import useApiData from '../lib/useApiData';
 import faq from '../src/data/faq.json';
-import { groupServices } from '../lib/serviceGroups';
+import { groupServices, serviceHref } from '../lib/serviceGroups';
 
 export default function Services() {
   const navigate = useNavigate();
@@ -101,7 +101,7 @@ export default function Services() {
                     <h3
                       className={`service-editorial-title text-[1.55rem] md:text-[1.78rem] font-semibold tracking-tight leading-[1.16] ${card.title.length > 24 ? 'service-editorial-title--long max-w-[17ch]' : ''}`}
                     >
-                      {card.title}
+                      <Link to={serviceHref(card)} className="hover:text-gold focus-visible:text-gold">{card.title}</Link>
                     </h3>
                     <p className="service-editorial-copy mt-4 leading-relaxed text-[0.96rem] md:text-[1rem] max-w-[58ch]">
                       {card.description}
@@ -134,15 +134,14 @@ export default function Services() {
                       >
                         Start This Project <span aria-hidden className="ml-1">→</span>
                       </AnimatedButton>
-                      {card.link && (
-                        <AnimatedButton
-                          variant="outline"
-                          to={card.link}
-                          className="service-editorial-cta h-9 md:h-10 px-[1.125rem] md:px-5 text-[0.8rem] md:text-[0.84rem] uppercase tracking-[0.08em]"
-                        >
-                          {card.linkLabel || 'Learn More'} <span aria-hidden className="ml-1">→</span>
-                        </AnimatedButton>
-                      )}
+                      <AnimatedButton
+                        variant="outline"
+                        to={serviceHref(card)}
+                        aria-label={`${card.linkLabel || 'Learn more'} about ${card.title}`}
+                        className="service-editorial-cta h-9 md:h-10 px-[1.125rem] md:px-5 text-[0.8rem] md:text-[0.84rem] uppercase tracking-[0.08em]"
+                      >
+                        {card.linkLabel || 'Learn More'} <span aria-hidden className="ml-1">→</span>
+                      </AnimatedButton>
                     </div>
                   </div>
                 </div>

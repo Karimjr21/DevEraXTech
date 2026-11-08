@@ -1,0 +1,669 @@
+{
+  "business-websites": {
+    "h1": "Business & Corporate Website Design",
+    "seoTitle": "Business & Corporate Website Design in Cairo | DevEraXTech",
+    "seoDescription": "Custom business and corporate websites for companies, clinics, schools and startups: fast, secure, SEO-ready and easy to update. Built by DevEraXTech in Cairo.",
+    "intro": [
+      "A business website is usually the first place a client checks before they call you. DevEraXTech designs and builds custom corporate websites that explain what you do in seconds, load fast on any phone and turn visitors into enquiries.",
+      "Every site includes the pages a company needs (home, about, services, team, portfolio and contact), structured data for Google, and a layout you can grow as the business grows."
+    ],
+    "audience": [
+      "Companies and startups",
+      "Agencies and consultancies",
+      "Clinics, schools and factories",
+      "Shops and local service businesses"
+    ],
+    "stack": [
+      "React",
+      "Prerendered static pages",
+      "WordPress (on request)",
+      "Cloudflare hosting",
+      "Schema.org structured data"
+    ],
+    "faq": [
+      {
+        "question": "What pages does a business website from DevEraXTech include?",
+        "answer": "A standard business website includes Home, About, Services, Team, Portfolio and Contact pages. We add pages such as careers, case studies or a blog when your business needs them."
+      },
+      {
+        "question": "Will my business website be optimized for Google?",
+        "answer": "Yes. Every business website ships with unique titles and descriptions, a clean heading structure, a sitemap, schema.org structured data and fast load times, which are the technical foundations Google uses to rank pages."
+      },
+      {
+        "question": "Can I update the website content myself?",
+        "answer": "Yes. We can build on WordPress or add a simple content editor so your team can change text, images and team members without a developer."
+      }
+    ],
+    "related": [
+      "landing-pages",
+      "seo-performance-optimization",
+      "wordpress-websites"
+    ],
+    "work": [
+      "nilora-estates"
+    ]
+  },
+  "ecommerce-websites": {
+    "h1": "E-Commerce Website Development",
+    "seoTitle": "E-Commerce Website Development | DevEraXTech, Cairo",
+    "seoDescription": "Custom online stores with product pages, cart, checkout, Paymob, Fawry or Stripe payments and an admin dashboard. E-commerce development by DevEraXTech.",
+    "intro": [
+      "An e-commerce website has one job: make buying easy. DevEraXTech builds custom online stores with clear product pages, a fast cart, a short checkout and payment gateways your customers already trust.",
+      "Behind the store you get an admin dashboard to manage products, stock, orders and customers, so running the shop does not depend on a developer."
+    ],
+    "audience": [
+      "Retail and fashion brands",
+      "Wholesalers moving online",
+      "Restaurants and food brands",
+      "Startups launching a first product"
+    ],
+    "stack": [
+      "React",
+      "Node.js & Express",
+      "MongoDB",
+      "Paymob, Fawry & Stripe",
+      "Secure admin dashboard"
+    ],
+    "faq": [
+      {
+        "question": "Which payment gateways can my online store accept?",
+        "answer": "We integrate Paymob and Fawry for customers in Egypt and Stripe for international cards, and can add cash on delivery or other regional gateways on request."
+      },
+      {
+        "question": "Should I choose a custom e-commerce website or Shopify?",
+        "answer": "Shopify is faster to launch and simpler to run for standard stores. A custom e-commerce build suits stores with unusual pricing, B2B ordering, custom integrations or very specific design needs. We help you choose during the first meeting."
+      },
+      {
+        "question": "Does the store include an admin dashboard?",
+        "answer": "Yes. Every custom store includes an admin dashboard for products, categories, stock, orders, customers and discount codes."
+      }
+    ],
+    "related": [
+      "shopify-stores",
+      "payment-business-integrations",
+      "seo-performance-optimization"
+    ],
+    "work": []
+  },
+  "shopify-stores": {
+    "h1": "Shopify Store Design & Development",
+    "seoTitle": "Shopify Store Design & Development | DevEraXTech",
+    "seoDescription": "Bespoke Shopify stores for premium brands: custom theme design, product pages, seamless cart, trusted payments and full store setup by DevEraXTech in Cairo.",
+    "intro": [
+      "Shopify gives you reliable hosting, checkout and order management out of the box. DevEraXTech adds what a template cannot: a bespoke design that matches your brand and product pages that are built to sell.",
+      "We set up the store end to end, from theme design and product import to payments, shipping, apps and analytics, and hand it over with training so your team can run it."
+    ],
+    "audience": [
+      "Premium and luxury brands",
+      "Direct-to-consumer startups",
+      "Brands moving from a marketplace",
+      "Stores outgrowing a free theme"
+    ],
+    "stack": [
+      "Shopify & Liquid",
+      "Custom Shopify themes",
+      "Shopify apps",
+      "Shopify Payments & regional gateways",
+      "Google Analytics & Meta pixel"
+    ],
+    "faq": [
+      {
+        "question": "Do you build custom Shopify themes or use templates?",
+        "answer": "We design custom Shopify themes for brands that want a distinctive store, and customize premium themes when budget or launch date matters more. Either way the store is tailored to your products."
+      },
+      {
+        "question": "Can you migrate my store to Shopify?",
+        "answer": "Yes. We migrate products, customers and order history from WooCommerce, custom stores and other platforms, and set up redirects so you keep your search rankings."
+      },
+      {
+        "question": "Will I be able to manage the Shopify store myself?",
+        "answer": "Yes. Shopify's admin lets you manage products, orders and discounts, and we include a handover session so your team is comfortable from day one."
+      }
+    ],
+    "related": [
+      "ecommerce-websites",
+      "redesigns-migrations",
+      "payment-business-integrations"
+    ],
+    "work": [],
+    "sources": [
+      {
+        "label": "Shopify Help Center: online store themes",
+        "url": "https://help.shopify.com/en/manual/online-store/themes"
+      }
+    ]
+  },
+  "wordpress-websites": {
+    "h1": "Custom WordPress Website Development",
+    "seoTitle": "Custom WordPress Website Development | DevEraXTech",
+    "seoDescription": "Custom WordPress websites with bespoke layouts, fast responsive builds, secure plugins and easy content management. WordPress development by DevEraXTech.",
+    "intro": [
+      "WordPress runs a large share of the web because it makes content easy to manage. DevEraXTech builds custom WordPress websites that keep that ease of editing while avoiding the slow, bloated feel of off-the-shelf themes.",
+      "We design custom layouts, keep plugins to a vetted minimum, harden security and tune performance so the site stays fast and safe as your content grows."
+    ],
+    "audience": [
+      "Content-heavy businesses and blogs",
+      "Marketing teams that publish often",
+      "Organizations with several editors",
+      "Businesses already on WordPress"
+    ],
+    "stack": [
+      "WordPress",
+      "Custom themes & blocks",
+      "WooCommerce (on request)",
+      "Security hardening",
+      "Caching & image optimization"
+    ],
+    "faq": [
+      {
+        "question": "Is WordPress secure enough for a business website?",
+        "answer": "Yes, when it is built and maintained properly. We use a small set of trusted plugins, harden logins and file permissions, and recommend a care plan for ongoing updates and backups."
+      },
+      {
+        "question": "Will my WordPress website be fast?",
+        "answer": "Yes. We build lightweight custom themes, optimize images and set up caching so pages load quickly and pass Google's Core Web Vitals."
+      },
+      {
+        "question": "Can you fix or redesign an existing WordPress site?",
+        "answer": "Yes. We redesign existing WordPress websites, clean up plugins and speed problems, and can take over maintenance after a short review."
+      }
+    ],
+    "related": [
+      "business-websites",
+      "redesigns-migrations",
+      "maintenance-care-plans"
+    ],
+    "work": []
+  },
+  "portfolio-websites": {
+    "h1": "Portfolio Website Design for Creatives & Developers",
+    "seoTitle": "Portfolio Website Design for Creatives | DevEraXTech",
+    "seoDescription": "Custom portfolio websites for designers, photographers, developers and agencies: high-visual showcases, case studies, fast loading and SEO. See live examples.",
+    "intro": [
+      "A portfolio website is your work's first impression. DevEraXTech designs portfolio websites for designers, photographers, developers and agencies that put the work first, load quickly and make it easy for the right client to get in touch.",
+      "A recent example is karim.deveraxtech.com, the personal portfolio of our founder Karim Ahmed: a cinematic, film-inspired site with project case studies, skills, experience and a booking flow for private teaching sessions."
+    ],
+    "audience": [
+      "Designers and illustrators",
+      "Photographers and videographers",
+      "Software developers",
+      "Creative agencies and studios"
+    ],
+    "stack": [
+      "React",
+      "GSAP & scroll animation",
+      "Optimized image delivery",
+      "Accessible, privacy-friendly builds",
+      "Person & CreativeWork schema"
+    ],
+    "faq": [
+      {
+        "question": "What should a portfolio website include?",
+        "answer": "A strong portfolio website includes a short introduction, selected projects with case studies, an about section, skills or services, and a clear contact path. Developers often add experience and a CV; photographers add full-screen galleries."
+      },
+      {
+        "question": "Do you have examples of portfolio websites you built?",
+        "answer": "Yes. karim.deveraxtech.com is a portfolio website we designed and built for full-stack developer Karim Ahmed, with featured projects, skills, experience, teaching and contact sections."
+      },
+      {
+        "question": "Will my portfolio show up when people search my name?",
+        "answer": "We set up your name as the main entity with Person structured data, a descriptive title and meta description, and fast pages, which helps Google and AI assistants connect your name to your site."
+      }
+    ],
+    "related": [
+      "landing-pages",
+      "ui-ux-design",
+      "seo-performance-optimization"
+    ],
+    "work": [
+      "karim-ahmed-portfolio"
+    ]
+  },
+  "landing-pages": {
+    "h1": "High-Conversion Landing Page Design",
+    "seoTitle": "High-Conversion Landing Page Design | DevEraXTech",
+    "seoDescription": "Landing pages for marketing campaigns, app and product launches and service promotions: one clear message, fast load and tracking. Designed by DevEraXTech.",
+    "intro": [
+      "A landing page converts best when it does one thing. DevEraXTech designs single-page sites for ad campaigns, app launches, product launches and service promotions, with one message, one call to action and nothing that distracts from it.",
+      "Pages are built to load fast on mobile data, connect to your forms, CRM or WhatsApp, and include analytics and pixels so you can measure every campaign."
+    ],
+    "audience": [
+      "Paid ad campaigns",
+      "App and product launches",
+      "Events and webinars",
+      "Service promotions and offers"
+    ],
+    "stack": [
+      "React",
+      "Lightweight static builds",
+      "Form, CRM & WhatsApp hand-off",
+      "Google Analytics, Meta & TikTok pixels",
+      "A/B-test friendly sections"
+    ],
+    "faq": [
+      {
+        "question": "What is the difference between a landing page and a website?",
+        "answer": "A website explains your whole business across many pages. A landing page is a single page built around one campaign or offer and one action, such as booking a call or downloading an app, so it usually converts better for paid traffic."
+      },
+      {
+        "question": "Can the landing page send leads to WhatsApp or my CRM?",
+        "answer": "Yes. We connect forms to email, WhatsApp, Google Sheets or your CRM so every lead reaches your team immediately."
+      },
+      {
+        "question": "Do you add tracking for ads?",
+        "answer": "Yes. We install Google Analytics and the ad pixels you use, such as Meta or TikTok, and set up conversion events for form submissions and clicks."
+      }
+    ],
+    "related": [
+      "business-websites",
+      "ai-integrations",
+      "ui-ux-design"
+    ],
+    "work": []
+  },
+  "custom-web-applications": {
+    "h1": "Custom Web Application Development",
+    "seoTitle": "Custom Web Application Development | DevEraXTech",
+    "seoDescription": "Custom web apps built around your business: CRMs, booking systems, client portals and dashboards with role-based access. MERN stack development in Cairo.",
+    "intro": [
+      "Off-the-shelf software makes you change how you work. A custom web application is shaped around how your business already runs. DevEraXTech builds CRMs, booking systems, client portals and admin dashboards on the MERN stack (MongoDB, Express, React and Node.js).",
+      "Our Nilora Estates real estate platform is a good example: a public site plus three role-based dashboards for buyers, agents and admins, backed by a secure REST API."
+    ],
+    "audience": [
+      "Businesses outgrowing spreadsheets",
+      "Real estate, clinics and education",
+      "Service companies that need client portals",
+      "Startups building a first product"
+    ],
+    "stack": [
+      "MongoDB",
+      "Express.js",
+      "React",
+      "Node.js",
+      "Role-based authentication & REST APIs"
+    ],
+    "faq": [
+      {
+        "question": "What is a custom web application?",
+        "answer": "A custom web application is software that runs in the browser and is built for your specific workflow, such as a CRM, booking system, client portal or internal dashboard, instead of a generic product you have to adapt to."
+      },
+      {
+        "question": "Which technology do you use for web apps?",
+        "answer": "We mainly build on the MERN stack: MongoDB, Express.js, React and Node.js, with role-based authentication and a secure REST API. It is fast, widely supported and easy to extend."
+      },
+      {
+        "question": "Have you built a web application with multiple user roles?",
+        "answer": "Yes. Nilora Estates, a real estate platform in Cairo, has separate dashboards for buyers, agents and admins, each with its own permissions."
+      }
+    ],
+    "related": [
+      "mobile-apps",
+      "ai-integrations",
+      "payment-business-integrations"
+    ],
+    "work": [
+      "nilora-estates"
+    ],
+    "sources": [
+      {
+        "label": "MongoDB: what is the MERN stack?",
+        "url": "https://www.mongodb.com/resources/languages/mern-stack"
+      }
+    ]
+  },
+  "mobile-apps": {
+    "h1": "iOS & Android Mobile App Development",
+    "seoTitle": "iOS & Android App Development (React Native) | DevEraXTech",
+    "seoDescription": "Cross-platform iOS and Android apps built with React Native from one codebase: native feel, push notifications, secure sign-in and App Store release support.",
+    "intro": [
+      "DevEraXTech builds mobile apps for iOS and Android with React Native, so one shared codebase powers both platforms. You launch on both stores sooner and maintain one app instead of two.",
+      "Apps are designed to feel native, with smooth navigation, push notifications and secure accounts, and we support you through App Store and Google Play review and release."
+    ],
+    "audience": [
+      "Startups launching an app",
+      "Businesses adding a customer app",
+      "Companies with an existing web platform",
+      "Teams replacing an outdated app"
+    ],
+    "stack": [
+      "React Native",
+      "Expo",
+      "Node.js APIs",
+      "Push notifications",
+      "App Store & Google Play publishing"
+    ],
+    "faq": [
+      {
+        "question": "Why build with React Native instead of separate native apps?",
+        "answer": "React Native lets one codebase run on both iOS and Android, which lowers cost and keeps features in sync across platforms while still delivering a native look and feel."
+      },
+      {
+        "question": "Do you publish the app to the App Store and Google Play?",
+        "answer": "Yes. We prepare store listings, screenshots and builds, and guide you through Apple and Google review until the app is live."
+      },
+      {
+        "question": "Can the mobile app connect to my existing website or system?",
+        "answer": "Yes. The app can share accounts and data with your website, web app or CRM through a secure API."
+      }
+    ],
+    "related": [
+      "custom-web-applications",
+      "ui-ux-design",
+      "ai-integrations"
+    ],
+    "work": [],
+    "sources": [
+      {
+        "label": "React Native official documentation",
+        "url": "https://reactnative.dev/"
+      }
+    ]
+  },
+  "desktop-software": {
+    "h1": "Windows Desktop Software Development",
+    "seoTitle": "Windows Desktop Software Development | DevEraXTech",
+    "seoDescription": "Custom Windows desktop apps like Klozcrew: offline-capable workflows, local file and device access, installers, auto-updates and sync with your web systems.",
+    "intro": [
+      "Some work is better done on the machine in front of you. DevEraXTech builds Windows desktop software, such as our Klozcrew app, for teams that need speed, offline access or direct access to local files and devices.",
+      "Each app ships with a proper installer and automatic updates, and can sync with your web platform so data stays consistent between the office and the cloud."
+    ],
+    "audience": [
+      "Teams that work offline",
+      "Operations using local files or devices",
+      "Businesses replacing legacy desktop tools",
+      "Products that need a desktop companion app"
+    ],
+    "stack": [
+      "Electron or .NET (chosen per project)",
+      "React",
+      "Node.js",
+      "Windows installers & auto-update",
+      "Cloud sync APIs"
+    ],
+    "faq": [
+      {
+        "question": "When should I choose desktop software over a web app?",
+        "answer": "Desktop software is the better choice when your team needs to work offline, process large local files, connect to printers, scanners or other devices, or wants an app that opens instantly on their own machine."
+      },
+      {
+        "question": "Does the desktop app update automatically?",
+        "answer": "Yes. We ship a signed Windows installer with automatic updates so every user stays on the latest version."
+      },
+      {
+        "question": "Can the desktop app sync with my website or web app?",
+        "answer": "Yes. The app can sync data with your web systems through a secure API, and keep working offline until a connection returns."
+      }
+    ],
+    "related": [
+      "custom-web-applications",
+      "mobile-apps",
+      "maintenance-care-plans"
+    ],
+    "work": []
+  },
+  "ai-integrations": {
+    "h1": "AI Integration & Chatbot Development",
+    "seoTitle": "AI Chatbots & WhatsApp AI Assistants | DevEraXTech",
+    "seoDescription": "AI integrations for business: website chatbots, WhatsApp AI assistants, automated lead capture and follow-up, and document processing connected to your tools.",
+    "intro": [
+      "AI is useful when it saves your team time on real, repeated work. DevEraXTech builds practical AI integrations: website chatbots that answer from your own content, WhatsApp assistants that qualify leads, and automations that read documents and update your systems.",
+      "Every integration connects to the tools you already use, such as your website, CRM, inbox or spreadsheets, and keeps a human in the loop where it matters."
+    ],
+    "audience": [
+      "Businesses with many repeated enquiries",
+      "Sales teams handling WhatsApp leads",
+      "Operations processing invoices or forms",
+      "Support teams answering the same questions"
+    ],
+    "stack": [
+      "Large language model APIs",
+      "WhatsApp Business API",
+      "Retrieval from your own content",
+      "Node.js automations",
+      "CRM & spreadsheet integrations"
+    ],
+    "faq": [
+      {
+        "question": "What can an AI chatbot do for my business?",
+        "answer": "An AI chatbot can answer customer questions from your own content around the clock, capture lead details, book meetings and hand complex conversations to your team."
+      },
+      {
+        "question": "Can you build an AI assistant on WhatsApp?",
+        "answer": "Yes. We build WhatsApp assistants on the WhatsApp Business API that reply instantly, qualify leads and pass them to your sales team or CRM."
+      },
+      {
+        "question": "Will the AI give wrong answers about my business?",
+        "answer": "We ground answers in your own approved content, limit the assistant to your topics and route anything uncertain to a person, which keeps answers accurate and on brand."
+      }
+    ],
+    "related": [
+      "custom-web-applications",
+      "payment-business-integrations",
+      "landing-pages"
+    ],
+    "work": [],
+    "sources": [
+      {
+        "label": "Meta: WhatsApp Business Platform",
+        "url": "https://business.whatsapp.com/products/business-platform"
+      }
+    ]
+  },
+  "payment-business-integrations": {
+    "h1": "Payment Gateway & Business Integrations",
+    "seoTitle": "Paymob, Fawry & Stripe Payment Integration | DevEraXTech",
+    "seoDescription": "Connect your website or app to Paymob, Fawry, Stripe, WhatsApp Business, CRMs and accounting tools. Secure payment and business integrations by DevEraXTech.",
+    "intro": [
+      "Your website or app works best when it talks to the rest of your business. DevEraXTech integrates payment gateways such as Paymob, Fawry and Stripe, and connects WhatsApp Business, CRMs and accounting tools so data moves without copy and paste.",
+      "Payments are built with secure, verified callbacks so orders are only confirmed when the money has actually arrived."
+    ],
+    "audience": [
+      "Online stores in Egypt and the Gulf",
+      "Subscription and booking businesses",
+      "Companies syncing sales and accounting",
+      "Teams selling through WhatsApp"
+    ],
+    "stack": [
+      "Paymob",
+      "Fawry",
+      "Stripe",
+      "WhatsApp Business API",
+      "CRM & accounting APIs"
+    ],
+    "faq": [
+      {
+        "question": "Which payment gateways do you integrate?",
+        "answer": "We integrate Paymob and Fawry for payments in Egypt, Stripe for international card payments, and other regional gateways on request."
+      },
+      {
+        "question": "Can you add online payments to my existing website?",
+        "answer": "Yes. We add checkout and payment links to existing websites and apps, with secure server-side verification of every payment."
+      },
+      {
+        "question": "Can you connect my website to my CRM or accounting software?",
+        "answer": "Yes. We connect forms, orders and customers to CRMs and accounting tools so new leads and sales appear there automatically."
+      }
+    ],
+    "related": [
+      "ecommerce-websites",
+      "ai-integrations",
+      "custom-web-applications"
+    ],
+    "work": [],
+    "sources": [
+      {
+        "label": "Stripe documentation",
+        "url": "https://docs.stripe.com/"
+      },
+      {
+        "label": "Paymob developer documentation",
+        "url": "https://developers.paymob.com/"
+      }
+    ]
+  },
+  "seo-performance-optimization": {
+    "h1": "Technical SEO & Website Performance Optimization",
+    "seoTitle": "Technical SEO & Page Speed Optimization | DevEraXTech",
+    "seoDescription": "Technical SEO audits, Core Web Vitals and page speed fixes, schema markup and on-page SEO that help your website load faster and rank on Google and AI search.",
+    "intro": [
+      "A beautiful website still needs to be found. DevEraXTech fixes the technical side of SEO: crawlability, indexing, page speed, Core Web Vitals, structured data and on-page metadata, so search engines and AI assistants can read, trust and cite your site.",
+      "We also prepare sites for AI search with llms.txt files, clear answer-first content and open access for AI crawlers such as OAI-SearchBot, ClaudeBot and PerplexityBot."
+    ],
+    "audience": [
+      "Sites that are slow on mobile",
+      "Businesses not showing on Google",
+      "Sites after a redesign or migration",
+      "Brands that want to appear in AI answers"
+    ],
+    "stack": [
+      "Google Search Console",
+      "Lighthouse & Core Web Vitals",
+      "Schema.org JSON-LD",
+      "Prerendering & image optimization",
+      "llms.txt & AI crawler access"
+    ],
+    "faq": [
+      {
+        "question": "What is technical SEO?",
+        "answer": "Technical SEO is the work that lets search engines crawl, render and index your site correctly, such as fast load times, clean URLs, sitemaps, canonical tags, structured data and mobile-friendly pages."
+      },
+      {
+        "question": "What are Core Web Vitals?",
+        "answer": "Core Web Vitals are Google's measures of real-user experience: Largest Contentful Paint (loading), Interaction to Next Paint (responsiveness) and Cumulative Layout Shift (visual stability). Passing them supports better rankings."
+      },
+      {
+        "question": "Can you help my business appear in ChatGPT, Perplexity or Google AI Overviews?",
+        "answer": "Yes. We apply generative engine optimization (GEO): structured data, llms.txt, answer-first content, clear entity information and AI crawler access, which make your site easier for AI assistants to understand and cite."
+      }
+    ],
+    "related": [
+      "redesigns-migrations",
+      "business-websites",
+      "maintenance-care-plans"
+    ],
+    "work": [
+      "nilora-estates",
+      "karim-ahmed-portfolio"
+    ],
+    "sources": [
+      {
+        "label": "Google Search Central: SEO Starter Guide",
+        "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide"
+      },
+      {
+        "label": "web.dev: Core Web Vitals",
+        "url": "https://web.dev/articles/vitals"
+      },
+      {
+        "label": "Schema.org structured data vocabulary",
+        "url": "https://schema.org/"
+      },
+      {
+        "label": "The llms.txt proposal",
+        "url": "https://llmstxt.org/"
+      }
+    ]
+  },
+  "redesigns-migrations": {
+    "h1": "Website Redesign & Platform Migration",
+    "seoTitle": "Website Redesign & Migration Services | DevEraXTech",
+    "seoDescription": "Modern website redesigns and careful migrations to Shopify, WordPress or a custom build, with content transfer, SEO-safe redirects and minimal downtime.",
+    "intro": [
+      "An outdated website costs you trust and enquiries. DevEraXTech redesigns websites with a modern, brand-aligned look and moves them to a better platform, whether that is Shopify, WordPress or a custom build.",
+      "We map every old URL to its new page with SEO-safe 301 redirects, migrate content and data carefully, and launch with minimal downtime so you keep your rankings and your customers."
+    ],
+    "audience": [
+      "Outdated or slow websites",
+      "Stores moving to Shopify",
+      "Sites leaving a page builder",
+      "Businesses after a rebrand"
+    ],
+    "stack": [
+      "Shopify, WordPress & custom React",
+      "Content & data migration scripts",
+      "301 redirect mapping",
+      "Search Console monitoring",
+      "Staged, low-downtime launches"
+    ],
+    "faq": [
+      {
+        "question": "Will I lose my Google rankings after a redesign?",
+        "answer": "Not if the migration is done carefully. We keep important URLs where possible, set 301 redirects for every changed URL, carry over titles and content, and monitor Search Console after launch."
+      },
+      {
+        "question": "Can you move my site to Shopify or WordPress?",
+        "answer": "Yes. We migrate content, products, customers and media to Shopify, WordPress or a custom build and test everything before switching over."
+      },
+      {
+        "question": "How much downtime is there during a migration?",
+        "answer": "We build and test the new site on a staging address, then switch DNS at a quiet time, so most launches have little to no visible downtime."
+      }
+    ],
+    "related": [
+      "seo-performance-optimization",
+      "shopify-stores",
+      "wordpress-websites"
+    ],
+    "work": [],
+    "sources": [
+      {
+        "label": "Google Search Central: site moves with URL changes",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes"
+      },
+      {
+        "label": "Google Search Central: redirects and Google Search",
+        "url": "https://developers.google.com/search/docs/crawling-indexing/301-redirects"
+      }
+    ]
+  },
+  "ui-ux-design": {
+    "h1": "UI/UX Design in Figma",
+    "seoTitle": "UI/UX Design & Figma Prototypes | DevEraXTech",
+    "seoDescription": "Figma UI/UX design for teams with their own developers: user flows, wireframes, high-fidelity screens, interactive prototypes, design systems and clean handoff.",
+    "intro": [
+      "Good software starts with a clear design. DevEraXTech provides UI/UX design in Figma for teams that already have developers: user flows, wireframes, high-fidelity screens and interactive prototypes you can test with real users.",
+      "We deliver a reusable design system and a developer-ready handoff with components, spacing, states and breakpoints, so what gets built matches what was designed."
+    ],
+    "audience": [
+      "Startups with in-house developers",
+      "Product teams redesigning an app",
+      "Agencies needing design support",
+      "Founders preparing an investor demo"
+    ],
+    "stack": [
+      "Figma",
+      "Interactive prototypes",
+      "Design systems & components",
+      "Accessibility (WCAG) checks",
+      "Developer handoff specs"
+    ],
+    "faq": [
+      {
+        "question": "What do I receive from a UI/UX design project?",
+        "answer": "You receive user flows, wireframes, high-fidelity Figma screens, an interactive prototype, a design system with reusable components and a handoff file your developers can build from."
+      },
+      {
+        "question": "Do you only design, or can you also build it?",
+        "answer": "Both. This service is design only for teams with their own developers, but we can also build the website, web app or mobile app from the same designs."
+      },
+      {
+        "question": "Do your designs consider accessibility?",
+        "answer": "Yes. We check color contrast, text sizes, touch targets and focus states against WCAG guidelines during design, not after."
+      }
+    ],
+    "related": [
+      "mobile-apps",
+      "custom-web-applications",
+      "portfolio-websites"
+    ],
+    "work": [
+      "karim-ahmed-portfolio"
+    ],
+    "sources": [
+      {
+        "label": "W3C: Web Content Accessibility Guidelines (WCAG) 2.2",
+        "url": "https://www.w3.org/TR/WCAG22/"
+      }
+    ]
+  }
+}
