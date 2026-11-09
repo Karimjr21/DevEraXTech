@@ -71,6 +71,37 @@ function headTags(route) {
   return tags.filter(Boolean).join('\n    ');
 }
 
+// Markdown copy of a page's main content, served to AI agents that send `Accept: text/markdown`
+// (see functions/_middleware.js). Built from the prerendered HTML so it always matches the page.
+const decode = s => s.replace(/&nbsp;/g, ' ').replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+function toMarkdown(route, appHtml) {
+  const main = (appHtml.match(/<main[^>]*>([\s\S]*?)<\/main>/) || [, appHtml])[1]
+    .replace(/<(script|style|svg|button|nav)[\s\S]*?<\/\1>/g, '')
+    .replace(/<[^>]+aria-hidden="true"[^>]*>[\s\S]*?<\/(span|div)>/g, '');
+  const inline = s => decode(s
+    .replace(/<a [^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g, (_, href, text) => {
+      const t = text.replace(/<[^>]+>/g, '').trim();
+      return t ? `[${t}](${href.startsWith('/') ? SITE.url + href : href})` : '';
+    })
+    .replace(/<(strong|b)[^>]*>([\s\S]*?)<\/\1>/g, '**$2**')
+    .replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim();
+  const blocks = [];
+  const re = /<(h[1-4]|p|li|dt|dd|summary)[^>]*>([\s\S]*?)<\/\1>/g;
+  let m;
+  while ((m = re.exec(main))) {
+    const text = inline(m[2]);
+    if (!text) continue;
+    const tag = m[1];
+    if (tag[0] === 'h') blocks.push(`${'#'.repeat(Number(tag[1]))} ${text}`);
+    else if (tag === 'li') blocks.push(`- ${text}`);
+    else if (tag === 'summary') blocks.push(`**${text}**`);
+    else if (tag === 'dt') blocks.push(`**${text}:**`);
+    else blocks.push(text);
+  }
+  const body = blocks.join('\n\n').replace(/\n\n(?=- )/g, '\n');
+  return `---\ntitle: ${route.title}\nurl: ${canonicalUrl(route.path)}\ndescription: ${route.description}\nlast_updated: ${lastmod[route.path]}\n---\n\n${body}\n\n---\n\n${SITE.name}, ${business.city}, ${business.country} | ${business.phoneDisplay} | ${business.email} | ${SITE.url}/contact\n`;
+}
+
 function page(route) {
   const appHtml = render(route.path, prerenderData);
   let html = template
@@ -84,6 +115,11 @@ function page(route) {
   if (html.includes('<!--seo-head-->') || html.includes('<!--app-html-->')) throw new Error(`Template markers missing for ${route.path}`);
   fs.mkdirSync(path.dirname(path.join(dist, route.file)), { recursive: true });
   fs.writeFileSync(path.join(dist, route.file), html);
+  if (!route.noindex) {
+    const mdFile = path.join(dist, 'md', route.path === '/' ? 'index.md' : `${route.path.slice(1)}.md`);
+    fs.mkdirSync(path.dirname(mdFile), { recursive: true });
+    fs.writeFileSync(mdFile, toMarkdown(route, appHtml));
+  }
   console.log(`prerendered ${route.path.padEnd(40)} -> dist/${route.file} (${(html.length / 1024).toFixed(1)} KB)`);
 }
 
