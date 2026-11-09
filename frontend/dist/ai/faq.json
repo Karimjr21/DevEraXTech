@@ -89,37 +89,37 @@
   },
   {
     "question": "Do you build custom Shopify themes or use templates?",
-    "answer": "We design custom Shopify themes for brands that want a distinctive store, and customize premium themes when budget or launch date matters more. Either way the store is tailored to your products.",
+    "answer": "We design custom themes for brands that want a distinctive storefront, and tailor premium templates when budget or launch date matters more. Either way the result is shaped around your products.",
     "service": "Shopify Stores",
     "url": "https://deveraxtech.com/services/shopify-stores"
   },
   {
-    "question": "Can you migrate my store to Shopify?",
-    "answer": "Yes. We migrate products, customers and order history from WooCommerce, custom stores and other platforms, and set up redirects so you keep your search rankings.",
+    "question": "Can you migrate my existing store to Shopify?",
+    "answer": "Yes. We move products, customers and order history from WooCommerce, custom builds and other platforms, and set up redirects so you keep your search rankings.",
     "service": "Shopify Stores",
     "url": "https://deveraxtech.com/services/shopify-stores"
   },
   {
-    "question": "Will I be able to manage the Shopify store myself?",
-    "answer": "Yes. Shopify's admin lets you manage products, orders and discounts, and we include a handover session so your team is comfortable from day one.",
+    "question": "Will I be able to run the store myself?",
+    "answer": "Yes. The built-in admin lets you manage products, orders and discounts, and we include a handover session so your team is comfortable from day one.",
     "service": "Shopify Stores",
     "url": "https://deveraxtech.com/services/shopify-stores"
   },
   {
-    "question": "Is WordPress secure enough for a business website?",
+    "question": "Is WordPress secure enough for a company website?",
     "answer": "Yes, when it is built and maintained properly. We use a small set of trusted plugins, harden logins and file permissions, and recommend a care plan for ongoing updates and backups.",
     "service": "WordPress Websites",
     "url": "https://deveraxtech.com/services/wordpress-websites"
   },
   {
-    "question": "Will my WordPress website be fast?",
+    "question": "Will my new site be fast?",
     "answer": "Yes. We build lightweight custom themes, optimize images and set up caching so pages load quickly and pass Google's Core Web Vitals.",
     "service": "WordPress Websites",
     "url": "https://deveraxtech.com/services/wordpress-websites"
   },
   {
     "question": "Can you fix or redesign an existing WordPress site?",
-    "answer": "Yes. We redesign existing WordPress websites, clean up plugins and speed problems, and can take over maintenance after a short review.",
+    "answer": "Yes. We refresh existing sites, clean up plugins and speed problems, and can take over maintenance after a short review.",
     "service": "WordPress Websites",
     "url": "https://deveraxtech.com/services/wordpress-websites"
   },
@@ -178,8 +178,8 @@
     "url": "https://deveraxtech.com/services/custom-web-applications"
   },
   {
-    "question": "Why build with React Native instead of separate native apps?",
-    "answer": "React Native lets one codebase run on both iOS and Android, which lowers cost and keeps features in sync across platforms while still delivering a native look and feel.",
+    "question": "Why build with React Native instead of two separate apps?",
+    "answer": "React Native lets one codebase run on both iOS and Android, which lowers cost and keeps features in sync across platforms while still delivering a platform-true look and feel.",
     "service": "Mobile Apps",
     "url": "https://deveraxtech.com/services/mobile-apps"
   },
@@ -202,13 +202,13 @@
     "url": "https://deveraxtech.com/services/desktop-software"
   },
   {
-    "question": "Does the desktop app update automatically?",
+    "question": "Does the app update automatically?",
     "answer": "Yes. We ship a signed Windows installer with automatic updates so every user stays on the latest version.",
     "service": "Desktop Software",
     "url": "https://deveraxtech.com/services/desktop-software"
   },
   {
-    "question": "Can the desktop app sync with my website or web app?",
+    "question": "Can the app sync with my website or web app?",
     "answer": "Yes. The app can sync data with your web systems through a secure API, and keep working offline until a connection returns.",
     "service": "Desktop Software",
     "url": "https://deveraxtech.com/services/desktop-software"
@@ -287,19 +287,19 @@
   },
   {
     "question": "What do I receive from a UI/UX design project?",
-    "answer": "You receive user flows, wireframes, high-fidelity Figma screens, an interactive prototype, a design system with reusable components and a handoff file your developers can build from.",
+    "answer": "You receive user flows, wireframes, high-fidelity Figma screens, an interactive prototype, a reusable component library and a handoff file your developers can build from.",
     "service": "UI/UX Design",
     "url": "https://deveraxtech.com/services/ui-ux-design"
   },
   {
-    "question": "Do you only design, or can you also build it?",
-    "answer": "Both. This service is design only for teams with their own developers, but we can also build the website, web app or mobile app from the same designs.",
+    "question": "Do you only create the screens, or can you also build them?",
+    "answer": "Both. This service covers the UI/UX work for teams with their own developers, but we can also build the website, web app or mobile app from the same files.",
     "service": "UI/UX Design",
     "url": "https://deveraxtech.com/services/ui-ux-design"
   },
   {
-    "question": "Do your designs consider accessibility?",
-    "answer": "Yes. We check color contrast, text sizes, touch targets and focus states against WCAG guidelines during design, not after.",
+    "question": "Do your interfaces consider accessibility?",
+    "answer": "Yes. We check color contrast, text sizes, touch targets and focus states against WCAG guidelines from the first wireframe, not after.",
     "service": "UI/UX Design",
     "url": "https://deveraxtech.com/services/ui-ux-design"
   }

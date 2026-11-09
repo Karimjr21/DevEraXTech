@@ -1,0 +1,446 @@
+{
+  "provider": {
+    "name": "DevEraXTech",
+    "url": "https://deveraxtech.com/",
+    "location": "Cairo, Egypt",
+    "contact": "https://deveraxtech.com/contact"
+  },
+  "areasServed": [
+    "Canada",
+    "United States",
+    "United Arab Emirates",
+    "Saudi Arabia",
+    "Kuwait",
+    "Qatar",
+    "Egypt"
+  ],
+  "languages": [
+    "Arabic",
+    "English",
+    "German"
+  ],
+  "howToStart": "Book a meeting at https://deveraxtech.com/contact, call +20 100 001 6216 or email deveraxtech@gmail.com. Replies usually within one business day.",
+  "services": [
+    {
+      "id": "business-websites",
+      "name": "Business / Corporate Websites",
+      "category": "Websites & Stores",
+      "url": "https://deveraxtech.com/services/business-websites",
+      "summary": "Professional websites for companies, startups, agencies, shops, clinics, factories and schools, with home, about, services, team, portfolio and contact pages.",
+      "includes": [
+        "Home",
+        "About",
+        "Services",
+        "Contact",
+        "Team",
+        "Portfolio"
+      ],
+      "bestFor": [
+        "Companies and startups",
+        "Agencies and consultancies",
+        "Clinics, schools and factories",
+        "Shops and local service businesses"
+      ],
+      "technology": [
+        "React",
+        "Prerendered static pages",
+        "WordPress (on request)",
+        "Cloudflare hosting",
+        "Schema.org structured data"
+      ],
+      "startProject": "https://deveraxtech.com/contact?service=Business%20%2F%20Corporate%20Websites",
+      "lastUpdated": "2026-11-09"
+    },
+    {
+      "id": "ecommerce-websites",
+      "name": "E-Commerce Websites",
+      "category": "Websites & Stores",
+      "url": "https://deveraxtech.com/services/ecommerce-websites",
+      "summary": "Online stores with product pages, a shopping cart, checkout, payment integrations and an admin dashboard.",
+      "includes": [
+        "Product pages",
+        "Shopping cart",
+        "Checkout",
+        "Payment integrations",
+        "Admin dashboard"
+      ],
+      "bestFor": [
+        "Retail and fashion brands",
+        "Wholesalers moving online",
+        "Restaurants and food brands",
+        "Startups launching a first product"
+      ],
+      "technology": [
+        "React",
+        "Node.js & Express",
+        "MongoDB",
+        "Paymob, Fawry & Stripe",
+        "Secure admin dashboard"
+      ],
+      "startProject": "https://deveraxtech.com/contact?service=E-Commerce%20Websites",
+      "lastUpdated": "2026-11-09"
+    },
+    {
+      "id": "shopify-stores",
+      "name": "Shopify Stores",
+      "category": "Websites & Stores",
+      "url": "https://deveraxtech.com/services/shopify-stores",
+      "summary": "Bespoke Shopify stores for premium brands, with designed product pages, a seamless cart, trusted payments and full store control.",
+      "includes": [
+        "Elegantly designed product pages",
+        "Seamless shopping cart experience",
+        "Secure, trusted payment integrations",
+        "Powerful Shopify admin & store control"
+      ],
+      "bestFor": [
+        "Premium and luxury brands",
+        "Direct-to-consumer startups",
+        "Brands moving from a marketplace",
+        "Stores outgrowing a free theme"
+      ],
+      "technology": [
+        "Shopify & Liquid templating",
+        "Custom-built themes",
+        "Vetted app integrations",
+        "Shopify Payments & regional gateways",
+        "Google Analytics & Meta pixel"
+      ],
+      "startProject": "https://deveraxtech.com/contact?service=Shopify%20Stores",
+      "lastUpdated": "2026-11-09"
+    },
+    {
+      "id": "wordpress-websites",
+      "name": "WordPress Websites",
+      "category": "Websites & Stores",
+      "url": "https://deveraxtech.com/services/wordpress-websites",
+      "summary": "Custom WordPress websites with responsive, high-performance layouts, secure plugins and easy content management.",
+      "includes": [
+        "Custom-designed pages & layouts",
+        "Fully responsive, high-performance builds",
+        "Secure plugins & advanced functionality",
+        "Powerful content management & admin control"
+      ],
+      "bestFor": [
+        "Content-heavy businesses and blogs",
+        "Marketing teams that publish often",
+        "Organizations with several editors",
+        "Businesses already running on the platform"
+      ],
+      "technology": [
+        "WordPress core",
+        "Custom themes & blocks",
+        "WooCommerce (on request)",
+        "Security hardening",
+        "Caching & image optimization"
+      ],
+      "startProject": "https://deveraxtech.com/contact?service=WordPress%20Websites",
+      "lastUpdated": "2026-11-09"
+    },
+    {
+      "id": "portfolio-websites",
+      "name": "Portfolio Websites",
+      "category": "Websites & Stores",
+      "url": "https://deveraxtech.com/services/portfolio-websites",
+      "summary": "High-visual showcase websites for designers, photographers, developers and agencies.",
+      "includes": [
+        "Designers",
+        "Photographers",
+        "Developers",
+        "Agencies",
+        "High-visual showcase sites"
+      ],
+      "bestFor": [
+        "Designers and illustrators",
+        "Photographers and videographers",
+        "Software developers",
+        "Creative agencies and studios"
+      ],
+      "technology": [
+        "React",
+        "GSAP & scroll animation",
+        "Optimized image delivery",
+        "Accessible, privacy-friendly builds",
+        "Person & CreativeWork schema"
+      ],
+      "startProject": "https://deveraxtech.com/contact?service=Portfolio%20Websites",
+      "lastUpdated": "2026-11-09"
+    },
+    {
+      "id": "landing-pages",
+      "name": "Landing Pages",
+      "category": "Websites & Stores",
+      "url": "https://deveraxtech.com/services/landing-pages",
+      "summary": "High-conversion single pages for marketing campaigns, app launches, product launches and service promotions.",
+      "includes": [
+        "Marketing campaigns",
+        "App launches",
+        "Product launches",
+        "Service promotions"
+      ],
+      "bestFor": [
+        "Paid ad campaigns",
+        "App and product launches",
+        "Events and webinars",
+        "Service promotions and offers"
+      ],
+      "technology": [
+        "React",
+        "Lightweight static builds",
+        "Form, CRM & WhatsApp hand-off",
+        "Google Analytics, Meta & TikTok pixels",
+        "A/B-test friendly sections"
+      ],
+      "startProject": "https://deveraxtech.com/contact?service=Landing%20Pages",
+      "lastUpdated": "2026-11-09"
+    },
+    {
+      "id": "custom-web-applications",
+      "name": "Custom Web Applications",
+      "category": "Apps & Software",
+      "url": "https://deveraxtech.com/services/custom-web-applications",
+      "summary": "Custom web applications built around how your business runs, from CRMs and booking systems to client portals and dashboards.",
+      "includes": [
+        "CRMs & customer records",
+        "Booking & scheduling systems",
+        "Secure client portals",
+        "Admin & reporting dashboards",
+        "Role-based access & permissions"
+      ],
+      "bestFor": [
+        "Businesses outgrowing spreadsheets",
+        "Real estate, clinics and education",
+        "Service companies that need client portals",
+        "Startups building a first product"
+      ],
+      "technology": [
+        "MongoDB",
+        "Express.js",
+        "React",
+        "Node.js",
+        "Role-based authentication & REST APIs"
+      ],
+      "startProject": "https://deveraxtech.com/contact?service=Custom%20Web%20Applications",
+      "lastUpdated": "2026-11-09"
+    },
+    {
+      "id": "mobile-apps",
+      "name": "Mobile Apps",
+      "category": "Apps & Software",
+      "url": "https://deveraxtech.com/services/mobile-apps",
+      "summary": "iOS and Android apps built with React Native from one shared codebase, designed to feel native on every device.",
+      "includes": [
+        "iOS & Android from one codebase",
+        "Native-feeling interfaces & navigation",
+        "Push notifications",
+        "Secure sign-in & user accounts",
+        "App Store & Google Play release support"
+      ],
+      "bestFor": [
+        "Startups launching an app",
+        "Businesses adding a customer app",
+        "Companies with an existing web platform",
+        "Teams replacing an outdated app"
+      ],
+      "technology": [
+        "React Native",
+        "Expo",
+        "Node.js APIs",
+        "Push notifications",
+        "App Store & Google Play publishing"
+      ],
+      "startProject": "https://deveraxtech.com/contact?service=Mobile%20Apps",
+      "lastUpdated": "2026-11-09"
+    },
+    {
+      "id": "desktop-software",
+      "name": "Desktop Software",
+      "category": "Apps & Software",
+      "url": "https://deveraxtech.com/services/desktop-software",
+      "summary": "Windows apps like Klozcrew: fast, dependable desktop software for teams that work on their own machines.",
+      "includes": [
+        "Windows desktop applications",
+        "Offline-capable workflows",
+        "Local file & device access",
+        "Installers & automatic updates",
+        "Sync with your web systems"
+      ],
+      "bestFor": [
+        "Teams that work offline",
+        "Operations using local files or devices",
+        "Businesses replacing legacy desktop tools",
+        "Products that need a desktop companion app"
+      ],
+      "technology": [
+        "Electron or .NET (chosen per project)",
+        "React",
+        "Node.js",
+        "Windows installers & auto-update",
+        "Cloud sync APIs"
+      ],
+      "startProject": "https://deveraxtech.com/contact?service=Desktop%20Software",
+      "lastUpdated": "2026-11-09"
+    },
+    {
+      "id": "ai-integrations",
+      "name": "AI Integrations",
+      "category": "Apps & Software",
+      "url": "https://deveraxtech.com/services/ai-integrations",
+      "summary": "AI chatbots, WhatsApp assistants, automated lead handling and document processing, connected to the tools you already use.",
+      "includes": [
+        "Website chatbots",
+        "WhatsApp assistants",
+        "Automated lead capture & follow-up",
+        "Document reading & processing",
+        "Integration with your existing tools"
+      ],
+      "bestFor": [
+        "Businesses with many repeated enquiries",
+        "Sales teams handling WhatsApp leads",
+        "Operations processing invoices or forms",
+        "Support teams answering the same questions"
+      ],
+      "technology": [
+        "Large language model APIs",
+        "WhatsApp Business API",
+        "Retrieval from your own content",
+        "Node.js automations",
+        "CRM & spreadsheet integrations"
+      ],
+      "startProject": "https://deveraxtech.com/contact?service=AI%20Integrations",
+      "lastUpdated": "2026-11-09"
+    },
+    {
+      "id": "payment-business-integrations",
+      "name": "Payment & Business Integrations",
+      "category": "Apps & Software",
+      "url": "https://deveraxtech.com/services/payment-business-integrations",
+      "summary": "Payment and business integrations with Paymob, Fawry, Stripe, WhatsApp Business, CRMs and accounting tools.",
+      "includes": [
+        "Paymob & Fawry payments",
+        "Stripe payments",
+        "WhatsApp Business",
+        "CRM integrations",
+        "Accounting tool integrations"
+      ],
+      "bestFor": [
+        "Online stores in Egypt and the Gulf",
+        "Subscription and booking companies",
+        "Teams syncing sales and accounting",
+        "Sales teams selling through WhatsApp"
+      ],
+      "technology": [
+        "Paymob",
+        "Fawry",
+        "Stripe",
+        "WhatsApp Business API",
+        "CRM & accounting APIs"
+      ],
+      "startProject": "https://deveraxtech.com/contact?service=Payment%20%26%20Business%20Integrations",
+      "lastUpdated": "2026-11-09"
+    },
+    {
+      "id": "maintenance-care-plans",
+      "name": "Maintenance & Care Plans",
+      "category": "Growth & Support",
+      "url": "https://deveraxtech.com/maintenance",
+      "summary": "Ongoing care for live websites and apps: updates, security patches, backups, uptime monitoring, performance checks and priority support.",
+      "includes": [
+        "Updates & security patches",
+        "Regular backups",
+        "Uptime monitoring",
+        "Performance checks",
+        "Small content & feature changes",
+        "Priority support"
+      ],
+      "startProject": "https://deveraxtech.com/contact?service=Maintenance%20%26%20Care%20Plans",
+      "lastUpdated": "2026-11-09"
+    },
+    {
+      "id": "seo-performance-optimization",
+      "name": "SEO & Performance Optimization",
+      "category": "Growth & Support",
+      "url": "https://deveraxtech.com/services/seo-performance-optimization",
+      "summary": "Technical SEO, structured data and Core Web Vitals improvements that help your website load faster and get found.",
+      "includes": [
+        "Technical SEO audits & fixes",
+        "Core Web Vitals & page speed",
+        "Structured data (schema markup)",
+        "On-page SEO & metadata",
+        "Image & asset optimization"
+      ],
+      "bestFor": [
+        "Sites that are slow on mobile",
+        "Businesses not showing on Google",
+        "Sites after a redesign or migration",
+        "Brands that want to appear in AI answers"
+      ],
+      "technology": [
+        "Google Search Console",
+        "Lighthouse & Core Web Vitals",
+        "Schema.org JSON-LD",
+        "Prerendering & image optimization",
+        "llms.txt & AI crawler access"
+      ],
+      "startProject": "https://deveraxtech.com/contact?service=SEO%20%26%20Performance%20Optimization",
+      "lastUpdated": "2026-11-09"
+    },
+    {
+      "id": "redesigns-migrations",
+      "name": "Redesigns & Migrations",
+      "category": "Growth & Support",
+      "url": "https://deveraxtech.com/services/redesigns-migrations",
+      "summary": "Modern redesigns and careful platform migrations that refresh your website without losing content, rankings or data.",
+      "includes": [
+        "Full visual redesigns",
+        "Moves to Shopify, WordPress or a custom build",
+        "Content & data migration",
+        "SEO-safe redirects",
+        "Launches with minimal downtime"
+      ],
+      "bestFor": [
+        "Outdated or slow websites",
+        "Stores moving to Shopify",
+        "Sites leaving a page builder",
+        "Businesses after a rebrand"
+      ],
+      "technology": [
+        "Shopify, WordPress & custom React",
+        "Content & data migration scripts",
+        "301 redirect mapping",
+        "Search Console monitoring",
+        "Staged, low-downtime launches"
+      ],
+      "startProject": "https://deveraxtech.com/contact?service=Redesigns%20%26%20Migrations",
+      "lastUpdated": "2026-11-09"
+    },
+    {
+      "id": "ui-ux-design",
+      "name": "UI/UX Design",
+      "category": "Growth & Support",
+      "url": "https://deveraxtech.com/services/ui-ux-design",
+      "summary": "Figma designs for teams with their own developers: user flows, wireframes, high-fidelity screens and developer-ready handoff.",
+      "includes": [
+        "User flows & wireframes",
+        "High-fidelity screens",
+        "Interactive prototypes",
+        "Design systems & components",
+        "Developer-ready handoff"
+      ],
+      "bestFor": [
+        "Startups with in-house developers",
+        "Product teams redesigning an app",
+        "Agencies that need extra UX capacity",
+        "Founders preparing an investor demo"
+      ],
+      "technology": [
+        "Figma",
+        "Interactive prototypes",
+        "Component libraries & tokens",
+        "Accessibility (WCAG) checks",
+        "Developer handoff specs"
+      ],
+      "startProject": "https://deveraxtech.com/contact?service=UI%2FUX%20Design",
+      "lastUpdated": "2026-11-09"
+    }
+  ]
+}

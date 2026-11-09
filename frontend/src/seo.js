@@ -6,6 +6,7 @@ import business from './data/business.json';
 import portfolio from './data/portfolio.json';
 import maintenance from './data/maintenance.json';
 import serviceDetails from './data/service-details.json';
+import pageFaqs from './data/page-faqs.json';
 
 const AREAS_SHORT = 'Canada, the United States, the UAE, Saudi Arabia, Kuwait, Qatar and Egypt';
 
@@ -29,6 +30,7 @@ export const SITE = {
 export const ROUTES = [
   {
     path: '/',
+    source: ['pages/Home.jsx', 'src/data/page-faqs.json', 'src/data/services.json'],
     file: 'index.html',
     name: 'Home',
     title: 'DevEraXTech | Web Design & Development Studio in Cairo',
@@ -38,6 +40,7 @@ export const ROUTES = [
   },
   {
     path: '/services',
+    source: ['pages/Services.jsx', 'src/data/services.json', 'src/data/faq.json'],
     file: 'services.html',
     name: 'Services',
     title: 'Web, App & Software Development Services | DevEraXTech',
@@ -47,6 +50,7 @@ export const ROUTES = [
   },
   {
     path: '/maintenance',
+    source: ['pages/Maintenance.jsx', 'src/data/maintenance.json'],
     file: 'maintenance.html',
     name: 'Maintenance & Care Plans',
     parent: '/services',
@@ -57,6 +61,7 @@ export const ROUTES = [
   },
   {
     path: '/portfolio',
+    source: ['pages/Portfolio.jsx', 'src/data/portfolio.json', 'src/data/page-faqs.json', 'components/ui/ShowcaseMedia.jsx'],
     file: 'portfolio.html',
     name: 'Work',
     title: 'Web Design Portfolio | DevEraXTech, Cairo',
@@ -66,6 +71,7 @@ export const ROUTES = [
   },
   {
     path: '/about',
+    source: ['pages/About.jsx', 'src/data/page-faqs.json'],
     file: 'about.html',
     name: 'About',
     title: 'About DevEraXTech | Secure, Premium Digital Products',
@@ -75,6 +81,7 @@ export const ROUTES = [
   },
   {
     path: '/contact',
+    source: ['pages/Contact.jsx', 'src/data/page-faqs.json', 'src/data/business.json'],
     file: 'contact.html',
     name: 'Contact',
     title: 'Contact DevEraXTech | Book a Project Meeting',
@@ -315,7 +322,8 @@ function faqPage(url, items = faq) {
   };
 }
 
-export function buildJsonLd(route) {
+// `dateModified` (YYYY-MM-DD) comes from git history at build time; see scripts/prerender.mjs.
+export function buildJsonLd(route, { dateModified } = {}) {
   const url = canonicalUrl(route.path);
   const pageType = route.path === '/about' ? 'AboutPage' : route.path === '/contact' ? 'ContactPage' : route.path === '/portfolio' ? 'CollectionPage' : 'WebPage';
   const graph = [organization(), website()];
@@ -330,7 +338,8 @@ export function buildJsonLd(route) {
     isPartOf: { '@id': WEBSITE_ID },
     about: { '@id': ORG_ID },
     primaryImageOfPage: { '@type': 'ImageObject', url: SITE.image },
-    inLanguage: 'en'
+    inLanguage: 'en',
+    ...(dateModified ? { dateModified } : {})
   };
   if (route.path !== '/') {
     const parent = route.parent && ROUTES.find(r => r.path === route.parent);
@@ -357,6 +366,9 @@ export function buildJsonLd(route) {
     }
     graph.push(faqPage(url, maintenance.faq));
   }
+  const PAGE_FAQ_KEYS = { '/': 'home', '/about': 'about', '/contact': 'contact', '/portfolio': 'portfolio' };
+  const faqKey = PAGE_FAQ_KEYS[route.path];
+  if (faqKey && pageFaqs[faqKey]?.length) graph.push(faqPage(url, pageFaqs[faqKey]));
   if (route.serviceId) {
     const svc = services.find(s => s.id === route.serviceId);
     const detail = serviceDetails[route.serviceId];
@@ -374,4 +386,4 @@ export function buildJsonLd(route) {
   return { '@context': 'https://schema.org', '@graph': graph };
 }
 
-export { services, faq, business, portfolio, serviceDetails };
+export { services, faq, business, portfolio, serviceDetails, pageFaqs };

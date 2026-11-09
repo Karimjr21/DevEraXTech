@@ -1,9 +1,17 @@
 import { useLocation } from 'react-router-dom';
 import business from '../../src/data/business.json';
+import { usePrerenderData } from '../../lib/prerenderData';
+import { getRouteMeta } from '../../src/seo';
+
+const formatDate = iso => new Date(`${iso}T12:00:00Z`).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 
 export default function Footer() {
   // The Contact page already links phone and email in its details card.
-  const onContact = useLocation().pathname === '/contact';
+  const { pathname } = useLocation();
+  const onContact = pathname === '/contact';
+  const route = getRouteMeta(pathname);
+  const lastmod = usePrerenderData('lastmod');
+  const updated = route.noindex ? undefined : lastmod?.[route.path];
   return (
     <footer className="footer-shell relative z-10">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10 pt-6 md:pt-7 pb-6 md:pb-7">
@@ -53,6 +61,11 @@ export default function Footer() {
           <span className="text-gold/30" aria-hidden>•</span>
           <span>{business.hours.label}</span>
         </address>
+        {updated && (
+          <p className="mt-2 text-center text-[0.72rem] text-gray-500/80">
+            Page updated <time dateTime={updated}>{formatDate(updated)}</time>
+          </p>
+        )}
       </div>
     </footer>
   );

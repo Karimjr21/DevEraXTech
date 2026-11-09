@@ -18,7 +18,6 @@ const { render, ROUTES, NOT_FOUND, SITE, buildJsonLd, canonicalUrl, services, fa
 const portfolio = JSON.parse(fs.readFileSync(path.join(root, 'src/data/portfolio.json'), 'utf8'));
 
 const template = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
-const prerenderData = { services, portfolio };
 const today = new Date().toISOString().slice(0, 10);
 
 // <lastmod> is the date a page's own source last changed, not the build date: a lastmod that
@@ -28,12 +27,19 @@ function lastModified(route) {
     ? [...route.source, 'src/seo.js']
     : [`pages/${route.path === '/' ? 'Home' : route.path.slice(1, 2).toUpperCase() + route.path.slice(2)}.jsx`, 'src/seo.js'];
   try {
+    // Files edited but not committed yet are about to ship with today's date.
+    const dirty = execFileSync('git', ['status', '--porcelain', '--', ...files], { cwd: root, encoding: 'utf8' }).trim();
+    if (dirty) return today;
     const date = execFileSync('git', ['log', '-1', '--format=%cs', '--', ...files], { cwd: root, encoding: 'utf8' }).trim();
     return /^\d{4}-\d{2}-\d{2}$/.test(date) ? date : today;
   } catch {
     return today;
   }
 }
+
+// One date per page, shared by sitemap <lastmod>, JSON-LD dateModified and the visible footer date.
+const lastmod = Object.fromEntries(ROUTES.map(r => [r.path, lastModified(r)]));
+const prerenderData = { services, portfolio, lastmod };
 
 const escAttr = s => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const escText = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -59,7 +65,8 @@ function headTags(route) {
     `<meta name="twitter:title" content="${escAttr(route.title)}" />`,
     `<meta name="twitter:description" content="${escAttr(route.description)}" />`,
     `<meta name="twitter:image" content="${escAttr(SITE.image)}" />`,
-    `<script type="application/ld+json" id="ld-json">${safeJson(buildJsonLd(route))}</script>`
+    `<link rel="alternate" type="application/rss+xml" title="${escAttr(SITE.name)}: services and work" href="${SITE.url}/feed.xml" />`,
+    `<script type="application/ld+json" id="ld-json">${safeJson(buildJsonLd(route, { dateModified: lastmod[route.path] }))}</script>`
   ];
   return tags.filter(Boolean).join('\n    ');
 }
@@ -88,7 +95,7 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${ROUTES.map(r => `  <url>
     <loc>${canonicalUrl(r.path)}</loc>
-    <lastmod>${lastModified(r)}</lastmod>
+    <lastmod>${lastmod[r.path]}</lastmod>
     <priority>${r.priority}</priority>${r.serviceId ? portfolio.filter(p => p.image && (serviceDetails[r.serviceId]?.work || []).includes(p.id)).map(p => `
     <image:image>
       <image:loc>${escText(p.image.startsWith('http') ? p.image : SITE.url + p.image)}</image:loc>
@@ -218,6 +225,56 @@ fs.writeFileSync(path.join(aiDir, 'summary.json'), JSON.stringify({
 }, null, 2));
 const allFaq = [...faq, ...services.flatMap(s => (serviceDetails[s.id]?.faq || []).map(f => ({ ...f, service: s.title, url: `${SITE.url}${servicePath(s)}` })))];
 fs.writeFileSync(path.join(aiDir, 'faq.json'), JSON.stringify(allFaq, null, 2));
+fs.writeFileSync(path.join(aiDir, 'service.json'), JSON.stringify({
+  provider: { name: SITE.name, url: `${SITE.url}/`, location: `${business.city}, ${business.country}`, contact: `${SITE.url}/contact` },
+  areasServed: business.areasServed.map(a => a.name),
+  languages: business.languages.map(l => l.name),
+  howToStart: `Book a meeting at ${SITE.url}/contact, call ${business.phoneDisplay} or email ${business.email}. Replies usually within one business day.`,
+  services: services.map(s => {
+    const d = serviceDetails[s.id] || {};
+    return {
+      id: s.id,
+      name: s.title,
+      category: s.group,
+      url: `${SITE.url}${servicePath(s)}`,
+      summary: s.summary,
+      includes: s.features,
+      ...(d.audience ? { bestFor: d.audience } : {}),
+      ...(d.stack ? { technology: d.stack } : {}),
+      startProject: `${SITE.url}/contact?service=${encodeURIComponent(s.title)}`,
+      lastUpdated: lastmod[servicePath(s)] || lastmod['/services']
+    };
+  })
+}, null, 2));
+
+// feed.xml: RSS of service pages and portfolio projects, newest first, for feed readers and AI discovery.
+const rfc822 = d => new Date(`${d}T09:00:00Z`).toUTCString();
+const feedItems = [
+  ...portfolio.map(p => ({ title: p.title, link: `${SITE.url}/portfolio#${p.id}`, description: p.description, date: lastmod['/portfolio'], category: p.category })),
+  ...ROUTES.filter(r => r.serviceId || r.path === '/maintenance').map(r => ({ title: r.title, link: canonicalUrl(r.path), description: r.description, date: lastmod[r.path], category: 'Services' }))
+].sort((a, b) => b.date.localeCompare(a.date));
+const feed = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>${escText(SITE.name)}: services and work</title>
+    <link>${SITE.url}/</link>
+    <description>${escText(SITE.description)}</description>
+    <language>en</language>
+    <lastBuildDate>${rfc822(feedItems[0]?.date || today)}</lastBuildDate>
+    <atom:link href="${SITE.url}/feed.xml" rel="self" type="application/rss+xml" />
+${feedItems.map(i => `    <item>
+      <title>${escText(i.title)}</title>
+      <link>${escText(i.link)}</link>
+      <guid isPermaLink="true">${escText(i.link)}</guid>
+      <description>${escText(i.description)}</description>
+      <category>${escText(i.category)}</category>
+      <pubDate>${rfc822(i.date)}</pubDate>
+    </item>`).join('\n')}
+  </channel>
+</rss>
+`;
+fs.writeFileSync(path.join(dist, 'feed.xml'), feed);
+
 fs.mkdirSync(path.join(dist, '.well-known'), { recursive: true });
 fs.writeFileSync(path.join(dist, '.well-known', 'ai.txt'), `# ${SITE.name} AI policy
 # Search, answer and AI assistant crawlers may read, summarize and cite this site.
@@ -226,6 +283,8 @@ Allow: /
 
 Summary: ${SITE.url}/ai/summary.json
 FAQ: ${SITE.url}/ai/faq.json
+Services: ${SITE.url}/ai/service.json
+Feed: ${SITE.url}/feed.xml
 LLMs: ${SITE.url}/llms.txt
 LLMs-Full: ${SITE.url}/llms-full.txt
 Sitemap: ${SITE.url}/sitemap.xml
@@ -233,4 +292,4 @@ Contact: ${business.email}
 `);
 
 fs.rmSync(ssrDir, { recursive: true, force: true });
-console.log('wrote sitemap.xml, robots.txt, llms.txt, ai/summary.json, ai/faq.json, .well-known/ai.txt');
+console.log('wrote sitemap.xml, robots.txt, llms.txt, ai/summary.json, ai/faq.json, ai/service.json, feed.xml, .well-known/ai.txt');

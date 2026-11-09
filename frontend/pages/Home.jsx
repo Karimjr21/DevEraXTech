@@ -1,4 +1,5 @@
 import { Suspense, lazy, useEffect, useRef, useState } from 'react';
+import pageFaqs from '../src/data/page-faqs.json';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import SectionWrapper from '../components/ui/SectionWrapper';
@@ -311,37 +312,12 @@ export default function Home() {
         <p className="text-[11px] tracking-[0.2em] uppercase text-gold/70">Before You Start</p>
         <h2 className="mt-2 text-xl md:text-2xl font-semibold text-gold leading-tight">Common questions before starting a website</h2>
         <div className="mt-5 space-y-5">
-          <div>
-            <h3 className="text-base font-semibold text-gray-100">Which platform is right for my website?</h3>
-            <p className="mt-1.5 text-sm text-gray-400 leading-relaxed">
-              It depends on your goals. Shopify suits brands that want a powerful, easy-to-manage online store. WordPress suits
-              businesses that publish and update content often. A custom-built website or landing page suits projects that need a
-              unique design, specific features or maximum performance. We recommend the right option during discovery.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-base font-semibold text-gray-100">What should I prepare before our first meeting?</h3>
-            <p className="mt-1.5 text-sm text-gray-400 leading-relaxed">
-              A short description of your business and goals, a few websites you like, and any brand assets you already have,
-              such as a logo or colors. If you are not sure about content or structure yet, that is fine: shaping it is part of
-              our discovery process.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-base font-semibold text-gray-100">Can I update the website myself after launch?</h3>
-            <p className="mt-1.5 text-sm text-gray-400 leading-relaxed">
-              Yes, when your project needs it. Our WordPress websites include full content management, Shopify stores come with
-              the Shopify admin for running your store, and our e-commerce websites include an admin dashboard. We choose the setup
-              that fits how your team prefers to work day to day.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-base font-semibold text-gray-100">Do you work with clients outside Egypt?</h3>
-            <p className="mt-1.5 text-sm text-gray-400 leading-relaxed">
-              Yes. Most of our work is remote, with clients across North America and the Gulf as well as Egypt. Meetings are
-              scheduled in Cairo time and shown in your local time when you book.
-            </p>
-          </div>
+          {pageFaqs.home.map(item => (
+            <div key={item.question}>
+              <h3 className="text-base font-semibold text-gray-100">{item.question}</h3>
+              <p className="mt-1.5 text-sm text-gray-400 leading-relaxed">{item.answer}</p>
+            </div>
+          ))}
         </div>
       </div>
 

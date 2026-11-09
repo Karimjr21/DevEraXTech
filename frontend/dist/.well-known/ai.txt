@@ -5,6 +5,8 @@ Allow: /
 
 Summary: https://deveraxtech.com/ai/summary.json
 FAQ: https://deveraxtech.com/ai/faq.json
+Services: https://deveraxtech.com/ai/service.json
+Feed: https://deveraxtech.com/feed.xml
 LLMs: https://deveraxtech.com/llms.txt
 LLMs-Full: https://deveraxtech.com/llms-full.txt
 Sitemap: https://deveraxtech.com/sitemap.xml

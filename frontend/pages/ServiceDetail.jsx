@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
+import { workSrcSet, HALF_SIZES } from '../lib/images';
 import SectionWrapper from '../components/ui/SectionWrapper';
 import { GoldOrnament } from '../components/fx/Ambience';
 import AnimatedButton from '../components/ui/AnimatedButton';
@@ -68,7 +69,7 @@ export default function ServiceDetail() {
               <span className="service-editorial-kicker-line" aria-hidden />
             </div>
             <h2 id="included-heading" className="service-editorial-title text-[1.55rem] md:text-[1.78rem] font-semibold tracking-tight leading-[1.16]">
-              What you get with {service.title}
+              Everything that comes with this service
             </h2>
             <p className="service-editorial-copy mt-4 leading-relaxed text-[0.96rem] md:text-[1rem] max-w-[58ch]">{service.description}</p>
             <p className="service-editorial-support mt-4 text-[0.8rem] md:text-[0.82rem] text-gray-400/78 uppercase tracking-[0.11em]">
@@ -113,7 +114,7 @@ export default function ServiceDetail() {
       <SectionWrapper id="how-it-works" className="about-card p-6 md:p-8 mt-16 md:mt-20" aria-labelledby="how-heading">
         <p className="text-[11px] tracking-[0.2em] uppercase text-gold/70">How It Works</p>
         <h2 id="how-heading" className="mt-2 text-xl md:text-2xl font-semibold text-gold leading-tight">
-          How we deliver {service.title}
+          How we deliver it, step by step
         </h2>
         <ol className="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 text-sm text-gray-300/90 leading-relaxed" role="list">
           {STEPS.map((step, i) => (
@@ -135,7 +136,7 @@ export default function ServiceDetail() {
             {work.map(p => (
               <article key={p.id} className="portfolio-card group">
                 <div className="portfolio-media-shell">
-                  <img src={p.image} alt={p.imageAlt || p.title} width={p.imageWidth} height={p.imageHeight} className="portfolio-media-img" loading="lazy" />
+                  <img src={p.image} srcSet={workSrcSet(p.image)} sizes={HALF_SIZES} alt={p.imageAlt || p.title} width={p.imageWidth} height={p.imageHeight} className="portfolio-media-img" loading="lazy" />
                   <div className="portfolio-media-overlay" aria-hidden />
                 </div>
                 <div className="p-5 sm:p-6 space-y-3">
@@ -158,7 +159,7 @@ export default function ServiceDetail() {
       <SectionWrapper id="faq" className="mt-16 md:mt-20" aria-labelledby="faq-heading">
         <p className="text-[0.72rem] uppercase tracking-[0.16em] text-gray-400/85 mb-3">Good to Know</p>
         <h2 id="faq-heading" className="text-2xl md:text-3xl font-semibold text-gold leading-tight mb-6 md:mb-8">
-          {service.title}: frequently asked questions
+          Frequently asked questions
         </h2>
         <div className="space-y-3 md:space-y-4">
           {detail.faq.map(item => (

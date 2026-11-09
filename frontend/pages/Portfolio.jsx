@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { workSrcSet, CARD_SIZES } from '../lib/images';
+import FaqList from '../components/ui/FaqList';
+import pageFaqs from '../src/data/page-faqs.json';
 import AnimatedButton from '../components/ui/AnimatedButton';
 import SectionWrapper from '../components/ui/SectionWrapper';
 import { GoldOrnament } from '../components/fx/Ambience';
@@ -137,14 +140,6 @@ export default function Portfolio() {
                 id={item.id}
                 className="portfolio-card portfolio-featured-card max-w-6xl mx-auto group cursor-pointer scroll-mt-28"
                 onClick={() => openItem(item)}
-                onKeyDown={(event) => {
-                  if (event.key === 'Enter' || event.key === ' ') {
-                    event.preventDefault();
-                    openItem(item);
-                  }
-                }}
-                role="button"
-                tabIndex={0}
               >
                 {!showPlaceholder ? (
                   <ShowcaseMedia item={item} onImageError={() => setImageFallbacks(prev => ({ ...prev, [item.id]: true }))} />
@@ -239,19 +234,13 @@ export default function Portfolio() {
                   id={item.id}
                   className={`portfolio-card group cursor-pointer scroll-mt-28 ${featured ? 'md:col-span-2' : ''}`}
                   onClick={() => openItem(item)}
-                  onKeyDown={(event) => {
-                    if (event.key === 'Enter' || event.key === ' ') {
-                      event.preventDefault();
-                      openItem(item);
-                    }
-                  }}
-                  role="button"
-                  tabIndex={0}
                 >
                   <div className={`portfolio-media-shell ${featured ? 'portfolio-media-shell--featured' : ''}`}>
                     {!showPlaceholder ? (
                       <img
                         src={item.image}
+                        srcSet={workSrcSet(item.image)}
+                        sizes={CARD_SIZES}
                         alt={item.imageAlt || item.title}
                         width={item.imageWidth}
                         height={item.imageHeight}
@@ -313,6 +302,12 @@ export default function Portfolio() {
         )}
         </>
         )}
+
+        <SectionWrapper id="faq" aria-labelledby="faq-heading" className="">
+        <p className="text-[0.72rem] uppercase tracking-[0.16em] text-gray-400/85 mb-3">Good to Know</p>
+        <h2 id="faq-heading" className="text-2xl md:text-3xl font-semibold text-gold leading-tight mb-6 md:mb-8">Questions about our work</h2>
+        <FaqList items={pageFaqs.portfolio} />
+      </SectionWrapper>
 
         <div className="portfolio-bottom-cta p-6 sm:p-7 md:p-8">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 md:gap-8">

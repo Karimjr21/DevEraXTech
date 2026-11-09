@@ -172,7 +172,7 @@ We are available every day from 9:00 AM to 5:00 PM Cairo time. You can reach us 
 
 ## Service details
 
-### Business & Corporate Website Design
+### Business & Corporate Website Design in Cairo
 
 URL: https://deveraxtech.com/services/business-websites
 
@@ -218,22 +218,22 @@ Yes. Every custom store includes an admin dashboard for products, categories, st
 
 URL: https://deveraxtech.com/services/shopify-stores
 
-Shopify gives you reliable hosting, checkout and order management out of the box. DevEraXTech adds what a template cannot: a bespoke design that matches your brand and product pages that are built to sell.
+Shopify gives you reliable hosting, checkout and order management out of the box. DevEraXTech adds what a template cannot: a bespoke look that matches your brand and product pages that are built to sell.
 
 We set up the store end to end, from theme design and product import to payments, shipping, apps and analytics, and hand it over with training so your team can run it.
 
 - Includes: Elegantly designed product pages; Seamless shopping cart experience; Secure, trusted payment integrations; Powerful Shopify admin & store control
 - Built for: Premium and luxury brands; Direct-to-consumer startups; Brands moving from a marketplace; Stores outgrowing a free theme
-- Technology: Shopify & Liquid; Custom Shopify themes; Shopify apps; Shopify Payments & regional gateways; Google Analytics & Meta pixel
+- Technology: Shopify & Liquid templating; Custom-built themes; Vetted app integrations; Shopify Payments & regional gateways; Google Analytics & Meta pixel
 
 **Do you build custom Shopify themes or use templates?**
-We design custom Shopify themes for brands that want a distinctive store, and customize premium themes when budget or launch date matters more. Either way the store is tailored to your products.
+We design custom themes for brands that want a distinctive storefront, and tailor premium templates when budget or launch date matters more. Either way the result is shaped around your products.
 
-**Can you migrate my store to Shopify?**
-Yes. We migrate products, customers and order history from WooCommerce, custom stores and other platforms, and set up redirects so you keep your search rankings.
+**Can you migrate my existing store to Shopify?**
+Yes. We move products, customers and order history from WooCommerce, custom builds and other platforms, and set up redirects so you keep your search rankings.
 
-**Will I be able to manage the Shopify store myself?**
-Yes. Shopify's admin lets you manage products, orders and discounts, and we include a handover session so your team is comfortable from day one.
+**Will I be able to run the store myself?**
+Yes. The built-in admin lets you manage products, orders and discounts, and we include a handover session so your team is comfortable from day one.
 
 ### Custom WordPress Website Development
 
@@ -244,19 +244,19 @@ WordPress runs a large share of the web because it makes content easy to manage.
 We design custom layouts, keep plugins to a vetted minimum, harden security and tune performance so the site stays fast and safe as your content grows.
 
 - Includes: Custom-designed pages & layouts; Fully responsive, high-performance builds; Secure plugins & advanced functionality; Powerful content management & admin control
-- Built for: Content-heavy businesses and blogs; Marketing teams that publish often; Organizations with several editors; Businesses already on WordPress
-- Technology: WordPress; Custom themes & blocks; WooCommerce (on request); Security hardening; Caching & image optimization
+- Built for: Content-heavy businesses and blogs; Marketing teams that publish often; Organizations with several editors; Businesses already running on the platform
+- Technology: WordPress core; Custom themes & blocks; WooCommerce (on request); Security hardening; Caching & image optimization
 
-**Is WordPress secure enough for a business website?**
+**Is WordPress secure enough for a company website?**
 Yes, when it is built and maintained properly. We use a small set of trusted plugins, harden logins and file permissions, and recommend a care plan for ongoing updates and backups.
 
-**Will my WordPress website be fast?**
+**Will my new site be fast?**
 Yes. We build lightweight custom themes, optimize images and set up caching so pages load quickly and pass Google's Core Web Vitals.
 
 **Can you fix or redesign an existing WordPress site?**
-Yes. We redesign existing WordPress websites, clean up plugins and speed problems, and can take over maintenance after a short review.
+Yes. We refresh existing sites, clean up plugins and speed problems, and can take over maintenance after a short review.
 
-### Portfolio Website Design for Creatives & Developers
+### Portfolio Website Design for Creatives
 
 URL: https://deveraxtech.com/services/portfolio-websites
 
@@ -319,20 +319,20 @@ We mainly build on the MERN stack: MongoDB, Express.js, React and Node.js, with 
 **Have you built a web application with multiple user roles?**
 Yes. Nilora Estates, a real estate platform in Cairo, has separate dashboards for buyers, agents and admins, each with its own permissions.
 
-### iOS & Android Mobile App Development
+### iOS & Android App Development (React Native)
 
 URL: https://deveraxtech.com/services/mobile-apps
 
 DevEraXTech builds mobile apps for iOS and Android with React Native, so one shared codebase powers both platforms. You launch on both stores sooner and maintain one app instead of two.
 
-Apps are designed to feel native, with smooth navigation, push notifications and secure accounts, and we support you through App Store and Google Play review and release.
+Every app is designed to feel at home on the phone, with smooth navigation, push notifications and secure accounts, and we support you through App Store and Google Play review and release.
 
 - Includes: iOS & Android from one codebase; Native-feeling interfaces & navigation; Push notifications; Secure sign-in & user accounts; App Store & Google Play release support
 - Built for: Startups launching an app; Businesses adding a customer app; Companies with an existing web platform; Teams replacing an outdated app
 - Technology: React Native; Expo; Node.js APIs; Push notifications; App Store & Google Play publishing
 
-**Why build with React Native instead of separate native apps?**
-React Native lets one codebase run on both iOS and Android, which lowers cost and keeps features in sync across platforms while still delivering a native look and feel.
+**Why build with React Native instead of two separate apps?**
+React Native lets one codebase run on both iOS and Android, which lowers cost and keeps features in sync across platforms while still delivering a platform-true look and feel.
 
 **Do you publish the app to the App Store and Google Play?**
 Yes. We prepare store listings, screenshots and builds, and guide you through Apple and Google review until the app is live.
@@ -355,13 +355,13 @@ Each app ships with a proper installer and automatic updates, and can sync with 
 **When should I choose desktop software over a web app?**
 Desktop software is the better choice when your team needs to work offline, process large local files, connect to printers, scanners or other devices, or wants an app that opens instantly on their own machine.
 
-**Does the desktop app update automatically?**
+**Does the app update automatically?**
 Yes. We ship a signed Windows installer with automatic updates so every user stays on the latest version.
 
-**Can the desktop app sync with my website or web app?**
+**Can the app sync with my website or web app?**
 Yes. The app can sync data with your web systems through a secure API, and keep working offline until a connection returns.
 
-### AI Integration & Chatbot Development
+### AI Integrations & Chatbot Development
 
 URL: https://deveraxtech.com/services/ai-integrations
 
@@ -382,16 +382,16 @@ Yes. We build WhatsApp assistants on the WhatsApp Business API that reply instan
 **Will the AI give wrong answers about my business?**
 We ground answers in your own approved content, limit the assistant to your topics and route anything uncertain to a person, which keeps answers accurate and on brand.
 
-### Payment Gateway & Business Integrations
+### Paymob, Fawry & Stripe Payment Integration
 
 URL: https://deveraxtech.com/services/payment-business-integrations
 
-Your website or app works best when it talks to the rest of your business. DevEraXTech integrates payment gateways such as Paymob, Fawry and Stripe, and connects WhatsApp Business, CRMs and accounting tools so data moves without copy and paste.
+Your website or app works best when it talks to the rest of your operations. DevEraXTech integrates payment gateways such as Paymob, Fawry and Stripe, and connects WhatsApp Business, CRMs and accounting tools so data moves without copy and paste.
 
 Payments are built with secure, verified callbacks so orders are only confirmed when the money has actually arrived.
 
 - Includes: Paymob & Fawry payments; Stripe payments; WhatsApp Business; CRM integrations; Accounting tool integrations
-- Built for: Online stores in Egypt and the Gulf; Subscription and booking businesses; Companies syncing sales and accounting; Teams selling through WhatsApp
+- Built for: Online stores in Egypt and the Gulf; Subscription and booking companies; Teams syncing sales and accounting; Sales teams selling through WhatsApp
 - Technology: Paymob; Fawry; Stripe; WhatsApp Business API; CRM & accounting APIs
 
 **Which payment gateways do you integrate?**
@@ -403,7 +403,7 @@ Yes. We add checkout and payment links to existing websites and apps, with secur
 **Can you connect my website to my CRM or accounting software?**
 Yes. We connect forms, orders and customers to CRMs and accounting tools so new leads and sales appear there automatically.
 
-### Technical SEO & Website Performance Optimization
+### Technical SEO & Page Speed Optimization
 
 URL: https://deveraxtech.com/services/seo-performance-optimization
 
@@ -424,7 +424,7 @@ Core Web Vitals are Google's measures of real-user experience: Largest Contentfu
 **Can you help my business appear in ChatGPT, Perplexity or Google AI Overviews?**
 Yes. We apply generative engine optimization (GEO): structured data, llms.txt, answer-first content, clear entity information and AI crawler access, which make your site easier for AI assistants to understand and cite.
 
-### Website Redesign & Platform Migration
+### Website Redesign & Migration Services
 
 URL: https://deveraxtech.com/services/redesigns-migrations
 
@@ -445,23 +445,23 @@ Yes. We migrate content, products, customers and media to Shopify, WordPress or 
 **How much downtime is there during a migration?**
 We build and test the new site on a staging address, then switch DNS at a quiet time, so most launches have little to no visible downtime.
 
-### UI/UX Design in Figma
+### UI/UX Design & Figma Prototypes
 
 URL: https://deveraxtech.com/services/ui-ux-design
 
-Good software starts with a clear design. DevEraXTech provides UI/UX design in Figma for teams that already have developers: user flows, wireframes, high-fidelity screens and interactive prototypes you can test with real users.
+Good software starts with clear thinking about the people using it. DevEraXTech provides UI/UX work in Figma for teams that already have developers: user flows, wireframes, high-fidelity screens and interactive prototypes you can test with real users.
 
-We deliver a reusable design system and a developer-ready handoff with components, spacing, states and breakpoints, so what gets built matches what was designed.
+We deliver a reusable component library and a developer-ready handoff covering spacing, states and breakpoints, so what gets built matches what was agreed.
 
 - Includes: User flows & wireframes; High-fidelity screens; Interactive prototypes; Design systems & components; Developer-ready handoff
-- Built for: Startups with in-house developers; Product teams redesigning an app; Agencies needing design support; Founders preparing an investor demo
-- Technology: Figma; Interactive prototypes; Design systems & components; Accessibility (WCAG) checks; Developer handoff specs
+- Built for: Startups with in-house developers; Product teams redesigning an app; Agencies that need extra UX capacity; Founders preparing an investor demo
+- Technology: Figma; Interactive prototypes; Component libraries & tokens; Accessibility (WCAG) checks; Developer handoff specs
 
 **What do I receive from a UI/UX design project?**
-You receive user flows, wireframes, high-fidelity Figma screens, an interactive prototype, a design system with reusable components and a handoff file your developers can build from.
+You receive user flows, wireframes, high-fidelity Figma screens, an interactive prototype, a reusable component library and a handoff file your developers can build from.
 
-**Do you only design, or can you also build it?**
-Both. This service is design only for teams with their own developers, but we can also build the website, web app or mobile app from the same designs.
+**Do you only create the screens, or can you also build them?**
+Both. This service covers the UI/UX work for teams with their own developers, but we can also build the website, web app or mobile app from the same files.
 
-**Do your designs consider accessibility?**
-Yes. We check color contrast, text sizes, touch targets and focus states against WCAG guidelines during design, not after.
+**Do your interfaces consider accessibility?**
+Yes. We check color contrast, text sizes, touch targets and focus states against WCAG guidelines from the first wireframe, not after.

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { SITE, buildJsonLd, canonicalUrl, getRouteMeta } from '../src/seo';
+import { usePrerenderData } from '../lib/prerenderData';
 
 function setMeta(attr, key, content) {
   let el = document.head.querySelector(`meta[${attr}="${key}"]`);
@@ -16,6 +17,7 @@ function setMeta(attr, key, content) {
 // The initial values are written into each prerendered HTML file at build time.
 export default function SeoManager() {
   const { pathname } = useLocation();
+  const lastmod = usePrerenderData('lastmod');
 
   useEffect(() => {
     const route = getRouteMeta(pathname);
@@ -39,8 +41,8 @@ export default function SeoManager() {
     canonical.href = url;
 
     const ld = document.getElementById('ld-json');
-    if (ld) ld.textContent = JSON.stringify(buildJsonLd(route));
-  }, [pathname]);
+    if (ld) ld.textContent = JSON.stringify(buildJsonLd(route, { dateModified: lastmod?.[route.path] }));
+  }, [pathname, lastmod]);
 
   return null;
 }

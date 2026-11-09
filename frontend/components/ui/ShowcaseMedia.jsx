@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { workSrcSet, SHOWCASE_SIZES } from '../../lib/images';
 
 // Featured project preview: the screenshot sits in a gold-framed browser window on a lit
 // stage. The frame tilts toward the pointer, the image drifts slowly and a light sweep
@@ -62,6 +63,8 @@ export default function ShowcaseMedia({ item, onImageError }) {
         <div className="showcase-screen">
           <img
             src={item.image}
+            srcSet={workSrcSet(item.image)}
+            sizes={SHOWCASE_SIZES}
             alt={item.imageAlt || item.title}
             width={item.imageWidth}
             height={item.imageHeight}
@@ -74,7 +77,7 @@ export default function ShowcaseMedia({ item, onImageError }) {
           <span className="showcase-vignette" aria-hidden />
         </div>
         <div className="showcase-reflection" aria-hidden>
-          <img src={item.image} alt="" loading="lazy" decoding="async" />
+          <img src={item.image} srcSet={workSrcSet(item.image)} sizes={SHOWCASE_SIZES} alt="" width={item.imageWidth} height={item.imageHeight} loading="lazy" decoding="async" />
         </div>
       </div>
 

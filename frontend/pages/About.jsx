@@ -1,4 +1,6 @@
 import AnimatedButton from '../components/ui/AnimatedButton';
+import FaqList from '../components/ui/FaqList';
+import pageFaqs from '../src/data/page-faqs.json';
 import SectionWrapper from '../components/ui/SectionWrapper';
 import { GoldOrnament } from '../components/fx/Ambience';
 import business from '../src/data/business.json';
@@ -153,13 +155,13 @@ export default function About() {
 
         <div className="relative z-[1] grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-12 items-end">
           <div className="space-y-6">
-            <span className="chip-lux inline-flex items-center rounded-full px-4 py-2 text-[11px] tracking-[0.2em] uppercase">
+            <h1 className="chip-lux inline-flex items-center rounded-full px-4 py-2 font-sans text-[11px] font-normal tracking-[0.2em] uppercase">
               About DevEraXTech
-            </span>
-
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold gold-gradient-text leading-[1.09] tracking-tight max-w-3xl">
-              We build premium digital products with security at the core.
             </h1>
+
+            <p className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold gold-gradient-text leading-[1.09] tracking-[-0.02em] max-w-3xl">
+              We build premium digital products with security at the core.
+            </p>
 
             <p className="text-base md:text-lg text-gray-300/90 max-w-2xl leading-relaxed">
               DevEraXTech delivers future-grade software with disciplined engineering, strong design direction, and dependable execution.
@@ -400,6 +402,12 @@ export default function About() {
             </article>
           ))}
         </div>
+      </SectionWrapper>
+
+      <SectionWrapper id="faq" aria-labelledby="faq-heading" className="">
+        <p className="text-[0.72rem] uppercase tracking-[0.16em] text-gray-400/85 mb-3">Good to Know</p>
+        <h2 id="faq-heading" className="text-2xl md:text-3xl font-semibold text-gold leading-tight mb-6 md:mb-8">Questions about DevEraXTech</h2>
+        <FaqList items={pageFaqs.about} />
       </SectionWrapper>
 
       <SectionWrapper id="about-cta" className="about-card about-card--cta relative overflow-hidden p-7 sm:p-9 md:p-10">

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DevEraXTech: services and work</title>
+    <link>https://deveraxtech.com/</link>
+    <description>DevEraXTech is a web design and development studio based in Cairo, Egypt, building secure, scalable, pixel-perfect websites, online stores, web and mobile apps, desktop software and AI integrations, with ongoing care plans, for clients in Canada, the United States, the UAE, Saudi Arabia, Kuwait, Qatar and Egypt.</description>
+    <language>en</language>
+    <lastBuildDate>Mon, 09 Nov 2026 09:00:00 GMT</lastBuildDate>
+    <atom:link href="https://deveraxtech.com/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nilora Estates: Luxury Real Estate Platform, Cairo</title>
+      <link>https://deveraxtech.com/portfolio#nilora-estates</link>
+      <guid isPermaLink="true">https://deveraxtech.com/portfolio#nilora-estates</guid>
+      <description>A full MERN stack (MongoDB, Express, React, Node.js) platform for Nilora Estates, a private residential agency selling villas, penthouses and coastal homes across Cairo and the Egyptian coast. It has a cinematic public site plus three role-based dashboards: buyers save homes and book private viewings, agents manage their listings and leads, and admins control properties, advisors, users and content.</description>
+      <category>Real Estate Web App</category>
+      <pubDate>Mon, 09 Nov 2026 09:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Karim Ahmed: Full-Stack Developer Portfolio Website</title>
+      <link>https://deveraxtech.com/portfolio#karim-ahmed-portfolio</link>
+      <guid isPermaLink="true">https://deveraxtech.com/portfolio#karim-ahmed-portfolio</guid>
+      <description>A personal portfolio website for Karim Ahmed, a full-stack MERN developer and the founder of DevEraXTech, based in Cairo. Its cinematic, darkroom and film-roll design presents featured projects such as a university events and facilities management platform, along with skills, work experience, private one-on-one teaching sessions and a contact form. It is built to be secure, accessible and fast, with no third-party trackers.</description>
+      <category>Portfolio Website</category>
+      <pubDate>Mon, 09 Nov 2026 09:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Website Maintenance &amp; Care Plans | DevEraXTech</title>
+      <link>https://deveraxtech.com/maintenance</link>
+      <guid isPermaLink="true">https://deveraxtech.com/maintenance</guid>
+      <description>Website and app care plans from DevEraXTech in Cairo: updates, security patches, backups, uptime monitoring, performance checks and priority support.</description>
+      <category>Services</category>
+      <pubDate>Mon, 09 Nov 2026 09:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Business &amp; Corporate Website Design in Cairo | DevEraXTech</title>
+      <link>https://deveraxtech.com/services/business-websites</link>
+      <guid isPermaLink="true">https://deveraxtech.com/services/business-websites</guid>
+      <description>Custom business and corporate websites for companies, clinics, schools and startups: fast, secure, SEO-ready and easy to update. Built by DevEraXTech in Cairo.</description>
+      <category>Services</category>
+      <pubDate>Mon, 09 Nov 2026 09:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>E-Commerce Website Development | DevEraXTech, Cairo</title>
+      <link>https://deveraxtech.com/services/ecommerce-websites</link>
+      <guid isPermaLink="true">https://deveraxtech.com/services/ecommerce-websites</guid>
+      <description>Custom online stores with product pages, cart, checkout, Paymob, Fawry or Stripe payments and an admin dashboard. E-commerce development by DevEraXTech.</description>
+      <category>Services</category>
+      <pubDate>Mon, 09 Nov 2026 09:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Shopify Store Design &amp; Development | DevEraXTech</title>
+      <link>https://deveraxtech.com/services/shopify-stores</link>
+      <guid isPermaLink="true">https://deveraxtech.com/services/shopify-stores</guid>
+      <description>Bespoke Shopify stores for premium brands: custom theme design, product pages, seamless cart, trusted payments and full store setup by DevEraXTech in Cairo.</description>
+      <category>Services</category>
+      <pubDate>Mon, 09 Nov 2026 09:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Custom WordPress Website Development | DevEraXTech</title>
+      <link>https://deveraxtech.com/services/wordpress-websites</link>
+      <guid isPermaLink="true">https://deveraxtech.com/services/wordpress-websites</guid>
+      <description>Custom WordPress websites with bespoke layouts, fast responsive builds, secure plugins and easy content management. WordPress development by DevEraXTech.</description>
+      <category>Services</category>
+      <pubDate>Mon, 09 Nov 2026 09:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Portfolio Website Design for Creatives | DevEraXTech</title>
+      <link>https://deveraxtech.com/services/portfolio-websites</link>
+      <guid isPermaLink="true">https://deveraxtech.com/services/portfolio-websites</guid>
+      <description>Custom portfolio websites for designers, photographers, developers and agencies: high-visual showcases, case studies, fast loading and SEO. See live examples.</description>
+      <category>Services</category>
+      <pubDate>Mon, 09 Nov 2026 09:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>High-Conversion Landing Page Design | DevEraXTech</title>
+      <link>https://deveraxtech.com/services/landing-pages</link>
+      <guid isPermaLink="true">https://deveraxtech.com/services/landing-pages</guid>
+      <description>Landing pages for marketing campaigns, app and product launches and service promotions: one clear message, fast load and tracking. Designed by DevEraXTech.</description>
+      <category>Services</category>
+      <pubDate>Mon, 09 Nov 2026 09:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Custom Web Application Development | DevEraXTech</title>
+      <link>https://deveraxtech.com/services/custom-web-applications</link>
+      <guid isPermaLink="true">https://deveraxtech.com/services/custom-web-applications</guid>
+      <description>Custom web apps built around your business: CRMs, booking systems, client portals and dashboards with role-based access. MERN stack development in Cairo.</description>
+      <category>Services</category>
+      <pubDate>Mon, 09 Nov 2026 09:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>iOS &amp; Android App Development (React Native) | DevEraXTech</title>
+      <link>https://deveraxtech.com/services/mobile-apps</link>
+      <guid isPermaLink="true">https://deveraxtech.com/services/mobile-apps</guid>
+      <description>Cross-platform iOS and Android apps built with React Native from one codebase: native feel, push notifications, secure sign-in and App Store release support.</description>
+      <category>Services</category>
+      <pubDate>Mon, 09 Nov 2026 09:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Windows Desktop Software Development | DevEraXTech</title>
+      <link>https://deveraxtech.com/services/desktop-software</link>
+      <guid isPermaLink="true">https://deveraxtech.com/services/desktop-software</guid>
+      <description>Custom Windows desktop apps like Klozcrew: offline-capable workflows, local file and device access, installers, auto-updates and sync with your web systems.</description>
+      <category>Services</category>
+      <pubDate>Mon, 09 Nov 2026 09:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>AI Integrations &amp; Chatbot Development | DevEraXTech</title>
+      <link>https://deveraxtech.com/services/ai-integrations</link>
+      <guid isPermaLink="true">https://deveraxtech.com/services/ai-integrations</guid>
+      <description>AI integrations for business: website chatbots, WhatsApp AI assistants, automated lead capture and follow-up, and document processing connected to your tools.</description>
+      <category>Services</category>
+      <pubDate>Mon, 09 Nov 2026 09:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Paymob, Fawry &amp; Stripe Payment Integration | DevEraXTech</title>
+      <link>https://deveraxtech.com/services/payment-business-integrations</link>
+      <guid isPermaLink="true">https://deveraxtech.com/services/payment-business-integrations</guid>
+      <description>Connect your website or app to Paymob, Fawry, Stripe, WhatsApp Business, CRMs and accounting tools. Secure payment and business integrations by DevEraXTech.</description>
+      <category>Services</category>
+      <pubDate>Mon, 09 Nov 2026 09:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Technical SEO &amp; Page Speed Optimization | DevEraXTech</title>
+      <link>https://deveraxtech.com/services/seo-performance-optimization</link>
+      <guid isPermaLink="true">https://deveraxtech.com/services/seo-performance-optimization</guid>
+      <description>Technical SEO audits, Core Web Vitals and page speed fixes, schema markup and on-page SEO that help your website load faster and rank on Google and AI search.</description>
+      <category>Services</category>
+      <pubDate>Mon, 09 Nov 2026 09:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Website Redesign &amp; Migration Services | DevEraXTech</title>
+      <link>https://deveraxtech.com/services/redesigns-migrations</link>
+      <guid isPermaLink="true">https://deveraxtech.com/services/redesigns-migrations</guid>
+      <description>Modern website redesigns and careful migrations to Shopify, WordPress or a custom build, with content transfer, SEO-safe redirects and minimal downtime.</description>
+      <category>Services</category>
+      <pubDate>Mon, 09 Nov 2026 09:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>UI/UX Design &amp; Figma Prototypes | DevEraXTech</title>
+      <link>https://deveraxtech.com/services/ui-ux-design</link>
+      <guid isPermaLink="true">https://deveraxtech.com/services/ui-ux-design</guid>
+      <description>Figma UI/UX design for teams with their own developers: user flows, wireframes, high-fidelity screens, interactive prototypes, design systems and clean handoff.</description>
+      <category>Services</category>
+      <pubDate>Mon, 09 Nov 2026 09:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

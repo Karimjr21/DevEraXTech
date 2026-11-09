@@ -1,0 +1,74 @@
+{
+  "home": [
+    {
+      "question": "Which platform is right for my website?",
+      "answer": "It depends on your goals. Shopify suits brands that want a powerful, easy-to-manage online store. WordPress suits businesses that publish and update content often. A custom-built website or landing page suits projects that need a unique design, specific features or maximum performance. We recommend the right option during discovery."
+    },
+    {
+      "question": "What should I prepare before our first meeting?",
+      "answer": "A short description of your business and goals, a few websites you like, and any brand assets you already have, such as a logo or colors. If you are not sure about content or structure yet, that is fine: shaping it is part of our discovery process."
+    },
+    {
+      "question": "Can I update the website myself after launch?",
+      "answer": "Yes, when your project needs it. Our WordPress websites include full content management, Shopify stores come with the Shopify admin for running your store, and our e-commerce websites include an admin dashboard. We choose the setup that fits how your team prefers to work day to day."
+    },
+    {
+      "question": "Do you work with clients outside Egypt?",
+      "answer": "Yes. Most of our work is remote, with clients across North America and the Gulf as well as Egypt. Meetings are scheduled in Cairo time and shown in your local time when you book."
+    }
+  ],
+  "about": [
+    {
+      "question": "Who founded DevEraXTech?",
+      "answer": "DevEraXTech was founded in 2024 in Cairo, Egypt by Karim Ahmed, a full-stack MERN developer (karim.deveraxtech.com), and co-founder Loay Mohamed."
+    },
+    {
+      "question": "What makes DevEraXTech different from other web studios?",
+      "answer": "Security is built in from the first architecture decision rather than added at the end, every interface is designed to be pixel-perfect on every screen size, and each project is treated as a long-term digital asset with ongoing care plans available after launch."
+    },
+    {
+      "question": "Do you work with startups or only established companies?",
+      "answer": "Both. We work with startups launching a first product, growing businesses replacing an outdated site, and established companies that need custom software, integrations or a redesign."
+    },
+    {
+      "question": "Do you work remotely with international clients?",
+      "answer": "Yes. We are based in Cairo and work remotely with clients in Canada, the United States, the United Arab Emirates, Saudi Arabia, Kuwait, Qatar and Egypt, in Arabic, English or German."
+    }
+  ],
+  "contact": [
+    {
+      "question": "How do I book a meeting with DevEraXTech?",
+      "answer": "Fill in the form on this page with your name, email, phone number, the service you need and a short message, and pick a preferred date and time in Cairo time. You can also call +20 100 001 6216 or email deveraxtech@gmail.com."
+    },
+    {
+      "question": "How fast will DevEraXTech reply?",
+      "answer": "Most enquiries receive a reply within one business day. We are available every day from 9:00 AM to 5:00 PM Cairo time."
+    },
+    {
+      "question": "What happens after I send the form?",
+      "answer": "We read your message and reply, usually within one business day. If you picked a meeting time, we confirm it or suggest the nearest available slot in Cairo time. On the call we discuss your goals, content and timeline, then send a clear scope with milestones."
+    },
+    {
+      "question": "What should I include in my message to DevEraXTech?",
+      "answer": "Tell us what you want to build, who it is for, any websites you like, your ideal launch date and a rough budget if you have one. If you are not sure yet, a short description of your business is enough to start."
+    }
+  ],
+  "portfolio": [
+    {
+      "question": "What kind of projects has DevEraXTech built?",
+      "answer": "Our work includes Nilora Estates, a MERN stack real estate platform in Cairo with buyer, agent and admin dashboards, and karim.deveraxtech.com, a cinematic portfolio website for full-stack developer Karim Ahmed, alongside business websites, online stores and landing pages."
+    },
+    {
+      "question": "Which technologies does DevEraXTech use?",
+      "answer": "We mainly build with React and Node.js, using MongoDB and Express.js for full-stack MERN web applications, React Native for mobile apps, and Shopify or WordPress when a store or content-heavy site is the better fit."
+    },
+    {
+      "question": "Can I see more examples relevant to my industry?",
+      "answer": "Yes. Tell us about your project through the contact page and we will share the examples and approaches that are most relevant to your industry."
+    },
+    {
+      "question": "Can you build a project like these for my business?",
+      "answer": "Yes. Each project on this page started with a short discovery call. Book a meeting and we will map out the pages, features, timeline and budget for your version."
+    }
+  ]
+}

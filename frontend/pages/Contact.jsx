@@ -1,4 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
+import FaqList from '../components/ui/FaqList';
+import pageFaqs from '../src/data/page-faqs.json';
 import { useLocation } from 'react-router-dom';
 import AnimatedButton from '../components/ui/AnimatedButton';
 import SectionWrapper from '../components/ui/SectionWrapper';
@@ -254,18 +256,27 @@ export default function Contact() {
           <GoldOrnament className="page-ornament" />
           <h1 className="text-4xl md:text-5xl font-bold gold-gradient-text leading-[1.1]">Contact DevEraXTech</h1>
           <p className="text-sm md:text-base text-gray-300/90 leading-relaxed max-w-2xl">
+            Book a meeting with DevEraXTech, a web design and development studio in {business.city}, {business.country}. Call{' '}
+            <a href={`tel:${business.phoneE164}`} className="text-gold hover:underline underline-offset-4">{business.phoneDisplay}</a>, email{' '}
+            <a href={`mailto:${business.email}`} className="text-gold hover:underline underline-offset-4">{business.email}</a> or use the form
+            below. We are available {business.hours.label.charAt(0).toLowerCase() + business.hours.label.slice(1)} and usually reply within one business day.
+          </p>
+          <p className="text-sm md:text-base text-gray-400 leading-relaxed max-w-2xl">
             Let&apos;s discuss your project goals, technical requirements, and the right path to a secure premium delivery.
           </p>
         </div>
 
         <div className="grid lg:grid-cols-[minmax(0,1.06fr)_minmax(0,0.94fr)] gap-6 xl:gap-8 items-start">
           <div className="contact-card min-w-0 p-6 sm:p-7 md:p-8">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6" aria-label="Request a meeting with DevEraXTech">
               <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
                 <div className="min-w-0">
-                  <label className="block text-sm mb-2 text-gray-300">Name</label>
+                  <label htmlFor="contact-name" className="block text-sm mb-2 text-gray-300">Name</label>
                   <input
                     required
+                    id="contact-name"
+                    name="name"
+                    autoComplete="name"
                     value={form.name}
                   maxLength={200}
                     onChange={e=>{ setForm({...form,name:e.target.value}); setErrors({...errors, name: ''}); }}
@@ -275,10 +286,13 @@ export default function Contact() {
                   {errors.name && <p className="mt-1.5 text-xs text-red-400">{errors.name}</p>}
                 </div>
                 <div className="min-w-0">
-                  <label className="block text-sm mb-2 text-gray-300">Email</label>
+                  <label htmlFor="contact-email" className="block text-sm mb-2 text-gray-300">Email</label>
                   <input
                     required
                     type="email"
+                    id="contact-email"
+                    name="email"
+                    autoComplete="email"
                     value={form.email}
                   maxLength={254}
                     onChange={e=>{ setForm({...form,email:e.target.value}); setErrors({...errors, email: ''}); }}
@@ -291,9 +305,13 @@ export default function Contact() {
 
               <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
                 <div className="min-w-0">
-                  <label className="block text-sm mb-2 text-gray-300">Phone Number</label>
+                  <label htmlFor="contact-phone" className="block text-sm mb-2 text-gray-300">Phone Number</label>
                   <input
                     required
+                    id="contact-phone"
+                    name="phone"
+                    type="tel"
+                    autoComplete="tel"
                     value={form.phone}
                   maxLength={50}
                     onChange={e=>{ setForm({...form,phone:e.target.value}); setErrors({...errors, phone: ''}); }}
@@ -303,9 +321,11 @@ export default function Contact() {
                   {errors.phone && <p className="mt-1.5 text-xs text-red-400">{errors.phone}</p>}
                 </div>
                 <div className="min-w-0">
-                  <label className="block text-sm mb-2 text-gray-300">Service</label>
+                  <label htmlFor="contact-service" className="block text-sm mb-2 text-gray-300">Service</label>
                   <select
                     required
+                    id="contact-service"
+                    name="service"
                     value={form.service}
                     onChange={e=>{ setForm({...form,service:e.target.value}); setErrors({...errors, service: ''}); }}
                     className={`${fieldBase} bg-transparent ${errors.service ? 'ring-1 ring-red-500 border-red-500' : ''}`}
@@ -329,9 +349,11 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="block text-sm mb-2 text-gray-300">Subject</label>
+                <label htmlFor="contact-subject" className="block text-sm mb-2 text-gray-300">Subject</label>
                 <input
-                  value={form.subject}
+                  id="contact-subject"
+                    name="subject"
+                    value={form.subject}
                   maxLength={200}
                   onChange={e=>setForm({...form,subject:e.target.value})}
                   placeholder="Subject (optional)"
@@ -342,25 +364,28 @@ export default function Contact() {
               <div className="contact-card-subpanel p-4 sm:p-5 space-y-4">
                 <div className="grid md:grid-cols-2 gap-4 md:gap-5">
                   <div className="min-w-0">
-                    <label className="block text-sm mb-2 text-gray-300">Preferred Date</label>
+                    <label htmlFor="contact-date" className="block text-sm mb-2 text-gray-300">Preferred Date</label>
                     <input
                       type="date"
                       min={minDate}
-                      value={form.meetingDate}
+                      id="contact-date"
+                    name="meetingDate"
+                    value={form.meetingDate}
                       onChange={e=>setForm({...form, meetingDate:e.target.value})}
                       className={fieldBase}
                     />
                     {isPastSelectedDate && <p className="mt-1.5 text-xs text-red-400">Preferred date cannot be in the past.</p>}
                   </div>
                   <div className="min-w-0">
-                    <label className="block text-sm mb-2 text-gray-300">
+                    <p id="contact-time-label" className="block text-sm mb-2 text-gray-300">
                       Preferred Time <span className="text-gray-500">(Cairo time)</span>
-                    </label>
-                    <div className="flex flex-wrap gap-2.5">
+                    </p>
+                    <div className="flex flex-wrap gap-2.5" role="group" aria-labelledby="contact-time-label">
                       {timeSlots.map(t => (
                         <button
                           key={t}
                           type="button"
+                          aria-pressed={form.meetingTime===t}
                           disabled={isTimeSlotDisabled(t)}
                           onClick={() => {
                             if (isTimeSlotDisabled(t)) return;
@@ -387,11 +412,13 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="block text-sm mb-2 text-gray-300">Message</label>
+                <label htmlFor="contact-message" className="block text-sm mb-2 text-gray-300">Message</label>
                 <textarea
                   required
                   rows={6}
-                  value={form.message}
+                  id="contact-message"
+                    name="message"
+                    value={form.message}
                   maxLength={4500}
                   onChange={e=>{ setForm({...form,message:e.target.value}); setErrors({...errors, message: ''}); }}
                   placeholder="Tell us about your project goals, timeline, and priorities."
@@ -488,6 +515,11 @@ export default function Contact() {
             </div>
           </aside>
         </div>
+      </SectionWrapper>
+      <SectionWrapper id="faq" aria-labelledby="faq-heading" className="mt-16 md:mt-20">
+        <p className="text-[0.72rem] uppercase tracking-[0.16em] text-gray-400/85 mb-3">Good to Know</p>
+        <h2 id="faq-heading" className="text-2xl md:text-3xl font-semibold text-gold leading-tight mb-6 md:mb-8">Questions about getting in touch</h2>
+        <FaqList items={pageFaqs.contact} />
       </SectionWrapper>
     {status && (
       <div className={`fixed bottom-6 right-6 px-4 py-3 rounded-lg shadow-lg glass border ${status.type==='success' ? 'border-green-500 text-green-300' : 'border-red-500 text-red-300'}`}>

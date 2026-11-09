@@ -1,6 +1,6 @@
 {
   "business-websites": {
-    "h1": "Business & Corporate Website Design",
+    "h1": "Business & Corporate Website Design in Cairo",
     "seoTitle": "Business & Corporate Website Design in Cairo | DevEraXTech",
     "seoDescription": "Custom business and corporate websites for companies, clinics, schools and startups: fast, secure, SEO-ready and easy to update. Built by DevEraXTech in Cairo.",
     "intro": [
@@ -90,7 +90,7 @@
     "seoTitle": "Shopify Store Design & Development | DevEraXTech",
     "seoDescription": "Bespoke Shopify stores for premium brands: custom theme design, product pages, seamless cart, trusted payments and full store setup by DevEraXTech in Cairo.",
     "intro": [
-      "Shopify gives you reliable hosting, checkout and order management out of the box. DevEraXTech adds what a template cannot: a bespoke design that matches your brand and product pages that are built to sell.",
+      "Shopify gives you reliable hosting, checkout and order management out of the box. DevEraXTech adds what a template cannot: a bespoke look that matches your brand and product pages that are built to sell.",
       "We set up the store end to end, from theme design and product import to payments, shipping, apps and analytics, and hand it over with training so your team can run it."
     ],
     "audience": [
@@ -100,24 +100,24 @@
       "Stores outgrowing a free theme"
     ],
     "stack": [
-      "Shopify & Liquid",
-      "Custom Shopify themes",
-      "Shopify apps",
+      "Shopify & Liquid templating",
+      "Custom-built themes",
+      "Vetted app integrations",
       "Shopify Payments & regional gateways",
       "Google Analytics & Meta pixel"
     ],
     "faq": [
       {
         "question": "Do you build custom Shopify themes or use templates?",
-        "answer": "We design custom Shopify themes for brands that want a distinctive store, and customize premium themes when budget or launch date matters more. Either way the store is tailored to your products."
+        "answer": "We design custom themes for brands that want a distinctive storefront, and tailor premium templates when budget or launch date matters more. Either way the result is shaped around your products."
       },
       {
-        "question": "Can you migrate my store to Shopify?",
-        "answer": "Yes. We migrate products, customers and order history from WooCommerce, custom stores and other platforms, and set up redirects so you keep your search rankings."
+        "question": "Can you migrate my existing store to Shopify?",
+        "answer": "Yes. We move products, customers and order history from WooCommerce, custom builds and other platforms, and set up redirects so you keep your search rankings."
       },
       {
-        "question": "Will I be able to manage the Shopify store myself?",
-        "answer": "Yes. Shopify's admin lets you manage products, orders and discounts, and we include a handover session so your team is comfortable from day one."
+        "question": "Will I be able to run the store myself?",
+        "answer": "Yes. The built-in admin lets you manage products, orders and discounts, and we include a handover session so your team is comfortable from day one."
       }
     ],
     "related": [
@@ -145,10 +145,10 @@
       "Content-heavy businesses and blogs",
       "Marketing teams that publish often",
       "Organizations with several editors",
-      "Businesses already on WordPress"
+      "Businesses already running on the platform"
     ],
     "stack": [
-      "WordPress",
+      "WordPress core",
       "Custom themes & blocks",
       "WooCommerce (on request)",
       "Security hardening",
@@ -156,16 +156,16 @@
     ],
     "faq": [
       {
-        "question": "Is WordPress secure enough for a business website?",
+        "question": "Is WordPress secure enough for a company website?",
         "answer": "Yes, when it is built and maintained properly. We use a small set of trusted plugins, harden logins and file permissions, and recommend a care plan for ongoing updates and backups."
       },
       {
-        "question": "Will my WordPress website be fast?",
+        "question": "Will my new site be fast?",
         "answer": "Yes. We build lightweight custom themes, optimize images and set up caching so pages load quickly and pass Google's Core Web Vitals."
       },
       {
         "question": "Can you fix or redesign an existing WordPress site?",
-        "answer": "Yes. We redesign existing WordPress websites, clean up plugins and speed problems, and can take over maintenance after a short review."
+        "answer": "Yes. We refresh existing sites, clean up plugins and speed problems, and can take over maintenance after a short review."
       }
     ],
     "related": [
@@ -176,7 +176,7 @@
     "work": []
   },
   "portfolio-websites": {
-    "h1": "Portfolio Website Design for Creatives & Developers",
+    "h1": "Portfolio Website Design for Creatives",
     "seoTitle": "Portfolio Website Design for Creatives | DevEraXTech",
     "seoDescription": "Custom portfolio websites for designers, photographers, developers and agencies: high-visual showcases, case studies, fast loading and SEO. See live examples.",
     "intro": [
@@ -298,8 +298,8 @@
     ],
     "related": [
       "mobile-apps",
-      "ai-integrations",
-      "payment-business-integrations"
+      "desktop-software",
+      "ai-integrations"
     ],
     "work": [
       "nilora-estates"
@@ -312,12 +312,12 @@
     ]
   },
   "mobile-apps": {
-    "h1": "iOS & Android Mobile App Development",
+    "h1": "iOS & Android App Development (React Native)",
     "seoTitle": "iOS & Android App Development (React Native) | DevEraXTech",
     "seoDescription": "Cross-platform iOS and Android apps built with React Native from one codebase: native feel, push notifications, secure sign-in and App Store release support.",
     "intro": [
       "DevEraXTech builds mobile apps for iOS and Android with React Native, so one shared codebase powers both platforms. You launch on both stores sooner and maintain one app instead of two.",
-      "Apps are designed to feel native, with smooth navigation, push notifications and secure accounts, and we support you through App Store and Google Play review and release."
+      "Every app is designed to feel at home on the phone, with smooth navigation, push notifications and secure accounts, and we support you through App Store and Google Play review and release."
     ],
     "audience": [
       "Startups launching an app",
@@ -334,8 +334,8 @@
     ],
     "faq": [
       {
-        "question": "Why build with React Native instead of separate native apps?",
-        "answer": "React Native lets one codebase run on both iOS and Android, which lowers cost and keeps features in sync across platforms while still delivering a native look and feel."
+        "question": "Why build with React Native instead of two separate apps?",
+        "answer": "React Native lets one codebase run on both iOS and Android, which lowers cost and keeps features in sync across platforms while still delivering a platform-true look and feel."
       },
       {
         "question": "Do you publish the app to the App Store and Google Play?",
@@ -348,8 +348,8 @@
     ],
     "related": [
       "custom-web-applications",
-      "ui-ux-design",
-      "ai-integrations"
+      "desktop-software",
+      "ui-ux-design"
     ],
     "work": [],
     "sources": [
@@ -386,11 +386,11 @@
         "answer": "Desktop software is the better choice when your team needs to work offline, process large local files, connect to printers, scanners or other devices, or wants an app that opens instantly on their own machine."
       },
       {
-        "question": "Does the desktop app update automatically?",
+        "question": "Does the app update automatically?",
         "answer": "Yes. We ship a signed Windows installer with automatic updates so every user stays on the latest version."
       },
       {
-        "question": "Can the desktop app sync with my website or web app?",
+        "question": "Can the app sync with my website or web app?",
         "answer": "Yes. The app can sync data with your web systems through a secure API, and keep working offline until a connection returns."
       }
     ],
@@ -402,8 +402,8 @@
     "work": []
   },
   "ai-integrations": {
-    "h1": "AI Integration & Chatbot Development",
-    "seoTitle": "AI Chatbots & WhatsApp AI Assistants | DevEraXTech",
+    "h1": "AI Integrations & Chatbot Development",
+    "seoTitle": "AI Integrations & Chatbot Development | DevEraXTech",
     "seoDescription": "AI integrations for business: website chatbots, WhatsApp AI assistants, automated lead capture and follow-up, and document processing connected to your tools.",
     "intro": [
       "AI is useful when it saves your team time on real, repeated work. DevEraXTech builds practical AI integrations: website chatbots that answer from your own content, WhatsApp assistants that qualify leads, and automations that read documents and update your systems.",
@@ -450,18 +450,18 @@
     ]
   },
   "payment-business-integrations": {
-    "h1": "Payment Gateway & Business Integrations",
+    "h1": "Paymob, Fawry & Stripe Payment Integration",
     "seoTitle": "Paymob, Fawry & Stripe Payment Integration | DevEraXTech",
     "seoDescription": "Connect your website or app to Paymob, Fawry, Stripe, WhatsApp Business, CRMs and accounting tools. Secure payment and business integrations by DevEraXTech.",
     "intro": [
-      "Your website or app works best when it talks to the rest of your business. DevEraXTech integrates payment gateways such as Paymob, Fawry and Stripe, and connects WhatsApp Business, CRMs and accounting tools so data moves without copy and paste.",
+      "Your website or app works best when it talks to the rest of your operations. DevEraXTech integrates payment gateways such as Paymob, Fawry and Stripe, and connects WhatsApp Business, CRMs and accounting tools so data moves without copy and paste.",
       "Payments are built with secure, verified callbacks so orders are only confirmed when the money has actually arrived."
     ],
     "audience": [
       "Online stores in Egypt and the Gulf",
-      "Subscription and booking businesses",
-      "Companies syncing sales and accounting",
-      "Teams selling through WhatsApp"
+      "Subscription and booking companies",
+      "Teams syncing sales and accounting",
+      "Sales teams selling through WhatsApp"
     ],
     "stack": [
       "Paymob",
@@ -502,7 +502,7 @@
     ]
   },
   "seo-performance-optimization": {
-    "h1": "Technical SEO & Website Performance Optimization",
+    "h1": "Technical SEO & Page Speed Optimization",
     "seoTitle": "Technical SEO & Page Speed Optimization | DevEraXTech",
     "seoDescription": "Technical SEO audits, Core Web Vitals and page speed fixes, schema markup and on-page SEO that help your website load faster and rank on Google and AI search.",
     "intro": [
@@ -565,7 +565,7 @@
     ]
   },
   "redesigns-migrations": {
-    "h1": "Website Redesign & Platform Migration",
+    "h1": "Website Redesign & Migration Services",
     "seoTitle": "Website Redesign & Migration Services | DevEraXTech",
     "seoDescription": "Modern website redesigns and careful migrations to Shopify, WordPress or a custom build, with content transfer, SEO-safe redirects and minimal downtime.",
     "intro": [
@@ -617,38 +617,38 @@
     ]
   },
   "ui-ux-design": {
-    "h1": "UI/UX Design in Figma",
+    "h1": "UI/UX Design & Figma Prototypes",
     "seoTitle": "UI/UX Design & Figma Prototypes | DevEraXTech",
     "seoDescription": "Figma UI/UX design for teams with their own developers: user flows, wireframes, high-fidelity screens, interactive prototypes, design systems and clean handoff.",
     "intro": [
-      "Good software starts with a clear design. DevEraXTech provides UI/UX design in Figma for teams that already have developers: user flows, wireframes, high-fidelity screens and interactive prototypes you can test with real users.",
-      "We deliver a reusable design system and a developer-ready handoff with components, spacing, states and breakpoints, so what gets built matches what was designed."
+      "Good software starts with clear thinking about the people using it. DevEraXTech provides UI/UX work in Figma for teams that already have developers: user flows, wireframes, high-fidelity screens and interactive prototypes you can test with real users.",
+      "We deliver a reusable component library and a developer-ready handoff covering spacing, states and breakpoints, so what gets built matches what was agreed."
     ],
     "audience": [
       "Startups with in-house developers",
       "Product teams redesigning an app",
-      "Agencies needing design support",
+      "Agencies that need extra UX capacity",
       "Founders preparing an investor demo"
     ],
     "stack": [
       "Figma",
       "Interactive prototypes",
-      "Design systems & components",
+      "Component libraries & tokens",
       "Accessibility (WCAG) checks",
       "Developer handoff specs"
     ],
     "faq": [
       {
         "question": "What do I receive from a UI/UX design project?",
-        "answer": "You receive user flows, wireframes, high-fidelity Figma screens, an interactive prototype, a design system with reusable components and a handoff file your developers can build from."
+        "answer": "You receive user flows, wireframes, high-fidelity Figma screens, an interactive prototype, a reusable component library and a handoff file your developers can build from."
       },
       {
-        "question": "Do you only design, or can you also build it?",
-        "answer": "Both. This service is design only for teams with their own developers, but we can also build the website, web app or mobile app from the same designs."
+        "question": "Do you only create the screens, or can you also build them?",
+        "answer": "Both. This service covers the UI/UX work for teams with their own developers, but we can also build the website, web app or mobile app from the same files."
       },
       {
-        "question": "Do your designs consider accessibility?",
-        "answer": "Yes. We check color contrast, text sizes, touch targets and focus states against WCAG guidelines during design, not after."
+        "question": "Do your interfaces consider accessibility?",
+        "answer": "Yes. We check color contrast, text sizes, touch targets and focus states against WCAG guidelines from the first wireframe, not after."
       }
     ],
     "related": [
