@@ -226,6 +226,10 @@ fs.writeFileSync(path.join(aiDir, 'summary.json'), JSON.stringify({
 const allFaq = [...faq, ...services.flatMap(s => (serviceDetails[s.id]?.faq || []).map(f => ({ ...f, service: s.title, url: `${SITE.url}${servicePath(s)}` })))];
 fs.writeFileSync(path.join(aiDir, 'faq.json'), JSON.stringify(allFaq, null, 2));
 fs.writeFileSync(path.join(aiDir, 'service.json'), JSON.stringify({
+  name: `${SITE.name} web, app and software development services`,
+  description: SITE.description,
+  url: `${SITE.url}/services`,
+  capabilities: services.map(s => `${s.title}: ${s.summary}`),
   provider: { name: SITE.name, url: `${SITE.url}/`, location: `${business.city}, ${business.country}`, contact: `${SITE.url}/contact` },
   areasServed: business.areasServed.map(a => a.name),
   languages: business.languages.map(l => l.name),

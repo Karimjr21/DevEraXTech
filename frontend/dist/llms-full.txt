@@ -20,7 +20,7 @@ DevEraXTech was founded in 2024 by Karim Ahmed (Founder) and Loay Mohamed (Co-fo
 
 - [Business / Corporate Websites](https://deveraxtech.com/services/business-websites): Professional websites for companies, startups, agencies, shops, clinics, factories and schools, with home, about, services, team, portfolio and contact pages. Includes: Home; About; Services; Contact; Team; Portfolio.
 - [E-Commerce Websites](https://deveraxtech.com/services/ecommerce-websites): Online stores with product pages, a shopping cart, checkout, payment integrations and an admin dashboard. Includes: Product pages; Shopping cart; Checkout; Payment integrations; Admin dashboard.
-- [Shopify Stores](https://deveraxtech.com/services/shopify-stores): Bespoke Shopify stores for premium brands, with designed product pages, a seamless cart, trusted payments and full store control. Includes: Elegantly designed product pages; Seamless shopping cart experience; Secure, trusted payment integrations; Powerful Shopify admin & store control.
+- [Shopify Stores](https://deveraxtech.com/services/shopify-stores): Bespoke Shopify stores for premium brands, with designed product pages, a seamless cart, trusted payments and full store control. Includes: Elegantly designed product pages; Seamless shopping cart experience; Secure, trusted payment integrations; Powerful admin & full store control.
 - [WordPress Websites](https://deveraxtech.com/services/wordpress-websites): Custom WordPress websites with responsive, high-performance layouts, secure plugins and easy content management. Includes: Custom-designed pages & layouts; Fully responsive, high-performance builds; Secure plugins & advanced functionality; Powerful content management & admin control.
 - [Portfolio Websites](https://deveraxtech.com/services/portfolio-websites): High-visual showcase websites for designers, photographers, developers and agencies. Includes: Designers; Photographers; Developers; Agencies; High-visual showcase sites.
 - [Landing Pages](https://deveraxtech.com/services/landing-pages): High-conversion single pages for marketing campaigns, app launches, product launches and service promotions. Includes: Marketing campaigns; App launches; Product launches; Service promotions.
@@ -28,7 +28,7 @@ DevEraXTech was founded in 2024 by Karim Ahmed (Founder) and Loay Mohamed (Co-fo
 ### Apps & Software
 
 - [Custom Web Applications](https://deveraxtech.com/services/custom-web-applications): Custom web applications built around how your business runs, from CRMs and booking systems to client portals and dashboards. Includes: CRMs & customer records; Booking & scheduling systems; Secure client portals; Admin & reporting dashboards; Role-based access & permissions.
-- [Mobile Apps](https://deveraxtech.com/services/mobile-apps): iOS and Android apps built with React Native from one shared codebase, designed to feel native on every device. Includes: iOS & Android from one codebase; Native-feeling interfaces & navigation; Push notifications; Secure sign-in & user accounts; App Store & Google Play release support.
+- [Mobile Apps](https://deveraxtech.com/services/mobile-apps): iOS and Android apps built with React Native from one shared codebase, designed to feel native on every device. Includes: iOS & Android from one codebase; Platform-true interfaces & navigation; Push notifications; Secure sign-in & user accounts; App Store & Google Play release support.
 - [Desktop Software](https://deveraxtech.com/services/desktop-software): Windows apps like Klozcrew: fast, dependable desktop software for teams that work on their own machines. Includes: Windows desktop applications; Offline-capable workflows; Local file & device access; Installers & automatic updates; Sync with your web systems.
 - [AI Integrations](https://deveraxtech.com/services/ai-integrations): AI chatbots, WhatsApp assistants, automated lead handling and document processing, connected to the tools you already use. Includes: Website chatbots; WhatsApp assistants; Automated lead capture & follow-up; Document reading & processing; Integration with your existing tools.
 - [Payment & Business Integrations](https://deveraxtech.com/services/payment-business-integrations): Payment and business integrations with Paymob, Fawry, Stripe, WhatsApp Business, CRMs and accounting tools. Includes: Paymob & Fawry payments; Stripe payments; WhatsApp Business; CRM integrations; Accounting tool integrations.
@@ -222,9 +222,9 @@ Shopify gives you reliable hosting, checkout and order management out of the box
 
 We set up the store end to end, from theme design and product import to payments, shipping, apps and analytics, and hand it over with training so your team can run it.
 
-- Includes: Elegantly designed product pages; Seamless shopping cart experience; Secure, trusted payment integrations; Powerful Shopify admin & store control
+- Includes: Elegantly designed product pages; Seamless shopping cart experience; Secure, trusted payment integrations; Powerful admin & full store control
 - Built for: Premium and luxury brands; Direct-to-consumer startups; Brands moving from a marketplace; Stores outgrowing a free theme
-- Technology: Shopify & Liquid templating; Custom-built themes; Vetted app integrations; Shopify Payments & regional gateways; Google Analytics & Meta pixel
+- Technology: Liquid templating; Custom-built themes; Vetted app integrations; Shopify Payments & regional gateways; Google Analytics & Meta pixel
 
 **Do you build custom Shopify themes or use templates?**
 We design custom themes for brands that want a distinctive storefront, and tailor premium templates when budget or launch date matters more. Either way the result is shaped around your products.
@@ -239,13 +239,13 @@ Yes. The built-in admin lets you manage products, orders and discounts, and we i
 
 URL: https://deveraxtech.com/services/wordpress-websites
 
-WordPress runs a large share of the web because it makes content easy to manage. DevEraXTech builds custom WordPress websites that keep that ease of editing while avoiding the slow, bloated feel of off-the-shelf themes.
+WordPress runs a large share of the web because it makes content easy to manage. DevEraXTech builds custom sites on it that keep that ease of editing while avoiding the slow, bloated feel of off-the-shelf themes.
 
 We design custom layouts, keep plugins to a vetted minimum, harden security and tune performance so the site stays fast and safe as your content grows.
 
 - Includes: Custom-designed pages & layouts; Fully responsive, high-performance builds; Secure plugins & advanced functionality; Powerful content management & admin control
 - Built for: Content-heavy businesses and blogs; Marketing teams that publish often; Organizations with several editors; Businesses already running on the platform
-- Technology: WordPress core; Custom themes & blocks; WooCommerce (on request); Security hardening; Caching & image optimization
+- Technology: Core CMS & block editor; Custom themes & blocks; WooCommerce (on request); Security hardening; Caching & image optimization
 
 **Is WordPress secure enough for a company website?**
 Yes, when it is built and maintained properly. We use a small set of trusted plugins, harden logins and file permissions, and recommend a care plan for ongoing updates and backups.
@@ -260,7 +260,7 @@ Yes. We refresh existing sites, clean up plugins and speed problems, and can tak
 
 URL: https://deveraxtech.com/services/portfolio-websites
 
-A portfolio website is your work's first impression. DevEraXTech designs portfolio websites for designers, photographers, developers and agencies that put the work first, load quickly and make it easy for the right client to get in touch.
+A portfolio website is your work's first impression. DevEraXTech designs them for designers, photographers, developers and agencies, putting the work first, loading quickly and making it easy for the right client to get in touch.
 
 A recent example is karim.deveraxtech.com, the personal portfolio of our founder Karim Ahmed: a cinematic, film-inspired site with project case studies, skills, experience and a booking flow for private teaching sessions.
 
@@ -269,12 +269,12 @@ A recent example is karim.deveraxtech.com, the personal portfolio of our founder
 - Technology: React; GSAP & scroll animation; Optimized image delivery; Accessible, privacy-friendly builds; Person & CreativeWork schema
 
 **What should a portfolio website include?**
-A strong portfolio website includes a short introduction, selected projects with case studies, an about section, skills or services, and a clear contact path. Developers often add experience and a CV; photographers add full-screen galleries.
+A strong one includes a short introduction, selected projects with case studies, an about section, skills or services, and a clear contact path. Developers often add experience and a CV; photographers add full-screen galleries.
 
 **Do you have examples of portfolio websites you built?**
-Yes. karim.deveraxtech.com is a portfolio website we designed and built for full-stack developer Karim Ahmed, with featured projects, skills, experience, teaching and contact sections.
+Yes. karim.deveraxtech.com is a site we designed and built for full-stack developer Karim Ahmed, with featured projects, skills, experience, teaching and contact sections.
 
-**Will my portfolio show up when people search my name?**
+**Will my site show up when people search my name?**
 We set up your name as the main entity with Person structured data, a descriptive title and meta description, and fast pages, which helps Google and AI assistants connect your name to your site.
 
 ### High-Conversion Landing Page Design
@@ -327,11 +327,11 @@ DevEraXTech builds mobile apps for iOS and Android with React Native, so one sha
 
 Every app is designed to feel at home on the phone, with smooth navigation, push notifications and secure accounts, and we support you through App Store and Google Play review and release.
 
-- Includes: iOS & Android from one codebase; Native-feeling interfaces & navigation; Push notifications; Secure sign-in & user accounts; App Store & Google Play release support
+- Includes: iOS & Android from one codebase; Platform-true interfaces & navigation; Push notifications; Secure sign-in & user accounts; App Store & Google Play release support
 - Built for: Startups launching an app; Businesses adding a customer app; Companies with an existing web platform; Teams replacing an outdated app
 - Technology: React Native; Expo; Node.js APIs; Push notifications; App Store & Google Play publishing
 
-**Why build with React Native instead of two separate apps?**
+**Why use one cross-platform codebase instead of two separate apps?**
 React Native lets one codebase run on both iOS and Android, which lowers cost and keeps features in sync across platforms while still delivering a platform-true look and feel.
 
 **Do you publish the app to the App Store and Google Play?**
@@ -349,11 +349,11 @@ Some work is better done on the machine in front of you. DevEraXTech builds Wind
 Each app ships with a proper installer and automatic updates, and can sync with your web platform so data stays consistent between the office and the cloud.
 
 - Includes: Windows desktop applications; Offline-capable workflows; Local file & device access; Installers & automatic updates; Sync with your web systems
-- Built for: Teams that work offline; Operations using local files or devices; Businesses replacing legacy desktop tools; Products that need a desktop companion app
+- Built for: Teams that work offline; Operations using local files or devices; Businesses replacing legacy desktop tools; Products that need a Windows companion app
 - Technology: Electron or .NET (chosen per project); React; Node.js; Windows installers & auto-update; Cloud sync APIs
 
 **When should I choose desktop software over a web app?**
-Desktop software is the better choice when your team needs to work offline, process large local files, connect to printers, scanners or other devices, or wants an app that opens instantly on their own machine.
+It is the better choice when your team needs to work offline, process large local files, connect to printers, scanners or other devices, or wants an app that opens instantly on their own machine.
 
 **Does the app update automatically?**
 Yes. We ship a signed Windows installer with automatic updates so every user stays on the latest version.
@@ -370,16 +370,16 @@ AI is useful when it saves your team time on real, repeated work. DevEraXTech bu
 Every integration connects to the tools you already use, such as your website, CRM, inbox or spreadsheets, and keeps a human in the loop where it matters.
 
 - Includes: Website chatbots; WhatsApp assistants; Automated lead capture & follow-up; Document reading & processing; Integration with your existing tools
-- Built for: Businesses with many repeated enquiries; Sales teams handling WhatsApp leads; Operations processing invoices or forms; Support teams answering the same questions
+- Built for: Businesses with many repeated enquiries; Sales teams handling chat leads; Operations processing invoices or forms; Support teams answering the same questions
 - Technology: Large language model APIs; WhatsApp Business API; Retrieval from your own content; Node.js automations; CRM & spreadsheet integrations
 
 **What can an AI chatbot do for my business?**
 An AI chatbot can answer customer questions from your own content around the clock, capture lead details, book meetings and hand complex conversations to your team.
 
 **Can you build an AI assistant on WhatsApp?**
-Yes. We build WhatsApp assistants on the WhatsApp Business API that reply instantly, qualify leads and pass them to your sales team or CRM.
+Yes. We build assistants on the WhatsApp Business API that reply instantly, qualify leads and pass them to your sales team or CRM.
 
-**Will the AI give wrong answers about my business?**
+**Will the AI give wrong answers about my company?**
 We ground answers in your own approved content, limit the assistant to your topics and route anything uncertain to a person, which keeps answers accurate and on brand.
 
 ### Paymob, Fawry & Stripe Payment Integration
@@ -398,7 +398,7 @@ Payments are built with secure, verified callbacks so orders are only confirmed 
 We integrate Paymob and Fawry for payments in Egypt, Stripe for international card payments, and other regional gateways on request.
 
 **Can you add online payments to my existing website?**
-Yes. We add checkout and payment links to existing websites and apps, with secure server-side verification of every payment.
+Yes. We add checkout and payment links to existing websites and apps, with secure server-side verification of every transaction.
 
 **Can you connect my website to my CRM or accounting software?**
 Yes. We connect forms, orders and customers to CRMs and accounting tools so new leads and sales appear there automatically.

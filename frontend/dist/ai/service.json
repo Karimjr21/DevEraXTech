@@ -1,4 +1,24 @@
 {
+  "name": "DevEraXTech web, app and software development services",
+  "description": "DevEraXTech is a web design and development studio based in Cairo, Egypt, building secure, scalable, pixel-perfect websites, online stores, web and mobile apps, desktop software and AI integrations, with ongoing care plans, for clients in Canada, the United States, the UAE, Saudi Arabia, Kuwait, Qatar and Egypt.",
+  "url": "https://deveraxtech.com/services",
+  "capabilities": [
+    "Business / Corporate Websites: Professional websites for companies, startups, agencies, shops, clinics, factories and schools, with home, about, services, team, portfolio and contact pages.",
+    "E-Commerce Websites: Online stores with product pages, a shopping cart, checkout, payment integrations and an admin dashboard.",
+    "Shopify Stores: Bespoke Shopify stores for premium brands, with designed product pages, a seamless cart, trusted payments and full store control.",
+    "WordPress Websites: Custom WordPress websites with responsive, high-performance layouts, secure plugins and easy content management.",
+    "Portfolio Websites: High-visual showcase websites for designers, photographers, developers and agencies.",
+    "Landing Pages: High-conversion single pages for marketing campaigns, app launches, product launches and service promotions.",
+    "Custom Web Applications: Custom web applications built around how your business runs, from CRMs and booking systems to client portals and dashboards.",
+    "Mobile Apps: iOS and Android apps built with React Native from one shared codebase, designed to feel native on every device.",
+    "Desktop Software: Windows apps like Klozcrew: fast, dependable desktop software for teams that work on their own machines.",
+    "AI Integrations: AI chatbots, WhatsApp assistants, automated lead handling and document processing, connected to the tools you already use.",
+    "Payment & Business Integrations: Payment and business integrations with Paymob, Fawry, Stripe, WhatsApp Business, CRMs and accounting tools.",
+    "Maintenance & Care Plans: Ongoing care for live websites and apps: updates, security patches, backups, uptime monitoring, performance checks and priority support.",
+    "SEO & Performance Optimization: Technical SEO, structured data and Core Web Vitals improvements that help your website load faster and get found.",
+    "Redesigns & Migrations: Modern redesigns and careful platform migrations that refresh your website without losing content, rankings or data.",
+    "UI/UX Design: Figma designs for teams with their own developers: user flows, wireframes, high-fidelity screens and developer-ready handoff."
+  ],
   "provider": {
     "name": "DevEraXTech",
     "url": "https://deveraxtech.com/",
@@ -90,7 +110,7 @@
         "Elegantly designed product pages",
         "Seamless shopping cart experience",
         "Secure, trusted payment integrations",
-        "Powerful Shopify admin & store control"
+        "Powerful admin & full store control"
       ],
       "bestFor": [
         "Premium and luxury brands",
@@ -99,7 +119,7 @@
         "Stores outgrowing a free theme"
       ],
       "technology": [
-        "Shopify & Liquid templating",
+        "Liquid templating",
         "Custom-built themes",
         "Vetted app integrations",
         "Shopify Payments & regional gateways",
@@ -127,7 +147,7 @@
         "Businesses already running on the platform"
       ],
       "technology": [
-        "WordPress core",
+        "Core CMS & block editor",
         "Custom themes & blocks",
         "WooCommerce (on request)",
         "Security hardening",
@@ -230,7 +250,7 @@
       "summary": "iOS and Android apps built with React Native from one shared codebase, designed to feel native on every device.",
       "includes": [
         "iOS & Android from one codebase",
-        "Native-feeling interfaces & navigation",
+        "Platform-true interfaces & navigation",
         "Push notifications",
         "Secure sign-in & user accounts",
         "App Store & Google Play release support"
@@ -268,7 +288,7 @@
         "Teams that work offline",
         "Operations using local files or devices",
         "Businesses replacing legacy desktop tools",
-        "Products that need a desktop companion app"
+        "Products that need a Windows companion app"
       ],
       "technology": [
         "Electron or .NET (chosen per project)",
@@ -295,7 +315,7 @@
       ],
       "bestFor": [
         "Businesses with many repeated enquiries",
-        "Sales teams handling WhatsApp leads",
+        "Sales teams handling chat leads",
         "Operations processing invoices or forms",
         "Support teams answering the same questions"
       ],

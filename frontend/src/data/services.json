@@ -22,9 +22,9 @@
     "group": "Websites & Stores",
     "title": "Shopify Stores",
     "summary": "Bespoke Shopify stores for premium brands, with designed product pages, a seamless cart, trusted payments and full store control.",
-    "description": "Bespoke Shopify experiences crafted for premium brands, featuring:",
+    "description": "Bespoke storefronts crafted for premium brands, featuring:",
     "label": "Includes",
-    "features": ["Elegantly designed product pages", "Seamless shopping cart experience", "Secure, trusted payment integrations", "Powerful Shopify admin & store control"]
+    "features": ["Elegantly designed product pages", "Seamless shopping cart experience", "Secure, trusted payment integrations", "Powerful admin & full store control"]
   },
   {
     "id": "wordpress-websites",
@@ -67,9 +67,9 @@
     "group": "Apps & Software",
     "title": "Mobile Apps",
     "summary": "iOS and Android apps built with React Native from one shared codebase, designed to feel native on every device.",
-    "description": "Cross-platform mobile apps built with React Native, featuring:",
+    "description": "Cross-platform mobile apps for iPhone and Android, featuring:",
     "label": "Includes",
-    "features": ["iOS & Android from one codebase", "Native-feeling interfaces & navigation", "Push notifications", "Secure sign-in & user accounts", "App Store & Google Play release support"]
+    "features": ["iOS & Android from one codebase", "Platform-true interfaces & navigation", "Push notifications", "Secure sign-in & user accounts", "App Store & Google Play release support"]
   },
   {
     "id": "desktop-software",
@@ -94,7 +94,7 @@
     "group": "Apps & Software",
     "title": "Payment & Business Integrations",
     "summary": "Payment and business integrations with Paymob, Fawry, Stripe, WhatsApp Business, CRMs and accounting tools.",
-    "description": "Your website or app connected to the services that run your business:",
+    "description": "Your website or app connected to the services that run your company:",
     "label": "Includes",
     "features": ["Paymob & Fawry payments", "Stripe payments", "WhatsApp Business", "CRM integrations", "Accounting tool integrations"]
   },

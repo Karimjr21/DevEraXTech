@@ -75,7 +75,7 @@
         "Elegantly designed product pages",
         "Seamless shopping cart experience",
         "Secure, trusted payment integrations",
-        "Powerful Shopify admin & store control"
+        "Powerful admin & full store control"
       ]
     },
     {
@@ -135,7 +135,7 @@
       "summary": "iOS and Android apps built with React Native from one shared codebase, designed to feel native on every device.",
       "includes": [
         "iOS & Android from one codebase",
-        "Native-feeling interfaces & navigation",
+        "Platform-true interfaces & navigation",
         "Push notifications",
         "Secure sign-in & user accounts",
         "App Store & Google Play release support"

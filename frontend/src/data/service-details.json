@@ -100,7 +100,7 @@
       "Stores outgrowing a free theme"
     ],
     "stack": [
-      "Shopify & Liquid templating",
+      "Liquid templating",
       "Custom-built themes",
       "Vetted app integrations",
       "Shopify Payments & regional gateways",
@@ -138,7 +138,7 @@
     "seoTitle": "Custom WordPress Website Development | DevEraXTech",
     "seoDescription": "Custom WordPress websites with bespoke layouts, fast responsive builds, secure plugins and easy content management. WordPress development by DevEraXTech.",
     "intro": [
-      "WordPress runs a large share of the web because it makes content easy to manage. DevEraXTech builds custom WordPress websites that keep that ease of editing while avoiding the slow, bloated feel of off-the-shelf themes.",
+      "WordPress runs a large share of the web because it makes content easy to manage. DevEraXTech builds custom sites on it that keep that ease of editing while avoiding the slow, bloated feel of off-the-shelf themes.",
       "We design custom layouts, keep plugins to a vetted minimum, harden security and tune performance so the site stays fast and safe as your content grows."
     ],
     "audience": [
@@ -148,7 +148,7 @@
       "Businesses already running on the platform"
     ],
     "stack": [
-      "WordPress core",
+      "Core CMS & block editor",
       "Custom themes & blocks",
       "WooCommerce (on request)",
       "Security hardening",
@@ -180,7 +180,7 @@
     "seoTitle": "Portfolio Website Design for Creatives | DevEraXTech",
     "seoDescription": "Custom portfolio websites for designers, photographers, developers and agencies: high-visual showcases, case studies, fast loading and SEO. See live examples.",
     "intro": [
-      "A portfolio website is your work's first impression. DevEraXTech designs portfolio websites for designers, photographers, developers and agencies that put the work first, load quickly and make it easy for the right client to get in touch.",
+      "A portfolio website is your work's first impression. DevEraXTech designs them for designers, photographers, developers and agencies, putting the work first, loading quickly and making it easy for the right client to get in touch.",
       "A recent example is karim.deveraxtech.com, the personal portfolio of our founder Karim Ahmed: a cinematic, film-inspired site with project case studies, skills, experience and a booking flow for private teaching sessions."
     ],
     "audience": [
@@ -199,14 +199,14 @@
     "faq": [
       {
         "question": "What should a portfolio website include?",
-        "answer": "A strong portfolio website includes a short introduction, selected projects with case studies, an about section, skills or services, and a clear contact path. Developers often add experience and a CV; photographers add full-screen galleries."
+        "answer": "A strong one includes a short introduction, selected projects with case studies, an about section, skills or services, and a clear contact path. Developers often add experience and a CV; photographers add full-screen galleries."
       },
       {
         "question": "Do you have examples of portfolio websites you built?",
-        "answer": "Yes. karim.deveraxtech.com is a portfolio website we designed and built for full-stack developer Karim Ahmed, with featured projects, skills, experience, teaching and contact sections."
+        "answer": "Yes. karim.deveraxtech.com is a site we designed and built for full-stack developer Karim Ahmed, with featured projects, skills, experience, teaching and contact sections."
       },
       {
-        "question": "Will my portfolio show up when people search my name?",
+        "question": "Will my site show up when people search my name?",
         "answer": "We set up your name as the main entity with Person structured data, a descriptive title and meta description, and fast pages, which helps Google and AI assistants connect your name to your site."
       }
     ],
@@ -334,7 +334,7 @@
     ],
     "faq": [
       {
-        "question": "Why build with React Native instead of two separate apps?",
+        "question": "Why use one cross-platform codebase instead of two separate apps?",
         "answer": "React Native lets one codebase run on both iOS and Android, which lowers cost and keeps features in sync across platforms while still delivering a platform-true look and feel."
       },
       {
@@ -371,7 +371,7 @@
       "Teams that work offline",
       "Operations using local files or devices",
       "Businesses replacing legacy desktop tools",
-      "Products that need a desktop companion app"
+      "Products that need a Windows companion app"
     ],
     "stack": [
       "Electron or .NET (chosen per project)",
@@ -383,7 +383,7 @@
     "faq": [
       {
         "question": "When should I choose desktop software over a web app?",
-        "answer": "Desktop software is the better choice when your team needs to work offline, process large local files, connect to printers, scanners or other devices, or wants an app that opens instantly on their own machine."
+        "answer": "It is the better choice when your team needs to work offline, process large local files, connect to printers, scanners or other devices, or wants an app that opens instantly on their own machine."
       },
       {
         "question": "Does the app update automatically?",
@@ -411,7 +411,7 @@
     ],
     "audience": [
       "Businesses with many repeated enquiries",
-      "Sales teams handling WhatsApp leads",
+      "Sales teams handling chat leads",
       "Operations processing invoices or forms",
       "Support teams answering the same questions"
     ],
@@ -429,10 +429,10 @@
       },
       {
         "question": "Can you build an AI assistant on WhatsApp?",
-        "answer": "Yes. We build WhatsApp assistants on the WhatsApp Business API that reply instantly, qualify leads and pass them to your sales team or CRM."
+        "answer": "Yes. We build assistants on the WhatsApp Business API that reply instantly, qualify leads and pass them to your sales team or CRM."
       },
       {
-        "question": "Will the AI give wrong answers about my business?",
+        "question": "Will the AI give wrong answers about my company?",
         "answer": "We ground answers in your own approved content, limit the assistant to your topics and route anything uncertain to a person, which keeps answers accurate and on brand."
       }
     ],
@@ -477,7 +477,7 @@
       },
       {
         "question": "Can you add online payments to my existing website?",
-        "answer": "Yes. We add checkout and payment links to existing websites and apps, with secure server-side verification of every payment."
+        "answer": "Yes. We add checkout and payment links to existing websites and apps, with secure server-side verification of every transaction."
       },
       {
         "question": "Can you connect my website to my CRM or accounting software?",

@@ -256,10 +256,10 @@ export default function Contact() {
           <GoldOrnament className="page-ornament" />
           <h1 className="text-4xl md:text-5xl font-bold gold-gradient-text leading-[1.1]">Contact DevEraXTech</h1>
           <p className="text-sm md:text-base text-gray-300/90 leading-relaxed max-w-2xl">
-            Book a meeting with DevEraXTech, a web design and development studio in {business.city}, {business.country}. Call{' '}
+            Get in touch with DevEraXTech, a web design and development studio in {business.city}, {business.country}. Call{' '}
             <a href={`tel:${business.phoneE164}`} className="text-gold hover:underline underline-offset-4">{business.phoneDisplay}</a>, email{' '}
             <a href={`mailto:${business.email}`} className="text-gold hover:underline underline-offset-4">{business.email}</a> or use the form
-            below. We are available {business.hours.label.charAt(0).toLowerCase() + business.hours.label.slice(1)} and usually reply within one business day.
+            below. We are open every day from 9 AM to 5 PM and usually reply within one business day.
           </p>
           <p className="text-sm md:text-base text-gray-400 leading-relaxed max-w-2xl">
             Let&apos;s discuss your project goals, technical requirements, and the right path to a secure premium delivery.

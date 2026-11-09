@@ -45,10 +45,10 @@ export default function Maintenance() {
               <span className="service-editorial-kicker-line" aria-hidden />
             </div>
             <h2 id="covered-heading" className="service-editorial-title text-[1.55rem] md:text-[1.78rem] font-semibold tracking-tight leading-[1.16]">
-              Care that keeps your site secure, fast and current
+              Keeping your site secure, fast and current
             </h2>
             <p className="service-editorial-copy mt-4 leading-relaxed text-[0.96rem] md:text-[1rem] max-w-[58ch]">
-              Every plan is built from the same core of careful, routine work. The plan you choose decides how much of it we handle
+              Every tier is built from the same core of careful, routine work. The option you choose decides how much of it we handle
               and how quickly we respond.
             </p>
             <p className="service-editorial-support mt-4 text-[0.8rem] md:text-[0.82rem] text-gray-400/78 uppercase tracking-[0.11em]">
@@ -77,13 +77,13 @@ export default function Maintenance() {
           Three plans, scoped to your site
         </h2>
         <p className="mt-3 max-w-3xl text-sm md:text-base text-gray-400 leading-relaxed">
-          Every plan is tailored after a short review of your website or app, so you only pay for the care you need. We share
+          Every plan is tailored after a short review of your website or app, so you only pay for what you need. We share
           pricing once we understand your setup.
         </p>
         <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-5">
           {care.plans.map((plan, i) => (
             <article key={plan.id} className="about-card about-card--functional h-full p-5 md:p-6 flex flex-col">
-              <p className="text-[11px] uppercase tracking-[0.18em] text-gold/70 mb-2">Plan {String(i + 1).padStart(2, '0')}</p>
+              <p className="text-[11px] uppercase tracking-[0.18em] text-gold/70 mb-2">Tier {String(i + 1).padStart(2, '0')}</p>
               <h3 className="text-xl font-semibold text-gold leading-snug">{plan.name}</h3>
               <p className="mt-2 text-sm text-gray-400 leading-relaxed">{plan.bestFor}</p>
               <ul className="service-editorial-list mt-4" role="list">
@@ -107,7 +107,7 @@ export default function Maintenance() {
       <SectionWrapper id="how-it-works" className="about-card p-6 md:p-8 mt-16 md:mt-20" aria-labelledby="how-heading">
         <p className="text-[11px] tracking-[0.2em] uppercase text-gold/70">How It Works</p>
         <h2 id="how-heading" className="mt-2 text-xl md:text-2xl font-semibold text-gold leading-tight">
-          From first review to ongoing care
+          From first review to ongoing support
         </h2>
         <ol className="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 text-sm text-gray-300/90 leading-relaxed" role="list">
           {care.steps.map((step, i) => (
@@ -122,7 +122,7 @@ export default function Maintenance() {
       <SectionWrapper id="faq" className="mt-16 md:mt-20" aria-labelledby="faq-heading">
         <p className="text-[0.72rem] uppercase tracking-[0.16em] text-gray-400/85 mb-3">Good to Know</p>
         <h2 id="faq-heading" className="text-2xl md:text-3xl font-semibold text-gold leading-tight mb-6 md:mb-8">
-          Care plan questions
+          Maintenance questions
         </h2>
         <div className="space-y-3 md:space-y-4">
           {care.faq.map(item => (
@@ -146,7 +146,7 @@ export default function Maintenance() {
             <p className="text-xs tracking-[0.2em] uppercase text-gold/70">Start a Care Plan</p>
             <h2 id="care-cta-heading" className="text-2xl md:text-3xl font-semibold text-gold leading-tight">Ready to hand over the upkeep?</h2>
             <p className="text-sm md:text-base text-gray-300/90 leading-relaxed">
-              Tell us about your website or app and we will recommend the plan that fits, usually within one business day.
+              Tell us about your website or app and we will recommend the right level of cover, usually within one business day.
             </p>
           </div>
           <div className="md:pb-1">

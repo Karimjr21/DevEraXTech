@@ -339,6 +339,8 @@ export function buildJsonLd(route, { dateModified } = {}) {
     about: { '@id': ORG_ID },
     primaryImageOfPage: { '@type': 'ImageObject', url: SITE.image },
     inLanguage: 'en',
+    author: { '@id': ORG_ID },
+    publisher: { '@id': ORG_ID },
     ...(dateModified ? { dateModified } : {})
   };
   if (route.path !== '/') {
