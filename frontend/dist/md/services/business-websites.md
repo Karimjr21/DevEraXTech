@@ -2,7 +2,7 @@
 title: Business & Corporate Website Design in Cairo | DevEraXTech
 url: https://deveraxtech.com/services/business-websites
 description: Custom business and corporate websites for companies, clinics, schools and startups: fast, secure, SEO-ready and easy to update. Built by DevEraXTech in Cairo.
-last_updated: 2026-11-09
+last_updated: 2026-11-17
 ---
 
 # Business & Corporate Website Design in Cairo
@@ -93,4 +93,4 @@ Tell us what you want to build. DevEraXTech is based in Cairo, works with client
 
 ---
 
-DevEraXTech, Cairo, Egypt | +20 100 001 6216 | deveraxtech@gmail.com | https://deveraxtech.com/contact
+DevEraXTech, Cairo, Egypt | +20 100 001 6216 | info@deveraxtech.com | https://deveraxtech.com/contact

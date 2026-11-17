@@ -2,7 +2,7 @@
 title: DevEraXTech | Web Design & Development Studio in Cairo
 url: https://deveraxtech.com/
 description: Cairo studio building secure, pixel-perfect websites, online stores, web and mobile apps, AI integrations and care plans for Egypt, the Gulf, US and Canada.
-last_updated: 2026-11-09
+last_updated: 2026-11-17
 ---
 
 ENGINEERED EXCELLENCE
@@ -111,4 +111,4 @@ Ready to build a website that reflects the quality of your business? Tell us wha
 
 ---
 
-DevEraXTech, Cairo, Egypt | +20 100 001 6216 | deveraxtech@gmail.com | https://deveraxtech.com/contact
+DevEraXTech, Cairo, Egypt | +20 100 001 6216 | info@deveraxtech.com | https://deveraxtech.com/contact

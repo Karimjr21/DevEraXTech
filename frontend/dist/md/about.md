@@ -2,7 +2,7 @@
 title: About DevEraXTech | Secure, Premium Digital Products
 url: https://deveraxtech.com/about
 description: Founded in 2024 in Cairo, Egypt by Karim Ahmed and Loay Mohamed, DevEraXTech builds premium digital products with security at the core.
-last_updated: 2026-11-09
+last_updated: 2026-11-17
 ---
 
 # About DevEraXTech
@@ -166,4 +166,4 @@ Partner with DevEraXTech for thoughtful strategy, strong engineering, and polish
 
 ---
 
-DevEraXTech, Cairo, Egypt | +20 100 001 6216 | deveraxtech@gmail.com | https://deveraxtech.com/contact
+DevEraXTech, Cairo, Egypt | +20 100 001 6216 | info@deveraxtech.com | https://deveraxtech.com/contact

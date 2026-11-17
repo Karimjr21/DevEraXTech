@@ -2,7 +2,7 @@
 title: E-Commerce Website Development | DevEraXTech, Cairo
 url: https://deveraxtech.com/services/ecommerce-websites
 description: Custom online stores with product pages, cart, checkout, Paymob, Fawry or Stripe payments and an admin dashboard. E-commerce development by DevEraXTech.
-last_updated: 2026-11-09
+last_updated: 2026-11-17
 ---
 
 # E-Commerce Website Development
@@ -82,4 +82,4 @@ Tell us what you want to build. DevEraXTech is based in Cairo, works with client
 
 ---
 
-DevEraXTech, Cairo, Egypt | +20 100 001 6216 | deveraxtech@gmail.com | https://deveraxtech.com/contact
+DevEraXTech, Cairo, Egypt | +20 100 001 6216 | info@deveraxtech.com | https://deveraxtech.com/contact

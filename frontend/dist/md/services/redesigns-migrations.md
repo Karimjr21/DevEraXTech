@@ -2,7 +2,7 @@
 title: Website Redesign & Migration Services | DevEraXTech
 url: https://deveraxtech.com/services/redesigns-migrations
 description: Modern website redesigns and careful migrations to Shopify, WordPress or a custom build, with content transfer, SEO-safe redirects and minimal downtime.
-last_updated: 2026-11-09
+last_updated: 2026-11-17
 ---
 
 # Website Redesign & Migration Services
@@ -86,4 +86,4 @@ Tell us what you want to build. DevEraXTech is based in Cairo, works with client
 
 ---
 
-DevEraXTech, Cairo, Egypt | +20 100 001 6216 | deveraxtech@gmail.com | https://deveraxtech.com/contact
+DevEraXTech, Cairo, Egypt | +20 100 001 6216 | info@deveraxtech.com | https://deveraxtech.com/contact

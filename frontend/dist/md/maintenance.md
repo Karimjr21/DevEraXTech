@@ -2,7 +2,7 @@
 title: Website Maintenance & Care Plans | DevEraXTech
 url: https://deveraxtech.com/maintenance
 description: Website and app care plans from DevEraXTech in Cairo: updates, security patches, backups, uptime monitoring, performance checks and priority support.
-last_updated: 2026-11-09
+last_updated: 2026-11-17
 ---
 
 # Website Maintenance & Care Plans
@@ -97,4 +97,4 @@ Tell us about your website or app and we will recommend the right level of cover
 
 ---
 
-DevEraXTech, Cairo, Egypt | +20 100 001 6216 | deveraxtech@gmail.com | https://deveraxtech.com/contact
+DevEraXTech, Cairo, Egypt | +20 100 001 6216 | info@deveraxtech.com | https://deveraxtech.com/contact

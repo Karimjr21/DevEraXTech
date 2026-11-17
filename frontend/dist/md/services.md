@@ -2,7 +2,7 @@
 title: Web, App & Software Development Services | DevEraXTech
 url: https://deveraxtech.com/services
 description: Websites, online stores, web and mobile apps, desktop software, AI and payment integrations, SEO, redesigns, UI/UX design and care plans from a Cairo studio.
-last_updated: 2026-11-09
+last_updated: 2026-11-17
 ---
 
 What We Build
@@ -277,8 +277,8 @@ We work in Arabic, English and German.
 
 **What are your working hours?**
 
-We are available every day from 9:00 AM to 5:00 PM Cairo time. You can reach us at +20 100 001 6216 or deveraxtech@gmail.com, or book a meeting through the contact form.
+We are available every day from 9:00 AM to 5:00 PM Cairo time. You can reach us at +20 100 001 6216 or info@deveraxtech.com, or book a meeting through the contact form.
 
 ---
 
-DevEraXTech, Cairo, Egypt | +20 100 001 6216 | deveraxtech@gmail.com | https://deveraxtech.com/contact
+DevEraXTech, Cairo, Egypt | +20 100 001 6216 | info@deveraxtech.com | https://deveraxtech.com/contact

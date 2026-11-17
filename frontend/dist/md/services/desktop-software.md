@@ -2,7 +2,7 @@
 title: Windows Desktop Software Development | DevEraXTech
 url: https://deveraxtech.com/services/desktop-software
 description: Custom Windows desktop apps like Klozcrew: offline-capable workflows, local file and device access, installers, auto-updates and sync with your web systems.
-last_updated: 2026-11-09
+last_updated: 2026-11-17
 ---
 
 # Windows Desktop Software Development
@@ -82,4 +82,4 @@ Tell us what you want to build. DevEraXTech is based in Cairo, works with client
 
 ---
 
-DevEraXTech, Cairo, Egypt | +20 100 001 6216 | deveraxtech@gmail.com | https://deveraxtech.com/contact
+DevEraXTech, Cairo, Egypt | +20 100 001 6216 | info@deveraxtech.com | https://deveraxtech.com/contact

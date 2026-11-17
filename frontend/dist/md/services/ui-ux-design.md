@@ -2,7 +2,7 @@
 title: UI/UX Design & Figma Prototypes | DevEraXTech
 url: https://deveraxtech.com/services/ui-ux-design
 description: Figma UI/UX design for teams with their own developers: user flows, wireframes, high-fidelity screens, interactive prototypes, design systems and clean handoff.
-last_updated: 2026-11-09
+last_updated: 2026-11-17
 ---
 
 # UI/UX Design & Figma Prototypes
@@ -95,4 +95,4 @@ Tell us what you want to build. DevEraXTech is based in Cairo, works with client
 
 ---
 
-DevEraXTech, Cairo, Egypt | +20 100 001 6216 | deveraxtech@gmail.com | https://deveraxtech.com/contact
+DevEraXTech, Cairo, Egypt | +20 100 001 6216 | info@deveraxtech.com | https://deveraxtech.com/contact

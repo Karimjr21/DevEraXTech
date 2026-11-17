@@ -86,7 +86,7 @@ export const ROUTES = [
     name: 'Contact',
     title: 'Contact DevEraXTech | Book a Project Meeting',
     description:
-      'Book a meeting with DevEraXTech in Cairo. Call +20 100 001 6216 or email deveraxtech@gmail.com. Open daily 9 AM to 5 PM Cairo time. Arabic, English, German.',
+      'Book a meeting with DevEraXTech in Cairo. Call +20 100 001 6216 or email info@deveraxtech.com. Open daily 9 AM to 5 PM Cairo time. Arabic, English, German.',
     priority: '0.9'
   }
 ];

@@ -2,7 +2,7 @@
 title: Shopify Store Design & Development | DevEraXTech
 url: https://deveraxtech.com/services/shopify-stores
 description: Bespoke Shopify stores for premium brands: custom theme design, product pages, seamless cart, trusted payments and full store setup by DevEraXTech in Cairo.
-last_updated: 2026-11-09
+last_updated: 2026-11-17
 ---
 
 # Shopify Store Design & Development
@@ -84,4 +84,4 @@ Tell us what you want to build. DevEraXTech is based in Cairo, works with client
 
 ---
 
-DevEraXTech, Cairo, Egypt | +20 100 001 6216 | deveraxtech@gmail.com | https://deveraxtech.com/contact
+DevEraXTech, Cairo, Egypt | +20 100 001 6216 | info@deveraxtech.com | https://deveraxtech.com/contact

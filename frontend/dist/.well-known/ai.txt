@@ -10,4 +10,4 @@ Feed: https://deveraxtech.com/feed.xml
 LLMs: https://deveraxtech.com/llms.txt
 LLMs-Full: https://deveraxtech.com/llms-full.txt
 Sitemap: https://deveraxtech.com/sitemap.xml
-Contact: deveraxtech@gmail.com
+Contact: info@deveraxtech.com

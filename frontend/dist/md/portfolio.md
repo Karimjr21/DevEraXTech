@@ -2,7 +2,7 @@
 title: Web Design Portfolio | DevEraXTech, Cairo
 url: https://deveraxtech.com/portfolio
 description: DevEraXTech web design portfolio: the Nilora Estates MERN real estate platform, the karim.deveraxtech.com developer portfolio website and more from Cairo.
-last_updated: 2026-11-09
+last_updated: 2026-11-17
 ---
 
 Selected Work
@@ -93,4 +93,4 @@ Share your goals and we will map the right approach for secure, scalable, and hi
 
 ---
 
-DevEraXTech, Cairo, Egypt | +20 100 001 6216 | deveraxtech@gmail.com | https://deveraxtech.com/contact
+DevEraXTech, Cairo, Egypt | +20 100 001 6216 | info@deveraxtech.com | https://deveraxtech.com/contact

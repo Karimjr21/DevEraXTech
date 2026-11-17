@@ -2,7 +2,7 @@
 title: Custom WordPress Website Development | DevEraXTech
 url: https://deveraxtech.com/services/wordpress-websites
 description: Custom WordPress websites with bespoke layouts, fast responsive builds, secure plugins and easy content management. WordPress development by DevEraXTech.
-last_updated: 2026-11-09
+last_updated: 2026-11-17
 ---
 
 # Custom WordPress Website Development
@@ -81,4 +81,4 @@ Tell us what you want to build. DevEraXTech is based in Cairo, works with client
 
 ---
 
-DevEraXTech, Cairo, Egypt | +20 100 001 6216 | deveraxtech@gmail.com | https://deveraxtech.com/contact
+DevEraXTech, Cairo, Egypt | +20 100 001 6216 | info@deveraxtech.com | https://deveraxtech.com/contact

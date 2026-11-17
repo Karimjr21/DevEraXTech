@@ -39,7 +39,7 @@
     "English",
     "German"
   ],
-  "howToStart": "Book a meeting at https://deveraxtech.com/contact, call +20 100 001 6216 or email deveraxtech@gmail.com. Replies usually within one business day.",
+  "howToStart": "Book a meeting at https://deveraxtech.com/contact, call +20 100 001 6216 or email info@deveraxtech.com. Replies usually within one business day.",
   "services": [
     {
       "id": "business-websites",
@@ -69,7 +69,7 @@
         "Schema.org structured data"
       ],
       "startProject": "https://deveraxtech.com/contact?service=Business%20%2F%20Corporate%20Websites",
-      "lastUpdated": "2026-11-09"
+      "lastUpdated": "2026-11-17"
     },
     {
       "id": "ecommerce-websites",
@@ -98,7 +98,7 @@
         "Secure admin dashboard"
       ],
       "startProject": "https://deveraxtech.com/contact?service=E-Commerce%20Websites",
-      "lastUpdated": "2026-11-09"
+      "lastUpdated": "2026-11-17"
     },
     {
       "id": "shopify-stores",
@@ -126,7 +126,7 @@
         "Google Analytics & Meta pixel"
       ],
       "startProject": "https://deveraxtech.com/contact?service=Shopify%20Stores",
-      "lastUpdated": "2026-11-09"
+      "lastUpdated": "2026-11-17"
     },
     {
       "id": "wordpress-websites",
@@ -154,7 +154,7 @@
         "Caching & image optimization"
       ],
       "startProject": "https://deveraxtech.com/contact?service=WordPress%20Websites",
-      "lastUpdated": "2026-11-09"
+      "lastUpdated": "2026-11-17"
     },
     {
       "id": "portfolio-websites",
@@ -183,7 +183,7 @@
         "Person & CreativeWork schema"
       ],
       "startProject": "https://deveraxtech.com/contact?service=Portfolio%20Websites",
-      "lastUpdated": "2026-11-09"
+      "lastUpdated": "2026-11-17"
     },
     {
       "id": "landing-pages",
@@ -211,7 +211,7 @@
         "A/B-test friendly sections"
       ],
       "startProject": "https://deveraxtech.com/contact?service=Landing%20Pages",
-      "lastUpdated": "2026-11-09"
+      "lastUpdated": "2026-11-17"
     },
     {
       "id": "custom-web-applications",
@@ -240,7 +240,7 @@
         "Role-based authentication & REST APIs"
       ],
       "startProject": "https://deveraxtech.com/contact?service=Custom%20Web%20Applications",
-      "lastUpdated": "2026-11-09"
+      "lastUpdated": "2026-11-17"
     },
     {
       "id": "mobile-apps",
@@ -269,7 +269,7 @@
         "App Store & Google Play publishing"
       ],
       "startProject": "https://deveraxtech.com/contact?service=Mobile%20Apps",
-      "lastUpdated": "2026-11-09"
+      "lastUpdated": "2026-11-17"
     },
     {
       "id": "desktop-software",
@@ -298,7 +298,7 @@
         "Cloud sync APIs"
       ],
       "startProject": "https://deveraxtech.com/contact?service=Desktop%20Software",
-      "lastUpdated": "2026-11-09"
+      "lastUpdated": "2026-11-17"
     },
     {
       "id": "ai-integrations",
@@ -327,7 +327,7 @@
         "CRM & spreadsheet integrations"
       ],
       "startProject": "https://deveraxtech.com/contact?service=AI%20Integrations",
-      "lastUpdated": "2026-11-09"
+      "lastUpdated": "2026-11-17"
     },
     {
       "id": "payment-business-integrations",
@@ -356,7 +356,7 @@
         "CRM & accounting APIs"
       ],
       "startProject": "https://deveraxtech.com/contact?service=Payment%20%26%20Business%20Integrations",
-      "lastUpdated": "2026-11-09"
+      "lastUpdated": "2026-11-17"
     },
     {
       "id": "maintenance-care-plans",
@@ -373,7 +373,7 @@
         "Priority support"
       ],
       "startProject": "https://deveraxtech.com/contact?service=Maintenance%20%26%20Care%20Plans",
-      "lastUpdated": "2026-11-09"
+      "lastUpdated": "2026-11-17"
     },
     {
       "id": "seo-performance-optimization",
@@ -402,7 +402,7 @@
         "llms.txt & AI crawler access"
       ],
       "startProject": "https://deveraxtech.com/contact?service=SEO%20%26%20Performance%20Optimization",
-      "lastUpdated": "2026-11-09"
+      "lastUpdated": "2026-11-17"
     },
     {
       "id": "redesigns-migrations",
@@ -431,7 +431,7 @@
         "Staged, low-downtime launches"
       ],
       "startProject": "https://deveraxtech.com/contact?service=Redesigns%20%26%20Migrations",
-      "lastUpdated": "2026-11-09"
+      "lastUpdated": "2026-11-17"
     },
     {
       "id": "ui-ux-design",
@@ -460,7 +460,7 @@
         "Developer handoff specs"
       ],
       "startProject": "https://deveraxtech.com/contact?service=UI%2FUX%20Design",
-      "lastUpdated": "2026-11-09"
+      "lastUpdated": "2026-11-17"
     }
   ]
 }

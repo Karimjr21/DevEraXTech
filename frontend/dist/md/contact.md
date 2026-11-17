@@ -1,13 +1,13 @@
 ---
 title: Contact DevEraXTech | Book a Project Meeting
 url: https://deveraxtech.com/contact
-description: Book a meeting with DevEraXTech in Cairo. Call +20 100 001 6216 or email deveraxtech@gmail.com. Open daily 9 AM to 5 PM Cairo time. Arabic, English, German.
-last_updated: 2026-11-09
+description: Book a meeting with DevEraXTech in Cairo. Call +20 100 001 6216 or email info@deveraxtech.com. Open daily 9 AM to 5 PM Cairo time. Arabic, English, German.
+last_updated: 2026-11-17
 ---
 
 # Contact DevEraXTech
 
-Get in touch with DevEraXTech, a web design and development studio in Cairo , Egypt . Call [+20 100 001 6216](tel:+201000016216), email [deveraxtech@gmail.com](mailto:deveraxtech@gmail.com) or use the form below. We are open every day from 9 AM to 5 PM and usually reply within one business day.
+Get in touch with DevEraXTech, a web design and development studio in Cairo , Egypt . Call [+20 100 001 6216](tel:+201000016216), email [info@deveraxtech.com](mailto:info@deveraxtech.com) or use the form below. We are open every day from 9 AM to 5 PM and usually reply within one business day.
 
 Let's discuss your project goals, technical requirements, and the right path to a secure premium delivery.
 
@@ -36,7 +36,7 @@ Contact Details
 
 **Email:**
 
-[deveraxtech@gmail.com](mailto:deveraxtech@gmail.com)
+[info@deveraxtech.com](mailto:info@deveraxtech.com)
 
 **Location:**
 
@@ -60,7 +60,7 @@ Good to Know
 
 **How do I book a meeting with DevEraXTech?**
 
-Fill in the form on this page with your name, email, phone number, the service you need and a short message, and pick a preferred slot. You can also call +20 100 001 6216 or email deveraxtech@gmail.com.
+Fill in the form on this page with your name, email, phone number, the service you need and a short message, and pick a preferred slot. You can also call +20 100 001 6216 or email info@deveraxtech.com.
 
 **How fast will DevEraXTech reply?**
 
@@ -76,4 +76,4 @@ Tell us what you want to build, who it is for, any websites you like, your ideal
 
 ---
 
-DevEraXTech, Cairo, Egypt | +20 100 001 6216 | deveraxtech@gmail.com | https://deveraxtech.com/contact
+DevEraXTech, Cairo, Egypt | +20 100 001 6216 | info@deveraxtech.com | https://deveraxtech.com/contact

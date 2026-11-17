@@ -2,7 +2,7 @@
 title: Custom Web Application Development | DevEraXTech
 url: https://deveraxtech.com/services/custom-web-applications
 description: Custom web apps built around your business: CRMs, booking systems, client portals and dashboards with role-based access. MERN stack development in Cairo.
-last_updated: 2026-11-09
+last_updated: 2026-11-17
 ---
 
 # Custom Web Application Development
@@ -95,4 +95,4 @@ Tell us what you want to build. DevEraXTech is based in Cairo, works with client
 
 ---
 
-DevEraXTech, Cairo, Egypt | +20 100 001 6216 | deveraxtech@gmail.com | https://deveraxtech.com/contact
+DevEraXTech, Cairo, Egypt | +20 100 001 6216 | info@deveraxtech.com | https://deveraxtech.com/contact
